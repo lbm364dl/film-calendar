@@ -15,7 +15,7 @@ def get_film_dates(dates_text):
     days = re.findall("\d{2}/\d{2}/\d{4}", dates_text)
     hours = re.findall("\d{2}:\d{2}", dates_text)
     return [
-        datetime.strptime(f"{day} {hour}", "%d/%m/%Y %H:%M")
+        datetime.strptime(f"{day} {hour}", "%d/%m/%Y %H:%M").strftime("%Y-%m-%d %H:%M")
         for day, hour in zip(days, hours)
     ]
 
@@ -79,4 +79,3 @@ for day in rrule(DAILY, dtstart=start_date, until=end_date):
 
 df = pd.DataFrame(films).drop_duplicates("theater_film_link").sort_values(by="title")
 df.to_csv("films.csv", index=False)
-print(df)
