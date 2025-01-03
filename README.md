@@ -49,7 +49,7 @@ TODO: Integrate both parts of the program into a single run.
 ## Supported theaters checklist
 
 - [x] Cine Doré
-- [ ] Cineteca Matadero (WIP)
+- [x] Cineteca Matadero
 - [ ] Cines Golem Madrid
 - [ ] Cines Renoir Madrid (Princesa, Plaza de España, Retiro)
 - [ ] Cines Verdi Madrid
