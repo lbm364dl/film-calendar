@@ -1,8 +1,6 @@
-Script to fetch movies from Spanish theaters and generate a CSV with their screening dates and Letterboxd link and rating to make the process of choosing a movie to watch easier.
-
 # I only want to see the film calendar
 
-You can check the `calendar` directory and look for the CSV of the month you are interested in. Github can show you the CSV in a pretty way, and if you want to make more complicated manipulations you may consider just downloading the CSV and using your desired tool like Excel or code.
+You can check the `calendar` directory and look for the CSV of the month you are interested in. Github can show you the CSV in a pretty way, and if you want to make more complicated manipulations you may consider just downloading the CSV and using your desired tool like Excel or code. Please note that this is all automatic and may contain mistakes when trying to match the screened filmed with the Letterboxd entry, it may match with a wrong film. If you find mistakes you can open an issue or pull request.
 
 # I want to run the tool myself
 
