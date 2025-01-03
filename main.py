@@ -21,10 +21,6 @@ if __name__ == "__main__":
         .sort_values(by="title")
     )
     df = df[~df["title"].isna()]
-
-    if False:
-        df.to_csv("films.csv", index=False)
-
     df = rate_films(df)
 
     if update_csv:
