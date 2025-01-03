@@ -1,13 +1,10 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 from dateutil.rrule import rrule, DAILY
 from urllib.parse import urljoin
 
-FILMOTECA = (
-    "https://www.cinetecamadrid.com/programacion"  # ?to=2025-01-15&since=2025-01-15"
-)
+CINETECA_URL = "https://www.cinetecamadrid.com/programacion"
 CINETECA = "Cineteca Madrid"
 HEADERS = {"User-Agent": "Chrome/131.0.0.0"}
 
@@ -44,7 +41,7 @@ def fetch_films(day):
         requests.get(url, headers=HEADERS).text, features="html.parser"
     )
     films = [
-        urljoin(FILMOTECA, film["href"].replace("ListaSesiones", "FichaPelicula"))
+        urljoin(CINETECA_URL, film["href"])
         for h2 in soup.findAll("h2", class_="title")
         for film in h2.findAll("a")
     ]
