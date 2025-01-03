@@ -45,3 +45,14 @@ python main.py --start-date 2025-01-01 --end-date 2025-01-31
 
 After having the CSV output file, run `python rate.py` to get another CSV as output, called `films_with_letterboxd_url.csv`, which will now additionally contain a link to the film on Letterboxd if found, along with film rating and members.
 TODO: Integrate both parts of the program into a single run.
+
+## Supported theaters checklist
+
+- [x] Cine Doré
+- [ ] Cineteca Matadero (WIP)
+- [ ] Cines Golem Madrid
+- [ ] Cines Renoir Madrid (Princesa, Plaza de España, Retiro)
+- [ ] Cines Verdi Madrid
+- [ ] Sala Berlanga
+- [ ] Cines Embajadores
+- [ ] Cine Paz Madrid
