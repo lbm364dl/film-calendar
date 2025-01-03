@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from dateutil.rrule import rrule, DAILY
 from urllib.parse import urljoin
 
-CINETECA_URL = "https://www.cinetecamadrid.com/programacion"
+CINETECA_URL = "https://www.cinetecamadrid.com"
 CINETECA = "Cineteca Madrid"
 HEADERS = {"User-Agent": "Chrome/131.0.0.0"}
 
