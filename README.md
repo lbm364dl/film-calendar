@@ -1,4 +1,4 @@
-Script to fetch movies from Spanish theaters and generate a CSV with their screening dates and Letterboxd link and rating to make the process of choosing a movie to watch easier. Still work in progress.
+Script to fetch movies from Spanish theaters and generate a CSV with their screening dates and Letterboxd link and rating to make the process of choosing a movie to watch easier.
 
 # I only want to see the film calendar
 
