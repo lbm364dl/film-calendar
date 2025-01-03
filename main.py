@@ -29,10 +29,10 @@ if __name__ == "__main__":
 
     if update_csv:
         df_existing_rated_films = pd.read_csv(update_csv)
-        df = pd.concat([df, df_existing_rated_films], ignore_index=True)
+        df = pd.concat([df_existing_rated_films, df], ignore_index=True)
 
     output_csv = update_csv or "films_with_letterboxd_url.csv"
     df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
-    df.sort_values(by="letterboxd_rating", ascending=False).drop_duplicates(
-        "theater_film_link"
+    df.drop_duplicates("theater_film_link").sort_values(
+        by="letterboxd_rating", ascending=False
     ).to_csv(output_csv, index=False)
