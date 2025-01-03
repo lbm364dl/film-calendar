@@ -8,11 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-browser = webdriver.Chrome()
-
-df = pd.read_csv("films.csv")
-df = df[~df["title"].isna()]
-df["year"] = df["year"].astype("Int64")
 LETTERBOXD = "https://letterboxd.com"
 LETTERBOXD_SEARCH = f"{LETTERBOXD}/search/films/"
 
@@ -53,6 +48,7 @@ def create_url(s):
     url = urljoin(LETTERBOXD_SEARCH, quote_plus(search))
     print(f"Searching Letterboxd URL {url}...")
 
+    browser = webdriver.Chrome()
     browser.get(url)
     delay = 3  # seconds
 
@@ -92,10 +88,12 @@ def create_url(s):
     })
 
 
-df[["letterboxd_url", "letterboxd_rating", "letterboxd_viewers"]] = df[
-    ["title", "year"]
-].apply(create_url, axis=1)
+def rate_films(df_fetched_films):
+    df_fetched_films[["letterboxd_url", "letterboxd_rating", "letterboxd_viewers"]] = (
+        df_fetched_films[["title", "year"]].apply(create_url, axis=1)
+    )
+    df_fetched_films["letterboxd_rating"] = pd.to_numeric(
+        df_fetched_films["letterboxd_rating"]
+    )
 
-df = df.sort_values(by="letterboxd_rating", ascending=False)
-
-df.to_csv("films_with_letterboxd_url.csv", index=False)
+    return df_fetched_films

@@ -19,6 +19,11 @@ def parse_args():
         help="Date from which to end the search. Format YYYY-mm-dd (year-month-day).",
     )
     parser.add_argument(
+        "--update-csv",
+        type=str,
+        help="Path of CSV file that already contains films, to add new ones in the same file, removing duplicates.",
+    )
+    parser.add_argument(
         "--fetch-from",
         type=str,
         action="append",
