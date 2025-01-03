@@ -48,7 +48,7 @@ python main.py --start-date 2025-01-01 --end-date 2025-01-31
 ```
 
 By default you will get an output CSV called `films_with_letterboxd_url.csv`, which will also contain a link to the film on Letterboxd if found, along with film rating and members.
-If you also specify a CSV file path, the new fetched films will be added to this file instead of creating a new file. When a given film already exists in the file (which is checked based on the value of `theater_film_link`), this one is kept, ignoring the newly fetched one. This is to favour potentially wrong output data that could have been manually fixed and should be kept that way.
+If you also specify a CSV file path via the `--update-csv` option, the newly fetched films will be added to this file instead of creating a new one. When a given film already exists in the file (which is checked based on the value of `theater_film_link`), this one is kept, ignoring the newly fetched one. This is to favour potentially wrong output data that could have been manually fixed and should be kept that way.
 
 ## Supported theaters checklist
 
