@@ -1,4 +1,4 @@
-from dore import fetch_films_from_date_range as fetch_dore_films
+from fetch_films.dore import fetch_films_from_date_range as fetch_dore_films
 
 FETCH_THEATER_FILMS = {
     "Doré": fetch_dore_films,
