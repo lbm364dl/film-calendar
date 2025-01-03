@@ -4,13 +4,13 @@ import theaters
 
 if __name__ == "__main__":
     args = parse_args()
-    print(args)
 
     start_date = args.start_date
     end_date = args.end_date
+    theaters_list = args.fetch_from or theaters.all_theaters()
 
     films = []
-    for theater in theaters.all_theaters():
+    for theater in theaters_list:
         films += theaters.fetch_films(theater, start_date, end_date)
 
     df = (

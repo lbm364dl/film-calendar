@@ -18,5 +18,13 @@ def parse_args():
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="Date from which to end the search. Format YYYY-mm-dd (year-month-day).",
     )
+    parser.add_argument(
+        "--fetch-from",
+        type=str,
+        action="append",
+        choices=["dore", "cineteca"],
+        default=[],
+        help="Key names of specific theaters you want to fetch films from. For more than one theater, add this option for each one, e.g., --fetch-from dore --fetch-from cineteca",
+    )
 
     return parser.parse_args(args=(sys.argv[1:] or ["--help"]))
