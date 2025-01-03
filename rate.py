@@ -1,8 +1,6 @@
-import requests
 import pandas as pd
 from urllib.parse import quote_plus, urljoin
 from bs4 import BeautifulSoup
-from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,12 +10,12 @@ from selenium.common.exceptions import TimeoutException
 
 browser = webdriver.Chrome()
 
-
 df = pd.read_csv("films.csv")
 df = df[~df["title"].isna()]
 df["year"] = df["year"].astype("Int64")
 LETTERBOXD = "https://letterboxd.com"
 LETTERBOXD_SEARCH = f"{LETTERBOXD}/search/films/"
+
 
 def viewers_to_int(viewers):
     if not viewers:
