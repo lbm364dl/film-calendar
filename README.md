@@ -27,7 +27,7 @@ There is a command line tool to run the program.
 You can run `python main.py --help` to see the following description:
 
 ```
-usage: main.py [-h] [--start-date START_DATE] [--end-date END_DATE]
+usage: main.py [-h] [--start-date START_DATE] [--end-date END_DATE] [--update-csv UPDATE_CSV] [--fetch-from {dore,cineteca}]
 
 Fetch screening films in theaters between two given dates
 
@@ -36,15 +36,19 @@ options:
   --start-date START_DATE
                         Date from which to start the search. Format YYYY-mm-dd (year-month-day).
   --end-date END_DATE   Date from which to end the search. Format YYYY-mm-dd (year-month-day).
+  --update-csv UPDATE_CSV
+                        Path of CSV file that already contains films, to add new ones in the same file, removing duplicates.
+  --fetch-from {dore,cineteca}
+                        Key names of specific theaters you want to fetch films from. For more than one theater, add this option for each one, e.g., --fetch-from dore --fetch-from cineteca
 ```
 
-To fetch films into a single CSV called `films.csv`, for e.g. January 2025, you would run:
+To fetch films into a single CSV called for e.g. January 2025, you would run:
 ```
 python main.py --start-date 2025-01-01 --end-date 2025-01-31
 ```
 
-After having the CSV output file, run `python rate.py` to get another CSV as output, called `films_with_letterboxd_url.csv`, which will now additionally contain a link to the film on Letterboxd if found, along with film rating and members.
-TODO: Integrate both parts of the program into a single run.
+By default you will get an output CSV called `films_with_letterboxd_url.csv`, which will also contain a link to the film on Letterboxd if found, along with film rating and members.
+If you also specify a CSV file path, the new fetched films will be added to this file instead of creating a new file. When a given film already exists in the file (which is checked based on the value of `theater_film_link`), this one is kept, ignoring the newly fetched one. This is to favour potentially wrong output data that could have been manually fixed and should be kept that way.
 
 ## Supported theaters checklist
 
