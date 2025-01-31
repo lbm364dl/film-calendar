@@ -20,7 +20,7 @@ def get_film_dates(soup, date):
         for hour in dates.findAll("li", class_="sb-sessions__date-hours-hour")
     ]
     return [
-        f"{date.year:04}-{date.month:02}-{day:02} {hour}"
+        f"{date.year:04}-{date.month:02}-{int(day):02} {hour}"
         for day, hour in zip(days, hours)
     ]
 
