@@ -1,11 +1,13 @@
-from cli import parse_args
+"""Main entry point for film-calendar."""
+
+from cli import parse_args, generate_cinema_boilerplate
 from rate import rate_films
 import pandas as pd
 import theaters
 
-if __name__ == "__main__":
-    args = parse_args()
 
+def run_scrape(args):
+    """Execute the scrape command."""
     start_date = args.start_date
     end_date = args.end_date
     theaters_list = args.fetch_from or theaters.all_theaters()
@@ -32,3 +34,19 @@ if __name__ == "__main__":
     df.drop_duplicates("theater_film_link").sort_values(
         by="letterboxd_rating", ascending=False
     ).to_csv(output_csv, index=False)
+    
+    print(f"\nOutput saved to: {output_csv}")
+
+
+def run_new_cinema(args):
+    """Execute the new-cinema command."""
+    generate_cinema_boilerplate(args.key, args.name, args.url)
+
+
+if __name__ == "__main__":
+    args = parse_args()
+
+    if args.command == "scrape":
+        run_scrape(args)
+    elif args.command == "new-cinema":
+        run_new_cinema(args)
