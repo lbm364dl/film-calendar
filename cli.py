@@ -17,7 +17,7 @@ def parse_args():
     # Scrape subcommand
     scrape_parser = subparsers.add_parser(
         "scrape",
-        help="Scrape films from theaters for a date range",
+        help="Scrape films from theaters for a date range (outputs raw CSV)",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     scrape_parser.add_argument(
@@ -33,9 +33,10 @@ def parse_args():
         help="Date from which to end the search. Format YYYY-mm-dd.",
     )
     scrape_parser.add_argument(
-        "--update-csv",
+        "--output",
         type=str,
-        help="Path of CSV file to update with new films (removes duplicates).",
+        default="films_raw.csv",
+        help="Output CSV file path (default: films_raw.csv)",
     )
     scrape_parser.add_argument(
         "--fetch-from",
@@ -44,6 +45,49 @@ def parse_args():
         choices=["dore", "cineteca"],
         default=[],
         help="Theater(s) to fetch from. Repeat for multiple theaters.\nExample: --fetch-from dore --fetch-from cineteca",
+    )
+
+    # Match subcommand
+    match_parser = subparsers.add_parser(
+        "match",
+        help="Find Letterboxd URLs for films in a CSV",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    match_parser.add_argument(
+        "--input",
+        type=str,
+        required=True,
+        help="Input CSV file with film data (from scrape step)",
+    )
+    match_parser.add_argument(
+        "--output",
+        type=str,
+        default="films_matched.csv",
+        help="Output CSV file path (default: films_matched.csv)",
+    )
+    match_parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Skip films that already have a letterboxd_url (for incremental matching)",
+    )
+
+    # Rate subcommand
+    rate_parser = subparsers.add_parser(
+        "rate",
+        help="Fetch Letterboxd ratings for matched films",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    rate_parser.add_argument(
+        "--input",
+        type=str,
+        required=True,
+        help="Input CSV file with letterboxd_url column (from match step)",
+    )
+    rate_parser.add_argument(
+        "--output",
+        type=str,
+        default="films_rated.csv",
+        help="Output CSV file path (default: films_rated.csv)",
     )
 
     # New cinema subcommand
