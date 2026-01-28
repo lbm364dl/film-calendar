@@ -37,11 +37,9 @@ class TestCinetecaScraper:
         
         film_urls = scraper.parse_films_list(html, date)
         
-        # Assertions depend on the actual fixture content
         assert isinstance(film_urls, list)
-        # Add specific assertions once fixture is provided:
-        # assert len(film_urls) > 0
-        # assert all("cinetecamadrid.com" in url for url in film_urls)
+        assert len(film_urls) == 2
+        assert all("cinetecamadrid.com" in url for url in film_urls)
 
     def test_parse_film_page(self, scraper, load_fixture):
         """Test parsing film info from film detail page.
@@ -54,11 +52,9 @@ class TestCinetecaScraper:
         
         film_info = scraper.parse_film_page(html, film_url, date)
         
-        # Basic structure assertions
         assert film_info.theater == "Cineteca Madrid"
         assert film_info.theater_film_link == film_url
         assert isinstance(film_info.title, str)
         assert isinstance(film_info.dates, list)
-        # Add specific assertions once fixture is provided:
-        # assert film_info.title == "Expected Film Title"
-        # assert film_info.year == "2025"
+        assert film_info.title == "Los Chichos: Ni más ni menos"
+        assert film_info.year == "2025"
