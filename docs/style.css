@@ -216,17 +216,53 @@ h1 {
 .film-dates {
     padding-top: 0.75rem;
     border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-.date-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
+.date-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Increased from 0.25rem */
     background: rgba(255, 107, 107, 0.15);
     border: 1px solid rgba(255, 107, 107, 0.3);
     border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+}
+
+.date-badge {
     font-size: 0.85rem;
     color: var(--text);
-    margin: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.calendar-btn {
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    display: flex;
+    /* Fix vertical alignment */
+}
+
+.calendar-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.calendar-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+    /* Removed invert filter to show original colors */
+    background: white;
+    border-radius: 4px;
+    /* Small radius for the icon background */
+    padding: 2px;
+    /* Padding to create whitespace around the icon inside the white box */
 }
 
 .loading,

@@ -175,7 +175,18 @@ function createFilmCard(film) {
 
     const datesHTML = film.dates.length > 0
         ? `<div class="film-dates">
-             ${film.dates.map(date => `<span class="date-badge">${formatDate(date)}</span>`).join('')}
+             ${film.dates.map(date => {
+            const formatted = formatDate(date);
+            const calendarUrl = generateCalendarUrl(film, date);
+            return `
+                    <div class="date-row">
+                        <a href="${calendarUrl}" class="calendar-btn" target="_blank" title="Add to Google Calendar" onclick="event.stopPropagation()">
+                            <img src="assets/calendar.svg" class="calendar-icon" alt="Cal" onerror="this.outerHTML='📅'">
+                        </a>
+                        <span class="date-badge">${formatted}</span>
+                    </div>
+                 `;
+        }).join('')}
            </div>`
         : '';
 
@@ -232,6 +243,29 @@ document.getElementById('month-filter').addEventListener('change', filterFilms);
 document.getElementById('theater-filter').addEventListener('change', filterFilms);
 document.getElementById('rated-only').addEventListener('change', filterFilms);
 document.getElementById('date-filter').addEventListener('change', filterFilms);
+
+function generateCalendarUrl(film, dateStr) {
+    try {
+        // Date format is usually "YYYY-MM-DD HH:MM"
+        const [datePart, timePart] = dateStr.split(' ');
+        if (!datePart || !timePart) return '#';
+
+        const start = new Date(dateStr.replace(' ', 'T'));
+        const end = new Date(start.getTime() + (2 * 60 * 60 * 1000)); // Assume 2 hours duration
+
+        const formatGCal = (date) => date.toISOString().replace(/-|:|\.\d\d\d/g, '');
+
+        const title = encodeURIComponent(`${film.title} (${film.year || ''})`);
+        const details = encodeURIComponent(`Director: ${film.director}\nLink: ${film.theaterLink || ''}`);
+        const location = encodeURIComponent(film.theater);
+        const dates = `${formatGCal(start)}/${formatGCal(end)}`;
+
+        return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
+    } catch (e) {
+        console.error('Error generating calendar URL', e);
+        return '#';
+    }
+}
 
 // Load films on page load
 loadFilms();
