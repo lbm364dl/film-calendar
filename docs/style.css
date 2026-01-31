@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0f0f0f;
+    --bg-card: #1a1a1a;
+    --bg-hover: #252525;
+    --text: #e0e0e0;
+    --text-dim: #999;
+    --accent: #ff6b6b;
+    --border: #333;
+    --rating-gold: #f5c518;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), #ff9999);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+.controls {
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filters select {
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input {
+    cursor: pointer;
+}
+
+.stats {
+    margin-bottom: 1.5rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+.films-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.film-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.film-card:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.film-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.film-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--rating-gold);
+    flex-shrink: 0;
+}
+
+.film-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.film-director,
+.film-year,
+.film-theater {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+}
+
+.film-director strong,
+.film-year strong,
+.film-theater strong {
+    color: var(--text);
+}
+
+.film-dates {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.date-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.film-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.film-link {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.film-link:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.loading,
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .films-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+    
+    .filters select {
+        width: 100%;
+    }
+}

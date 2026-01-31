@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madrid Film Calendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Madrid Film Calendar</h1>
+            <p class="subtitle">Cine Doré • Cineteca Madrid</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search by title, director, or theater..."
+                    autocomplete="off">
+            </div>
+
+            <div class="filters">
+                <select id="month-filter">
+                    <option value="">All Months</option>
+                </select>
+
+                <select id="theater-filter">
+                    <option value="">All Theaters</option>
+                    <option value="Cineteca Madrid">Cineteca Madrid</option>
+                    <option value="Cine Doré">Cine Doré</option>
+                </select>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rated-only">
+                    <span>Rated only</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="stats">
+            <span id="film-count">0 films</span>
+        </div>
+
+        <div id="films-grid" class="films-grid">
+            <!-- Films will be inserted here -->
+        </div>
+
+        <div id="loading" class="loading">Loading films...</div>
+        <div id="no-results" class="no-results" style="display: none;">
+            No films found matching your criteria.
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
