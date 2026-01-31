@@ -242,7 +242,29 @@ document.getElementById('search').addEventListener('input', filterFilms);
 document.getElementById('month-filter').addEventListener('change', filterFilms);
 document.getElementById('theater-filter').addEventListener('change', filterFilms);
 document.getElementById('rated-only').addEventListener('change', filterFilms);
-document.getElementById('date-filter').addEventListener('change', filterFilms);
+const dateFilter = document.getElementById('date-filter');
+
+function updateDatePlaceholder() {
+    if (dateFilter.value) {
+        dateFilter.classList.add('has-value');
+    } else {
+        dateFilter.classList.remove('has-value');
+    }
+}
+
+dateFilter.addEventListener('change', () => {
+    filterFilms();
+    updateDatePlaceholder();
+});
+
+// Make entire input clickable to open picker (better UX)
+dateFilter.addEventListener('click', function () {
+    try {
+        this.showPicker();
+    } catch (e) {
+        // Fallback for browsers that don't support showPicker
+    }
+});
 
 function generateCalendarUrl(film, dateStr) {
     try {

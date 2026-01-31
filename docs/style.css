@@ -88,6 +88,32 @@ h1 {
     font-size: 0.95rem;
     cursor: pointer;
     outline: none;
+    min-width: 160px;
+    /* Ensure enough width for placeholder */
+    position: relative;
+    line-height: normal;
+    /* Fix for alignment */
+}
+
+/* Fix for mobile date placeholder */
+.filters input[type="date"]:not(:focus):not(.has-value)::before {
+    content: attr(placeholder);
+    color: var(--text-dim);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 3rem);
+    /* Account for padding + icon space */
+}
+
+/* Hide native placeholder if present when we show ours (optional, but good for consistency) */
+.filters input[type="date"]:not(:focus):not(.has-value)::-webkit-datetime-edit {
+    color: transparent;
 }
 
 .filters input[type="date"]::-webkit-calendar-picker-indicator {
