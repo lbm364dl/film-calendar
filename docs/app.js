@@ -99,8 +99,7 @@ function filterFilms() {
     const selectedMonth = document.getElementById('month-filter').value;
     const selectedTheater = document.getElementById('theater-filter').value;
     const ratedOnly = document.getElementById('rated-only').checked;
-    const dateFrom = document.getElementById('date-from').value;
-    const dateTo = document.getElementById('date-to').value;
+    const selectedDate = document.getElementById('date-filter').value;
 
     filteredFilms = allFilms.filter(film => {
         // Search filter (accent-insensitive)
@@ -119,18 +118,14 @@ function filterFilms() {
         // Rated only filter
         const matchesRated = !ratedOnly || film.rating !== null;
 
-        // Date range filter
-        let matchesDateRange = true;
-        if (dateFrom || dateTo) {
-            matchesDateRange = film.dates.some(date => {
-                const filmDate = date.substring(0, 10); // YYYY-MM-DD
-                const afterFrom = !dateFrom || filmDate >= dateFrom;
-                const beforeTo = !dateTo || filmDate <= dateTo;
-                return afterFrom && beforeTo;
-            });
+        // Date filter (single day)
+        // Show film if it has ANY screening on the selected date
+        let matchesDate = true;
+        if (selectedDate) {
+            matchesDate = film.dates.some(date => date.startsWith(selectedDate));
         }
 
-        return matchesSearch && matchesMonth && matchesTheater && matchesRated && matchesDateRange;
+        return matchesSearch && matchesMonth && matchesTheater && matchesRated && matchesDate;
     });
 
     renderFilms();
@@ -236,8 +231,7 @@ document.getElementById('search').addEventListener('input', filterFilms);
 document.getElementById('month-filter').addEventListener('change', filterFilms);
 document.getElementById('theater-filter').addEventListener('change', filterFilms);
 document.getElementById('rated-only').addEventListener('change', filterFilms);
-document.getElementById('date-from').addEventListener('change', filterFilms);
-document.getElementById('date-to').addEventListener('change', filterFilms);
+document.getElementById('date-filter').addEventListener('change', filterFilms);
 
 // Load films on page load
 loadFilms();
