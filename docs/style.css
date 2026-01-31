@@ -78,6 +78,7 @@ h1 {
     flex-wrap: wrap;
 }
 
+.filters input[type="date"],
 .filters select {
     padding: 0.75rem 1rem;
     background: var(--bg-card);
@@ -87,6 +88,10 @@ h1 {
     font-size: 0.95rem;
     cursor: pointer;
     outline: none;
+}
+
+.filters input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
 
 .checkbox-label {
@@ -119,10 +124,9 @@ h1 {
 .film-card {
     background: var(--bg-card);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     border: 1px solid var(--border);
     transition: all 0.2s;
-    cursor: pointer;
 }
 
 .film-card:hover {
@@ -135,49 +139,82 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.film-title-row {
+    flex: 1;
 }
 
 .film-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    line-height: 1.4;
     color: var(--text);
+}
+
+.title-meta {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 .rating {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--rating-gold);
-    flex-shrink: 0;
 }
 
-.film-meta {
+.letterboxd-link {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: all 0.2s;
+
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
 }
 
-.film-director,
-.film-year,
+.letterboxd-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.letterboxd-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    /* In case of text fallback */
+    font-style: normal;
+    display: block;
+}
+
 .film-theater {
     font-size: 0.9rem;
     color: var(--text-dim);
-}
-
-.film-director strong,
-.film-year strong,
-.film-theater strong {
-    color: var(--text);
+    margin-bottom: 0.75rem;
 }
 
 .film-dates {
-    margin-top: 1rem;
-    padding-top: 1rem;
+    padding-top: 0.75rem;
     border-top: 1px solid var(--border);
 }
 
@@ -192,27 +229,6 @@ h1 {
     margin: 0.25rem 0.25rem 0.25rem 0;
 }
 
-.film-links {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-}
-
-.film-link {
-    font-size: 0.85rem;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    transition: all 0.2s;
-}
-
-.film-link:hover {
-    background: var(--accent);
-    color: white;
-}
-
 .loading,
 .no-results {
     text-align: center;
@@ -225,15 +241,15 @@ h1 {
     h1 {
         font-size: 2rem;
     }
-    
+
     .films-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .filters {
         flex-direction: column;
     }
-    
+
     .filters select {
         width: 100%;
     }

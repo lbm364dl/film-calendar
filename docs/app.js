@@ -31,7 +31,7 @@ async function loadFilms() {
             theater: film.theater,
             title: film.title,
             director: film.director,
-            year: film.year,
+            year: film.year ? parseInt(film.year) : null,
             dates: parseDates(film.dates),
             theaterLink: film.theater_film_link,
             letterboxdUrl: film.letterboxd_url,
@@ -89,18 +89,25 @@ function formatMonth(monthStr) {
     return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long' });
 }
 
+// Remove accents for search
+function normalizeText(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
 function filterFilms() {
-    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const searchTerm = normalizeText(document.getElementById('search').value);
     const selectedMonth = document.getElementById('month-filter').value;
     const selectedTheater = document.getElementById('theater-filter').value;
     const ratedOnly = document.getElementById('rated-only').checked;
+    const dateFrom = document.getElementById('date-from').value;
+    const dateTo = document.getElementById('date-to').value;
 
     filteredFilms = allFilms.filter(film => {
-        // Search filter
+        // Search filter (accent-insensitive)
         const matchesSearch = !searchTerm ||
-            film.title.toLowerCase().includes(searchTerm) ||
-            (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-            film.theater.toLowerCase().includes(searchTerm);
+            normalizeText(film.title).includes(searchTerm) ||
+            (film.director && normalizeText(film.director).includes(searchTerm)) ||
+            normalizeText(film.theater).includes(searchTerm);
 
         // Month filter
         const matchesMonth = !selectedMonth ||
@@ -112,7 +119,18 @@ function filterFilms() {
         // Rated only filter
         const matchesRated = !ratedOnly || film.rating !== null;
 
-        return matchesSearch && matchesMonth && matchesTheater && matchesRated;
+        // Date range filter
+        let matchesDateRange = true;
+        if (dateFrom || dateTo) {
+            matchesDateRange = film.dates.some(date => {
+                const filmDate = date.substring(0, 10); // YYYY-MM-DD
+                const afterFrom = !dateFrom || filmDate >= dateFrom;
+                const beforeTo = !dateTo || filmDate <= dateTo;
+                return afterFrom && beforeTo;
+            });
+        }
+
+        return matchesSearch && matchesMonth && matchesTheater && matchesRated && matchesDateRange;
     });
 
     renderFilms();
@@ -151,13 +169,14 @@ function createFilmCard(film) {
         ? `<div class="rating">⭐ ${film.rating.toFixed(1)}</div>`
         : '';
 
-    const directorHTML = film.director
-        ? `<div class="film-director"><strong>Director:</strong> ${escapeHtml(film.director)}</div>`
-        : '';
-
-    const yearHTML = film.year
-        ? `<div class="film-year"><strong>Year:</strong> ${escapeHtml(film.year)}</div>`
-        : '';
+    // Build compact title: "Title (Director, Year)"
+    let titleText = escapeHtml(film.title);
+    const metadata = [];
+    if (film.director) metadata.push(escapeHtml(film.director));
+    if (film.year) metadata.push(film.year);
+    if (metadata.length > 0) {
+        titleText += ` <span class="title-meta">(${metadata.join(', ')})</span>`;
+    }
 
     const datesHTML = film.dates.length > 0
         ? `<div class="film-dates">
@@ -165,30 +184,30 @@ function createFilmCard(film) {
            </div>`
         : '';
 
-    const links = [];
-    if (film.theaterLink) {
-        links.push(`<a href="${escapeHtml(film.theaterLink)}" class="film-link" target="_blank">Theater ↗</a>`);
-    }
-    if (film.letterboxdUrl) {
-        links.push(`<a href="${escapeHtml(film.letterboxdUrl)}" class="film-link" target="_blank">Letterboxd ↗</a>`);
-    }
-    const linksHTML = links.length > 0 ? `<div class="film-links">${links.join('')}</div>` : '';
+    // Letterboxd icon link
+    // Place your icon at: docs/assets/letterboxd.svg (or change extension below)
+    const letterboxdHTML = film.letterboxdUrl
+        ? `<a href="${escapeHtml(film.letterboxdUrl)}" class="letterboxd-link" target="_blank" onclick="event.stopPropagation()" title="View on Letterboxd">
+             <img src="assets/letterboxd.svg" class="letterboxd-icon" alt="LB" onerror="this.outerHTML='📽️'">
+           </a>`
+        : '';
+
+    // Make card clickable to theater link
+    const cardClickable = film.theaterLink ? `onclick="window.open('${escapeHtml(film.theaterLink)}', '_blank')"` : '';
 
     return `
-        <div class="film-card">
+        <div class="film-card" ${cardClickable} style="${film.theaterLink ? 'cursor: pointer;' : ''}">
             <div class="film-header">
-                <div>
-                    <div class="film-title">${escapeHtml(film.title)}</div>
-                    ${directorHTML}
+                <div class="film-title-row">
+                    <div class="film-title">${titleText}</div>
                 </div>
-                ${ratingHTML}
+                <div class="card-actions">
+                    ${ratingHTML}
+                    ${letterboxdHTML}
+                </div>
             </div>
-            <div class="film-meta">
-                ${yearHTML}
-                <div class="film-theater"><strong>Theater:</strong> ${escapeHtml(film.theater)}</div>
-            </div>
+            <div class="film-theater">${escapeHtml(film.theater)}</div>
             ${datesHTML}
-            ${linksHTML}
         </div>
     `;
 }
@@ -217,6 +236,8 @@ document.getElementById('search').addEventListener('input', filterFilms);
 document.getElementById('month-filter').addEventListener('change', filterFilms);
 document.getElementById('theater-filter').addEventListener('change', filterFilms);
 document.getElementById('rated-only').addEventListener('change', filterFilms);
+document.getElementById('date-from').addEventListener('change', filterFilms);
+document.getElementById('date-to').addEventListener('change', filterFilms);
 
 // Load films on page load
 loadFilms();
