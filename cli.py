@@ -96,6 +96,30 @@ def parse_args():
         help="Output CSV file path (default: films_rated.csv)",
     )
 
+    # Merge subcommand
+    merge_parser = subparsers.add_parser(
+        "merge",
+        help="Merge a CSV into a source of truth CSV (updating ratings/dates)",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    merge_parser.add_argument(
+        "--source",
+        type=str,
+        required=True,
+        help="Path to the master CSV (source of truth)",
+    )
+    merge_parser.add_argument(
+        "--input",
+        type=str,
+        required=True,
+        help="Path to the CSV to merge IN",
+    )
+    merge_parser.add_argument(
+        "--output",
+        type=str,
+        help="Optional output path (defaults to overwriting --source)",
+    )
+
     # New cinema subcommand
     new_cinema_parser = subparsers.add_parser(
         "new-cinema",
