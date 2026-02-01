@@ -47,48 +47,127 @@ def _wait_and_fetch_soup(browser, delay, xpath):
 # MATCH STEP: Find Letterboxd URL for a film
 # =============================================================================
 
-def find_letterboxd_url(title: str, year: str | None) -> str | None:
-    """Search Letterboxd for a film and return its URL.
+import unicodedata
+
+def slugify_director(director: str) -> str:
+    """Slugify director name for Letterboxd search (e.g. 'François Ozon' -> 'francois-ozon')."""
+    if not director:
+        return ""
+    # Normalize to ASCII
+    normalized = unicodedata.normalize("NFKD", director).encode("ascii", "ignore").decode("utf-8")
+    return normalized.lower().replace(" ", "-")
+
+
+def _search_with_browser(browser, title: str, year: int | str | None = None, director: str | None = None) -> tuple[str | None, int | None]:
+    """Helper to perform a single search with an open browser."""
+    search = title.strip()
     
-    Args:
-        title: Film title to search for
-        year: Film year (optional, improves accuracy)
-    
-    Returns:
-        Letterboxd URL if found, None otherwise
-    """
-    search = title
-    if year and not pd.isna(year):
-        # Convert to int to avoid "2019.0" format
-        search += f" year:{int(float(year))}"
-    
+    if year:
+        search += f" year:{year}"
+    elif director:
+        if not director.startswith("director:"):
+             search += f" director:{director}"
+        else:
+             search += f" {director}"
+
     url = urljoin(LETTERBOXD_SEARCH, quote_plus(search))
     print(f"Searching: {url}")
 
-    browser = webdriver.Chrome()
     try:
         browser.get(url)
         delay = 3  # seconds
 
         soup = _wait_and_fetch_soup(browser, delay, '//ul[contains(@class, "results")]')
         if not soup:
-            return None
+            return None, None
 
         film_span = soup.find("span", class_="film-title-wrapper")
         if not film_span:
-            return None
+            return None, None
 
         film_relative_url = film_span.a["href"]
         film_url = urljoin(LETTERBOXD, film_relative_url)
-        print(f"  → Found: {film_url}")
-        return film_url
+        
+        # Extract year from metadata
+        # There might be multiple small.metadata, some empty.
+        # Structure: <span class="film-title-wrapper"><a>Title <small class="metadata"></small></a> <small class="metadata"><a>YEAR</a></small></span>
+        # Or sometimes just text in metadata.
+        found_year = None
+        for metadata in film_span.find_all("small", class_="metadata"):
+            text = metadata.text.strip()
+            if text and text.isdigit():
+                try:
+                    found_year = int(text)
+                    break
+                except ValueError:
+                    continue
+                
+        print(f"  → Found: {film_url} (Year: {found_year})")
+        return film_url, found_year
+    except Exception as e:
+        print(f"  → Error during search: {e}")
+        return None, None
+
+
+def find_letterboxd_url(title: str, year: str | float | int | None, director: str | None = None) -> tuple[str | None, int | None]:
+    """Search Letterboxd for a film and return its URL and Year.
+    
+    Strategies:
+    1. Title + Exact Year (if year exists)
+    2. Title + Director (if director exists, try for each director)
+    3. Title Only (Fallback)
+    
+    Args:
+        title: Film title
+        year: Film year (optional)
+        director: Director name(s) (optional)
+        
+    Returns:
+        tuple: (url, found_year) or (None, None)
+    """
+    
+    strategies = []
+    
+    # Strategy 1: Year based
+    if year and not pd.isna(year):
+        try:
+            target_year = int(float(year))
+            strategies.append({"year": target_year})
+        except ValueError:
+            pass
+
+    # Strategy 3: Director based
+    if director and not pd.isna(director):
+        # Split by comma in case of multiple directors
+        directors = [d.strip() for d in director.split(",")]
+        for d in directors:
+            slug = slugify_director(d)
+            if slug:
+                strategies.append({"director": slug})
+    
+    # Strategy 4: Fallback
+    strategies.append({}) # No extra params, just title
+        
+    browser = webdriver.Chrome()
+    try:
+        for params in strategies:
+            p_year = params.get("year")
+            p_director = params.get("director")
+            
+            print(f"Trying search for '{title}' with params={params}...")
+            found_url, found_year = _search_with_browser(browser, title, year=p_year, director=p_director)
+            if found_url:
+                return found_url, found_year
+        
+        print("  → Not found after all attempts.")
+        return None, None
     finally:
         browser.quit()
 
 
 def _match_row(row) -> pd.Series:
     """Apply function for matching a single film row."""
-    url = find_letterboxd_url(row["title"], row.get("year"))
+    url, _ = find_letterboxd_url(row["title"], row.get("year"), row.get("director"))
     return pd.Series({"letterboxd_url": url})
 
 
@@ -118,10 +197,19 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False) -> pd.DataFrame:
         print(f"Matching {len(to_match)} films")
     
     # Match each film
+    # Match each film
     for idx in to_match.index:
         row = result.loc[idx]
-        url = find_letterboxd_url(row["title"], row.get("year"))
+        url, found_year = find_letterboxd_url(row["title"], row.get("year"), row.get("director"))
         result.at[idx, "letterboxd_url"] = url
+        
+        # Backfill year if missing and found
+        if pd.isna(row.get("year")) and found_year:
+            result.at[idx, "year"] = found_year
+
+    # Ensure year is integer type (nullable Int64 handles NaNs)
+    if "year" in result.columns:
+        result["year"] = result["year"].astype("Int64")
     
     return result
 

@@ -76,13 +76,4 @@ class CinetecaScraper(BaseCinemaScraper):
         ]
 
 
-# Backward compatibility: keep the function interface
-_scraper = CinetecaScraper()
-
-
-def fetch_films_from_date_range(start_date: datetime, end_date: datetime) -> list[dict]:
-    """Fetch films from Cineteca Madrid for a date range.
-    
-    This function is kept for backward compatibility with theaters.py.
-    """
-    return _scraper.fetch_films_from_date_range(start_date, end_date)
+# Backward compatibility wrapper removed.

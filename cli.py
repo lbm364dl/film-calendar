@@ -42,9 +42,15 @@ def parse_args():
         "--fetch-from",
         type=str,
         action="append",
-        choices=["dore", "cineteca"],
+        choices=["dore", "cineteca", "renoir"],
         default=[],
         help="Theater(s) to fetch from. Repeat for multiple theaters.\nExample: --fetch-from dore --fetch-from cineteca",
+    )
+    scrape_parser.add_argument(
+        "--period",
+        type=str,
+        choices=["weekly", "monthly"],
+        help="Fetch all theaters with this update period (e.g., 'weekly', 'monthly').",
     )
 
     # Match subcommand

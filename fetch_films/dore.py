@@ -228,13 +228,4 @@ class DoreScraper(BaseCinemaScraper):
         )
 
 
-# Backward compatibility: keep the function interface
-_scraper = DoreScraper()
-
-
-def fetch_films_from_date_range(start_date: datetime, end_date: datetime) -> list[dict]:
-    """Fetch films from Cine Doré for a date range.
-    
-    This function is kept for backward compatibility with theaters.py.
-    """
-    return _scraper.fetch_films_from_date_range(start_date, end_date)
+# Backward compatibility wrapper removed.

@@ -16,6 +16,7 @@ class CinemaInfo:
     key: str  # Short identifier, e.g., "cineteca"
     name: str  # Display name, e.g., "Cineteca Madrid"
     base_url: str  # Base URL for the cinema website
+    update_period: str = "monthly"  # "monthly" or "weekly"
 
 
 @dataclass

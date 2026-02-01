@@ -1,0 +1,124 @@
+body {}
+
+/* Add Overflow Hidden to the Med Rect slot to avoid it to overflow */
+[id^="med_rect_atf"],
+[id^="med_rect_btf"],
+#pw-160x600_btf {
+    overflow: hidden !important;
+    display: block !important;
+    width: unset !important;
+}
+
+#pw-oop-flex {
+     z-index: 10000 !important;
+}
+
+/*970px is the min width that screen size must be for backgrounds to show*/
+@media only screen and (min-width: 970px) {
+	/*FLEX SKINS START*/
+	body.flex-skin-active,
+	body.flex-skin-docked {
+		/*Make body transparent*/
+		background-color: #14181c !important;
+	}
+	/*Set content width to 1100px*/
+	body.flex-skin-active #content,
+	body.flex-skin-docked #content,
+	body.flex-skin-active #page-footer,
+	body.flex-skin-docked #page-footer {
+		max-width: 1100px !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	body.flex-skin-active #header,
+	body.flex-skin-docked #header {
+		/*Force header Background Color*/
+		background-color: #1c2127 !important;
+	}
+	/* Center Big BackDrop image */
+	body.flex-skin-active div.backdrop-container {
+		top: 310px !important;
+		max-width: 1100px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+	}
+	/* Center Big BackDrop image */
+	body.flex-skin-docked div.backdrop-container {
+		top: 460px !important;
+		max-width: 1100px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+	}
+}
+
+/*Breakpoint for smaller breakpoints with different nav*/
+@media only screen and (max-width: 969px) {
+}
+
+/*Example Breakpoint for mobile breakpoint (may fall into the above)*/
+@media only screen and (max-width: 600px) {
+	/* Center Big BackDrop image */
+	body.flex-skin-docked div.backdrop-container {
+		top: 250px !important;
+		max-width: 1100px !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+	}
+}
+/*FLEX SKINS END*/
+
+
+
+
+.page-footer.-bottomrail{
+  padding-bottom: 360px !important;
+}
+.mobile .page-footer .social{
+  padding-bottom: 100px;
+}
+
+/* fix so that video player doesn't cover log movie screen */
+div.pw-corner-ad-video {
+  z-index: 1599 !important;
+}
+
+/* fix so that flex leaderboard doesn't cover log movie screen */
+div#pw-oop-flex_leaderboard {
+  z-index: 999 !important;
+}
+
+/* fix for flexleaderboard on certain pages (like film) */
+body.flex-leaderboard-active div.backdrop-container {
+  top: 350px;
+  background-color: #14181c;
+}
+
+@media only screen and (max-width: 801px) {
+  body.flex-leaderboard-active div.backdrop-container {
+    top: 210px;
+  }
+}
+
+div#pw-oop-right_rail {
+  z-index: 99 !important;
+}
+
+/* showing a white space at the bottom */
+#bgdiv {
+     background-color: #252525 !important;
+}
+
+
+/*   Custom CSS to make sure in-content containers are sticky and centered, and change background color.  */
+div.article-body-block.-intermission.journal-intermission, .constraint.width-limit .journal-intermission {
+     overflow: unset !important;
+}
+
+.pw-in-article.pw-sticky {
+     max-width: unset !important;
+}
+
+.pw-ad-scroll-container {
+    background-color: #eaeef2 !important;
+}

@@ -10,7 +10,13 @@ def run_scrape(args):
     """Execute the scrape command - fetch films from theaters (no Letterboxd)."""
     start_date = args.start_date
     end_date = args.end_date
-    theaters_list = args.fetch_from or theaters.all_theaters()
+    
+    if args.fetch_from:
+        theaters_list = args.fetch_from
+    elif args.period:
+        theaters_list = theaters.get_theaters_by_period(args.period)
+    else:
+        theaters_list = theaters.all_theaters()
     output_csv = args.output
 
     fetched_films = []
