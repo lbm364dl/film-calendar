@@ -91,12 +91,13 @@ function normalizeParsedDates(parsed, defaultLocation) {
     return parsed.map(item => {
         if (typeof item === 'string') {
             // Old format: plain string timestamp
-            return { timestamp: item, location: defaultLocation };
+            return { timestamp: item, location: defaultLocation, url: '' };
         } else if (typeof item === 'object' && item !== null) {
-            // New format: object with timestamp/location
+            // New format: object with timestamp/location/url
             return {
                 timestamp: item.timestamp,
-                location: item.location || defaultLocation
+                location: item.location || defaultLocation,
+                url: item.url || ''
             };
         }
         return null;
@@ -261,7 +262,7 @@ function createSessionsDisplay(film) {
             ${locationSummary ? `<span class="location-summary">${locationSummary}</span>` : ''}
             <span class="sessions-count">${film.dates.length}</span>
         </button>
-        <div id="${popupId}" class="sessions-popup">
+        <div id="${popupId}" class="sessions-popup" onclick="event.stopPropagation()">
             ${createGroupedSessions(film)}
         </div>
     `;
@@ -270,43 +271,36 @@ function createSessionsDisplay(film) {
 function createSessionRow(film, dateObj) {
     const formatted = formatDate(dateObj.timestamp);
     const calendarUrl = generateCalendarUrl(film, dateObj);
-    const ticketUrl = getTicketUrl(film, dateObj);
-    const actionId = `action-${Math.random().toString(36).substr(2, 9)}`;
+
+    // Check if session has a direct ticket URL
+    const hasDirectUrl = dateObj.url && dateObj.url.trim() !== '';
+    const ticketUrl = hasDirectUrl ? dateObj.url : '';
+    const filmPageUrl = film.theaterLink || getTheaterFallbackUrl(film, dateObj);
 
     let locationBadge = '';
+    let locationText = '';
     if (dateObj.location && dateObj.location !== 'Unknown') {
         // For inline rows, prefix "Renoir " to Renoir location names
         const displayLocation = isRenoirLocation(dateObj.location)
             ? `Renoir ${dateObj.location}`
             : dateObj.location;
         locationBadge = `<span class="location-badge">${escapeHtml(displayLocation)}</span>`;
+        locationText = displayLocation;
     }
 
+    // Create full date/time label for modal header
+    const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
+
     return `
-        <div class="session-wrapper">
-            <button class="date-row" onclick="toggleSessionAction(event, '${actionId}')">
-                <span class="date-badge">${formatted}</span>
-                ${locationBadge}
-            </button>
-            <div id="${actionId}" class="session-actions">
-                <a href="${ticketUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
-                    🎟️ Buy Tickets
-                </a>
-                <a href="${calendarUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
-                    📅 Add to Calendar
-                </a>
-            </div>
-        </div>
+        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+            <span class="date-badge">${formatted}</span>
+            ${locationBadge}
+        </button>
     `;
 }
 
-// Placeholder function to get ticket URL - user will customize this later
-function getTicketUrl(film, dateObj) {
-    // Use the film's theater link as base, can be customized per cinema
-    if (film.theaterLink) {
-        return film.theaterLink;
-    }
-    // Fallback placeholder URLs by theater
+// Get fallback URL for a theater when film doesn't have a theater link
+function getTheaterFallbackUrl(film, dateObj) {
     const location = dateObj.location || '';
     if (isRenoirLocation(location)) {
         return 'https://www.cinesrenoir.com/';
@@ -337,9 +331,68 @@ function toggleSessionAction(event, actionId) {
     actionMenu.classList.toggle('show');
 }
 
+// Open session action modal (for popup sessions)
+function openSessionModal(event, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const modal = document.getElementById('session-modal');
+    const timeSpan = document.getElementById('session-modal-time');
+    const actionsDiv = document.getElementById('session-modal-actions');
+
+    timeSpan.textContent = timeLabel;
+
+    // Build action buttons (no emojis)
+    let actionsHtml = '';
+    if (hasDirectUrl === 'true') {
+        actionsHtml = `
+            <a href="${ticketUrl}" class="session-modal-action" target="_blank">
+                Buy Tickets
+            </a>
+            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+                View Film Page
+            </a>
+            <a href="${calendarUrl}" class="session-modal-action" target="_blank">
+                Add to Calendar
+            </a>
+        `;
+    } else {
+        actionsHtml = `
+            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+                Buy Tickets
+            </a>
+            <a href="${calendarUrl}" class="session-modal-action" target="_blank">
+                Add to Calendar
+            </a>
+        `;
+    }
+
+    actionsDiv.innerHTML = actionsHtml;
+    modal.classList.add('show');
+}
+
+function closeSessionModal(event) {
+    // Stop propagation to prevent closing sessions popup
+    if (event) {
+        event.stopPropagation();
+        // Only close if clicking overlay itself, not content
+        if (event.target !== event.currentTarget) return;
+    }
+
+    const modal = document.getElementById('session-modal');
+    modal.classList.remove('show');
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeSessionModal();
+    }
+});
+
 // Close session action menus when clicking outside
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('.session-wrapper')) {
+    if (!e.target.closest('.session-wrapper') && !e.target.closest('.session-time-wrapper')) {
         document.querySelectorAll('.session-actions.show').forEach(m => {
             m.classList.remove('show');
         });
@@ -430,27 +483,29 @@ function createGroupedSessions(film) {
             });
 
             const calendarUrl = generateCalendarUrl(film, dateObj);
-            const ticketUrl = getTicketUrl(film, dateObj);
-            const actionId = `popup-action-${Math.random().toString(36).substr(2, 9)}`;
+
+            // Check if session has a direct ticket URL
+            const hasDirectUrl = dateObj.url && dateObj.url.trim() !== '';
+            const ticketUrl = hasDirectUrl ? dateObj.url : '';
+            const filmPageUrl = film.theaterLink || getTheaterFallbackUrl(film, dateObj);
+
             const location = dateObj.location && dateObj.location !== 'Unknown'
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
                 : '';
 
+            // Create date/time label for modal header
+            const dateLabel = new Date(dateObj.timestamp).toLocaleDateString('es-ES', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'short'
+            });
+            const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
+
             return `
-                <div class="session-time-wrapper">
-                    <button class="session-time" onclick="toggleSessionAction(event, '${actionId}')">
-                        <span class="time">${time}</span>
-                        ${location}
-                    </button>
-                    <div id="${actionId}" class="session-actions session-actions-popup">
-                        <a href="${ticketUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
-                            🎟️ Buy Tickets
-                        </a>
-                        <a href="${calendarUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
-                            📅 Add to Calendar
-                        </a>
-                    </div>
-                </div>
+                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+                    <span class="time">${time}</span>
+                    ${location}
+                </button>
                         `;
         }).join('')}
                 </div>
@@ -550,7 +605,11 @@ function generateCalendarUrl(film, dateObj) {
         const start = new Date(dateStr.replace(' ', 'T'));
         const end = new Date(start.getTime() + (2 * 60 * 60 * 1000)); // Assume 2 hours duration
 
-        const formatGCal = (date) => date.toISOString().replace(/-|:|\.\d\d\d/g, '');
+        // Format as local time for Google Calendar (YYYYMMDDTHHMMSS without Z)
+        const formatGCal = (date) => {
+            const pad = (n) => n.toString().padStart(2, '0');
+            return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
+        };
 
         const title = encodeURIComponent(`${film.title} (${film.year || ''})`);
         const details = encodeURIComponent(`Director: ${film.director}\nLink: ${film.theaterLink || ''}`);

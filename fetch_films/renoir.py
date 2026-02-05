@@ -169,13 +169,15 @@ class RenoirScraper(BaseCinemaScraper):
                     time_link = time_div.find("a", class_="btn")
                     if time_link:
                         time_str = time_link.text.strip()
+                        ticket_url = time_link.get("href", "")
                         # Construct full date string: YYYY-MM-DD HH:MM
                         full_date_str = f"{date.strftime('%Y-%m-%d')} {time_str}"
                         
-                        # Add structured info
+                        # Add structured info with ticket URL
                         film_dates.append({
                             "timestamp": full_date_str,
-                            "location": location_name
+                            "location": location_name,
+                            "url": ticket_url
                         })
 
             if not film_dates:

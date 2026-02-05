@@ -40,7 +40,7 @@
 
         <div class="stats">
             <span id="film-count">0 films</span>
-            <span class="calendar-hint">Click any session to add to Google Calendar</span>
+            <span class="calendar-hint">Click any session for tickets & calendar options</span>
         </div>
 
         <div id="films-grid" class="films-grid">
@@ -63,6 +63,19 @@
                 </p>
             </div>
         </footer>
+
+        <!-- Session Action Modal -->
+        <div id="session-modal" class="session-modal" onclick="closeSessionModal(event)">
+            <div class="session-modal-content" onclick="event.stopPropagation()">
+                <div class="session-modal-header">
+                    <span id="session-modal-time"></span>
+                    <button class="session-modal-close" onclick="closeSessionModal()">&times;</button>
+                </div>
+                <div id="session-modal-actions" class="session-modal-actions">
+                    <!-- Actions will be inserted here -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
