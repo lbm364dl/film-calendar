@@ -54,14 +54,56 @@ async function loadFilms() {
     }
 }
 
-function parseDates(dateStr) {
+// Parse dates which can be:
+// 1. Old format: "['2025-02-01 10:00']" (Python list string)
+// 2. New format: "[{'timestamp': '2025-02-01 10:00', 'location': 'Princesa'}]" (Python list of dicts string)
+function parseDates(dateStr, defaultLocation) {
+    if (!dateStr) return [];
+
     try {
-        // Remove brackets and quotes, split by comma
-        const cleaned = dateStr.replace(/[\[\]']/g, '').trim();
-        return cleaned.split(',').map(d => d.trim()).filter(d => d);
-    } catch {
+        // Attempt to parse as JSON first (if strictly valid JSON)
+        try {
+            const parsed = JSON.parse(dateStr);
+            return normalizeParsedDates(parsed, defaultLocation);
+        } catch (e) {
+            // Not valid JSON (likely Python string with single quotes)
+            // Naive approach: replace single quotes with double quotes
+            // This works if the content (location names) doesn't contain single quotes/apostrophes.
+            // If it does, we might need a more robust parser or just rely on the fallback.
+            let jsonString = dateStr.replace(/'/g, '"');
+
+            // Handle specific Pythonisms if needed (None -> null, False -> false, etc - unlikely for dates)
+            const parsed = JSON.parse(jsonString);
+            return normalizeParsedDates(parsed, defaultLocation);
+        }
+    } catch (e) {
+        console.warn("Failed to parse dates:", dateStr, e);
+        // Fallback: try to just extract timestamps using regex if parsing fails completely
+        // Matches "YYYY-MM-DD HH:MM"
+        const matches = dateStr.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/g);
+        if (matches) {
+            return matches.map(ts => ({ timestamp: ts, location: defaultLocation }));
+        }
         return [];
     }
+}
+
+function normalizeParsedDates(parsed, defaultLocation) {
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.map(item => {
+        if (typeof item === 'string') {
+            // Old format: plain string timestamp
+            return { timestamp: item, location: defaultLocation };
+        } else if (typeof item === 'object' && item !== null) {
+            // New format: object with timestamp/location
+            return {
+                timestamp: item.timestamp,
+                location: item.location || defaultLocation
+            };
+        }
+        return null;
+    }).filter(x => x);
 }
 
 function populateMonthFilter() {
@@ -69,17 +111,24 @@ function populateMonthFilter() {
     const months = new Set();
 
     allFilms.forEach(film => {
-        film.dates.forEach(date => {
-            const month = date.substring(0, 7); // YYYY-MM
+        film.dates.forEach(dateObj => {
+            const month = dateObj.timestamp.substring(0, 7); // YYYY-MM
             months.add(month);
         });
     });
 
+    // Clear existing except first "All months" option if any (HTML structure assumed)
+    // Actually typically we append. Let's just clear and rebuild or check duplicates?
+    // The original code appended. We should probably clear if calling multiple times, but loadFilms calls it once.
+
     Array.from(months).sort().forEach(month => {
-        const option = document.createElement('option');
-        option.value = month;
-        option.textContent = formatMonth(month);
-        monthFilter.appendChild(option);
+        // Check if option exists
+        if (!monthFilter.querySelector(`option[value="${month}"]`)) {
+            const option = document.createElement('option');
+            option.value = month;
+            option.textContent = formatMonth(month);
+            monthFilter.appendChild(option);
+        }
     });
 }
 
@@ -110,10 +159,16 @@ function filterFilms() {
 
         // Month filter
         const matchesMonth = !selectedMonth ||
-            film.dates.some(date => date.startsWith(selectedMonth));
+            film.dates.some(d => d.timestamp.startsWith(selectedMonth));
 
-        // Theater filter
-        const matchesTheater = !selectedTheater || film.theater === selectedTheater;
+        // Theater filter (General film theater OR specific screening location?)
+        // Usually we filter by the film's "main" theater, but now screens can be elsewhere?
+        // Let's match if the film is listed under that theater OR has a screening there.
+        // For simplicity, keep using film.theater (source) + screening location check?
+        // User likely wants to find films showing at X.
+        const matchesTheater = !selectedTheater ||
+            film.theater === selectedTheater ||
+            film.dates.some(d => d.location === selectedTheater);
 
         // Rated only filter
         const matchesRated = !ratedOnly || film.rating !== null;
@@ -122,7 +177,7 @@ function filterFilms() {
         // Show film if it has ANY screening on the selected date
         let matchesDate = true;
         if (selectedDate) {
-            matchesDate = film.dates.some(date => date.startsWith(selectedDate));
+            matchesDate = film.dates.some(d => d.timestamp.startsWith(selectedDate));
         }
 
         return matchesSearch && matchesMonth && matchesTheater && matchesRated && matchesDate;
@@ -175,15 +230,27 @@ function createFilmCard(film) {
 
     const datesHTML = film.dates.length > 0
         ? `<div class="film-dates">
-             ${film.dates.map(date => {
-            const formatted = formatDate(date);
-            const calendarUrl = generateCalendarUrl(film, date);
+             ${film.dates.map(dateObj => {
+            const formatted = formatDate(dateObj.timestamp);
+            const calendarUrl = generateCalendarUrl(film, dateObj);
+
+            // Highlight location if different from main theater (or always show?)
+            // If location is "Unknown" or same as theater, maybe hide to save space?
+            // User requested "display specific location per screening".
+            // Renoir films have "Cines Renoir" as main theater, but "Princesa" etc as location.
+            // So we should show it.
+            let locationBadge = '';
+            if (dateObj.location && dateObj.location !== 'Unknown') {
+                locationBadge = `<span class="location-badge">${escapeHtml(dateObj.location)}</span>`;
+            }
+
             return `
                     <div class="date-row">
                         <a href="${calendarUrl}" class="calendar-btn" target="_blank" title="Add to Google Calendar" onclick="event.stopPropagation()">
                             <img src="assets/calendar.svg" class="calendar-icon" alt="Cal" onerror="this.outerHTML='📅'">
                         </a>
                         <span class="date-badge">${formatted}</span>
+                        ${locationBadge}
                     </div>
                  `;
         }).join('')}
@@ -266,8 +333,9 @@ dateFilter.addEventListener('click', function () {
     }
 });
 
-function generateCalendarUrl(film, dateStr) {
+function generateCalendarUrl(film, dateObj) {
     try {
+        const dateStr = dateObj.timestamp;
         // Date format is usually "YYYY-MM-DD HH:MM"
         const [datePart, timePart] = dateStr.split(' ');
         if (!datePart || !timePart) return '#';
@@ -279,7 +347,7 @@ function generateCalendarUrl(film, dateStr) {
 
         const title = encodeURIComponent(`${film.title} (${film.year || ''})`);
         const details = encodeURIComponent(`Director: ${film.director}\nLink: ${film.theaterLink || ''}`);
-        const location = encodeURIComponent(film.theater);
+        const location = encodeURIComponent(dateObj.location || film.theater);
         const dates = `${formatGCal(start)}/${formatGCal(end)}`;
 
         return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;

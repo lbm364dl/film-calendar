@@ -263,6 +263,16 @@ h1 {
     color: var(--text);
 }
 
+.location-badge {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-dim);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.1rem;
+    white-space: nowrap;
+}
+
 .calendar-btn {
     text-decoration: none;
     font-size: 0.9rem;
