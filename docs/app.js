@@ -39,9 +39,6 @@ async function loadFilms() {
             viewers: film.letterboxd_viewers
         })).filter(film => film.title); // Remove empty entries
 
-        // Populate month filter
-        populateMonthFilter();
-
         // Initial render
         filterFilms();
 
@@ -106,31 +103,7 @@ function normalizeParsedDates(parsed, defaultLocation) {
     }).filter(x => x);
 }
 
-function populateMonthFilter() {
-    const monthFilter = document.getElementById('month-filter');
-    const months = new Set();
 
-    allFilms.forEach(film => {
-        film.dates.forEach(dateObj => {
-            const month = dateObj.timestamp.substring(0, 7); // YYYY-MM
-            months.add(month);
-        });
-    });
-
-    // Clear existing except first "All months" option if any (HTML structure assumed)
-    // Actually typically we append. Let's just clear and rebuild or check duplicates?
-    // The original code appended. We should probably clear if calling multiple times, but loadFilms calls it once.
-
-    Array.from(months).sort().forEach(month => {
-        // Check if option exists
-        if (!monthFilter.querySelector(`option[value="${month}"]`)) {
-            const option = document.createElement('option');
-            option.value = month;
-            option.textContent = formatMonth(month);
-            monthFilter.appendChild(option);
-        }
-    });
-}
 
 function formatMonth(monthStr) {
     const [year, month] = monthStr.split('-');
@@ -143,9 +116,15 @@ function normalizeText(text) {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
+// Renoir cinema locations
+const RENOIR_LOCATIONS = ['Princesa', 'Retiro', 'Plaza de España'];
+
+function isRenoirLocation(location) {
+    return location && RENOIR_LOCATIONS.includes(location);
+}
+
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
-    const selectedMonth = document.getElementById('month-filter').value;
     const selectedTheater = document.getElementById('theater-filter').value;
     const ratedOnly = document.getElementById('rated-only').checked;
     const selectedDate = document.getElementById('date-filter').value;
@@ -157,30 +136,29 @@ function filterFilms() {
             (film.director && normalizeText(film.director).includes(searchTerm)) ||
             normalizeText(film.theater).includes(searchTerm);
 
-        // Month filter
-        const matchesMonth = !selectedMonth ||
-            film.dates.some(d => d.timestamp.startsWith(selectedMonth));
-
-        // Theater filter (General film theater OR specific screening location?)
-        // Usually we filter by the film's "main" theater, but now screens can be elsewhere?
-        // Let's match if the film is listed under that theater OR has a screening there.
-        // For simplicity, keep using film.theater (source) + screening location check?
-        // User likely wants to find films showing at X.
-        const matchesTheater = !selectedTheater ||
-            film.theater === selectedTheater ||
-            film.dates.some(d => d.location === selectedTheater);
+        // Theater filter - special handling for Cines Renoir to match all Renoir locations
+        let matchesTheater = true;
+        if (selectedTheater) {
+            if (selectedTheater === 'Cines Renoir') {
+                // Match Renoir films OR any Renoir location
+                matchesTheater = film.theater === 'Cines Renoir' ||
+                    film.dates.some(d => isRenoirLocation(d.location));
+            } else {
+                matchesTheater = film.theater === selectedTheater ||
+                    film.dates.some(d => d.location === selectedTheater);
+            }
+        }
 
         // Rated only filter
         const matchesRated = !ratedOnly || film.rating !== null;
 
         // Date filter (single day)
-        // Show film if it has ANY screening on the selected date
         let matchesDate = true;
         if (selectedDate) {
             matchesDate = film.dates.some(d => d.timestamp.startsWith(selectedDate));
         }
 
-        return matchesSearch && matchesMonth && matchesTheater && matchesRated && matchesDate;
+        return matchesSearch && matchesTheater && matchesRated && matchesDate;
     });
 
     renderFilms();
@@ -230,30 +208,7 @@ function createFilmCard(film) {
 
     const datesHTML = film.dates.length > 0
         ? `<div class="film-dates">
-             ${film.dates.map(dateObj => {
-            const formatted = formatDate(dateObj.timestamp);
-            const calendarUrl = generateCalendarUrl(film, dateObj);
-
-            // Highlight location if different from main theater (or always show?)
-            // If location is "Unknown" or same as theater, maybe hide to save space?
-            // User requested "display specific location per screening".
-            // Renoir films have "Cines Renoir" as main theater, but "Princesa" etc as location.
-            // So we should show it.
-            let locationBadge = '';
-            if (dateObj.location && dateObj.location !== 'Unknown') {
-                locationBadge = `<span class="location-badge">${escapeHtml(dateObj.location)}</span>`;
-            }
-
-            return `
-                    <div class="date-row">
-                        <a href="${calendarUrl}" class="calendar-btn" target="_blank" title="Add to Google Calendar" onclick="event.stopPropagation()">
-                            <img src="assets/calendar.svg" class="calendar-icon" alt="Cal" onerror="this.outerHTML='📅'">
-                        </a>
-                        <span class="date-badge">${formatted}</span>
-                        ${locationBadge}
-                    </div>
-                 `;
-        }).join('')}
+             ${createSessionsDisplay(film)}
            </div>`
         : '';
 
@@ -285,6 +240,188 @@ function createFilmCard(film) {
     `;
 }
 
+// Threshold for showing collapsible sessions
+const SESSIONS_COLLAPSE_THRESHOLD = 2;
+
+function createSessionsDisplay(film) {
+    if (film.dates.length <= SESSIONS_COLLAPSE_THRESHOLD) {
+        // Show all sessions inline
+        return film.dates.map(dateObj => createSessionRow(film, dateObj)).join('');
+    }
+
+    // Many sessions - show collapse toggle
+    const dateRange = getDateRange(film.dates);
+    const locationSummary = getLocationSummary(film.dates);
+    const popupId = `popup-${Math.random().toString(36).substr(2, 9)}`;
+
+    return `
+        <button class="sessions-toggle" onclick="toggleSessionsPopup(event, '${popupId}')">
+            <span class="toggle-icon">▼</span>
+            <span>${dateRange}</span>
+            ${locationSummary ? `<span class="location-summary">${locationSummary}</span>` : ''}
+            <span class="sessions-count">${film.dates.length}</span>
+        </button>
+        <div id="${popupId}" class="sessions-popup">
+            ${createGroupedSessions(film)}
+        </div>
+    `;
+}
+
+function createSessionRow(film, dateObj) {
+    const formatted = formatDate(dateObj.timestamp);
+    const calendarUrl = generateCalendarUrl(film, dateObj);
+
+    let locationBadge = '';
+    if (dateObj.location && dateObj.location !== 'Unknown') {
+        // For inline rows, prefix "Renoir " to Renoir location names
+        const displayLocation = isRenoirLocation(dateObj.location)
+            ? `Renoir ${dateObj.location}`
+            : dateObj.location;
+        locationBadge = `<span class="location-badge">${escapeHtml(displayLocation)}</span>`;
+    }
+
+    return `
+        <a href="${calendarUrl}" class="date-row" target="_blank" title="Add to Google Calendar" onclick="event.stopPropagation()">
+            <span class="date-badge">${formatted}</span>
+            ${locationBadge}
+        </a>
+    `;
+}
+
+function getDateRange(dates) {
+    if (dates.length === 0) return '';
+
+    const sortedDates = [...dates].sort((a, b) =>
+        new Date(a.timestamp) - new Date(b.timestamp)
+    );
+
+    const firstDate = new Date(sortedDates[0].timestamp);
+    const lastDate = new Date(sortedDates[sortedDates.length - 1].timestamp);
+
+    const formatShort = (d) => d.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short'
+    });
+
+    if (firstDate.toDateString() === lastDate.toDateString()) {
+        return formatShort(firstDate);
+    }
+
+    return `${formatShort(firstDate)} – ${formatShort(lastDate)}`;
+}
+
+function getLocationSummary(dates) {
+    // Get unique locations
+    const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
+
+    if (locations.length === 0) return '';
+
+    // Check if all locations are Renoir cinemas (even if just one)
+    const allRenoir = locations.every(loc => isRenoirLocation(loc));
+    if (allRenoir) {
+        return 'Renoir';
+    }
+
+    if (locations.length === 1) {
+        // Single non-Renoir location
+        return locations[0];
+    }
+
+    // Multiple different theaters
+    return `${locations.length} cines`;
+}
+
+function createGroupedSessions(film) {
+    // Group sessions by day
+    const grouped = {};
+
+    film.dates.forEach(dateObj => {
+        const date = new Date(dateObj.timestamp);
+        const dayKey = date.toISOString().split('T')[0];
+
+        if (!grouped[dayKey]) {
+            grouped[dayKey] = [];
+        }
+        grouped[dayKey].push(dateObj);
+    });
+
+    // Sort days
+    const sortedDays = Object.keys(grouped).sort();
+
+    return sortedDays.map(dayKey => {
+        const sessions = grouped[dayKey];
+        const dayDate = new Date(dayKey + 'T12:00:00');
+        const dayLabel = dayDate.toLocaleDateString('es-ES', {
+            weekday: 'short',
+            day: 'numeric',
+            month: 'short'
+        });
+
+        // Sort sessions by time
+        sessions.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+        return `
+            <div class="sessions-day">
+                <div class="sessions-day-header">${dayLabel}</div>
+                <div class="sessions-day-times">
+                    ${sessions.map(dateObj => {
+            const time = new Date(dateObj.timestamp).toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const calendarUrl = generateCalendarUrl(film, dateObj);
+            const location = dateObj.location && dateObj.location !== 'Unknown'
+                ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
+                : '';
+
+            return `
+                            <a href="${calendarUrl}" class="session-time" target="_blank" 
+                               title="Add to Google Calendar" onclick="event.stopPropagation()">
+                                <span class="time">${time}</span>
+                                ${location}
+                            </a>
+                        `;
+        }).join('')}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function toggleSessionsPopup(event, popupId) {
+    event.stopPropagation();
+
+    const button = event.currentTarget;
+    const popup = document.getElementById(popupId);
+
+    // Close all other popups first
+    document.querySelectorAll('.sessions-popup.show').forEach(p => {
+        if (p.id !== popupId) {
+            p.classList.remove('show');
+            p.previousElementSibling?.classList.remove('active');
+        }
+    });
+
+    // Toggle this popup
+    popup.classList.toggle('show');
+    button.classList.toggle('active');
+
+    // Reset scroll position when opening
+    if (popup.classList.contains('show')) {
+        popup.scrollTop = 0;
+    }
+}
+
+// Close popups when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.sessions-popup') && !e.target.closest('.sessions-toggle')) {
+        document.querySelectorAll('.sessions-popup.show').forEach(p => {
+            p.classList.remove('show');
+            p.previousElementSibling?.classList.remove('active');
+        });
+    }
+});
+
 function formatDate(dateStr) {
     const date = new Date(dateStr);
     if (isNaN(date)) return dateStr;
@@ -306,7 +443,6 @@ function escapeHtml(text) {
 
 // Event listeners
 document.getElementById('search').addEventListener('input', filterFilms);
-document.getElementById('month-filter').addEventListener('change', filterFilms);
 document.getElementById('theater-filter').addEventListener('change', filterFilms);
 document.getElementById('rated-only').addEventListener('change', filterFilms);
 const dateFilter = document.getElementById('date-filter');

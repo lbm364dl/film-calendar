@@ -139,6 +139,16 @@ h1 {
     margin-bottom: 1.5rem;
     color: var(--text-dim);
     font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.calendar-hint {
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
 
 .films-grid {
@@ -248,14 +258,20 @@ h1 {
 }
 
 .date-row {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    /* Increased from 0.25rem */
     background: rgba(255, 107, 107, 0.15);
     border: 1px solid rgba(255, 107, 107, 0.3);
     border-radius: 6px;
     padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.date-row:hover {
+    background: rgba(255, 107, 107, 0.3);
+    border-color: var(--accent);
 }
 
 .date-badge {
@@ -349,4 +365,163 @@ footer a:hover {
 
 footer p {
     margin-bottom: 0.5rem;
+}
+
+/* Sessions Toggle Button - for films with many screenings */
+.sessions-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.sessions-toggle:hover {
+    background: rgba(255, 107, 107, 0.25);
+    border-color: var(--accent);
+}
+
+.sessions-toggle .toggle-icon {
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+}
+
+.sessions-toggle.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.sessions-count {
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.location-summary {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Sessions Popup - floating calendar-like display */
+.sessions-popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 1rem;
+    z-index: 1000;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 107, 0.15);
+    isolation: isolate;
+}
+
+/* Custom scrollbar for popup */
+.sessions-popup::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sessions-popup::-webkit-scrollbar-track {
+    background: var(--bg-card);
+    border-radius: 4px;
+}
+
+.sessions-popup::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+.sessions-popup::-webkit-scrollbar-thumb:hover {
+    background: #ff8888;
+}
+
+.sessions-popup.show {
+    display: block;
+}
+
+/* Ensure film card with open popup is above other cards */
+.film-card:has(.sessions-popup.show) {
+    position: relative;
+    z-index: 500;
+}
+
+/* Day groups in popup */
+.sessions-day {
+    margin-bottom: 0.75rem;
+}
+
+.sessions-day:last-child {
+    margin-bottom: 0;
+}
+
+.sessions-day-header {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.sessions-day-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.session-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.15s;
+}
+
+.session-time:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: var(--accent);
+}
+
+.session-time .time {
+    font-weight: 500;
+}
+
+.session-time .location {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+}
+
+/* Container needs relative positioning for popup */
+.film-dates {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    position: relative;
 }
