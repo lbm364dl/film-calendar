@@ -257,6 +257,12 @@ h1 {
     gap: 0.5rem;
 }
 
+/* Session wrapper for action menu positioning */
+.session-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
 .date-row {
     display: inline-flex;
     align-items: center;
@@ -267,11 +273,54 @@ h1 {
     padding: 0.25rem 0.5rem;
     text-decoration: none;
     transition: all 0.15s;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
 }
 
 .date-row:hover {
     background: rgba(255, 107, 107, 0.3);
     border-color: var(--accent);
+}
+
+/* Session action menu */
+.session-actions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1100;
+    min-width: 160px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 107, 107, 0.15);
+}
+
+.session-actions.show {
+    display: block;
+}
+
+.session-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.15s;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.session-action:hover {
+    background: rgba(255, 107, 107, 0.2);
+}
+
+.session-action:first-child {
+    border-bottom: 1px solid var(--border);
 }
 
 .date-badge {
@@ -485,6 +534,12 @@ footer p {
     gap: 0.35rem;
 }
 
+/* Wrapper for session time button + action menu */
+.session-time-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .session-time {
     display: inline-flex;
     align-items: center;
@@ -497,6 +552,19 @@ footer p {
     text-decoration: none;
     color: var(--text);
     transition: all 0.15s;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.session-time:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: var(--accent);
+}
+
+/* Position action menu inside popup above to avoid overflow */
+.session-actions-popup {
+    bottom: calc(100% + 4px);
+    top: auto;
 }
 
 .session-time:hover {

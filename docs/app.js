@@ -270,6 +270,8 @@ function createSessionsDisplay(film) {
 function createSessionRow(film, dateObj) {
     const formatted = formatDate(dateObj.timestamp);
     const calendarUrl = generateCalendarUrl(film, dateObj);
+    const ticketUrl = getTicketUrl(film, dateObj);
+    const actionId = `action-${Math.random().toString(36).substr(2, 9)}`;
 
     let locationBadge = '';
     if (dateObj.location && dateObj.location !== 'Unknown') {
@@ -281,12 +283,69 @@ function createSessionRow(film, dateObj) {
     }
 
     return `
-        <a href="${calendarUrl}" class="date-row" target="_blank" title="Add to Google Calendar" onclick="event.stopPropagation()">
-            <span class="date-badge">${formatted}</span>
-            ${locationBadge}
-        </a>
+        <div class="session-wrapper">
+            <button class="date-row" onclick="toggleSessionAction(event, '${actionId}')">
+                <span class="date-badge">${formatted}</span>
+                ${locationBadge}
+            </button>
+            <div id="${actionId}" class="session-actions">
+                <a href="${ticketUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
+                    🎟️ Buy Tickets
+                </a>
+                <a href="${calendarUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
+                    📅 Add to Calendar
+                </a>
+            </div>
+        </div>
     `;
 }
+
+// Placeholder function to get ticket URL - user will customize this later
+function getTicketUrl(film, dateObj) {
+    // Use the film's theater link as base, can be customized per cinema
+    if (film.theaterLink) {
+        return film.theaterLink;
+    }
+    // Fallback placeholder URLs by theater
+    const location = dateObj.location || '';
+    if (isRenoirLocation(location)) {
+        return 'https://www.cinesrenoir.com/';
+    }
+    if (film.theater === 'Cineteca Madrid') {
+        return 'https://www.cinetecamadrid.com/';
+    }
+    if (film.theater === 'Cine Doré') {
+        return 'https://www.culturaydeporte.gob.es/filmoteca/el-cine-dore.html';
+    }
+    return '#';
+}
+
+function toggleSessionAction(event, actionId) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const actionMenu = document.getElementById(actionId);
+
+    // Close all other action menus first
+    document.querySelectorAll('.session-actions.show').forEach(m => {
+        if (m.id !== actionId) {
+            m.classList.remove('show');
+        }
+    });
+
+    // Toggle this menu
+    actionMenu.classList.toggle('show');
+}
+
+// Close session action menus when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.session-wrapper')) {
+        document.querySelectorAll('.session-actions.show').forEach(m => {
+            m.classList.remove('show');
+        });
+    }
+});
+
 
 function getDateRange(dates) {
     if (dates.length === 0) return '';
@@ -369,17 +428,29 @@ function createGroupedSessions(film) {
                 hour: '2-digit',
                 minute: '2-digit'
             });
+
             const calendarUrl = generateCalendarUrl(film, dateObj);
+            const ticketUrl = getTicketUrl(film, dateObj);
+            const actionId = `popup-action-${Math.random().toString(36).substr(2, 9)}`;
             const location = dateObj.location && dateObj.location !== 'Unknown'
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
                 : '';
 
             return `
-                            <a href="${calendarUrl}" class="session-time" target="_blank" 
-                               title="Add to Google Calendar" onclick="event.stopPropagation()">
-                                <span class="time">${time}</span>
-                                ${location}
-                            </a>
+                <div class="session-time-wrapper">
+                    <button class="session-time" onclick="toggleSessionAction(event, '${actionId}')">
+                        <span class="time">${time}</span>
+                        ${location}
+                    </button>
+                    <div id="${actionId}" class="session-actions session-actions-popup">
+                        <a href="${ticketUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
+                            🎟️ Buy Tickets
+                        </a>
+                        <a href="${calendarUrl}" class="session-action" target="_blank" onclick="event.stopPropagation()">
+                            📅 Add to Calendar
+                        </a>
+                    </div>
+                </div>
                         `;
         }).join('')}
                 </div>
