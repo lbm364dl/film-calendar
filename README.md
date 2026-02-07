@@ -1,68 +1,158 @@
-# I only want to see the film calendar
+# Madrid Film Calendar
 
-You can check the `calendar` directory and look for the CSV of the month you are interested in. Github can show you the CSV in a pretty way, and if you want to make more complicated manipulations you may consider just downloading the CSV and using your desired tool like Excel or code. Please note that this is all automatic and may contain mistakes when trying to match the screened film with the Letterboxd entry, it may match with a wrong film. If you find mistakes you can open an issue or pull request.
+A tool that scrapes film screenings from independent cinemas in Madrid, matches them to [Letterboxd](https://letterboxd.com), fetches ratings, and publishes a browsable website.
 
-# I want to run the tool myself
+**[→ See the live site](https://lbm364dl.github.io/film-calendar/)**
 
-The tool uses scraping, so be careful with how much you use it. You can read the rest of the README for more details.
+## Supported cinemas
 
-## Prerequisites
+| Cinema | Scraping method | Update period |
+|---|---|---|
+| [Cineteca Madrid](https://www.cinetecamadrid.com) | requests + BeautifulSoup | Monthly |
+| [Cine Doré / Filmoteca Española](https://www.cultura.gob.es/cultura/areas/cine/mc/fe/difusion/programa.html) | requests + BeautifulSoup (paginated) | Monthly |
+| [Cines Renoir](https://www.cinesrenoir.com) (Princesa, Retiro, Plaza de España) | Selenium | Weekly |
+| [Golem Madrid](https://golem.es/golem/golem-madrid) | requests + BeautifulSoup | Weekly |
+| [Sala Berlanga](https://salaberlanga.com) | Selenium | Monthly |
 
-It is highly recommended to use a virtual environment. After cloning this repository, from its root directory do the following steps, only the first time:
+## How it works
 
-Linux:
+The pipeline has four steps, each a CLI subcommand:
+
 ```
+scrape → match → rate → merge → docs/screenings.csv → static website
+```
+
+1. **Scrape** — Fetches screening listings from cinema websites for a date range.
+2. **Match** — Searches Letterboxd (via Selenium) to find the URL for each film.
+3. **Rate** — Scrapes the Letterboxd rating and viewer count for matched films.
+4. **Merge** — Consolidates new data into the master `docs/screenings.csv`, deduplicating sessions and preserving manual fixes.
+
+The website (hosted on GitHub Pages from `docs/`) reads `screenings.csv` and renders a filterable, searchable interface.
+
+## Website features
+
+- Search by title or director (accent-insensitive)
+- Filter by date, theater, and year range (dual slider)
+- Sorted by Letterboxd rating
+- Click any session for ticket links and Google Calendar integration
+- Filter state persisted in URL
+- Dark theme, fully responsive
+
+## Setup
+
+```bash
 python3 -m venv env
-source env/bin/activate
-python -m pip install -r requirements.txt
+source env/bin/activate        # Linux/macOS
+# env\Scripts\activate         # Windows
+pip install -r requirements.txt
 ```
 
-Windows:
-```
-python3 -m venv env
-env\Scripts\activate
-python -m pip install -r requirements.txt
-```
+**Note:** The `match` and `rate` steps, as well as scraping Renoir and Sala Berlanga, require a working Selenium/ChromeDriver setup.
 
-On next uses you don't need to repeat all the steps. You only have to activate the environment (refer to second line of previous commands).
+## CLI usage
 
-## Command line usage
-
-There is a command line tool to run the program.
-
-You can run `python main.py --help` to see the following description:
-
-```
-usage: main.py [-h] [--start-date START_DATE] [--end-date END_DATE] [--update-csv UPDATE_CSV] [--fetch-from {dore,cineteca}]
-
-Fetch screening films in theaters between two given dates
-
-options:
-  -h, --help            show this help message and exit
-  --start-date START_DATE
-                        Date from which to start the search. Format YYYY-mm-dd (year-month-day).
-  --end-date END_DATE   Date from which to end the search. Format YYYY-mm-dd (year-month-day).
-  --update-csv UPDATE_CSV
-                        Path of CSV file that already contains films, to add new ones in the same file, removing duplicates.
-  --fetch-from {dore,cineteca}
-                        Key names of specific theaters you want to fetch films from. For more than one theater, add this option for each one, e.g., --fetch-from dore --fetch-from cineteca
+```bash
+python main.py <command> [options]
 ```
 
-To fetch films into a single CSV called for e.g. January 2025, you would run:
+### `scrape` — Fetch films from cinemas
+
+```bash
+# Scrape all cinemas for a date range
+python main.py scrape --start-date 2026-02-01 --end-date 2026-02-28
+
+# Scrape specific cinemas
+python main.py scrape --start-date 2026-02-01 --end-date 2026-02-28 \
+    --fetch-from dore --fetch-from cineteca
+
+# Scrape all weekly-update cinemas
+python main.py scrape --start-date 2026-02-01 --end-date 2026-02-08 --period weekly
+
+# Custom output path
+python main.py scrape --start-date 2026-02-01 --end-date 2026-02-28 --output feb_raw.csv
 ```
-python main.py --start-date 2025-01-01 --end-date 2025-01-31
+
+### `match` — Find Letterboxd URLs
+
+```bash
+python main.py match --input films_raw.csv
+
+# Skip already-matched films (incremental)
+python main.py match --input films_raw.csv --skip-existing
+
+# Use master CSV as cache to avoid re-searching known films
+python main.py match --input films_raw.csv --cache docs/screenings.csv
 ```
 
-By default you will get an output CSV called `films_with_letterboxd_url.csv`, which will also contain a link to the film on Letterboxd if found, along with film rating and members.
-If you also specify a CSV file path via the `--update-csv` option, the newly fetched films will be added to this file instead of creating a new one. When a given film already exists in the file (which is checked based on the value of `theater_film_link`), this one is kept, ignoring the newly fetched one. This is to favour potentially wrong output data that could have been manually fixed and should be kept that way.
+### `rate` — Fetch Letterboxd ratings
 
-## Supported theaters checklist
+```bash
+python main.py rate --input films_matched.csv
+```
 
-- [x] Cine Doré
-- [x] Cineteca Matadero
-- [ ] Cines Golem Madrid
-- [ ] Cines Renoir Madrid (Princesa, Plaza de España, Retiro)
-- [ ] Cines Verdi Madrid
-- [ ] Sala Berlanga
-- [ ] Cines Embajadores
-- [ ] Cine Paz Madrid
+### `merge` — Merge into master CSV
+
+```bash
+# Merge into docs/screenings.csv (default source of truth)
+python main.py merge --input films_rated.csv
+
+# Merge into a different source file
+python main.py merge --input films_rated.csv --source my_master.csv
+```
+
+### `new-cinema` — Generate boilerplate for a new scraper
+
+```bash
+python main.py new-cinema --key embajadores --name "Cines Embajadores" --url "https://example.com"
+```
+
+This creates the scraper file, test file, and fixture directories with a working template.
+
+## Project structure
+
+```
+main.py                  CLI entry point (scrape/match/rate/merge/new-cinema)
+cli.py                   Argument parsing and boilerplate generator
+theaters.py              Scraper registry and dispatch
+rate.py                  Letterboxd matching and rating (Selenium)
+fetch_films/
+  base.py                BaseCinemaScraper ABC + data models
+  cineteca.py            Cineteca Madrid scraper
+  dore.py                Cine Doré scraper
+  renoir.py              Cines Renoir scraper (Selenium)
+  golem.py               Golem Madrid scraper
+  sala_berlanga.py        Sala Berlanga scraper (Selenium)
+docs/
+  index.html             Website
+  app.js                 Frontend logic (filters, rendering, calendar)
+  style.css              Styles
+  screenings.csv         Master data (source of truth)
+tests/
+  fixtures/              Saved HTML for offline testing
+  test_*.py              Per-cinema unit tests
+```
+
+## CSV format
+
+The master `docs/screenings.csv` is movie-centric (one row per film):
+
+| Column | Description |
+|---|---|
+| `title` | Film title |
+| `director` | Director name |
+| `year` | Release year |
+| `dates` | JSON list of session objects: `[{"timestamp", "location", "url_tickets", "url_info"}]` |
+| `letterboxd_url` | Letterboxd film page URL |
+| `letterboxd_rating` | Average rating (0–5) |
+
+## Running tests
+
+```bash
+pytest
+```
+
+Tests use saved HTML fixtures so they run offline without hitting live websites.
+
+## Disclaimer
+
+This project relies on web scraping and automated Letterboxd search. Matching may occasionally be wrong (e.g., linking to the wrong film). If you spot a mistake, please open an issue or PR.
