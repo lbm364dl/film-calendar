@@ -421,6 +421,15 @@ h1 {
     color: var(--rating-gold);
 }
 
+.viewers {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
 .letterboxd-link {
     display: flex;
     align-items: center;
@@ -1022,5 +1031,4 @@ footer p {
     padding: 0.1rem 0.45rem;
     border-radius: 4px;
     white-space: nowrap;
-}
 }

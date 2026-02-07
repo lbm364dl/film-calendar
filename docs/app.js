@@ -249,9 +249,21 @@ function renderFilms() {
     filmsGrid.innerHTML = sorted.map(film => createFilmCard(film)).join('');
 }
 
+function formatViewerCount(n) {
+    if (n == null) return null;
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1_000) return Math.round(n / 1_000) + 'k';
+    return n.toString();
+}
+
 function createFilmCard(film) {
     const ratingHTML = film.rating
         ? `<div class="rating">⭐ ${film.rating.toFixed(1)}</div>`
+        : '';
+
+    const viewersFormatted = formatViewerCount(film.viewers);
+    const viewersHTML = viewersFormatted
+        ? `<div class="viewers" title="${film.viewers?.toLocaleString()} viewers">👁️ ${viewersFormatted}</div>`
         : '';
 
     // Build compact title: "Title (Director, Year)"
@@ -290,6 +302,7 @@ function createFilmCard(film) {
                 </div>
                 <div class="card-actions">
                     ${ratingHTML}
+                    ${viewersHTML}
                     ${letterboxdHTML}
                 </div>
             </div>
