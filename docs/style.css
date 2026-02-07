@@ -624,10 +624,35 @@ footer a {
     border-bottom: 1px dotted var(--accent);
 }
 
+.footer-separator {
+    margin: 0 0.35rem;
+    color: var(--text-dim);
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: none;
+    color: var(--text-dim);
+}
+
+.github-link .github-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: color 0.2s;
+}
+
 @media (hover: hover) and (pointer: fine) {
     footer a:hover {
         text-decoration: none;
         border-bottom-style: solid;
+    }
+
+    .github-link:hover {
+        border-bottom: none;
+        color: var(--accent);
     }
 }
 
