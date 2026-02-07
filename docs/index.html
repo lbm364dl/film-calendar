@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madrid Film Calendar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body>
@@ -15,28 +15,42 @@
             <p class="subtitle">Cineteca • Doré • Golem • Renoir • More coming...</p>
         </header>
 
-        <div class="controls">
+        <div class="filters-grid">
+            <input type="date" id="date-filter" placeholder="Select date">
+
             <div class="search-box">
-                <input type="text" id="search" placeholder="Search by title or director"
-                    autocomplete="off">
+                <input type="text" id="search" placeholder="Search by title or director" autocomplete="off">
             </div>
 
-            <div class="filters">
-                <input type="date" id="date-filter" placeholder="Select date">
+            <select id="theater-filter">
+                <option value="">All Theaters</option>
+                <option value="Cines Renoir">Cines Renoir</option>
+                <option value="Cineteca Madrid">Cineteca Madrid</option>
+                <option value="Cine Doré">Cine Doré</option>
+                <option value="Golem">Golem Madrid</option>
+            </select>
 
-                <select id="theater-filter">
-                    <option value="">All Theaters</option>
-                    <option value="Cines Renoir">Cines Renoir</option>
-                    <option value="Cineteca Madrid">Cineteca Madrid</option>
-                    <option value="Cine Doré">Cine Doré</option>
-                    <option value="Golem">Golem Madrid</option>
-                </select>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" id="rated-only">
-                    <span>Rated only</span>
-                </label>
+            <div class="year-filter">
+                <div class="year-inputs">
+                    <div class="year-input-group">
+                        <label for="year-min-val">Year from</label>
+                        <input type="number" id="year-min-val" min="1900" max="2030">
+                    </div>
+                    <div class="year-input-group">
+                        <label for="year-max-val">Year to</label>
+                        <input type="number" id="year-max-val" min="1900" max="2030">
+                    </div>
+                </div>
+                <div class="range-slider">
+                    <div class="slider-track"></div>
+                    <input type="range" id="year-min" min="1900" max="2026" value="1900">
+                    <input type="range" id="year-max" min="1900" max="2026" value="2026">
+                </div>
             </div>
+
+            <button id="clear-filters" class="clear-filters-btn" title="Clear all filters">
+                <span>Clear all filters</span>
+            </button>
         </div>
 
         <div class="stats">

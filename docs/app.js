@@ -52,7 +52,8 @@ async function loadFilms() {
         }).filter(film => film.title); // Remove empty entries
 
         // Initial render
-        applyFiltersFromURL();
+        initYearFilter(); // Initialize slider with data bounds
+        applyFiltersFromURL(); // Then apply any URL params
         filterFilms();
 
         loading.style.display = 'none';
@@ -139,7 +140,6 @@ function isRenoirLocation(location) {
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
     const selectedTheater = document.getElementById('theater-filter').value;
-    const ratedOnly = document.getElementById('rated-only').checked;
     const selectedDate = document.getElementById('date-filter').value;
 
     filteredFilms = allFilms.filter(film => {
@@ -161,16 +161,38 @@ function filterFilms() {
             }
         }
 
-        // Rated only filter
-        const matchesRated = !ratedOnly || film.rating !== null;
-
         // Date filter (single day)
         let matchesDate = true;
         if (selectedDate) {
             matchesDate = film.dates.some(d => d.timestamp.startsWith(selectedDate));
         }
 
-        return matchesSearch && matchesTheater && matchesRated && matchesDate;
+        // Year filter
+        let matchesYear = true;
+        const minInput = document.getElementById('year-min');
+        const maxInput = document.getElementById('year-max');
+        if (minInput && maxInput) {
+            const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
+            const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
+
+            if (film.year) {
+                matchesYear = film.year >= currentMin && film.year <= currentMax;
+            } else {
+                // Should we show films with no year? 
+                // If the range is the full range, yes. If strict subset, maybe?
+                // For now, let's include them only if the filter covers the full range (implied default)
+                // Or separate toggle? Let's just exclude if outside known range for now to be safe, 
+                // or include if "unknown" is acceptable.
+                // Decision: Include if range covers standard min/max, otherwise exclude?
+                // Simplest: If year is null, it doesn't match a specific range unless we have a specific rule.
+                // Let's exclude unknown years when filtering.
+                matchesYear = false;
+                // BUT if filter is at default (full range), ideally we show everything.
+                if (currentMin === minYear && currentMax === maxYear) matchesYear = true;
+            }
+        }
+
+        return matchesSearch && matchesTheater && matchesDate && matchesYear;
     });
 
     renderFilms();
@@ -589,10 +611,11 @@ document.getElementById('theater-filter').addEventListener('change', () => {
     filterFilms();
     updateURLParams();
 });
-document.getElementById('rated-only').addEventListener('change', () => {
+document.getElementById('theater-filter').addEventListener('change', () => {
     filterFilms();
     updateURLParams();
 });
+// Rated only filter removed
 const dateFilter = document.getElementById('date-filter');
 
 function updateDatePlaceholder() {
@@ -606,8 +629,172 @@ function updateDatePlaceholder() {
 dateFilter.addEventListener('change', () => {
     filterFilms();
     updateDatePlaceholder();
-    updateURLParams();
+    // updateURLParams handled by debounce
 });
+
+let minYear = 1900;
+let maxYear = new Date().getFullYear();
+
+function initYearFilter() {
+    // Calculate global min/max years
+    const validYears = allFilms
+        .map(f => f.year)
+        .filter(y => y !== null && !isNaN(y));
+
+    if (validYears.length > 0) {
+        minYear = Math.min(...validYears);
+        maxYear = Math.max(...validYears);
+    }
+
+    const yearMinInput = document.getElementById('year-min');
+    const yearMaxInput = document.getElementById('year-max');
+    const yearMinVal = document.getElementById('year-min-val');
+    const yearMaxVal = document.getElementById('year-max-val');
+
+    // Set slider range and inputs
+    [yearMinInput, yearMaxInput, yearMinVal, yearMaxVal].forEach(input => {
+        input.min = minYear;
+        input.max = maxYear;
+    });
+
+    // Set initial values from URL or defaults
+    const params = new URLSearchParams(window.location.search);
+    const startMin = params.get('min_year') || minYear;
+    const startMax = params.get('max_year') || maxYear;
+
+    yearMinInput.value = startMin;
+    yearMaxInput.value = startMax;
+    yearMinVal.value = startMin;
+    yearMaxVal.value = startMax;
+
+    updateSliderDisplay();
+}
+
+function updateSliderDisplay() {
+    const yearMinInput = document.getElementById('year-min');
+    const yearMaxInput = document.getElementById('year-max');
+    const yearMinVal = document.getElementById('year-min-val');
+    const yearMaxVal = document.getElementById('year-max-val');
+
+    let minVal = parseInt(yearMinInput.value);
+    let maxVal = parseInt(yearMaxInput.value);
+
+    // Validate range
+    if (minVal > maxVal) {
+        const temp = minVal;
+        minVal = maxVal;
+        maxVal = temp;
+    }
+
+    // Update text inputs if they aren't focused (to avoid interrupting typing)
+    if (document.activeElement !== yearMinVal) yearMinVal.value = minVal;
+    if (document.activeElement !== yearMaxVal) yearMaxVal.value = maxVal;
+
+    updateTrack(minVal, maxVal);
+}
+
+function updateTrack(minVal, maxVal) {
+    const track = document.querySelector('.slider-track');
+    const range = maxYear - minYear;
+    if (range <= 0) return;
+
+    const ratio1 = (minVal - minYear) / range;
+    const ratio2 = (maxVal - minYear) / range;
+
+    // Align gradient stops with the center of the thumbs (16px width)
+    const thumbW = 16;
+    const stop1 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio1})`;
+    const stop2 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio2})`;
+
+    track.style.background = `linear-gradient(to right, var(--border) ${stop1}, var(--accent) ${stop1}, var(--accent) ${stop2}, var(--border) ${stop2})`;
+}
+
+// Event listeners for SLIDERS
+['year-min', 'year-max'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+        updateSliderDisplay();
+        filterFilms();
+
+        // Debounce URL update
+        clearTimeout(window.updateUrlTimeout);
+        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
+    });
+});
+
+// Event listeners for TEXT inputs
+['year-min-val', 'year-max-val'].forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener('change', () => {
+        validateAndSyncInputs();
+        filterFilms();
+
+        // Debounce URL update
+        clearTimeout(window.updateUrlTimeout);
+        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
+    });
+});
+
+// Clear filters button
+document.getElementById('clear-filters').addEventListener('click', () => {
+    // Reset inputs
+    document.getElementById('search').value = '';
+    document.getElementById('date-filter').value = '';
+    updateDatePlaceholder();
+    document.getElementById('theater-filter').value = '';
+
+    // Reset year filter
+    const yearMinInput = document.getElementById('year-min');
+    const yearMaxInput = document.getElementById('year-max');
+    const yearMinVal = document.getElementById('year-min-val');
+    const yearMaxVal = document.getElementById('year-max-val');
+
+    yearMinInput.value = minYear;
+    yearMaxInput.value = maxYear;
+    yearMinVal.value = minYear;
+    yearMaxVal.value = maxYear;
+
+    updateSliderDisplay();
+
+    // updateURLParams will act on changed values, but let's clear URL explicitly
+    const url = new URL(window.location);
+    url.search = '';
+    window.history.pushState({}, '', url);
+
+    filterFilms();
+});
+
+function validateAndSyncInputs() {
+    const yearMinInput = document.getElementById('year-min');
+    const yearMaxInput = document.getElementById('year-max');
+    const yearMinVal = document.getElementById('year-min-val');
+    const yearMaxVal = document.getElementById('year-max-val');
+
+    let minVal = parseInt(yearMinVal.value);
+    let maxVal = parseInt(yearMaxVal.value);
+
+    // Clamp to global bounds
+    if (minVal < minYear) minVal = minYear;
+    if (maxVal > maxYear) maxVal = maxYear;
+    if (minVal > maxYear) minVal = maxYear;
+    if (maxVal < minYear) maxVal = minYear;
+
+    // Ensure min <= max
+    if (minVal > maxVal) {
+        const temp = minVal;
+        minVal = maxVal;
+        maxVal = temp;
+    }
+
+    // Update inputs with clamped values
+    yearMinVal.value = minVal;
+    yearMaxVal.value = maxVal;
+
+    // Sync sliders
+    yearMinInput.value = minVal;
+    yearMaxInput.value = maxVal;
+
+    updateTrack(minVal, maxVal);
+}
 
 // URL Parameter Handling
 function applyFiltersFromURL() {
@@ -615,7 +802,6 @@ function applyFiltersFromURL() {
 
     const search = params.get('search');
     const theater = params.get('theater');
-    const rated = params.get('rated');
     const date = params.get('date');
 
     if (search) {
@@ -630,28 +816,34 @@ function applyFiltersFromURL() {
         }
     }
 
-    if (rated === 'true') {
-        document.getElementById('rated-only').checked = true;
-    }
-
     if (date) {
         document.getElementById('date-filter').value = date;
         updateDatePlaceholder();
     }
+
+    // Year filter is initialized in initYearFilter() after films load
 }
 
 function updateURLParams() {
     const search = document.getElementById('search').value;
     const theater = document.getElementById('theater-filter').value;
-    const rated = document.getElementById('rated-only').checked;
     const date = document.getElementById('date-filter').value;
+
+    // Get current slider values
+    const minInput = document.getElementById('year-min');
+    const maxInput = document.getElementById('year-max');
+    const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
+    const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
 
     const params = new URLSearchParams();
 
     if (search) params.set('search', search);
     if (theater) params.set('theater', theater);
-    if (rated) params.set('rated', 'true');
     if (date) params.set('date', date);
+
+    // Only add year params if they differ from global bounds
+    if (currentMin > minYear) params.set('min_year', currentMin);
+    if (currentMax < maxYear) params.set('max_year', currentMax);
 
     const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     window.history.replaceState({}, '', newURL);

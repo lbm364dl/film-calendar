@@ -48,38 +48,98 @@ h1 {
     font-size: 1.1rem;
 }
 
-.controls {
+/* Grid Layout for Filters */
+/* Grid Layout for Filters */
+/* Grid Layout for Filters */
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
     margin-bottom: 2rem;
+    align-items: start;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid Position Assignments - Desktop */
+#date-filter {
+    grid-column: 1 / 4;
+    grid-row: 1;
 }
 
 .search-box {
-    margin-bottom: 1rem;
+    grid-column: 4 / 10;
+    grid-row: 1;
+}
+
+#theater-filter {
+    grid-column: 10 / 13;
+    grid-row: 1;
+}
+
+.year-filter {
+    grid-column: 1 / 9;
+    grid-row: 2;
+}
+
+#clear-filters {
+    grid-column: 9 / 13;
+    grid-row: 2;
+}
+
+@media (max-width: 768px) {
+    .filters-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .search-box {
+        grid-column: 1 / 7;
+        grid-row: 1;
+    }
+    #date-filter {
+        grid-column: 1 / 4;
+        grid-row: 2;
+    }
+    #theater-filter {
+        grid-column: 4 / 7;
+        grid-row: 2;
+    }
+    .year-filter {
+        grid-column: 1 / 5;
+        grid-row: 3;
+    }
+    #clear-filters {
+        grid-column: 5 / 7;
+        grid-row: 3;
+    }
+}
+
+.search-box {
+    margin-bottom: 0;
+    height: 100%;
+    min-height: 52px;
 }
 
 .search-box input {
     width: 100%;
-    padding: 1rem 1.5rem;
+    height: 100%;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
     background: var(--bg-card);
-    border: 2px solid var(--border);
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     color: var(--text);
     outline: none;
     transition: border-color 0.2s;
+    line-height: normal;
 }
 
 .search-box input:focus {
     border-color: var(--accent);
 }
 
-.filters {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.filters input[type="date"],
-.filters select {
+.filters-grid input[type="date"],
+.filters-grid select {
     padding: 0.75rem 1rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -88,15 +148,27 @@ h1 {
     font-size: 0.95rem;
     cursor: pointer;
     outline: none;
-    min-width: 160px;
-    /* Ensure enough width for placeholder */
+    width: 100%;
+    height: 100%;
+    min-height: 52px;
+    /* Match height of search box */
     position: relative;
     line-height: normal;
-    /* Fix for alignment */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.filters-grid select {
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px 8px;
 }
 
 /* Fix for mobile date placeholder */
-.filters input[type="date"]:not(:focus):not(.has-value)::before {
+.filters-grid input[type="date"]:not(:focus):not(.has-value)::before {
     content: attr(placeholder);
     color: var(--text-dim);
     position: absolute;
@@ -108,31 +180,166 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     width: calc(100% - 3rem);
-    /* Account for padding + icon space */
 }
 
-/* Hide native placeholder if present when we show ours (optional, but good for consistency) */
-.filters input[type="date"]:not(:focus):not(.has-value)::-webkit-datetime-edit {
+.filters-grid input[type="date"]:not(:focus):not(.has-value)::-webkit-datetime-edit {
     color: transparent;
 }
 
-.filters input[type="date"]::-webkit-calendar-picker-indicator {
+.filters-grid input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
+/* Year Filter Styles */
+.year-filter {
     background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    cursor: pointer;
-    user-select: none;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    min-height: 52px;
 }
 
-.checkbox-label input {
+.clear-filters-btn {
+    height: 100%;
+    min-height: 52px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.clear-filters-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border-color: var(--text-dim);
+}
+
+.year-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.year-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.year-input-group label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.1rem;
+}
+
+.year-input-group input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 100%;
+    outline: none;
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.year-input-group input:focus {
+    border-color: var(--accent);
+}
+
+.year-input-group input::-webkit-outer-spin-button,
+.year-input-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.range-slider {
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.slider-track {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.range-slider input[type="range"] {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    height: 100%;
+    margin: 0;
+    top: 0;
+}
+
+/* Slider Thumb Styling */
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s, background 0.2s;
+    margin-top: -6px;
+    /* Adjust for track centering if needed, but height is 100% */
+}
+
+/* Firefox Thumb */
+.range-slider input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s, background 0.2s;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    background: #ff8888;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    background: #ff8888;
+}
+
+/* Remove default focus outline */
+.range-slider input[type="range"]:focus {
+    outline: none;
 }
 
 .stats {
