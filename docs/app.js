@@ -606,6 +606,20 @@ dateFilter.addEventListener('click', function () {
     }
 });
 
+// Google Maps links for theaters
+const THEATER_LOCATIONS = {
+    // Plaza de España - Cines Renoir
+    'Plaza de España': 'Cines Renoir Plaza de España, C. de Martín de los Heros, 12, Moncloa - Aravaca, 28008 Madrid, Spain',
+    // Princesa - Cines Renoir
+    'Princesa': 'Cines Renoir Princesa, Calle de la Princesa, 3, Moncloa - Aravaca, 28008 Madrid, Spain',
+    // Retiro - Cines Renoir
+    'Retiro': 'Cines Renoir Retiro, C. de Narváez, 42, Retiro, 28009 Madrid, Spain',
+    // Filmoteca Española - Cine Doré
+    'Cine Doré': 'Cine Doré, C. de Sta. Isabel, 3, Centro, 28012 Madrid, Spain',
+    // Cineteca Madrid
+    'Cineteca': 'Cineteca, Pl. de Legazpi, 8, Arganzuela, 28045 Madrid, Spain',
+};
+
 function generateCalendarUrl(film, dateObj) {
     try {
         const dateStr = dateObj.timestamp;
@@ -623,8 +637,19 @@ function generateCalendarUrl(film, dateObj) {
         };
 
         const title = encodeURIComponent(`${film.title} (${film.year || ''})`);
-        const details = encodeURIComponent(`Director: ${film.director}\nLink: ${film.theaterLink || ''}`);
-        const location = encodeURIComponent(dateObj.location || film.theater);
+
+        let locationRaw = dateObj.location || film.theater;
+        // Try to finding a map link
+        // Check exact match or partial match (e.g. "Sala 1, Plaza de España")
+        let mapLink = THEATER_LOCATIONS[locationRaw];
+        if (!mapLink) {
+            // Try to find if any key is contained in the location string
+            const foundKey = Object.keys(THEATER_LOCATIONS).find(k => locationRaw.includes(k));
+            if (foundKey) mapLink = THEATER_LOCATIONS[foundKey];
+        }
+
+        const details = encodeURIComponent(`Director: ${film.director}\nLink: ${film.theaterLink || ''}\nLocation: ${mapLink || ''}`);
+        const location = encodeURIComponent(mapLink || locationRaw);
         const dates = `${formatGCal(start)}/${formatGCal(end)}`;
 
         return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
