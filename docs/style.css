@@ -685,6 +685,8 @@ footer p {
     max-height: 350px;
     overflow-y: auto;
     overflow-x: visible;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 107, 0.15);
     isolation: isolate;
 }
