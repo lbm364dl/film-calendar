@@ -146,8 +146,7 @@ function filterFilms() {
         // Search filter (accent-insensitive)
         const matchesSearch = !searchTerm ||
             normalizeText(film.title).includes(searchTerm) ||
-            (film.director && normalizeText(film.director).includes(searchTerm)) ||
-            normalizeText(film.theater).includes(searchTerm);
+            (film.director && normalizeText(film.director).includes(searchTerm));
 
         // Theater filter - special handling for Cines Renoir to match all Renoir locations
         let matchesTheater = true;
