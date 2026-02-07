@@ -1006,3 +1006,21 @@ footer p {
         transform: translateX(4px);
     }
 }
+
+/* Genre badges */
+.film-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0.3rem 0;
+}
+
+.genre-badge {
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-dim);
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+}

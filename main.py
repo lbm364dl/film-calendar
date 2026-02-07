@@ -1,10 +1,50 @@
 """Main entry point for film-calendar."""
 
-from cli import parse_args, generate_cinema_boilerplate
-from rate import match_films, rate_films
+import ast
+import json
+
 import pandas as pd
-import theaters
+
+from cli import parse_args, generate_cinema_boilerplate
+from rate import match_films, rate_films, fetch_letterboxd_info
 from pathlib import Path
+import theaters
+
+
+# =============================================================================
+# JSON I/O helpers for the master screenings file
+# =============================================================================
+
+def read_master_json(path: str) -> list[dict]:
+    """Read the master screenings JSON file."""
+    p = Path(path)
+    if not p.exists():
+        return []
+    with open(p, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def write_master_json(films: list[dict], path: str):
+    """Write films list to the master screenings JSON file."""
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(films, f, ensure_ascii=False, indent=2)
+
+
+def parse_dates_column(val):
+    """Parse a dates column value (JSON string, Python repr, or list)."""
+    if pd.isna(val) if isinstance(val, float) else not val:
+        return []
+    if isinstance(val, list):
+        return val
+    if isinstance(val, str):
+        try:
+            return json.loads(val)
+        except json.JSONDecodeError:
+            try:
+                return ast.literal_eval(val)
+            except (ValueError, SyntaxError):
+                return []
+    return []
 
 
 def run_scrape(args):
@@ -47,44 +87,40 @@ def run_match(args):
     # We want {theater_film_link: letterboxd_url}
     url_cache = {}
     
-    master_csv = Path(args.cache) if args.cache else None
-        
-    if master_csv and master_csv.exists():
-        print(f"Loading cache from {master_csv} ...")
-        # Move imports here or to top
-        from ast import literal_eval
-        import json
-        
+    master_path = Path(args.cache) if args.cache else None
+
+    if master_path and master_path.exists():
+        print(f"Loading cache from {master_path} ...")
         try:
-            master_df = pd.read_csv(master_csv)
-            
-            count_cached = 0
-            for _, row in master_df.iterrows():
-                lb_url = row.get("letterboxd_url")
-                if pd.isna(lb_url):
-                    continue
-                
-                dates_raw = row.get("dates")
-                if pd.isna(dates_raw):
-                    continue
-                    
-                # Parse dates (reusing logic or simple parse)
-                try:
-                    dates = json.loads(dates_raw.replace("'", '"'))
-                except:
-                    try:
-                        dates = literal_eval(dates_raw)
-                    except:
-                        dates = []
-                
-                if isinstance(dates, list):
+            # Support both JSON and CSV master files
+            if master_path.suffix == ".json":
+                master_films = read_master_json(str(master_path))
+                count_cached = 0
+                for film in master_films:
+                    lb_url = film.get("letterboxd_url")
+                    if not lb_url:
+                        continue
+                    for d in film.get("dates", []):
+                        if isinstance(d, dict):
+                            link = d.get("url_info")
+                            if link and link not in url_cache:
+                                url_cache[link] = lb_url
+                                count_cached += 1
+            else:
+                master_df = pd.read_csv(str(master_path))
+                count_cached = 0
+                for _, row in master_df.iterrows():
+                    lb_url = row.get("letterboxd_url")
+                    if pd.isna(lb_url):
+                        continue
+                    dates = parse_dates_column(row.get("dates"))
                     for d in dates:
                         if isinstance(d, dict):
                             link = d.get("url_info")
                             if link and link not in url_cache:
                                 url_cache[link] = lb_url
                                 count_cached += 1
-                                
+
             print(f"  → Cached {count_cached} links")
         except Exception as e:
             print(f"  → Failed to load cache: {e}")
@@ -114,262 +150,163 @@ def run_rate(args):
     print(f"\n✓ Rated {rated}/{len(df)} films → {output_csv}")
 
 
-    print(f"\n✓ Rated {rated}/{len(df)} films → {output_csv}")
-
-
 def run_merge(args):
-    """Execute the merge command - merge input CSV into source CSV."""
-    source_csv = args.source
+    """Execute the merge command - merge rated input CSV into master JSON.
+
+    Reads the master JSON (docs/screenings.json), merges in new films from
+    the rated CSV, fetches Letterboxd metadata for any new films, and saves.
+    """
+    source_json = args.source
     input_csv = args.input
-    output_csv = args.output if args.output else source_csv
-    
-    print(f"Merging {input_csv} into {source_csv} ...")
+    output_json = args.output if args.output else source_json
 
-    if not Path(source_csv).exists():
-        print(f"Error: Source file {source_csv} does not exist.")
-        return
+    print(f"Merging {input_csv} into {source_json} ...")
 
-    source_df = pd.read_csv(source_csv)
+    # ── Load master JSON ──────────────────────────────────────────────────
+    master_films = read_master_json(source_json)  # list of dicts
+    # Build lookup by letterboxd_url
+    url_to_idx = {}
+    title_to_idx = {}
+    for i, film in enumerate(master_films):
+        url = film.get("letterboxd_url")
+        title = film.get("title")
+        if url:
+            url_to_idx[url] = i
+        if title:
+            title_to_idx[title] = i
+
+    # ── Load input CSV ────────────────────────────────────────────────────
     input_df = pd.read_csv(input_csv)
-    
-    # Helper to parse dates column
-    import json
-    import ast
-
-    def parse_dates(val):
-        """Helper to parse dates column (handle JSON or string repr)."""
-        if pd.isna(val):
-             return []
-        
-        parsed = None
-        if isinstance(val, str):
-            try:
-                parsed = json.loads(val)
-            except json.JSONDecodeError:
-                try:
-                    # Fallback for old format or python repr
-                    parsed = ast.literal_eval(val)
-                except (ValueError, SyntaxError):
-                    pass
-        else:
-            parsed = val # Already a list?
-
-        if isinstance(parsed, list):
-            return parsed
-        return []
-        
-    def normalize_input_dates(row):
-        """Convert input row dates to new format list of dicts."""
-        dates = parse_dates(row.get("dates"))
-        theater = row.get("theater", "Unknown")
-        link = row.get("theater_film_link", "")
-        
-        new_dates = []
-        if not dates:
-             # Backward compat: if no dates column but we have row info, maybe the row itself implies a screening?
-             # But usually scrape produces dates.
-             pass
-             
-        for d in dates:
-            item = {}
-            if isinstance(d, dict):
-                item["timestamp"] = d.get("timestamp")
-                item["location"] = d.get("location", theater)
-                item["url_tickets"] = d.get("url_tickets", d.get("url", "")) # Handle old 'url' key
-                item["url_info"] = d.get("url_info", link)
-            elif isinstance(d, str):
-                item = {
-                    "timestamp": d,
-                    "location": theater,
-                    "url_tickets": "",
-                    "url_info": link
-                }
-            
-            if item.get("timestamp"):
-                new_dates.append(item)
-        return new_dates
-
-    # 1. Group Input by letterboxd_url
-    input_records = {} # Key: lb_url, Value: record (merged if same url)
-    unmatched_input_records = [] # List of records without lb_url
-
-    for _, row in input_df.iterrows():
-        lb_url = row.get("letterboxd_url")
-        new_dates = normalize_input_dates(row)
-        
-        record = row.to_dict()
-        record["dates"] = new_dates
-        
-        if pd.isna(lb_url):
-            unmatched_input_records.append(record)
-            continue
-            
-        if lb_url not in input_records:
-            input_records[lb_url] = record
-        else:
-            # Merge dates
-            input_records[lb_url]["dates"].extend(new_dates)
-            
-            # Update rating if better
-            if pd.isna(input_records[lb_url].get("letterboxd_rating")) and pd.notna(row.get("letterboxd_rating")):
-                input_records[lb_url]["letterboxd_rating"] = row["letterboxd_rating"]
-                input_records[lb_url]["letterboxd_viewers"] = row["letterboxd_viewers"]
-
-    # 2. Merge into Source
-    # Source might also have unmatched records.
-    # We maintain them in a dict keyed by title for easier lookup/merging.
-    source_records = {} # {url: record}
-    source_unmatched_by_title = {} # {title: record}
-    source_title_to_url = {} # {title: url} - helper for mapped films
-    
-    # Load Source
-    for _, row in source_df.iterrows():
-        record = row.to_dict()
-        url = record.get("letterboxd_url")
-        title = record.get("title")
-        
-        if pd.notna(url):
-            source_records[url] = record
-            if pd.notna(title):
-                source_title_to_url[title] = url
-        else:
-            if pd.notna(title):
-                # If duplicate titles exist in source (unmatched), we merge them? 
-                # Or just pick last? Let's pick first found or merge.
-                if title in source_unmatched_by_title:
-                     # Merge dates if duplicate exists in source already
-                     # (Though source should be clean if migrated correctly)
-                     # For safety, let's merge
-                     existing = source_unmatched_by_title[title]
-                     existing_dates = parse_dates(existing.get("dates"))
-                     new_dates = parse_dates(record.get("dates"))
-                     # ... dedupe merge ...
-                     # Simplified: just append for now then dedupe later? 
-                     # Better to have valid unique movies.
-                     # Let's assume source is relatively clean or just overwrite?
-                     # No, overwrite bad. Let's merge.
-                     pass 
-                else:
-                    source_unmatched_by_title[title] = record
-            else:
-                 # No matching key (no URL, no Title). Skip or append blindly?
-                 # Appending blindly is safer for data preservation but these are garbage rows.
-                 # Let's skip warnings for now or handle as list if strictly needed.
-                 # User instructions imply we care about preserving "unmatched" but surely they have titles.
-                 pass
 
     updated_count = 0
     new_count = 0
-    
-    # Helper to merge dates into a source dict
-    def merge_dates_into(target_record, incoming_dates):
-        target_dates = parse_dates(target_record.get("dates"))
-        
-        existing_keys = {(d.get("timestamp"), d.get("location")) for d in target_dates}
-        added = False
-        for d in incoming_dates:
-            key = (d.get("timestamp"), d.get("location"))
-            if key not in existing_keys:
-                target_dates.append(d)
-                existing_keys.add(key)
-                added = True
-        
-        if added:
-            try:
-                target_dates.sort(key=lambda x: x.get("timestamp", ""))
-            except Exception:
-                pass
-            target_record["dates"] = target_dates
-            return True
-        return False
 
-    # Process matched inputs (URL based)
-    for lb_url, input_record in input_records.items():
-        if lb_url in source_records:
-            # Merge existing
-            source_record = source_records[lb_url]
-            if merge_dates_into(source_record, input_record["dates"]):
-                updated_count += 1
-            
-            # Update metadata
-            if pd.isna(source_record.get("letterboxd_rating")) and pd.notna(input_record.get("letterboxd_rating")):
-                 source_record["letterboxd_rating"] = input_record["letterboxd_rating"]
-                 source_record["letterboxd_viewers"] = input_record.get("letterboxd_viewers")
-                 updated_count += 1 # technically updated
+    new_fields = [
+        "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
+        "genres", "country", "primary_language", "spoken_languages", "tmdb_url",
+    ]
 
-            source_records[lb_url] = source_record
-        else:
-            # New movie with URL
-            # Lazy Rating: Fetch rating if we don't have it
-            print(f"  ★ New film found: {input_record.get('title')} ({lb_url})")
-            if pd.isna(input_record.get("letterboxd_rating")):
-                from rate import fetch_letterboxd_rating
-                print(f"    Fetching rating from Letterboxd...")
-                try:
-                    ratings = fetch_letterboxd_rating(lb_url)
-                    input_record["letterboxd_rating"] = ratings["letterboxd_rating"]
-                    input_record["letterboxd_viewers"] = ratings["letterboxd_viewers"]
-                except Exception as e:
-                    print(f"    Failed to fetch rating: {e}")
-            
-            source_records[lb_url] = input_record
-            new_count += 1
-            # Also index its title for subsequent lookups? 
-            # (Input might have internal dupes but input_records is already unique by URL)
-            if pd.notna(input_record.get("title")):
-                source_title_to_url[input_record["title"]] = lb_url
-            
-    # Process unmatched inputs (try matching by title)
-    for record in unmatched_input_records:
-        title = record.get("title")
-        merged = False
-        
-        if pd.notna(title):
-            # 1. Try matching a record with URL
-            if title in source_title_to_url:
-                url = source_title_to_url[title]
-                if merge_dates_into(source_records[url], record["dates"]):
-                    updated_count += 1
-                merged = True
-            
-            # 2. Try matching a record without URL
-            elif title in source_unmatched_by_title:
-                if merge_dates_into(source_unmatched_by_title[title], record["dates"]):
-                    updated_count += 1
-                merged = True
-        
-        if not merged:
-            # Add as new record
-            if pd.notna(title):
-                source_unmatched_by_title[title] = record
+    for _, row in input_df.iterrows():
+        lb_url = row.get("letterboxd_url")
+        title = row.get("title")
+
+        # Parse input dates into standard format
+        raw_dates = parse_dates_column(row.get("dates"))
+        theater = row.get("theater", "Unknown") if pd.notna(row.get("theater")) else "Unknown"
+        link = row.get("theater_film_link", "") if pd.notna(row.get("theater_film_link")) else ""
+
+        new_dates = []
+        for d in raw_dates:
+            if isinstance(d, dict):
+                item = {
+                    "timestamp": d.get("timestamp"),
+                    "location": d.get("location", theater),
+                    "url_tickets": d.get("url_tickets", d.get("url", "")),
+                    "url_info": d.get("url_info", link),
+                }
+            elif isinstance(d, str):
+                item = {"timestamp": d, "location": theater, "url_tickets": "", "url_info": link}
             else:
-                 # Row without title or URL. Maybe append to a junk list? 
-                 # For now, if no title, we can't key it.
-                 pass
+                continue
+            if item.get("timestamp"):
+                new_dates.append(item)
+
+        # Find existing film in master
+        target_idx = None
+        if pd.notna(lb_url) and lb_url in url_to_idx:
+            target_idx = url_to_idx[lb_url]
+        elif pd.notna(title) and title in title_to_idx:
+            target_idx = title_to_idx[title]
+
+        if target_idx is not None:
+            # ── Merge into existing film ──────────────────────────────
+            master_film = master_films[target_idx]
+            existing_dates = master_film.get("dates", [])
+            existing_keys = {(d.get("timestamp"), d.get("location")) for d in existing_dates}
+
+            added = False
+            for d in new_dates:
+                key = (d.get("timestamp"), d.get("location"))
+                if key not in existing_keys:
+                    existing_dates.append(d)
+                    existing_keys.add(key)
+                    added = True
+
+            if added:
+                existing_dates.sort(key=lambda x: x.get("timestamp", ""))
+                master_film["dates"] = existing_dates
+                updated_count += 1
+
+            # Fill missing metadata from input
+            if pd.notna(lb_url) and not master_film.get("letterboxd_url"):
+                master_film["letterboxd_url"] = lb_url
+                url_to_idx[lb_url] = target_idx
+
+            for field in new_fields:
+                input_val = row.get(field)
+                if pd.notna(input_val) if isinstance(input_val, float) else input_val:
+                    master_val = master_film.get(field)
+                    if not master_val:
+                        master_film[field] = input_val
+
+        else:
+            # ── New film ──────────────────────────────────────────────
+            film = {
+                "title": title if pd.notna(title) else None,
+                "dates": new_dates,
+                "director": row.get("director") if pd.notna(row.get("director")) else None,
+                "year": int(row["year"]) if pd.notna(row.get("year")) else None,
+                "letterboxd_url": lb_url if pd.notna(lb_url) else None,
+                "letterboxd_rating": None,
+                "letterboxd_viewers": None,
+                "letterboxd_short_url": None,
+                "genres": [],
+                "country": [],
+                "primary_language": [],
+                "spoken_languages": [],
+                "tmdb_url": None,
+            }
+
+            # Copy any fields that came from the rate step
+            for field in new_fields:
+                input_val = row.get(field)
+                if pd.notna(input_val) if isinstance(input_val, float) else input_val:
+                    film[field] = input_val
+
+            # Fetch Letterboxd info for new films with a URL
+            if film["letterboxd_url"] and not film["letterboxd_rating"]:
+                print(f"  ★ New film: {film['title']} ({film['letterboxd_url']})")
+                print(f"    Fetching Letterboxd info...")
+                try:
+                    info = fetch_letterboxd_info(film["letterboxd_url"])
+                    for key in new_fields:
+                        if info.get(key) is not None:
+                            val = info[key]
+                            if isinstance(val, list) and len(val) == 0:
+                                continue
+                            film[key] = val
+                except Exception as e:
+                    print(f"    Failed: {e}")
+
+            idx = len(master_films)
+            master_films.append(film)
+            if film["letterboxd_url"]:
+                url_to_idx[film["letterboxd_url"]] = idx
+            if film["title"]:
+                title_to_idx[film["title"]] = idx
             new_count += 1
 
-    # Reconstruct DataFrame
-    # Order: Matched records + Unmatched records
-    final_records = list(source_records.values()) + list(source_unmatched_by_title.values())
-    final_df = pd.DataFrame(final_records)
-    
-    # Drop obsolete columns if they snuck in from input
-    cols_to_drop = ["theater", "theater_film_link"]
-    final_df = final_df.drop(columns=[c for c in cols_to_drop if c in final_df.columns])
-    
-    # Ensure year is Int64
-    if "year" in final_df.columns:
-        final_df["year"] = pd.to_numeric(final_df["year"], errors="coerce").astype("Int64")
+    # ── Sort by rating and write ──────────────────────────────────────────
+    master_films.sort(
+        key=lambda f: (f.get("letterboxd_rating") or 0,),
+        reverse=True,
+    )
 
-    # Sort by rating (careful with NAs)
-    if "letterboxd_rating" in final_df.columns:
-        final_df["letterboxd_rating"] = pd.to_numeric(final_df["letterboxd_rating"], errors="coerce")
-        final_df = final_df.sort_values(by="letterboxd_rating", ascending=False)
-        
-    final_df.to_csv(output_csv, index=False)
-    print(f"\n✓ Merged data saved to {output_csv}")
+    write_master_json(master_films, output_json)
+    print(f"\n✓ Merged data saved to {output_json}")
     print(f"  Updates: {updated_count} screening updates/merges")
     print(f"  New: {new_count} films added")
+    print(f"  Total: {len(master_films)} films")
 
 
 def run_new_cinema(args):

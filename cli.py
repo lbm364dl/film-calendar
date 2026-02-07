@@ -79,7 +79,7 @@ def parse_args():
     match_parser.add_argument(
         "--cache",
         type=str,
-        help="Path to a master CSV to use as a cache for Letterboxd URLs",
+        help="Path to the master JSON/CSV to use as a cache for Letterboxd URLs",
     )
 
     # Rate subcommand
@@ -104,20 +104,20 @@ def parse_args():
     # Merge subcommand
     merge_parser = subparsers.add_parser(
         "merge",
-        help="Merge a CSV into a source of truth CSV (updating ratings/dates)",
+        help="Merge a rated CSV into the master JSON (updating screenings/metadata)",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     merge_parser.add_argument(
         "--source",
         type=str,
-        default="docs/screenings.csv",
-        help="Path to the master CSV (source of truth, default: docs/screenings.csv)",
+        default="docs/screenings.json",
+        help="Path to the master JSON (source of truth, default: docs/screenings.json)",
     )
     merge_parser.add_argument(
         "--input",
         type=str,
         required=True,
-        help="Path to the CSV to merge IN",
+        help="Path to the rated CSV to merge IN",
     )
     merge_parser.add_argument(
         "--output",

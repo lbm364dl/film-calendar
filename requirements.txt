@@ -3,4 +3,5 @@ requests
 python-dateutil
 pandas
 selenium
+undetected-chromedriver
 pytest

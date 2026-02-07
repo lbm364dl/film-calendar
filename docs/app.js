@@ -1,55 +1,48 @@
 let allFilms = [];
 let filteredFilms = [];
 
-// CSV files to load (add more months as needed)
-const CSV_FILES = [
-    'screenings.csv'
-];
+// Data file to load
+const DATA_FILE = 'screenings.json';
 
-// Load all CSV files
+// Load films from JSON
 async function loadFilms() {
     const loading = document.getElementById('loading');
     const filmsGrid = document.getElementById('films-grid');
 
     try {
-        const filmData = [];
-
-        for (const csvFile of CSV_FILES) {
-            const response = await fetch(csvFile);
-            const csvText = await response.text();
-
-            const parsed = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: true
-            });
-
-            filmData.push(...parsed.data);
-        }
+        const response = await fetch(DATA_FILE);
+        const filmData = await response.json();
 
         // Process film data
         allFilms = filmData.map(film => {
-            const dates = parseDates(film.dates);
+            const dates = Array.isArray(film.dates) ? film.dates : parseDates(film.dates);
 
             // Derive theater from dates (unique locations)
             const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
             let theaterDisplay = locations.length > 0 ? locations.join(', ') : 'Unknown';
-            if (locations.length > 2) theaterDisplay = `${locations.length} locations`; // truncate if too many
+            if (locations.length > 2) theaterDisplay = `${locations.length} locations`;
 
             // Derive main link from first date with info url, or fallback
             const mainLink = dates.find(d => d.url_info)?.url_info || '';
 
             return {
-                theater: theaterDisplay, // Derived for display
+                theater: theaterDisplay,
                 title: film.title,
                 director: film.director,
                 year: film.year ? parseInt(film.year) : null,
                 dates: dates,
                 theaterLink: mainLink,
                 letterboxdUrl: film.letterboxd_url,
+                letterboxdShortUrl: film.letterboxd_short_url,
                 rating: film.letterboxd_rating ? parseFloat(film.letterboxd_rating) : null,
-                viewers: film.letterboxd_viewers
+                viewers: film.letterboxd_viewers,
+                genres: film.genres || [],
+                country: film.country || [],
+                primaryLanguage: film.primary_language || [],
+                spokenLanguages: film.spoken_languages || [],
+                tmdbUrl: film.tmdb_url,
             };
-        }).filter(film => film.title); // Remove empty entries
+        }).filter(film => film.title);
 
         // Initial render
         initYearFilter(); // Initialize slider with data bounds
@@ -270,16 +263,21 @@ function createFilmCard(film) {
         titleText += ` <span class="title-meta">(${metadata.join(', ')})</span>`;
     }
 
+    // Genres badge
+    const genresHTML = film.genres && film.genres.length > 0
+        ? `<div class="film-genres">${film.genres.map(g => `<span class="genre-badge">${escapeHtml(g)}</span>`).join('')}</div>`
+        : '';
+
     const datesHTML = film.dates.length > 0
         ? `<div class="film-dates">
              ${createSessionsDisplay(film)}
            </div>`
         : '';
 
-    // Letterboxd icon link
-    // Place your icon at: docs/assets/letterboxd.svg (or change extension below)
-    const letterboxdHTML = film.letterboxdUrl
-        ? `<a href="${escapeHtml(film.letterboxdUrl)}" class="letterboxd-link" target="_blank" onclick="event.stopPropagation()" title="View on Letterboxd">
+    // Letterboxd icon link (prefer short URL if available)
+    const letterboxdLink = film.letterboxdShortUrl || film.letterboxdUrl;
+    const letterboxdHTML = letterboxdLink
+        ? `<a href="${escapeHtml(letterboxdLink)}" class="letterboxd-link" target="_blank" onclick="event.stopPropagation()" title="View on Letterboxd">
              <img src="assets/letterboxd.svg" class="letterboxd-icon" alt="LB" onerror="this.outerHTML='📽️'">
            </a>`
         : '';
@@ -295,6 +293,7 @@ function createFilmCard(film) {
                     ${letterboxdHTML}
                 </div>
             </div>
+            ${genresHTML}
             ${datesHTML}
         </div>
     `;
