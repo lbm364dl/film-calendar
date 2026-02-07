@@ -1,5 +1,6 @@
 let allFilms = [];
 let filteredFilms = [];
+let watchlistUrls = null;
 
 // Data file to load
 const DATA_FILE = 'screenings.json';
@@ -215,7 +216,13 @@ function filterFilms() {
             }
         }
 
-        return matchesSearch && matchesTheater && matchesDate && matchesYear;
+        // Watchlist filter
+        let matchesWatchlist = true;
+        if (watchlistUrls) {
+            matchesWatchlist = film.letterboxdShortUrl && watchlistUrls.has(film.letterboxdShortUrl);
+        }
+
+        return matchesSearch && matchesTheater && matchesDate && matchesYear && matchesWatchlist;
     });
 
     renderFilms();
@@ -823,6 +830,9 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     updateDatePlaceholder();
     document.getElementById('theater-filter').value = '';
 
+    // Reset watchlist filter
+    clearWatchlist();
+
     // Reset year filter
     const yearMinInput = document.getElementById('year-min');
     const yearMaxInput = document.getElementById('year-max');
@@ -1005,3 +1015,70 @@ function generateCalendarUrl(film, dateObj) {
 
 // Load films on page load
 loadFilms();
+
+// Watchlist filter
+document.getElementById('watchlist-btn').addEventListener('click', () => {
+    if (watchlistUrls) {
+        clearWatchlist();
+        filterFilms();
+    } else {
+        document.getElementById('watchlist-upload').click();
+    }
+});
+
+// Prevent info trigger click from bubbling to the button
+document.getElementById('watchlist-info-trigger').addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.currentTarget.classList.toggle('show');
+});
+
+document.getElementById('watchlist-tooltip').addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener('click', () => {
+    const trigger = document.getElementById('watchlist-info-trigger');
+    trigger.classList.remove('show');
+});
+
+document.getElementById('watchlist-upload').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    Papa.parse(file, {
+        header: true,
+        complete: (results) => {
+            const urls = new Set();
+            results.data.forEach(row => {
+                const uri = row['Letterboxd URI'];
+                if (uri) urls.add(uri.trim());
+            });
+
+            if (urls.size > 0) {
+                watchlistUrls = urls;
+                document.querySelector('.watchlist-filter').classList.add('active');
+                document.getElementById('watchlist-label-full').textContent = 'Watchlist active';
+                document.getElementById('watchlist-label-short').textContent = 'Watchlist';
+                document.getElementById('watchlist-count-info').style.display = 'block';
+                document.getElementById('watchlist-count-info').textContent = `${urls.size} films loaded from watchlist`;
+                filterFilms();
+            }
+        },
+        error: (error) => {
+            console.error('Error parsing watchlist CSV:', error);
+        }
+    });
+
+    // Reset file input so same file can be re-uploaded
+    event.target.value = '';
+});
+
+function clearWatchlist() {
+    watchlistUrls = null;
+    document.querySelector('.watchlist-filter').classList.remove('active');
+    document.getElementById('watchlist-label-full').textContent = 'Letterboxd watchlist';
+    document.getElementById('watchlist-label-short').textContent = 'Watchlist';
+    document.getElementById('watchlist-upload').value = '';
+    document.getElementById('watchlist-count-info').style.display = 'none';
+    document.getElementById('watchlist-count-info').textContent = '';
+}

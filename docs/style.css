@@ -83,9 +83,13 @@ h1 {
     grid-row: 2;
 }
 
-#clear-filters {
+.actions-cell {
     grid-column: 9 / 13;
     grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    height: 100%;
 }
 
 @media (max-width: 768px) {
@@ -108,7 +112,7 @@ h1 {
         grid-column: 1 / 5;
         grid-row: 3;
     }
-    #clear-filters {
+    .actions-cell {
         grid-column: 5 / 7;
         grid-row: 3;
     }
@@ -206,18 +210,18 @@ h1 {
 }
 
 .clear-filters-btn {
-    height: 100%;
-    min-height: 52px;
+    flex: 1;
+    min-height: 0;
     background: transparent;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 6px;
     color: var(--text-dim);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 0.75rem;
+    padding: 0.2rem 0.5rem;
     text-align: center;
     transition: all 0.2s;
 }
@@ -226,6 +230,191 @@ h1 {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text);
     border-color: var(--text-dim);
+}
+
+/* Watchlist Filter */
+.watchlist-filter {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.watchlist-filter:hover {
+    border-color: var(--text-dim);
+}
+
+.watchlist-filter.active {
+    border-color: var(--accent);
+}
+
+.watchlist-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0.2rem 1.6rem 0.2rem 0.4rem;
+    text-align: center;
+    transition: all 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.watchlist-label-full,
+.watchlist-label-short {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    pointer-events: none;
+}
+
+.watchlist-label-short {
+    display: none;
+}
+
+.watchlist-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+.watchlist-filter.active .watchlist-btn {
+    color: var(--accent);
+    background: rgba(255, 107, 107, 0.08);
+}
+
+.watchlist-info-trigger {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    right: 0.3rem;
+    top: 0;
+    bottom: 0;
+    width: 1.8rem;
+}
+
+.watchlist-info-trigger:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--text-dim);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.watchlist-info-trigger:hover .info-icon {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.watchlist-info-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 2px);
+    right: -4px;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 0.85rem;
+    width: 260px;
+    z-index: 100;
+    box-shadow: 0 6px 18px 0 rgba(0,0,0,0.55), 0 0 0 1.5px var(--border);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* Invisible bridge so cursor can travel from icon to tooltip */
+.watchlist-info-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 40px;
+    height: 10px;
+}
+
+.watchlist-info-trigger:hover .watchlist-info-tooltip {
+    display: block;
+}
+
+.watchlist-info-trigger.show .watchlist-info-tooltip {
+    display: block;
+}
+
+.watchlist-info-tooltip p {
+    margin-bottom: 0.35rem;
+}
+
+.watchlist-info-tooltip ol {
+    margin: 0.35rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.watchlist-info-tooltip li {
+    margin-bottom: 0.2rem;
+}
+
+.watchlist-info-tooltip a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.watchlist-info-tooltip a:hover {
+    text-decoration: underline;
+}
+
+.watchlist-info-tooltip code {
+    background: var(--bg);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.watchlist-count-info {
+    margin-top: 0.5rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .watchlist-label-full {
+        display: none;
+    }
+
+    .watchlist-label-short {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .watchlist-label-short {
+        position: static;
+        transform: none;
+        width: auto;
+    }
 }
 
 .year-inputs {

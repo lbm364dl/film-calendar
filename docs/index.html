@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madrid Film Calendar</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -49,9 +49,31 @@
                 </div>
             </div>
 
-            <button id="clear-filters" class="clear-filters-btn" title="Clear all filters">
-                <span>Clear all filters</span>
-            </button>
+            <div class="actions-cell">
+                <div class="watchlist-filter">
+                    <input type="file" id="watchlist-upload" accept=".csv" hidden>
+                    <button class="watchlist-btn" id="watchlist-btn" title="Filter by Letterboxd watchlist">
+                        <span id="watchlist-label-full" class="watchlist-label-full">Letterboxd watchlist</span>
+                        <span id="watchlist-label-short" class="watchlist-label-short">Watchlist</span>
+                    </button>
+                    <div class="watchlist-info-trigger" id="watchlist-info-trigger">
+                        <span class="info-icon" id="info-icon">?</span>
+                        <div class="watchlist-info-tooltip" id="watchlist-tooltip">
+                            <p><strong>Filter by your Letterboxd watchlist</strong></p>
+                            <ol>
+                                <li>Log in to Letterboxd via browser (not working on app)</a></li>
+                                <li>Go to your Letterboxd watchlist</a></li>
+                                <li>Click <em>Export watchlist</em></li>
+                                <li>Upload the downloaded <em>CSV</em> file here</li>
+                            </ol>
+                            <p id="watchlist-count-info" class="watchlist-count-info" style="display:none"></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="clear-filters" class="clear-filters-btn" title="Clear all filters">
+                    <span>Clear all filters</span>
+                </button>
+            </div>
         </div>
 
         <div class="stats">
