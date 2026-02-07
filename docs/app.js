@@ -125,6 +125,24 @@ function formatMonth(monthStr) {
     return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
 }
 
+function getLocalTodayStart() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+function formatDateInputValue(date) {
+    const pad = (n) => n.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+function getDateOnly(timestamp) {
+    if (!timestamp) return null;
+    const [datePart, timePart = '00:00'] = timestamp.split(' ');
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hour, minute] = timePart.split(':').map(Number);
+    return new Date(year, month - 1, day, hour || 0, minute || 0);
+}
+
 // Remove accents for search
 function normalizeText(text) {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -141,8 +159,20 @@ function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
     const selectedTheater = document.getElementById('theater-filter').value;
     const selectedDate = document.getElementById('date-filter').value;
+    const todayStart = getLocalTodayStart();
 
-    filteredFilms = allFilms.filter(film => {
+    filteredFilms = allFilms.map(film => {
+        const futureDates = film.dates.filter(d => {
+            const dateObj = getDateOnly(d.timestamp);
+            return dateObj && dateObj >= todayStart;
+        });
+
+        return {
+            ...film,
+            dates: futureDates
+        };
+    }).filter(film => {
+        if (film.dates.length === 0) return false;
         // Search filter (accent-insensitive)
         const matchesSearch = !searchTerm ||
             normalizeText(film.title).includes(searchTerm) ||
@@ -647,6 +677,11 @@ document.getElementById('theater-filter').addEventListener('change', () => {
 // Rated only filter removed
 const dateFilter = document.getElementById('date-filter');
 
+function setDateFilterMin() {
+    const today = getLocalTodayStart();
+    dateFilter.min = formatDateInputValue(today);
+}
+
 function updateDatePlaceholder() {
     if (dateFilter.value) {
         dateFilter.classList.add('has-value');
@@ -655,11 +690,16 @@ function updateDatePlaceholder() {
     }
 }
 
-dateFilter.addEventListener('change', () => {
+function handleDateFilterChange() {
     filterFilms();
     updateDatePlaceholder();
-    // updateURLParams handled by debounce
-});
+    updateURLParams();
+}
+
+dateFilter.addEventListener('input', handleDateFilterChange);
+dateFilter.addEventListener('change', handleDateFilterChange);
+
+setDateFilterMin();
 
 let minYear = 1900;
 let maxYear = new Date().getFullYear();
@@ -846,8 +886,14 @@ function applyFiltersFromURL() {
     }
 
     if (date) {
-        document.getElementById('date-filter').value = date;
-        updateDatePlaceholder();
+        const minDate = dateFilter.min;
+        if (!minDate || date >= minDate) {
+            document.getElementById('date-filter').value = date;
+            updateDatePlaceholder();
+        } else {
+            document.getElementById('date-filter').value = '';
+            updateDatePlaceholder();
+        }
     }
 
     // Year filter is initialized in initYearFilter() after films load
