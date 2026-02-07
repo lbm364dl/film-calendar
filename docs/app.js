@@ -323,6 +323,9 @@ function getTheaterFallbackUrl(film, dateObj) {
     if (film.theater === 'Cine Doré') {
         return 'https://www.culturaydeporte.gob.es/filmoteca/el-cine-dore.html';
     }
+    if (film.theater === 'Golem Madrid') {
+        return 'https://www.golem.es/golem/golem-madrid';
+    }
     return '#';
 }
 
@@ -678,6 +681,8 @@ const THEATER_LOCATIONS = {
     'Cine Doré': 'Cine Doré, C. de Sta. Isabel, 3, Centro, 28012 Madrid, Spain',
     // Cineteca Madrid
     'Cineteca': 'Cineteca, Pl. de Legazpi, 8, Arganzuela, 28045 Madrid, Spain',
+    // Golem
+    'Golem': 'Golem Madrid, C. de Martín de los Heros, 14, Moncloa - Aravaca, 28008 Madrid, Spain',
 };
 
 function generateCalendarUrl(film, dateObj) {

@@ -47,10 +47,9 @@ def run_match(args):
     # We want {theater_film_link: letterboxd_url}
     url_cache = {}
     
-    if args.cache:
-        master_csv = Path(args.cache)
+    master_csv = Path(args.cache) if args.cache else None
         
-    if master_csv.exists():
+    if master_csv and master_csv.exists():
         print(f"Loading cache from {master_csv} ...")
         # Move imports here or to top
         from ast import literal_eval

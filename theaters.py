@@ -3,12 +3,14 @@
 from fetch_films.cineteca import CinetecaScraper
 from fetch_films.dore import DoreScraper
 from fetch_films.renoir import RenoirScraper
+from fetch_films.golem import GolemScraper
 
 # Class-based registry (new pattern)
 SCRAPERS = {
     "dore": DoreScraper(),
     "cineteca": CinetecaScraper(),
     "renoir": RenoirScraper(),
+    "golem": GolemScraper(),
 }
 
 

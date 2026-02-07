@@ -1,0 +1,28 @@
+.SimpleBlue
+{
+}
+
+.SimpleBlue h2
+{
+	padding-top: 4px;
+	padding-left: 8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bolder;
+	color: #fff;
+	background-color: #3475ec;
+	background-image: url( bg.jpg );
+	background-repeat: no-repeat;
+	background-position: left 0px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.SimpleBlue .closeHandle
+{
+	top: 4px;
+	right: 3px;
+	width: 17px;
+	height: 17px;
+	background-image: url(close.gif);
+}

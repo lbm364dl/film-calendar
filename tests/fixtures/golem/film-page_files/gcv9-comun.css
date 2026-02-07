@@ -1,0 +1,850 @@
+@charset "utf-8";
+/* CSS Document */
+.txtCajas {
+	font-family:  FuenteGolemCines, Helvetica-Narrow, sans-serif;    font-size: 9px;
+	color: #000000;
+}
+.txtMiga {
+	font-family:  FuenteGolemCines, Helvetica-Narrow, sans-serif;    
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	color: #FFFFFF;
+}
+.txtBlaBold {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 9px;
+	font-style: normal;
+	font-weight: bold;
+		color: #FFFFFF;
+}
+.txtBlaGr {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+.pieBlanGr {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 14px;
+	font-weight: normal;
+	color: #FFFFFF;
+    text-align:center;
+   	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pieBlanGrIz {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 14px;
+	font-weight: normal;
+	color: #FFFFFF;
+    text-align:left;
+	padding: 2px 0 4px 0;
+}
+
+.pieGris{
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 9px;
+	font-weight: normal;
+	color: #333333;
+}
+
+.barra {
+           scrollbar-3dlight-color:;
+           scrollbar-arrow-color:;
+           scrollbar-base-color:#20A6C1;
+           scrollbar-darkshadow-color:;
+           scrollbar-face-color:;
+           scrollbar-highlight-color:;
+           scrollbar-shadow-color:
+          }
+
+.titBlaPeli {
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #FFFFFF;
+}
+.txtBlaXL {
+	font-family: Helvetica-Narrow, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+.txtLectura {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;	
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.txtLecturaBla {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;	
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+.txtBlaL {
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+	/* classes for validator */
+.tfvHighlight
+		{
+	font-size: 9pt;
+	color: #990000;
+	font-weight: bold;
+}
+.tfvNormal
+		{
+	font-size: 9pt;
+	color: #FFFFFF;
+}
+.inputHighlighted
+		{
+	color: #FF0000;
+}
+.inputNormal
+		{
+	color: #FFFFFF;
+}
+.txtAzuL {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;	
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #0155AD;
+}
+
+.txtAzuXL {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	color: #0155AD;
+}
+
+.txtAzuXXL {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: normal;
+	color: #0155AD;
+}
+.txtBlaXXL {
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+.txtBlaXXXL {
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.txtGriBold {
+	font-family: Helvetica-Narrow, sans-serif;    font-size: 9px;
+	font-style: normal;
+	font-weight: bold;
+	color: #878787;
+}
+.txtNegXL {
+	font-family: FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+.txtNegXLBold {
+	font-family: FuenteGolemCinesNeg, Helvetica-Narrow, sans-serif;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.txtNeg {
+	font-family: Helvetica-Narrow, sans-serif;	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.txtNegL {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+.txtNegLJust {
+	font-family:  FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+	text-align: justify;
+}
+
+.txtNegMedio {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;	
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.txtNegDia{
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+}
+.txtNegNoDia{
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+.txtNegXXL {
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+.txtNXXL {
+	font-family: FuenteGolemCinesNeg, Helvetica-Narrow, sans-serif;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+
+.txtNegXXXL {
+	font-family:FuenteGolemCines,  Helvetica-Narrow, sans-serif;	font-size: 30px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+}
+
+.txtGrisXXXL {
+	font-family: FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 34px;
+	font-style: normal;
+	font-weight: bolder;
+	color: #666666;
+}
+.txtGrisXXL {
+	font-family: FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: normal;
+	color: #666666;
+}
+
+
+.cajaInicio{
+	/* background-color:#999999; */
+	alpha(opacity=25); 
+    -moz-opacity:0.25; 
+    opacity:0.25; 
+    -khtml-opacity:.25;
+}
+
+.CajaBannerTop{
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	background-color: #E5E5E5;
+}
+
+.cajaVideoBottom{
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-bottom: 20px;
+	background-color: #CCCCCC;
+	border-bottom-right-radius: 15px;
+   	border-bottom-left-radius: 15px;
+      /* para IE */  
+   filter:alpha(opacity=40);  
+   /* CSS3 standard */  
+   opacity:0.4;  
+}
+txtNegXL
+.cajaPeliCines{
+	background-color: #429ADB;
+	font-family: FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+
+.CajaPieTexto{
+	padding-top:    5px;
+	padding-right:  5px;
+	padding-left:   5px;
+	padding-bottom: 15px;
+	background-color: #010101;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+
+}
+
+.cajaCabecera{
+	padding-top:    5px;
+	padding-right:  5px;
+	padding-left:   5px;
+	padding-bottom: 5px;
+	background-color: #B8B8B8;
+	border-radius: 4px;
+ 
+}
+
+.capaPelisRelacionadas{
+	font-style: normal;
+	font-size: 18px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, Helvetica, sans-serif;
+	background-color:#ffffff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color:#003366;
+	font-weight: bold;
+	}
+	
+.m10{
+	padding-left: 10px;
+	}
+	
+.m7{
+	padding-left: 7px;
+	}	
+
+.m5{
+	padding-left: 5px;
+	padding-bottom: 5px;
+	}
+	
+.m-5{
+	padding-right: 5px;
+	padding-bottom: 3px;
+	padding-bottom: 5px;
+	}
+.m-10 {
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-bottom: 5px;
+}
+
+.masNoticias{
+	width:683 px;
+	}
+	
+ul.masNoticias{
+	width: 683px;
+	List-style-type: none; 
+	margin:0px;
+	padding:5px;
+}
+
+ul.masNoticias li{
+	Display:inline; /*Se declara que las propiedades serán otorgadas a cada linea*/
+	height: 28px;
+	padding-left: 0px;
+	padding-top: 0px;
+	background-color:#FFFFFF;
+	border-width:1px;
+	border-style:solid;
+	border-color:#AEAEAE;
+}
+
+.caja-utilidades-rs { 
+	 /*background:url(../img/fondo-utiles-rs.jpg); */
+	}
+
+.tabDiaMb {
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	background-color:#237398;
+	border-top: 	1px solid #666;
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	0px solid #ffffff;
+
+	
+}
+
+.tabDia {
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	background-color:#FFFFFF;
+	border-top: 	1px solid #666;
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	0px solid #ffffff;
+	font-style: normal;
+	font-size: 14px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, Helvetica, sans-serif;
+	color:#666666;
+	font-weight: bold;
+	
+}
+
+.tabNoDia {
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	background-color:#FFFFFF;
+	border-top: 	1px solid #666;
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	1px solid #666;
+	font-style: normal;
+	font-size: 12px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, Helvetica, sans-serif;
+	color:#000000;
+}
+
+.tabCiereDia {
+	border-bottom:	1px solid #666;
+
+}
+.tabContenido {
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	background-color:#FFFFFF;
+
+	border-top: 	1px solid #ffffff;
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	1px solid #666;
+
+}
+.CajaVentasSup{
+	
+	background-color: #FFFFFF;
+	border-top-right-radius: 5px;
+   	border-top-left-radius:  5px;
+	padding-top: 	    	 4px;
+ 	border-top: 	1px solid #666;
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+ 
+}
+
+.CajaVentasInf{
+	
+	background-color: #FFFFFF;
+	border-bottom-right-radius: 5px;
+   	border-bottom-left-radius:  5px;
+	padding-bottom: 4px;
+
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	1px solid #666;
+ 
+}
+
+.CajaVentasInfOpera{
+	
+	background-color: #006699;
+	border-bottom-right-radius: 5px;
+   	border-bottom-left-radius:  5px;
+	padding-bottom: 4px;
+
+	border-right: 	1px solid #666;
+	border-left:	1px solid #666;
+	border-bottom:	1px solid #666;
+ 
+}
+
+.horaXXXL {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000033;
+}
+.horaTexto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: normal;
+	color: #000000;
+}
+
+.cajaCartelera2{
+	background-color: #F5F5F5;
+ 
+}
+.tabla10 {
+	padding: 5px;
+}
+.m5-1 {
+	padding-left: 5px;
+
+}
+.m-5-1 {
+	padding-right: 5px;
+
+}
+.txtEstreno{
+	background-color: #FFFFFF;
+	border-bottom-right-radius: 1px;
+	border-bottom-left-radius:  1px;
+	padding: 5px;
+	border: 	1px solid #ccc;
+	font-style: normal;
+	font-size: 14px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, Helvetica, sans-serif;
+	color:#0155AD;
+
+	
+}
+
+.txtCine{
+	background-color: #FFFFFF;
+	border-bottom-right-radius: 1px;
+	border-bottom-left-radius:  1px;
+	padding: 5px;
+	font-size: 14px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, Helvetica, sans-serif;
+	color: #002659;
+
+	
+}
+
+
+div#cargaiframe {
+        display: none;
+      }
+	  
+div#loading {
+        top: 200 px;
+        margin: auto;
+        position: inherit;
+        z-index: 1000;
+        width: 128px;
+        height: 128px;
+        background: url(/golemv9/img/loading.gif) no-repeat;
+        cursor: wait;
+      }
+	  
+.eventoResalte{
+	background-color: #E5E5E5;
+	cursor:pointer;
+
+
+}
+	  
+.eventoBase{
+	background-color: #FFFFFF;
+	cursor:pointer;
+
+
+}
+
+#listacines {  
+	list-style:none;
+	margin:0;
+	padding:0;
+	}
+
+#listacines li {
+	display:block;
+	vertical-align:middle;
+	text-align:left;
+	text-decoration:none;
+	color:#FFFFFF;
+	cursor:pointer;
+	padding:10px 0 10px 5px;
+	background-color:#429ADB;
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	
+	}
+		  
+#listacines li a {
+	text-align:left;
+	padding:5px;
+	font-size:18px; 
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+#listacines li:hover>a {
+	text-decoration: underline;
+}
+
+
+#listacontacto {  
+	list-style:none;
+	margin:0;
+	padding:0;
+	}
+
+#listacontacto li {
+	display:block;
+	vertical-align:middle;
+	text-align:left;
+	text-decoration:none;
+	color:#FFFFFF;
+	cursor:pointer;
+	padding:5px;
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	
+	}
+		  
+#listacontacto li a {
+	text-align:left;
+	padding:2px;
+	font-size:15px; 
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+#listacontacto li:hover>a {
+	text-decoration: underline;
+}
+
+#contactarCines {
+ border-color: #FFF;
+ border: 1px;
+}
+
+#TablaLaPuedes{
+	background-color: #FFF;
+	border-top:		1px solid #AEAEAE;
+	border-right: 	1px solid #AEAEAE;
+	border-left:	1px solid #AEAEAE;
+	border-bottom:	1px solid #AEAEAE;
+	margin-bottom: 30px;
+}
+
+#TituloTablaPuedes{
+
+	text-align:left;
+	padding:3px;
+	padding-left: 5px;
+	font-size:17px; 
+	font-family: FuenteGolemCines, Helvetica-Narrow, sans-serif;
+	color:#000000;
+	background-color: #E5E5E5;
+}
+
+
+
+#ContenedorZonas{
+	 display: table-row;
+}
+
+#ZonaPuedes{
+	
+	display: table-cell;
+	width: 175px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-color:#2285e6;
+	padding-bottom: 15px;
+	margin-right: 2xp;
+}
+
+#NombreCinePuedes{
+	
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-family: FuenteGolemCines,Helvetica-Narrow,sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #2285e6;
+	text-transform: uppercase;
+	text-align: center;
+	border-right-width: 1px;
+	border-right-style: solid;	
+}
+
+#NombreCineZona{
+	
+	padding: 5px;
+	padding-top: 15px;
+	font-family: FuenteGolemCines,Helvetica-Narrow,sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+	color: #002659;
+	text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#PieCajaCines ul menu li{
+  display: block;
+  padding: .2em 0 .2em .5em;
+  text-decoration: none;
+  list-style:none ;
+}
+
+.margin-bottom.big-margin {
+    margin-bottom: 30px;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
+}
+
+.separator {
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+#PieCajaCines {
+  display: block;
+  padding: .2em 0 .2em .5em;
+  text-decoration: none;
+}
+
+#PieCajaCines ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+}
+
+#PieCajaCines li a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 8px 0 2px 0;
+}
+
+#derechaVentaCine {
+    display: block;
+    padding: 10px 0 20px 2px;
+}
+
+#derechaRecoCines {
+    display: block;
+    padding: 0px 0 20px 2px;
+}
+
+#derechaBanerMedio {
+    display: block;
+    padding: 0px 0 20px 4px;
+}
+
+#derechaZonaBaja {
+    display: block;
+    padding: 0px 0 20px 4px;
+}
+
+#derechaInfoCine {
+    display: block;
+    padding: 10px 0 20px 2px;
+}
+
+#contenidoCajaStd {
+	display: block;
+	padding: 0px;
+	border: 1px solid #000;
+	background-color: #FFF;
+
+}
+
+#contenidoTapaStd {
+	display: block;
+	padding: 10px;
+	background-color: #E5E5E5;
+	font-family:FuenteGolemCines,  Helvetica-Narrow, sans-serif;	
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000000;
+
+}	
+
+#contenidoCuerpoStd {
+	display: block;
+	padding: 10px;
+
+}
+
+.botonCine {
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-bottom: 5px;
+	background-color: #2285e6;
+	font-family: FuenteGolemCines,  Helvetica-Narrow, sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#CajaPeliculaEncartel{
+	background-color: #FFF;
+	border-top:		1px solid #AEAEAE;
+	border-right: 	1px solid #AEAEAE;
+	border-left:	1px solid #AEAEAE;
+	border-bottom:	1px solid #AEAEAE;
+	margin-bottom: 30px;
+}
+
+#CajaTablaBusquedaPelis{
+	background-color: #FFF;
+	border-top:		1px solid #AEAEAE;
+	border-right: 	1px solid #AEAEAE;
+	border-left:	1px solid #AEAEAE;
+	border-bottom:	1px solid #AEAEAE;
+	margin-bottom: 30px;
+}
