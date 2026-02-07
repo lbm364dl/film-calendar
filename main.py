@@ -300,6 +300,18 @@ def run_merge(args):
             source_records[lb_url] = source_record
         else:
             # New movie with URL
+            # Lazy Rating: Fetch rating if we don't have it
+            print(f"  ★ New film found: {input_record.get('title')} ({lb_url})")
+            if pd.isna(input_record.get("letterboxd_rating")):
+                from rate import fetch_letterboxd_rating
+                print(f"    Fetching rating from Letterboxd...")
+                try:
+                    ratings = fetch_letterboxd_rating(lb_url)
+                    input_record["letterboxd_rating"] = ratings["letterboxd_rating"]
+                    input_record["letterboxd_viewers"] = ratings["letterboxd_viewers"]
+                except Exception as e:
+                    print(f"    Failed to fetch rating: {e}")
+            
             source_records[lb_url] = input_record
             new_count += 1
             # Also index its title for subsequent lookups? 
@@ -354,6 +366,7 @@ def run_merge(args):
         final_df["letterboxd_rating"] = pd.to_numeric(final_df["letterboxd_rating"], errors="coerce")
         final_df = final_df.sort_values(by="letterboxd_rating", ascending=False)
         
+    final_df.to_csv(output_csv, index=False)
     print(f"\n✓ Merged data saved to {output_csv}")
     print(f"  Updates: {updated_count} screening updates/merges")
     print(f"  New: {new_count} films added")
