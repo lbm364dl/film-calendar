@@ -27,17 +27,29 @@ async function loadFilms() {
         }
 
         // Process film data
-        allFilms = filmData.map(film => ({
-            theater: film.theater,
-            title: film.title,
-            director: film.director,
-            year: film.year ? parseInt(film.year) : null,
-            dates: parseDates(film.dates),
-            theaterLink: film.theater_film_link,
-            letterboxdUrl: film.letterboxd_url,
-            rating: parseFloat(film.letterboxd_rating) || null,
-            viewers: film.letterboxd_viewers
-        })).filter(film => film.title); // Remove empty entries
+        allFilms = filmData.map(film => {
+            const dates = parseDates(film.dates);
+
+            // Derive theater from dates (unique locations)
+            const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
+            let theaterDisplay = locations.length > 0 ? locations.join(', ') : 'Unknown';
+            if (locations.length > 2) theaterDisplay = `${locations.length} locations`; // truncate if too many
+
+            // Derive main link from first date with info url, or fallback
+            const mainLink = dates.find(d => d.url_info)?.url_info || '';
+
+            return {
+                theater: theaterDisplay, // Derived for display
+                title: film.title,
+                director: film.director,
+                year: film.year ? parseInt(film.year) : null,
+                dates: dates,
+                theaterLink: mainLink,
+                letterboxdUrl: film.letterboxd_url,
+                rating: film.letterboxd_rating ? parseFloat(film.letterboxd_rating) : null,
+                viewers: film.letterboxd_viewers
+            };
+        }).filter(film => film.title); // Remove empty entries
 
         // Initial render
         filterFilms();
@@ -53,51 +65,50 @@ async function loadFilms() {
 
 // Parse dates which can be:
 // 1. Old format: "['2025-02-01 10:00']" (Python list string)
-// 2. New format: "[{'timestamp': '2025-02-01 10:00', 'location': 'Princesa'}]" (Python list of dicts string)
-function parseDates(dateStr, defaultLocation) {
+// 2. New format: "[{'timestamp': '2025-02-01 10:00', 'location': 'Princesa', ...}]" (Python list of dicts string)
+function parseDates(dateStr) {
     if (!dateStr) return [];
 
     try {
         // Attempt to parse as JSON first (if strictly valid JSON)
         try {
             const parsed = JSON.parse(dateStr);
-            return normalizeParsedDates(parsed, defaultLocation);
+            return normalizeParsedDates(parsed);
         } catch (e) {
             // Not valid JSON (likely Python string with single quotes)
-            // Naive approach: replace single quotes with double quotes
-            // This works if the content (location names) doesn't contain single quotes/apostrophes.
-            // If it does, we might need a more robust parser or just rely on the fallback.
+            // Replace single quotes with double quotes
             let jsonString = dateStr.replace(/'/g, '"');
 
-            // Handle specific Pythonisms if needed (None -> null, False -> false, etc - unlikely for dates)
+            // Handle specific Pythonisms if needed
             const parsed = JSON.parse(jsonString);
-            return normalizeParsedDates(parsed, defaultLocation);
+            return normalizeParsedDates(parsed);
         }
     } catch (e) {
         console.warn("Failed to parse dates:", dateStr, e);
-        // Fallback: try to just extract timestamps using regex if parsing fails completely
-        // Matches "YYYY-MM-DD HH:MM"
+        // Fallback: simple timestamp extraction
         const matches = dateStr.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/g);
         if (matches) {
-            return matches.map(ts => ({ timestamp: ts, location: defaultLocation }));
+            return matches.map(ts => ({ timestamp: ts, location: 'Unknown', url_tickets: '', url_info: '' }));
         }
         return [];
     }
 }
 
-function normalizeParsedDates(parsed, defaultLocation) {
+function normalizeParsedDates(parsed) {
     if (!Array.isArray(parsed)) return [];
 
     return parsed.map(item => {
         if (typeof item === 'string') {
             // Old format: plain string timestamp
-            return { timestamp: item, location: defaultLocation, url: '' };
+            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '' };
         } else if (typeof item === 'object' && item !== null) {
-            // New format: object with timestamp/location/url
+            // New format: object with timestamp/location/urls
             return {
                 timestamp: item.timestamp,
-                location: item.location || defaultLocation,
-                url: item.url || ''
+                location: item.location || 'Unknown',
+                // Map new keys to internal structure if needed, or keep them
+                url_tickets: item.url_tickets || item.url || '', // Support both old 'url' and new 'url_tickets'
+                url_info: item.url_info || ''
             };
         }
         return null;
@@ -273,9 +284,9 @@ function createSessionRow(film, dateObj) {
     const calendarUrl = generateCalendarUrl(film, dateObj);
 
     // Check if session has a direct ticket URL
-    const hasDirectUrl = dateObj.url && dateObj.url.trim() !== '';
-    const ticketUrl = hasDirectUrl ? dateObj.url : '';
-    const filmPageUrl = film.theaterLink || getTheaterFallbackUrl(film, dateObj);
+    const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
+    const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+    const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
 
     let locationBadge = '';
     let locationText = '';
@@ -485,9 +496,9 @@ function createGroupedSessions(film) {
             const calendarUrl = generateCalendarUrl(film, dateObj);
 
             // Check if session has a direct ticket URL
-            const hasDirectUrl = dateObj.url && dateObj.url.trim() !== '';
-            const ticketUrl = hasDirectUrl ? dateObj.url : '';
-            const filmPageUrl = film.theaterLink || getTheaterFallbackUrl(film, dateObj);
+            const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
+            const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+            const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
 
             const location = dateObj.location && dateObj.location !== 'Unknown'
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
