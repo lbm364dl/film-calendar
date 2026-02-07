@@ -52,6 +52,7 @@ async function loadFilms() {
         }).filter(film => film.title); // Remove empty entries
 
         // Initial render
+        applyFiltersFromURL();
         filterFilms();
 
         loading.style.display = 'none';
@@ -579,9 +580,18 @@ function escapeHtml(text) {
 }
 
 // Event listeners
-document.getElementById('search').addEventListener('input', filterFilms);
-document.getElementById('theater-filter').addEventListener('change', filterFilms);
-document.getElementById('rated-only').addEventListener('change', filterFilms);
+document.getElementById('search').addEventListener('input', () => {
+    filterFilms();
+    updateURLParams();
+});
+document.getElementById('theater-filter').addEventListener('change', () => {
+    filterFilms();
+    updateURLParams();
+});
+document.getElementById('rated-only').addEventListener('change', () => {
+    filterFilms();
+    updateURLParams();
+});
 const dateFilter = document.getElementById('date-filter');
 
 function updateDatePlaceholder() {
@@ -595,7 +605,57 @@ function updateDatePlaceholder() {
 dateFilter.addEventListener('change', () => {
     filterFilms();
     updateDatePlaceholder();
+    updateURLParams();
 });
+
+// URL Parameter Handling
+function applyFiltersFromURL() {
+    const params = new URLSearchParams(window.location.search);
+
+    const search = params.get('search');
+    const theater = params.get('theater');
+    const rated = params.get('rated');
+    const date = params.get('date');
+
+    if (search) {
+        document.getElementById('search').value = search;
+    }
+
+    if (theater) {
+        const theaterSelect = document.getElementById('theater-filter');
+        // Verify it's a valid option
+        if ([...theaterSelect.options].some(o => o.value === theater)) {
+            theaterSelect.value = theater;
+        }
+    }
+
+    if (rated === 'true') {
+        document.getElementById('rated-only').checked = true;
+    }
+
+    if (date) {
+        document.getElementById('date-filter').value = date;
+        updateDatePlaceholder();
+    }
+}
+
+function updateURLParams() {
+    const search = document.getElementById('search').value;
+    const theater = document.getElementById('theater-filter').value;
+    const rated = document.getElementById('rated-only').checked;
+    const date = document.getElementById('date-filter').value;
+
+    const params = new URLSearchParams();
+
+    if (search) params.set('search', search);
+    if (theater) params.set('theater', theater);
+    if (rated) params.set('rated', 'true');
+    if (date) params.set('date', date);
+
+    const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.replaceState({}, '', newURL);
+}
+
 
 // Make entire input clickable to open picker (better UX)
 dateFilter.addEventListener('click', function () {
