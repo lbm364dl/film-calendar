@@ -121,7 +121,7 @@ function normalizeParsedDates(parsed) {
 function formatMonth(monthStr) {
     const [year, month] = monthStr.split('-');
     const date = new Date(year, parseInt(month) - 1);
-    return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long' });
+    return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
 }
 
 // Remove accents for search
@@ -246,7 +246,6 @@ function createFilmCard(film) {
                     ${letterboxdHTML}
                 </div>
             </div>
-            <div class="film-theater">${escapeHtml(film.theater)}</div>
             ${datesHTML}
         </div>
     `;
@@ -424,7 +423,7 @@ function getDateRange(dates) {
     const firstDate = new Date(sortedDates[0].timestamp);
     const lastDate = new Date(sortedDates[sortedDates.length - 1].timestamp);
 
-    const formatShort = (d) => d.toLocaleDateString('es-ES', {
+    const formatShort = (d) => d.toLocaleDateString('en-GB', {
         day: 'numeric',
         month: 'short'
     });
@@ -454,7 +453,7 @@ function getLocationSummary(dates) {
     }
 
     // Multiple different theaters
-    return `${locations.length} cines`;
+    return `${locations.length} theaters`;
 }
 
 function createGroupedSessions(film) {
@@ -477,7 +476,7 @@ function createGroupedSessions(film) {
     return sortedDays.map(dayKey => {
         const sessions = grouped[dayKey];
         const dayDate = new Date(dayKey + 'T12:00:00');
-        const dayLabel = dayDate.toLocaleDateString('es-ES', {
+        const dayLabel = dayDate.toLocaleDateString('en-GB', {
             weekday: 'short',
             day: 'numeric',
             month: 'short'
@@ -491,7 +490,7 @@ function createGroupedSessions(film) {
                 <div class="sessions-day-header">${dayLabel}</div>
                 <div class="sessions-day-times">
                     ${sessions.map(dateObj => {
-            const time = new Date(dateObj.timestamp).toLocaleTimeString('es-ES', {
+            const time = new Date(dateObj.timestamp).toLocaleTimeString('en-GB', {
                 hour: '2-digit',
                 minute: '2-digit'
             });
@@ -508,7 +507,7 @@ function createGroupedSessions(film) {
                 : '';
 
             // Create date/time label for modal header
-            const dateLabel = new Date(dateObj.timestamp).toLocaleDateString('es-ES', {
+            const dateLabel = new Date(dateObj.timestamp).toLocaleDateString('en-GB', {
                 weekday: 'short',
                 day: 'numeric',
                 month: 'short'
@@ -566,7 +565,7 @@ function formatDate(dateStr) {
     const date = new Date(dateStr);
     if (isNaN(date)) return dateStr;
 
-    return date.toLocaleDateString('es-ES', {
+    return date.toLocaleDateString('en-GB', {
         weekday: 'short',
         month: 'short',
         day: 'numeric',
