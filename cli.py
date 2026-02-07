@@ -110,8 +110,8 @@ def parse_args():
     merge_parser.add_argument(
         "--source",
         type=str,
-        required=True,
-        help="Path to the master CSV (source of truth)",
+        default="docs/screenings.csv",
+        help="Path to the master CSV (source of truth, default: docs/screenings.csv)",
     )
     merge_parser.add_argument(
         "--input",

@@ -3,7 +3,7 @@ let filteredFilms = [];
 
 // CSV files to load (add more months as needed)
 const CSV_FILES = [
-    'calendar/2026-02.csv'
+    'screenings.csv'
 ];
 
 // Load all CSV files

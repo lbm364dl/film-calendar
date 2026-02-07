@@ -49,45 +49,46 @@ def run_match(args):
     
     if args.cache:
         master_csv = Path(args.cache)
-        if master_csv.exists():
-            print(f"Loading cache from {master_csv} ...")
-            # Move imports here or to top
-            from ast import literal_eval
-            import json
+        
+    if master_csv.exists():
+        print(f"Loading cache from {master_csv} ...")
+        # Move imports here or to top
+        from ast import literal_eval
+        import json
+        
+        try:
+            master_df = pd.read_csv(master_csv)
             
-            try:
-                master_df = pd.read_csv(master_csv)
+            count_cached = 0
+            for _, row in master_df.iterrows():
+                lb_url = row.get("letterboxd_url")
+                if pd.isna(lb_url):
+                    continue
                 
-                count_cached = 0
-                for _, row in master_df.iterrows():
-                    lb_url = row.get("letterboxd_url")
-                    if pd.isna(lb_url):
-                        continue
+                dates_raw = row.get("dates")
+                if pd.isna(dates_raw):
+                    continue
                     
-                    dates_raw = row.get("dates")
-                    if pd.isna(dates_raw):
-                        continue
-                        
-                    # Parse dates (reusing logic or simple parse)
+                # Parse dates (reusing logic or simple parse)
+                try:
+                    dates = json.loads(dates_raw.replace("'", '"'))
+                except:
                     try:
-                        dates = json.loads(dates_raw.replace("'", '"'))
+                        dates = literal_eval(dates_raw)
                     except:
-                        try:
-                            dates = literal_eval(dates_raw)
-                        except:
-                            dates = []
-                    
-                    if isinstance(dates, list):
-                        for d in dates:
-                            if isinstance(d, dict):
-                                link = d.get("url_info")
-                                if link and link not in url_cache:
-                                    url_cache[link] = lb_url
-                                    count_cached += 1
-                                    
-                print(f"  → Cached {count_cached} links")
-            except Exception as e:
-                print(f"  → Failed to load cache: {e}")
+                        dates = []
+                
+                if isinstance(dates, list):
+                    for d in dates:
+                        if isinstance(d, dict):
+                            link = d.get("url_info")
+                            if link and link not in url_cache:
+                                url_cache[link] = lb_url
+                                count_cached += 1
+                                
+            print(f"  → Cached {count_cached} links")
+        except Exception as e:
+            print(f"  → Failed to load cache: {e}")
 
     df = pd.read_csv(input_csv)
     df = match_films(df, skip_existing=skip_existing, url_cache=url_cache)
