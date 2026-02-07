@@ -12,7 +12,7 @@
     <div class="container">
         <header>
             <h1>🎬 Madrid Film Calendar</h1>
-            <p class="subtitle">Cineteca • Doré • Golem • Renoir • More coming...</p>
+            <p class="subtitle">Cineteca • Doré • Golem • Renoir • Sala Berlanga • More coming...</p>
         </header>
 
         <div class="filters-grid">
@@ -28,6 +28,7 @@
                 <option value="Cineteca Madrid">Cineteca Madrid</option>
                 <option value="Cine Doré">Cine Doré</option>
                 <option value="Golem">Golem Madrid</option>
+                <option value="Sala Berlanga">Sala Berlanga</option>
             </select>
 
             <div class="year-filter">
@@ -83,7 +84,10 @@
         <div id="session-modal" class="session-modal" onclick="closeSessionModal(event)">
             <div class="session-modal-content" onclick="event.stopPropagation()">
                 <div class="session-modal-header">
-                    <span id="session-modal-time"></span>
+                    <div class="session-modal-header-text">
+                        <div id="session-modal-title" class="session-modal-title"></div>
+                        <div id="session-modal-time" class="session-modal-time"></div>
+                    </div>
                     <button class="session-modal-close" onclick="closeSessionModal()">&times;</button>
                 </div>
                 <div id="session-modal-actions" class="session-modal-actions">

@@ -372,10 +372,12 @@ h1 {
     transition: all 0.2s;
 }
 
-.film-card:hover {
-    background: var(--bg-hover);
-    border-color: var(--accent);
-    transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+    .film-card:hover {
+        background: var(--bg-hover);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
 }
 
 .film-header {
@@ -435,10 +437,12 @@ h1 {
     height: 36px;
 }
 
-.letterboxd-link:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+    .letterboxd-link:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+    }
 }
 
 .letterboxd-icon {
@@ -486,9 +490,11 @@ h1 {
     color: inherit;
 }
 
-.date-row:hover {
-    background: rgba(255, 107, 107, 0.3);
-    border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .date-row:hover {
+        background: rgba(255, 107, 107, 0.3);
+        border-color: var(--accent);
+    }
 }
 
 /* Session action menu */
@@ -522,8 +528,10 @@ h1 {
     white-space: nowrap;
 }
 
-.session-action:hover {
-    background: rgba(255, 107, 107, 0.2);
+@media (hover: hover) and (pointer: fine) {
+    .session-action:hover {
+        background: rgba(255, 107, 107, 0.2);
+    }
 }
 
 .session-action:first-child {
@@ -555,9 +563,11 @@ h1 {
     /* Fix vertical alignment */
 }
 
-.calendar-btn:hover {
-    opacity: 1;
-    transform: scale(1.1);
+@media (hover: hover) and (pointer: fine) {
+    .calendar-btn:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
 }
 
 .calendar-icon {
@@ -614,9 +624,11 @@ footer a {
     border-bottom: 1px dotted var(--accent);
 }
 
-footer a:hover {
-    text-decoration: none;
-    border-bottom-style: solid;
+@media (hover: hover) and (pointer: fine) {
+    footer a:hover {
+        text-decoration: none;
+        border-bottom-style: solid;
+    }
 }
 
 footer p {
@@ -639,9 +651,11 @@ footer p {
     position: relative;
 }
 
-.sessions-toggle:hover {
-    background: rgba(255, 107, 107, 0.25);
-    border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .sessions-toggle:hover {
+        background: rgba(255, 107, 107, 0.25);
+        border-color: var(--accent);
+    }
 }
 
 .sessions-toggle .toggle-icon {
@@ -672,7 +686,6 @@ footer p {
 
 /* Sessions Popup - floating calendar-like display */
 .sessions-popup {
-    display: none;
     position: absolute;
     top: calc(100% + 0.5rem);
     left: 0;
@@ -689,6 +702,11 @@ footer p {
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 107, 0.15);
     isolation: isolate;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
 }
 
 /* Stop clicks from propagating to card link */
@@ -716,7 +734,18 @@ footer p {
 }
 
 .sessions-popup.show {
-    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.sessions-popup.closing {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+    visibility: visible;
+    pointer-events: none;
 }
 
 /* Ensure film card with open popup is above other cards */
@@ -771,9 +800,11 @@ footer p {
     font-family: inherit;
 }
 
-.session-time:hover {
-    background: rgba(255, 107, 107, 0.2);
-    border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .session-time:hover {
+        background: rgba(255, 107, 107, 0.2);
+        border-color: var(--accent);
+    }
 }
 
 /* Position action menu inside popup */
@@ -782,11 +813,6 @@ footer p {
     top: 100%;
     bottom: auto;
     z-index: 2000;
-}
-
-.session-time:hover {
-    background: rgba(255, 107, 107, 0.2);
-    border-color: var(--accent);
 }
 
 .session-time .time {
@@ -841,6 +867,14 @@ footer p {
     animation: modalSlideIn 0.2s ease-out;
 }
 
+.session-modal.closing {
+    animation: modalFadeOut 0.2s ease-in forwards;
+}
+
+.session-modal.closing .session-modal-content {
+    animation: modalSlideOut 0.2s ease-in forwards;
+}
+
 @keyframes modalSlideIn {
     from {
         opacity: 0;
@@ -853,6 +887,28 @@ footer p {
     }
 }
 
+@keyframes modalSlideOut {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.95) translateY(8px);
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .session-modal-header {
     display: flex;
     justify-content: space-between;
@@ -862,11 +918,23 @@ footer p {
     border-bottom: 1px solid var(--border);
 }
 
-.session-modal-header span {
+.session-modal-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-right: 1.5rem;
+}
+
+.session-modal-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 1.05rem;
+}
+
+.session-modal-time {
     font-weight: 600;
     color: var(--accent);
-    font-size: 1.1rem;
-    margin-right: 1.5rem;
+    font-size: 0.95rem;
 }
 
 .session-modal-close {
@@ -880,8 +948,10 @@ footer p {
     transition: color 0.2s;
 }
 
-.session-modal-close:hover {
-    color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .session-modal-close:hover {
+        color: var(--accent);
+    }
 }
 
 .session-modal-actions {
@@ -904,8 +974,10 @@ footer p {
     font-size: 0.95rem;
 }
 
-.session-modal-action:hover {
-    background: rgba(255, 107, 107, 0.15);
-    border-color: var(--accent);
-    transform: translateX(4px);
+@media (hover: hover) and (pointer: fine) {
+    .session-modal-action:hover {
+        background: rgba(255, 107, 107, 0.15);
+        border-color: var(--accent);
+        transform: translateX(4px);
+    }
 }

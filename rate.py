@@ -1,7 +1,7 @@
 """Letterboxd matching and rating functions."""
 
 import pandas as pd
-from urllib.parse import quote_plus, urljoin
+from urllib.parse import quote, urljoin
 from bs4 import BeautifulSoup
 
 from selenium import webdriver
@@ -60,7 +60,7 @@ def slugify_director(director: str) -> str:
 
 def _search_with_browser(browser, title: str, year: int | str | None = None, director: str | None = None) -> tuple[str | None, int | None]:
     """Helper to perform a single search with an open browser."""
-    search = title.strip()
+    search = " ".join(title.replace(".", " ").split())
     
     if year:
         search += f" year:{year}"
@@ -70,7 +70,7 @@ def _search_with_browser(browser, title: str, year: int | str | None = None, dir
         else:
              search += f" {director}"
 
-    url = urljoin(LETTERBOXD_SEARCH, quote_plus(search))
+    url = urljoin(LETTERBOXD_SEARCH, quote(search, safe=""))
     print(f"Searching: {url}")
 
     try:

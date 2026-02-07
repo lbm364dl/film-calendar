@@ -254,11 +254,8 @@ function createFilmCard(film) {
            </a>`
         : '';
 
-    // Make card clickable to theater link
-    const cardClickable = film.theaterLink ? `onclick="window.open('${escapeHtml(film.theaterLink)}', '_blank')"` : '';
-
     return `
-        <div class="film-card" ${cardClickable} style="${film.theaterLink ? 'cursor: pointer;' : ''}">
+        <div class="film-card">
             <div class="film-header">
                 <div class="film-title-row">
                     <div class="film-title">${titleText}</div>
@@ -303,6 +300,7 @@ function createSessionsDisplay(film) {
 function createSessionRow(film, dateObj) {
     const formatted = formatDate(dateObj.timestamp);
     const calendarUrl = generateCalendarUrl(film, dateObj);
+    const titleLabel = `${film.title}${film.year ? ` (${film.year})` : ''}`;
 
     // Check if session has a direct ticket URL
     const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
@@ -324,7 +322,7 @@ function createSessionRow(film, dateObj) {
     const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
 
     return `
-        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
             <span class="date-badge">${formatted}</span>
             ${locationBadge}
         </button>
@@ -345,6 +343,9 @@ function getTheaterFallbackUrl(film, dateObj) {
     }
     if (film.theater === 'Golem Madrid') {
         return 'https://www.golem.es/golem/golem-madrid';
+    }
+    if (film.theater === 'Sala Berlanga' || location === 'Sala Berlanga') {
+        return 'https://salaberlanga.com/programacion-de-actividades/';
     }
     return '#';
 }
@@ -367,14 +368,16 @@ function toggleSessionAction(event, actionId) {
 }
 
 // Open session action modal (for popup sessions)
-function openSessionModal(event, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl) {
+function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl) {
     event.stopPropagation();
     event.preventDefault();
 
     const modal = document.getElementById('session-modal');
     const timeSpan = document.getElementById('session-modal-time');
+    const titleSpan = document.getElementById('session-modal-title');
     const actionsDiv = document.getElementById('session-modal-actions');
 
+    titleSpan.textContent = titleLabel;
     timeSpan.textContent = timeLabel;
 
     // Build action buttons (no emojis)
@@ -415,13 +418,25 @@ function closeSessionModal(event) {
     }
 
     const modal = document.getElementById('session-modal');
-    modal.classList.remove('show');
+    if (!modal.classList.contains('show')) {
+        return;
+    }
+
+    modal.classList.add('closing');
+    const finish = () => {
+        modal.classList.remove('show');
+        modal.classList.remove('closing');
+    };
+    setTimeout(finish, 220);
 }
 
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeSessionModal();
+        document.querySelectorAll('.sessions-popup.show').forEach(p => {
+            closeSessionsPopup(p, p.previousElementSibling);
+        });
     }
 });
 
@@ -523,6 +538,7 @@ function createGroupedSessions(film) {
             const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
             const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
             const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
+            const titleLabel = film.year ? `${film.title} (${film.year})` : film.title;
 
             const location = dateObj.location && dateObj.location !== 'Unknown'
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
@@ -537,7 +553,7 @@ function createGroupedSessions(film) {
             const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
 
             return `
-                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
                     <span class="time">${time}</span>
                     ${location}
                 </button>
@@ -558,27 +574,40 @@ function toggleSessionsPopup(event, popupId) {
     // Close all other popups first
     document.querySelectorAll('.sessions-popup.show').forEach(p => {
         if (p.id !== popupId) {
-            p.classList.remove('show');
-            p.previousElementSibling?.classList.remove('active');
+            closeSessionsPopup(p, p.previousElementSibling);
         }
     });
 
     // Toggle this popup
-    popup.classList.toggle('show');
-    button.classList.toggle('active');
-
-    // Reset scroll position when opening
     if (popup.classList.contains('show')) {
+        closeSessionsPopup(popup, button);
+    } else {
+        popup.classList.remove('closing');
+        popup.classList.add('show');
+        button.classList.add('active');
         popup.scrollTop = 0;
     }
+}
+
+function closeSessionsPopup(popup, button) {
+    if (!popup.classList.contains('show')) {
+        return;
+    }
+
+    popup.classList.add('closing');
+    if (button) {
+        button.classList.remove('active');
+    }
+    setTimeout(() => {
+        popup.classList.remove('show', 'closing');
+    }, 160);
 }
 
 // Close popups when clicking outside
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.sessions-popup') && !e.target.closest('.sessions-toggle')) {
         document.querySelectorAll('.sessions-popup.show').forEach(p => {
-            p.classList.remove('show');
-            p.previousElementSibling?.classList.remove('active');
+            closeSessionsPopup(p, p.previousElementSibling);
         });
     }
 });
@@ -873,6 +902,8 @@ const THEATER_LOCATIONS = {
     'Cineteca': 'Cineteca, Pl. de Legazpi, 8, Arganzuela, 28045 Madrid, Spain',
     // Golem
     'Golem': 'Golem Madrid, C. de Martín de los Heros, 14, Moncloa - Aravaca, 28008 Madrid, Spain',
+    // Sala Berlanga
+    'Sala Berlanga': 'Sala Berlanga, C. de Andrés Mellado, 53, Chamberí, 28015 Madrid, Spain',
 };
 
 function generateCalendarUrl(film, dateObj) {
