@@ -76,6 +76,11 @@ def parse_args():
         action="store_true",
         help="Skip films that already have a letterboxd_url (for incremental matching)",
     )
+    match_parser.add_argument(
+        "--cache",
+        type=str,
+        help="Path to a master CSV to use as a cache for Letterboxd URLs",
+    )
 
     # Rate subcommand
     rate_parser = subparsers.add_parser(

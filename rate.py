@@ -171,12 +171,13 @@ def _match_row(row) -> pd.Series:
     return pd.Series({"letterboxd_url": url})
 
 
-def match_films(df: pd.DataFrame, skip_existing: bool = False) -> pd.DataFrame:
+def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict = None) -> pd.DataFrame:
     """Add letterboxd_url column to DataFrame by searching for each film.
     
     Args:
         df: DataFrame with 'title' and optionally 'year' columns
         skip_existing: If True, skip rows that already have a letterboxd_url
+        url_cache: Optional dict mapping theater_film_link -> letterboxd_url
     
     Returns:
         DataFrame with 'letterboxd_url' column added
@@ -200,12 +201,27 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False) -> pd.DataFrame:
     # Match each film
     for idx in to_match.index:
         row = result.loc[idx]
-        url, found_year = find_letterboxd_url(row["title"], row.get("year"), row.get("director"))
-        result.at[idx, "letterboxd_url"] = url
         
-        # Backfill year if missing and found
-        if pd.isna(row.get("year")) and found_year:
-            result.at[idx, "year"] = found_year
+        # 1. Try Cache first
+        cached_url = None
+        if url_cache:
+            link = row.get("theater_film_link")
+            if link and link in url_cache:
+                cached_url = url_cache[link]
+                print(f"  → Found in cache: {cached_url} (for {link})")
+        
+        if cached_url:
+            result.at[idx, "letterboxd_url"] = cached_url
+            # We don't have year from cache easily unless we stored it too.
+            # But the primary goal is the URL.
+        else:
+            # 2. Fallback to Search
+            url, found_year = find_letterboxd_url(row["title"], row.get("year"), row.get("director"))
+            result.at[idx, "letterboxd_url"] = url
+            
+            # Backfill year if missing and found
+            if pd.isna(row.get("year")) and found_year:
+                result.at[idx, "year"] = found_year
 
     # Ensure year is integer type (nullable Int64 handles NaNs)
     if "year" in result.columns:
