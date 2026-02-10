@@ -283,11 +283,25 @@ def run_merge(args):
                 indices_to_update.append(i)
         print(f"\n  Backfilling Letterboxd metadata for {len(urls_to_fetch)} films (Selenium)...")
     else:
-        # Default: only fetch for new films that have a letterboxd_url
+        # Default: only fetch for films that have a letterboxd_url but no
+        # metadata yet.  We check multiple fields because some films on
+        # Letterboxd legitimately lack a rating (NA) while still having
+        # viewers, genres, etc.  If *any* metadata field is populated we
+        # consider the film already fetched.
+        metadata_fields = [
+            "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
+            "genres", "country", "primary_language", "spoken_languages", "tmdb_url",
+        ]
         urls_to_fetch = []
         indices_to_update = []
         for i, film in enumerate(master_films):
-            if film.get("letterboxd_url") and not film.get("letterboxd_rating"):
+            if not film.get("letterboxd_url"):
+                continue
+            has_metadata = any(
+                (film.get(f) not in (None, [], ""))
+                for f in metadata_fields
+            )
+            if not has_metadata:
                 urls_to_fetch.append(film["letterboxd_url"])
                 indices_to_update.append(i)
         if urls_to_fetch:

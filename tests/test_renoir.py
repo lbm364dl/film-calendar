@@ -38,14 +38,23 @@ class TestRenoirScraper:
         assert film["title"] == "28 Años Después El Templo De Los Huesos"
         assert film["theater"] == "Cines Renoir"
         assert film["director"] == "Nia Dacosta"
-        assert film["year"] == "2026"
+        assert film["year"] is None  # Year is only populated from detail pages
         assert len(film["dates"]) >= 2
-        assert "2026-02-01 20:00" in film["dates"]
-        assert "2026-02-01 22:30" in film["dates"]
+        # Dates are now dicts with url_tickets, url_info, timestamp, location
+        timestamps = [d["timestamp"] for d in film["dates"]]
+        assert "2026-02-01 20:00" in timestamps
+        assert "2026-02-01 22:30" in timestamps
+        # Verify url_tickets points to pillalas and url_info points to renoir movie page
+        for d in film["dates"]:
+            assert "url_tickets" in d
+            assert "url_info" in d
+            assert "pillalas.com" in d["url_tickets"]
+            assert "cinesrenoir.com/pelicula/" in d["url_info"]
 
         # Verify another film
         # "BUGONIA" -> "Bugonia"
         film_bugonia = next((f for f in films if "Bugonia" in f["title"]), None)
         assert film_bugonia is not None
         assert film_bugonia["director"] == "Yorgos Lanthimos"
-        assert "2026-02-01 20:10" in film_bugonia["dates"]
+        bugonia_timestamps = [d["timestamp"] for d in film_bugonia["dates"]]
+        assert "2026-02-01 20:10" in bugonia_timestamps

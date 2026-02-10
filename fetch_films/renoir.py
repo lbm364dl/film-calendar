@@ -173,11 +173,12 @@ class RenoirScraper(BaseCinemaScraper):
                         # Construct full date string: YYYY-MM-DD HH:MM
                         full_date_str = f"{date.strftime('%Y-%m-%d')} {time_str}"
                         
-                        # Add structured info with ticket URL
+                        # Add structured info with ticket URL and movie info URL
                         film_dates.append({
                             "timestamp": full_date_str,
                             "location": location_name,
-                            "url": ticket_url
+                            "url_tickets": ticket_url,
+                            "url_info": film_url,
                         })
 
             if not film_dates:
