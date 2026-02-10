@@ -6,7 +6,7 @@ import json
 import pandas as pd
 
 from cli import parse_args, generate_cinema_boilerplate
-from rate import match_films, rate_films, fetch_letterboxd_info
+from rate import match_films, fetch_letterboxd_info_batch
 from pathlib import Path
 import theaters
 
@@ -131,34 +131,20 @@ def run_match(args):
     df.to_csv(output_csv, index=False)
     matched = df["letterboxd_url"].notna().sum()
     print(f"\n✓ Matched {matched}/{len(df)} films → {output_csv}")
-    print(f"  Next: python main.py rate --input {output_csv}")
+    print(f"  Next: python main.py merge --input {output_csv}")
 
-
-def run_rate(args):
-    """Execute the rate command - fetch ratings from Letterboxd."""
-    input_csv = args.input
-    output_csv = args.output
-
-    df = pd.read_csv(input_csv)
-    df = rate_films(df)
-    
-    # Sort by rating (best first)
-    df = df.sort_values(by="letterboxd_rating", ascending=False)
-    
-    df.to_csv(output_csv, index=False)
-    rated = df["letterboxd_rating"].notna().sum()
-    print(f"\n✓ Rated {rated}/{len(df)} films → {output_csv}")
 
 
 def run_merge(args):
-    """Execute the merge command - merge rated input CSV into master JSON.
+    """Execute the merge command - merge matched CSV into master JSON.
 
-    Reads the master JSON (docs/screenings.json), merges in new films from
-    the rated CSV, fetches Letterboxd metadata for any new films, and saves.
+    For new films: fetches full Letterboxd metadata (Selenium) automatically.
+    With --backfill: re-fetches metadata for ALL films in the master JSON.
     """
     source_json = args.source
     input_csv = args.input
     output_json = args.output if args.output else source_json
+    backfill = args.backfill
 
     print(f"Merging {input_csv} into {source_json} ...")
 
@@ -274,19 +260,9 @@ def run_merge(args):
                     film[field] = input_val
 
             # Fetch Letterboxd info for new films with a URL
-            if film["letterboxd_url"] and not film["letterboxd_rating"]:
-                print(f"  ★ New film: {film['title']} ({film['letterboxd_url']})")
-                print(f"    Fetching Letterboxd info...")
-                try:
-                    info = fetch_letterboxd_info(film["letterboxd_url"])
-                    for key in new_fields:
-                        if info.get(key) is not None:
-                            val = info[key]
-                            if isinstance(val, list) and len(val) == 0:
-                                continue
-                            film[key] = val
-                except Exception as e:
-                    print(f"    Failed: {e}")
+            if film["letterboxd_url"]:
+                # We'll batch-fetch below instead of one-by-one
+                pass
 
             idx = len(master_films)
             master_films.append(film)
@@ -295,6 +271,40 @@ def run_merge(args):
             if film["title"]:
                 title_to_idx[film["title"]] = idx
             new_count += 1
+
+    # ── Batch-fetch Letterboxd metadata ────────────────────────────────────
+    if backfill:
+        # Backfill: re-fetch for ALL films with a letterboxd_url
+        urls_to_fetch = []
+        indices_to_update = []
+        for i, film in enumerate(master_films):
+            if film.get("letterboxd_url"):
+                urls_to_fetch.append(film["letterboxd_url"])
+                indices_to_update.append(i)
+        print(f"\n  Backfilling Letterboxd metadata for {len(urls_to_fetch)} films (Selenium)...")
+    else:
+        # Default: only fetch for new films that have a letterboxd_url
+        urls_to_fetch = []
+        indices_to_update = []
+        for i, film in enumerate(master_films):
+            if film.get("letterboxd_url") and not film.get("letterboxd_rating"):
+                urls_to_fetch.append(film["letterboxd_url"])
+                indices_to_update.append(i)
+        if urls_to_fetch:
+            print(f"\n  Fetching Letterboxd metadata for {len(urls_to_fetch)} new films (Selenium)...")
+
+    if urls_to_fetch:
+        try:
+            infos = fetch_letterboxd_info_batch(urls_to_fetch, use_selenium=True)
+            for idx, info in zip(indices_to_update, infos):
+                for key in new_fields:
+                    val = info.get(key)
+                    if val is not None:
+                        if isinstance(val, list) and len(val) == 0:
+                            continue
+                        master_films[idx][key] = val
+        except Exception as e:
+            print(f"  Error during Letterboxd batch fetch: {e}")
 
     # ── Sort by rating and write ──────────────────────────────────────────
     master_films.sort(
@@ -321,8 +331,6 @@ if __name__ == "__main__":
         run_scrape(args)
     elif args.command == "match":
         run_match(args)
-    elif args.command == "rate":
-        run_rate(args)
     elif args.command == "merge":
         run_merge(args)
     elif args.command == "new-cinema":

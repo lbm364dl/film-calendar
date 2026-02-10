@@ -396,6 +396,9 @@ function getTheaterFallbackUrl(film, dateObj) {
     if (film.theater === 'Sala Berlanga' || location === 'Sala Berlanga') {
         return 'https://salaberlanga.com/programacion-de-actividades/';
     }
+    if (film.theater === 'Círculo de Bellas Artes' || location === 'Cine Estudio') {
+        return 'https://www.circulobellasartes.com/cine-estudio/';
+    }
     return '#';
 }
 
@@ -972,6 +975,8 @@ const THEATER_LOCATIONS = {
     'Golem': 'Golem Madrid, C. de Martín de los Heros, 14, Moncloa - Aravaca, 28008 Madrid, Spain',
     // Sala Berlanga
     'Sala Berlanga': 'Sala Berlanga, C. de Andrés Mellado, 53, Chamberí, 28015 Madrid, Spain',
+    // Círculo de Bellas Artes
+    'Cine Estudio': 'Círculo de Bellas Artes, C. de Alcalá, 42, Centro, 28014 Madrid, Spain',
 };
 
 function generateCalendarUrl(film, dateObj) {

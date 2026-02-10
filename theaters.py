@@ -1,6 +1,7 @@
 """Theater registry and scraper dispatch."""
 
 from fetch_films.cineteca import CinetecaScraper
+from fetch_films.circulo_bellas_artes import CirculoBellasArtesScraper
 from fetch_films.dore import DoreScraper
 from fetch_films.renoir import RenoirScraper
 from fetch_films.golem import GolemScraper
@@ -10,6 +11,7 @@ from fetch_films.sala_berlanga import SalaBerlangaScraper
 SCRAPERS = {
     "dore": DoreScraper(),
     "cineteca": CinetecaScraper(),
+    "circulo-bellas-artes": CirculoBellasArtesScraper(),
     "renoir": RenoirScraper(),
     "golem": GolemScraper(),
     "sala-berlanga": SalaBerlangaScraper(),

@@ -42,7 +42,7 @@ def parse_args():
         "--fetch-from",
         type=str,
         action="append",
-        choices=["dore", "cineteca", "renoir", "golem", "sala-berlanga"],
+        choices=["dore", "cineteca", "circulo-bellas-artes", "renoir", "golem", "sala-berlanga"],
         default=[],
         help="Theater(s) to fetch from. Repeat for multiple theaters.\nExample: --fetch-from dore --fetch-from cineteca",
     )
@@ -82,29 +82,11 @@ def parse_args():
         help="Path to the master JSON/CSV to use as a cache for Letterboxd URLs",
     )
 
-    # Rate subcommand
-    rate_parser = subparsers.add_parser(
-        "rate",
-        help="Fetch Letterboxd ratings for matched films",
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    rate_parser.add_argument(
-        "--input",
-        type=str,
-        required=True,
-        help="Input CSV file with letterboxd_url column (from match step)",
-    )
-    rate_parser.add_argument(
-        "--output",
-        type=str,
-        default="films_rated.csv",
-        help="Output CSV file path (default: films_rated.csv)",
-    )
 
     # Merge subcommand
     merge_parser = subparsers.add_parser(
         "merge",
-        help="Merge a rated CSV into the master JSON (updating screenings/metadata)",
+        help="Merge a matched CSV into the master JSON, fetching Letterboxd metadata",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     merge_parser.add_argument(
@@ -117,12 +99,17 @@ def parse_args():
         "--input",
         type=str,
         required=True,
-        help="Path to the rated CSV to merge IN",
+        help="Path to the matched CSV to merge IN",
     )
     merge_parser.add_argument(
         "--output",
         type=str,
         help="Optional output path (defaults to overwriting --source)",
+    )
+    merge_parser.add_argument(
+        "--backfill",
+        action="store_true",
+        help="Re-fetch Letterboxd metadata for ALL films in the master JSON, not just new ones",
     )
 
     # New cinema subcommand

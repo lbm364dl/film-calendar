@@ -1,0 +1,3 @@
+(function($){"use strict";$(function(){$(document).on("sf:ajaxfinish",".searchandfilter",function(e,data){var search_form=data.object;var display_result_method=$(search_form).data('display-result-method');if(display_result_method=="bb_posts_module"){FLBuilderLayout._scrollToElement=function(element,callback){}
+var ajax_target=$(search_form).data('ajax-target');var $masonry_grid=$(ajax_target).find('.fl-post-grid');var masonry_settings=$(ajax_target).data('sf-bb');if(masonry_settings){masonry_settings.isRTL=JSON.parse(masonry_settings.isRTL);const postGrid=new FLBuilderPostGrid(masonry_settings)}}})})}(window.jQuery))
+;
