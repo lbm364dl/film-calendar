@@ -16,18 +16,17 @@ A tool that scrapes film screenings from independent cinemas in Madrid, matches 
 
 ## How it works
 
-The pipeline has four steps, each a CLI subcommand:
+The pipeline has three steps, each a CLI subcommand:
 
 ```
-scrape → match → rate → merge → docs/screenings.csv → static website
+scrape → match → merge → docs/screenings.json → static website
 ```
 
 1. **Scrape** — Fetches screening listings from cinema websites for a date range.
 2. **Match** — Searches Letterboxd (via Selenium) to find the URL for each film.
-3. **Rate** — Scrapes the Letterboxd rating and viewer count for matched films.
-4. **Merge** — Consolidates new data into the master `docs/screenings.csv`, deduplicating sessions and preserving manual fixes.
+3. **Merge** — Consolidates new data into the master `docs/screenings.json`, deduplicating sessions and automatically fetching Letterboxd metadata (rating, viewer count, genres, etc.) for new films.
 
-The website (hosted on GitHub Pages from `docs/`) reads `screenings.csv` and renders a filterable, searchable interface.
+The website (hosted on GitHub Pages from `docs/`) reads `screenings.json` and renders a filterable, searchable interface.
 
 ## Website features
 
@@ -84,20 +83,20 @@ python main.py match --input films_raw.csv --skip-existing
 python main.py match --input films_raw.csv --cache docs/screenings.csv
 ```
 
-### `rate` — Fetch Letterboxd ratings
+
+
+### `merge` — Merge into master JSON
 
 ```bash
-python main.py rate --input films_matched.csv
-```
-
-### `merge` — Merge into master CSV
-
-```bash
-# Merge into docs/screenings.csv (default source of truth)
-python main.py merge --input films_rated.csv
+# Merge into docs/screenings.json (default source of truth)
+# Automatically fetches Letterboxd metadata for new films
+python main.py merge --input films_matched.csv
 
 # Merge into a different source file
-python main.py merge --input films_rated.csv --source my_master.csv
+python main.py merge --input films_matched.csv --source my_master.json
+
+# Re-fetch Letterboxd metadata for ALL films in the master JSON
+python main.py merge --input films_matched.csv --backfill
 ```
 
 ### `new-cinema` — Generate boilerplate for a new scraper
@@ -126,24 +125,31 @@ docs/
   index.html             Website
   app.js                 Frontend logic (filters, rendering, calendar)
   style.css              Styles
-  screenings.csv         Master data (source of truth)
+  screenings.json        Master data (source of truth)
 tests/
   fixtures/              Saved HTML for offline testing
   test_*.py              Per-cinema unit tests
 ```
 
-## CSV format
+## JSON format
 
-The master `docs/screenings.csv` is movie-centric (one row per film):
+The master `docs/screenings.json` is movie-centric (one object per film):
 
-| Column | Description |
+| Field | Description |
 |---|---|
 | `title` | Film title |
 | `director` | Director name |
 | `year` | Release year |
-| `dates` | JSON list of session objects: `[{"timestamp", "location", "url_tickets", "url_info"}]` |
+| `dates` | Array of session objects: `[{"timestamp", "location", "url_tickets", "url_info"}]` |
 | `letterboxd_url` | Letterboxd film page URL |
 | `letterboxd_rating` | Average rating (0–5) |
+| `letterboxd_viewers` | Number of Letterboxd viewers |
+| `letterboxd_short_url` | Short Letterboxd URL (boxd.it) |
+| `genres` | Array of genres |
+| `country` | Array of production countries |
+| `primary_language` | Array of primary languages |
+| `spoken_languages` | Array of spoken languages |
+| `tmdb_url` | The Movie Database URL |
 
 ## Running tests
 
