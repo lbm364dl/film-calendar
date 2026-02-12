@@ -161,9 +161,26 @@ function filterFilms() {
             return dateObj && dateObj >= todayStart;
         });
 
+        // Apply theater/date filters at the session level so both constraints match the same session.
+        const sessionFilteredDates = futureDates.filter(d => {
+            if (selectedTheater) {
+                if (selectedTheater === 'Cines Renoir') {
+                    if (!isRenoirLocation(d.location)) return false;
+                } else if (d.location !== selectedTheater) {
+                    return false;
+                }
+            }
+
+            if (selectedDate && !d.timestamp.startsWith(selectedDate)) {
+                return false;
+            }
+
+            return true;
+        });
+
         return {
             ...film,
-            dates: futureDates
+            dates: sessionFilteredDates
         };
     }).filter(film => {
         if (film.dates.length === 0) return false;
@@ -171,25 +188,6 @@ function filterFilms() {
         const matchesSearch = !searchTerm ||
             normalizeText(film.title).includes(searchTerm) ||
             (film.director && normalizeText(film.director).includes(searchTerm));
-
-        // Theater filter - special handling for Cines Renoir to match all Renoir locations
-        let matchesTheater = true;
-        if (selectedTheater) {
-            if (selectedTheater === 'Cines Renoir') {
-                // Match Renoir films OR any Renoir location
-                matchesTheater = film.theater === 'Cines Renoir' ||
-                    film.dates.some(d => isRenoirLocation(d.location));
-            } else {
-                matchesTheater = film.theater === selectedTheater ||
-                    film.dates.some(d => d.location === selectedTheater);
-            }
-        }
-
-        // Date filter (single day)
-        let matchesDate = true;
-        if (selectedDate) {
-            matchesDate = film.dates.some(d => d.timestamp.startsWith(selectedDate));
-        }
 
         // Year filter
         let matchesYear = true;
@@ -222,7 +220,7 @@ function filterFilms() {
             matchesWatchlist = film.letterboxdShortUrl && watchlistUrls.has(film.letterboxdShortUrl);
         }
 
-        return matchesSearch && matchesTheater && matchesDate && matchesYear && matchesWatchlist;
+        return matchesSearch && matchesYear && matchesWatchlist;
     });
 
     renderFilms();
@@ -395,9 +393,6 @@ function getTheaterFallbackUrl(film, dateObj) {
     }
     if (film.theater === 'Sala Berlanga' || location === 'Sala Berlanga') {
         return 'https://salaberlanga.com/programacion-de-actividades/';
-    }
-    if (film.theater === 'Círculo de Bellas Artes' || location === 'Cine Estudio') {
-        return 'https://www.circulobellasartes.com/cine-estudio/';
     }
     return '#';
 }
@@ -975,8 +970,6 @@ const THEATER_LOCATIONS = {
     'Golem': 'Golem Madrid, C. de Martín de los Heros, 14, Moncloa - Aravaca, 28008 Madrid, Spain',
     // Sala Berlanga
     'Sala Berlanga': 'Sala Berlanga, C. de Andrés Mellado, 53, Chamberí, 28015 Madrid, Spain',
-    // Círculo de Bellas Artes
-    'Cine Estudio': 'Círculo de Bellas Artes, C. de Alcalá, 42, Centro, 28014 Madrid, Spain',
 };
 
 function generateCalendarUrl(film, dateObj) {
