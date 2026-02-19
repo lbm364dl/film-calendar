@@ -1,3 +1,4 @@
+setuptools
 bs4
 requests
 python-dateutil
