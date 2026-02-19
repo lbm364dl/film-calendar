@@ -1,5 +1,38 @@
 [
   {
+    "title": "El Bueno, El Feo Y El Malo",
+    "dates": [
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056423/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-bueno-el-feo-y-el-malo-wilder-cinema/"
+      }
+    ],
+    "director": "Sergio Leone",
+    "year": 1966,
+    "letterboxd_url": "https://letterboxd.com/film/the-good-the-bad-and-the-ugly/",
+    "letterboxd_rating": 4.51,
+    "letterboxd_viewers": 1025460,
+    "letterboxd_short_url": "https://boxd.it/2ape",
+    "genres": [
+      "Western"
+    ],
+    "country": [
+      "USA",
+      "Italy",
+      "Spain",
+      "Germany"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "Italian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/429/"
+  },
+  {
     "title": "Apocalypse Now",
     "dates": [
       {
@@ -1259,6 +1292,330 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1054655/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055491/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055697/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055744/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055494/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96291&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055749/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055497/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055754/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-20 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055499/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055502/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055704/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055762/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055505/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96271&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055766/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055508/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055773/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-21 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055511/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055513/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055710/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055780/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055516/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96287&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055784/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055519/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055791/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-22 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055521/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055524/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055716/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055798/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055527/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96300&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055803/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055530/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055809/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-23 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055532/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055552/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055722/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055816/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055555/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055820/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055557/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055826/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-24 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055558/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055537/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055728/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055834/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 18:10",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055541/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96323&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055839/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 20:30",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055544/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055845/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-25 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055547/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-26 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96333&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       }
     ],
     "director": "Chloé Zhao",
@@ -2133,10 +2490,130 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055866/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-20 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055871/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-20 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96244&eventCode=103333",
+        "url_info": "https://www.golem.es/golem/pelicula/Marty-Supreme-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055875/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055880/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-21 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055884/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-21 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96257&eventCode=103333",
+        "url_info": "https://www.golem.es/golem/pelicula/Marty-Supreme-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055888/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
         "timestamp": "2026-02-21 22:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/marty-supreme/2653/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055892/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-22 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055897/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-22 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96273&eventCode=103333",
+        "url_info": "https://www.golem.es/golem/pelicula/Marty-Supreme-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055901/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055905/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-23 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055910/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-23 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96298&eventCode=103333",
+        "url_info": "https://www.golem.es/golem/pelicula/Marty-Supreme-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055914/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055917/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055930/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-25 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055934/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-25 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055938/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       }
     ],
     "director": "Josh Safdie",
@@ -2499,6 +2976,150 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054910/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055642/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-20 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055602/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-20 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055957/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-20 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055647/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055649/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-21 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055608/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-21 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055958/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-21 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055655/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055658/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-22 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055614/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-22 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055959/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-22 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055663/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055666/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-23 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055620/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-23 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055960/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-23 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055671/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055673/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-24 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055626/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-24 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055961/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-24 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055679/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055681/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-25 18:05",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055632/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-25 20:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055962/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-25 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055687/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       }
     ],
     "director": "Joachim Trier",
@@ -2846,10 +3467,214 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055571/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-20 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96253&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055601/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-20 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055604/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-20 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96251&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055574/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055575/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-21 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96266&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055607/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-21 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055610/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-21 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96264&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055578/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055579/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-22 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96282&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-02-22 17:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-02-22 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055613/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-22 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055616/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-22 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96280&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055582/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055583/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-23 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96297&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055619/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-23 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055622/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-23 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055586/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055587/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-24 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96310&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055625/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-24 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055627/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-24 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055590/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055591/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-25 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96327&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 18:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055631/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-25 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055633/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-25 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055594/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-26 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96328&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       }
     ],
     "director": "Park Chan-wook",
@@ -2972,6 +3797,240 @@
       "English"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/3482/"
+  },
+  {
+    "title": "Little Amelie",
+    "dates": [
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055740/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-20 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96247&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96246&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055700/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-20 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96245&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055759/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-21 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96260&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96259&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055706/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-21 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96258&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055777/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-22 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96276&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96275&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055712/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-22 19:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96274&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055794/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-23 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96302&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96301&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055718/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055813/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-24 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96314&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96313&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055724/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055830/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-25 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96325&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96324&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 18:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055730/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-26 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96338&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96334&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      }
+    ],
+    "director": "Mailys Vallade, Liane-Cho Han Jin Kuang",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/little-amelie-or-the-character-of-rain/",
+    "letterboxd_rating": 4.08,
+    "letterboxd_viewers": 45948,
+    "letterboxd_short_url": "https://boxd.it/prg0",
+    "genres": [
+      "Family",
+      "Animation",
+      "Drama"
+    ],
+    "country": [
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French",
+      "Japanese"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/682012/"
+  },
+  {
+    "title": "Manas",
+    "dates": [
+      {
+        "timestamp": "2026-02-25 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96317&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      }
+    ],
+    "director": "Marianna Brennand",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/manas/",
+    "letterboxd_rating": 4.08,
+    "letterboxd_viewers": 19063,
+    "letterboxd_short_url": "https://boxd.it/LPz0",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Brazil",
+      "Portugal",
+      "France",
+      "Belgium"
+    ],
+    "primary_language": [
+      "Portuguese"
+    ],
+    "spoken_languages": [
+      "Portuguese"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1256408/"
   },
   {
     "title": "Historias de Filadelfia",
@@ -3608,6 +4667,150 @@
         "timestamp": "2026-02-19 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054689/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055867/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-20 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055699/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-20 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055701/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-20 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055702/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055879/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-21 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055705/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-21 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055707/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-21 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055708/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055891/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-22 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055711/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-22 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055713/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-22 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055714/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055906/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-23 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055717/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-23 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055719/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-23 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055720/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055918/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-24 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055723/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-24 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055725/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-24 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055726/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055929/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-25 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055729/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-25 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055731/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-25 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055732/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
       },
       {
@@ -4288,10 +5491,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/20260212050510-la-tarta-del-presidente/"
       },
       {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055599/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-20 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055572/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
         "timestamp": "2026-02-20 19:30",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-20 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055573/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055606/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
       },
       {
         "timestamp": "2026-02-21 17:00",
@@ -4300,10 +5527,94 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
       },
       {
+        "timestamp": "2026-02-21 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055576/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-21 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055577/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055612/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-22 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055580/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
         "timestamp": "2026-02-22 19:45",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-22 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055581/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055618/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-23 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055584/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-23 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055585/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055623/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-24 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055588/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-24 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055589/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055629/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-25 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055592/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-25 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055593/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260219050511-la-tarta-del-presidente/"
       }
     ],
     "director": "Hasan Hadi",
@@ -4695,6 +6006,114 @@
         "timestamp": "2026-02-19 22:45",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1054551/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055600/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-20 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055644/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-20 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055646/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055605/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-21 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055652/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-21 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055654/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055611/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-22 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055660/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-22 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055662/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055617/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-23 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055668/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-23 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055670/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055624/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-24 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055676/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055678/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055630/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-25 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055684/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-25 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055685/",
         "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
       }
     ],
@@ -5155,6 +6574,126 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054698/",
         "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-19 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96242&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055865/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-20 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055870/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-20 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96248&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055878/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-21 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055883/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-21 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96261&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055893/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-22 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055896/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-22 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96277&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055904/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-23 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055909/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-23 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96292&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055919/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-24 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055922/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-24 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96311&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055928/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-25 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055933/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-25 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96319&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96329&eventCode=103901",
+        "url_info": "https://www.golem.es/golem/pelicula/Rental-Family-(Familia-de-alquiler)-(V.O.S.E.)"
       }
     ],
     "director": "Mitsuyo Miyazaki",
@@ -5183,10 +6722,106 @@
     "title": "El agente secreto",
     "dates": [
       {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055739/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055475/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96250&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055743/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055746/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055476/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96249&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055750/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-02-20 21:30",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96254&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055753/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-20 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055477/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055758/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055478/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96263&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055761/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055764/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
         "timestamp": "2026-02-21 19:00",
@@ -5195,10 +6830,316 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-02-21 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055479/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96262&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055768/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96267&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055771/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-21 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055480/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055775/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055481/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96279&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055779/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055782/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055482/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96278&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055786/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96283&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-02-22 21:45",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055789/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-22 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055483/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055793/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055484/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96294&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055797/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055800/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055485/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96293&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055804/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96303&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055807/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-23 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055486/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055812/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055553/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-24 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96306&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055815/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055964/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto-proyecto-viridiana/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055956/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto-proyecto-viridiana/"
+      },
+      {
+        "timestamp": "2026-02-24 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96312&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055822/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-24 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96308&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055829/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055487/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96321&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055833/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055836/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055488/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96320&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055840/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96326&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055843/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-25 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055489/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-26 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96331&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96330&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96336&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       }
     ],
     "director": "Kleber Mendonça Filho",
@@ -5324,6 +7265,56 @@
       "Japanese"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/167439/"
+  },
+  {
+    "title": "La lengua de las mariposas",
+    "dates": [
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95371&eventCode=105958",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONALENGUAMARIPOSAS"
+      },
+      {
+        "timestamp": "2026-02-24 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95373&eventCode=105958",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONALENGUAMARIPOSAS"
+      },
+      {
+        "timestamp": "2026-02-25 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95378&eventCode=105958",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONALENGUAMARIPOSAS"
+      },
+      {
+        "timestamp": "2026-02-26 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95380&eventCode=105958",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONALENGUAMARIPOSAS"
+      }
+    ],
+    "director": "José Luis Cuerda",
+    "year": 1999,
+    "letterboxd_url": "https://letterboxd.com/film/butterfly-1999/",
+    "letterboxd_rating": 3.83,
+    "letterboxd_viewers": 32007,
+    "letterboxd_short_url": "https://boxd.it/1k2s",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "Galician",
+      "Latin"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/31023/"
   },
   {
     "title": "La vaquilla",
@@ -5688,6 +7679,78 @@
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-20 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055643/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-20 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055648/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-21 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055651/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-21 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055656/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-22 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055659/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-22 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055664/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-23 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055667/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-23 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055672/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-24 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055675/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-24 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055680/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-25 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055683/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-25 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055688/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
       }
     ],
     "director": "José Luis Guerin",
@@ -6832,6 +8895,78 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1054550/",
         "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055641/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-20 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055645/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055650/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-21 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055653/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055657/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-22 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055661/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055665/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-23 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055669/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055674/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055677/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055682/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-25 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1055686/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
       }
     ],
     "director": "Daniel Sánchez Arévalo",
@@ -7894,6 +10029,348 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1054654/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055490/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055741/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96290&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055493/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055745/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96289&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055496/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055751/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055877/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-20 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055500/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055501/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055757/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96269&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055504/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055763/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96268&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055507/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055769/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055890/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-21 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055510/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055512/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055776/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96285&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055515/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055781/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96284&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055518/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055787/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055903/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-22 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055522/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055523/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055795/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055526/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055799/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96304&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055529/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055805/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055916/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-23 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055533/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055551/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055811/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055554/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055817/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96309&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055556/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055927/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-24 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055559/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055538/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055831/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96316&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055540/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055835/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055543/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055841/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055940/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-25 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055546/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-26 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96335&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       }
     ],
     "director": "Isabel Coixet",
@@ -8249,6 +10726,78 @@
         "timestamp": "2026-02-19 20:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054731/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-20 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055748/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-20 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055755/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-21 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055767/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-21 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055772/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-22 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055785/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-22 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055790/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-23 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055802/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-23 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055808/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-24 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055821/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-24 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055827/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-25 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055838/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-25 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055844/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
       },
       {
@@ -8856,6 +11405,36 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054855/",
         "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
+      },
+      {
+        "timestamp": "2026-02-20 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055756/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
+      },
+      {
+        "timestamp": "2026-02-21 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055774/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
+      },
+      {
+        "timestamp": "2026-02-22 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055792/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
+      },
+      {
+        "timestamp": "2026-02-23 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055810/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
+      },
+      {
+        "timestamp": "2026-02-25 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055846/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/aida-y-vuelta/"
       }
     ],
     "director": "Paco León",
@@ -8877,6 +11456,57 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1370123/"
+  },
+  {
+    "title": "La niña de tus ojos",
+    "dates": [
+      {
+        "timestamp": "2026-02-23 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95372&eventCode=105957",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONATUSOJOS"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95374&eventCode=105957",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONATUSOJOS"
+      },
+      {
+        "timestamp": "2026-02-25 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95376&eventCode=105957",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONATUSOJOS"
+      },
+      {
+        "timestamp": "2026-02-26 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95381&eventCode=105957",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONATUSOJOS"
+      }
+    ],
+    "director": "Fernando Trueba",
+    "year": 1998,
+    "letterboxd_url": "https://letterboxd.com/film/the-girl-of-your-dreams/",
+    "letterboxd_rating": 3.49,
+    "letterboxd_viewers": 4774,
+    "letterboxd_short_url": "https://boxd.it/2gbC",
+    "genres": [
+      "Comedy",
+      "Drama",
+      "War"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "German",
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/67297/"
   },
   {
     "title": "Eloy de la Iglesia, adicto al cine",
@@ -9155,10 +11785,46 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
       },
       {
+        "timestamp": "2026-02-20 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055698/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
+      },
+      {
         "timestamp": "2026-02-20 21:00",
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3463",
         "url_info": "https://salaberlanga.com/actividad/la-cena/"
+      },
+      {
+        "timestamp": "2026-02-21 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055703/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
+      },
+      {
+        "timestamp": "2026-02-22 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055709/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
+      },
+      {
+        "timestamp": "2026-02-23 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055715/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
+      },
+      {
+        "timestamp": "2026-02-24 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055721/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
+      },
+      {
+        "timestamp": "2026-02-25 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055727/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-cena/"
       }
     ],
     "director": "Manolo Gómez Pereira",
@@ -9182,6 +11848,140 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1433680/"
+  },
+  {
+    "title": "Sin conexión",
+    "dates": [
+      {
+        "timestamp": "2026-02-20 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96256&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96252&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-20 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96255&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96272&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96265&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-21 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96270&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96288&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96281&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-22 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96286&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96305&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96296&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-23 22:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96299&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96315&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-24 22:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96307&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96318&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-25 22:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96322&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96337&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-26 22:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96332&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      }
+    ],
+    "director": "Bradley Cooper",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/is-this-thing-on-2025/",
+    "letterboxd_rating": 3.45,
+    "letterboxd_viewers": 88158,
+    "letterboxd_short_url": "https://boxd.it/H73Q",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "UK",
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1140498/"
   },
   {
     "title": "Una quinta portuguesa",
@@ -10437,6 +13237,294 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1054636/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055868/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055492/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055869/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055495/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055872/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055874/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055876/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-20 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055498/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055881/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055503/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055882/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055885/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055506/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055887/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055889/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-21 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055509/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055894/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055514/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055895/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055517/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055898/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055900/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055520/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-22 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055902/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055907/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055525/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055908/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055911/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055528/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055913/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055531/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-23 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055915/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055920/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055534/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055921/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055923/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055535/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055925/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055926/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-24 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055536/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055931/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055539/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055932/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055542/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055935/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055937/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1055545/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-25 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055939/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       }
     ],
     "director": "Emerald Fennell",
@@ -10675,6 +13763,55 @@
       "English"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1368166/"
+  },
+  {
+    "title": "Son de mar",
+    "dates": [
+      {
+        "timestamp": "2026-02-23 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95370&eventCode=105959",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONASONDEMAR"
+      },
+      {
+        "timestamp": "2026-02-24 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95375&eventCode=105959",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONASONDEMAR"
+      },
+      {
+        "timestamp": "2026-02-25 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95377&eventCode=105959",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONASONDEMAR"
+      },
+      {
+        "timestamp": "2026-02-26 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=95379&eventCode=105959",
+        "url_info": "https://www.golem.es/golem/pelicula/AZCONASONDEMAR"
+      }
+    ],
+    "director": "Bigas Luna",
+    "year": 2001,
+    "letterboxd_url": "https://letterboxd.com/film/sound-of-the-sea/",
+    "letterboxd_rating": 3.07,
+    "letterboxd_viewers": 1394,
+    "letterboxd_short_url": "https://boxd.it/bTA",
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/62191/"
   },
   {
     "title": "El talento",
@@ -11649,6 +14786,42 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054856/",
         "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-20 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055873/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-21 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055886/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-22 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055899/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-23 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055912/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-24 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055924/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
+      },
+      {
+        "timestamp": "2026-02-25 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055936/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-fiera/"
       }
     ],
     "director": "Salvador Calvo",
@@ -11934,5 +15107,160 @@
     "primary_language": [],
     "spoken_languages": [],
     "tmdb_url": null
+  },
+  {
+    "title": "Cortos Ficción Nominados A Los Goya [Renoir]",
+    "dates": [
+      {
+        "timestamp": "2026-02-24 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055372/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cortos-ficcion-nominados-a-los-goya-renoir/"
+      }
+    ],
+    "director": "Beatriz Martínez & José Luis Palacios",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Sin Conexión",
+    "dates": [
+      {
+        "timestamp": "2026-02-20 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055742/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-20 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055747/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-20 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055752/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-21 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055760/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-21 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055765/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-21 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055770/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-22 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055778/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-22 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055783/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-22 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055788/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-23 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055796/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-23 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055801/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-23 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055806/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-24 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055814/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-24 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055819/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-24 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055824/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-25 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055832/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-25 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055837/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-25 21:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1055842/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      }
+    ],
+    "director": "Bradley Cooper Cooper",
+    "year": 2021,
+    "letterboxd_url": "https://letterboxd.com/film/connection-lost-2021/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 12,
+    "letterboxd_short_url": "https://boxd.it/yowC",
+    "genres": [
+      "Science Fiction",
+      "Drama"
+    ],
+    "country": [
+      "Argentina"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/913424/"
   }
 ]
