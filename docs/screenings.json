@@ -3716,6 +3716,40 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1124566/"
   },
   {
+    "title": "El laberinto del fauno",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/sesiones?ref=770&showAllDates=true&showGroups=el-laberinto-del-fauno-entrega-del-premio-serial-killer-a-ivana-baquero-y-sesion-de-preguntas-y-respuestas",
+        "url_info": "https://salaberlanga.com/actividad/el-laberinto-del-fauno/"
+      }
+    ],
+    "director": "Guillermo del Toro",
+    "year": 2006,
+    "letterboxd_url": "https://letterboxd.com/film/pans-labyrinth/",
+    "letterboxd_rating": 4.15,
+    "letterboxd_viewers": 1522954,
+    "letterboxd_short_url": "https://boxd.it/28No",
+    "genres": [
+      "War",
+      "Drama",
+      "Fantasy"
+    ],
+    "country": [
+      "Mexico",
+      "Spain",
+      "USA"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1417/"
+  },
+  {
     "title": "No hay otra opción",
     "dates": [
       {
@@ -11513,6 +11547,12 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3492",
+        "url_info": "https://salaberlanga.com/actividad/el-ultimo-vikingo/"
+      },
+      {
         "timestamp": "2026-03-08 22:00",
         "location": "Cine Estudio",
         "url_tickets": "",
@@ -15495,6 +15535,76 @@
     "tmdb_url": "https://www.themoviedb.org/movie/104089/"
   },
   {
+    "title": "El viaje fantástico de Simbad",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/sesiones?ref=770&showAllDates=true&showGroups=el-viaje-fantastico-de-simbad-homenaje-a-caroline-munro-premio-sombra-de-leyenda-y-sesion-de-preguntas-y-respuestas",
+        "url_info": "https://salaberlanga.com/actividad/el-viaje-fantastico-de-simbad/"
+      }
+    ],
+    "director": "Gordon Hessler",
+    "year": 1973,
+    "letterboxd_url": "https://letterboxd.com/film/the-golden-voyage-of-sinbad/",
+    "letterboxd_rating": 3.41,
+    "letterboxd_viewers": 13854,
+    "letterboxd_short_url": "https://boxd.it/1HTY",
+    "genres": [
+      "Family",
+      "Drama",
+      "Fantasy",
+      "Adventure",
+      "Action"
+    ],
+    "country": [
+      "UK",
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Arabic",
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/17897/"
+  },
+  {
+    "title": "Redux redux",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 16:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3485",
+        "url_info": "https://salaberlanga.com/actividad/redux-redux/"
+      }
+    ],
+    "director": "Kevin McManus y Matthew McManus",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/redux-redux/",
+    "letterboxd_rating": 3.41,
+    "letterboxd_viewers": 7503,
+    "letterboxd_short_url": "https://boxd.it/POnq",
+    "genres": [
+      "Science Fiction",
+      "Drama",
+      "Thriller",
+      "Action",
+      "Horror"
+    ],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1340110/"
+  },
+  {
     "title": "La buena letra",
     "dates": [
       {
@@ -15998,6 +16108,38 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1510323/"
+  },
+  {
+    "title": "The Ice Tower",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 16:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3491",
+        "url_info": "https://salaberlanga.com/actividad/the-ice-tower/"
+      }
+    ],
+    "director": "Lucile Hadžihalilović",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-ice-tower/",
+    "letterboxd_rating": 3.17,
+    "letterboxd_viewers": 11216,
+    "letterboxd_short_url": "https://boxd.it/HejQ",
+    "genres": [
+      "Fantasy",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Germany"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1143440/"
   },
   {
     "title": "Father Mother Sister Brother",
@@ -19437,5 +19579,79 @@
     "primary_language": [],
     "spoken_languages": [],
     "tmdb_url": null
+  },
+  {
+    "title": "Competición de cortometrajes – Bloque 1 (Sección oficial)",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 16:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/sesiones?ref=770&showAllDates=true&showGroups=competicion-de-cortometrajes-bloque-1",
+        "url_info": "https://salaberlanga.com/actividad/competicion-de-cortometrajes-bloque-1-seccion-oficial/"
+      }
+    ],
+    "director": "Varios Autores",
+    "year": 2025,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Competición de cortometrajes – Bloque 2 (Sección oficial)",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3488",
+        "url_info": "https://salaberlanga.com/actividad/competicion-de-cortometrajes-bloque-2-seccion-oficial/"
+      }
+    ],
+    "director": "Varios Autores",
+    "year": 2025,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Maleficio (La regla de Osha)",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 16:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3481",
+        "url_info": "https://salaberlanga.com/actividad/maleficio-la-regla-de-osha/"
+      }
+    ],
+    "director": "Ángel González",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-osha-rule/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 130,
+    "letterboxd_short_url": "https://boxd.it/VTGY",
+    "genres": [
+      "Horror"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1503648/"
   }
 ]
