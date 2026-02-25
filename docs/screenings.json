@@ -4467,6 +4467,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96443&eventCode=104688",
         "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-07 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
       }
     ],
     "director": "Park Chan-wook",
@@ -6389,6 +6395,38 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1303613/"
   },
   {
+    "title": "The Day Iceland Stood Still",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/the-day-iceland-stood-still/"
+      }
+    ],
+    "director": "Pamela Hogan",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/the-day-iceland-stood-still/",
+    "letterboxd_rating": 3.93,
+    "letterboxd_viewers": 2882,
+    "letterboxd_short_url": "https://boxd.it/INnA",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Iceland",
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Icelandic"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1181125/"
+  },
+  {
     "title": "Bacurau",
     "dates": [
       {
@@ -7252,6 +7290,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056607/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260225050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-03 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
       },
       {
         "timestamp": "2026-03-03 18:15",
@@ -9343,6 +9387,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-04 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-04 20:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056961/",
@@ -9377,6 +9427,30 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96431&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-05 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 21:45",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 19:15",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 19:15",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       }
     ],
     "director": "Kleber Mendonça Filho",
@@ -10054,6 +10128,18 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056657/",
         "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-03-04 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-03-05 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
       }
     ],
     "director": "José Luis Guerin",
@@ -11410,6 +11496,52 @@
       "English"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/100101/"
+  },
+  {
+    "title": "El último vikingo",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 19:15",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-07 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
+      }
+    ],
+    "director": "Anders Thomas Jensen",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-last-viking-2025/",
+    "letterboxd_rating": 3.63,
+    "letterboxd_viewers": 29344,
+    "letterboxd_short_url": "https://boxd.it/NqyK",
+    "genres": [
+      "Drama",
+      "Comedy",
+      "Crime"
+    ],
+    "country": [
+      "Denmark",
+      "Sweden"
+    ],
+    "primary_language": [
+      "Danish"
+    ],
+    "spoken_languages": [
+      "Danish",
+      "Swedish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1295400/"
   },
   {
     "title": "Romería",
@@ -15278,6 +15410,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056626/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-06 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
       }
     ],
     "director": "Raoul Peck",
