@@ -146,6 +146,52 @@ class SalaBerlangaScraper(BaseCinemaScraper):
         )
         time.sleep(2)
 
+    def _select_cine_category(self, browser):
+        """Select the "Cine" category in the activities filter.
+
+        The page exposes both a visible dropdown and a hidden ``<select>``.
+        We set both defensively via JavaScript so the site filter logic runs
+        regardless of which control has active listeners.
+        """
+        WebDriverWait(browser, 10).until(
+            lambda d: d.execute_script(
+                "return document.querySelector(" 
+                "'#dropdown-select-categoria, #select-categoria-actividad'" 
+                ") !== null"
+            )
+        )
+
+        browser.execute_script(
+            """
+            var dropdown = document.querySelector('#dropdown-select-categoria');
+            var cineLink = document.querySelector(
+                ".dropdown-item-categoria[data-slug='cine']"
+            );
+
+            if (typeof jQuery !== 'undefined') {
+                var select = jQuery('#select-categoria-actividad');
+                if (select.length) {
+                    select.val('cine').trigger('change');
+                }
+            } else {
+                var nativeSelect = document.querySelector('#select-categoria-actividad');
+                if (nativeSelect) {
+                    nativeSelect.value = 'cine';
+                    nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }
+
+            if (cineLink) {
+                cineLink.click();
+            }
+
+            if (dropdown) {
+                dropdown.textContent = 'Cine';
+            }
+            """
+        )
+        time.sleep(2)
+
     def _click_load_more(self, browser, max_clicks: int = 20):
         """Click 'Ver más actividades' until it disappears."""
         for i in range(max_clicks):
@@ -169,9 +215,10 @@ class SalaBerlangaScraper(BaseCinemaScraper):
 
         Uses Selenium to:
         1. Navigate to the listing page
-        2. Set the date range picker
-        3. Click "Ver más actividades" until all results load
-        4. Parse the resulting HTML
+        2. Select "Cine" in category filters
+        3. Set the date range picker
+        4. Click "Ver más actividades" until all results load
+        5. Parse the resulting HTML
         """
         try:
             browser = self._get_browser()
@@ -184,6 +231,10 @@ class SalaBerlangaScraper(BaseCinemaScraper):
                     "jQuery('#rango-fechas').data('daterangepicker') !== undefined"
                 )
             )
+
+            # Select "Cine" category first
+            print("Selecting category: Cine...")
+            self._select_cine_category(browser)
 
             # Set date range
             print("Setting date range...")
