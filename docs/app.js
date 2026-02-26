@@ -902,8 +902,13 @@ let minYear = 1900;
 let maxYear = new Date().getFullYear();
 
 function initYearFilter() {
-    // Calculate global min/max years
+    // Calculate min/max years only from films that still have upcoming sessions
+    const todayStart = getLocalTodayStart();
     const validYears = allFilms
+        .filter(film => film.dates?.some(d => {
+            const dateObj = getDateOnly(d.timestamp);
+            return dateObj && dateObj >= todayStart;
+        }))
         .map(f => f.year)
         .filter(y => y !== null && !isNaN(y));
 
