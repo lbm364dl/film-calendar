@@ -412,6 +412,40 @@
     "runtime_minutes": 122
   },
   {
+    "title": "Umberto D.",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/umberto-d"
+      }
+    ],
+    "director": "Vittorio De Sica",
+    "year": 1952,
+    "letterboxd_url": "https://letterboxd.com/film/umberto-d/",
+    "letterboxd_rating": 4.26,
+    "letterboxd_viewers": 69849,
+    "letterboxd_short_url": "https://boxd.it/29vg",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Italy"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "Italian"
+    ],
+    "runtime_minutes": 91,
+    "tmdb_url": "https://www.themoviedb.org/movie/833/",
+    "title_original": "Umberto D.",
+    "title_en": null,
+    "title_es": "Umberto D."
+  },
+  {
     "title": "¡Olvídate de mí!",
     "dates": [
       {
@@ -3929,6 +3963,42 @@
     "runtime_minutes": 118
   },
   {
+    "title": "Los vividores",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/los-vividores"
+      }
+    ],
+    "director": "Robert Altman",
+    "year": 1971,
+    "letterboxd_url": "https://letterboxd.com/film/mccabe-mrs-miller/",
+    "letterboxd_rating": 4.14,
+    "letterboxd_viewers": 88974,
+    "letterboxd_short_url": "https://boxd.it/1ooC",
+    "genres": [
+      "Western",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Cantonese"
+    ],
+    "runtime_minutes": 120,
+    "tmdb_url": "https://www.themoviedb.org/movie/29005/",
+    "title_original": "McCabe & Mrs. Miller",
+    "title_en": "McCabe & Mrs. Miller",
+    "title_es": "Los vividores"
+  },
+  {
     "title": "No hay otra opción",
     "dates": [
       {
@@ -5609,6 +5679,40 @@
     "runtime_minutes": 104
   },
   {
+    "title": "Looking for Langston",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/looking-for-langston"
+      }
+    ],
+    "director": "Isaac Julien",
+    "year": 1989,
+    "letterboxd_url": "https://letterboxd.com/film/looking-for-langston/",
+    "letterboxd_rating": 4.05,
+    "letterboxd_viewers": 7259,
+    "letterboxd_short_url": "https://boxd.it/1hfe",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 45,
+    "tmdb_url": "https://www.themoviedb.org/movie/32329/",
+    "title_original": "Looking for Langston",
+    "title_en": "Looking for Langston",
+    "title_es": null
+  },
+  {
     "title": "Un Poeta",
     "dates": [
       {
@@ -5643,6 +5747,41 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1465563/",
     "title_original": "Un poeta",
     "title_en": "A Poet",
+    "title_es": null
+  },
+  {
+    "title": "Walkabout",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/walkabou"
+      }
+    ],
+    "director": "Nicolas Roeg",
+    "year": 1971,
+    "letterboxd_url": "https://letterboxd.com/film/walkabout/",
+    "letterboxd_rating": 4.01,
+    "letterboxd_viewers": 63835,
+    "letterboxd_short_url": "https://boxd.it/1bsG",
+    "genres": [
+      "Adventure",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 95,
+    "tmdb_url": "https://www.themoviedb.org/movie/36040/",
+    "title_original": "Walkabout",
+    "title_en": "Walkabout",
     "title_es": null
   },
   {
@@ -5720,6 +5859,42 @@
     "title_en": "Alice",
     "title_es": "Alice",
     "runtime_minutes": 86
+  },
+  {
+    "title": "El dinero",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/el-dinero"
+      }
+    ],
+    "director": "Robert Bresson",
+    "year": 1983,
+    "letterboxd_url": "https://letterboxd.com/film/largent-1983/",
+    "letterboxd_rating": 4.0,
+    "letterboxd_viewers": 59980,
+    "letterboxd_short_url": "https://boxd.it/XIg",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Switzerland"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "runtime_minutes": 85,
+    "tmdb_url": "https://www.themoviedb.org/movie/42112/",
+    "title_original": "L'Argent",
+    "title_en": null,
+    "title_es": "El dinero"
   },
   {
     "title": "El eclipse",
@@ -5927,6 +6102,40 @@
     "runtime_minutes": 78
   },
   {
+    "title": "La religiosa",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-religiosa"
+      }
+    ],
+    "director": "Jacques Rivette",
+    "year": 1966,
+    "letterboxd_url": "https://letterboxd.com/film/the-nun/",
+    "letterboxd_rating": 3.98,
+    "letterboxd_viewers": 19372,
+    "letterboxd_short_url": "https://boxd.it/WbK",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "runtime_minutes": 140,
+    "tmdb_url": "https://www.themoviedb.org/movie/42722/",
+    "title_original": "La Religieuse",
+    "title_en": "The Nun",
+    "title_es": "La religiosa"
+  },
+  {
     "title": "Her",
     "dates": [
       {
@@ -6122,6 +6331,42 @@
     "runtime_minutes": 89
   },
   {
+    "title": "Safe",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/safe"
+      }
+    ],
+    "director": "Todd Haynes",
+    "year": 1995,
+    "letterboxd_url": "https://letterboxd.com/film/safe/",
+    "letterboxd_rating": 3.96,
+    "letterboxd_viewers": 122410,
+    "letterboxd_short_url": "https://boxd.it/1gKU",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United Kingdom",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Spanish"
+    ],
+    "runtime_minutes": 119,
+    "tmdb_url": "https://www.themoviedb.org/movie/32646/",
+    "title_original": "Safe",
+    "title_en": "Safe",
+    "title_es": "A Salvo"
+  },
+  {
     "title": "Conferencia de Ernesto Castro + Amanece, que no es poco",
     "dates": [
       {
@@ -6154,6 +6399,42 @@
     "title_en": "Dawn Breaks, Which Is No Small Thing",
     "title_es": null,
     "runtime_minutes": 106
+  },
+  {
+    "title": "Victim",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/victim"
+      }
+    ],
+    "director": "Basil Dearden",
+    "year": 1961,
+    "letterboxd_url": "https://letterboxd.com/film/victim/",
+    "letterboxd_rating": 3.95,
+    "letterboxd_viewers": 16650,
+    "letterboxd_short_url": "https://boxd.it/Vty",
+    "genres": [
+      "Drama",
+      "Crime",
+      "Thriller"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 96,
+    "tmdb_url": "https://www.themoviedb.org/movie/43028/",
+    "title_original": "Victim",
+    "title_en": "Victim",
+    "title_es": "Víctima"
   },
   {
     "title": "Los Domingos",
@@ -6813,6 +7094,41 @@
     "title_en": "Sundays",
     "title_es": null,
     "runtime_minutes": 115
+  },
+  {
+    "title": "Corazón verde",
+    "dates": [
+      {
+        "timestamp": "2026-03-20 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/corazon-verde"
+      }
+    ],
+    "director": "Elaine May",
+    "year": 1971,
+    "letterboxd_url": "https://letterboxd.com/film/a-new-leaf/",
+    "letterboxd_rating": 3.94,
+    "letterboxd_viewers": 47041,
+    "letterboxd_short_url": "https://boxd.it/19FS",
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 102,
+    "tmdb_url": "https://www.themoviedb.org/movie/36850/",
+    "title_original": "A New Leaf",
+    "title_en": "A New Leaf",
+    "title_es": "Corazón verde"
   },
   {
     "title": "Sorda",
@@ -7885,6 +8201,111 @@
     "runtime_minutes": 90
   },
   {
+    "title": "Caravana de paz",
+    "dates": [
+      {
+        "timestamp": "2026-03-15 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/caravana-de-paz"
+      }
+    ],
+    "director": "John Ford",
+    "year": 1950,
+    "letterboxd_url": "https://letterboxd.com/film/wagon-master/",
+    "letterboxd_rating": 3.91,
+    "letterboxd_viewers": 13144,
+    "letterboxd_short_url": "https://boxd.it/18wU",
+    "genres": [
+      "Adventure",
+      "Western"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 86,
+    "tmdb_url": "https://www.themoviedb.org/movie/37327/",
+    "title_original": "Wagon Master",
+    "title_en": "Wagon Master",
+    "title_es": "Caravana de paz"
+  },
+  {
+    "title": "Las amigas",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/las-amigas"
+      }
+    ],
+    "director": "Claudia Weill",
+    "year": 1978,
+    "letterboxd_url": "https://letterboxd.com/film/girlfriends-1978/",
+    "letterboxd_rating": 3.91,
+    "letterboxd_viewers": 39780,
+    "letterboxd_short_url": "https://boxd.it/3JYU",
+    "genres": [
+      "Drama",
+      "Comedy"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Italian"
+    ],
+    "runtime_minutes": 86,
+    "tmdb_url": "https://www.themoviedb.org/movie/111469/",
+    "title_original": "Girlfriends",
+    "title_en": "Girlfriends",
+    "title_es": "Las amigas"
+  },
+  {
+    "title": "Wendy y Lucy",
+    "dates": [
+      {
+        "timestamp": "2026-03-22 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/wendy-y-lucy"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2008,
+    "letterboxd_url": "https://letterboxd.com/film/wendy-and-lucy/",
+    "letterboxd_rating": 3.91,
+    "letterboxd_viewers": 68909,
+    "letterboxd_short_url": "https://boxd.it/1Zx2",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 80,
+    "tmdb_url": "https://www.themoviedb.org/movie/8942/",
+    "title_original": "Wendy and Lucy",
+    "title_en": "Wendy and Lucy",
+    "title_es": null
+  },
+  {
     "title": "La Chica Zurda",
     "dates": [
       {
@@ -8419,6 +8840,41 @@
     "title_en": "Left-Handed Girl",
     "title_es": "La chica zurda",
     "runtime_minutes": 109
+  },
+  {
+    "title": "First Cow",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/first-cow-9"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2019,
+    "letterboxd_url": "https://letterboxd.com/film/first-cow/",
+    "letterboxd_rating": 3.9,
+    "letterboxd_viewers": 135263,
+    "letterboxd_short_url": "https://boxd.it/krga",
+    "genres": [
+      "Drama",
+      "Western"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 122,
+    "tmdb_url": "https://www.themoviedb.org/movie/558582/",
+    "title_original": "First Cow",
+    "title_en": "First Cow",
+    "title_es": null
   },
   {
     "title": "Falcon Lake",
@@ -10218,6 +10674,40 @@
     "runtime_minutes": 80
   },
   {
+    "title": "El espantapájaros",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/el-espantapajaros"
+      }
+    ],
+    "director": "Jerry Schatzberg",
+    "year": 1973,
+    "letterboxd_url": "https://letterboxd.com/film/scarecrow/",
+    "letterboxd_rating": 3.86,
+    "letterboxd_viewers": 38690,
+    "letterboxd_short_url": "https://boxd.it/1iLU",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 112,
+    "tmdb_url": "https://www.themoviedb.org/movie/31587/",
+    "title_original": "Scarecrow",
+    "title_en": "Scarecrow",
+    "title_es": "El espantapájaros"
+  },
+  {
     "title": "Mermaid Legend",
     "dates": [
       {
@@ -10252,6 +10742,50 @@
     "title_en": "Mermaid Legend",
     "title_es": null,
     "runtime_minutes": 110
+  },
+  {
+    "title": "Muerte de un ciclista",
+    "dates": [
+      {
+        "timestamp": "2026-03-03 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/muerte-de-un-ciclista"
+      },
+      {
+        "timestamp": "2026-03-22 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/muerte-de-un-ciclista-ii"
+      }
+    ],
+    "director": "Juan Antonio Bardem",
+    "year": 1955,
+    "letterboxd_url": "https://letterboxd.com/film/death-of-a-cyclist/",
+    "letterboxd_rating": 3.85,
+    "letterboxd_viewers": 11232,
+    "letterboxd_short_url": "https://boxd.it/2pjK",
+    "genres": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Spain",
+      "Italy"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "English"
+    ],
+    "runtime_minutes": 88,
+    "tmdb_url": "https://www.themoviedb.org/movie/72083/",
+    "title_original": "Muerte de un ciclista",
+    "title_en": "Death of a Cyclist",
+    "title_es": "Muerte de un ciclista"
   },
   {
     "title": "La lengua de las mariposas",
@@ -10513,6 +11047,75 @@
     "title_original": "Cutting Through Rocks",
     "title_en": "Cutting Through Rocks",
     "title_es": "Cutting Through Rocks"
+  },
+  {
+    "title": "La novelista y su película",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-novelista-y-su-pelicula-1"
+      }
+    ],
+    "director": "Hong Sang-soo",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/the-novelists-film/",
+    "letterboxd_rating": 3.81,
+    "letterboxd_viewers": 20023,
+    "letterboxd_short_url": "https://boxd.it/yZX6",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "South Korea"
+    ],
+    "primary_language": [
+      "Korean"
+    ],
+    "spoken_languages": [
+      "Korean"
+    ],
+    "runtime_minutes": 92,
+    "tmdb_url": "https://www.themoviedb.org/movie/928713/",
+    "title_original": "소설가의 영화",
+    "title_en": "The Novelist's Film",
+    "title_es": "La novelista y su película"
+  },
+  {
+    "title": "Wanda",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/wanda"
+      }
+    ],
+    "director": "Barbara Loden",
+    "year": 1970,
+    "letterboxd_url": "https://letterboxd.com/film/wanda/",
+    "letterboxd_rating": 3.81,
+    "letterboxd_viewers": 54088,
+    "letterboxd_short_url": "https://boxd.it/2OjK",
+    "genres": [
+      "Drama",
+      "Crime"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 103,
+    "tmdb_url": "https://www.themoviedb.org/movie/80560/",
+    "title_original": "Wanda",
+    "title_en": "Wanda",
+    "title_es": null
   },
   {
     "title": "Alicia en el país de las maravillas (1951)",
@@ -11053,6 +11656,40 @@
     "runtime_minutes": 83
   },
   {
+    "title": "Old Joy",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/old-joy"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2006,
+    "letterboxd_url": "https://letterboxd.com/film/old-joy/",
+    "letterboxd_rating": 3.79,
+    "letterboxd_viewers": 56071,
+    "letterboxd_short_url": "https://boxd.it/1tIW",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 74,
+    "tmdb_url": "https://www.themoviedb.org/movie/26518/",
+    "title_original": "Old Joy",
+    "title_en": "Old Joy",
+    "title_es": null
+  },
+  {
     "title": "En la ciudad de Sylvia",
     "dates": [
       {
@@ -11244,6 +11881,40 @@
     "title_en": null,
     "title_es": null,
     "runtime_minutes": 98
+  },
+  {
+    "title": "Certain Women",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/certain-wome"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2016,
+    "letterboxd_url": "https://letterboxd.com/film/certain-women/",
+    "letterboxd_rating": 3.77,
+    "letterboxd_viewers": 77028,
+    "letterboxd_short_url": "https://boxd.it/bk7W",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/340487/",
+    "title_original": "Certain Women",
+    "title_en": "Certain Women",
+    "title_es": "Vidas de mujer"
   },
   {
     "title": "La felicidad",
@@ -11487,6 +12158,41 @@
     "title_en": "Dodes'ka-den",
     "title_es": "Dodes 'Ka-Den",
     "runtime_minutes": 140
+  },
+  {
+    "title": "Meek’s Cutoff",
+    "dates": [
+      {
+        "timestamp": "2026-03-15 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/meek-s-cutoff"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2010,
+    "letterboxd_url": "https://letterboxd.com/film/meeks-cutoff/",
+    "letterboxd_rating": 3.72,
+    "letterboxd_viewers": 53958,
+    "letterboxd_short_url": "https://boxd.it/nsG",
+    "genres": [
+      "Western",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 103,
+    "tmdb_url": "https://www.themoviedb.org/movie/57120/",
+    "title_original": "Meek's Cutoff",
+    "title_en": "Meek's Cutoff",
+    "title_es": "Tierra Brava"
   },
   {
     "title": "El pan nuestro de cada día",
@@ -12464,6 +13170,94 @@
     "runtime_minutes": 107
   },
   {
+    "title": "La jauría humana",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 20:15",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana"
+      },
+      {
+        "timestamp": "2026-03-20 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana-ii"
+      }
+    ],
+    "director": "Arthur Penn",
+    "year": 1966,
+    "letterboxd_url": "https://letterboxd.com/film/the-chase-1966-4/",
+    "letterboxd_rating": 3.65,
+    "letterboxd_viewers": 17094,
+    "letterboxd_short_url": "https://boxd.it/1iJu",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "English"
+    ],
+    "runtime_minutes": 135,
+    "tmdb_url": "https://www.themoviedb.org/movie/31602/",
+    "title_original": "The Chase",
+    "title_en": "The Chase",
+    "title_es": "La jauría humana"
+  },
+  {
+    "title": "Zama",
+    "dates": [
+      {
+        "timestamp": "2026-03-27 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/zama"
+      }
+    ],
+    "director": "Lucrecia Martel",
+    "year": 2017,
+    "letterboxd_url": "https://letterboxd.com/film/zama/",
+    "letterboxd_rating": 3.65,
+    "letterboxd_viewers": 34901,
+    "letterboxd_short_url": "https://boxd.it/aDDq",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Argentina",
+      "Brazil",
+      "Spain",
+      "Portugal",
+      "Mexico",
+      "France",
+      "Lebanon",
+      "Netherlands",
+      "United States of America",
+      "Dominican Republic"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Guarani",
+      "Portuguese",
+      "Spanish"
+    ],
+    "runtime_minutes": 115,
+    "tmdb_url": "https://www.themoviedb.org/movie/326382/",
+    "title_original": "Zama",
+    "title_en": null,
+    "title_es": "Zama"
+  },
+  {
     "title": "Innisfree",
     "dates": [
       {
@@ -12649,6 +13443,43 @@
     "title_en": "Danger: Diabolik",
     "title_es": "Danger: Diabolik",
     "runtime_minutes": 100
+  },
+  {
+    "title": "Los asesinos de la luna de miel",
+    "dates": [
+      {
+        "timestamp": "2026-03-29 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/los-asesinos-de-la-luna-de-miel"
+      }
+    ],
+    "director": "Leonard Kastle",
+    "year": 1970,
+    "letterboxd_url": "https://letterboxd.com/film/the-honeymoon-killers/",
+    "letterboxd_rating": 3.62,
+    "letterboxd_viewers": 14557,
+    "letterboxd_short_url": "https://boxd.it/1WKi",
+    "genres": [
+      "Crime",
+      "Drama",
+      "Romance",
+      "Thriller"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 108,
+    "tmdb_url": "https://www.themoviedb.org/movie/10237/",
+    "title_original": "The Honeymoon Killers",
+    "title_en": "The Honeymoon Killers",
+    "title_es": "Los asesinos de la luna de miel"
   },
   {
     "title": "Mapantsula",
@@ -14427,6 +15258,40 @@
     "runtime_minutes": 108
   },
   {
+    "title": "Historias de la radio",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/historias-de-la-radio"
+      }
+    ],
+    "director": "José Luis Sáenz de Heredia",
+    "year": 1955,
+    "letterboxd_url": "https://letterboxd.com/film/radio-stories/",
+    "letterboxd_rating": 3.57,
+    "letterboxd_viewers": 989,
+    "letterboxd_short_url": "https://boxd.it/3kNC",
+    "genres": [
+      "Comedy"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 95,
+    "tmdb_url": "https://www.themoviedb.org/movie/96242/",
+    "title_original": "Historias de la radio",
+    "title_en": "Radio Stories",
+    "title_es": null
+  },
+  {
     "title": "Unas fotos en la ciudad de Sylvia",
     "dates": [
       {
@@ -14978,6 +15843,49 @@
     "runtime_minutes": 115
   },
   {
+    "title": "Grandeza y decadencia de un pequeño comercio de cine",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/grandeza-y-decadencia-de-un-pequeño-comercio-de-cine"
+      },
+      {
+        "timestamp": "2026-03-31 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/grandeza-y-decadencia-de-un-pequeño-comercio-de-cine-ii"
+      }
+    ],
+    "director": "Jean-Luc Godard",
+    "year": 1986,
+    "letterboxd_url": "https://letterboxd.com/film/grandeur-and-decadence-of-a-small-time-filmmaker/",
+    "letterboxd_rating": 3.55,
+    "letterboxd_viewers": 3056,
+    "letterboxd_short_url": "https://boxd.it/8bri",
+    "genres": [
+      "TV Movie",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Switzerland"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "Italian",
+      "French"
+    ],
+    "runtime_minutes": 92,
+    "tmdb_url": "https://www.themoviedb.org/movie/271799/",
+    "title_original": "Grandeur et décadence d'un petit commerce de cinéma",
+    "title_en": "Rise and Fall of a Small Film Company",
+    "title_es": "Grandeza y decadencia de un pequeño comercio de cine"
+  },
+  {
     "title": "Al oeste, en Zapata",
     "dates": [
       {
@@ -15011,6 +15919,121 @@
     "title_en": "To the West, in Zapata",
     "title_es": null,
     "runtime_minutes": 74
+  },
+  {
+    "title": "Surname Viet Given Name Nam",
+    "dates": [
+      {
+        "timestamp": "2026-03-10 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/surname-viet-given-name-nam"
+      },
+      {
+        "timestamp": "2026-03-25 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/surname-viet-given-name-nam-ii"
+      }
+    ],
+    "director": "Trinh T. Minh-ha",
+    "year": 1989,
+    "letterboxd_url": "https://letterboxd.com/film/surname-viet-given-name-nam/",
+    "letterboxd_rating": 3.54,
+    "letterboxd_viewers": 1911,
+    "letterboxd_short_url": "https://boxd.it/53Ys",
+    "genres": [
+      "Documentary",
+      "History",
+      "War"
+    ],
+    "country": [
+      "United States of America",
+      "Vietnam"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Vietnamese"
+    ],
+    "runtime_minutes": 108,
+    "tmdb_url": "https://www.themoviedb.org/movie/162539/",
+    "title_original": "Surname Viêt Given Name Nam",
+    "title_en": "Surname Viêt Given Name Nam",
+    "title_es": null
+  },
+  {
+    "title": "The Outcasts",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 19:45",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/the-outcasts"
+      }
+    ],
+    "director": "Robert Wynne-Simmons",
+    "year": 1982,
+    "letterboxd_url": "https://letterboxd.com/film/the-outcasts-1982/",
+    "letterboxd_rating": 3.54,
+    "letterboxd_viewers": 1609,
+    "letterboxd_short_url": "https://boxd.it/bAho",
+    "genres": [
+      "Fantasy",
+      "Horror"
+    ],
+    "country": [
+      "Ireland"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 95,
+    "tmdb_url": "https://www.themoviedb.org/movie/345781/",
+    "title_original": "The Outcasts",
+    "title_en": "The Outcasts",
+    "title_es": null
+  },
+  {
+    "title": "¡Átame!",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/-atame-"
+      }
+    ],
+    "director": "Pedro Almodóvar",
+    "year": 1989,
+    "letterboxd_url": "https://letterboxd.com/film/tie-me-up-tie-me-down/",
+    "letterboxd_rating": 3.54,
+    "letterboxd_viewers": 107372,
+    "letterboxd_short_url": "https://boxd.it/26FW",
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 102,
+    "tmdb_url": "https://www.themoviedb.org/movie/2469/",
+    "title_original": "¡Átame!",
+    "title_en": "Tie Me Up! Tie Me Down!",
+    "title_es": null
   },
   {
     "title": "Patrimonio nacional",
@@ -15264,6 +16287,41 @@
     "title_en": "Gamma Rays",
     "title_es": null,
     "runtime_minutes": 101
+  },
+  {
+    "title": "Showing Up",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 19:45",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/showing-up"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/showing-up-2022/",
+    "letterboxd_rating": 3.52,
+    "letterboxd_viewers": 74343,
+    "letterboxd_short_url": "https://boxd.it/tJ1q",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/790416/",
+    "title_original": "Showing Up",
+    "title_en": "Showing Up",
+    "title_es": null
   },
   {
     "title": "Door",
@@ -15904,6 +16962,43 @@
     "title_en": null,
     "title_es": null,
     "runtime_minutes": 81
+  },
+  {
+    "title": "La condesa descalza",
+    "dates": [
+      {
+        "timestamp": "2026-03-17 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-condesa-descalza"
+      }
+    ],
+    "director": "Joseph L. Mankiewicz",
+    "year": 1954,
+    "letterboxd_url": "https://letterboxd.com/film/the-barefoot-contessa/",
+    "letterboxd_rating": 3.47,
+    "letterboxd_viewers": 21155,
+    "letterboxd_short_url": "https://boxd.it/1dsy",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America",
+      "Italy"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Spanish",
+      "Italian"
+    ],
+    "runtime_minutes": 128,
+    "tmdb_url": "https://www.themoviedb.org/movie/34689/",
+    "title_original": "The Barefoot Contessa",
+    "title_en": "The Barefoot Contessa",
+    "title_es": "La condesa descalza"
   },
   {
     "title": "Decorado",
@@ -16648,6 +17743,160 @@
     "title_en": "Silent Rebellion",
     "title_es": null,
     "runtime_minutes": 96
+  },
+  {
+    "title": "Gerry",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/gerry"
+      }
+    ],
+    "director": "Gus Van Sant",
+    "year": 2002,
+    "letterboxd_url": "https://letterboxd.com/film/gerry/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 32489,
+    "letterboxd_short_url": "https://boxd.it/27LG",
+    "genres": [
+      "Drama",
+      "Adventure",
+      "Mystery"
+    ],
+    "country": [
+      "Argentina",
+      "Switzerland",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 103,
+    "tmdb_url": "https://www.themoviedb.org/movie/1956/",
+    "title_original": "Gerry",
+    "title_en": "Gerry",
+    "title_es": null
+  },
+  {
+    "title": "Julia",
+    "dates": [
+      {
+        "timestamp": "2026-03-18 19:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/julia"
+      }
+    ],
+    "director": "Fred Zinnemann",
+    "year": 1977,
+    "letterboxd_url": "https://letterboxd.com/film/julia/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 9359,
+    "letterboxd_short_url": "https://boxd.it/2khk",
+    "genres": [
+      "Drama",
+      "Romance",
+      "Thriller"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Russian",
+      "German",
+      "French",
+      "English"
+    ],
+    "runtime_minutes": 117,
+    "tmdb_url": "https://www.themoviedb.org/movie/42222/",
+    "title_original": "Julia",
+    "title_en": "Julia",
+    "title_es": "Julia"
+  },
+  {
+    "title": "Night Moves",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/night-moves"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2013,
+    "letterboxd_url": "https://letterboxd.com/film/night-moves-2013/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 41370,
+    "letterboxd_short_url": "https://boxd.it/4WFe",
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "country": [
+      "Brazil",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 112,
+    "tmdb_url": "https://www.themoviedb.org/movie/157823/",
+    "title_original": "Night Moves",
+    "title_en": "Night Moves",
+    "title_es": null
+  },
+  {
+    "title": "River of Grass",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/river-of-grass"
+      },
+      {
+        "timestamp": "2026-03-29 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/river-of-grass-ii"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 1994,
+    "letterboxd_url": "https://letterboxd.com/film/river-of-grass/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 23136,
+    "letterboxd_short_url": "https://boxd.it/3orq",
+    "genres": [
+      "Drama",
+      "Crime"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 76,
+    "tmdb_url": "https://www.themoviedb.org/movie/98514/",
+    "title_original": "River of Grass",
+    "title_en": "River of Grass",
+    "title_es": null
   },
   {
     "title": "Una quinta portuguesa",
@@ -17434,6 +18683,42 @@
     "runtime_minutes": 132
   },
   {
+    "title": "El vaquero y la dama",
+    "dates": [
+      {
+        "timestamp": "2026-03-24 20:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/el-vaquero-y-la-dama"
+      }
+    ],
+    "director": "H.C. Potter",
+    "year": 1938,
+    "letterboxd_url": "https://letterboxd.com/film/the-cowboy-and-the-lady/",
+    "letterboxd_rating": 3.33,
+    "letterboxd_viewers": 1972,
+    "letterboxd_short_url": "https://boxd.it/3M70",
+    "genres": [
+      "Comedy",
+      "Romance",
+      "Western"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 91,
+    "tmdb_url": "https://www.themoviedb.org/movie/112674/",
+    "title_original": "The Cowboy and the Lady",
+    "title_en": "The Cowboy and the Lady",
+    "title_es": "El vaquero y la dama"
+  },
+  {
     "title": "Batman",
     "dates": [
       {
@@ -17853,6 +19138,43 @@
     "title_en": "French Tech",
     "title_es": null,
     "runtime_minutes": 92
+  },
+  {
+    "title": "The Mastermind",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 20:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/the-mastermind-1"
+      }
+    ],
+    "director": "Kelly Reichardt",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-mastermind-2025/",
+    "letterboxd_rating": 3.23,
+    "letterboxd_viewers": 182586,
+    "letterboxd_short_url": "https://boxd.it/Q7ge",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "country": [
+      "United Kingdom",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "French"
+    ],
+    "runtime_minutes": 110,
+    "tmdb_url": "https://www.themoviedb.org/movie/1352624/",
+    "title_original": "The Mastermind",
+    "title_en": "The Mastermind",
+    "title_es": "Mente maestra"
   },
   {
     "title": "Salvajes",
@@ -19820,6 +21142,49 @@
     "title_en": "Sound of the Sea",
     "title_es": null,
     "runtime_minutes": 95
+  },
+  {
+    "title": "La estrella del norte",
+    "dates": [
+      {
+        "timestamp": "2026-03-11 20:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-estrella-del-norte"
+      },
+      {
+        "timestamp": "2026-03-27 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-estrella-del-norte-ii"
+      }
+    ],
+    "director": "Lewis Milestone",
+    "year": 1943,
+    "letterboxd_url": "https://letterboxd.com/film/the-north-star/",
+    "letterboxd_rating": 3.06,
+    "letterboxd_viewers": 1477,
+    "letterboxd_short_url": "https://boxd.it/Jdy",
+    "genres": [
+      "Drama",
+      "War"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Russian",
+      "German",
+      "English"
+    ],
+    "runtime_minutes": 108,
+    "tmdb_url": "https://www.themoviedb.org/movie/48127/",
+    "title_original": "The North Star",
+    "title_en": "The North Star",
+    "title_es": "La estrella del norte"
   },
   {
     "title": "Scarlet",
@@ -22590,5 +23955,312 @@
     "title_en": "Homage to Tàpies",
     "title_es": "Faith without works is dead",
     "runtime_minutes": 52
+  },
+  {
+    "title": "Cuatro mujeres",
+    "dates": [
+      {
+        "timestamp": "2026-03-24 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/cuatro-mujeres"
+      }
+    ],
+    "director": "Antonio del Amo",
+    "year": 1947,
+    "letterboxd_url": "https://letterboxd.com/film/four-women-1947/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 2,
+    "letterboxd_short_url": "https://boxd.it/lRU8",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 127,
+    "tmdb_url": "https://www.themoviedb.org/movie/593665/",
+    "title_original": "Cuatro mujeres",
+    "title_en": "Four Women",
+    "title_es": null
+  },
+  {
+    "title": "Del rosa al azul: la mujer en el franquismo a través de NO-DO",
+    "dates": [
+      {
+        "timestamp": "2026-03-10 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/del-rosa-al-azul-la-mujer-en-el-franquismo-a-traves-de-no-do"
+      }
+    ],
+    "director": "VV.AA.",
+    "year": 1981,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "El beso de Judas",
+    "dates": [
+      {
+        "timestamp": "2026-03-18 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/el-beso-de-judas"
+      }
+    ],
+    "director": "Rafael Gil",
+    "year": 1954,
+    "letterboxd_url": "https://letterboxd.com/film/judas-kiss-1954/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 55,
+    "letterboxd_short_url": "https://boxd.it/3UXo",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 90,
+    "tmdb_url": "https://www.themoviedb.org/movie/117900/",
+    "title_original": "El beso de Judas",
+    "title_en": "Judas' Kiss",
+    "title_es": "El beso de Judas"
+  },
+  {
+    "title": "La ciudad perdida",
+    "dates": [
+      {
+        "timestamp": "2026-03-31 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-ciudad-perdida-14"
+      }
+    ],
+    "director": "Margarita Alexandre, Rafael María Torrecilla",
+    "year": 1955,
+    "letterboxd_url": "https://letterboxd.com/film/la-ciudad-perdida-1955/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 94,
+    "letterboxd_short_url": "https://boxd.it/lBbG",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Italy",
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 63,
+    "tmdb_url": "https://www.themoviedb.org/movie/586865/",
+    "title_original": "La ciudad perdida",
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Las 4 bodas de Marisol",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/las-4-bodas-de-marisol"
+      }
+    ],
+    "director": "Luis Lucia",
+    "year": 1967,
+    "letterboxd_url": "https://letterboxd.com/film/las-4-bodas-de-marisol/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 207,
+    "letterboxd_short_url": "https://boxd.it/4zRG",
+    "genres": [
+      "Comedy",
+      "Music"
+    ],
+    "country": [],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 94,
+    "tmdb_url": "https://www.themoviedb.org/movie/143529/",
+    "title_original": "Las 4 bodas de Marisol",
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Los ángeles exterminados",
+    "dates": [
+      {
+        "timestamp": "2026-03-11 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/los-angeles-exterminados"
+      }
+    ],
+    "director": "Michel Mitrani",
+    "year": 1968,
+    "letterboxd_url": "https://letterboxd.com/film/les-anges-extermines/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 46,
+    "letterboxd_short_url": "https://boxd.it/FFbK",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "France"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 128,
+    "tmdb_url": "https://www.themoviedb.org/movie/1101442/",
+    "title_original": "Les Anges exterminés",
+    "title_en": null,
+    "title_es": "Los ángeles exterminados"
+  },
+  {
+    "title": "María Rosa",
+    "dates": [
+      {
+        "timestamp": "2026-03-03 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/maria-rosa"
+      }
+    ],
+    "director": "Armando Moreno",
+    "year": 1965,
+    "letterboxd_url": "https://letterboxd.com/film/maria-rosa/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 72,
+    "letterboxd_short_url": "https://boxd.it/cLqe",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Catalan",
+      "Spanish"
+    ],
+    "runtime_minutes": 97,
+    "tmdb_url": "https://www.themoviedb.org/movie/368252/",
+    "title_original": "María Rosa",
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Sonatas",
+    "dates": [
+      {
+        "timestamp": "2026-03-17 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/sonatas"
+      }
+    ],
+    "director": "Juan Antonio Bardem",
+    "year": 1959,
+    "letterboxd_url": "https://letterboxd.com/film/sonatas/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 72,
+    "letterboxd_short_url": "https://boxd.it/4P38",
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Romance"
+    ],
+    "country": [
+      "Mexico",
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 100,
+    "tmdb_url": "https://www.themoviedb.org/movie/153131/",
+    "title_original": "Sonatas",
+    "title_en": null,
+    "title_es": "Sonatas (Las aventuras del marqués de Bradomin)"
+  },
+  {
+    "title": "Érase una vez…",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 17:30",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/erase-una-vez-1-2"
+      }
+    ],
+    "director": "Alexandre Cirici Pellicer, José Escobar,",
+    "year": 1950,
+    "letterboxd_url": "https://letterboxd.com/film/once-upon-a-time-1950/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 272,
+    "letterboxd_short_url": "https://boxd.it/gXeC",
+    "genres": [
+      "Animation",
+      "Fantasy",
+      "Comedy"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Italian",
+      "Spanish"
+    ],
+    "runtime_minutes": 69,
+    "tmdb_url": "https://www.themoviedb.org/movie/472786/",
+    "title_original": "Érase una vez...",
+    "title_en": "Once Upon a Time",
+    "title_es": null
   }
 ]
