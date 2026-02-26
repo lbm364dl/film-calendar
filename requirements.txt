@@ -6,3 +6,4 @@ pandas
 selenium
 undetected-chromedriver
 pytest
+python-dotenv

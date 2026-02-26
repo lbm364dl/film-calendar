@@ -144,26 +144,25 @@ def _wait_and_fetch_soup(browser, delay, xpath):
 # =============================================================================
 
 def fetch_letterboxd_info(url: str, browser=None) -> dict:
-    """Fetch comprehensive info from a Letterboxd film page.
+    """Fetch Letterboxd-specific info from a film page.
 
-    Phase 1 (requests, fast): rating, short_url, genres, country, tmdb_url
-    Phase 2 (Selenium, if browser provided): viewer_count, languages
+    Phase 1 (requests, fast): rating, short_url, tmdb_url
+    Phase 2 (Selenium, if browser provided): viewer_count
+
+    Additional metadata (genres, countries, languages, titles) is now
+    fetched from the TMDB API directly — see tmdb.py.
 
     Args:
         url: Letterboxd film URL
         browser: Optional Selenium WebDriver instance for dynamic content
 
     Returns:
-        Dict with all metadata fields
+        Dict with Letterboxd-specific metadata fields
     """
     result = {
         "letterboxd_rating": None,
         "letterboxd_viewers": None,
         "letterboxd_short_url": None,
-        "genres": [],
-        "country": [],
-        "primary_language": [],
-        "spoken_languages": [],
         "tmdb_url": None,
     }
 
@@ -189,16 +188,6 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
         short_url_input = soup.find("input", id=re.compile(r"url-field-film-"))
         if short_url_input:
             result["letterboxd_short_url"] = short_url_input.get("value")
-
-        # LD+JSON structured data
-        ld = _parse_ld_json(soup)
-        if ld:
-            result["genres"] = ld.get("genre", [])
-
-            countries = ld.get("countryOfOrigin", [])
-            result["country"] = [
-                c["name"] for c in countries if isinstance(c, dict) and "name" in c
-            ]
 
         # TMDB URL from body data attributes
         body = soup.find("body")
@@ -250,47 +239,6 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
                         result["letterboxd_rating"] = float(rating_el.text.strip())
                     except ValueError:
                         pass
-
-            # Navigate to details tab for languages + TMDB link
-            details_url = url.rstrip("/") + "/details/"
-            browser.get(details_url)
-            try:
-                WebDriverWait(browser, delay).until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, "#tab-details h3, a[data-track-action='TMDB']")
-                    )
-                )
-            except TimeoutException:
-                pass
-
-            details_source = browser.page_source
-            soup3 = BeautifulSoup(details_source, "html.parser")
-
-            # Parse detail sections
-            tab_details = soup3.find("div", id="tab-details")
-            if tab_details:
-                for h3 in tab_details.find_all("h3"):
-                    label = h3.text.strip().lower()
-                    sibling = h3.find_next_sibling()
-                    if sibling:
-                        items = [a.text.strip() for a in sibling.find_all("a") if a.text.strip()]
-                        if "primary language" in label:
-                            result["primary_language"] = items
-                        elif "spoken language" in label:
-                            result["spoken_languages"] = items
-                        elif "language" in label:
-                            # Single "Language" section — treat as both primary + spoken
-                            if not result["primary_language"]:
-                                result["primary_language"] = items
-                            if not result["spoken_languages"]:
-                                result["spoken_languages"] = items
-                        elif "country" in label and not result["country"]:
-                            result["country"] = items
-
-            # TMDB link from details page (more precise than body attr)
-            tmdb_link = soup3.find("a", attrs={"data-track-action": "TMDB"})
-            if tmdb_link and tmdb_link.get("href"):
-                result["tmdb_url"] = tmdb_link["href"]
 
         except Exception as e:
             print(f"  Phase 2 (Selenium) error for {url}: {e}")
@@ -494,10 +442,9 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict =
 # =============================================================================
 
 def rate_films(df: pd.DataFrame) -> pd.DataFrame:
-    """Fetch all Letterboxd metadata for films that have a letterboxd_url.
+    """Fetch Letterboxd-specific metadata for films that have a letterboxd_url.
 
-    Adds columns: letterboxd_rating, letterboxd_viewers, letterboxd_short_url,
-                  genres, country, primary_language, spoken_languages, tmdb_url
+    Adds columns: letterboxd_rating, letterboxd_viewers, letterboxd_short_url, tmdb_url
     """
     result = df.copy()
 
@@ -505,8 +452,7 @@ def rate_films(df: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("DataFrame must have 'letterboxd_url' column. Run 'match' step first.")
 
     new_cols = [
-        "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
-        "genres", "country", "primary_language", "spoken_languages", "tmdb_url",
+        "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url", "tmdb_url",
     ]
     for col in new_cols:
         if col not in result.columns:

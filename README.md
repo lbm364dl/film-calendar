@@ -24,7 +24,7 @@ scrape → match → merge → docs/screenings.json → static website
 
 1. **Scrape** — Fetches screening listings from cinema websites for a date range.
 2. **Match** — Searches Letterboxd (via Selenium) to find the URL for each film.
-3. **Merge** — Consolidates new data into the master `docs/screenings.json`, deduplicating sessions and automatically fetching Letterboxd metadata (rating, viewer count, genres, etc.) for new films.
+3. **Merge** — Consolidates new data into the master `docs/screenings.json`, deduplicating sessions and automatically fetching Letterboxd metadata (rating, viewer count, short URL, TMDB URL), then enriching with TMDB API metadata (genres, countries, languages, titles).
 
 The website (hosted on GitHub Pages from `docs/`) reads `screenings.json` and renders a filterable, searchable interface.
 
@@ -47,6 +47,16 @@ pip install -r requirements.txt
 ```
 
 **Note:** The `match` and `rate` steps, as well as scraping Renoir and Sala Berlanga, require a working Selenium/ChromeDriver setup.
+
+### TMDB API key setup
+
+Create a local `.env` file in the project root:
+
+```bash
+TMDB_API_KEY=your_tmdb_read_access_token
+```
+
+You can copy `.env.example` as a starting point. The app loads `.env` automatically.
 
 ## CLI usage
 
@@ -149,6 +159,7 @@ The master `docs/screenings.json` is movie-centric (one object per film):
 | `country` | Array of production countries |
 | `primary_language` | Array of primary languages |
 | `spoken_languages` | Array of spoken languages |
+| `runtime_minutes` | Runtime in minutes from TMDB (movie runtime; TV fast estimate = episodes × typical episode runtime) |
 | `tmdb_url` | The Movie Database URL |
 
 ## Running tests

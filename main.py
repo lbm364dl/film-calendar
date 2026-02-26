@@ -7,6 +7,7 @@ import pandas as pd
 
 from cli import parse_args, generate_cinema_boilerplate
 from rate import match_films, fetch_letterboxd_info_batch
+from tmdb import fetch_tmdb_info_batch
 from pathlib import Path
 import theaters
 
@@ -167,10 +168,15 @@ def run_merge(args):
     updated_count = 0
     new_count = 0
 
-    new_fields = [
+    letterboxd_fields = [
         "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
-        "genres", "country", "primary_language", "spoken_languages", "tmdb_url",
+        "tmdb_url",
     ]
+    tmdb_fields = [
+        "genres", "country", "primary_language", "spoken_languages",
+        "runtime_minutes", "title_original", "title_en", "title_es",
+    ]
+    new_fields = letterboxd_fields + tmdb_fields
 
     for _, row in input_df.iterrows():
         lb_url = row.get("letterboxd_url")
@@ -250,7 +256,11 @@ def run_merge(args):
                 "country": [],
                 "primary_language": [],
                 "spoken_languages": [],
+                "runtime_minutes": None,
                 "tmdb_url": None,
+                "title_original": None,
+                "title_en": None,
+                "title_es": None,
             }
 
             # Copy any fields that came from the rate step
@@ -273,45 +283,43 @@ def run_merge(args):
             new_count += 1
 
     # ── Batch-fetch Letterboxd metadata ────────────────────────────────────
+    # ── Step 1: Letterboxd metadata ────────────────────────────────────
     if backfill:
         # Backfill: re-fetch for ALL films with a letterboxd_url
-        urls_to_fetch = []
-        indices_to_update = []
+        lb_urls_to_fetch = []
+        lb_indices = []
         for i, film in enumerate(master_films):
             if film.get("letterboxd_url"):
-                urls_to_fetch.append(film["letterboxd_url"])
-                indices_to_update.append(i)
-        print(f"\n  Backfilling Letterboxd metadata for {len(urls_to_fetch)} films (Selenium)...")
+                lb_urls_to_fetch.append(film["letterboxd_url"])
+                lb_indices.append(i)
+        print(f"\n  Backfilling Letterboxd metadata for {len(lb_urls_to_fetch)} films (Selenium)...")
     else:
         # Default: only fetch for films that have a letterboxd_url but no
-        # metadata yet.  We check multiple fields because some films on
-        # Letterboxd legitimately lack a rating (NA) while still having
-        # viewers, genres, etc.  If *any* metadata field is populated we
-        # consider the film already fetched.
-        metadata_fields = [
+        # Letterboxd-specific metadata yet.
+        lb_meta_fields = [
             "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
-            "genres", "country", "primary_language", "spoken_languages", "tmdb_url",
+            "tmdb_url",
         ]
-        urls_to_fetch = []
-        indices_to_update = []
+        lb_urls_to_fetch = []
+        lb_indices = []
         for i, film in enumerate(master_films):
             if not film.get("letterboxd_url"):
                 continue
-            has_metadata = any(
+            has_lb_meta = any(
                 (film.get(f) not in (None, [], ""))
-                for f in metadata_fields
+                for f in lb_meta_fields
             )
-            if not has_metadata:
-                urls_to_fetch.append(film["letterboxd_url"])
-                indices_to_update.append(i)
-        if urls_to_fetch:
-            print(f"\n  Fetching Letterboxd metadata for {len(urls_to_fetch)} new films (Selenium)...")
+            if not has_lb_meta:
+                lb_urls_to_fetch.append(film["letterboxd_url"])
+                lb_indices.append(i)
+        if lb_urls_to_fetch:
+            print(f"\n  Fetching Letterboxd metadata for {len(lb_urls_to_fetch)} new films (Selenium)...")
 
-    if urls_to_fetch:
+    if lb_urls_to_fetch:
         try:
-            infos = fetch_letterboxd_info_batch(urls_to_fetch, use_selenium=True)
-            for idx, info in zip(indices_to_update, infos):
-                for key in new_fields:
+            infos = fetch_letterboxd_info_batch(lb_urls_to_fetch, use_selenium=True)
+            for idx, info in zip(lb_indices, infos):
+                for key in letterboxd_fields:
                     val = info.get(key)
                     if val is not None:
                         if isinstance(val, list) and len(val) == 0:
@@ -319,6 +327,47 @@ def run_merge(args):
                         master_films[idx][key] = val
         except Exception as e:
             print(f"  Error during Letterboxd batch fetch: {e}")
+
+    # ── Step 2: TMDB metadata ─────────────────────────────────────────
+    if backfill:
+        tmdb_urls_to_fetch = []
+        tmdb_indices = []
+        for i, film in enumerate(master_films):
+            if film.get("tmdb_url"):
+                tmdb_urls_to_fetch.append(film["tmdb_url"])
+                tmdb_indices.append(i)
+        print(f"\n  Backfilling TMDB metadata for {len(tmdb_urls_to_fetch)} films...")
+    else:
+        tmdb_urls_to_fetch = []
+        tmdb_indices = []
+        for i, film in enumerate(master_films):
+            tmdb_url = film.get("tmdb_url")
+            if not tmdb_url:
+                continue
+            has_tmdb_meta = any(
+                (film.get(f) not in (None, [], ""))
+                for f in tmdb_fields
+            )
+            if not has_tmdb_meta:
+                tmdb_urls_to_fetch.append(tmdb_url)
+                tmdb_indices.append(i)
+        if tmdb_urls_to_fetch:
+            print(f"\n  Fetching TMDB metadata for {len(tmdb_urls_to_fetch)} films...")
+
+    if tmdb_urls_to_fetch:
+        try:
+            tmdb_infos = fetch_tmdb_info_batch(tmdb_urls_to_fetch)
+            for idx, info in zip(tmdb_indices, tmdb_infos):
+                if info is None:
+                    continue
+                for key in tmdb_fields:
+                    val = info.get(key)
+                    if val is not None:
+                        if isinstance(val, list) and len(val) == 0:
+                            continue
+                        master_films[idx][key] = val
+        except Exception as e:
+            print(f"  Error during TMDB batch fetch: {e}")
 
     # ── Sort by rating and write ──────────────────────────────────────────
     master_films.sort(

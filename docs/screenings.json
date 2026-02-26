@@ -30,7 +30,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/tv/248664/"
+    "tmdb_url": "https://www.themoviedb.org/tv/248664/",
+    "title_original": "Samuel",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 105
   },
   {
     "title": "El Bueno, El Feo Y El Malo",
@@ -63,7 +67,11 @@
     "spoken_languages": [
       "Italian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/429/"
+    "tmdb_url": "https://www.themoviedb.org/movie/429/",
+    "title_original": "Il buono, il brutto, il cattivo",
+    "title_en": "The Good, the Bad and the Ugly",
+    "title_es": "El bueno, el feo y el malo",
+    "runtime_minutes": 161
   },
   {
     "title": "Apocalypse Now",
@@ -97,7 +105,11 @@
       "French",
       "Vietnamese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/28/"
+    "tmdb_url": "https://www.themoviedb.org/movie/28/",
+    "title_original": "Apocalypse Now",
+    "title_en": "Apocalypse Now",
+    "title_es": "Apocalypse Now",
+    "runtime_minutes": 147
   },
   {
     "title": "Stalker",
@@ -128,7 +140,11 @@
     "spoken_languages": [
       "Russian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1398/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1398/",
+    "title_original": "Сталкер",
+    "title_en": "Stalker",
+    "title_es": "Stalker",
+    "runtime_minutes": 162
   },
   {
     "title": "Eva al desnudo",
@@ -159,7 +175,11 @@
       "English",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/705/"
+    "tmdb_url": "https://www.themoviedb.org/movie/705/",
+    "title_original": "All About Eve",
+    "title_en": "All About Eve",
+    "title_es": "Eva al desnudo",
+    "runtime_minutes": 139
   },
   {
     "title": "Conferencia de Marta Sanz + All That Jazz (Empieza el espectáculo)",
@@ -190,7 +210,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/16858/"
+    "tmdb_url": "https://www.themoviedb.org/movie/16858/",
+    "title_original": "All That Jazz",
+    "title_en": "All That Jazz",
+    "title_es": "All That Jazz (Empieza el espectáculo)",
+    "runtime_minutes": 123
   },
   {
     "title": "Un asunto de familia",
@@ -222,7 +246,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/505192/"
+    "tmdb_url": "https://www.themoviedb.org/movie/505192/",
+    "title_original": "万引き家族",
+    "title_en": "Shoplifters",
+    "title_es": "Un asunto de familia",
+    "runtime_minutes": 120
   },
   {
     "title": "Terminator 2: El Juicio Final",
@@ -256,10 +284,14 @@
       "English",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/280/"
+    "tmdb_url": "https://www.themoviedb.org/movie/280/",
+    "title_original": "Terminator 2: Judgment Day",
+    "title_en": "Terminator 2: Judgment Day",
+    "title_es": "Terminator 2: El juicio final",
+    "runtime_minutes": 137
   },
   {
-    "title": "Conferencia de José Luis Pardo + Tiempos modernos",
+    "title": "Tiempos modernos",
     "dates": [
       {
         "timestamp": "2026-02-14 19:00",
@@ -294,7 +326,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/3082/"
+    "tmdb_url": "https://www.themoviedb.org/movie/3082/",
+    "title_original": "Modern Times",
+    "title_en": "Modern Times",
+    "title_es": "Tiempos modernos",
+    "runtime_minutes": 87
   },
   {
     "title": "Los espigadores y la espigadora",
@@ -330,7 +366,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/44379/"
+    "tmdb_url": "https://www.themoviedb.org/movie/44379/",
+    "title_original": "Les Glaneurs et la Glaneuse",
+    "title_en": "The Gleaners and I",
+    "title_es": "Los Espigadores y la espigadora",
+    "runtime_minutes": 82
   },
   {
     "title": "Carga maldita",
@@ -365,7 +405,11 @@
       "German",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/38985/"
+    "tmdb_url": "https://www.themoviedb.org/movie/38985/",
+    "title_original": "Sorcerer",
+    "title_en": "Sorcerer",
+    "title_es": "Carga maldita",
+    "runtime_minutes": 122
   },
   {
     "title": "¡Olvídate de mí!",
@@ -397,7 +441,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/38/"
+    "tmdb_url": "https://www.themoviedb.org/movie/38/",
+    "title_original": "Eternal Sunshine of the Spotless Mind",
+    "title_en": "Eternal Sunshine of the Spotless Mind",
+    "title_es": "¡Olvídate de mí!",
+    "runtime_minutes": 108
   },
   {
     "title": "Hamnet",
@@ -2014,7 +2062,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/858024/"
+    "tmdb_url": "https://www.themoviedb.org/movie/858024/",
+    "title_original": "Hamnet",
+    "title_en": "Hamnet",
+    "title_es": null,
+    "runtime_minutes": 126
   },
   {
     "title": "Cría cuervos",
@@ -2044,7 +2096,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/51857/"
+    "tmdb_url": "https://www.themoviedb.org/movie/51857/",
+    "title_original": "Cría cuervos",
+    "title_en": "Cria!",
+    "title_es": null,
+    "runtime_minutes": 105
   },
   {
     "title": "Una Batalla Tras Otra",
@@ -2115,7 +2171,11 @@
       "English",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1054867/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1054867/",
+    "title_original": "One Battle After Another",
+    "title_en": "One Battle After Another",
+    "title_es": "Una batalla tras otra",
+    "runtime_minutes": 162
   },
   {
     "title": "Marty Supreme",
@@ -3136,7 +3196,11 @@
       "English",
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1317288/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1317288/",
+    "title_original": "Marty Supreme",
+    "title_en": "Marty Supreme",
+    "title_es": "Marty Supremo",
+    "runtime_minutes": 150
   },
   {
     "title": "Las uvas de la ira",
@@ -3166,7 +3230,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/596/"
+    "tmdb_url": "https://www.themoviedb.org/movie/596/",
+    "title_original": "The Grapes of Wrath",
+    "title_en": "The Grapes of Wrath",
+    "title_es": "Las uvas de la ira",
+    "runtime_minutes": 129
   },
   {
     "title": "Ciudadano Kane [Wilder Cinema]",
@@ -3197,7 +3265,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/15/"
+    "tmdb_url": "https://www.themoviedb.org/movie/15/",
+    "title_original": "Citizen Kane",
+    "title_en": "Citizen Kane",
+    "title_es": "Ciudadano Kane",
+    "runtime_minutes": 119
   },
   {
     "title": "Valor Sentimental",
@@ -3746,7 +3818,11 @@
       "Norwegian",
       "Swedish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1124566/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1124566/",
+    "title_original": "Affeksjonsverdi",
+    "title_en": "Sentimental Value",
+    "title_es": "Valor sentimental",
+    "runtime_minutes": 133
   },
   {
     "title": "El laberinto del fauno",
@@ -3780,7 +3856,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1417/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1417/",
+    "title_original": "El laberinto del fauno",
+    "title_en": "Pan's Labyrinth",
+    "title_es": null,
+    "runtime_minutes": 118
   },
   {
     "title": "No hay otra opción",
@@ -4564,7 +4644,11 @@
       "English",
       "Korean"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/639988/"
+    "tmdb_url": "https://www.themoviedb.org/movie/639988/",
+    "title_original": "어쩔수가없다",
+    "title_en": "No Other Choice",
+    "title_es": "La única opción",
+    "runtime_minutes": 139
   },
   {
     "title": "Mujeres Al Borde De Un Ataque De Nervios",
@@ -4595,7 +4679,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/4203/"
+    "tmdb_url": "https://www.themoviedb.org/movie/4203/",
+    "title_original": "Mujeres al borde de un ataque de nervios",
+    "title_en": "Women on the Verge of a Nervous Breakdown",
+    "title_es": "Mujeres al borde de un ataque de nervios",
+    "runtime_minutes": 88
   },
   {
     "title": "Viridiana",
@@ -4627,7 +4715,11 @@
       "English",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/4497/"
+    "tmdb_url": "https://www.themoviedb.org/movie/4497/",
+    "title_original": "Viridiana",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "El tren",
@@ -4661,7 +4753,11 @@
       "German",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/3482/"
+    "tmdb_url": "https://www.themoviedb.org/movie/3482/",
+    "title_original": "The Train",
+    "title_en": "The Train",
+    "title_es": "El tren",
+    "runtime_minutes": 133
   },
   {
     "title": "Little Amelie",
@@ -4940,7 +5036,11 @@
       "French",
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/682012/"
+    "tmdb_url": "https://www.themoviedb.org/movie/682012/",
+    "title_original": "Amélie et la métaphysique des tubes",
+    "title_en": "Little Amélie or the Character of Rain",
+    "title_es": "Little Amelie",
+    "runtime_minutes": 78
   },
   {
     "title": "Manas",
@@ -5039,7 +5139,11 @@
     "spoken_languages": [
       "Portuguese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1256408/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1256408/",
+    "title_original": "Manas",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 101
   },
   {
     "title": "Sorry‚ Baby",
@@ -5378,7 +5482,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1205515/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1205515/",
+    "title_original": "Sorry, Baby",
+    "title_en": "Sorry, Baby",
+    "title_es": "Lo siento, bebé",
+    "runtime_minutes": 104
   },
   {
     "title": "Historias de Filadelfia",
@@ -5410,7 +5518,11 @@
       "English",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/981/"
+    "tmdb_url": "https://www.themoviedb.org/movie/981/",
+    "title_original": "The Philadelphia Story",
+    "title_en": "The Philadelphia Story",
+    "title_es": "Historias de Filadelfia",
+    "runtime_minutes": 113
   },
   {
     "title": "Alice",
@@ -5446,7 +5558,11 @@
     "spoken_languages": [
       "Czech"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/18917/"
+    "tmdb_url": "https://www.themoviedb.org/movie/18917/",
+    "title_original": "Něco z Alenky",
+    "title_en": "Alice",
+    "title_es": "Alice",
+    "runtime_minutes": 86
   },
   {
     "title": "El eclipse",
@@ -5479,7 +5595,11 @@
       "English",
       "Italian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/21135/"
+    "tmdb_url": "https://www.themoviedb.org/movie/21135/",
+    "title_original": "L'eclisse",
+    "title_en": "L'Eclisse",
+    "title_es": "El eclipse",
+    "runtime_minutes": 126
   },
   {
     "title": "El fantasma de la libertad",
@@ -5509,7 +5629,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/5558/"
+    "tmdb_url": "https://www.themoviedb.org/movie/5558/",
+    "title_original": "Le Fantôme de la liberté",
+    "title_en": "The Phantom of Liberty",
+    "title_es": "El fantasma de la libertad",
+    "runtime_minutes": 104
   },
   {
     "title": "Los santos inocentes",
@@ -5539,7 +5663,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/75877/"
+    "tmdb_url": "https://www.themoviedb.org/movie/75877/",
+    "title_original": "Los santos inocentes",
+    "title_en": "The Holy Innocents",
+    "title_es": null,
+    "runtime_minutes": 107
   },
   {
     "title": "Epic: Elvis Presley In Concert",
@@ -5601,7 +5729,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1445363/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1445363/",
+    "title_original": "EPiC: Elvis Presley in Concert",
+    "title_en": "EPiC: Elvis Presley in Concert",
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "Yo te creo",
@@ -5631,7 +5763,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1091196/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1091196/",
+    "title_original": "On vous croit",
+    "title_en": "We Believe You",
+    "title_es": "Yo te creo",
+    "runtime_minutes": 78
   },
   {
     "title": "Arco",
@@ -5786,7 +5922,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/804370/"
+    "tmdb_url": "https://www.themoviedb.org/movie/804370/",
+    "title_original": "Arco",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 89
   },
   {
     "title": "Conferencia de Ernesto Castro + Amanece, que no es poco",
@@ -5816,7 +5956,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/20607/"
+    "tmdb_url": "https://www.themoviedb.org/movie/20607/",
+    "title_original": "Amanece, que no es poco",
+    "title_en": "Dawn Breaks, Which Is No Small Thing",
+    "title_es": null,
+    "runtime_minutes": 106
   },
   {
     "title": "Los Domingos",
@@ -6447,7 +6591,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1443576/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1443576/",
+    "title_original": "Los domingos",
+    "title_en": "Sundays",
+    "title_es": null,
+    "runtime_minutes": 115
   },
   {
     "title": "Sorda",
@@ -6489,7 +6637,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1303613/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1303613/",
+    "title_original": "Sorda",
+    "title_en": "Deaf",
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "The Day Iceland Stood Still",
@@ -6521,7 +6673,11 @@
       "English",
       "Icelandic"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1181125/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1181125/",
+    "title_original": "The Day Iceland Stood Still",
+    "title_en": "The Day Iceland Stood Still",
+    "title_es": "Cuando las mujeres pararon Islandia",
+    "runtime_minutes": 70
   },
   {
     "title": "Bacurau",
@@ -6555,7 +6711,11 @@
       "English",
       "Portuguese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/446159/"
+    "tmdb_url": "https://www.themoviedb.org/movie/446159/",
+    "title_original": "Bacurau",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 131
   },
   {
     "title": "Tren de sombras (El espectro de Le Thuit)",
@@ -6585,7 +6745,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/32934/"
+    "tmdb_url": "https://www.themoviedb.org/movie/32934/",
+    "title_original": "Tren de sombras",
+    "title_en": "Train of Shadows",
+    "title_es": null,
+    "runtime_minutes": 88
   },
   {
     "title": "La Tarta Del Presidente",
@@ -7443,7 +7607,11 @@
     "spoken_languages": [
       "Arabic"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1464883/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1464883/",
+    "title_original": "The President's Cake",
+    "title_en": "The President's Cake",
+    "title_es": "La Tarta del Presidente",
+    "runtime_minutes": 105
   },
   {
     "title": "Al final de la escapada",
@@ -7475,7 +7643,11 @@
       "French",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/269/"
+    "tmdb_url": "https://www.themoviedb.org/movie/269/",
+    "title_original": "À bout de souffle",
+    "title_en": "Breathless",
+    "title_es": "Al final de la escapada",
+    "runtime_minutes": 90
   },
   {
     "title": "La Chica Zurda",
@@ -8001,7 +8173,11 @@
     "spoken_languages": [
       "Chinese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/999075/"
+    "tmdb_url": "https://www.themoviedb.org/movie/999075/",
+    "title_original": "左撇子女孩",
+    "title_en": "Left-Handed Girl",
+    "title_es": "La chica zurda",
+    "runtime_minutes": 109
   },
   {
     "title": "Falcon Lake",
@@ -8035,7 +8211,11 @@
       "English",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/946127/"
+    "tmdb_url": "https://www.themoviedb.org/movie/946127/",
+    "title_original": "Falcon Lake",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "Bugonia",
@@ -8106,7 +8286,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/701387/"
+    "tmdb_url": "https://www.themoviedb.org/movie/701387/",
+    "title_original": "Bugonia",
+    "title_en": "Bugonia",
+    "title_es": null,
+    "runtime_minutes": 119
   },
   {
     "title": "Rental Family",
@@ -8696,7 +8880,11 @@
       "English",
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1208348/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1208348/",
+    "title_original": "Rental Family",
+    "title_en": "Rental Family",
+    "title_es": "Familia en renta",
+    "runtime_minutes": 110
   },
   {
     "title": "El agente secreto",
@@ -9610,7 +9798,11 @@
       "Portuguese",
       "German"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1220564/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1220564/",
+    "title_original": "O Agente Secreto",
+    "title_en": "The Secret Agent",
+    "title_es": "El agente secreto",
+    "runtime_minutes": 161
   },
   {
     "title": "El Havre",
@@ -9643,7 +9835,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/73532/"
+    "tmdb_url": "https://www.themoviedb.org/movie/73532/",
+    "title_original": "Le Havre",
+    "title_en": null,
+    "title_es": "El Havre",
+    "runtime_minutes": 94
   },
   {
     "title": "Vampiresas 1933",
@@ -9674,7 +9870,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/31511/"
+    "tmdb_url": "https://www.themoviedb.org/movie/31511/",
+    "title_original": "Gold Diggers of 1933",
+    "title_en": "Gold Diggers of 1933",
+    "title_es": "Vampiresas 1933",
+    "runtime_minutes": 97
   },
   {
     "title": "El Brujo: Julio Zachrisson",
@@ -9716,7 +9916,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1451183/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1451183/",
+    "title_original": "El Brujo: Julio Zachrisson",
+    "title_en": "The Sorcerer: Julio Zachrisson",
+    "title_es": null,
+    "runtime_minutes": 80
   },
   {
     "title": "Mermaid Legend",
@@ -9748,7 +9952,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/167439/"
+    "tmdb_url": "https://www.themoviedb.org/movie/167439/",
+    "title_original": "人魚伝説",
+    "title_en": "Mermaid Legend",
+    "title_es": null,
+    "runtime_minutes": 110
   },
   {
     "title": "La lengua de las mariposas",
@@ -9798,7 +10006,11 @@
       "Galician",
       "Latin"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/31023/"
+    "tmdb_url": "https://www.themoviedb.org/movie/31023/",
+    "title_original": "La lengua de las mariposas",
+    "title_en": "Butterfly",
+    "title_es": "La lengua de las mariposas",
+    "runtime_minutes": 96
   },
   {
     "title": "La vaquilla",
@@ -9847,7 +10059,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/71799/"
+    "tmdb_url": "https://www.themoviedb.org/movie/71799/",
+    "title_original": "La vaquilla",
+    "title_en": "The Heifer",
+    "title_es": null,
+    "runtime_minutes": 122
   },
   {
     "title": "El círculo",
@@ -9878,7 +10094,11 @@
     "spoken_languages": [
       "Persian (Farsi)"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/13898/"
+    "tmdb_url": "https://www.themoviedb.org/movie/13898/",
+    "title_original": "دایره",
+    "title_en": "The Circle",
+    "title_es": "El círculo",
+    "runtime_minutes": 90
   },
   {
     "title": "El misterio Picasso",
@@ -9914,7 +10134,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/71822/"
+    "tmdb_url": "https://www.themoviedb.org/movie/71822/",
+    "title_original": "Le Mystère Picasso",
+    "title_en": "The Mystery of Picasso",
+    "title_es": "El misterio de Picasso",
+    "runtime_minutes": 78
   },
   {
     "title": "Tardes de soledad",
@@ -9952,7 +10176,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/975324/"
+    "tmdb_url": "https://www.themoviedb.org/movie/975324/",
+    "title_original": "Tardes de soledad",
+    "title_en": "Afternoons of Solitude",
+    "title_es": null,
+    "runtime_minutes": 125
   },
   {
     "title": "Alicia en el país de las maravillas (1951)",
@@ -9985,7 +10213,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/12092/"
+    "tmdb_url": "https://www.themoviedb.org/movie/12092/",
+    "title_original": "Alice in Wonderland",
+    "title_en": "Alice in Wonderland",
+    "title_es": "Alicia en el país de las maravillas",
+    "runtime_minutes": 75
   },
   {
     "title": "Conferencia de Germán Labrador + Arrebato",
@@ -10017,7 +10249,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/4494/"
+    "tmdb_url": "https://www.themoviedb.org/movie/4494/",
+    "title_original": "Arrebato",
+    "title_en": "Rapture",
+    "title_es": null,
+    "runtime_minutes": 110
   },
   {
     "title": "Historias del buen valle",
@@ -10402,7 +10638,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1457842/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1457842/",
+    "title_original": "Historias del buen valle",
+    "title_en": "Good Valley Stories",
+    "title_es": null,
+    "runtime_minutes": 122
   },
   {
     "title": "The Crazy Family",
@@ -10434,7 +10674,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/67255/"
+    "tmdb_url": "https://www.themoviedb.org/movie/67255/",
+    "title_original": "逆噴射家族",
+    "title_en": "The Crazy Family",
+    "title_es": null,
+    "runtime_minutes": 107
   },
   {
     "title": "La Matanza De Texas",
@@ -10464,7 +10708,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/30497/"
+    "tmdb_url": "https://www.themoviedb.org/movie/30497/",
+    "title_original": "The Texas Chain Saw Massacre",
+    "title_en": "The Texas Chain Saw Massacre",
+    "title_es": "La matanza de Texas",
+    "runtime_minutes": 83
   },
   {
     "title": "En la ciudad de Sylvia",
@@ -10497,7 +10745,11 @@
       "French",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/29568/"
+    "tmdb_url": "https://www.themoviedb.org/movie/29568/",
+    "title_original": "En la ciudad de Sylvia",
+    "title_en": "In the City of Sylvia",
+    "title_es": "En la ciudad de Sylvia",
+    "runtime_minutes": 82
   },
   {
     "title": "La misteriosa mirada del flamenco",
@@ -10609,7 +10861,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/896096/"
+    "tmdb_url": "https://www.themoviedb.org/movie/896096/",
+    "title_original": "La misteriosa mirada del flamenco",
+    "title_en": "The Mysterious Gaze of the Flamingo",
+    "title_es": null,
+    "runtime_minutes": 108
   },
   {
     "title": "Flores para Antonio",
@@ -10645,7 +10901,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1357349/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1357349/",
+    "title_original": "Flores para Antonio",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "La felicidad",
@@ -10676,7 +10936,11 @@
     "spoken_languages": [
       "No spoken language"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/93743/"
+    "tmdb_url": "https://www.themoviedb.org/movie/93743/",
+    "title_original": "Счастье",
+    "title_en": "Happiness",
+    "title_es": "La felicidad",
+    "runtime_minutes": 63
   },
   {
     "title": "Las esposas",
@@ -10709,7 +10973,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/12223/"
+    "tmdb_url": "https://www.themoviedb.org/movie/12223/",
+    "title_original": "The Stepford Wives",
+    "title_en": "The Stepford Wives",
+    "title_es": "Las esposas de Stepford",
+    "runtime_minutes": 117
   },
   {
     "title": "An Honest Liar",
@@ -10741,7 +11009,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/262481/"
+    "tmdb_url": "https://www.themoviedb.org/movie/262481/",
+    "title_original": "An Honest Liar",
+    "title_en": "An Honest Liar",
+    "title_es": "Un mentiroso honesto",
+    "runtime_minutes": 90
   },
   {
     "title": "El crimen del Sr. Lange",
@@ -10773,7 +11045,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/52677/"
+    "tmdb_url": "https://www.themoviedb.org/movie/52677/",
+    "title_original": "Le Crime de Monsieur Lange",
+    "title_en": "The Crime of Monsieur Lange",
+    "title_es": "El crimen del Sr. Lange",
+    "runtime_minutes": 80
   },
   {
     "title": "Correspondencias Jonas Mekas – J.L. Guerin",
@@ -10799,7 +11075,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/162476/"
+    "tmdb_url": "https://www.themoviedb.org/movie/162476/",
+    "title_original": "Correspondencia Jonas Mekas - J.L. Guerin",
+    "title_en": "Cinematic Correspondences: Jonas Mekas - J.L. Guerin",
+    "title_es": null,
+    "runtime_minutes": 111
   },
   {
     "title": "La vie après Siham",
@@ -10830,7 +11110,11 @@
     "spoken_languages": [
       "Arabic"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1464976/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1464976/",
+    "title_original": "الحياة بعد سهام",
+    "title_en": "Life After Siham",
+    "title_es": null,
+    "runtime_minutes": 76
   },
   {
     "title": "Dodes'ka-den",
@@ -10860,7 +11144,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/33205/"
+    "tmdb_url": "https://www.themoviedb.org/movie/33205/",
+    "title_original": "どですかでん",
+    "title_en": "Dodes'ka-den",
+    "title_es": "Dodes 'Ka-Den",
+    "runtime_minutes": 140
   },
   {
     "title": "El pan nuestro de cada día",
@@ -10891,7 +11179,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/126136/"
+    "tmdb_url": "https://www.themoviedb.org/movie/126136/",
+    "title_original": "Our Daily Bread",
+    "title_en": "Our Daily Bread",
+    "title_es": "El pan nuestro de cada día",
+    "runtime_minutes": 80
   },
   {
     "title": "En construcción",
@@ -10930,7 +11222,11 @@
       "Spanish",
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/148353/"
+    "tmdb_url": "https://www.themoviedb.org/movie/148353/",
+    "title_original": "En construcción",
+    "title_en": "Work in Progress",
+    "title_es": null,
+    "runtime_minutes": 125
   },
   {
     "title": "Nouvelle Vague",
@@ -11084,7 +11380,11 @@
       "English",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1254808/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1254808/",
+    "title_original": "Nouvelle Vague",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 106
   },
   {
     "title": "Privilege",
@@ -11115,7 +11415,11 @@
       "English",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/123776/"
+    "tmdb_url": "https://www.themoviedb.org/movie/123776/",
+    "title_original": "Privilege",
+    "title_en": "Privilege",
+    "title_es": null,
+    "runtime_minutes": 103
   },
   {
     "title": "Ay, Carmela",
@@ -11168,7 +11472,11 @@
       "Polish",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/41806/"
+    "tmdb_url": "https://www.themoviedb.org/movie/41806/",
+    "title_original": "¡Ay, Carmela!",
+    "title_en": "Ay, Carmela!",
+    "title_es": null,
+    "runtime_minutes": 102
   },
   {
     "title": "El globo atado",
@@ -11200,7 +11508,11 @@
     "spoken_languages": [
       "Bulgarian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/260454/"
+    "tmdb_url": "https://www.themoviedb.org/movie/260454/",
+    "title_original": "Привързаният балон",
+    "title_en": "The Tied Up Balloon",
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "Maspalomas",
@@ -11237,7 +11549,11 @@
       "Basque",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1400214/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1400214/",
+    "title_original": "Maspalomas",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 115
   },
   {
     "title": "Rondallas",
@@ -11760,7 +12076,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1437873/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1437873/",
+    "title_original": "Rondallas",
+    "title_en": "Band Together",
+    "title_es": null,
+    "runtime_minutes": 112
   },
   {
     "title": "Las aventuras de Tintín: El secreto del unicornio",
@@ -11793,7 +12113,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/17578/"
+    "tmdb_url": "https://www.themoviedb.org/movie/17578/",
+    "title_original": "The Adventures of Tintin",
+    "title_en": "The Adventures of Tintin",
+    "title_es": "Las aventuras de Tintín: El secreto del unicornio",
+    "runtime_minutes": 107
   },
   {
     "title": "Innisfree",
@@ -11833,7 +12157,11 @@
       "Irish",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/100101/"
+    "tmdb_url": "https://www.themoviedb.org/movie/100101/",
+    "title_original": "Innisfree",
+    "title_en": "Innisfree",
+    "title_es": "Innisfree",
+    "runtime_minutes": 110
   },
   {
     "title": "El último vikingo",
@@ -11885,7 +12213,11 @@
       "Danish",
       "Swedish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1295400/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1295400/",
+    "title_original": "Den sidste viking",
+    "title_en": "The Last Viking",
+    "title_es": "El último vikingo",
+    "runtime_minutes": 116
   },
   {
     "title": "Romería",
@@ -11931,7 +12263,11 @@
       "Galician",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1182861/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1182861/",
+    "title_original": "Romería",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 114
   },
   {
     "title": "Diabolik",
@@ -11964,7 +12300,11 @@
     "spoken_languages": [
       "Italian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/2994/"
+    "tmdb_url": "https://www.themoviedb.org/movie/2994/",
+    "title_original": "Diabolik",
+    "title_en": "Danger: Diabolik",
+    "title_es": "Danger: Diabolik",
+    "runtime_minutes": 100
   },
   {
     "title": "Mapantsula",
@@ -11999,7 +12339,11 @@
       "Southern Sotho",
       "Zulu"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/122161/"
+    "tmdb_url": "https://www.themoviedb.org/movie/122161/",
+    "title_original": "Mapantsula",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 104
   },
   {
     "title": "Belle Epoque",
@@ -12051,7 +12395,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/2470/"
+    "tmdb_url": "https://www.themoviedb.org/movie/2470/",
+    "title_original": "Belle Époque",
+    "title_en": null,
+    "title_es": "Belle Époque",
+    "runtime_minutes": 109
   },
   {
     "title": "Tres Adioses",
@@ -13618,7 +13966,11 @@
     "spoken_languages": [
       "Italian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1433339/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1433339/",
+    "title_original": "Tre ciotole",
+    "title_en": "Three Goodbyes",
+    "title_es": "Tres adioses",
+    "runtime_minutes": 120
   },
   {
     "title": "La academia de las musas",
@@ -13652,7 +14004,11 @@
       "Sardinian",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/353793/"
+    "tmdb_url": "https://www.themoviedb.org/movie/353793/",
+    "title_original": "La academia de las musas",
+    "title_en": "The Academy of Muses",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "Querido Trópico",
@@ -13684,7 +14040,11 @@
       "Spanish",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1326068/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1326068/",
+    "title_original": "Querido Trópico",
+    "title_en": "Beloved Tropic",
+    "title_es": null,
+    "runtime_minutes": 108
   },
   {
     "title": "Unas fotos en la ciudad de Sylvia",
@@ -13714,7 +14074,11 @@
     "spoken_languages": [
       "No spoken language"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/269518/"
+    "tmdb_url": "https://www.themoviedb.org/movie/269518/",
+    "title_original": "Unas fotos en la ciudad de Sylvia",
+    "title_en": "Some Photos in the City of Sylvia",
+    "title_es": null,
+    "runtime_minutes": 67
   },
   {
     "title": "Los motivos de Berta",
@@ -13744,7 +14108,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/149149/"
+    "tmdb_url": "https://www.themoviedb.org/movie/149149/",
+    "title_original": "Los motivos de Berta",
+    "title_en": "Berta's Motives",
+    "title_es": "Los motivos de Berta",
+    "runtime_minutes": 115
   },
   {
     "title": "Hasta que me quede sin voz",
@@ -13781,7 +14149,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1513031/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1513031/",
+    "title_original": "Hasta que me quede sin voz",
+    "title_en": "Until My Voice Breaks",
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "Home Sweet Home",
@@ -13813,7 +14185,11 @@
       "English",
       "Polish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1035047/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1035047/",
+    "title_original": "Dom dobry",
+    "title_en": "Home Sweet Home",
+    "title_es": "Good Home",
+    "runtime_minutes": 108
   },
   {
     "title": "Macunaíma",
@@ -13845,7 +14221,11 @@
     "spoken_languages": [
       "Portuguese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/68173/"
+    "tmdb_url": "https://www.themoviedb.org/movie/68173/",
+    "title_original": "Macunaíma",
+    "title_en": "Macunaima",
+    "title_es": null,
+    "runtime_minutes": 110
   },
   {
     "title": "Sirat",
@@ -14199,7 +14579,11 @@
       "French",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1151272/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1151272/",
+    "title_original": "Sirāt",
+    "title_en": null,
+    "title_es": "Sirat: Trance en el desierto",
+    "runtime_minutes": 115
   },
   {
     "title": "Al oeste, en Zapata",
@@ -14230,7 +14614,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1107440/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1107440/",
+    "title_original": "Al oeste, en Zapata",
+    "title_en": "To the West, in Zapata",
+    "title_es": null,
+    "runtime_minutes": 74
   },
   {
     "title": "Patrimonio nacional",
@@ -14278,7 +14666,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/98609/"
+    "tmdb_url": "https://www.themoviedb.org/movie/98609/",
+    "title_original": "Patrimonio nacional",
+    "title_en": "National Heritage",
+    "title_es": null,
+    "runtime_minutes": 112
   },
   {
     "title": "La furia",
@@ -14309,7 +14701,11 @@
       "Spanish",
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1224668/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1224668/",
+    "title_original": "La furia",
+    "title_en": "Fury",
+    "title_es": null,
+    "runtime_minutes": 107
   },
   {
     "title": "Ciudad sin sueño",
@@ -14353,7 +14749,11 @@
       "Arabic",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1313032/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1313032/",
+    "title_original": "Ciudad sin sueño",
+    "title_en": "Sleepless City",
+    "title_es": null,
+    "runtime_minutes": 97
   },
   {
     "title": "Olivia y el terremoto invisible",
@@ -14395,7 +14795,11 @@
     "spoken_languages": [
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/676679/"
+    "tmdb_url": "https://www.themoviedb.org/movie/676679/",
+    "title_original": "L'Olívia i el terratrèmol invisible",
+    "title_en": "Olivia and the Invisible Earthquake",
+    "title_es": "Olivia y el terremoto invisible",
+    "runtime_minutes": 70
   },
   {
     "title": "La cronología del agua",
@@ -14428,7 +14832,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/524635/"
+    "tmdb_url": "https://www.themoviedb.org/movie/524635/",
+    "title_original": "The Chronology of Water",
+    "title_en": "The Chronology of Water",
+    "title_es": "La cronología del agua",
+    "runtime_minutes": 128
   },
   {
     "title": "Les Rayons Gamma",
@@ -14459,7 +14867,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1162501/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1162501/",
+    "title_original": "Les rayons gamma",
+    "title_en": "Gamma Rays",
+    "title_es": null,
+    "runtime_minutes": 101
   },
   {
     "title": "Door",
@@ -14491,7 +14903,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/405746/"
+    "tmdb_url": "https://www.themoviedb.org/movie/405746/",
+    "title_original": "DOOR",
+    "title_en": "Door",
+    "title_es": null,
+    "runtime_minutes": 94
   },
   {
     "title": "Muy lejos",
@@ -14524,7 +14940,11 @@
       "Dutch",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1409925/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1409925/",
+    "title_original": "Molt lluny",
+    "title_en": "Away",
+    "title_es": "Muy lejos",
+    "runtime_minutes": 100
   },
   {
     "title": "Creatura",
@@ -14554,7 +14974,11 @@
     "spoken_languages": [
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1071846/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1071846/",
+    "title_original": "Creatura",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 110
   },
   {
     "title": "Aída Y Vuelta",
@@ -14860,7 +15284,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1370123/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1370123/",
+    "title_original": "Aída y vuelta",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "La niña de tus ojos",
@@ -14911,7 +15339,11 @@
       "German",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/67297/"
+    "tmdb_url": "https://www.themoviedb.org/movie/67297/",
+    "title_original": "La niña de tus ojos",
+    "title_en": "The Girl of Your Dreams",
+    "title_es": "La niña de tus ojos",
+    "runtime_minutes": 121
   },
   {
     "title": "Eloy de la Iglesia, adicto al cine",
@@ -14971,7 +15403,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1538236/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1538236/",
+    "title_original": "Eloy de la Iglesia, adicto al cine",
+    "title_en": "Eloy de la Iglesia: Film Addict",
+    "title_es": null,
+    "runtime_minutes": 95
   },
   {
     "title": "Viva la muerte",
@@ -15003,7 +15439,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/42528/"
+    "tmdb_url": "https://www.themoviedb.org/movie/42528/",
+    "title_original": "Viva la muerte",
+    "title_en": "Long Live Death",
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "La hija pequeña",
@@ -15035,7 +15475,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/961077/"
+    "tmdb_url": "https://www.themoviedb.org/movie/961077/",
+    "title_original": "La Petite Dernière",
+    "title_en": "The Little Sister",
+    "title_es": "La hija pequeña",
+    "runtime_minutes": 106
   },
   {
     "title": "Río Turbio",
@@ -15063,7 +15507,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/727750/"
+    "tmdb_url": "https://www.themoviedb.org/movie/727750/",
+    "title_original": "Río Turbio",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 81
   },
   {
     "title": "Decorado",
@@ -15102,7 +15550,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1061771/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1061771/",
+    "title_original": "Decorado",
+    "title_en": "Scenery",
+    "title_es": null,
+    "runtime_minutes": 95
   },
   {
     "title": "Prometido el cielo",
@@ -15135,7 +15587,11 @@
       "Arabic",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1218412/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1218412/",
+    "title_original": "Promis le ciel",
+    "title_en": "Promised Sky",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "La Cena",
@@ -15383,7 +15839,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1433680/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1433680/",
+    "title_original": "La cena",
+    "title_en": "The Dinner",
+    "title_es": null,
+    "runtime_minutes": 106
   },
   {
     "title": "Sin conexión",
@@ -15559,7 +16019,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1140498/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1140498/",
+    "title_original": "Is This Thing On?",
+    "title_en": "Is This Thing On?",
+    "title_es": "¿Está funcionando esto?",
+    "runtime_minutes": 121
   },
   {
     "title": "Hasta la montaña",
@@ -15632,7 +16096,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/988361/"
+    "tmdb_url": "https://www.themoviedb.org/movie/988361/",
+    "title_original": "Bergers",
+    "title_en": "Shepherds",
+    "title_es": "Hasta la montaña",
+    "runtime_minutes": 113
   },
   {
     "title": "Todo documento de civilización",
@@ -15674,7 +16142,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1196849/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1196849/",
+    "title_original": "Todo documento de civilización",
+    "title_en": "Every Document of Civilization",
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "Tres kilómetros al fin del mundo",
@@ -15704,7 +16176,11 @@
     "spoken_languages": [
       "Romanian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1278338/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1278338/",
+    "title_original": "Trei kilometri până la capătul lumii",
+    "title_en": "Three Kilometres to the End of the World",
+    "title_es": "Tres kilómetros al fin del mundo",
+    "runtime_minutes": 105
   },
   {
     "title": "Una hija en Tokio",
@@ -15738,7 +16214,11 @@
       "Japanese",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1021643/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1021643/",
+    "title_original": "Une part manquante",
+    "title_en": "A Missing Part",
+    "title_es": "Una hija en Tokio",
+    "runtime_minutes": 98
   },
   {
     "title": "À bras-le-corps",
@@ -15771,7 +16251,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1303357/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1303357/",
+    "title_original": "À bras-le-corps",
+    "title_en": "Silent Rebellion",
+    "title_es": null,
+    "runtime_minutes": 96
   },
   {
     "title": "Una quinta portuguesa",
@@ -15809,7 +16293,11 @@
       "Portuguese",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1440171/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1440171/",
+    "title_original": "Una quinta portuguesa",
+    "title_en": "The Portuguese House",
+    "title_es": null,
+    "runtime_minutes": 114
   },
   {
     "title": "El Extranjero",
@@ -15920,7 +16408,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1429348/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1429348/",
+    "title_original": "L'Étranger",
+    "title_en": "The Stranger",
+    "title_es": "El extranjero",
+    "runtime_minutes": 122
   },
   {
     "title": "Orwell: 2 + 2 = 5",
@@ -16184,7 +16676,11 @@
       "English",
       "Russian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1098534/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1098534/",
+    "title_original": "Orwell: 2+2=5",
+    "title_en": "Orwell: 2+2=5",
+    "title_es": null,
+    "runtime_minutes": 119
   },
   {
     "title": "El año de las luces",
@@ -16234,7 +16730,11 @@
       "French",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/104089/"
+    "tmdb_url": "https://www.themoviedb.org/movie/104089/",
+    "title_original": "El año de las luces",
+    "title_en": "Year of Enlightment",
+    "title_es": null,
+    "runtime_minutes": 105
   },
   {
     "title": "El viaje fantástico de Simbad",
@@ -16270,7 +16770,11 @@
       "Arabic",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/17897/"
+    "tmdb_url": "https://www.themoviedb.org/movie/17897/",
+    "title_original": "The Golden Voyage of Sinbad",
+    "title_en": "The Golden Voyage of Sinbad",
+    "title_es": "El viaje fantástico de Simbad",
+    "runtime_minutes": 105
   },
   {
     "title": "Redux redux",
@@ -16304,7 +16808,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1340110/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1340110/",
+    "title_original": "Redux Redux",
+    "title_en": "Redux Redux",
+    "title_es": null,
+    "runtime_minutes": 109
   },
   {
     "title": "La buena letra",
@@ -16335,7 +16843,11 @@
       "Catalan",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1407635/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1407635/",
+    "title_original": "La buena letra",
+    "title_en": "The Good Manners",
+    "title_es": null,
+    "runtime_minutes": 110
   },
   {
     "title": "Los girasoles ciegos",
@@ -16383,7 +16895,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/56810/"
+    "tmdb_url": "https://www.themoviedb.org/movie/56810/",
+    "title_original": "Los girasoles ciegos",
+    "title_en": "The Blind Sunflowers",
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "Hollywood 90028",
@@ -16414,7 +16930,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/273544/"
+    "tmdb_url": "https://www.themoviedb.org/movie/273544/",
+    "title_original": "Hollywood 90028",
+    "title_en": "Hollywood 90028",
+    "title_es": null,
+    "runtime_minutes": 88
   },
   {
     "title": "Los Tigres",
@@ -16446,7 +16966,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1464374/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1464374/",
+    "title_original": "Los Tigres",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 109
   },
   {
     "title": "Fanon",
@@ -16481,7 +17005,11 @@
       "Arabic",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1000432/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1000432/",
+    "title_original": "Fanon",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 132
   },
   {
     "title": "Batman",
@@ -16513,7 +17041,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/2661/"
+    "tmdb_url": "https://www.themoviedb.org/movie/2661/",
+    "title_original": "Batman",
+    "title_en": "Batman",
+    "title_es": "Batman: La película",
+    "runtime_minutes": 105
   },
   {
     "title": "Alicia en el país de las maravillas (2010)",
@@ -16545,7 +17077,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/12155/"
+    "tmdb_url": "https://www.themoviedb.org/movie/12155/",
+    "title_original": "Alice in Wonderland",
+    "title_en": "Alice in Wonderland",
+    "title_es": "Alicia en el País de las Maravillas",
+    "runtime_minutes": 108
   },
   {
     "title": "El cautivo",
@@ -16584,7 +17120,11 @@
       "Arabic",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1238188/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1238188/",
+    "title_original": "El cautivo",
+    "title_en": "The Captive",
+    "title_es": null,
+    "runtime_minutes": 134
   },
   {
     "title": "The Sleeper. El Caravaggio perdido",
@@ -16629,7 +17169,11 @@
       "English",
       "Italian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1441594/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1441594/",
+    "title_original": "The Sleeper. El Caravaggio perdido",
+    "title_en": "The Sleeper. The Lost Caravaggio",
+    "title_es": null,
+    "runtime_minutes": 76
   },
   {
     "title": "Un fantasma en la batalla",
@@ -16662,7 +17206,11 @@
       "Basque",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1275151/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1275151/",
+    "title_original": "Un fantasma en la batalla",
+    "title_en": "She Walks in Darkness",
+    "title_es": null,
+    "runtime_minutes": 105
   },
   {
     "title": "Goya en Burdeos",
@@ -16695,7 +17243,11 @@
       "French",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/170767/"
+    "tmdb_url": "https://www.themoviedb.org/movie/170767/",
+    "title_original": "Goya en Burdeos",
+    "title_en": "Goya in Bordeaux",
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "Mi amiga Eva",
@@ -16733,7 +17285,11 @@
       "Catalan",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1297953/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1297953/",
+    "title_original": "Mi amiga Eva",
+    "title_en": "My Friend Eva",
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "Me siento extraña",
@@ -16764,7 +17320,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/365279/"
+    "tmdb_url": "https://www.themoviedb.org/movie/365279/",
+    "title_original": "Me siento extraña",
+    "title_en": "I Feel Strange",
+    "title_es": null,
+    "runtime_minutes": 87
   },
   {
     "title": "Door II: Tokyo Diary",
@@ -16795,7 +17355,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/405818/"
+    "tmdb_url": "https://www.themoviedb.org/movie/405818/",
+    "title_original": "Door II: Tokyo Diary",
+    "title_en": null,
+    "title_es": "Door II: Tokyo Diary",
+    "runtime_minutes": 82
   },
   {
     "title": "La lucha",
@@ -16826,7 +17390,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1513010/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1513010/",
+    "title_original": "La Lucha",
+    "title_en": "Dance of the Living",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "Les 2 Alfred",
@@ -16858,7 +17426,11 @@
       "French",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/665387/"
+    "tmdb_url": "https://www.themoviedb.org/movie/665387/",
+    "title_original": "Les 2 Alfred",
+    "title_en": "French Tech",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "Salvajes",
@@ -16890,7 +17462,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1301788/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1301788/",
+    "title_original": "Salvajes",
+    "title_en": "Savages",
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "Estrany riu",
@@ -16933,7 +17509,11 @@
     "spoken_languages": [
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1025389/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1025389/",
+    "title_original": "Estrany riu",
+    "title_en": "Strange River",
+    "title_es": "Extraño río",
+    "runtime_minutes": 106
   },
   {
     "title": "Balearic",
@@ -16971,7 +17551,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1510323/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1510323/",
+    "title_original": "Balearic",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 80
   },
   {
     "title": "El príncipe Valiente",
@@ -17003,7 +17587,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/65994/"
+    "tmdb_url": "https://www.themoviedb.org/movie/65994/",
+    "title_original": "Prince Valiant",
+    "title_en": "Prince Valiant",
+    "title_es": "El príncipe valiente",
+    "runtime_minutes": 100
   },
   {
     "title": "The Ice Tower",
@@ -17035,7 +17623,11 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1143440/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1143440/",
+    "title_original": "La tour de glace",
+    "title_en": "The Ice Tower",
+    "title_es": "La torre de hielo",
+    "runtime_minutes": 118
   },
   {
     "title": "Father Mother Sister Brother",
@@ -17264,7 +17856,11 @@
       "French",
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1159206/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1159206/",
+    "title_original": "Father Mother Sister Brother",
+    "title_en": "Father Mother Sister Brother",
+    "title_es": null,
+    "runtime_minutes": 111
   },
   {
     "title": "Bumpkin Soup",
@@ -17295,7 +17891,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/64536/"
+    "tmdb_url": "https://www.themoviedb.org/movie/64536/",
+    "title_original": "ドレミファ娘の血は騒ぐ",
+    "title_en": "Bumpkin Soup",
+    "title_es": null,
+    "runtime_minutes": 80
   },
   {
     "title": "Cumbres Borrascosas",
@@ -18275,7 +18875,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1316092/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1316092/",
+    "title_original": "\"Wuthering Heights\"",
+    "title_en": "\"Wuthering Heights\"",
+    "title_es": "“Cumbres Borrascosas”",
+    "runtime_minutes": 136
   },
   {
     "title": "Parecido a un asesinato",
@@ -18312,7 +18916,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1292315/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1292315/",
+    "title_original": "Parecido a un asesinato",
+    "title_en": "Hidden Murder",
+    "title_es": null,
+    "runtime_minutes": 111
   },
   {
     "title": "Vida Privada",
@@ -18423,7 +19031,11 @@
       "English",
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1290432/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1290432/",
+    "title_original": "Vie privée",
+    "title_en": "A Private Life",
+    "title_es": "Vida privada",
+    "runtime_minutes": 107
   },
   {
     "title": "Los Miserables. El Origen",
@@ -18592,7 +19204,10 @@
     "spoken_languages": [
       "French"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1376439/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1376439/",
+    "title_original": "Jean Valjean",
+    "title_en": "Les Misérables: The Story of Jean Valjean",
+    "title_es": "Los miserables. El origen"
   },
   {
     "title": "La Asistenta",
@@ -18659,7 +19274,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1368166/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1368166/",
+    "title_original": "The Housemaid",
+    "title_en": "The Housemaid",
+    "title_es": "La asistenta",
+    "runtime_minutes": 131
   },
   {
     "title": "Son de mar",
@@ -18708,7 +19327,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/62191/"
+    "tmdb_url": "https://www.themoviedb.org/movie/62191/",
+    "title_original": "Son de mar",
+    "title_en": "Sound of the Sea",
+    "title_es": null,
+    "runtime_minutes": 95
   },
   {
     "title": "Scarlet",
@@ -18807,7 +19430,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1406657/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1406657/",
+    "title_original": "果てしなきスカーレット",
+    "title_en": "Scarlet",
+    "title_es": "Scarlet",
+    "runtime_minutes": 112
   },
   {
     "title": "El talento",
@@ -18843,7 +19470,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1351046/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1351046/",
+    "title_original": "El talento",
+    "title_en": "The Talent",
+    "title_es": null,
+    "runtime_minutes": 103
   },
   {
     "title": "Caza de brujas",
@@ -18875,7 +19506,11 @@
       "English",
       "German"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1265063/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1265063/",
+    "title_original": "After the Hunt",
+    "title_en": "After the Hunt",
+    "title_es": "Caza de brujas",
+    "runtime_minutes": 139
   },
   {
     "title": "Caigan las rosas blancas",
@@ -18913,7 +19548,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/848334/"
+    "tmdb_url": "https://www.themoviedb.org/movie/848334/",
+    "title_original": "¡Caigan las rosas blancas!",
+    "title_en": "White Roses, Fall!",
+    "title_es": null,
+    "runtime_minutes": 123
   },
   {
     "title": "El increíble Burt Wonderstone",
@@ -18943,7 +19582,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/124459/"
+    "tmdb_url": "https://www.themoviedb.org/movie/124459/",
+    "title_original": "The Incredible Burt Wonderstone",
+    "title_en": "The Incredible Burt Wonderstone",
+    "title_es": "El increíble Burt Wonderstone",
+    "runtime_minutes": 100
   },
   {
     "title": "Homo Argentum",
@@ -19009,7 +19652,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1471345/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1471345/",
+    "title_original": "Homo Argentum",
+    "title_en": "Homo Argentum",
+    "title_es": null,
+    "runtime_minutes": 98
   },
   {
     "title": "Dios lo ve",
@@ -19055,7 +19702,11 @@
       "Italian",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1463643/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1463643/",
+    "title_original": "Dios Lo Ve",
+    "title_en": "God Sees It",
+    "title_es": null,
+    "runtime_minutes": 89
   },
   {
     "title": "Emergency Exit",
@@ -19110,7 +19761,11 @@
       "Catalan",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1314802/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1314802/",
+    "title_original": "Emergency Exit",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 96
   },
   {
     "title": "Hay un camino a la derecha",
@@ -19138,7 +19793,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/112187/"
+    "tmdb_url": "https://www.themoviedb.org/movie/112187/",
+    "title_original": "Hay un camino a la derecha",
+    "title_en": "Hay un camino a la derecha",
+    "title_es": "Hay un camino a la derecha",
+    "runtime_minutes": 96
   },
   {
     "title": "Volpina",
@@ -19170,7 +19829,10 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/787715/"
+    "tmdb_url": "https://www.themoviedb.org/movie/787715/",
+    "title_original": "Volpina",
+    "title_en": null,
+    "title_es": "Volpina"
   },
   {
     "title": "El taxista ful",
@@ -19196,7 +19858,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/334706/"
+    "tmdb_url": "https://www.themoviedb.org/movie/334706/",
+    "title_original": "El taxista ful",
+    "title_en": "The Taxi Thief",
+    "title_es": "El taxista ful",
+    "runtime_minutes": 90
   },
   {
     "title": "Queer me",
@@ -19240,7 +19906,11 @@
       "French",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1533714/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1533714/",
+    "title_original": "Queer Me",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 95
   },
   {
     "title": "Amanecer en Puerta Oscura",
@@ -19273,7 +19943,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/260640/"
+    "tmdb_url": "https://www.themoviedb.org/movie/260640/",
+    "title_original": "Amanecer en Puerta Oscura",
+    "title_en": "Whom God Forgives",
+    "title_es": null,
+    "runtime_minutes": 88
   },
   {
     "title": "Noche de verano",
@@ -19304,7 +19978,11 @@
       "Catalan",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/278981/"
+    "tmdb_url": "https://www.themoviedb.org/movie/278981/",
+    "title_original": "Noche de verano",
+    "title_en": "Summer Night",
+    "title_es": null,
+    "runtime_minutes": 111
   },
   {
     "title": "El enemigo principal",
@@ -19338,7 +20016,11 @@
       "Quechua",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/501726/"
+    "tmdb_url": "https://www.themoviedb.org/movie/501726/",
+    "title_original": "Jatun auka",
+    "title_en": "The Principal Enemy",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "Hotel Diaries 1-7",
@@ -19364,7 +20046,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/373407/"
+    "tmdb_url": "https://www.themoviedb.org/movie/373407/",
+    "title_original": "Hotel Diaries: Dirty Pictures",
+    "title_en": "Hotel Diaries: Dirty Pictures",
+    "title_es": null,
+    "runtime_minutes": 14
   },
   {
     "title": "Vivir al revés",
@@ -19396,7 +20082,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/962187/"
+    "tmdb_url": "https://www.themoviedb.org/movie/962187/",
+    "title_original": "Vivir al Revés",
+    "title_en": "Vivir al Revés",
+    "title_es": null,
+    "runtime_minutes": 70
   },
   {
     "title": "La desmemoriada",
@@ -19426,7 +20116,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/554725/"
+    "tmdb_url": "https://www.themoviedb.org/movie/554725/",
+    "title_original": "La desmemoriada",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 62
   },
   {
     "title": "CIMA en corto: Un lugar al que llamar (Correspondencias íntimas)",
@@ -19876,7 +20570,10 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1588838/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1588838/",
+    "title_original": "La fiera",
+    "title_en": null,
+    "title_es": null
   },
   {
     "title": "Bella",
@@ -19913,7 +20610,10 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1584294/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1584294/",
+    "title_original": "Bella",
+    "title_en": null,
+    "title_es": null
   },
   {
     "title": "El tesoro de barracuda",
@@ -19946,7 +20646,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1293641/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1293641/",
+    "title_original": "El tesoro de Barracuda",
+    "title_en": "The Treasure of Barracuda",
+    "title_es": null,
+    "runtime_minutes": 90
   },
   {
     "title": "Leo & Lou",
@@ -19985,7 +20689,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1329189/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1329189/",
+    "title_original": "Leo & Lou",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "Norbert",
@@ -20018,7 +20726,10 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1323853/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1323853/",
+    "title_original": "Norbert",
+    "title_en": null,
+    "title_es": "Norberto"
   },
   {
     "title": "Los niños de la colmena",
@@ -20048,7 +20759,11 @@
     "spoken_languages": [
       "Japanese"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/741416/"
+    "tmdb_url": "https://www.themoviedb.org/movie/741416/",
+    "title_original": "その後の蜂の巣の子供たち",
+    "title_en": "Children of the Beehive: What Happened Next",
+    "title_es": "Los niños de la colmena: lo que sucedió después",
+    "runtime_minutes": 95
   },
   {
     "title": "Tranvía a la Malvarrosa",
@@ -20096,7 +20811,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/111496/"
+    "tmdb_url": "https://www.themoviedb.org/movie/111496/",
+    "title_original": "Tranvía a la Malvarrosa",
+    "title_en": null,
+    "title_es": "Tranvía a la Malvarrosa",
+    "runtime_minutes": 107
   },
   {
     "title": "Clásicos Al Detalle – Taller De Análisis Fílmico Y Metacine Sobre Suspense Cukor [Renoir]",
@@ -20385,7 +21104,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/913424/"
+    "tmdb_url": "https://www.themoviedb.org/movie/913424/",
+    "title_original": "Sin Conexión",
+    "title_en": "Connection Lost",
+    "title_es": null,
+    "runtime_minutes": 14
   },
   {
     "title": "Dos hermanas",
@@ -20418,7 +21141,11 @@
       "Polish",
       "Ukrainian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1157407/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1157407/",
+    "title_original": "Dwie siostry",
+    "title_en": "Two Sisters",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "La ley de Sodoma",
@@ -20444,7 +21171,10 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1588517/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1588517/",
+    "title_original": "La ley de Sodoma",
+    "title_en": null,
+    "title_es": null
   },
   {
     "title": "Screening LAV #032. Golpear la pantalla",
@@ -20580,7 +21310,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1503648/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1503648/",
+    "title_original": "Maleficio (La regla de Osha)",
+    "title_en": "The Osha Rule",
+    "title_es": null,
+    "runtime_minutes": 94
   },
   {
     "title": "A&E, Adolf & Eva / Adam & Eve",
@@ -20606,7 +21340,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1480755/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1480755/",
+    "title_original": "A&E, Adolf & Eva / Adam & Eve, Mother",
+    "title_en": "A&E, Adolf & Eva / Adam & Eve, Mother",
+    "title_es": null,
+    "runtime_minutes": 45
   },
   {
     "title": "Aquí donde estoy",
@@ -20648,7 +21386,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1574595/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1574595/",
+    "title_original": "Aquí donde soy",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 22
   },
   {
     "title": "Boris Skossyreff, el estafador que fue rey",
@@ -20678,7 +21420,10 @@
     "spoken_languages": [
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1381391/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1381391/",
+    "title_original": "Boris Skossyreff, l'estafador que va ser rei",
+    "title_en": null,
+    "title_es": "Boris Skossyreff, el estafador que fue rey"
   },
   {
     "title": "CIMA proyecta: Porque la noche es oscura",
@@ -20796,7 +21541,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/42125/"
+    "tmdb_url": "https://www.themoviedb.org/movie/42125/",
+    "title_original": "Demonios en el jardín",
+    "title_en": "Demons in the Garden",
+    "title_es": null,
+    "runtime_minutes": 97
   },
   {
     "title": "El juego serio",
@@ -20827,7 +21576,11 @@
     "spoken_languages": [
       "Swedish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/358758/"
+    "tmdb_url": "https://www.themoviedb.org/movie/358758/",
+    "title_original": "Den allvarsamma leken",
+    "title_en": "Games of Love and Loneliness",
+    "title_es": null,
+    "runtime_minutes": 100
   },
   {
     "title": "El ojo en estado salvaje: La primera vanguardia",
@@ -20880,7 +21633,11 @@
     "spoken_languages": [
       "Norwegian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/468807/"
+    "tmdb_url": "https://www.themoviedb.org/movie/468807/",
+    "title_original": "Papirfuglen",
+    "title_en": "Paper Bird",
+    "title_es": null,
+    "runtime_minutes": 92
   },
   {
     "title": "La herencia",
@@ -20910,7 +21667,11 @@
     "spoken_languages": [
       "Norwegian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/54784/"
+    "tmdb_url": "https://www.themoviedb.org/movie/54784/",
+    "title_original": "Arven",
+    "title_en": "Next of Kin",
+    "title_es": null,
+    "runtime_minutes": 95
   },
   {
     "title": "La memoria es nuestra",
@@ -20948,7 +21709,11 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1471006/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1471006/",
+    "title_original": "La memoria es nuestra",
+    "title_en": "La memoria es nuestra",
+    "title_es": null,
+    "runtime_minutes": 56
   },
   {
     "title": "Los cuidados y el recuerdo: Selección de cortometrajes de escuelas de cine en España",
@@ -21023,7 +21788,11 @@
       "Catalan",
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/120318/"
+    "tmdb_url": "https://www.themoviedb.org/movie/120318/",
+    "title_original": "María y yo",
+    "title_en": "Maria and I",
+    "title_es": null,
+    "runtime_minutes": 80
   },
   {
     "title": "Papeles",
@@ -21060,7 +21829,11 @@
       "German",
       "Turkish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1237601/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1237601/",
+    "title_original": "Papeles",
+    "title_en": "Papers",
+    "title_es": null,
+    "runtime_minutes": 120
   },
   {
     "title": "Passage Through: A Ritual",
@@ -21088,7 +21861,11 @@
     "spoken_languages": [
       "No spoken language"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/445082/"
+    "tmdb_url": "https://www.themoviedb.org/movie/445082/",
+    "title_original": "Passage Through: A Ritual",
+    "title_en": "Passage Through: A Ritual",
+    "title_es": null,
+    "runtime_minutes": 49
   },
   {
     "title": "Rocío Dúrcal. La ranchera inesperada",
@@ -21163,7 +21940,11 @@
     "spoken_languages": [
       "Norwegian"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/250320/"
+    "tmdb_url": "https://www.themoviedb.org/movie/250320/",
+    "title_original": "Voldtekt",
+    "title_en": "Rape",
+    "title_es": null,
+    "runtime_minutes": 96
   },
   {
     "title": "Vía Versus",
@@ -21213,7 +21994,10 @@
     "spoken_languages": [
       "English"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/846620/"
+    "tmdb_url": "https://www.themoviedb.org/movie/846620/",
+    "title_original": "Toto: With a Little Help from My Friends",
+    "title_en": "Toto: With a Little Help from My Friends",
+    "title_es": null
   },
   {
     "title": "Yrupẽ",
@@ -21255,7 +22039,11 @@
     "spoken_languages": [
       "Spanish"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1450275/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1450275/",
+    "title_original": "Yrupẽ",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 79
   },
   {
     "title": "fe sin obras muerta es",
@@ -21285,6 +22073,10 @@
     "spoken_languages": [
       "Catalan"
     ],
-    "tmdb_url": "https://www.themoviedb.org/movie/1466477/"
+    "tmdb_url": "https://www.themoviedb.org/movie/1466477/",
+    "title_original": "Fe sense obres morta és",
+    "title_en": "Homage to Tàpies",
+    "title_es": "Faith without works is dead",
+    "runtime_minutes": 52
   }
 ]
