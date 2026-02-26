@@ -31,6 +31,7 @@ const TRANSLATIONS = {
         nTheaters: (n) => `${n} cines`,
         watchlistCount: (n) => `${n} películas cargadas de la watchlist`,
         footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor al cine',
+        footerThanks: 'Gracias a los cines de Madrid, a <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a> y a <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
         viewOnGithub: 'Ver en GitHub',
     },
@@ -63,6 +64,7 @@ const TRANSLATIONS = {
         nTheaters: (n) => `${n} theaters`,
         watchlistCount: (n) => `${n} films loaded from watchlist`,
         footerCreated: 'Created with the help of AI • Sponsored by my love for films',
+        footerThanks: 'Thanks to Madrid theaters, <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a>, and <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
         viewOnGithub: 'View on GitHub',
     }

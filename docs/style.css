@@ -915,6 +915,20 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
+.attribution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0 0.15rem;
+}
+
+.attribution-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 /* Sessions Toggle Button - for films with many screenings */
 .sessions-toggle {
     display: inline-flex;
