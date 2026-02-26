@@ -68,10 +68,16 @@ def test_parse_films_list_extracts_time(scraper, load_fixture):
     
     screenings = scraper.parse_films_list(html, datetime(2026, 1, 31))
     
-    # Check that dates include times
+    # Check that dates include times in structured format
     first = screenings[0]
     assert len(first["dates"]) > 0
-    assert "19:00" in first["dates"][0]  # Screenings are typically at 19:00
+    date_entry = first["dates"][0]
+    assert isinstance(date_entry, dict)
+    assert "19:00" in date_entry["timestamp"]  # Screenings are typically at 19:00
+    assert date_entry["location"] == "Cine Doré"
+    assert "url_tickets" in date_entry
+    assert "url_info" in date_entry
+    assert date_entry["url_info"] != ""
 
 
 def test_date_filtering(scraper, load_fixture):
@@ -92,3 +98,50 @@ def test_date_filtering(scraper, load_fixture):
     # Should find "Hay un camino a la derecha" on Feb 1
     assert len(filtered) >= 1
     assert any("camino" in s["title"].lower() for s in filtered)
+
+
+def test_merge_duplicate_films_preserves_session_urls(scraper):
+    """Same film with multiple Doré product URLs should merge into one row."""
+    screenings = [
+        {
+            "theater": "Cine Doré",
+            "title": "La jauría humana",
+            "theater_film_link": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana-ii",
+            "dates": [{
+                "timestamp": "2026-03-20 17:30",
+                "location": "Cine Doré",
+                "url_tickets": "",
+                "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana-ii",
+            }],
+            "director": "Arthur Penn",
+            "year": "1966",
+        },
+        {
+            "theater": "Cine Doré",
+            "title": "La jauría humana",
+            "theater_film_link": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana",
+            "dates": [{
+                "timestamp": "2026-03-05 20:15",
+                "location": "Cine Doré",
+                "url_tickets": "",
+                "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana",
+            }],
+            "director": "Arthur Penn",
+            "year": "1966",
+        },
+    ]
+
+    merged = scraper._merge_duplicate_films(screenings)
+
+    assert len(merged) == 1
+    film = merged[0]
+    assert film["title"] == "La jauría humana"
+    assert len(film["dates"]) == 2
+    assert [d["timestamp"] for d in film["dates"]] == [
+        "2026-03-05 20:15",
+        "2026-03-20 17:30",
+    ]
+    assert {d["url_info"] for d in film["dates"]} == {
+        "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana",
+        "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/la-jauria-humana-ii",
+    }

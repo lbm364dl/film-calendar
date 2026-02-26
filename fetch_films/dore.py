@@ -60,8 +60,47 @@ class DoreScraper(BaseCinemaScraper):
                     # Remove internal screening_date key before returning
                     result = {k: v for k, v in screening.items() if k != "screening_date"}
                     filtered.append(result)
-        
-        return filtered
+
+        return self._merge_duplicate_films(filtered)
+
+    def _merge_duplicate_films(self, screenings: list[dict]) -> list[dict]:
+        """Merge duplicate films into one row with multiple date entries.
+
+        Doré sometimes publishes separate product URLs for the same film
+        (e.g. slug and slug-ii). We merge by stable film identity fields,
+        while preserving each session's specific `url_info` in `dates`.
+        """
+        merged_map: dict[tuple[str, str | None, str | None], dict] = {}
+
+        for screening in screenings:
+            key = (
+                screening.get("title", ""),
+                screening.get("director"),
+                screening.get("year"),
+            )
+
+            if key not in merged_map:
+                merged_map[key] = {
+                    **screening,
+                    "dates": list(screening.get("dates", [])),
+                }
+                continue
+
+            existing = merged_map[key]
+            existing_dates = existing.get("dates", [])
+            new_dates = screening.get("dates", [])
+
+            existing_set = {tuple(sorted(d.items())) for d in existing_dates}
+            new_set = {tuple(sorted(d.items())) for d in new_dates}
+            merged_set = existing_set.union(new_set)
+
+            merged_dates = [dict(items) for items in merged_set]
+            merged_dates.sort(key=lambda d: d.get("timestamp", ""))
+            existing["dates"] = merged_dates
+
+        merged_list = list(merged_map.values())
+        merged_list.sort(key=lambda film: (film.get("title", ""), film.get("year") or ""))
+        return merged_list
 
     def _fetch_all_screenings(self) -> list[dict]:
         """Fetch all screenings from all listing pages."""
@@ -175,19 +214,25 @@ class DoreScraper(BaseCinemaScraper):
                 if time_match:
                     screening_time = time_match.group(1)
             
-            # Format dates list
-            if screening_time:
-                dates = [f"{screening_date} {screening_time}"]
-            else:
-                dates = [str(screening_date)]
-            
             # Find the info link ("+INFO" button)
             info_link = item.find("a", class_="mas-info")
             film_url = None
             if info_link and info_link.get("href"):
                 film_url = urljoin(self.BASE_URL, info_link["href"])
-            
-            # Order keys to match cineteca output: theater, title, theater_film_link, dates, director, year
+
+            # Format dates as list of structured dicts
+            if screening_time:
+                timestamp = f"{screening_date} {screening_time}"
+            else:
+                timestamp = str(screening_date)
+
+            dates = [{
+                "timestamp": timestamp,
+                "location": self.cinema_info.name,
+                "url_tickets": "",
+                "url_info": film_url or "",
+            }]
+
             screenings.append({
                 "theater": self.cinema_info.name,
                 "title": title,
