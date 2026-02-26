@@ -1,5 +1,38 @@
 [
   {
+    "title": "Samuel",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/samuel",
+        "url_info": "https://www.cinetecamadrid.com/programacion/samuel"
+      }
+    ],
+    "director": "Emilie Tronche",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/samuel-2024/",
+    "letterboxd_rating": 4.65,
+    "letterboxd_viewers": 51287,
+    "letterboxd_short_url": "https://boxd.it/LWKk",
+    "genres": [
+      "Animation",
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Spain"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/tv/248664/"
+  },
+  {
     "title": "El Bueno, El Feo Y El Malo",
     "dates": [
       {
@@ -5571,6 +5604,36 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1445363/"
   },
   {
+    "title": "Yo te creo",
+    "dates": [
+      {
+        "timestamp": "2026-03-18 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/yo-te-creo",
+        "url_info": "https://www.cinetecamadrid.com/programacion/yo-te-creo"
+      }
+    ],
+    "director": "Charlotte Devillers, Arnaud Dufeys",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/we-believe-you/",
+    "letterboxd_rating": 3.98,
+    "letterboxd_viewers": 6332,
+    "letterboxd_short_url": "https://boxd.it/Fhke",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Belgium"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1091196/"
+  },
+  {
     "title": "Arco",
     "dates": [
       {
@@ -7941,6 +8004,40 @@
     "tmdb_url": "https://www.themoviedb.org/movie/999075/"
   },
   {
+    "title": "Falcon Lake",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/falcon-lake-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/falcon-lake-0"
+      }
+    ],
+    "director": "Charlotte Le Bon",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/falcon-lake/",
+    "letterboxd_rating": 3.89,
+    "letterboxd_viewers": 29651,
+    "letterboxd_short_url": "https://boxd.it/zHkW",
+    "genres": [
+      "Drama",
+      "Romance",
+      "Mystery"
+    ],
+    "country": [
+      "Canada",
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "English",
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/946127/"
+  },
+  {
     "title": "Bugonia",
     "dates": [
       {
@@ -9580,6 +9677,48 @@
     "tmdb_url": "https://www.themoviedb.org/movie/31511/"
   },
   {
+    "title": "El Brujo: Julio Zachrisson",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-brujo-julio-zachrisson",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-brujo-julio-zachrisson"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-brujo-julio-zachrisson",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-brujo-julio-zachrisson"
+      },
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-brujo-julio-zachrisson",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-brujo-julio-zachrisson"
+      }
+    ],
+    "director": "Trillo Guardia",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-sorcerer-julio-zachrisson/",
+    "letterboxd_rating": 3.86,
+    "letterboxd_viewers": 280,
+    "letterboxd_short_url": "https://boxd.it/TKcG",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Panama"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1451183/"
+  },
+  {
     "title": "Mermaid Legend",
     "dates": [
       {
@@ -9742,6 +9881,42 @@
     "tmdb_url": "https://www.themoviedb.org/movie/13898/"
   },
   {
+    "title": "El misterio Picasso",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-misterio-picasso",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-misterio-picasso"
+      },
+      {
+        "timestamp": "2026-03-24 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-misterio-picasso",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-misterio-picasso"
+      }
+    ],
+    "director": "Henri-Georges Clouzot",
+    "year": 1956,
+    "letterboxd_url": "https://letterboxd.com/film/the-mystery-of-picasso/",
+    "letterboxd_rating": 3.82,
+    "letterboxd_viewers": 8260,
+    "letterboxd_short_url": "https://boxd.it/2pZQ",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/71822/"
+  },
+  {
     "title": "Tardes de soledad",
     "dates": [
       {
@@ -9811,6 +9986,38 @@
       "English"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/12092/"
+  },
+  {
+    "title": "Conferencia de Germán Labrador + Arrebato",
+    "dates": [
+      {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/conferencia-de-german-labrador-arrebato",
+        "url_info": "https://www.cinetecamadrid.com/programacion/conferencia-de-german-labrador-arrebato"
+      }
+    ],
+    "director": "Iván Zulueta",
+    "year": 1979,
+    "letterboxd_url": "https://letterboxd.com/film/rapture-1979/",
+    "letterboxd_rating": 3.8,
+    "letterboxd_viewers": 22744,
+    "letterboxd_short_url": "https://boxd.it/24f8",
+    "genres": [
+      "Horror",
+      "Drama",
+      "Fantasy"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/4494/"
   },
   {
     "title": "Historias del buen valle",
@@ -10472,6 +10679,39 @@
     "tmdb_url": "https://www.themoviedb.org/movie/93743/"
   },
   {
+    "title": "Las esposas",
+    "dates": [
+      {
+        "timestamp": "2026-03-17 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/las-esposas",
+        "url_info": "https://www.cinetecamadrid.com/programacion/las-esposas"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1975,
+    "letterboxd_url": "https://letterboxd.com/film/the-stepford-wives/",
+    "letterboxd_rating": 3.75,
+    "letterboxd_viewers": 80559,
+    "letterboxd_short_url": "https://boxd.it/1Sfq",
+    "genres": [
+      "Science Fiction",
+      "Horror",
+      "Mystery",
+      "Thriller"
+    ],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/12223/"
+  },
+  {
     "title": "An Honest Liar",
     "dates": [
       {
@@ -10560,6 +10800,37 @@
       "English"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/162476/"
+  },
+  {
+    "title": "La vie après Siham",
+    "dates": [
+      {
+        "timestamp": "2026-03-22 18:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-vie-apres-siham",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-vie-apres-siham"
+      }
+    ],
+    "director": "Namir Abdel Messeeh",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/life-after-siham/",
+    "letterboxd_rating": 3.73,
+    "letterboxd_viewers": 1208,
+    "letterboxd_short_url": "https://boxd.it/UinI",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "France",
+      "Egypt"
+    ],
+    "primary_language": [
+      "Arabic"
+    ],
+    "spoken_languages": [
+      "Arabic"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1464976/"
   },
   {
     "title": "Dodes'ka-den",
@@ -11492,6 +11763,39 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1437873/"
   },
   {
+    "title": "Las aventuras de Tintín: El secreto del unicornio",
+    "dates": [
+      {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/las-aventuras-de-tintin-el-secreto-del-unicornio",
+        "url_info": "https://www.cinetecamadrid.com/programacion/las-aventuras-de-tintin-el-secreto-del-unicornio"
+      }
+    ],
+    "director": "Steven Spielberg",
+    "year": 2011,
+    "letterboxd_url": "https://letterboxd.com/film/the-adventures-of-tintin/",
+    "letterboxd_rating": 3.65,
+    "letterboxd_viewers": 676974,
+    "letterboxd_short_url": "https://boxd.it/1Irc",
+    "genres": [
+      "Adventure",
+      "Animation",
+      "Mystery"
+    ],
+    "country": [
+      "New Zealand",
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/17578/"
+  },
+  {
     "title": "Innisfree",
     "dates": [
       {
@@ -11628,6 +11932,39 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1182861/"
+  },
+  {
+    "title": "Diabolik",
+    "dates": [
+      {
+        "timestamp": "2026-03-29 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/diabolik",
+        "url_info": "https://www.cinetecamadrid.com/programacion/diabolik"
+      }
+    ],
+    "director": "Mario Bava",
+    "year": 1968,
+    "letterboxd_url": "https://letterboxd.com/film/danger-diabolik/",
+    "letterboxd_rating": 3.62,
+    "letterboxd_viewers": 19906,
+    "letterboxd_short_url": "https://boxd.it/25Zc",
+    "genres": [
+      "Thriller",
+      "Action",
+      "Crime"
+    ],
+    "country": [
+      "Italy",
+      "France"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "Italian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/2994/"
   },
   {
     "title": "Mapantsula",
@@ -13318,6 +13655,38 @@
     "tmdb_url": "https://www.themoviedb.org/movie/353793/"
   },
   {
+    "title": "Querido Trópico",
+    "dates": [
+      {
+        "timestamp": "2026-03-11 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "",
+        "url_info": "https://www.cinetecamadrid.com/programacion/querido-tropico-0"
+      }
+    ],
+    "director": "Ana Endara",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/beloved-tropic/",
+    "letterboxd_rating": 3.58,
+    "letterboxd_viewers": 1365,
+    "letterboxd_short_url": "https://boxd.it/OBpm",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Colombia",
+      "Panama"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1326068/"
+  },
+  {
     "title": "Unas fotos en la ciudad de Sylvia",
     "dates": [
       {
@@ -13413,6 +13782,38 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1513031/"
+  },
+  {
+    "title": "Home Sweet Home",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/home-sweet-home",
+        "url_info": "https://www.cinetecamadrid.com/programacion/home-sweet-home-0"
+      }
+    ],
+    "director": "Wojciech Smarzowski",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/home-sweet-home-2025-3/",
+    "letterboxd_rating": 3.56,
+    "letterboxd_viewers": 12758,
+    "letterboxd_short_url": "https://boxd.it/D9Ls",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Poland"
+    ],
+    "primary_language": [
+      "Polish"
+    ],
+    "spoken_languages": [
+      "English",
+      "Polish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1035047/"
   },
   {
     "title": "Macunaíma",
@@ -14030,6 +14431,37 @@
     "tmdb_url": "https://www.themoviedb.org/movie/524635/"
   },
   {
+    "title": "Les Rayons Gamma",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/les-rayons-gamma",
+        "url_info": "https://www.cinetecamadrid.com/programacion/les-rayons-gamma"
+      }
+    ],
+    "director": "Henry Bernadet",
+    "year": 2023,
+    "letterboxd_url": "https://letterboxd.com/film/gamma-rays/",
+    "letterboxd_rating": 3.52,
+    "letterboxd_viewers": 1464,
+    "letterboxd_short_url": "https://boxd.it/HY6S",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "Canada"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1162501/"
+  },
+  {
     "title": "Door",
     "dates": [
       {
@@ -14542,6 +14974,98 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1538236/"
   },
   {
+    "title": "Viva la muerte",
+    "dates": [
+      {
+        "timestamp": "2026-03-10 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/viva-la-muerte",
+        "url_info": "https://www.cinetecamadrid.com/programacion/viva-la-muerte"
+      }
+    ],
+    "director": "Fernando Arrabal",
+    "year": 1971,
+    "letterboxd_url": "https://letterboxd.com/film/long-live-death/",
+    "letterboxd_rating": 3.48,
+    "letterboxd_viewers": 3336,
+    "letterboxd_short_url": "https://boxd.it/WFU",
+    "genres": [
+      "Drama",
+      "War"
+    ],
+    "country": [
+      "France",
+      "Tunisia"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/42528/"
+  },
+  {
+    "title": "La hija pequeña",
+    "dates": [
+      {
+        "timestamp": "2026-03-20 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-hija-pequena",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-hija-pequena"
+      }
+    ],
+    "director": "Hafsia Herzi",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-little-sister-2025/",
+    "letterboxd_rating": 3.47,
+    "letterboxd_viewers": 36905,
+    "letterboxd_short_url": "https://boxd.it/AicU",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Germany"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/961077/"
+  },
+  {
+    "title": "Río Turbio",
+    "dates": [
+      {
+        "timestamp": "2026-03-27 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/rio-turbio",
+        "url_info": "https://www.cinetecamadrid.com/programacion/rio-turbio"
+      }
+    ],
+    "director": "Tatiana Mazú González",
+    "year": 2020,
+    "letterboxd_url": "https://letterboxd.com/film/rio-turbio/",
+    "letterboxd_rating": 3.47,
+    "letterboxd_viewers": 550,
+    "letterboxd_short_url": "https://boxd.it/rhP4",
+    "genres": [],
+    "country": [
+      "Argentina"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/727750/"
+  },
+  {
     "title": "Decorado",
     "dates": [
       {
@@ -14579,6 +15103,39 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1061771/"
+  },
+  {
+    "title": "Prometido el cielo",
+    "dates": [
+      {
+        "timestamp": "2026-03-20 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/prometido-el-cielo",
+        "url_info": "https://www.cinetecamadrid.com/programacion/prometido-el-cielo"
+      }
+    ],
+    "director": "Erige Sehiri",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/promised-sky/",
+    "letterboxd_rating": 3.46,
+    "letterboxd_viewers": 2983,
+    "letterboxd_short_url": "https://boxd.it/KfHg",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Tunisia",
+      "Egypt"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "Arabic",
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1218412/"
   },
   {
     "title": "La Cena",
@@ -15048,6 +15605,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96446&eventCode=108094",
         "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-22 18:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/hasta-la-montana",
+        "url_info": "https://www.cinetecamadrid.com/programacion/hasta-la-montana"
       }
     ],
     "director": "Sophie Deraspe",
@@ -15070,6 +15633,145 @@
       "French"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/988361/"
+  },
+  {
+    "title": "Todo documento de civilización",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/todo-documento-de-civilizacion-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/todo-documento-de-civilizacion-0"
+      },
+      {
+        "timestamp": "2026-03-29 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/todo-documento-de-civilizacion-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/todo-documento-de-civilizacion-0"
+      },
+      {
+        "timestamp": "2026-03-31 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/todo-documento-de-civilizacion-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/todo-documento-de-civilizacion-0"
+      }
+    ],
+    "director": "Tatiana Mazú González",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/every-document-of-civilization/",
+    "letterboxd_rating": 3.45,
+    "letterboxd_viewers": 687,
+    "letterboxd_short_url": "https://boxd.it/Jp9Q",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Argentina"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1196849/"
+  },
+  {
+    "title": "Tres kilómetros al fin del mundo",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/tres-kilometros-al-fin-del-mundo-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/tres-kilometros-al-fin-del-mundo-0"
+      }
+    ],
+    "director": "Emanuel Pârvu",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/three-kilometres-to-the-end-of-the-world/",
+    "letterboxd_rating": 3.45,
+    "letterboxd_viewers": 7774,
+    "letterboxd_short_url": "https://boxd.it/MKnU",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Romania"
+    ],
+    "primary_language": [
+      "Romanian"
+    ],
+    "spoken_languages": [
+      "Romanian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1278338/"
+  },
+  {
+    "title": "Una hija en Tokio",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 18:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/una-hija-en-tokio",
+        "url_info": "https://www.cinetecamadrid.com/programacion/una-hija-en-tokio"
+      }
+    ],
+    "director": "Guillaume Senez",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/a-missing-part/",
+    "letterboxd_rating": 3.45,
+    "letterboxd_viewers": 5900,
+    "letterboxd_short_url": "https://boxd.it/CDT0",
+    "genres": [
+      "Drama",
+      "Comedy"
+    ],
+    "country": [
+      "Belgium",
+      "France",
+      "Japan"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "Japanese",
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1021643/"
+  },
+  {
+    "title": "À bras-le-corps",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/a-bras-le-corps",
+        "url_info": "https://www.cinetecamadrid.com/programacion/bras-le-corps"
+      }
+    ],
+    "director": "Marie-Elsa Sgualdo",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/silent-rebellion-2025/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 958,
+    "letterboxd_short_url": "https://boxd.it/NJxQ",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Switzerland",
+      "Belgium",
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1303357/"
   },
   {
     "title": "Una quinta portuguesa",
@@ -15684,6 +16386,37 @@
     "tmdb_url": "https://www.themoviedb.org/movie/56810/"
   },
   {
+    "title": "Hollywood 90028",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/hollywood-90028",
+        "url_info": "https://www.cinetecamadrid.com/programacion/hollywood-90028"
+      }
+    ],
+    "director": "Christina Hornisher",
+    "year": 1973,
+    "letterboxd_url": "https://letterboxd.com/film/hollywood-90028/",
+    "letterboxd_rating": 3.37,
+    "letterboxd_viewers": 6689,
+    "letterboxd_short_url": "https://boxd.it/8icu",
+    "genres": [
+      "Drama",
+      "Horror"
+    ],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/273544/"
+  },
+  {
     "title": "Los Tigres",
     "dates": [
       {
@@ -15714,6 +16447,73 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1464374/"
+  },
+  {
+    "title": "Fanon",
+    "dates": [
+      {
+        "timestamp": "2026-03-22 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/fanon",
+        "url_info": "https://www.cinetecamadrid.com/programacion/fanon"
+      }
+    ],
+    "director": "Jean-Claude Barny",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/fanon/",
+    "letterboxd_rating": 3.33,
+    "letterboxd_viewers": 12428,
+    "letterboxd_short_url": "https://boxd.it/BOMW",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Canada",
+      "France",
+      "Luxembourg",
+      "Belgium"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "Arabic",
+      "French"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1000432/"
+  },
+  {
+    "title": "Batman",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 12:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/batman-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/batman-0"
+      }
+    ],
+    "director": "Leslie H. Martinson",
+    "year": 1966,
+    "letterboxd_url": "https://letterboxd.com/film/batman-1966/",
+    "letterboxd_rating": 3.32,
+    "letterboxd_viewers": 118372,
+    "letterboxd_short_url": "https://boxd.it/26uO",
+    "genres": [
+      "Comedy",
+      "Action",
+      "Crime"
+    ],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/2661/"
   },
   {
     "title": "Alicia en el país de las maravillas (2010)",
@@ -16029,6 +16829,70 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1513010/"
   },
   {
+    "title": "Les 2 Alfred",
+    "dates": [
+      {
+        "timestamp": "2026-03-20 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/les-2-alfred",
+        "url_info": "https://www.cinetecamadrid.com/programacion/les-2-alfred"
+      }
+    ],
+    "director": "Bruno Podalydès",
+    "year": 2020,
+    "letterboxd_url": "https://letterboxd.com/film/french-tech/",
+    "letterboxd_rating": 3.23,
+    "letterboxd_viewers": 4169,
+    "letterboxd_short_url": "https://boxd.it/oLwA",
+    "genres": [
+      "Comedy"
+    ],
+    "country": [
+      "France"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "German",
+      "French",
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/665387/"
+  },
+  {
+    "title": "Salvajes",
+    "dates": [
+      {
+        "timestamp": "2026-03-22 12:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/salvajes-2",
+        "url_info": "https://www.cinetecamadrid.com/programacion/salvajes-1"
+      }
+    ],
+    "director": "Claude Barras",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/savages-2024-2/",
+    "letterboxd_rating": 3.2,
+    "letterboxd_viewers": 301,
+    "letterboxd_short_url": "https://boxd.it/NFHM",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Argentina",
+      "Chile"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1301788/"
+  },
+  {
     "title": "Estrany riu",
     "dates": [
       {
@@ -16108,6 +16972,38 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1510323/"
+  },
+  {
+    "title": "El príncipe Valiente",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 12:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-principe-valiente",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-principe-valiente"
+      }
+    ],
+    "director": "Henry Hathaway",
+    "year": 1954,
+    "letterboxd_url": "https://letterboxd.com/film/prince-valiant/",
+    "letterboxd_rating": 3.18,
+    "letterboxd_viewers": 1702,
+    "letterboxd_short_url": "https://boxd.it/2dq",
+    "genres": [
+      "Romance",
+      "Action",
+      "Adventure"
+    ],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/65994/"
   },
   {
     "title": "The Ice Tower",
@@ -17950,6 +18846,38 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1351046/"
   },
   {
+    "title": "Caza de brujas",
+    "dates": [
+      {
+        "timestamp": "2026-03-24 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/caza-de-brujas",
+        "url_info": "https://www.cinetecamadrid.com/programacion/caza-de-brujas"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1981,
+    "letterboxd_url": "https://letterboxd.com/film/after-the-hunt-2025/",
+    "letterboxd_rating": 2.86,
+    "letterboxd_viewers": 219926,
+    "letterboxd_short_url": "https://boxd.it/Mdra",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "USA",
+      "Italy"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "German"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1265063/"
+  },
+  {
     "title": "Caigan las rosas blancas",
     "dates": [
       {
@@ -19653,5 +20581,710 @@
       "Spanish"
     ],
     "tmdb_url": "https://www.themoviedb.org/movie/1503648/"
+  },
+  {
+    "title": "A&E, Adolf & Eva / Adam & Eve",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 17:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/ae-adolf-eva-adam-eve",
+        "url_info": "https://www.cinetecamadrid.com/programacion/ae-adolf-eva-adam-eve"
+      }
+    ],
+    "director": "Paul McCarthy",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/ae-adolf-eva-adam-eve-mother/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 26,
+    "letterboxd_short_url": "https://boxd.it/UXTU",
+    "genres": [],
+    "country": [],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1480755/"
+  },
+  {
+    "title": "Aquí donde estoy",
+    "dates": [
+      {
+        "timestamp": "2026-03-27 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/aqui-donde-estoy",
+        "url_info": "https://www.cinetecamadrid.com/programacion/aqui-donde-estoy"
+      },
+      {
+        "timestamp": "2026-03-29 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/aqui-donde-estoy",
+        "url_info": "https://www.cinetecamadrid.com/programacion/aqui-donde-estoy"
+      },
+      {
+        "timestamp": "2026-03-31 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/aqui-donde-estoy",
+        "url_info": "https://www.cinetecamadrid.com/programacion/aqui-donde-estoy"
+      }
+    ],
+    "director": "Álex Cuellar, Rafa G. Sánchez",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/aqui-donde-soy/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 27,
+    "letterboxd_short_url": "https://boxd.it/YH9u",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1574595/"
+  },
+  {
+    "title": "Boris Skossyreff, el estafador que fue rey",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 18:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/boris-skossyreff-el-estafador-que-fue-rey",
+        "url_info": "https://www.cinetecamadrid.com/programacion/boris-skossyreff-el-estafador-que-fue-rey"
+      }
+    ],
+    "director": "Jorge Cebrián",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/boris-skossyreff-lescroc-qui-fut-roi/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 35,
+    "letterboxd_short_url": "https://boxd.it/R9nI",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Andorra"
+    ],
+    "primary_language": [
+      "Catalan"
+    ],
+    "spoken_languages": [
+      "Catalan"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1381391/"
+  },
+  {
+    "title": "CIMA proyecta: Porque la noche es oscura",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/cima-proyecta-porque-la-noche-es-oscura",
+        "url_info": "https://www.cinetecamadrid.com/programacion/cima-proyecta-porque-la-noche-es-oscura"
+      }
+    ],
+    "director": "Dentro Cine",
+    "year": 2026,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Caperucita roja",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/caperucita-roja-10",
+        "url_info": "https://www.cinetecamadrid.com/programacion/caperucita-roja-0"
+      }
+    ],
+    "director": "Tatiana Mazú González",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Capítulo XXIX: II Jornadas sobre Arte Sonoro \"Rebecca Collins\"",
+    "dates": [
+      {
+        "timestamp": "2026-03-04 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/capitulo-xxix-ii-jornadas-sobre-arte-sonoro-rebecca-collins",
+        "url_info": "https://www.cinetecamadrid.com/programacion/capitulo-xxix-ii-jornadas-sobre-arte-sonoro-rebecca-collins"
+      }
+    ],
+    "director": null,
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Conferencia de Estrella de Diego + Cineastas coreógrafas: El cine de Maya Deren e Yvonne Rainer",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/conferencia-de-estrella-de-diego-cineastas-coreografas-el-cine-de-maya-deren-e-yvonne-rainer",
+        "url_info": "https://www.cinetecamadrid.com/programacion/conferencia-de-estrella-de-diego-cineastas-coreografas-el-cine-de-maya-deren-e-yvonne"
+      }
+    ],
+    "director": "Varias autoras",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Demonios en el jardín",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/demonios-en-el-jardin",
+        "url_info": "https://www.cinetecamadrid.com/programacion/demonios-en-el-jardin"
+      }
+    ],
+    "director": "Manuel Gutiérrez Aragón",
+    "year": 1982,
+    "letterboxd_url": "https://letterboxd.com/film/demons-in-the-garden/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 252,
+    "letterboxd_short_url": "https://boxd.it/XGa",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/42125/"
+  },
+  {
+    "title": "El juego serio",
+    "dates": [
+      {
+        "timestamp": "2026-03-18 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-juego-serio",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-juego-serio"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1977,
+    "letterboxd_url": "https://letterboxd.com/film/games-of-love-and-loneliness/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 140,
+    "letterboxd_short_url": "https://boxd.it/cb5k",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Norway",
+      "Sweden"
+    ],
+    "primary_language": [
+      "Swedish"
+    ],
+    "spoken_languages": [
+      "Swedish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/358758/"
+  },
+  {
+    "title": "El ojo en estado salvaje: La primera vanguardia",
+    "dates": [
+      {
+        "timestamp": "2026-03-03 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-ojo-en-estado-salvaje-la-primera-vanguardia",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-ojo-en-estado-salvaje-la-primera-vanguardia"
+      }
+    ],
+    "director": "Varios autores",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "El pájaro de papel",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/el-pajaro-de-papel",
+        "url_info": "https://www.cinetecamadrid.com/programacion/el-pajaro-de-papel"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1984,
+    "letterboxd_url": "https://letterboxd.com/film/paper-bird/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 43,
+    "letterboxd_short_url": "https://boxd.it/gNbe",
+    "genres": [
+      "Drama",
+      "Crime"
+    ],
+    "country": [
+      "Norway"
+    ],
+    "primary_language": [
+      "Norwegian"
+    ],
+    "spoken_languages": [
+      "Norwegian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/468807/"
+  },
+  {
+    "title": "La herencia",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-herencia-1",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-herencia"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1979,
+    "letterboxd_url": "https://letterboxd.com/film/next-of-kin-1979/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 236,
+    "letterboxd_short_url": "https://boxd.it/tqm",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Norway"
+    ],
+    "primary_language": [
+      "Norwegian"
+    ],
+    "spoken_languages": [
+      "Norwegian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/54784/"
+  },
+  {
+    "title": "La memoria es nuestra",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-memoria-es-nuestra",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-memoria-es-nuestra"
+      },
+      {
+        "timestamp": "2026-03-14 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-memoria-es-nuestra",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-memoria-es-nuestra"
+      },
+      {
+        "timestamp": "2026-03-15 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/la-memoria-es-nuestra",
+        "url_info": "https://www.cinetecamadrid.com/programacion/la-memoria-es-nuestra"
+      }
+    ],
+    "director": "Terrorismo de Autor, con la participación del Grupo de Historia Urbana Barrio del Pilar",
+    "year": 2020,
+    "letterboxd_url": "https://letterboxd.com/film/la-memoria-es-nuestra/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 2,
+    "letterboxd_short_url": "https://boxd.it/UytM",
+    "genres": [],
+    "country": [],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1471006/"
+  },
+  {
+    "title": "Los cuidados y el recuerdo: Selección de cortometrajes de escuelas de cine en España",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/los-cuidados-y-el-recuerdo-seleccion-de-cortometrajes-de-escuelas-de-cine-en-espana",
+        "url_info": "https://www.cinetecamadrid.com/programacion/los-cuidados-y-el-recuerdo-seleccion-de-cortometrajes-de-escuelas-de-cine-en-espana"
+      }
+    ],
+    "director": "Varios/as autores/as",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "María Sánchez: Mientras haces otras cosas",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/maria-sanchez-mientras-haces-otras-cosas",
+        "url_info": "https://www.cinetecamadrid.com/programacion/maria-sanchez-mientras-haces-otras-cosas"
+      }
+    ],
+    "director": null,
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "María y yo",
+    "dates": [
+      {
+        "timestamp": "2026-03-29 12:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/maria-y-yo",
+        "url_info": "https://www.cinetecamadrid.com/programacion/maria-y-yo"
+      }
+    ],
+    "director": "Félix Fernández de Castro",
+    "year": 2011,
+    "letterboxd_url": "https://letterboxd.com/film/maria-and-i/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 182,
+    "letterboxd_short_url": "https://boxd.it/3Zbk",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Catalan",
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/120318/"
+  },
+  {
+    "title": "Papeles",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "",
+        "url_info": "https://www.cinetecamadrid.com/programacion/papeles"
+      }
+    ],
+    "director": "Arturo Montenegro",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/papers-2025/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 154,
+    "letterboxd_short_url": "https://boxd.it/L2qS",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Action"
+    ],
+    "country": [
+      "Spain",
+      "Panama",
+      "Uruguay"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "Chinese",
+      "German",
+      "Turkish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1237601/"
+  },
+  {
+    "title": "Passage Through: A Ritual",
+    "dates": [
+      {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/passage-through-a-ritual",
+        "url_info": "https://www.cinetecamadrid.com/programacion/passage-through-ritual"
+      }
+    ],
+    "director": "Stan Brakhage",
+    "year": 1990,
+    "letterboxd_url": "https://letterboxd.com/film/passage-through-a-ritual/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 301,
+    "letterboxd_short_url": "https://boxd.it/fQc8",
+    "genres": [],
+    "country": [
+      "USA"
+    ],
+    "primary_language": [
+      "No spoken language"
+    ],
+    "spoken_languages": [
+      "No spoken language"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/445082/"
+  },
+  {
+    "title": "Rocío Dúrcal. La ranchera inesperada",
+    "dates": [
+      {
+        "timestamp": "2026-03-17 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/rocio-durcal-la-ranchera-inesperada",
+        "url_info": "https://www.cinetecamadrid.com/programacion/rocio-durcal-la-ranchera-inesperada"
+      }
+    ],
+    "director": "Raúl de Andrés, Cristina Alonso",
+    "year": 2026,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Vincent Finch, temporadas 1 y 2",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/vincent-finch-temporadas-1-y-2",
+        "url_info": "https://www.cinetecamadrid.com/programacion/vincent-finch-temporadas-1-y-2"
+      }
+    ],
+    "director": "David Suárez, Cristina Galán",
+    "year": 2025,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "Violación",
+    "dates": [
+      {
+        "timestamp": "2026-03-15 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/violacion",
+        "url_info": "https://www.cinetecamadrid.com/programacion/violacion"
+      }
+    ],
+    "director": "Anja Breien",
+    "year": 1971,
+    "letterboxd_url": "https://letterboxd.com/film/rape-1971/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 199,
+    "letterboxd_short_url": "https://boxd.it/7kI6",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "country": [
+      "Norway"
+    ],
+    "primary_language": [
+      "Norwegian"
+    ],
+    "spoken_languages": [
+      "Norwegian"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/250320/"
+  },
+  {
+    "title": "Vía Versus",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/via-versus",
+        "url_info": "https://www.cinetecamadrid.com/programacion/versus"
+      }
+    ],
+    "director": "María Salgado, Clarisa Navas",
+    "year": 2024,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null
+  },
+  {
+    "title": "With a Little Help from My Friends",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 20:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/with-a-little-help-from-my-friends",
+        "url_info": "https://www.cinetecamadrid.com/programacion/little-help-my-friends"
+      }
+    ],
+    "director": "Varios/as artistas",
+    "year": 2021,
+    "letterboxd_url": "https://letterboxd.com/film/toto-with-a-little-help-from-my-friends/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 9,
+    "letterboxd_short_url": "https://boxd.it/vW7A",
+    "genres": [
+      "Music"
+    ],
+    "country": [],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/846620/"
+  },
+  {
+    "title": "Yrupẽ",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/yrupe",
+        "url_info": "https://www.cinetecamadrid.com/programacion/yrupe"
+      },
+      {
+        "timestamp": "2026-03-08 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/yrupe",
+        "url_info": "https://www.cinetecamadrid.com/programacion/yrupe"
+      },
+      {
+        "timestamp": "2026-03-10 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/yrupe",
+        "url_info": "https://www.cinetecamadrid.com/programacion/yrupe"
+      }
+    ],
+    "director": "Candela Sotos",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/yrupe/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 150,
+    "letterboxd_short_url": "https://boxd.it/TFMk",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1450275/"
+  },
+  {
+    "title": "fe sin obras muerta es",
+    "dates": [
+      {
+        "timestamp": "2026-03-03 19:30",
+        "location": "Cineteca Madrid",
+        "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/fe-sin-obras-muerta-es",
+        "url_info": "https://www.cinetecamadrid.com/programacion/fe-sin-obras-muerta-es"
+      }
+    ],
+    "director": "Albert Serra",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/homage-to-tapies/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 66,
+    "letterboxd_short_url": "https://boxd.it/Uoes",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Catalan"
+    ],
+    "spoken_languages": [
+      "Catalan"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1466477/"
   }
 ]
