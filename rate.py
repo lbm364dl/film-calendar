@@ -359,7 +359,9 @@ def slugify_director(director: str) -> str:
 
 def _search_with_browser(browser, title: str, year: int | str | None = None, director: str | None = None) -> tuple[str | None, int | None]:
     """Helper to perform a single search with an open browser."""
-    search = " ".join(title.replace(".", " ").split())
+    search = " ".join(
+        title.replace(".", " ").replace("/", "").split()
+    )
 
     if year:
         search += f" year:{year}"
