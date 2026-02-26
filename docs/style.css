@@ -31,6 +31,39 @@ body {
 header {
     text-align: center;
     margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Language toggle */
+.lang-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.lang-btn.active {
+    background: var(--accent);
+    color: white;
+}
+
+.lang-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
 }
 
 h1 {
@@ -93,6 +126,12 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .lang-toggle {
+        position: static;
+        margin: 0 auto 0.75rem;
+        width: fit-content;
+    }
+
     .filters-grid {
         grid-template-columns: repeat(6, 1fr);
     }
@@ -186,7 +225,25 @@ h1 {
     width: calc(100% - 3rem);
 }
 
+.filters-grid input[type="date"].has-value:not(:focus)::before {
+    content: attr(data-display-value);
+    color: var(--text);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 3rem);
+}
+
 .filters-grid input[type="date"]:not(:focus):not(.has-value)::-webkit-datetime-edit {
+    color: transparent;
+}
+
+.filters-grid input[type="date"].has-value:not(:focus)::-webkit-datetime-edit {
     color: transparent;
 }
 

@@ -1,3 +1,157 @@
+// ── i18n ────────────────────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('lang') || 'es';
+
+const TRANSLATIONS = {
+    es: {
+        siteTitle: '🎬 Madrid Film Calendar',
+        subtitle: 'Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...',
+        searchPlaceholder: 'Buscar por título o director',
+        selectDate: 'Elegir día',
+        allTheaters: 'Todos los cines',
+        yearFrom: 'Año desde',
+        yearTo: 'Año hasta',
+        watchlistFull: 'Watchlist Letterboxd',
+        watchlistShort: 'Watchlist',
+        watchlistActive: 'Watchlist activa',
+        clearFilters: 'Limpiar filtros',
+        watchlistTooltipTitle: '<strong>Filtrar por tu watchlist de Letterboxd</strong>',
+        watchlistStep1: 'Inicia sesión en Letterboxd desde el navegador (no en la app)',
+        watchlistStep2: 'Ve a tu watchlist de Letterboxd',
+        watchlistStep3: 'Haz clic en <em>Export watchlist</em>',
+        watchlistStep4: 'Sube el archivo <em>CSV</em> descargado aquí',
+        filmCount: (n) => `${n} película${n !== 1 ? 's' : ''}`,
+        calendarHint: 'Haz clic en cualquier sesión para entradas y opciones de calendario',
+        loading: 'Cargando películas...',
+        errorLoading: 'Error al cargar películas. Inténtalo de nuevo más tarde.',
+        noResults: 'No se encontraron películas con los criterios seleccionados.',
+        buyTickets: 'Comprar entradas',
+        viewFilmPage: 'Ver ficha',
+        addToCalendar: 'Añadir al calendario',
+        nLocations: (n) => `${n} salas`,
+        nTheaters: (n) => `${n} cines`,
+        watchlistCount: (n) => `${n} películas cargadas de la watchlist`,
+        footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor al cine',
+        footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
+        viewOnGithub: 'Ver en GitHub',
+    },
+    en: {
+        siteTitle: '🎬 Madrid Film Calendar',
+        subtitle: 'Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • More coming...',
+        searchPlaceholder: 'Search by title or director',
+        selectDate: 'Select date',
+        allTheaters: 'All Theaters',
+        yearFrom: 'Year from',
+        yearTo: 'Year to',
+        watchlistFull: 'Letterboxd watchlist',
+        watchlistShort: 'Watchlist',
+        watchlistActive: 'Watchlist active',
+        clearFilters: 'Clear all filters',
+        watchlistTooltipTitle: '<strong>Filter by your Letterboxd watchlist</strong>',
+        watchlistStep1: 'Log in to Letterboxd via browser (not working on app)',
+        watchlistStep2: 'Go to your Letterboxd watchlist',
+        watchlistStep3: 'Click <em>Export watchlist</em>',
+        watchlistStep4: 'Upload the downloaded <em>CSV</em> file here',
+        filmCount: (n) => `${n} film${n !== 1 ? 's' : ''}`,
+        calendarHint: 'Click any session for tickets & calendar options',
+        loading: 'Loading films...',
+        errorLoading: 'Error loading films. Please try again later.',
+        noResults: 'No films found matching your criteria.',
+        buyTickets: 'Buy Tickets',
+        viewFilmPage: 'View Film Page',
+        addToCalendar: 'Add to Calendar',
+        nLocations: (n) => `${n} locations`,
+        nTheaters: (n) => `${n} theaters`,
+        watchlistCount: (n) => `${n} films loaded from watchlist`,
+        footerCreated: 'Created with the help of AI • Sponsored by my love for films',
+        footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
+        viewOnGithub: 'View on GitHub',
+    }
+};
+
+function t(key, ...args) {
+    const val = TRANSLATIONS[currentLang]?.[key] ?? TRANSLATIONS.en[key] ?? key;
+    return typeof val === 'function' ? val(...args) : val;
+}
+
+function getDateLocale() {
+    return currentLang === 'es' ? 'es-ES' : 'en-GB';
+}
+
+function getFilmTitle(film) {
+    if (currentLang === 'en' && film.titleEn) {
+        return film.titleEn;
+    }
+    return film.title;
+}
+
+const GENRE_TRANSLATIONS_ES = {
+    'action': 'Acción',
+    'adventure': 'Aventura',
+    'animation': 'Animación',
+    'biography': 'Biografía',
+    'comedy': 'Comedia',
+    'crime': 'Crimen',
+    'documentary': 'Documental',
+    'drama': 'Drama',
+    'family': 'Familiar',
+    'fantasy': 'Fantasía',
+    'film-noir': 'Cine negro',
+    'history': 'Historia',
+    'horror': 'Terror',
+    'music': 'Música',
+    'musical': 'Musical',
+    'mystery': 'Misterio',
+    'romance': 'Romance',
+    'science fiction': 'Ciencia ficción',
+    'short': 'Cortometraje',
+    'sport': 'Deporte',
+    'thriller': 'Thriller',
+    'tv movie': 'Película para TV',
+    'war': 'Bélico',
+    'western': 'Wéstern',
+};
+
+function translateGenre(genre) {
+    if (!genre || currentLang !== 'es') {
+        return genre;
+    }
+
+    const normalized = genre.trim().toLowerCase();
+    return GENRE_TRANSLATIONS_ES[normalized] || genre;
+}
+
+function applyStaticTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        el.innerHTML = t(el.dataset.i18nHtml);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+    });
+    document.documentElement.lang = currentLang;
+    document.title = 'Madrid Film Calendar';
+    const currentDateFilter = document.getElementById('date-filter');
+    if (currentDateFilter) {
+        currentDateFilter.lang = currentLang === 'es' ? 'es-ES' : 'en-GB';
+        updateDatePlaceholder();
+    }
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+}
+
+function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    applyStaticTranslations();
+    if (allFilms.length > 0) {
+        renderFilms();
+    }
+}
+
+// ── App state ───────────────────────────────────────────────────────────────────
 let allFilms = [];
 let filteredFilms = [];
 let watchlistUrls = null;
@@ -21,7 +175,7 @@ async function loadFilms() {
             // Derive theater from dates (unique locations)
             const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
             let theaterDisplay = locations.length > 0 ? locations.join(', ') : 'Unknown';
-            if (locations.length > 2) theaterDisplay = `${locations.length} locations`;
+            if (locations.length > 2) theaterDisplay = t('nLocations', locations.length);
 
             // Derive main link from first date with info url, or fallback
             const mainLink = dates.find(d => d.url_info)?.url_info || '';
@@ -35,6 +189,9 @@ async function loadFilms() {
                 theaterLink: mainLink,
                 letterboxdUrl: film.letterboxd_url,
                 letterboxdShortUrl: film.letterboxd_short_url,
+                runtimeMinutes: film.runtime_minutes || null,
+                titleEn: film.title_en || '',
+                titleOriginal: film.title_original || '',
                 rating: film.letterboxd_rating ? parseFloat(film.letterboxd_rating) : null,
                 viewers: film.letterboxd_viewers,
                 genres: film.genres || [],
@@ -55,7 +212,7 @@ async function loadFilms() {
 
     } catch (error) {
         console.error('Error loading films:', error);
-        loading.textContent = 'Error loading films. Please try again later.';
+        loading.textContent = t('errorLoading');
     }
 }
 
@@ -116,7 +273,7 @@ function normalizeParsedDates(parsed) {
 function formatMonth(monthStr) {
     const [year, month] = monthStr.split('-');
     const date = new Date(year, parseInt(month) - 1);
-    return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+    return date.toLocaleDateString(getDateLocale(), { year: 'numeric', month: 'long' });
 }
 
 function getLocalTodayStart() {
@@ -187,6 +344,7 @@ function filterFilms() {
         // Search filter (accent-insensitive)
         const matchesSearch = !searchTerm ||
             normalizeText(film.title).includes(searchTerm) ||
+            (film.titleEn && normalizeText(film.titleEn).includes(searchTerm)) ||
             (film.director && normalizeText(film.director).includes(searchTerm));
 
         // Year filter
@@ -231,7 +389,7 @@ function renderFilms() {
     const noResults = document.getElementById('no-results');
     const filmCount = document.getElementById('film-count');
 
-    filmCount.textContent = `${filteredFilms.length} film${filteredFilms.length !== 1 ? 's' : ''}`;
+    filmCount.textContent = t('filmCount', filteredFilms.length);
 
     if (filteredFilms.length === 0) {
         filmsGrid.innerHTML = '';
@@ -271,18 +429,19 @@ function createFilmCard(film) {
         ? `<div class="viewers" title="${film.viewers?.toLocaleString()} viewers">👁️ ${viewersFormatted}</div>`
         : '';
 
-    // Build compact title: "Title (Director, Year)"
-    let titleText = escapeHtml(film.title);
+    // Build compact title: "Title (Director, Year · 105 min)"
+    let titleText = escapeHtml(getFilmTitle(film));
     const metadata = [];
     if (film.director) metadata.push(escapeHtml(film.director));
     if (film.year) metadata.push(film.year);
+    if (film.runtimeMinutes) metadata.push(`${film.runtimeMinutes} min`);
     if (metadata.length > 0) {
         titleText += ` <span class="title-meta">(${metadata.join(', ')})</span>`;
     }
 
     // Genres badge
     const genresHTML = film.genres && film.genres.length > 0
-        ? `<div class="film-genres">${film.genres.map(g => `<span class="genre-badge">${escapeHtml(g)}</span>`).join('')}</div>`
+        ? `<div class="film-genres">${film.genres.map(g => `<span class="genre-badge">${escapeHtml(translateGenre(g))}</span>`).join('')}</div>`
         : '';
 
     const datesHTML = film.dates.length > 0
@@ -347,7 +506,7 @@ function createSessionsDisplay(film) {
 function createSessionRow(film, dateObj) {
     const formatted = formatDate(dateObj.timestamp);
     const calendarUrl = generateCalendarUrl(film, dateObj);
-    const titleLabel = `${film.title}${film.year ? ` (${film.year})` : ''}`;
+    const titleLabel = `${getFilmTitle(film)}${film.year ? ` (${film.year})` : ''}`;
 
     // Check if session has a direct ticket URL
     const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
@@ -432,22 +591,22 @@ function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, 
     if (hasDirectUrl === 'true') {
         actionsHtml = `
             <a href="${ticketUrl}" class="session-modal-action" target="_blank">
-                Buy Tickets
+                ${t('buyTickets')}
             </a>
             <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
-                View Film Page
+                ${t('viewFilmPage')}
             </a>
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
-                Add to Calendar
+                ${t('addToCalendar')}
             </a>
         `;
     } else {
         actionsHtml = `
             <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
-                Buy Tickets
+                ${t('buyTickets')}
             </a>
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
-                Add to Calendar
+                ${t('addToCalendar')}
             </a>
         `;
     }
@@ -507,7 +666,7 @@ function getDateRange(dates) {
     const firstDate = new Date(sortedDates[0].timestamp);
     const lastDate = new Date(sortedDates[sortedDates.length - 1].timestamp);
 
-    const formatShort = (d) => d.toLocaleDateString('en-GB', {
+    const formatShort = (d) => d.toLocaleDateString(getDateLocale(), {
         day: 'numeric',
         month: 'short'
     });
@@ -537,7 +696,7 @@ function getLocationSummary(dates) {
     }
 
     // Multiple different theaters
-    return `${locations.length} theaters`;
+    return t('nTheaters', locations.length);
 }
 
 function createGroupedSessions(film) {
@@ -560,7 +719,7 @@ function createGroupedSessions(film) {
     return sortedDays.map(dayKey => {
         const sessions = grouped[dayKey];
         const dayDate = new Date(dayKey + 'T12:00:00');
-        const dayLabel = dayDate.toLocaleDateString('en-GB', {
+        const dayLabel = dayDate.toLocaleDateString(getDateLocale(), {
             weekday: 'short',
             day: 'numeric',
             month: 'short'
@@ -574,7 +733,7 @@ function createGroupedSessions(film) {
                 <div class="sessions-day-header">${dayLabel}</div>
                 <div class="sessions-day-times">
                     ${sessions.map(dateObj => {
-            const time = new Date(dateObj.timestamp).toLocaleTimeString('en-GB', {
+            const time = new Date(dateObj.timestamp).toLocaleTimeString(getDateLocale(), {
                 hour: '2-digit',
                 minute: '2-digit'
             });
@@ -585,14 +744,14 @@ function createGroupedSessions(film) {
             const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
             const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
             const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
-            const titleLabel = film.year ? `${film.title} (${film.year})` : film.title;
+            const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
 
             const location = dateObj.location && dateObj.location !== 'Unknown'
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
                 : '';
 
             // Create date/time label for modal header
-            const dateLabel = new Date(dateObj.timestamp).toLocaleDateString('en-GB', {
+            const dateLabel = new Date(dateObj.timestamp).toLocaleDateString(getDateLocale(), {
                 weekday: 'short',
                 day: 'numeric',
                 month: 'short'
@@ -663,7 +822,7 @@ function formatDate(dateStr) {
     const date = new Date(dateStr);
     if (isNaN(date)) return dateStr;
 
-    return date.toLocaleDateString('en-GB', {
+    return date.toLocaleDateString(getDateLocale(), {
         weekday: 'short',
         month: 'short',
         day: 'numeric',
@@ -699,11 +858,30 @@ function setDateFilterMin() {
     dateFilter.min = formatDateInputValue(today);
 }
 
+function formatSelectedDateForDisplay(dateValue) {
+    if (!dateValue) return '';
+
+    const [year, month, day] = dateValue.split('-').map(Number);
+    if (!year || !month || !day) return dateValue;
+
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString(getDateLocale(), {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
 function updateDatePlaceholder() {
     if (dateFilter.value) {
         dateFilter.classList.add('has-value');
+        const localizedDate = formatSelectedDateForDisplay(dateFilter.value);
+        dateFilter.dataset.displayValue = localizedDate;
+        dateFilter.title = localizedDate;
     } else {
         dateFilter.classList.remove('has-value');
+        delete dateFilter.dataset.displayValue;
+        dateFilter.title = '';
     }
 }
 
@@ -988,7 +1166,7 @@ function generateCalendarUrl(film, dateObj) {
             return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
         };
 
-        const title = encodeURIComponent(`${film.title} (${film.year || ''})`);
+        const title = encodeURIComponent(`${getFilmTitle(film)} (${film.year || ''})`);
 
         let locationRaw = dateObj.location || film.theater;
         // Try to finding a map link
@@ -1010,6 +1188,14 @@ function generateCalendarUrl(film, dateObj) {
         return '#';
     }
 }
+
+// Language toggle
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+// Apply initial translations
+applyStaticTranslations();
 
 // Load films on page load
 loadFilms();
@@ -1055,10 +1241,10 @@ document.getElementById('watchlist-upload').addEventListener('change', (event) =
             if (urls.size > 0) {
                 watchlistUrls = urls;
                 document.querySelector('.watchlist-filter').classList.add('active');
-                document.getElementById('watchlist-label-full').textContent = 'Watchlist active';
-                document.getElementById('watchlist-label-short').textContent = 'Watchlist';
+                document.getElementById('watchlist-label-full').textContent = t('watchlistActive');
+                document.getElementById('watchlist-label-short').textContent = t('watchlistShort');
                 document.getElementById('watchlist-count-info').style.display = 'block';
-                document.getElementById('watchlist-count-info').textContent = `${urls.size} films loaded from watchlist`;
+                document.getElementById('watchlist-count-info').textContent = t('watchlistCount', urls.size);
                 filterFilms();
             }
         },
@@ -1074,8 +1260,8 @@ document.getElementById('watchlist-upload').addEventListener('change', (event) =
 function clearWatchlist() {
     watchlistUrls = null;
     document.querySelector('.watchlist-filter').classList.remove('active');
-    document.getElementById('watchlist-label-full').textContent = 'Letterboxd watchlist';
-    document.getElementById('watchlist-label-short').textContent = 'Watchlist';
+    document.getElementById('watchlist-label-full').textContent = t('watchlistFull');
+    document.getElementById('watchlist-label-short').textContent = t('watchlistShort');
     document.getElementById('watchlist-upload').value = '';
     document.getElementById('watchlist-count-info').style.display = 'none';
     document.getElementById('watchlist-count-info').textContent = '';

@@ -5,25 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madrid Film Calendar</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>🎬 Madrid Film Calendar</h1>
-            <p class="subtitle">Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • More coming...</p>
+            <div class="lang-toggle">
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <h1 data-i18n="siteTitle">🎬 Madrid Film Calendar</h1>
+            <p class="subtitle" data-i18n="subtitle">Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...</p>
         </header>
 
         <div class="filters-grid">
-            <input type="date" id="date-filter" placeholder="Select date">
+            <input type="date" id="date-filter" data-i18n-placeholder="selectDate" placeholder="Seleccionar fecha">
 
             <div class="search-box">
-                <input type="text" id="search" placeholder="Search by title or director" autocomplete="off">
+                <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar por título o director" autocomplete="off">
             </div>
 
             <select id="theater-filter">
-                <option value="">All Theaters</option>
+                <option value="" data-i18n="allTheaters">Todos los cines</option>
                 <option value="Cines Renoir">Cines Renoir</option>
                 <option value="Cineteca Madrid">Cineteca Madrid</option>
                 <option value="Cine Doré">Cine Doré</option>
@@ -35,11 +39,11 @@
             <div class="year-filter">
                 <div class="year-inputs">
                     <div class="year-input-group">
-                        <label for="year-min-val">Year from</label>
+                        <label for="year-min-val" data-i18n="yearFrom">Año desde</label>
                         <input type="number" id="year-min-val" min="1900" max="2030">
                     </div>
                     <div class="year-input-group">
-                        <label for="year-max-val">Year to</label>
+                        <label for="year-max-val" data-i18n="yearTo">Año hasta</label>
                         <input type="number" id="year-max-val" min="1900" max="2030">
                     </div>
                 </div>
@@ -54,51 +58,51 @@
                 <div class="watchlist-filter">
                     <input type="file" id="watchlist-upload" accept=".csv" hidden>
                     <button class="watchlist-btn" id="watchlist-btn" title="Filter by Letterboxd watchlist">
-                        <span id="watchlist-label-full" class="watchlist-label-full">Letterboxd watchlist</span>
-                        <span id="watchlist-label-short" class="watchlist-label-short">Watchlist</span>
+                        <span id="watchlist-label-full" class="watchlist-label-full" data-i18n="watchlistFull">Watchlist de Letterboxd</span>
+                        <span id="watchlist-label-short" class="watchlist-label-short" data-i18n="watchlistShort">Watchlist</span>
                     </button>
                     <div class="watchlist-info-trigger" id="watchlist-info-trigger">
                         <span class="info-icon" id="info-icon">?</span>
                         <div class="watchlist-info-tooltip" id="watchlist-tooltip">
-                            <p><strong>Filter by your Letterboxd watchlist</strong></p>
+                            <p data-i18n-html="watchlistTooltipTitle"><strong>Filtrar por tu watchlist de Letterboxd</strong></p>
                             <ol>
-                                <li>Log in to Letterboxd via browser (not working on app)</a></li>
-                                <li>Go to your Letterboxd watchlist</a></li>
-                                <li>Click <em>Export watchlist</em></li>
-                                <li>Upload the downloaded <em>CSV</em> file here</li>
+                                <li data-i18n-html="watchlistStep1">Inicia sesión en Letterboxd desde el navegador (no en la app)</li>
+                                <li data-i18n-html="watchlistStep2">Ve a tu watchlist de Letterboxd</li>
+                                <li data-i18n-html="watchlistStep3">Haz clic en <em>Export watchlist</em></li>
+                                <li data-i18n-html="watchlistStep4">Sube el archivo <em>CSV</em> descargado aquí</li>
                             </ol>
                             <p id="watchlist-count-info" class="watchlist-count-info" style="display:none"></p>
                         </div>
                     </div>
                 </div>
                 <button id="clear-filters" class="clear-filters-btn" title="Clear all filters">
-                    <span>Clear all filters</span>
+                    <span data-i18n="clearFilters">Limpiar filtros</span>
                 </button>
             </div>
         </div>
 
         <div class="stats">
-            <span id="film-count">0 films</span>
-            <span class="calendar-hint">Click any session for tickets & calendar options</span>
+            <span id="film-count">0 películas</span>
+            <span class="calendar-hint" data-i18n="calendarHint">Haz clic en cualquier sesión para entradas y opciones de calendario</span>
         </div>
 
         <div id="films-grid" class="films-grid">
             <!-- Films will be inserted here -->
         </div>
 
-        <div id="loading" class="loading">Loading films...</div>
-        <div id="no-results" class="no-results" style="display: none;">
-            No films found matching your criteria.
+        <div id="loading" class="loading" data-i18n="loading">Cargando películas...</div>
+        <div id="no-results" class="no-results" style="display: none;" data-i18n="noResults">
+            No se encontraron películas con los criterios seleccionados.
         </div>
 
         <footer>
             <div class="footer-content">
-                <p>Created with the help of AI • Sponsored by my love for films</p>
-                <p>
-                    If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a
-                        href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or
+                <p data-i18n="footerCreated">Creado con ayuda de IA • Patrocinado por mi amor al cine</p>
+                <p data-i18n-html="footerMistakes">
+                    Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a
+                        href="https://github.com/lbm364dl/film-calendar/issues">abre un issue en GitHub</a> o
                     <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json"
-                        target="_blank">fix it yourself</a> via Pull Request.
+                        target="_blank">corrígelo tú mismo</a> vía Pull Request.
                 </p>
                 <p>
                     <a class="github-link" href="https://github.com/lbm364dl/film-calendar" target="_blank"
@@ -107,7 +111,7 @@
                             <path
                                 d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.38 6.84 9.74.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1.01.07 1.54 1.07 1.54 1.07.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.04.8-.23 1.65-.35 2.5-.35s1.7.12 2.5.35c1.91-1.31 2.75-1.04 2.75-1.04.55 1.41.2 2.45.1 2.71.64.72 1.03 1.64 1.03 2.76 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.48 3.97-1.36 6.83-5.2 6.83-9.74C22 6.58 17.52 2 12 2z" />
                         </svg>
-                        <span>View on GitHub</span>
+                        <span data-i18n="viewOnGithub">Ver en GitHub</span>
                     </a>
                 </p>
             </div>
