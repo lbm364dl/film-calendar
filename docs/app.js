@@ -4,7 +4,7 @@ let currentLang = localStorage.getItem('lang') || 'es';
 const TRANSLATIONS = {
     es: {
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...',
+        subtitle: 'Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
         selectDate: 'Elegir día',
         allTheaters: 'Todos los cines',
@@ -37,7 +37,7 @@ const TRANSLATIONS = {
     },
     en: {
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • More coming...',
+        subtitle: 'Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Cine Estudio • More coming...',
         searchPlaceholder: 'Search by title or director',
         selectDate: 'Select date',
         allTheaters: 'All Theaters',
@@ -255,15 +255,16 @@ function normalizeParsedDates(parsed) {
     return parsed.map(item => {
         if (typeof item === 'string') {
             // Old format: plain string timestamp
-            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '' };
+            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '', version: null };
         } else if (typeof item === 'object' && item !== null) {
-            // New format: object with timestamp/location/urls
+            // New format: object with timestamp/location/urls/version
             return {
                 timestamp: item.timestamp,
                 location: item.location || 'Unknown',
                 // Map new keys to internal structure if needed, or keep them
                 url_tickets: item.url_tickets || item.url || '', // Support both old 'url' and new 'url_tickets'
-                url_info: item.url_info || ''
+                url_info: item.url_info || '',
+                version: item.version || null,
             };
         }
         return null;
@@ -308,6 +309,13 @@ function isRenoirLocation(location) {
     return location && RENOIR_LOCATIONS.includes(location);
 }
 
+// Embajadores cinema locations
+const EMBAJADORES_LOCATIONS = ['Embajadores Glorieta', 'Embajadores Ercilla'];
+
+function isEmbajadoresLocation(location) {
+    return location && EMBAJADORES_LOCATIONS.includes(location);
+}
+
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
     const selectedTheater = document.getElementById('theater-filter').value;
@@ -325,6 +333,8 @@ function filterFilms() {
             if (selectedTheater) {
                 if (selectedTheater === 'Cines Renoir') {
                     if (!isRenoirLocation(d.location)) return false;
+                } else if (selectedTheater === 'Cines Embajadores') {
+                    if (!isEmbajadoresLocation(d.location)) return false;
                 } else if (d.location !== selectedTheater) {
                     return false;
                 }
@@ -518,13 +528,19 @@ function createSessionRow(film, dateObj) {
     let locationBadge = '';
     let locationText = '';
     if (dateObj.location && dateObj.location !== 'Unknown') {
-        // For inline rows, prefix "Renoir " to Renoir location names
-        const displayLocation = isRenoirLocation(dateObj.location)
-            ? `Renoir ${dateObj.location}`
-            : dateObj.location;
+        // For inline rows, prefix cinema name to sub-location names
+        let displayLocation = dateObj.location;
+        if (isRenoirLocation(dateObj.location)) {
+            displayLocation = `Renoir ${dateObj.location}`;
+        }
         locationBadge = `<span class="location-badge">${escapeHtml(displayLocation)}</span>`;
         locationText = displayLocation;
     }
+
+    // Version badge for dubbed sessions
+    const versionBadge = dateObj.version === 'dubbed'
+        ? '<span class="version-badge dubbed">Doblada</span>'
+        : '';
 
     // Create full date/time label for modal header
     const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
@@ -533,6 +549,7 @@ function createSessionRow(film, dateObj) {
         <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
             <span class="date-badge">${formatted}</span>
             ${locationBadge}
+            ${versionBadge}
         </button>
     `;
 }
@@ -542,6 +559,9 @@ function getTheaterFallbackUrl(film, dateObj) {
     const location = dateObj.location || '';
     if (isRenoirLocation(location)) {
         return 'https://www.cinesrenoir.com/';
+    }
+    if (isEmbajadoresLocation(location)) {
+        return 'https://cinesembajadores.es/madrid/';
     }
     if (film.theater === 'Cineteca Madrid') {
         return 'https://www.cinetecamadrid.com/';
@@ -692,8 +712,14 @@ function getLocationSummary(dates) {
         return 'Renoir';
     }
 
+    // Check if all locations are Embajadores cinemas
+    const allEmbajadores = locations.every(loc => isEmbajadoresLocation(loc));
+    if (allEmbajadores) {
+        return 'Embajadores';
+    }
+
     if (locations.length === 1) {
-        // Single non-Renoir location
+        // Single location
         return locations[0];
     }
 
@@ -752,6 +778,10 @@ function createGroupedSessions(film) {
                 ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
                 : '';
 
+            const versionTag = dateObj.version === 'dubbed'
+                ? '<span class="version-badge dubbed">Doblada</span>'
+                : '';
+
             // Create date/time label for modal header
             const dateLabel = new Date(dateObj.timestamp).toLocaleDateString(getDateLocale(), {
                 weekday: 'short',
@@ -764,6 +794,7 @@ function createGroupedSessions(film) {
                 <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
                     <span class="time">${time}</span>
                     ${location}
+                    ${versionTag}
                 </button>
                         `;
         }).join('')}

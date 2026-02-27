@@ -16,14 +16,16 @@
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
             <h1 data-i18n="siteTitle">🎬 Madrid Film Calendar</h1>
-            <p class="subtitle" data-i18n="subtitle">Cineteca • Doré • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...</p>
+            <p class="subtitle" data-i18n="subtitle">Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga •
+                Cine Estudio • Más próximamente...</p>
         </header>
 
         <div class="filters-grid">
             <input type="date" id="date-filter" data-i18n-placeholder="selectDate" placeholder="Seleccionar fecha">
 
             <div class="search-box">
-                <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar por título o director" autocomplete="off">
+                <input type="text" id="search" data-i18n-placeholder="searchPlaceholder"
+                    placeholder="Buscar por título o director" autocomplete="off">
             </div>
 
             <select id="theater-filter">
@@ -34,6 +36,7 @@
                 <option value="Cine Estudio">Cine Estudio</option>
                 <option value="Golem">Golem Madrid</option>
                 <option value="Sala Berlanga">Sala Berlanga</option>
+                <option value="Cines Embajadores">Cines Embajadores</option>
             </select>
 
             <div class="year-filter">
@@ -58,15 +61,19 @@
                 <div class="watchlist-filter">
                     <input type="file" id="watchlist-upload" accept=".csv" hidden>
                     <button class="watchlist-btn" id="watchlist-btn" title="Filter by Letterboxd watchlist">
-                        <span id="watchlist-label-full" class="watchlist-label-full" data-i18n="watchlistFull">Watchlist de Letterboxd</span>
-                        <span id="watchlist-label-short" class="watchlist-label-short" data-i18n="watchlistShort">Watchlist</span>
+                        <span id="watchlist-label-full" class="watchlist-label-full" data-i18n="watchlistFull">Watchlist
+                            de Letterboxd</span>
+                        <span id="watchlist-label-short" class="watchlist-label-short"
+                            data-i18n="watchlistShort">Watchlist</span>
                     </button>
                     <div class="watchlist-info-trigger" id="watchlist-info-trigger">
                         <span class="info-icon" id="info-icon">?</span>
                         <div class="watchlist-info-tooltip" id="watchlist-tooltip">
-                            <p data-i18n-html="watchlistTooltipTitle"><strong>Filtrar por tu watchlist de Letterboxd</strong></p>
+                            <p data-i18n-html="watchlistTooltipTitle"><strong>Filtrar por tu watchlist de
+                                    Letterboxd</strong></p>
                             <ol>
-                                <li data-i18n-html="watchlistStep1">Inicia sesión en Letterboxd desde el navegador (no en la app)</li>
+                                <li data-i18n-html="watchlistStep1">Inicia sesión en Letterboxd desde el navegador (no
+                                    en la app)</li>
                                 <li data-i18n-html="watchlistStep2">Ve a tu watchlist de Letterboxd</li>
                                 <li data-i18n-html="watchlistStep3">Haz clic en <em>Export watchlist</em></li>
                                 <li data-i18n-html="watchlistStep4">Sube el archivo <em>CSV</em> descargado aquí</li>
@@ -83,7 +90,8 @@
 
         <div class="stats">
             <span id="film-count">0 películas</span>
-            <span class="calendar-hint" data-i18n="calendarHint">Haz clic en cualquier sesión para entradas y opciones de calendario</span>
+            <span class="calendar-hint" data-i18n="calendarHint">Haz clic en cualquier sesión para entradas y opciones
+                de calendario</span>
         </div>
 
         <div id="films-grid" class="films-grid">
@@ -99,7 +107,12 @@
             <div class="footer-content">
                 <p data-i18n="footerCreated">Creado con ayuda de IA • Patrocinado por mi amor al cine</p>
                 <p data-i18n-html="footerThanks">
-                    Gracias a los cines de Madrid, <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link"><img src="assets/letterboxd-attribution.svg" class="attribution-icon" alt="Letterboxd" />Letterboxd</a> y a <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link"><img src="assets/tmdb-attribution.svg" class="attribution-icon" alt="TMDB" />TMDB</a>.
+                    Gracias a los cines de Madrid, <a href="https://letterboxd.com" target="_blank"
+                        rel="noopener noreferrer" class="attribution-link"><img src="assets/letterboxd-attribution.svg"
+                            class="attribution-icon" alt="Letterboxd" />Letterboxd</a> y a <a
+                        href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer"
+                        class="attribution-link"><img src="assets/tmdb-attribution.svg" class="attribution-icon"
+                            alt="TMDB" />TMDB</a>.
                 </p>
                 <p data-i18n-html="footerMistakes">
                     Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a

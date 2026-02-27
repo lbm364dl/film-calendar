@@ -196,6 +196,8 @@ def run_merge(args):
                     "url_tickets": d.get("url_tickets", d.get("url", "")),
                     "url_info": d.get("url_info", link),
                 }
+                if d.get("version"):
+                    item["version"] = d["version"]
             elif isinstance(d, str):
                 item = {"timestamp": d, "location": theater, "url_tickets": "", "url_info": link}
             else:

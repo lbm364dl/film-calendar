@@ -12,6 +12,7 @@ A tool that scrapes film screenings from independent cinemas in Madrid, matches 
 | [Cine Doré / Filmoteca Española](https://www.cultura.gob.es/cultura/areas/cine/mc/fe/difusion/programa.html) | requests + BeautifulSoup (paginated) | Monthly |
 | [Cines Renoir](https://www.cinesrenoir.com) (Princesa, Retiro, Plaza de España) | Selenium | Weekly |
 | [Golem Madrid](https://golem.es/golem/golem-madrid) | requests + BeautifulSoup | Weekly |
+| [Cines Embajadores](https://cinesembajadores.es/madrid/) | requests + BeautifulSoup | Weekly |
 | [Sala Berlanga](https://salaberlanga.com) | Selenium | Monthly |
 
 ## How it works
@@ -130,6 +131,7 @@ fetch_films/
   dore.py                Cine Doré scraper
   renoir.py              Cines Renoir scraper (Selenium)
   golem.py               Golem Madrid scraper
+  embajadores.py          Cines Embajadores scraper
   sala_berlanga.py        Sala Berlanga scraper (Selenium)
 docs/
   index.html             Website
@@ -150,7 +152,7 @@ The master `docs/screenings.json` is movie-centric (one object per film):
 | `title` | Film title |
 | `director` | Director name |
 | `year` | Release year |
-| `dates` | Array of session objects: `[{"timestamp", "location", "url_tickets", "url_info"}]` |
+| `dates` | Array of session objects: `[{"timestamp", "location", "url_tickets", "url_info", "version"}]` |
 | `letterboxd_url` | Letterboxd film page URL |
 | `letterboxd_rating` | Average rating (0–5) |
 | `letterboxd_viewers` | Number of Letterboxd viewers |

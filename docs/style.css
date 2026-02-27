@@ -135,22 +135,27 @@ h1 {
     .filters-grid {
         grid-template-columns: repeat(6, 1fr);
     }
+
     .search-box {
         grid-column: 1 / 7;
         grid-row: 1;
     }
+
     #date-filter {
         grid-column: 1 / 4;
         grid-row: 2;
     }
+
     #theater-filter {
         grid-column: 4 / 7;
         grid-row: 2;
     }
+
     .year-filter {
         grid-column: 1 / 5;
         grid-row: 3;
     }
+
     .actions-cell {
         grid-column: 5 / 7;
         grid-row: 3;
@@ -396,7 +401,7 @@ h1 {
     padding: 0.85rem;
     width: 260px;
     z-index: 100;
-    box-shadow: 0 6px 18px 0 rgba(0,0,0,0.55), 0 0 0 1.5px var(--border);
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.55), 0 0 0 1.5px var(--border);
     font-size: 0.85rem;
     line-height: 1.5;
 }
@@ -806,6 +811,22 @@ h1 {
     border-radius: 4px;
     margin-left: 0.1rem;
     white-space: nowrap;
+}
+
+.version-badge {
+    font-size: 0.65rem;
+    padding: 0.05rem 0.35rem;
+    border-radius: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.version-badge.dubbed {
+    background: rgba(255, 193, 68, 0.2);
+    color: #ffc144;
+    border: 1px solid rgba(255, 193, 68, 0.3);
 }
 
 .calendar-btn {
