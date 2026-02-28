@@ -13,6 +13,7 @@
     --accent: #ff6b6b;
     --border: #333;
     --rating-gold: #f5c518;
+    --csv-loaded-controls-gap: 0.6rem;
 }
 
 body {
@@ -84,8 +85,6 @@ h1 {
 }
 
 /* Grid Layout for Filters */
-/* Grid Layout for Filters */
-/* Grid Layout for Filters */
 .filters-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -121,10 +120,11 @@ h1 {
 .actions-cell {
     grid-column: 9 / 13;
     grid-row: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
     height: 100%;
+    position: relative;
 }
 
 @media (max-width: 768px) {
@@ -135,31 +135,31 @@ h1 {
     }
 
     .filters-grid {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(9, 1fr);
     }
 
     .search-box {
-        grid-column: 1 / 7;
+        grid-column: 1 / 10;
         grid-row: 1;
     }
 
     #date-filter {
-        grid-column: 1 / 4;
+        grid-column: 1 / 5;
         grid-row: 2;
     }
 
     #theater-filter {
-        grid-column: 4 / 7;
+        grid-column: 5 / 10;
         grid-row: 2;
     }
 
     .year-filter {
-        grid-column: 1 / 5;
+        grid-column: 1 / 6;
         grid-row: 3;
     }
 
     .actions-cell {
-        grid-column: 5 / 7;
+        grid-column: 6 / 10;
         grid-row: 3;
     }
 }
@@ -296,112 +296,265 @@ h1 {
     border-color: var(--text-dim);
 }
 
-/* Watchlist Filter */
-.watchlist-filter {
+.watchlist-filter,
+.watched-filter {
     display: flex;
     align-items: stretch;
-    flex: 1;
+    justify-content: flex-start;
+    width: 100%;
     min-height: 0;
     position: relative;
     border: 1px solid var(--border);
     border-radius: 6px;
     transition: border-color 0.2s;
+    overflow: visible;
 }
 
-.watchlist-filter:hover {
+.watchlist-filter:hover,
+.watched-filter:hover {
     border-color: var(--text-dim);
 }
 
-.watchlist-filter.active {
+.watchlist-filter.active,
+.watched-filter.active {
     border-color: var(--accent);
 }
 
-.watchlist-btn {
+.csv-filter-btn {
     flex: 1;
     background: transparent;
     border: none;
     color: var(--text-dim);
     font-size: 0.75rem;
     cursor: pointer;
-    padding: 0.2rem 1.6rem 0.2rem 0.4rem;
+    padding: 0.15rem 0.25rem;
     text-align: center;
     transition: all 0.2s;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.watchlist-label-full,
-.watchlist-label-short {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+/* Text labels (shown when not loaded) */
+.csv-label-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+}
+
+.csv-label-full,
+.csv-label-short {
     pointer-events: none;
 }
 
-.watchlist-label-short {
+.csv-label-short {
     display: none;
 }
 
-.watchlist-btn:hover {
+/* Icon (shown when CSV is loaded) */
+.csv-label-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.watched-filter .csv-label-icon {
+    width: 16px;
+    height: 16px;
+    background-color: currentColor;
+    -webkit-mask: url('assets/not-watched.svg') center / contain no-repeat;
+    mask: url('assets/not-watched.svg') center / contain no-repeat;
+}
+
+/* When loaded, swap text → icon */
+.watchlist-filter.loaded .csv-label-text,
+.watched-filter.loaded .csv-label-text {
+    display: none;
+}
+
+.watchlist-filter.loaded .csv-label-icon,
+.watched-filter.loaded .csv-label-icon {
+    display: flex;
+}
+
+.csv-filter-btn:hover {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text);
 }
 
-.watchlist-filter.active .watchlist-btn {
+.watchlist-filter.active .csv-filter-btn,
+.watched-filter.active .csv-filter-btn {
     color: var(--accent);
-    background: rgba(255, 107, 107, 0.08);
+    background: transparent;
 }
 
-.watchlist-info-trigger {
+/* When CSV is loaded but not active, just show loaded state */
+.watchlist-filter.loaded .csv-filter-btn,
+.watched-filter.loaded .csv-filter-btn {
+    cursor: default;
+}
+
+/* On loaded rows, keep controls as a compact centered group.
+   Both rows get matching right-padding so the centering base is identical
+   (the watchlist row has the ? icon at the right). */
+.watchlist-filter.loaded,
+.watched-filter.loaded {
+    justify-content: center;
+    padding-right: 0;
+    gap: var(--csv-loaded-controls-gap);
+}
+
+.watchlist-filter.loaded .csv-filter-btn,
+.watched-filter.loaded .csv-filter-btn {
+    flex: 0 0 auto;
+    min-width: 16px;
+    width: 16px;
+    padding: 0;
+}
+
+.watchlist-filter.loaded .csv-toggle-wrap,
+.watched-filter.loaded .csv-toggle-wrap {
+    padding: 0;
+}
+
+.watchlist-filter.loaded .csv-remove-btn,
+.watched-filter.loaded .csv-remove-btn {
+    padding: 0;
+    width: 16px;
+    justify-content: center;
+}
+
+/* Toggle switch */
+.csv-toggle-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 0.2rem;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--border);
+    border-radius: 16px;
+    transition: background 0.2s;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: rgba(255, 107, 107, 0.3);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(12px);
+    background: var(--accent);
+}
+
+/* Remove (×) button */
+.csv-remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0 0.3rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.csv-remove-btn:hover {
+    background: rgba(255, 107, 107, 0.15);
+    color: var(--accent);
+}
+
+/* Info trigger – absolutely positioned outside the row so it doesn't affect centering */
+.csv-info-trigger {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: help;
-    right: 0.3rem;
-    top: 0;
-    bottom: 0;
-    width: 1.8rem;
+    width: 1.7rem;
+    z-index: 2;
 }
 
-.watchlist-info-trigger:hover {
+.csv-info-trigger:hover {
     background: rgba(255, 255, 255, 0.05);
+    border-radius: 0;
 }
 
 .info-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     border: 1px solid var(--text-dim);
     color: var(--text-dim);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
+    line-height: 1;
+    transform: translateY(0.5px);
     transition: all 0.2s;
     flex-shrink: 0;
 }
 
-.watchlist-info-trigger:hover .info-icon {
+.csv-info-trigger:hover .info-icon {
     border-color: var(--accent);
     color: var(--accent);
 }
 
-.watchlist-info-tooltip {
+.csv-info-tooltip {
     display: none;
     position: absolute;
-    bottom: calc(100% + 2px);
-    right: -4px;
+    top: calc(100% + 4px);
+    right: 0;
     background: var(--bg-card);
     border: 2px solid var(--accent);
     border-radius: 10px;
     padding: 0.85rem;
-    width: 260px;
+    width: 280px;
     z-index: 100;
     box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.55), 0 0 0 1.5px var(--border);
     font-size: 0.85rem;
@@ -409,74 +562,85 @@ h1 {
 }
 
 /* Invisible bridge so cursor can travel from icon to tooltip */
-.watchlist-info-tooltip::after {
+.csv-info-tooltip::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    top: -10px;
     right: 0;
     width: 40px;
     height: 10px;
 }
 
-.watchlist-info-trigger:hover .watchlist-info-tooltip {
+@media (max-width: 768px) {
+    .csv-info-tooltip {
+        width: min(280px, calc(100vw - 2rem));
+    }
+}
+
+.csv-info-trigger:hover .csv-info-tooltip {
     display: block;
 }
 
-.watchlist-info-trigger.show .watchlist-info-tooltip {
+.csv-info-trigger.show .csv-info-tooltip {
     display: block;
 }
 
-.watchlist-info-tooltip p {
+.csv-info-tooltip p {
     margin-bottom: 0.35rem;
 }
 
-.watchlist-info-tooltip ol {
+.csv-info-tooltip ol {
     margin: 0.35rem 0 0;
     padding-left: 1.2rem;
 }
 
-.watchlist-info-tooltip li {
+.csv-info-tooltip li {
     margin-bottom: 0.2rem;
 }
 
-.watchlist-info-tooltip a {
+.csv-info-tooltip a {
     color: var(--accent);
     text-decoration: none;
 }
 
-.watchlist-info-tooltip a:hover {
+.csv-info-tooltip a:hover {
     text-decoration: underline;
 }
 
-.watchlist-info-tooltip code {
-    background: var(--bg);
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
-    font-size: 0.75rem;
-}
-
-.watchlist-count-info {
+.csv-persistence-note {
     margin-top: 0.5rem;
     padding-top: 0.4rem;
     border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    font-style: italic;
+}
+
+.csv-count-info {
+    margin-top: 0.3rem;
     color: var(--accent);
     font-weight: 500;
+    font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-    .watchlist-label-full {
+    .csv-label-full {
         display: none;
     }
 
-    .watchlist-label-short {
-        display: block;
+    .csv-label-short {
+        display: inline;
+    }
+
+    /* Still hide text when loaded */
+    .watchlist-filter.loaded .csv-label-text,
+    .watched-filter.loaded .csv-label-text {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
-    .watchlist-label-short {
-        position: static;
-        transform: none;
+    .csv-label-short {
         width: auto;
     }
 }

@@ -10,15 +10,26 @@ const TRANSLATIONS = {
         allTheaters: 'Todos los cines',
         yearFrom: 'Año desde',
         yearTo: 'Año hasta',
-        watchlistFull: 'Watchlist Letterboxd',
-        watchlistShort: 'Watchlist',
+        watchlistFull: 'En watchlist de Letterboxd',
+        watchlistShort: 'En watchlist',
         watchlistActive: 'Watchlist activa',
+        watchlistBtnTitle: 'Filtrar por watchlist de Letterboxd',
+        watchlistToggleTitle: 'Activar/desactivar filtro de watchlist',
+        watchlistIconTitle: 'Watchlist',
+        watchedFull: 'No vistas en Letterboxd',
+        watchedShort: 'No vistas',
+        watchedActive: 'Vistas activa',
+        watchedBtnTitle: 'Filtrar por películas vistas en Letterboxd',
+        watchedToggleTitle: 'Activar/desactivar filtro de no vistas',
+        watchedIconTitle: 'No vistas',
         clearFilters: 'Limpiar filtros',
-        watchlistTooltipTitle: '<strong>Filtrar por tu watchlist de Letterboxd</strong>',
-        watchlistStep1: 'Inicia sesión en Letterboxd desde el navegador (no en la app)',
-        watchlistStep2: 'Ve a tu watchlist de Letterboxd',
-        watchlistStep3: 'Haz clic en <em>Export watchlist</em>',
-        watchlistStep4: 'Sube el archivo <em>CSV</em> descargado aquí',
+        clearFiltersTitle: 'Limpiar todos los filtros',
+        csvTooltipTitle: '<strong>Filtrar con tus datos de Letterboxd</strong>',
+        csvStep1: 'Ve a <a href="https://letterboxd.com/settings/data/" target="_blank">letterboxd.com/settings/data</a>',
+        csvStep2: 'Haz clic en <em>Export your data</em>',
+        csvStep3: 'Del ZIP descargado, sube <em>watchlist.csv</em> y/o <em>watched.csv</em> aquí',
+        csvStep4: 'Activa/desactiva los filtros',
+        csvPersistence: 'Los archivos se guardan en el navegador y sobreviven cuando vuelvas a abrir la página.',
         filmCount: (n) => `${n} película${n !== 1 ? 's' : ''}`,
         calendarHint: 'Haz clic en cualquier sesión para entradas y opciones de calendario',
         loading: 'Cargando películas...',
@@ -29,7 +40,10 @@ const TRANSLATIONS = {
         addToCalendar: 'Añadir al calendario',
         nLocations: (n) => `${n} salas`,
         nTheaters: (n) => `${n} cines`,
-        watchlistCount: (n) => `${n} películas cargadas de la watchlist`,
+        watchlistCount: (n) => `${n} películas en la watchlist`,
+        watchedCount: (n) => `${n} películas vistas`,
+        removeWatchlist: 'Quitar watchlist',
+        removeWatched: 'Quitar vistas',
         footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor por el cine',
         footerThanks: 'Gracias a los cines de Madrid, a <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a> y a <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
@@ -45,15 +59,26 @@ const TRANSLATIONS = {
         allTheaters: 'All Theaters',
         yearFrom: 'Year from',
         yearTo: 'Year to',
-        watchlistFull: 'Letterboxd watchlist',
-        watchlistShort: 'Watchlist',
+        watchlistFull: 'On Letterboxd watchlist',
+        watchlistShort: 'On watchlist',
         watchlistActive: 'Watchlist active',
+        watchlistBtnTitle: 'Filter by Letterboxd watchlist',
+        watchlistToggleTitle: 'Toggle watchlist filter',
+        watchlistIconTitle: 'Watchlist',
+        watchedFull: 'Not watched on Letterboxd',
+        watchedShort: 'Not watched',
+        watchedActive: 'Watched active',
+        watchedBtnTitle: 'Filter by Letterboxd watched',
+        watchedToggleTitle: 'Toggle not watched filter',
+        watchedIconTitle: 'Not watched',
         clearFilters: 'Clear all filters',
-        watchlistTooltipTitle: '<strong>Filter by your Letterboxd watchlist</strong>',
-        watchlistStep1: 'Log in to Letterboxd via browser (not working on app)',
-        watchlistStep2: 'Go to your Letterboxd watchlist',
-        watchlistStep3: 'Click <em>Export watchlist</em>',
-        watchlistStep4: 'Upload the downloaded <em>CSV</em> file here',
+        clearFiltersTitle: 'Clear all filters',
+        csvTooltipTitle: '<strong>Filter with your Letterboxd data</strong>',
+        csvStep1: 'Go to <a href="https://letterboxd.com/settings/data/" target="_blank">letterboxd.com/settings/data</a>',
+        csvStep2: 'Click <em>Export your data</em>',
+        csvStep3: 'From the downloaded ZIP, upload <em>watchlist.csv</em> and/or <em>watched.csv</em> here',
+        csvStep4: 'Toggle the filters on/off with the switches',
+        csvPersistence: 'Files are saved in your browser and persist across page refreshes.',
         filmCount: (n) => `${n} film${n !== 1 ? 's' : ''}`,
         calendarHint: 'Click any session for tickets & calendar options',
         loading: 'Loading films...',
@@ -64,7 +89,10 @@ const TRANSLATIONS = {
         addToCalendar: 'Add to Calendar',
         nLocations: (n) => `${n} locations`,
         nTheaters: (n) => `${n} theaters`,
-        watchlistCount: (n) => `${n} films loaded from watchlist`,
+        watchlistCount: (n) => `${n} films on watchlist`,
+        watchedCount: (n) => `${n} watched films`,
+        removeWatchlist: 'Remove watchlist',
+        removeWatched: 'Remove watched',
         footerCreated: 'Created with the help of AI • Sponsored by my love for films',
         footerThanks: 'Thanks to Madrid theaters, <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a>, and <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
@@ -136,6 +164,9 @@ function applyStaticTranslations() {
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         el.placeholder = t(el.dataset.i18nPlaceholder);
     });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.title = t(el.dataset.i18nTitle);
+    });
     document.documentElement.lang = currentLang;
     document.title = 'Madrid Film Calendar';
     const currentDateFilter = document.getElementById('date-filter');
@@ -146,6 +177,20 @@ function applyStaticTranslations() {
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === currentLang);
     });
+    updateCsvCountLabels();
+}
+
+function updateCsvCountLabels() {
+    const watchlistCountInfo = document.getElementById('watchlist-count-info');
+    const watchedCountInfo = document.getElementById('watched-count-info');
+
+    if (watchlistCountInfo && watchlistUrls) {
+        watchlistCountInfo.textContent = t('watchlistCount', watchlistUrls.size);
+    }
+
+    if (watchedCountInfo && watchedUrls) {
+        watchedCountInfo.textContent = t('watchedCount', watchedUrls.size);
+    }
 }
 
 function setLanguage(lang) {
@@ -163,6 +208,11 @@ let filteredFilms = [];
 let sortedFilms = [];
 let displayedCount = 0;
 let watchlistUrls = null;
+let watchedUrls = null;
+
+// Whether each filter is actively applied (toggles)
+let watchlistFilterActive = false;
+let watchedFilterActive = false;
 
 // ── Pagination ──────────────────────────────────────────────────────────────────
 const ROWS_PER_PAGE = 10;
@@ -427,11 +477,17 @@ function filterFilms() {
 
         // Watchlist filter
         let matchesWatchlist = true;
-        if (watchlistUrls) {
+        if (watchlistUrls && watchlistFilterActive) {
             matchesWatchlist = film.letterboxdShortUrl && watchlistUrls.has(film.letterboxdShortUrl);
         }
 
-        return matchesSearch && matchesYear && matchesWatchlist;
+        // Watched filter (exclude watched films)
+        let matchesWatched = true;
+        if (watchedUrls && watchedFilterActive) {
+            matchesWatched = !(film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
+        }
+
+        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched;
     });
 
     renderFilms();
@@ -1089,9 +1145,6 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     updateDatePlaceholder();
     document.getElementById('theater-filter').value = '';
 
-    // Reset watchlist filter
-    clearWatchlist();
-
     // Reset year filter
     const yearMinInput = document.getElementById('year-min');
     const yearMaxInput = document.getElementById('year-max');
@@ -1286,29 +1339,144 @@ document.getElementById('load-more-btn').addEventListener('click', showMore);
 
 loadFilms();
 
-// Watchlist filter
-document.getElementById('watchlist-btn').addEventListener('click', () => {
+// ── localStorage helpers for CSV persistence ────────────────────────────────────
+function saveWatchlistToStorage(urls) {
+    localStorage.setItem('watchlistUrls', JSON.stringify([...urls]));
+}
+
+function saveWatchedToStorage(urls) {
+    localStorage.setItem('watchedUrls', JSON.stringify([...urls]));
+}
+
+function loadWatchlistFromStorage() {
+    try {
+        const data = localStorage.getItem('watchlistUrls');
+        if (data) return new Set(JSON.parse(data));
+    } catch (e) { /* ignore */ }
+    return null;
+}
+
+function loadWatchedFromStorage() {
+    try {
+        const data = localStorage.getItem('watchedUrls');
+        if (data) return new Set(JSON.parse(data));
+    } catch (e) { /* ignore */ }
+    return null;
+}
+
+function loadToggleStates() {
+    watchlistFilterActive = localStorage.getItem('watchlistFilterActive') === 'true';
+    watchedFilterActive = localStorage.getItem('watchedFilterActive') === 'true';
+}
+
+function saveToggleStates() {
+    localStorage.setItem('watchlistFilterActive', watchlistFilterActive);
+    localStorage.setItem('watchedFilterActive', watchedFilterActive);
+}
+
+// ── Restore persisted CSVs on page load ──────────────────────────────────────
+function restorePersistedCSVs() {
+    loadToggleStates();
+
+    const storedWatchlist = loadWatchlistFromStorage();
+    if (storedWatchlist && storedWatchlist.size > 0) {
+        watchlistUrls = storedWatchlist;
+        applyWatchlistUI();
+    }
+
+    const storedWatched = loadWatchedFromStorage();
+    if (storedWatched && storedWatched.size > 0) {
+        watchedUrls = storedWatched;
+        applyWatchedUI();
+    }
+
+    syncToggleUI();
+}
+
+// ── UI state helpers ─────────────────────────────────────────────────────────
+
+function applyWatchlistUI() {
+    const container = document.querySelector('.watchlist-filter');
+    container.classList.add('loaded');
+    if (watchlistFilterActive) container.classList.add('active');
+    document.getElementById('watchlist-count-info').style.display = 'block';
+    updateCsvCountLabels();
+    updateWatchlistBtnLabel();
+    document.getElementById('watchlist-remove-btn').style.display = '';
+}
+
+function applyWatchedUI() {
+    const container = document.querySelector('.watched-filter');
+    container.classList.add('loaded');
+    if (watchedFilterActive) container.classList.add('active');
+    document.getElementById('watched-count-info').style.display = 'block';
+    updateCsvCountLabels();
+    updateWatchedBtnLabel();
+    document.getElementById('watched-remove-btn').style.display = '';
+}
+
+function updateWatchlistBtnLabel() {
+    const full = document.getElementById('watchlist-label-full');
+    const short = document.getElementById('watchlist-label-short');
     if (watchlistUrls) {
-        clearWatchlist();
-        filterFilms();
+        full.textContent = watchlistFilterActive ? t('watchlistActive') : t('watchlistFull');
+        short.textContent = watchlistFilterActive ? t('watchlistActive') : t('watchlistShort');
     } else {
+        full.textContent = t('watchlistFull');
+        short.textContent = t('watchlistShort');
+    }
+}
+
+function updateWatchedBtnLabel() {
+    const full = document.getElementById('watched-label-full');
+    const short = document.getElementById('watched-label-short');
+    if (watchedUrls) {
+        full.textContent = watchedFilterActive ? t('watchedActive') : t('watchedFull');
+        short.textContent = watchedFilterActive ? t('watchedActive') : t('watchedShort');
+    } else {
+        full.textContent = t('watchedFull');
+        short.textContent = t('watchedShort');
+    }
+}
+
+function syncToggleUI() {
+    const watchlistToggle = document.getElementById('watchlist-toggle');
+    const watchedToggle = document.getElementById('watched-toggle');
+
+    watchlistToggle.checked = watchlistFilterActive;
+    watchedToggle.checked = watchedFilterActive;
+
+    // Show/hide toggles based on loaded data
+    document.getElementById('watchlist-toggle-wrap').style.display = watchlistUrls ? '' : 'none';
+    document.getElementById('watched-toggle-wrap').style.display = watchedUrls ? '' : 'none';
+
+    // Active state styling
+    document.querySelector('.watchlist-filter').classList.toggle('active', watchlistUrls && watchlistFilterActive);
+    document.querySelector('.watched-filter').classList.toggle('active', watchedUrls && watchedFilterActive);
+
+    updateWatchlistBtnLabel();
+    updateWatchedBtnLabel();
+}
+
+// ── Watchlist upload & toggle ────────────────────────────────────────────────
+
+document.getElementById('watchlist-btn').addEventListener('click', () => {
+    if (!watchlistUrls) {
         document.getElementById('watchlist-upload').click();
     }
 });
 
-// Prevent info trigger click from bubbling to the button
-document.getElementById('watchlist-info-trigger').addEventListener('click', (e) => {
-    e.stopPropagation();
-    e.currentTarget.classList.toggle('show');
+document.getElementById('watchlist-toggle').addEventListener('change', (e) => {
+    watchlistFilterActive = e.target.checked;
+    saveToggleStates();
+    syncToggleUI();
+    filterFilms();
 });
 
-document.getElementById('watchlist-tooltip').addEventListener('click', (e) => {
+document.getElementById('watchlist-remove-btn').addEventListener('click', (e) => {
     e.stopPropagation();
-});
-
-document.addEventListener('click', () => {
-    const trigger = document.getElementById('watchlist-info-trigger');
-    trigger.classList.remove('show');
+    clearWatchlist();
+    filterFilms();
 });
 
 document.getElementById('watchlist-upload').addEventListener('change', (event) => {
@@ -1326,11 +1494,11 @@ document.getElementById('watchlist-upload').addEventListener('change', (event) =
 
             if (urls.size > 0) {
                 watchlistUrls = urls;
-                document.querySelector('.watchlist-filter').classList.add('active');
-                document.getElementById('watchlist-label-full').textContent = t('watchlistActive');
-                document.getElementById('watchlist-label-short').textContent = t('watchlistShort');
-                document.getElementById('watchlist-count-info').style.display = 'block';
-                document.getElementById('watchlist-count-info').textContent = t('watchlistCount', urls.size);
+                watchlistFilterActive = true;
+                saveWatchlistToStorage(urls);
+                saveToggleStates();
+                applyWatchlistUI();
+                syncToggleUI();
                 filterFilms();
             }
         },
@@ -1338,17 +1506,105 @@ document.getElementById('watchlist-upload').addEventListener('change', (event) =
             console.error('Error parsing watchlist CSV:', error);
         }
     });
-
-    // Reset file input so same file can be re-uploaded
     event.target.value = '';
 });
 
+// ── Watched upload & toggle ──────────────────────────────────────────────────
+
+document.getElementById('watched-btn').addEventListener('click', () => {
+    if (!watchedUrls) {
+        document.getElementById('watched-upload').click();
+    }
+});
+
+document.getElementById('watched-toggle').addEventListener('change', (e) => {
+    watchedFilterActive = e.target.checked;
+    saveToggleStates();
+    syncToggleUI();
+    filterFilms();
+});
+
+document.getElementById('watched-remove-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    clearWatched();
+    filterFilms();
+});
+
+document.getElementById('watched-upload').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    Papa.parse(file, {
+        header: true,
+        complete: (results) => {
+            const urls = new Set();
+            results.data.forEach(row => {
+                const uri = row['Letterboxd URI'];
+                if (uri) urls.add(uri.trim());
+            });
+
+            if (urls.size > 0) {
+                watchedUrls = urls;
+                watchedFilterActive = true;
+                saveWatchedToStorage(urls);
+                saveToggleStates();
+                applyWatchedUI();
+                syncToggleUI();
+                filterFilms();
+            }
+        },
+        error: (error) => {
+            console.error('Error parsing watched CSV:', error);
+        }
+    });
+    event.target.value = '';
+});
+
+// ── Info tooltip ─────────────────────────────────────────────────────────────
+
+document.getElementById('csv-info-trigger').addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.currentTarget.classList.toggle('show');
+});
+
+document.getElementById('csv-tooltip').addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+document.addEventListener('click', () => {
+    const trigger = document.getElementById('csv-info-trigger');
+    trigger.classList.remove('show');
+});
+
+// ── Clear helpers ────────────────────────────────────────────────────────────
+
 function clearWatchlist() {
     watchlistUrls = null;
-    document.querySelector('.watchlist-filter').classList.remove('active');
-    document.getElementById('watchlist-label-full').textContent = t('watchlistFull');
-    document.getElementById('watchlist-label-short').textContent = t('watchlistShort');
+    watchlistFilterActive = false;
+    localStorage.removeItem('watchlistUrls');
+    saveToggleStates();
+    const container = document.querySelector('.watchlist-filter');
+    container.classList.remove('active', 'loaded');
     document.getElementById('watchlist-upload').value = '';
     document.getElementById('watchlist-count-info').style.display = 'none';
     document.getElementById('watchlist-count-info').textContent = '';
+    document.getElementById('watchlist-remove-btn').style.display = 'none';
+    syncToggleUI();
 }
+
+function clearWatched() {
+    watchedUrls = null;
+    watchedFilterActive = false;
+    localStorage.removeItem('watchedUrls');
+    saveToggleStates();
+    const container = document.querySelector('.watched-filter');
+    container.classList.remove('active', 'loaded');
+    document.getElementById('watched-upload').value = '';
+    document.getElementById('watched-count-info').style.display = 'none';
+    document.getElementById('watched-count-info').textContent = '';
+    document.getElementById('watched-remove-btn').style.display = 'none';
+    syncToggleUI();
+}
+
+// Restore on page load
+restorePersistedCSVs();

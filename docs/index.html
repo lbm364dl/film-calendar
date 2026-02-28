@@ -9,7 +9,7 @@
         content="Cartelera de cine independiente y alternativo en Madrid. Sesiones, horarios y películas en Cineteca, Doré, Sala Berlanga, Cines Renoir, Golem, Embajadores y Cine Estudio.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lbm364dl.github.io/film-calendar/">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=11">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKN0ELREQD"></script>
     <script>
@@ -73,29 +73,59 @@
             <div class="actions-cell">
                 <div class="watchlist-filter">
                     <input type="file" id="watchlist-upload" accept=".csv" hidden>
-                    <button class="watchlist-btn" id="watchlist-btn" title="Filter by Letterboxd watchlist">
-                        <span id="watchlist-label-full" class="watchlist-label-full" data-i18n="watchlistFull">Watchlist
-                            de Letterboxd</span>
-                        <span id="watchlist-label-short" class="watchlist-label-short"
-                            data-i18n="watchlistShort">Watchlist</span>
+                    <button class="csv-filter-btn" id="watchlist-btn" title="Filtrar por watchlist de Letterboxd" data-i18n-title="watchlistBtnTitle">
+                        <span class="csv-label-text">
+                            <span id="watchlist-label-full" class="csv-label-full" data-i18n="watchlistFull">Watchlist de Letterboxd</span>
+                            <span id="watchlist-label-short" class="csv-label-short" data-i18n="watchlistShort">Watchlist</span>
+                        </span>
+                        <span class="csv-label-icon" title="Watchlist" data-i18n-title="watchlistIconTitle">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                        </span>
                     </button>
-                    <div class="watchlist-info-trigger" id="watchlist-info-trigger">
+                    <span id="watchlist-toggle-wrap" class="csv-toggle-wrap" style="display:none">
+                        <label class="toggle-switch" title="Activar/desactivar filtro de watchlist" data-i18n-title="watchlistToggleTitle">
+                            <input type="checkbox" id="watchlist-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </span>
+                    <button id="watchlist-remove-btn" class="csv-remove-btn" title="Quitar watchlist" data-i18n-title="removeWatchlist" style="display:none">&times;</button>
+                    <div class="csv-info-trigger" id="csv-info-trigger">
                         <span class="info-icon" id="info-icon">?</span>
-                        <div class="watchlist-info-tooltip" id="watchlist-tooltip">
-                            <p data-i18n-html="watchlistTooltipTitle"><strong>Filtrar por tu watchlist de
-                                    Letterboxd</strong></p>
+                        <div class="csv-info-tooltip" id="csv-tooltip">
+                            <p data-i18n-html="csvTooltipTitle"><strong>Filtrar con tus datos de Letterboxd</strong></p>
                             <ol>
-                                <li data-i18n-html="watchlistStep1">Inicia sesión en Letterboxd desde el navegador (no
-                                    en la app)</li>
-                                <li data-i18n-html="watchlistStep2">Ve a tu watchlist de Letterboxd</li>
-                                <li data-i18n-html="watchlistStep3">Haz clic en <em>Export watchlist</em></li>
-                                <li data-i18n-html="watchlistStep4">Sube el archivo <em>CSV</em> descargado aquí</li>
+                                <li data-i18n-html="csvStep1">Ve a <a href="https://letterboxd.com/settings/data/" target="_blank">letterboxd.com/settings/data</a></li>
+                                <li data-i18n-html="csvStep2">Haz clic en <em>Export your data</em></li>
+                                <li data-i18n-html="csvStep3">Del ZIP descargado, sube <em>watchlist.csv</em> y/o <em>watched.csv</em> aquí</li>
+                                <li data-i18n-html="csvStep4">Activa/desactiva los filtros</li>
                             </ol>
-                            <p id="watchlist-count-info" class="watchlist-count-info" style="display:none"></p>
+                            <p class="csv-persistence-note" data-i18n="csvPersistence">Los archivos se guardan en el navegador y sobreviven cuando vuelvas a abrir la página.</p>
+                            <p id="watchlist-count-info" class="csv-count-info" style="display:none"></p>
+                            <p id="watched-count-info" class="csv-count-info" style="display:none"></p>
                         </div>
                     </div>
                 </div>
-                <button id="clear-filters" class="clear-filters-btn" title="Clear all filters">
+
+                <div class="watched-filter">
+                    <input type="file" id="watched-upload" accept=".csv" hidden>
+                    <button class="csv-filter-btn" id="watched-btn" title="Filtrar por películas vistas en Letterboxd" data-i18n-title="watchedBtnTitle">
+                        <span class="csv-label-text">
+                            <span id="watched-label-full" class="csv-label-full" data-i18n="watchedFull">Vistas Letterboxd</span>
+                            <span id="watched-label-short" class="csv-label-short" data-i18n="watchedShort">Vistas</span>
+                        </span>
+                        <span class="csv-label-icon" title="No vistas" data-i18n-title="watchedIconTitle" aria-hidden="true"></span>
+                    </button>
+                    <span id="watched-toggle-wrap" class="csv-toggle-wrap" style="display:none">
+                        <label class="toggle-switch" title="Activar/desactivar filtro de no vistas" data-i18n-title="watchedToggleTitle">
+                            <input type="checkbox" id="watched-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </span>
+                    <button id="watched-remove-btn" class="csv-remove-btn" title="Quitar vistas" data-i18n-title="removeWatched" style="display:none">&times;</button>
+
+                </div>
+
+                <button id="clear-filters" class="clear-filters-btn" title="Limpiar todos los filtros" data-i18n-title="clearFiltersTitle">
                     <span data-i18n="clearFilters">Limpiar filtros</span>
                 </button>
             </div>
