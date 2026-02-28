@@ -5,7 +5,7 @@ const TRANSLATIONS = {
     es: {
         viewersLabel: (n) => `Vista por ${n} personas`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Más próximamente...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Verdi • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
         selectDate: 'Elegir día',
         allTheaters: 'Todos los cines',
@@ -56,7 +56,7 @@ const TRANSLATIONS = {
     en: {
         viewersLabel: (n) => `${n} viewers`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • More coming...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Verdi • More coming...',
         searchPlaceholder: 'Search by title or director',
         selectDate: 'Select date',
         allTheaters: 'All Theaters',
