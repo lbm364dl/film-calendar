@@ -865,16 +865,45 @@ h1 {
     gap: 0.25rem;
     font-size: 1rem;
     font-weight: 700;
-    color: var(--rating-gold);
+    color: var(--text-dim);
 }
 
 .viewers {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    font-size: 0.85rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--text-dim);
     white-space: nowrap;
+}
+
+.metric-icon {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: var(--accent);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
+.rating-icon {
+    width: 18px;
+    height: 18px;
+    -webkit-mask-image: url('assets/rating.svg');
+    mask-image: url('assets/rating.svg');
+}
+
+.viewers-icon {
+    width: 22px;
+    height: 22px;
+    -webkit-mask-image: url('assets/viewers.svg');
+    mask-image: url('assets/viewers.svg');
 }
 
 .letterboxd-link {

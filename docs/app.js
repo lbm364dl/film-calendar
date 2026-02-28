@@ -3,6 +3,7 @@ let currentLang = localStorage.getItem('lang') || 'es';
 
 const TRANSLATIONS = {
     es: {
+        viewersLabel: (n) => `Vista por ${n} personas`,
         siteTitle: '🎬 Madrid Film Calendar',
         subtitle: 'Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Cine Estudio • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
@@ -42,6 +43,7 @@ const TRANSLATIONS = {
         nTheaters: (n) => `${n} cines`,
         watchlistCount: (n) => `${n} películas en la watchlist`,
         watchedCount: (n) => `${n} películas vistas`,
+        ratingTooltip: (rating) => `${rating} de 5 en Letterboxd`,
         removeWatchlist: 'Quitar watchlist',
         removeWatched: 'Quitar vistas',
         footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor por el cine',
@@ -52,6 +54,7 @@ const TRANSLATIONS = {
         loadMore: (n) => `Mostrar más (${n} restantes)`,
     },
     en: {
+        viewersLabel: (n) => `${n} viewers`,
         siteTitle: '🎬 Madrid Film Calendar',
         subtitle: 'Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Cine Estudio • More coming...',
         searchPlaceholder: 'Search by title or director',
@@ -91,6 +94,7 @@ const TRANSLATIONS = {
         nTheaters: (n) => `${n} theaters`,
         watchlistCount: (n) => `${n} films on watchlist`,
         watchedCount: (n) => `${n} watched films`,
+        ratingTooltip: (rating) => `${rating} out of 5 on Letterboxd`,
         removeWatchlist: 'Remove watchlist',
         removeWatched: 'Remove watched',
         footerCreated: 'Created with the help of AI • Sponsored by my love for films',
@@ -533,13 +537,22 @@ function formatViewerCount(n) {
 }
 
 function createFilmCard(film) {
+    const ratingValue = film.rating ? film.rating.toFixed(1) : null;
     const ratingHTML = film.rating
-        ? `<div class="rating">⭐ ${film.rating.toFixed(1)}</div>`
+        ? `<div class="rating" title="${escapeHtml(t('ratingTooltip', ratingValue))}"><span class="metric-icon rating-icon" aria-hidden="true"></span>${ratingValue}</div>`
         : '';
 
-    const viewersFormatted = formatViewerCount(film.viewers);
+    let viewersFormatted = formatViewerCount(film.viewers);
+    let viewersTooltip = '';
+    if (viewersFormatted) {
+        if (currentLang === 'es') {
+            viewersTooltip = t('viewersLabel', film.viewers.toLocaleString('es-ES'));
+        } else {
+            viewersTooltip = t('viewersLabel', film.viewers.toLocaleString('en-US'));
+        }
+    }
     const viewersHTML = viewersFormatted
-        ? `<div class="viewers" title="${film.viewers?.toLocaleString()} viewers">👁️ ${viewersFormatted}</div>`
+        ? `<div class="viewers" title="${escapeHtml(viewersTooltip)}"><span class="metric-icon viewers-icon" aria-hidden="true"></span>${viewersFormatted}</div>`
         : '';
 
     // Build compact title: "Title (Director, Year · 105 min)"
