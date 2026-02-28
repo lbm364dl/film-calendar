@@ -858,10 +858,52 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-06 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 19:15",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
         "timestamp": "2026-03-10 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86495/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
+        "timestamp": "2026-03-15 19:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-20 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-21 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-24 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/hamnet/"
       }
     ]
   },
@@ -1183,10 +1225,52 @@
         "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
       },
       {
+        "timestamp": "2026-03-06 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-07 19:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
         "timestamp": "2026-03-07 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86492/marty-supreme?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-03-10 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-13 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-14 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-20 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-31 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/marty-supreme/"
       }
     ]
   },
@@ -1372,6 +1456,18 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86496/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
+      },
+      {
+        "timestamp": "2026-03-15 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2894&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-17 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2894&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/valor-sentimental/"
       }
     ]
   },
@@ -1379,10 +1475,22 @@
     "title": "Una batalla tras otra",
     "dates": [
       {
+        "timestamp": "2026-03-12 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2842&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/una-batalla-tras-otra/"
+      },
+      {
         "timestamp": "2026-03-14 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86498/una-batalla-tras-otra?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/79750_1_Z_1/una-batalla-tras-otra-vose"
+      },
+      {
+        "timestamp": "2026-03-19 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2842&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/una-batalla-tras-otra/"
       }
     ],
     "director": "Paul Thomas Anderson",
@@ -2070,6 +2178,18 @@
         "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130115",
         "url_info": "https://madrid.cines-verdi.com/little-ame9lie",
         "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-15 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2903&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/little-amelie/"
+      },
+      {
+        "timestamp": "2026-03-29 17:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2903&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/little-amelie/"
       }
     ]
   },
@@ -2474,6 +2594,36 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056846/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-22 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-24 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-25 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-29 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-31 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sorry-baby/"
       }
     ]
   },
@@ -2820,6 +2970,52 @@
     "title_es": "La religiosa"
   },
   {
+    "title": "Un Simple Accidente",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2880&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/un-simple-accidente/"
+      },
+      {
+        "timestamp": "2026-03-21 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2880&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/un-simple-accidente/"
+      }
+    ],
+    "director": "Jafar Panahi",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/it-was-just-an-accident/",
+    "letterboxd_rating": 3.98,
+    "letterboxd_viewers": 271078,
+    "letterboxd_short_url": "https://boxd.it/TX2k",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Crime",
+      "Mystery"
+    ],
+    "country": [
+      "Iran",
+      "France",
+      "Luxembourg"
+    ],
+    "primary_language": [
+      "fr"
+    ],
+    "spoken_languages": [
+      "Azerbaijani",
+      "Persian"
+    ],
+    "runtime_minutes": 104,
+    "tmdb_url": "https://www.themoviedb.org/movie/1456349/",
+    "title_original": "Un simple accident",
+    "title_en": "It Was Just an Accident",
+    "title_es": "Un simple accidente"
+  },
+  {
     "title": "Her",
     "dates": [
       {
@@ -2899,6 +3095,18 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/arco-doblada-al-espanol/15777/",
         "url_info": "https://cinesembajadores.es/pelicula/arco-doblada-al-espanol/?ciudad=madrid",
         "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-22 17:15",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2905&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/arco/"
+      },
+      {
+        "timestamp": "2026-03-28 17:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2905&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/arco/"
       }
     ]
   },
@@ -3057,6 +3265,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
       },
       {
+        "timestamp": "2026-03-01 19:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2843&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/los-domingos/"
+      },
+      {
         "timestamp": "2026-03-01 20:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056912/",
@@ -3164,6 +3378,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056960/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-04 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2843&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/los-domingos/"
       },
       {
         "timestamp": "2026-03-04 22:30",
@@ -4555,6 +4775,18 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86491/bugonia?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/82254_1_Z_1/bugonia-vose"
+      },
+      {
+        "timestamp": "2026-03-08 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2882&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/bugonia/"
+      },
+      {
+        "timestamp": "2026-03-13 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2882&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/bugonia/"
       }
     ],
     "director": "Yorgos Lanthimos",
@@ -5192,6 +5424,46 @@
     "title_original": "Election",
     "title_en": "Election",
     "title_es": "Election"
+  },
+  {
+    "title": "Flores Para Antonio",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2888&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/flores-para-antonio/"
+      },
+      {
+        "timestamp": "2026-03-04 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2888&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/flores-para-antonio/"
+      }
+    ],
+    "director": "Elena Molina, Isaki Lacuesta",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/flores-para-antonio/",
+    "letterboxd_rating": 3.78,
+    "letterboxd_viewers": 3623,
+    "letterboxd_short_url": "https://boxd.it/Qj0i",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 98,
+    "tmdb_url": "https://www.themoviedb.org/movie/1357349/",
+    "title_original": "Flores para Antonio",
+    "title_en": null,
+    "title_es": null
   },
   {
     "title": "Certain Women",
@@ -6528,6 +6800,62 @@
     "runtime_minutes": 108
   },
   {
+    "title": "Pillion",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2908&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/pillion/"
+      },
+      {
+        "timestamp": "2026-03-27 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2908&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/pillion/"
+      },
+      {
+        "timestamp": "2026-03-28 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2908&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/pillion/"
+      },
+      {
+        "timestamp": "2026-03-29 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2908&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/pillion/"
+      }
+    ],
+    "director": "Harry Lighton",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/pillion-2025/",
+    "letterboxd_rating": 3.56,
+    "letterboxd_viewers": 139240,
+    "letterboxd_short_url": "https://boxd.it/N6Pw",
+    "genres": [
+      "Romance",
+      "Drama",
+      "Comedy"
+    ],
+    "country": [
+      "United Kingdom",
+      "Ireland",
+      "Netherlands"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/1287141/",
+    "title_original": "Pillion",
+    "title_en": "Pillion",
+    "title_es": null
+  },
+  {
     "title": "Sirat",
     "director": "Óliver Laxe",
     "year": 2025,
@@ -6578,6 +6906,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
       },
       {
+        "timestamp": "2026-03-01 21:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2796&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sirat-trance-en-el-desierto/"
+      },
+      {
         "timestamp": "2026-03-01 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056918/",
@@ -6618,6 +6952,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056966/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-05 19:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2901&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sustrato-sirat-trance-en-el-desierto/"
       },
       {
         "timestamp": "2026-03-05 20:25",
@@ -6830,6 +7170,89 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1513031/",
     "title_original": "Hasta que me quede sin voz",
     "title_en": "Until My Voice Breaks",
+    "title_es": null
+  },
+  {
+    "title": "La Cronología Del Agua",
+    "dates": [
+      {
+        "timestamp": "2026-03-03 21:45",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2845&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/la-cronologia-del-agua/"
+      },
+      {
+        "timestamp": "2026-03-11 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2845&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/la-cronologia-del-agua/"
+      }
+    ],
+    "director": "Kristen Stewart",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-chronology-of-water/",
+    "letterboxd_rating": 3.54,
+    "letterboxd_viewers": 32924,
+    "letterboxd_short_url": "https://boxd.it/j3pq",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America",
+      "France",
+      "Latvia",
+      "Switzerland"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 128,
+    "tmdb_url": "https://www.themoviedb.org/movie/524635/",
+    "title_original": "The Chronology of Water",
+    "title_en": "The Chronology of Water",
+    "title_es": "La cronología del agua"
+  },
+  {
+    "title": "Madrid, Ext.",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2836&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/madrid-ext/"
+      },
+      {
+        "timestamp": "2026-03-14 17:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2836&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/madrid-ext/"
+      }
+    ],
+    "director": "Juan Cavestany",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/madrid-ext/",
+    "letterboxd_rating": 3.54,
+    "letterboxd_viewers": 837,
+    "letterboxd_short_url": "https://boxd.it/WxHs",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 93,
+    "tmdb_url": "https://www.themoviedb.org/movie/1519553/",
+    "title_original": "Madrid, Ext.",
+    "title_en": "Madrid, Ext.",
     "title_es": null
   },
   {
@@ -8528,6 +8951,18 @@
         "location": "Cine Doré",
         "url_tickets": "",
         "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/the-mastermind-1"
+      },
+      {
+        "timestamp": "2026-03-03 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2883&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/the-mastermind/"
+      },
+      {
+        "timestamp": "2026-03-10 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2883&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/the-mastermind/"
       }
     ],
     "director": "Kelly Reichardt",
@@ -8629,6 +9064,46 @@
     "title_es": "Andy Warhol: El sueño americano"
   },
   {
+    "title": "Die My Love",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2884&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/die-my-love/"
+      },
+      {
+        "timestamp": "2026-03-11 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2884&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/die-my-love/"
+      }
+    ],
+    "director": "Lynne Ramsay",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/die-my-love/",
+    "letterboxd_rating": 3.19,
+    "letterboxd_viewers": 474318,
+    "letterboxd_short_url": "https://boxd.it/D5cI",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 119,
+    "tmdb_url": "https://www.themoviedb.org/movie/1033148/",
+    "title_original": "Die My Love",
+    "title_en": "Die My Love",
+    "title_es": "Mátate, amor"
+  },
+  {
     "title": "El príncipe Valiente",
     "dates": [
       {
@@ -8699,6 +9174,59 @@
     "title_en": "The Ice Tower",
     "title_es": "La torre de hielo",
     "runtime_minutes": 118
+  },
+  {
+    "title": "Father Mother Sister Brother",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 19:15",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2900&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/father-mother-sister-brother/"
+      },
+      {
+        "timestamp": "2026-03-17 19:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2900&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/father-mother-sister-brother/"
+      },
+      {
+        "timestamp": "2026-03-19 19:15",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2900&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/father-mother-sister-brother/"
+      }
+    ],
+    "director": "Jim Jarmusch",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/father-mother-sister-brother/",
+    "letterboxd_rating": 3.14,
+    "letterboxd_viewers": 73100,
+    "letterboxd_short_url": "https://boxd.it/HRoU",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "United States of America",
+      "France",
+      "Ireland",
+      "Italy",
+      "Germany",
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "French"
+    ],
+    "runtime_minutes": 110,
+    "tmdb_url": "https://www.themoviedb.org/movie/1159206/",
+    "title_original": "Father Mother Sister Brother",
+    "title_en": "Father Mother Sister Brother",
+    "title_es": null
   },
   {
     "title": "Cumbres Borrascosas",
@@ -9331,6 +9859,30 @@
         "location": "Verdi",
         "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130081",
         "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
+      },
+      {
+        "timestamp": "2026-03-21 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2907&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-22 19:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2907&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-26 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2907&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-28 22:00",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2907&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
       },
       {
         "timestamp": "2026-03-29 11:30",
@@ -12360,6 +12912,32 @@
       }
     ],
     "director": "Juanjo Castro",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Sala Equis Presenta: Vhz",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 12:30",
+        "location": "Sala Equis",
+        "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2439&cine=EQUIS",
+        "url_info": "https://salaequis.es/ciclos/sala-equis-presenta-vhz/"
+      }
+    ],
+    "director": null,
     "year": null,
     "letterboxd_url": null,
     "letterboxd_rating": null,
