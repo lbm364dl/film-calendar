@@ -1796,6 +1796,88 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056716/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hamnet-vose/15767/",
+        "url_info": "https://cinesembajadores.es/pelicula/hamnet-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056787/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86445/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056892/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056718/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056895/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 20:05",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hamnet-vose/15770/",
+        "url_info": "https://cinesembajadores.es/pelicula/hamnet-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056719/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 21:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86417/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
+        "timestamp": "2026-02-28 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96365&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 22:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056900/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hamnet-vose/15776/",
+        "url_info": "https://cinesembajadores.es/pelicula/hamnet-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056721/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       }
     ]
   },
@@ -2840,6 +2922,43 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057024/",
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057026/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-28 18:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057029/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-28 21:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057032/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-02-28 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86459/marty-supreme?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-02-28 22:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130146",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/marty-supreme-vose/15773/",
+        "url_info": "https://cinesembajadores.es/pelicula/marty-supreme-vose/?ciudad=madrid",
+        "version": "VOSE"
       }
     ]
   },
@@ -3401,6 +3520,18 @@
         "timestamp": "2026-02-27 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056639/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-28 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056580/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-02-28 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056643/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       }
     ]
@@ -4029,6 +4160,49 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056529/",
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056532/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-28 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056579/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96367&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 20:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/no-hay-otra-opcion-vose/34871/",
+        "url_info": "https://cinesembajadores.es/pelicula/no-hay-otra-opcion-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056582/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-02-28 21:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-02-28 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056535/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       }
     ]
   },
@@ -4367,6 +4541,31 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96390&eventCode=104549",
         "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056888/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/little-amelie/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/little-amelie-doblada-al-espanol/34862/",
+        "url_info": "https://cinesembajadores.es/pelicula/little-amelie-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96362&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 18:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96363&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
       }
     ]
   },
@@ -4415,6 +4614,18 @@
         "timestamp": "2026-02-27 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96350&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96366&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96364&eventCode=108061",
         "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
       }
     ]
@@ -4494,6 +4705,54 @@
         "timestamp": "2026-02-27 22:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056786/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056788/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-02-28 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96358&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-02-28 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056790/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-02-28 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96359&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-02-28 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056793/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-02-28 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96360&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96361&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056796/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       }
     ]
@@ -4712,6 +4971,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056993/",
         "url_info": "https://www.cinesrenoir.com/pelicula/epic-elvis-presley-in-concert/"
+      },
+      {
+        "timestamp": "2026-02-28 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056997/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/epic-elvis-presley-in-concert/"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130118",
+        "url_info": "https://madrid.cines-verdi.com/epic-elvis-presley-in-concert-vose"
       }
     ]
   },
@@ -4871,6 +5142,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1054794/",
         "url_info": "https://www.cinesrenoir.com/pelicula/arco/"
+      },
+      {
+        "timestamp": "2026-02-28 15:45",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/arco-doblada-al-espanol/15763/",
+        "url_info": "https://cinesembajadores.es/pelicula/arco-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
       }
     ]
   },
@@ -5420,6 +5698,36 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056885/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-28 12:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/los-domingos/15764/",
+        "url_info": "https://cinesembajadores.es/pelicula/los-domingos/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056995/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-28 18:05",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056893/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-28 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056896/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056901/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
       }
     ]
   },
@@ -5494,6 +5802,44 @@
         "location": "Cineteca Madrid",
         "url_tickets": "",
         "url_info": "https://www.cinetecamadrid.com/programacion/tren-de-sombras-el-espectro-de-le-thuit"
+      }
+    ]
+  },
+  {
+    "title": "Bacurau",
+    "director": "Kleber Mendonça Filho y Juliano Dornelles",
+    "year": 2019,
+    "letterboxd_url": "https://letterboxd.com/film/bacurau/",
+    "letterboxd_rating": 3.92,
+    "letterboxd_viewers": 216621,
+    "letterboxd_short_url": "https://boxd.it/fSUG",
+    "genres": [
+      "Western",
+      "Thriller",
+      "Mystery"
+    ],
+    "country": [
+      "Brazil",
+      "France"
+    ],
+    "primary_language": [
+      "Portuguese"
+    ],
+    "spoken_languages": [
+      "English",
+      "Portuguese"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/446159/",
+    "title_original": "Bacurau",
+    "title_en": null,
+    "title_es": null,
+    "runtime_minutes": 131,
+    "dates": [
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Cine Doré",
+        "url_tickets": "",
+        "url_info": "https://entradasfilmoteca.sacatuentrada.es/es/productos/descripcion/bacurau"
       }
     ]
   },
@@ -6254,6 +6600,24 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056640/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260225050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056577/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260225050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-28 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056642/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260225050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056644/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260225050512-la-tarta-del-presidente/"
       }
     ]
   },
@@ -6824,6 +7188,12 @@
         "timestamp": "2026-02-27 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056573/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-02-28 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056583/",
         "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
       }
     ]
@@ -7434,6 +7804,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056782/",
         "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056887/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-02-28 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056792/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
       }
     ]
   },
@@ -8031,6 +8413,100 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056674/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056889/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056677/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96372&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 17:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056891/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 17:35",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/el-agente-secreto-vose/34867/",
+        "url_info": "https://cinesembajadores.es/pelicula/el-agente-secreto-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 18:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86473/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056894/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056681/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 19:40",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/el-agente-secreto-vose/34865/",
+        "url_info": "https://cinesembajadores.es/pelicula/el-agente-secreto-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056897/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96373&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86438/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
+        "timestamp": "2026-02-28 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056899/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056683/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/el-agente-secreto-vose/34866/",
+        "url_info": "https://cinesembajadores.es/pelicula/el-agente-secreto-vose/?ciudad=madrid",
+        "version": "VOSE"
       }
     ]
   },
@@ -8701,6 +9177,12 @@
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056641/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/historias-del-buen-valle/"
       }
     ]
   },
@@ -8735,6 +9217,42 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056424/",
         "url_info": "https://www.cinesrenoir.com/pelicula/la-matanza-de-texas-wilder-cinema/"
+      }
+    ]
+  },
+  {
+    "title": "The Crazy Family",
+    "director": "Gakuryu Ishii",
+    "year": 1984,
+    "letterboxd_url": "https://letterboxd.com/film/the-crazy-family/",
+    "letterboxd_rating": 3.79,
+    "letterboxd_viewers": 5749,
+    "letterboxd_short_url": "https://boxd.it/2gie",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Comedy"
+    ],
+    "country": [
+      "Japan"
+    ],
+    "primary_language": [
+      "Japanese"
+    ],
+    "spoken_languages": [
+      "Japanese"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/67255/",
+    "title_original": "逆噴射家族",
+    "title_en": "The Crazy Family",
+    "title_es": null,
+    "runtime_minutes": 107,
+    "dates": [
+      {
+        "timestamp": "2026-02-28 20:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "",
+        "url_info": "https://www.cinetecamadrid.com/programacion/crazy-family"
       }
     ]
   },
@@ -10000,6 +10518,12 @@
         "timestamp": "2026-02-27 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056575/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
+      },
+      {
+        "timestamp": "2026-02-28 22:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056585/",
         "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
       }
     ]
@@ -11529,6 +12053,89 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056675/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056676/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056789/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86425/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96369&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 17:50",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/tres-adioses-vose/15771/",
+        "url_info": "https://cinesembajadores.es/pelicula/tres-adioses-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056679/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056791/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86426/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 20:10",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/tres-adioses-vose/15772/",
+        "url_info": "https://cinesembajadores.es/pelicula/tres-adioses-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056794/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96371&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/tres-adioses-vose/34869/",
+        "url_info": "https://cinesembajadores.es/pelicula/tres-adioses-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056684/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       }
     ]
   },
@@ -11567,6 +12174,41 @@
         "location": "Cineteca Madrid",
         "url_tickets": "",
         "url_info": "https://www.cinetecamadrid.com/programacion/la-academia-de-las-musas"
+      }
+    ]
+  },
+  {
+    "title": "The descent",
+    "director": "Neil Marshall",
+    "year": 2005,
+    "letterboxd_url": "https://letterboxd.com/film/the-descent/",
+    "letterboxd_rating": 3.57,
+    "letterboxd_viewers": 608146,
+    "letterboxd_short_url": "https://boxd.it/1YNy",
+    "genres": [
+      "Adventure",
+      "Horror"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 100,
+    "tmdb_url": "https://www.themoviedb.org/movie/9392/",
+    "title_original": "The Descent",
+    "title_en": "The Descent",
+    "title_es": "El Descenso",
+    "dates": [
+      {
+        "timestamp": "2026-02-28 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84516/the-descent?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/82911_1_Z_1/aeterna-the-descent-vose"
       }
     ]
   },
@@ -12009,6 +12651,18 @@
         "timestamp": "2026-02-27 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056886/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-28 20:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056898/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-02-28 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056902/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
       }
     ]
@@ -13238,6 +13892,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96354&eventCode=104593",
         "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96368&eventCode=104593",
+        "url_info": "https://www.golem.es/golem/pelicula/Sin-conexión-(V.O.S.E.)"
       }
     ]
   },
@@ -13279,6 +13939,19 @@
         "timestamp": "2026-02-27 19:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96356&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-02-28 17:50",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/hasta-la-montana-vose/34870/",
+        "url_info": "https://cinesembajadores.es/pelicula/hasta-la-montana-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96370&eventCode=108094",
         "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
       }
     ]
@@ -13520,6 +14193,61 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056576/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056717/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056578/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
+      },
+      {
+        "timestamp": "2026-02-28 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056581/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86452/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
+        "timestamp": "2026-02-28 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056720/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056584/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/orwell-2-2-5-vose/34872/",
+        "url_info": "https://cinesembajadores.es/pelicula/orwell-225-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056586/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       }
     ]
   },
@@ -13610,6 +14338,27 @@
         "timestamp": "2026-02-27 17:30",
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/como-cabras-doblada-al-espanol/34853/",
+        "url_info": "https://cinesembajadores.es/pelicula/como-cabras-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 11:45",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/como-cabras-doblada-al-espanol/15766/",
+        "url_info": "https://cinesembajadores.es/pelicula/como-cabras-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 15:45",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/como-cabras-doblada-al-espanol/34861/",
+        "url_info": "https://cinesembajadores.es/pelicula/como-cabras-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 17:40",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/como-cabras-doblada-al-espanol/34864/",
         "url_info": "https://cinesembajadores.es/pelicula/como-cabras-doblada-al-espanol/?ciudad=madrid",
         "version": "dubbed"
       }
@@ -13927,6 +14676,41 @@
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3455",
         "url_info": "https://salaberlanga.com/actividad/mi-amiga-eva-2/"
+      }
+    ]
+  },
+  {
+    "title": "Me siento extraña",
+    "director": "Enrique Martí Maqueda",
+    "year": 1977,
+    "letterboxd_url": "https://letterboxd.com/film/i-feel-strange/",
+    "letterboxd_rating": 3.24,
+    "letterboxd_viewers": 461,
+    "letterboxd_short_url": "https://boxd.it/cDGy",
+    "genres": [
+      "Romance",
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/365279/",
+    "title_original": "Me siento extraña",
+    "title_en": "I Feel Strange",
+    "title_es": null,
+    "runtime_minutes": 87,
+    "dates": [
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Cineteca Madrid",
+        "url_tickets": "",
+        "url_info": "https://www.cinetecamadrid.com/programacion/me-siento-extrana"
       }
     ]
   },
@@ -15119,6 +15903,100 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15760/",
         "url_info": "https://cinesembajadores.es/pelicula/cumbres-borrascosas-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057027/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056678/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86384/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-02-28 17:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15768/",
+        "url_info": "https://cinesembajadores.es/pelicula/cumbres-borrascosas-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057028/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056680/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057030/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86385/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
+        "timestamp": "2026-02-28 20:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15775/",
+        "url_info": "https://cinesembajadores.es/pelicula/cumbres-borrascosas-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057031/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057033/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056682/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86386/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
+        "timestamp": "2026-02-28 22:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15769/",
+        "url_info": "https://cinesembajadores.es/pelicula/cumbres-borrascosas-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 22:40",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130176",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       }
     ]
   },
@@ -15153,6 +16031,12 @@
         "timestamp": "2026-02-13 18:30",
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3449",
+        "url_info": "https://salaberlanga.com/actividad/parecido-a-un-asesinato/"
+      },
+      {
+        "timestamp": "2026-02-28 21:00",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3480",
         "url_info": "https://salaberlanga.com/actividad/parecido-a-un-asesinato/"
       }
     ]
@@ -15328,6 +16212,56 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056530/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056531/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-02-28 15:50",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/los-miserables-el-origen-vose/34863/",
+        "url_info": "https://cinesembajadores.es/pelicula/los-miserables-el-origen-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 17:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86404/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
+        "timestamp": "2026-02-28 18:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056533/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-02-28 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86405/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
+        "timestamp": "2026-02-28 20:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/los-miserables-el-origen-vose/34868/",
+        "url_info": "https://cinesembajadores.es/pelicula/los-miserables-el-origen-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-02-28 20:35",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056534/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-02-28 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1056536/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       }
     ]
   },
@@ -15495,6 +16429,24 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056994/",
         "url_info": "https://www.cinesrenoir.com/pelicula/scarlet/"
+      },
+      {
+        "timestamp": "2026-02-28 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056996/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/scarlet/"
+      },
+      {
+        "timestamp": "2026-02-28 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056998/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/scarlet/"
+      },
+      {
+        "timestamp": "2026-02-28 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130144",
+        "url_info": "https://madrid.cines-verdi.com/scarlet-vose"
       }
     ]
   },
@@ -16675,6 +17627,12 @@
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3448",
         "url_info": "https://salaberlanga.com/actividad/leo-lou/"
+      },
+      {
+        "timestamp": "2026-02-28 18:45",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3479",
+        "url_info": "https://salaberlanga.com/actividad/leo-lou/"
       }
     ]
   },
@@ -17030,6 +17988,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056785/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056890/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
+      },
+      {
+        "timestamp": "2026-02-28 22:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1056795/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sin-conexion/"
       }
     ]
   },
@@ -17152,6 +18122,114 @@
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/islas/15761/",
         "url_info": "https://cinesembajadores.es/pelicula/islas/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/islas/15765/",
+        "url_info": "https://cinesembajadores.es/pelicula/islas/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-02-28 18:10",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/islas/15774/",
+        "url_info": "https://cinesembajadores.es/pelicula/islas/?ciudad=madrid"
+      }
+    ]
+  },
+  {
+    "title": "El tesoro de barracuda",
+    "director": "Adrià García",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-treasure-of-barracuda/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 168,
+    "letterboxd_short_url": "https://boxd.it/NmQK",
+    "genres": [
+      "Animation",
+      "Family",
+      "Adventure"
+    ],
+    "country": [
+      "Belgium",
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "tmdb_url": "https://www.themoviedb.org/movie/1293641/",
+    "title_original": "El tesoro de Barracuda",
+    "title_en": "The Treasure of Barracuda",
+    "title_es": null,
+    "runtime_minutes": 90,
+    "dates": [
+      {
+        "timestamp": "2026-02-28 16:45",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3478",
+        "url_info": "https://salaberlanga.com/actividad/el-tesoro-de-la-barracuda/"
+      }
+    ]
+  },
+  {
+    "title": "Screening LAV #032. Golpear la pantalla",
+    "director": null,
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "tmdb_url": null,
+    "dates": [
+      {
+        "timestamp": "2026-02-28 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/screening-lav-032-golpear-la-pantalla/"
+      }
+    ]
+  },
+  {
+    "title": "Inmaculada",
+    "director": "Michał Kondrat",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/i-am-the-immaculate-conception-2024",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 45,
+    "letterboxd_short_url": "https://boxd.it/QK4w",
+    "genres": [
+      "Documentary",
+      "Drama",
+      "Fantasy"
+    ],
+    "country": [
+      "Poland"
+    ],
+    "primary_language": [
+      "Polish"
+    ],
+    "spoken_languages": [
+      "English",
+      "Polish"
+    ],
+    "runtime_minutes": 99,
+    "tmdb_url": "https://www.themoviedb.org/movie/1369801/",
+    "title_original": "Ja jestem Niepokalane Poczęcie",
+    "title_en": "I Am The Immaculate Conception",
+    "title_es": "Inmaculada",
+    "dates": [
+      {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86466/inmaculada?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89810_1_W_0/inmaculada"
       }
     ]
   }
