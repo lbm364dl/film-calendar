@@ -354,7 +354,12 @@ def _search_with_browser(browser, title: str, year: int | str | None = None, dir
         return None, None
 
 
-def find_letterboxd_url(title: str, year: str | float | int | None, director: str | None = None) -> tuple[str | None, int | None]:
+def find_letterboxd_url(
+    title: str,
+    year: str | float | int | None,
+    director: str | None = None,
+    browser=None,
+) -> tuple[str | None, int | None]:
     """Search Letterboxd for a film and return its URL and Year."""
     strategies = []
 
@@ -374,7 +379,10 @@ def find_letterboxd_url(title: str, year: str | float | int | None, director: st
 
     strategies.append({})
 
-    browser = _create_browser()
+    owns_browser = browser is None
+    if owns_browser:
+        browser = _create_browser()
+
     try:
         for params in strategies:
             p_year = params.get("year")
@@ -388,7 +396,8 @@ def find_letterboxd_url(title: str, year: str | float | int | None, director: st
         print("  → Not found after all attempts.")
         return None, None
     finally:
-        browser.quit()
+        if owns_browser and browser:
+            browser.quit()
 
 
 def _match_row(row) -> pd.Series:
@@ -412,24 +421,36 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict =
         to_match = result
         print(f"Matching {len(to_match)} films")
 
-    for idx in to_match.index:
-        row = result.loc[idx]
+    browser = None
+    try:
+        browser = _create_browser()
 
-        cached_url = None
-        if url_cache:
-            link = row.get("theater_film_link")
-            if link and link in url_cache:
-                cached_url = url_cache[link]
-                print(f"  → Found in cache: {cached_url} (for {link})")
+        for idx in to_match.index:
+            row = result.loc[idx]
 
-        if cached_url:
-            result.at[idx, "letterboxd_url"] = cached_url
-        else:
-            url, found_year = find_letterboxd_url(row["title"], row.get("year"), row.get("director"))
-            result.at[idx, "letterboxd_url"] = url
+            cached_url = None
+            if url_cache:
+                link = row.get("theater_film_link")
+                if link and link in url_cache:
+                    cached_url = url_cache[link]
+                    print(f"  → Found in cache: {cached_url} (for {link})")
 
-            if pd.isna(row.get("year")) and found_year:
-                result.at[idx, "year"] = found_year
+            if cached_url:
+                result.at[idx, "letterboxd_url"] = cached_url
+            else:
+                url, found_year = find_letterboxd_url(
+                    row["title"],
+                    row.get("year"),
+                    row.get("director"),
+                    browser=browser,
+                )
+                result.at[idx, "letterboxd_url"] = url
+
+                if pd.isna(row.get("year")) and found_year:
+                    result.at[idx, "year"] = found_year
+    finally:
+        if browser:
+            browser.quit()
 
     if "year" in result.columns:
         result["year"] = result["year"].astype("Int64")
