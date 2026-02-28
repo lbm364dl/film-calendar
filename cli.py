@@ -137,6 +137,42 @@ def parse_args():
         help="Base URL of the cinema website (e.g., 'https://golem.es').",
     )
 
+    # Archive subcommand
+    archive_parser = subparsers.add_parser(
+        "archive",
+        help="Move sessions in a date range from the live DB to a historical JSON file",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    archive_parser.add_argument(
+        "--start-date",
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        required=True,
+        help="First date of the range to archive. Format YYYY-mm-dd.",
+    )
+    archive_parser.add_argument(
+        "--end-date",
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        required=True,
+        help="Last date of the range to archive (inclusive). Format YYYY-mm-dd.",
+    )
+    archive_parser.add_argument(
+        "--source",
+        type=str,
+        default="docs/screenings.json",
+        help="Live database to read from (default: docs/screenings.json)",
+    )
+    archive_parser.add_argument(
+        "--output",
+        type=str,
+        required=True,
+        help="Path to the historical JSON file to create or merge into.",
+    )
+    archive_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print what would happen without writing any files.",
+    )
+
     args = parser.parse_args(args=(sys.argv[1:] or ["--help"]))
     
     # Show help if no command provided
