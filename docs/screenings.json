@@ -144,6 +144,42 @@
     "title_es": "Umberto D."
   },
   {
+    "title": "Perdición",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/domingo-de-clasicos-perdicion-vose/34691/",
+        "url_info": "https://cinesembajadores.es/pelicula/domingo-de-clasicos-perdicion-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Billy Wilder",
+    "year": 1944,
+    "letterboxd_url": "https://letterboxd.com/film/double-indemnity/",
+    "letterboxd_rating": 4.26,
+    "letterboxd_viewers": 307018,
+    "letterboxd_short_url": "https://boxd.it/297I",
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/996/",
+    "title_original": "Double Indemnity",
+    "title_en": "Double Indemnity",
+    "title_es": "Perdición"
+  },
+  {
     "title": "2001, una odisea del espacio",
     "dates": [
       {
@@ -746,6 +782,76 @@
     ]
   },
   {
+    "title": "En el nombre del padre",
+    "dates": [
+      {
+        "timestamp": "2026-03-29 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/domingo-de-clasicos-en-el-nombre-del-padre-vose/34696/",
+        "url_info": "https://cinesembajadores.es/pelicula/domingo-de-clasicos-en-el-nombre-del-padre-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Jim Sheridan",
+    "year": 1993,
+    "letterboxd_url": "https://letterboxd.com/film/in-the-name-of-the-father-1993/",
+    "letterboxd_rating": 4.2,
+    "letterboxd_viewers": 154222,
+    "letterboxd_short_url": "https://boxd.it/20I6",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Ireland"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 133,
+    "tmdb_url": "https://www.themoviedb.org/movie/7984/",
+    "title_original": "In the Name of the Father",
+    "title_en": "In the Name of the Father",
+    "title_es": "En el nombre del padre"
+  },
+  {
+    "title": "Sin perdón",
+    "dates": [
+      {
+        "timestamp": "2026-03-22 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/domingo-de-clasicos-sin-perdon-vose/34695/",
+        "url_info": "https://cinesembajadores.es/pelicula/domingo-de-clasicos-sin-perdon-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Clint Eastwood",
+    "year": 1992,
+    "letterboxd_url": "https://letterboxd.com/film/unforgiven/",
+    "letterboxd_rating": 4.2,
+    "letterboxd_viewers": 420581,
+    "letterboxd_short_url": "https://boxd.it/6Z4",
+    "genres": [
+      "Western"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 130,
+    "tmdb_url": "https://www.themoviedb.org/movie/33/",
+    "title_original": "Unforgiven",
+    "title_en": "Unforgiven",
+    "title_es": "Sin perdón"
+  },
+  {
     "title": "Valor Sentimental",
     "director": "Joachim Trier",
     "year": 2025,
@@ -853,6 +959,46 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       }
     ]
+  },
+  {
+    "title": "Hiroshima, mon amour",
+    "dates": [
+      {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/domingo-de-clasicos-hiroshima-mon-amour-vose/34693/",
+        "url_info": "https://cinesembajadores.es/pelicula/domingo-de-clasicos-hiroshima-mon-amour-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Alain Resnais",
+    "year": 1959,
+    "letterboxd_url": "https://letterboxd.com/film/hiroshima-mon-amour/",
+    "letterboxd_rating": 4.16,
+    "letterboxd_viewers": 206095,
+    "letterboxd_short_url": "https://boxd.it/22WY",
+    "genres": [
+      "Drama",
+      "History",
+      "Romance"
+    ],
+    "country": [
+      "France",
+      "Japan"
+    ],
+    "primary_language": [
+      "French"
+    ],
+    "spoken_languages": [
+      "English",
+      "French",
+      "Japanese"
+    ],
+    "runtime_minutes": 92,
+    "tmdb_url": "https://www.themoviedb.org/movie/5544/",
+    "title_original": "Hiroshima mon amour",
+    "title_en": "Hiroshima Mon Amour",
+    "title_es": null
   },
   {
     "title": "El laberinto del fauno",
@@ -1186,6 +1332,48 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
       }
     ]
+  },
+  {
+    "title": "Viridiana",
+    "dates": [
+      {
+        "timestamp": "2026-03-24 10:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/clasicos-al-detalle-viridiana/15719/",
+        "url_info": "https://cinesembajadores.es/pelicula/clasicos-al-detalle-viridiana/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-28 10:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/clasicos-al-detalle-viridiana/15720/",
+        "url_info": "https://cinesembajadores.es/pelicula/clasicos-al-detalle-viridiana/?ciudad=madrid"
+      }
+    ],
+    "director": "Luis Buñuel",
+    "year": 1961,
+    "letterboxd_url": "https://letterboxd.com/film/viridiana/",
+    "letterboxd_rating": 4.1,
+    "letterboxd_viewers": 69171,
+    "letterboxd_short_url": "https://boxd.it/24eE",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain",
+      "Mexico"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "English",
+      "Spanish"
+    ],
+    "runtime_minutes": 90,
+    "tmdb_url": "https://www.themoviedb.org/movie/4497/",
+    "title_original": "Viridiana",
+    "title_en": null,
+    "title_es": null
   },
   {
     "title": "Little Amelie",
@@ -3595,6 +3783,41 @@
     "title_es": "Muerte de un ciclista"
   },
   {
+    "title": "Tempestad sobre Washington",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 19:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cine-y-politica-tempestad-sobre-washington-vose/15553/",
+        "url_info": "https://cinesembajadores.es/pelicula/cine-y-politica-tempestad-sobre-washington-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Otto Preminger",
+    "year": 1962,
+    "letterboxd_url": "https://letterboxd.com/film/advise-consent/",
+    "letterboxd_rating": 3.84,
+    "letterboxd_viewers": 7305,
+    "letterboxd_short_url": "https://boxd.it/1J2M",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 139,
+    "tmdb_url": "https://www.themoviedb.org/movie/17185/",
+    "title_original": "Advise & Consent",
+    "title_en": "Advise & Consent",
+    "title_es": "Tempestad sobre Washington"
+  },
+  {
     "title": "El misterio Picasso",
     "dates": [
       {
@@ -3930,6 +4153,80 @@
     "title_es": null
   },
   {
+    "title": "No",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cine-y-politica-no/15552/",
+        "url_info": "https://cinesembajadores.es/pelicula/cine-y-politica-no/?ciudad=madrid"
+      }
+    ],
+    "director": "Pablo Larraín",
+    "year": 2012,
+    "letterboxd_url": "https://letterboxd.com/film/no-2012/",
+    "letterboxd_rating": 3.79,
+    "letterboxd_viewers": 57002,
+    "letterboxd_short_url": "https://boxd.it/3Ie2",
+    "genres": [
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Chile",
+      "United States of America",
+      "France"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 118,
+    "tmdb_url": "https://www.themoviedb.org/movie/110398/",
+    "title_original": "No",
+    "title_en": null,
+    "title_es": "No"
+  },
+  {
+    "title": "Election",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 19:30",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cine-y-politica-election-vose/15551/",
+        "url_info": "https://cinesembajadores.es/pelicula/cine-y-politica-election-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Alexander Payne",
+    "year": 1999,
+    "letterboxd_url": "https://letterboxd.com/film/election/",
+    "letterboxd_rating": 3.78,
+    "letterboxd_viewers": 300859,
+    "letterboxd_short_url": "https://boxd.it/1YEc",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Spanish",
+      "English"
+    ],
+    "runtime_minutes": 103,
+    "tmdb_url": "https://www.themoviedb.org/movie/9451/",
+    "title_original": "Election",
+    "title_en": "Election",
+    "title_es": "Election"
+  },
+  {
     "title": "Certain Women",
     "dates": [
       {
@@ -3999,6 +4296,41 @@
     "title_en": "The Stepford Wives",
     "title_es": "Las esposas de Stepford",
     "runtime_minutes": 117
+  },
+  {
+    "title": "Relámpago (Piano en directo)",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 20:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/relampago-piano-en-directo/15295/",
+        "url_info": "https://cinesembajadores.es/pelicula/relampago-piano-en-directo/?ciudad=madrid"
+      }
+    ],
+    "director": "Ted Wilde",
+    "year": 1925,
+    "letterboxd_url": "https://letterboxd.com/film/the-freshman/",
+    "letterboxd_rating": 3.75,
+    "letterboxd_viewers": 15470,
+    "letterboxd_short_url": "https://boxd.it/X5S",
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "en"
+    ],
+    "spoken_languages": [
+      "No Language"
+    ],
+    "runtime_minutes": 76,
+    "tmdb_url": "https://www.themoviedb.org/movie/42359/",
+    "title_original": "The Freshman",
+    "title_en": "The Freshman",
+    "title_es": "El estudiante novato"
   },
   {
     "title": "La vie après Siham",
@@ -5701,6 +6033,49 @@
     "runtime_minutes": 98
   },
   {
+    "title": "Showgirls",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 12:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/laca-y-palomitas-especial-2-aniversario-showgirls-vose/15832/",
+        "url_info": "https://cinesembajadores.es/pelicula/laca-y-palomitas-especial-2o-aniversario-showgirls-vose/?ciudad=madrid",
+        "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-14 22:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/laca-y-palomitas-especial-2-aniversario-showgirls-vose/15833/",
+        "url_info": "https://cinesembajadores.es/pelicula/laca-y-palomitas-especial-2o-aniversario-showgirls-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Paul Verhoeven",
+    "year": 1995,
+    "letterboxd_url": "https://letterboxd.com/film/showgirls/",
+    "letterboxd_rating": 3.45,
+    "letterboxd_viewers": 278556,
+    "letterboxd_short_url": "https://boxd.it/1Vmk",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America",
+      "France"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 131,
+    "tmdb_url": "https://www.themoviedb.org/movie/10802/",
+    "title_original": "Showgirls",
+    "title_en": "Showgirls",
+    "title_es": "Showgirls"
+  },
+  {
     "title": "À bras-le-corps",
     "dates": [
       {
@@ -5890,6 +6265,44 @@
     "title_original": "River of Grass",
     "title_en": "River of Grass",
     "title_es": null
+  },
+  {
+    "title": "Chocolat",
+    "dates": [
+      {
+        "timestamp": "2026-03-09 19:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/chocolat-vose/34422/",
+        "url_info": "https://cinesembajadores.es/pelicula/chocolat-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Lasse Hallström",
+    "year": 2000,
+    "letterboxd_url": "https://letterboxd.com/film/chocolat/",
+    "letterboxd_rating": 3.44,
+    "letterboxd_viewers": 219268,
+    "letterboxd_short_url": "https://boxd.it/2aue",
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "French",
+      "English"
+    ],
+    "runtime_minutes": 121,
+    "tmdb_url": "https://www.themoviedb.org/movie/392/",
+    "title_original": "Chocolat",
+    "title_en": "Chocolat",
+    "title_es": "Chocolate"
   },
   {
     "title": "Orwell: 2 + 2 = 5",
@@ -6426,6 +6839,46 @@
     "title_en": "Hollywood 90028",
     "title_es": null,
     "runtime_minutes": 88
+  },
+  {
+    "title": "Águilas de El Cairo",
+    "dates": [
+      {
+        "timestamp": "2026-03-10 19:15",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/aguilas-de-el-cairo-vose/15755/",
+        "url_info": "https://cinesembajadores.es/pelicula/aguilas-de-el-cairo-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Tarik Saleh",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/eagles-of-the-republic/",
+    "letterboxd_rating": 3.34,
+    "letterboxd_viewers": 11006,
+    "letterboxd_short_url": "https://boxd.it/KkUk",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Denmark",
+      "Finland",
+      "France",
+      "Sweden"
+    ],
+    "primary_language": [
+      "Arabic"
+    ],
+    "spoken_languages": [
+      "Arabic",
+      "French"
+    ],
+    "runtime_minutes": 128,
+    "tmdb_url": "https://www.themoviedb.org/movie/1220566/",
+    "title_original": "نسور الجمهورية",
+    "title_en": "Eagles of the Republic",
+    "title_es": null
   },
   {
     "title": "Fanon",
@@ -7659,6 +8112,43 @@
     "title_en": "After the Hunt",
     "title_es": "Caza de brujas",
     "runtime_minutes": 139
+  },
+  {
+    "title": "Una pastelería en Notting Hill",
+    "dates": [
+      {
+        "timestamp": "2026-03-16 19:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/una-pasteleria-en-notting-hill-vose/34423/",
+        "url_info": "https://cinesembajadores.es/pelicula/una-pasteleria-en-notting-hill-vose/?ciudad=madrid",
+        "version": "VOSE"
+      }
+    ],
+    "director": "Eliza Schroeder",
+    "year": 2020,
+    "letterboxd_url": "https://letterboxd.com/film/love-sarah/",
+    "letterboxd_rating": 2.74,
+    "letterboxd_viewers": 4985,
+    "letterboxd_short_url": "https://boxd.it/oIj4",
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 97,
+    "tmdb_url": "https://www.themoviedb.org/movie/664035/",
+    "title_original": "Love Sarah",
+    "title_en": "Love Sarah",
+    "title_es": "Una pastelería en Notting Hill"
   },
   {
     "title": "El tesoro de barracuda",
@@ -9166,5 +9656,185 @@
         "url_info": "https://cinesembajadores.es/pelicula/islas/?ciudad=madrid"
       }
     ]
+  },
+  {
+    "title": "Hoppers",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 17:45",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15841/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-07 11:45",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15842/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15843/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-07 17:55",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15844/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-08 11:45",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15845/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15846/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-08 18:10",
+        "location": "Embajadores Ercilla",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hoppers-doblada-al-espanol/15847/",
+        "url_info": "https://cinesembajadores.es/pelicula/hoppers-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      }
+    ],
+    "director": "Daniel Chong",
+    "year": 2026,
+    "letterboxd_url": "https://letterboxd.com/film/hoppers/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 1258,
+    "letterboxd_short_url": "https://boxd.it/OFpg",
+    "genres": [
+      "Animation",
+      "Family",
+      "Comedy",
+      "Science Fiction"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 105,
+    "tmdb_url": "https://www.themoviedb.org/movie/1327819/",
+    "title_original": "Hoppers",
+    "title_en": "Hoppers",
+    "title_es": "Hoppers: Operación castor"
+  },
+  {
+    "title": "Las locas del obelisco",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/las-locas-del-obelisco/34928/",
+        "url_info": "https://cinesembajadores.es/pelicula/las-locas-del-obelisco/?ciudad=madrid"
+      }
+    ],
+    "director": "Pablo Moreno",
+    "year": 2026,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Érase una vez en Rivollywood",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34762/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-07 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34763/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-08 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34764/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-09 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34765/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-10 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34766/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-11 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34767/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-12 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34768/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-13 18:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34769/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-14 12:00",
+        "location": "Embajadores Glorieta",
+        "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/erase-una-vez-en-rivollywood/34770/",
+        "url_info": "https://cinesembajadores.es/pelicula/erase-una-vez-en-rivollywood/?ciudad=madrid"
+      }
+    ],
+    "director": "José Luis Rojas",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
   }
 ]
