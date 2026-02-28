@@ -34,6 +34,7 @@ const TRANSLATIONS = {
         footerThanks: 'Gracias a los cines de Madrid, a <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a> y a <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
         viewOnGithub: 'Ver en GitHub',
+        dubbedTooltip: 'Doblada al castellano',
     },
     en: {
         siteTitle: '🎬 Madrid Film Calendar',
@@ -67,6 +68,7 @@ const TRANSLATIONS = {
         footerThanks: 'Thanks to Madrid theaters, <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a>, and <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
         viewOnGithub: 'View on GitHub',
+        dubbedTooltip: 'Dubbed in Spanish',
     }
 };
 
@@ -539,7 +541,7 @@ function createSessionRow(film, dateObj) {
 
     // Version badge for dubbed sessions
     const versionBadge = dateObj.version === 'dubbed'
-        ? '<span class="version-badge dubbed">Doblada</span>'
+        ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
         : '';
 
     // Create full date/time label for modal header
@@ -779,7 +781,7 @@ function createGroupedSessions(film) {
                 : '';
 
             const versionTag = dateObj.version === 'dubbed'
-                ? '<span class="version-badge dubbed">Doblada</span>'
+                ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
                 : '';
 
             // Create date/time label for modal header
