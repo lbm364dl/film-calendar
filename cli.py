@@ -42,7 +42,7 @@ def parse_args():
         "--fetch-from",
         type=str,
         action="append",
-        choices=["dore", "cineteca", "circulo-bellas-artes", "renoir", "golem", "sala-berlanga", "embajadores"],
+        choices=["dore", "cineteca", "circulo-bellas-artes", "renoir", "golem", "sala-berlanga", "embajadores", "cine-paz"],
         default=[],
         help="Theater(s) to fetch from. Repeat for multiple theaters.\nExample: --fetch-from dore --fetch-from cineteca",
     )
