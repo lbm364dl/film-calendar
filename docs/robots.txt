@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lbm364dl.github.io/film-calendar/sitemap.xml
