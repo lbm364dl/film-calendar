@@ -37,6 +37,78 @@
     "runtime_minutes": 105
   },
   {
+    "title": "El bueno, el feo y el malo",
+    "dates": [
+      {
+        "timestamp": "2026-03-09 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84511/el-bueno-el-feo-y-el-malo?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/12960_1_Z_1/el-bueno-el-feo-y-el-malo-vose"
+      }
+    ],
+    "director": "Sergio Leone",
+    "year": 1966,
+    "letterboxd_url": "https://letterboxd.com/film/the-good-the-bad-and-the-ugly/",
+    "letterboxd_rating": 4.51,
+    "letterboxd_viewers": 1034922,
+    "letterboxd_short_url": "https://boxd.it/2ape",
+    "genres": [
+      "Western"
+    ],
+    "country": [
+      "United States of America",
+      "Italy",
+      "Spain",
+      "Germany"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "Italian"
+    ],
+    "runtime_minutes": 161,
+    "tmdb_url": "https://www.themoviedb.org/movie/429/",
+    "title_original": "Il buono, il brutto, il cattivo",
+    "title_en": "The Good, the Bad and the Ugly",
+    "title_es": "El bueno, el feo y el malo"
+  },
+  {
+    "title": "Cantando bajo la lluvia",
+    "dates": [
+      {
+        "timestamp": "2026-03-16 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84512/cantando-bajo-la-lluvia?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/5084_1_Z_1/cantando-bajo-la-lluvia-vose"
+      }
+    ],
+    "director": "Gene Kelly",
+    "year": 1952,
+    "letterboxd_url": "https://letterboxd.com/film/singin-in-the-rain/",
+    "letterboxd_rating": 4.35,
+    "letterboxd_viewers": 937552,
+    "letterboxd_short_url": "https://boxd.it/29oY",
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 103,
+    "tmdb_url": "https://www.themoviedb.org/movie/872/",
+    "title_original": "Singin' in the Rain",
+    "title_en": "Singin' in the Rain",
+    "title_es": "Cantando bajo la lluvia"
+  },
+  {
     "title": "¿Teléfono rojo? Volamos hacia Moscú",
     "dates": [
       {
@@ -261,6 +333,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86445/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-02-28 17:40",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056892/",
@@ -290,6 +369,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056719/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-02-28 21:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86417/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
       },
       {
         "timestamp": "2026-02-28 21:45",
@@ -330,6 +415,13 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-01 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86446/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-01 17:40",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056908/",
@@ -361,6 +453,12 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-01 21:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86418/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-01 21:45",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96381&eventCode=103859",
@@ -383,6 +481,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056808/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-02 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86447/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-02 17:40",
@@ -422,6 +527,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-02 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86419/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-02 22:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056932/",
@@ -444,6 +555,13 @@
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/hamnet-doblada-al-espanol/34892/",
         "url_info": "https://cinesembajadores.es/pelicula/hamnet-doblada-al-espanol/?ciudad=madrid",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-03 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86448/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
         "version": "dubbed"
       },
       {
@@ -476,6 +594,12 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/hamnet-doblada-al-espanol/34893/",
         "url_info": "https://cinesembajadores.es/pelicula/hamnet-doblada-al-espanol/?ciudad=madrid",
         "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-03 21:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86420/hamnet?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
       },
       {
         "timestamp": "2026-03-03 21:45",
@@ -516,6 +640,13 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-04 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86449/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-04 17:40",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056956/",
@@ -547,6 +678,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-04 21:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86421/hamnet?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-04 22:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056964/",
@@ -570,6 +707,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056837/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-05 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86450/hamnet?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_W_0/hamnet",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-05 17:40",
@@ -603,6 +747,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-05 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86422/hamnet?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-05 22:15",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/hamnet-vose/15806/",
@@ -620,8 +770,85 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056744/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86495/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
       }
     ]
+  },
+  {
+    "title": "Toro salvaje",
+    "dates": [
+      {
+        "timestamp": "2026-03-23 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84513/toro-salvaje?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/39889_1_Z_1/toro-salvaje-vose"
+      }
+    ],
+    "director": "Martin Scorsese",
+    "year": 1980,
+    "letterboxd_url": "https://letterboxd.com/film/raging-bull/",
+    "letterboxd_rating": 4.22,
+    "letterboxd_viewers": 763979,
+    "letterboxd_short_url": "https://boxd.it/28yI",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 129,
+    "tmdb_url": "https://www.themoviedb.org/movie/1578/",
+    "title_original": "Raging Bull",
+    "title_en": "Raging Bull",
+    "title_es": "Toro salvaje"
+  },
+  {
+    "title": "Aftersun",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85100/aftersun?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/39857_1_Z_1/aftersun-vose"
+      }
+    ],
+    "director": "Charlotte Wells",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/aftersun/",
+    "letterboxd_rating": 4.21,
+    "letterboxd_viewers": 1770274,
+    "letterboxd_short_url": "https://boxd.it/Arw0",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United Kingdom",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Turkish",
+      "Spanish",
+      "English"
+    ],
+    "runtime_minutes": 101,
+    "tmdb_url": "https://www.themoviedb.org/movie/965150/",
+    "title_original": "Aftersun",
+    "title_en": "Aftersun",
+    "title_es": null
   },
   {
     "title": "Marty Supreme",
@@ -669,6 +896,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
+        "timestamp": "2026-02-28 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86459/marty-supreme?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
         "timestamp": "2026-02-28 22:30",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/marty-supreme-vose/15773/",
@@ -694,6 +927,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
+        "timestamp": "2026-03-01 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86460/marty-supreme?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
         "timestamp": "2026-03-02 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057042/",
@@ -710,6 +949,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057048/",
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-02 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86461/marty-supreme?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
       },
       {
         "timestamp": "2026-03-03 16:00",
@@ -755,6 +1000,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
+        "timestamp": "2026-03-04 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86463/marty-supreme?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
         "timestamp": "2026-03-05 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057066/",
@@ -778,6 +1029,18 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/marty-supreme-vose/34912/",
         "url_info": "https://cinesembajadores.es/pelicula/marty-supreme-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-05 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86464/marty-supreme?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86492/marty-supreme?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
       }
     ]
   },
@@ -957,8 +1220,52 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056663/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-12 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86496/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
       }
     ]
+  },
+  {
+    "title": "Una batalla tras otra",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86498/una-batalla-tras-otra?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/79750_1_Z_1/una-batalla-tras-otra-vose"
+      }
+    ],
+    "director": "Paul Thomas Anderson",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/one-battle-after-another/",
+    "letterboxd_rating": 4.19,
+    "letterboxd_viewers": 2480735,
+    "letterboxd_short_url": "https://boxd.it/DUHM",
+    "genres": [
+      "Thriller",
+      "Crime",
+      "Action"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English",
+      "Spanish",
+      "French"
+    ],
+    "runtime_minutes": 162,
+    "tmdb_url": "https://www.themoviedb.org/movie/1054867/",
+    "title_original": "One Battle After Another",
+    "title_en": "One Battle After Another",
+    "title_es": "Una batalla tras otra"
   },
   {
     "title": "Hiroshima, mon amour",
@@ -1337,6 +1644,12 @@
     "title": "Viridiana",
     "dates": [
       {
+        "timestamp": "2026-03-02 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84510/viridiana?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/6366_1_W_0/viridiana"
+      },
+      {
         "timestamp": "2026-03-24 10:00",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/clasicos-al-detalle-viridiana/15719/",
@@ -1374,6 +1687,44 @@
     "title_original": "Viridiana",
     "title_en": null,
     "title_es": null
+  },
+  {
+    "title": "Los pecadores",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86497/los-pecadores?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/72602_1_Z_1/los-pecadores-vose"
+      }
+    ],
+    "director": "Ryan Coogler",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/sinners-2025/",
+    "letterboxd_rating": 4.1,
+    "letterboxd_viewers": 4158020,
+    "letterboxd_short_url": "https://boxd.it/KQMM",
+    "genres": [
+      "Horror",
+      "Action",
+      "Thriller"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Mandarin",
+      "English",
+      "Yoruba"
+    ],
+    "runtime_minutes": 138,
+    "tmdb_url": "https://www.themoviedb.org/movie/1233413/",
+    "title_original": "Sinners",
+    "title_en": "Sinners",
+    "title_es": "Pecadores"
   },
   {
     "title": "Little Amelie",
@@ -1883,6 +2234,42 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       }
     ]
+  },
+  {
+    "title": "Tres Anuncios En Las Afueras",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86009/tres-anuncios-en-las-afueras?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/8756_1_Z_1/tres-anuncios-en-las-afueras-vose"
+      }
+    ],
+    "director": "Martin McDonagh",
+    "year": 2017,
+    "letterboxd_url": "https://letterboxd.com/film/three-billboards-outside-ebbing-missouri/",
+    "letterboxd_rating": 4.06,
+    "letterboxd_viewers": 1159979,
+    "letterboxd_short_url": "https://boxd.it/ceBS",
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "country": [
+      "United Kingdom",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 115,
+    "tmdb_url": "https://www.themoviedb.org/movie/359940/",
+    "title_original": "Three Billboards Outside Ebbing, Missouri",
+    "title_en": "Three Billboards Outside Ebbing, Missouri",
+    "title_es": "Tres anuncios en las afueras"
   },
   {
     "title": "Looking for Langston",
@@ -2528,6 +2915,42 @@
     "title_original": "A New Leaf",
     "title_en": "A New Leaf",
     "title_es": "Corazón verde"
+  },
+  {
+    "title": "Big Fish",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85101/big-fish?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/12286_1_Z_1/big-fish-vose"
+      }
+    ],
+    "director": "Tim Burton",
+    "year": 2003,
+    "letterboxd_url": "https://letterboxd.com/film/big-fish/",
+    "letterboxd_rating": 3.94,
+    "letterboxd_viewers": 920385,
+    "letterboxd_short_url": "https://boxd.it/2a3M",
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 125,
+    "tmdb_url": "https://www.themoviedb.org/movie/587/",
+    "title_original": "Big Fish",
+    "title_en": "Big Fish",
+    "title_es": "El Gran Pez"
   },
   {
     "title": "Sorda",
@@ -3199,6 +3622,13 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-02-28 18:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86473/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-02-28 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056894/",
@@ -3230,6 +3660,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-02-28 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86438/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-02-28 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056899/",
@@ -3247,6 +3683,12 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/el-agente-secreto-vose/34866/",
         "url_info": "https://cinesembajadores.es/pelicula/el-agente-secreto-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-01 11:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86484/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-01 12:00",
@@ -3287,6 +3729,13 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-01 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86474/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-01 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056910/",
@@ -3316,6 +3765,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96389&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-01 21:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86485/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-01 21:15",
@@ -3360,6 +3815,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-02 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86475/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-02 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056926/",
@@ -3391,6 +3853,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-02 21:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86440/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-02 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056931/",
@@ -3419,6 +3887,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96426&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-03 17:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86476/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-03 17:15",
@@ -3465,6 +3940,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-03 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86441/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-03 22:05",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/el-agente-secreto-vose/15795/",
@@ -3509,6 +3990,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-04 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86477/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-04 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056958/",
@@ -3544,6 +4032,12 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/el-agente-secreto-vose/34897/",
         "url_info": "https://cinesembajadores.es/pelicula/el-agente-secreto-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-04 21:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86442/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-04 21:50",
@@ -3583,6 +4077,13 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-05 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86478/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-05 17:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056971/",
@@ -3618,6 +4119,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056979/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-05 21:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86443/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-05 22:00",
@@ -3657,6 +4164,45 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       }
     ]
+  },
+  {
+    "title": "Bugonia",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86491/bugonia?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/82254_1_Z_1/bugonia-vose"
+      }
+    ],
+    "director": "Yorgos Lanthimos",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/bugonia/",
+    "letterboxd_rating": 3.87,
+    "letterboxd_viewers": 1635718,
+    "letterboxd_short_url": "https://boxd.it/qeWY",
+    "genres": [
+      "Science Fiction",
+      "Thriller",
+      "Comedy"
+    ],
+    "country": [
+      "Ireland",
+      "South Korea",
+      "United States of America",
+      "Canada"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 119,
+    "tmdb_url": "https://www.themoviedb.org/movie/701387/",
+    "title_original": "Bugonia",
+    "title_en": "Bugonia",
+    "title_es": null
   },
   {
     "title": "El Brujo: Julio Zachrisson",
@@ -3816,6 +4362,45 @@
     "title_original": "Advise & Consent",
     "title_en": "Advise & Consent",
     "title_es": "Tempestad sobre Washington"
+  },
+  {
+    "title": "Frankenstein",
+    "dates": [
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86493/frankenstein?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81272_1_Z_1/frankenstein-vose"
+      }
+    ],
+    "director": "Guillermo del Toro",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/frankenstein-2025/",
+    "letterboxd_rating": 3.84,
+    "letterboxd_viewers": 2536166,
+    "letterboxd_short_url": "https://boxd.it/Ecsg",
+    "genres": [
+      "Drama",
+      "Fantasy",
+      "Horror"
+    ],
+    "country": [
+      "United States of America",
+      "Canada"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Danish",
+      "English",
+      "French"
+    ],
+    "runtime_minutes": 150,
+    "tmdb_url": "https://www.themoviedb.org/movie/1062722/",
+    "title_original": "Frankenstein",
+    "title_en": "Frankenstein",
+    "title_es": null
   },
   {
     "title": "El misterio Picasso",
@@ -4261,6 +4846,44 @@
     "title_es": "Vidas de mujer"
   },
   {
+    "title": "Lost in Translation",
+    "dates": [
+      {
+        "timestamp": "2026-03-05 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85099/lost-in-translation?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/46101_1_Z_1/lost-in-translation-vose"
+      }
+    ],
+    "director": "Sofia Coppola",
+    "year": 2003,
+    "letterboxd_url": "https://letterboxd.com/film/lost-in-translation/",
+    "letterboxd_rating": 3.77,
+    "letterboxd_viewers": 2012512,
+    "letterboxd_short_url": "https://boxd.it/2b0E",
+    "genres": [
+      "Drama",
+      "Comedy",
+      "Romance"
+    ],
+    "country": [
+      "United Kingdom",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Japanese",
+      "English"
+    ],
+    "runtime_minutes": 102,
+    "tmdb_url": "https://www.themoviedb.org/movie/153/",
+    "title_original": "Lost in Translation",
+    "title_en": "Lost in Translation",
+    "title_es": "Perdidos en Tokio"
+  },
+  {
     "title": "Las esposas",
     "dates": [
       {
@@ -4466,6 +5089,80 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/rondallas/"
       }
     ]
+  },
+  {
+    "title": "Candyman, el dominio de la mente",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84517/candyman-el-dominio-de-la-mente?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/82913_1_Z_1/aeterna-candyman-el-dominio-de-la-mente-vose"
+      }
+    ],
+    "director": "Bernard Rose",
+    "year": 1992,
+    "letterboxd_url": "https://letterboxd.com/film/candyman/",
+    "letterboxd_rating": 3.66,
+    "letterboxd_viewers": 400658,
+    "letterboxd_short_url": "https://boxd.it/1Ys6",
+    "genres": [
+      "Drama",
+      "Horror",
+      "Thriller"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 100,
+    "tmdb_url": "https://www.themoviedb.org/movie/9529/",
+    "title_original": "Candyman",
+    "title_en": "Candyman",
+    "title_es": "Candyman: El dominio de la mente"
+  },
+  {
+    "title": "F1",
+    "dates": [
+      {
+        "timestamp": "2026-03-09 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86494/f1?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/75044_1_Z_1/f1--vose"
+      }
+    ],
+    "director": "Joseph Kosinski",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/f1/",
+    "letterboxd_rating": 3.66,
+    "letterboxd_viewers": 1857404,
+    "letterboxd_short_url": "https://boxd.it/yjVM",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "Danish",
+      "English",
+      "German",
+      "Spanish"
+    ],
+    "runtime_minutes": 156,
+    "tmdb_url": "https://www.themoviedb.org/movie/911430/",
+    "title_original": "F1",
+    "title_en": "F1",
+    "title_es": "F1 la película"
   },
   {
     "title": "Las aventuras de Tintín: El secreto del unicornio",
@@ -4769,6 +5466,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-02-28 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86425/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-02-28 16:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96369&eventCode=104636",
@@ -4792,6 +5496,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056791/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-02-28 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86426/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-02-28 20:10",
@@ -4826,6 +5537,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-01 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86483/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-01 15:50",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056685/",
@@ -4849,6 +5567,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96385&eventCode=104636",
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-01 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86427/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-01 18:05",
@@ -4882,6 +5607,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-01 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86428/tres-adioses?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_Z_1/tres-adioses-vose"
+      },
+      {
         "timestamp": "2026-03-01 22:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056693/",
@@ -4904,6 +5635,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96411&eventCode=104636",
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-02 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86429/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-02 17:50",
@@ -4937,6 +5675,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-02 22:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86430/tres-adioses?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_Z_1/tres-adioses-vose"
+      },
+      {
         "timestamp": "2026-03-02 22:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056702/",
@@ -4968,6 +5712,13 @@
         "version": "dubbed"
       },
       {
+        "timestamp": "2026-03-03 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86431/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-03 18:05",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056758/",
@@ -4991,6 +5742,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056824/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-03 22:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86432/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_Z_1/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-03 22:45",
@@ -5024,6 +5781,13 @@
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-04 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86433/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-04 18:05",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056706/",
@@ -5053,6 +5817,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96438&eventCode=104636",
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-04 22:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86434/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_Z_1/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-04 22:45",
@@ -5086,6 +5856,13 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-05 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86435/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-05 18:05",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056762/",
@@ -5115,6 +5892,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96447&eventCode=104636",
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-05 22:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86436/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_Z_1/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-05 22:45",
@@ -5193,6 +5976,41 @@
     "title_original": "Historias de la radio",
     "title_en": "Radio Stories",
     "title_es": null
+  },
+  {
+    "title": "The descent",
+    "dates": [
+      {
+        "timestamp": "2026-02-28 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/84516/the-descent?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/82911_1_Z_1/aeterna-the-descent-vose"
+      }
+    ],
+    "director": "Neil Marshall",
+    "year": 2005,
+    "letterboxd_url": "https://letterboxd.com/film/the-descent/",
+    "letterboxd_rating": 3.57,
+    "letterboxd_viewers": 608146,
+    "letterboxd_short_url": "https://boxd.it/1YNy",
+    "genres": [
+      "Adventure",
+      "Horror"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 100,
+    "tmdb_url": "https://www.themoviedb.org/movie/9392/",
+    "title_original": "The Descent",
+    "title_en": "The Descent",
+    "title_es": "El Descenso"
   },
   {
     "title": "Home Sweet Home",
@@ -5333,6 +6151,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056982/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-15 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86499/sirat?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/74802_1_Z_1/sirat-vose"
       }
     ]
   },
@@ -6361,6 +7185,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-02-28 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86452/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-02-28 20:25",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056720/",
@@ -6386,6 +7216,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-01 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86486/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-03-01 12:10",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/orwell-2-2-5-vose/15778/",
@@ -6409,6 +7245,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056591/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-01 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86453/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
       },
       {
         "timestamp": "2026-03-01 20:25",
@@ -6445,6 +7287,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056601/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-02 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86454/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
       },
       {
         "timestamp": "2026-03-02 20:25",
@@ -6490,6 +7338,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-03 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86455/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-03-03 20:25",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056759/",
@@ -6533,6 +7387,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-04 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86456/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-03-04 20:25",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056735/",
@@ -6568,6 +7428,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056631/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-05 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86457/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
       },
       {
         "timestamp": "2026-03-05 20:25",
@@ -6992,6 +7858,43 @@
     "runtime_minutes": 105
   },
   {
+    "title": "Declaration",
+    "dates": [
+      {
+        "timestamp": "2026-03-21 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85209/declaration?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84257_1_Z_1/nuevas-miradas-de-cine-asiatico-declaration-vose"
+      }
+    ],
+    "director": "Mahesh Naranayan",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/ariyippu/",
+    "letterboxd_rating": 3.28,
+    "letterboxd_viewers": 2379,
+    "letterboxd_short_url": "https://boxd.it/wF8I",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "India"
+    ],
+    "primary_language": [
+      "Malayalam"
+    ],
+    "spoken_languages": [
+      "French",
+      "Hindi",
+      "English",
+      "Malayalam"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/864245/",
+    "title_original": "അറിയിപ്പ്",
+    "title_en": "Ariyippu",
+    "title_es": "Declaration"
+  },
+  {
     "title": "Me siento extraña",
     "dates": [
       {
@@ -7136,6 +8039,41 @@
     "runtime_minutes": 90
   },
   {
+    "title": "Andy Warhol: American Dream",
+    "dates": [
+      {
+        "timestamp": "2026-03-01 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85215/andy-warhol-american-dream?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/83646_1_W_0/andy-warhol-american-dream"
+      }
+    ],
+    "director": "Lubomir Slivka",
+    "year": 2023,
+    "letterboxd_url": "https://letterboxd.com/film/andy-warhol-the-american-dream/",
+    "letterboxd_rating": 3.2,
+    "letterboxd_viewers": 412,
+    "letterboxd_short_url": "https://boxd.it/HXGU",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Slovakia"
+    ],
+    "primary_language": [
+      "Slovak"
+    ],
+    "spoken_languages": [
+      "Slovak",
+      "English"
+    ],
+    "runtime_minutes": 104,
+    "tmdb_url": "https://www.themoviedb.org/movie/1162185/",
+    "title_original": "Andy Warhol: Americký sen",
+    "title_en": "Andy Warhol - The American Dream",
+    "title_es": "Andy Warhol: El sueño americano"
+  },
+  {
     "title": "El príncipe Valiente",
     "dates": [
       {
@@ -7248,6 +8186,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-02-28 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86384/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-02-28 17:30",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15768/",
@@ -7271,6 +8216,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057030/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-02-28 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86385/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-02-28 20:00",
@@ -7298,11 +8249,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-02-28 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86386/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-02-28 22:30",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15769/",
         "url_info": "https://cinesembajadores.es/pelicula/cumbres-borrascosas-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-01 11:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86481/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-01 16:10",
@@ -7315,6 +8278,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056686/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-01 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86387/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-01 17:50",
@@ -7342,6 +8312,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-01 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86388/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-01 20:30",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15783/",
@@ -7367,6 +8343,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-01 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86389/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-02 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057043/",
@@ -7377,6 +8359,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056695/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-02 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86390/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-02 17:30",
@@ -7411,6 +8400,12 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-02 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86391/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-02 20:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057047/",
@@ -7429,6 +8424,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-02 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86392/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-03 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057051/",
@@ -7439,6 +8440,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056745/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-03 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86393/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-03 17:00",
@@ -7473,6 +8481,12 @@
         "version": "dubbed"
       },
       {
+        "timestamp": "2026-03-03 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86394/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-03 20:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057055/",
@@ -7491,6 +8505,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-03 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86395/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-04 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057059/",
@@ -7501,6 +8521,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056705/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-04 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86396/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-04 17:30",
@@ -7528,6 +8555,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-04 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86397/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-04 19:55",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15802/",
@@ -7551,6 +8584,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057065/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-04 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86398/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-04 22:30",
@@ -7579,6 +8618,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-05 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86399/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-05 17:30",
         "location": "Embajadores Ercilla",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadoresrio/cumbres-borrascosas-vose/15807/",
@@ -7596,6 +8642,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056753/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-05 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86400/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-05 19:40",
@@ -7621,6 +8673,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056755/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-05 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86401/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-05 22:30",
@@ -7706,10 +8764,22 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-02-28 17:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86404/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-02-28 18:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056533/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-02-28 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86405/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-02-28 20:30",
@@ -7737,10 +8807,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       },
       {
+        "timestamp": "2026-03-01 17:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86406/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-03-01 18:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056539/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-01 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86407/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-03-01 20:30",
@@ -7775,11 +8857,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       },
       {
+        "timestamp": "2026-03-02 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86408/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-03-02 18:00",
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/los-miserables-el-origen-vose/34886/",
         "url_info": "https://cinesembajadores.es/pelicula/los-miserables-el-origen-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-02 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86409/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-03-02 18:35",
@@ -7806,6 +8900,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       },
       {
+        "timestamp": "2026-03-03 17:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86410/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-03-03 18:15",
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/los-miserables-el-origen-doblada-al-espanol/34888/",
@@ -7817,6 +8917,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056551/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-03 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86411/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-03-03 20:35",
@@ -7844,10 +8950,22 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-04 17:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86412/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-03-04 18:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056557/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-04 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86413/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-03-04 20:35",
@@ -7868,11 +8986,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       },
       {
+        "timestamp": "2026-03-05 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86414/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
+      },
+      {
         "timestamp": "2026-03-05 17:45",
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/los-miserables-el-origen-vose/34907/",
         "url_info": "https://cinesembajadores.es/pelicula/los-miserables-el-origen-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-05 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86415/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       },
       {
         "timestamp": "2026-03-05 18:35",
@@ -8149,6 +9279,42 @@
     "title_original": "Love Sarah",
     "title_en": "Love Sarah",
     "title_es": "Una pastelería en Notting Hill"
+  },
+  {
+    "title": "Whistle. El silbido del mal",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86270/whistle-el-silbido-del-mal?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91347_1_Z_1/muestra-aeterna-whistle-el-silbido-del-mal-vose"
+      }
+    ],
+    "director": "Corin Hardy",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/whistle-2025-1/",
+    "letterboxd_rating": 2.43,
+    "letterboxd_viewers": 26549,
+    "letterboxd_short_url": "https://boxd.it/JgGm",
+    "genres": [
+      "Horror",
+      "Mystery"
+    ],
+    "country": [
+      "Ireland",
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 100,
+    "tmdb_url": "https://www.themoviedb.org/movie/1193501/",
+    "title_original": "Whistle",
+    "title_en": "Whistle",
+    "title_es": "Whistle: El silbido del mal"
   },
   {
     "title": "El tesoro de barracuda",
@@ -9834,6 +11000,331 @@
     "runtime_minutes": null,
     "tmdb_url": null,
     "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Desarmando la memoria. El vuelo del colibrí",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86010/desarmando-la-memoria?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90055_1_W_0/desarmando-la-memoria-el-vuelo-del-colibri"
+      }
+    ],
+    "director": "Paloma Rojas",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/desarmando-la-memoria-el-vuelo-del-colibri/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 1,
+    "letterboxd_short_url": "https://boxd.it/YOIQ",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [],
+    "primary_language": [
+      "en"
+    ],
+    "spoken_languages": [],
+    "runtime_minutes": 81,
+    "tmdb_url": "https://www.themoviedb.org/movie/1577238/",
+    "title_original": "Desarmando la Memoria : El Vuelo del Colibrí",
+    "title_en": "Desarmando la Memoria : El Vuelo del Colibrí",
+    "title_es": null
+  },
+  {
+    "title": "Inmaculada",
+    "dates": [
+      {
+        "timestamp": "2026-02-28 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86466/inmaculada?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89810_1_W_0/inmaculada"
+      },
+      {
+        "timestamp": "2026-03-01 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86467/inmaculada?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89810_1_W_0/inmaculada"
+      },
+      {
+        "timestamp": "2026-03-02 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86468/inmaculada?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89810_1_W_0/inmaculada"
+      },
+      {
+        "timestamp": "2026-03-04 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86470/inmaculada?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89810_1_W_0/inmaculada"
+      }
+    ],
+    "director": "Michał Kondrat",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/i-am-the-immaculate-conception-2024",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 45,
+    "letterboxd_short_url": "https://boxd.it/QK4w",
+    "genres": [
+      "Documentary",
+      "Drama",
+      "Fantasy"
+    ],
+    "country": [
+      "Poland"
+    ],
+    "primary_language": [
+      "Polish"
+    ],
+    "spoken_languages": [
+      "English",
+      "Polish"
+    ],
+    "runtime_minutes": 99,
+    "tmdb_url": "https://www.themoviedb.org/movie/1369801/",
+    "title_original": "Ja jestem Niepokalane Poczęcie",
+    "title_en": "I Am The Immaculate Conception",
+    "title_es": "Inmaculada"
+  },
+  {
+    "title": "La boda",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 12:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86489/la-boda?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89812_1_W_0/la-boda"
+      }
+    ],
+    "director": "Pedro Cenjor",
+    "year": 2026,
+    "letterboxd_url": "https://letterboxd.com/film/the-wedding-2026-1/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 26,
+    "letterboxd_short_url": "https://boxd.it/Nori",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "es"
+    ],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": "https://www.themoviedb.org/movie/1294462/",
+    "title_original": "La boda",
+    "title_en": "The Wedding",
+    "title_es": null
+  },
+  {
+    "title": "La cosa en la niebla",
+    "dates": [
+      {
+        "timestamp": "2026-03-13 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85474/muestra-aeterna-la-cosa-en-la-niebla?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88285_1_W_0/muestra-aeterna-la-cosa-en-la-niebla"
+      }
+    ],
+    "director": "Chedey Reyes",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/la-cosa-en-la-niebla/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 131,
+    "letterboxd_short_url": "https://boxd.it/SNOw",
+    "genres": [
+      "Comedy",
+      "Science Fiction",
+      "Horror"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 85,
+    "tmdb_url": "https://www.themoviedb.org/movie/1426755/",
+    "title_original": "La cosa en la niebla",
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Acto libre",
+    "dates": [
+      {
+        "timestamp": "2026-03-19 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86490/acto-libre?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92789_1_W_0/modo-avion-acto-libre"
+      }
+    ],
+    "director": "Edu Pons y Ester Montenegro",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "A Childless Village",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85208/a-childless-village?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84255_1_Z_1/nuevas-miradas-de-cine-asiatico-a-childless-villag"
+      }
+    ],
+    "director": "Reza Jamali",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/a-childless-village/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 203,
+    "letterboxd_short_url": "https://boxd.it/DB5a",
+    "genres": [
+      "Drama",
+      "Comedy"
+    ],
+    "country": [
+      "Iran"
+    ],
+    "primary_language": [
+      "Azerbaijani"
+    ],
+    "spoken_languages": [
+      "Azerbaijani"
+    ],
+    "runtime_minutes": 81,
+    "tmdb_url": "https://www.themoviedb.org/movie/1046213/",
+    "title_original": "سونسوز",
+    "title_en": "A Childless Village",
+    "title_es": "A Childless Village"
+  },
+  {
+    "title": "Good Luck",
+    "dates": [
+      {
+        "timestamp": "2026-03-28 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85210/good-luck?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84259_1_Z_1/nuevas-miradas-de-cine-asiatico-good-luck-vose"
+      }
+    ],
+    "director": "Adachi Shin",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/good-luck-2025/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 163,
+    "letterboxd_short_url": "https://boxd.it/U472",
+    "genres": [
+      "Drama",
+      "Comedy",
+      "Romance"
+    ],
+    "country": [
+      "Japan"
+    ],
+    "primary_language": [
+      "Japanese"
+    ],
+    "spoken_languages": [
+      "Japanese"
+    ],
+    "runtime_minutes": 105,
+    "tmdb_url": "https://www.themoviedb.org/movie/1459584/",
+    "title_original": "Good Luck",
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "Gunjal",
+    "dates": [
+      {
+        "timestamp": "2026-03-07 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85207/gunjal?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/84253_1_Z_1/nuevas-miradas-de-cine-asiatico-gunjal-vose"
+      }
+    ],
+    "director": "Shoaib Sultan",
+    "year": 2023,
+    "letterboxd_url": "https://letterboxd.com/film/gunjal/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 61,
+    "letterboxd_short_url": "https://boxd.it/JDSg",
+    "genres": [
+      "Crime",
+      "Drama",
+      "History"
+    ],
+    "country": [
+      "Pakistan"
+    ],
+    "primary_language": [
+      "Urdu"
+    ],
+    "spoken_languages": [
+      "English",
+      "Punjabi",
+      "Urdu"
+    ],
+    "runtime_minutes": 120,
+    "tmdb_url": "https://www.themoviedb.org/movie/1202957/",
+    "title_original": "گنجل",
+    "title_en": "Gunjal",
+    "title_es": "Gunjal"
+  },
+  {
+    "title": "Captain Barbell",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86380/superman-filipino-captain-barbell?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92001_1_Z_1/superman-filipino-captain-barbell"
+      }
+    ],
+    "director": "Leroy Salvador",
+    "year": 1986,
+    "letterboxd_url": "https://letterboxd.com/film/captain-barbell-1986/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 271,
+    "letterboxd_short_url": "https://boxd.it/cMVW",
+    "genres": [
+      "Fantasy",
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "country": [
+      "Philippines"
+    ],
+    "primary_language": [
+      "Tagalog"
+    ],
+    "spoken_languages": [
+      "Tagalog"
+    ],
+    "runtime_minutes": 107,
+    "tmdb_url": "https://www.themoviedb.org/movie/369007/",
+    "title_original": "Captain Barbell",
     "title_en": null,
     "title_es": null
   }
