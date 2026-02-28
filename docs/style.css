@@ -611,6 +611,36 @@ h1 {
     opacity: 0.7;
 }
 
+/* Load More Button */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.load-more-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.75rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+}
+
+.load-more-btn:hover {
+    background: rgba(255, 107, 107, 0.15);
+    box-shadow: 0 0 16px rgba(255, 107, 107, 0.2);
+    transform: translateY(-1px);
+}
+
+.load-more-btn:active {
+    transform: translateY(0);
+}
+
 .films-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));

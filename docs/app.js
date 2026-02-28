@@ -30,11 +30,12 @@ const TRANSLATIONS = {
         nLocations: (n) => `${n} salas`,
         nTheaters: (n) => `${n} cines`,
         watchlistCount: (n) => `${n} películas cargadas de la watchlist`,
-        footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor al cine',
+        footerCreated: 'Creado con ayuda de IA • Patrocinado por mi amor por el cine',
         footerThanks: 'Gracias a los cines de Madrid, a <a href="https://letterboxd.com" target="_blank" rel="noopener noreferrer" class="attribution-link">Letterboxd</a> y a <a href="https://www.themoviedb.org" target="_blank" rel="noopener noreferrer" class="attribution-link">TMDB</a>.',
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
         viewOnGithub: 'Ver en GitHub',
         dubbedTooltip: 'Doblada al castellano',
+        loadMore: (n) => `Mostrar más (${n} restantes)`,
     },
     en: {
         siteTitle: '🎬 Madrid Film Calendar',
@@ -69,6 +70,7 @@ const TRANSLATIONS = {
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
         viewOnGithub: 'View on GitHub',
         dubbedTooltip: 'Dubbed in Spanish',
+        loadMore: (n) => `Load more (${n} remaining)`,
     }
 };
 
@@ -158,7 +160,44 @@ function setLanguage(lang) {
 // ── App state ───────────────────────────────────────────────────────────────────
 let allFilms = [];
 let filteredFilms = [];
+let sortedFilms = [];
+let displayedCount = 0;
 let watchlistUrls = null;
+
+// ── Pagination ──────────────────────────────────────────────────────────────────
+const ROWS_PER_PAGE = 10;
+
+function getColumnsPerRow() {
+    const grid = document.getElementById('films-grid');
+    const style = getComputedStyle(grid);
+    const cols = style.gridTemplateColumns.split(' ').length;
+    return cols || 1;
+}
+
+function getPageSize() {
+    return getColumnsPerRow() * ROWS_PER_PAGE;
+}
+
+function updateLoadMoreButton() {
+    const container = document.getElementById('load-more-container');
+    const btn = document.getElementById('load-more-btn');
+    const remaining = sortedFilms.length - displayedCount;
+    if (remaining > 0) {
+        container.style.display = '';
+        btn.textContent = t('loadMore', remaining);
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+function showMore() {
+    const filmsGrid = document.getElementById('films-grid');
+    const pageSize = getPageSize();
+    const nextBatch = sortedFilms.slice(displayedCount, displayedCount + pageSize);
+    filmsGrid.insertAdjacentHTML('beforeend', nextBatch.map(film => createFilmCard(film)).join(''));
+    displayedCount += nextBatch.length;
+    updateLoadMoreButton();
+}
 
 // Data file to load
 const DATA_FILE = 'screenings.json';
@@ -408,13 +447,14 @@ function renderFilms() {
     if (filteredFilms.length === 0) {
         filmsGrid.innerHTML = '';
         noResults.style.display = 'block';
+        document.getElementById('load-more-container').style.display = 'none';
         return;
     }
 
     noResults.style.display = 'none';
 
     // Sort by rating (highest first), then by title
-    const sorted = [...filteredFilms].sort((a, b) => {
+    sortedFilms = [...filteredFilms].sort((a, b) => {
         if (a.rating !== null && b.rating !== null) {
             return b.rating - a.rating;
         }
@@ -423,7 +463,10 @@ function renderFilms() {
         return a.title.localeCompare(b.title);
     });
 
-    filmsGrid.innerHTML = sorted.map(film => createFilmCard(film)).join('');
+    // Reset and show first batch
+    filmsGrid.innerHTML = '';
+    displayedCount = 0;
+    showMore();
 }
 
 function formatViewerCount(n) {
@@ -1238,6 +1281,9 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 applyStaticTranslations();
 
 // Load films on page load
+// Load More button
+document.getElementById('load-more-btn').addEventListener('click', showMore);
+
 loadFilms();
 
 // Watchlist filter
