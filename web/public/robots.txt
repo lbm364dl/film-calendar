@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow crawling of assets directory
+User-agent: *
+Disallow: /film-calendar/assets/
+
+Sitemap: https://lbm364dl.github.io/film-calendar/sitemap.xml
+
+# Host
+Host: https://lbm364dl.github.io
