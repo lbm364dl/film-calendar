@@ -690,11 +690,11 @@ export default function FilmCalendar({
       {/* Header */}
       <header>
         <div className="header-top-row">
+          <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
           <div className="lang-toggle">
             <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
             <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
           </div>
-          <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
         </div>
         <h1>{t(lang, 'siteTitle')}</h1>
         <p className="subtitle">{t(lang, 'subtitle')}</p>

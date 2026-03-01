@@ -40,9 +40,6 @@ header {
 
 /* Language toggle */
 .lang-toggle {
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -131,12 +128,6 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    .lang-toggle {
-        position: static;
-        margin: 0 auto 0.75rem;
-        width: fit-content;
-    }
-
     .filters-grid {
         grid-template-columns: repeat(9, 1fr);
     }
@@ -1495,7 +1486,7 @@ footer p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* ── Auth UI ─────────────────────────────────────────────────────────────────── */
@@ -1542,12 +1533,13 @@ footer p {
 .auth-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    right: 0;
+    left: 0;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.75rem;
     min-width: 200px;
+    max-width: calc(100vw - 2rem);
     z-index: 100;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
