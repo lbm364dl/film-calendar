@@ -1,6 +1,6 @@
 # Madrid Film Calendar Website
 
-A minimalist website to browse and search films showing at Cineteca Madrid and Cine Doré.
+A minimalist website to browse and search films showing at independent cinemas in Madrid.
 
 ## Features
 - 🔍 Real-time search by title, director, or theater
