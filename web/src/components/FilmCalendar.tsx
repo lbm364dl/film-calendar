@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import Papa from 'papaparse';
-import { getSupabase } from '@/lib/supabase';
+import { getBrowserSupabase } from '@/lib/supabase-browser';
 import { t, translateGenre, LangKey } from '@/lib/translations';
 import type { Film, FilmRow, DateEntry, SessionModalData } from '@/lib/types';
+import AuthButton from '@/components/AuthButton';
 
 // ── Constants ───────────────────────────────────────────────────────────────────
 const ROWS_PER_PAGE = 10;
@@ -114,14 +115,49 @@ function mapFilmRows(rows: FilmRow[]): Film[] {
   }).filter(f => f.title);
 }
 
+// ── Helper: save preferences to API (fire-and-forget) ───────────────────────
+function savePreference(data: Record<string, unknown>) {
+  fetch('/api/preferences', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).catch(() => { /* ignore — best effort */ });
+}
+
+function setLangCookie(lang: string) {
+  if (typeof document !== 'undefined') {
+    document.cookie = `fc_lang=${lang}; Path=/; Max-Age=31536000; SameSite=Lax`;
+  }
+}
+
 // ── Main Component ──────────────────────────────────────────────────────────────
-export default function FilmCalendar() {
+interface FilmCalendarProps {
+  initialLang: LangKey;
+  initialWatchlistUrls: string[];
+  initialWatchedUrls: string[];
+  initialWatchlistActive: boolean;
+  initialWatchedActive: boolean;
+  initialUserId: string | null;
+  initialUserEmail: string | null;
+}
+
+export default function FilmCalendar({
+  initialLang,
+  initialWatchlistUrls,
+  initialWatchedUrls,
+  initialWatchlistActive,
+  initialWatchedActive,
+  initialUserId,
+  initialUserEmail,
+}: FilmCalendarProps) {
   // ─ State ─
+  // All values come from the server (cookie for lang, DB for auth'd users).
+  // No client-side hydration from localStorage needed — first render is correct.
   const [allFilms, setAllFilms] = useState<Film[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const [lang, setLangState] = useState<LangKey>('es');
+  const [lang, setLangState] = useState<LangKey>(initialLang);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTheater, setSelectedTheater] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
@@ -130,10 +166,14 @@ export default function FilmCalendar() {
   const [yearBoundsMin, setYearBoundsMin] = useState(1900);
   const [yearBoundsMax, setYearBoundsMax] = useState(2026);
 
-  const [watchlistUrls, setWatchlistUrls] = useState<Set<string> | null>(null);
-  const [watchedUrls, setWatchedUrls] = useState<Set<string> | null>(null);
-  const [watchlistActive, setWatchlistActive] = useState(false);
-  const [watchedActive, setWatchedActive] = useState(false);
+  const [watchlistUrls, setWatchlistUrls] = useState<Set<string> | null>(
+    () => initialWatchlistUrls.length > 0 ? new Set(initialWatchlistUrls) : null
+  );
+  const [watchedUrls, setWatchedUrls] = useState<Set<string> | null>(
+    () => initialWatchedUrls.length > 0 ? new Set(initialWatchedUrls) : null
+  );
+  const [watchlistActive, setWatchlistActive] = useState(initialWatchlistActive);
+  const [watchedActive, setWatchedActive] = useState(initialWatchedActive);
 
   const [displayedCount, setDisplayedCount] = useState(0);
   const [modal, setModal] = useState<SessionModalData | null>(null);
@@ -153,48 +193,17 @@ export default function FilmCalendar() {
     return film.title;
   }, [lang]);
 
-  // ─ Init: load lang from localStorage ─
-  useEffect(() => {
-    const stored = localStorage.getItem('lang') as LangKey | null;
-    if (stored === 'es' || stored === 'en') setLangState(stored);
-  }, []);
-
   const setLang = useCallback((l: LangKey) => {
     setLangState(l);
-    localStorage.setItem('lang', l);
-  }, []);
-
-  // ─ Init: restore CSV from localStorage ─
-  useEffect(() => {
-    try {
-      const wl = localStorage.getItem('watchlistUrls');
-      if (wl) {
-        const set = new Set<string>(JSON.parse(wl));
-        if (set.size > 0) setWatchlistUrls(set);
-      }
-      const wd = localStorage.getItem('watchedUrls');
-      if (wd) {
-        const set = new Set<string>(JSON.parse(wd));
-        if (set.size > 0) setWatchedUrls(set);
-      }
-      setWatchlistActive(localStorage.getItem('watchlistFilterActive') === 'true');
-      setWatchedActive(localStorage.getItem('watchedFilterActive') === 'true');
-    } catch { /* ignore */ }
-  }, []);
-
-  // ─ Persist toggle states ─
-  useEffect(() => {
-    localStorage.setItem('watchlistFilterActive', String(watchlistActive));
-  }, [watchlistActive]);
-  useEffect(() => {
-    localStorage.setItem('watchedFilterActive', String(watchedActive));
-  }, [watchedActive]);
+    setLangCookie(l);
+    if (initialUserId) savePreference({ lang: l });
+  }, [initialUserId]);
 
   // ─ Fetch films from Supabase ─
   useEffect(() => {
     async function load() {
       try {
-        const supabase = getSupabase();
+        const supabase = getBrowserSupabase();
         const { data, error: err } = await supabase
           .from('films')
           .select('*, screenings(*)')
@@ -403,28 +412,32 @@ export default function FilmCalendar() {
           if (type === 'watchlist') {
             setWatchlistUrls(urls);
             setWatchlistActive(true);
-            localStorage.setItem('watchlistUrls', JSON.stringify([...urls]));
+            if (initialUserId) {
+              savePreference({ watchlist_urls: [...urls], watchlist_active: true });
+            }
           } else {
             setWatchedUrls(urls);
             setWatchedActive(true);
-            localStorage.setItem('watchedUrls', JSON.stringify([...urls]));
+            if (initialUserId) {
+              savePreference({ watched_urls: [...urls], watched_active: true });
+            }
           }
         }
       },
     });
-  }, []);
+  }, [initialUserId]);
 
   const clearWatchlist = useCallback(() => {
     setWatchlistUrls(null);
     setWatchlistActive(false);
-    localStorage.removeItem('watchlistUrls');
-  }, []);
+    if (initialUserId) savePreference({ watchlist_urls: [], watchlist_active: false });
+  }, [initialUserId]);
 
   const clearWatched = useCallback(() => {
     setWatchedUrls(null);
     setWatchedActive(false);
-    localStorage.removeItem('watchedUrls');
-  }, []);
+    if (initialUserId) savePreference({ watched_urls: [], watched_active: false });
+  }, [initialUserId]);
 
   const clearAllFilters = useCallback(() => {
     setSearchTerm('');
@@ -676,9 +689,12 @@ export default function FilmCalendar() {
     <div className="container" onClick={() => { setOpenPopupId(null); setShowCsvTooltip(false); }}>
       {/* Header */}
       <header>
-        <div className="lang-toggle">
-          <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
-          <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+        <div className="header-top-row">
+          <div className="lang-toggle">
+            <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
+            <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+          </div>
+          <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
         </div>
         <h1>{t(lang, 'siteTitle')}</h1>
         <p className="subtitle">{t(lang, 'subtitle')}</p>
@@ -809,7 +825,10 @@ export default function FilmCalendar() {
                   <input
                     type="checkbox"
                     checked={watchlistActive}
-                    onChange={(e) => setWatchlistActive(e.target.checked)}
+                    onChange={(e) => {
+                      setWatchlistActive(e.target.checked);
+                      if (initialUserId) savePreference({ watchlist_active: e.target.checked });
+                    }}
                   />
                   <span className="toggle-slider" />
                 </label>
@@ -874,7 +893,10 @@ export default function FilmCalendar() {
                   <input
                     type="checkbox"
                     checked={watchedActive}
-                    onChange={(e) => setWatchedActive(e.target.checked)}
+                    onChange={(e) => {
+                      setWatchedActive(e.target.checked);
+                      if (initialUserId) savePreference({ watched_active: e.target.checked });
+                    }}
                   />
                   <span className="toggle-slider" />
                 </label>
