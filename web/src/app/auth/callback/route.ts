@@ -9,7 +9,6 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/';
 
   if (code) {
     const cookieStore = await cookies();
@@ -34,7 +33,15 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      // Read return path from cookie (set before OAuth started)
+      const rawNext = cookieStore.get('fc_auth_next')?.value;
+      const next = rawNext ? decodeURIComponent(rawNext) : '/';
+      const safePath = next.startsWith('/') ? next : '/';
+
+      // Clear the cookie
+      cookieStore.set('fc_auth_next', '', { path: '/', maxAge: 0 });
+
+      return NextResponse.redirect(`${origin}${safePath}`);
     }
   }
 

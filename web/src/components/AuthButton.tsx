@@ -59,6 +59,14 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
   const dropdownRef = useRef<HTMLDivElement>(null);
   const t = labels[lang];
 
+  const getCallbackRedirectUrl = () => {
+    // Store return path in cookie so redirectTo stays clean (no query params)
+    // This avoids Supabase redirect URL allow-list mismatch
+    const next = `${window.location.pathname}${window.location.search}` || '/';
+    document.cookie = `fc_auth_next=${encodeURIComponent(next)};path=/;max-age=600;SameSite=Lax`;
+    return `${window.location.origin}/auth/callback`;
+  };
+
   // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -99,7 +107,7 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        emailRedirectTo: getCallbackRedirectUrl(),
       },
     });
 
@@ -126,7 +134,7 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
     const { error: err } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: getCallbackRedirectUrl(),
       },
     });
 
