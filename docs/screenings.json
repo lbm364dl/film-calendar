@@ -184,6 +184,45 @@
     "title_es": null
   },
   {
+    "title": "La Dolce Vita",
+    "dates": [
+      {
+        "timestamp": "2026-03-10 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057646/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-dolce-vita-wilder-cinema/"
+      }
+    ],
+    "director": "Federico Fellini",
+    "year": 1960,
+    "letterboxd_url": "https://letterboxd.com/film/la-dolce-vita/",
+    "letterboxd_rating": 4.27,
+    "letterboxd_viewers": 235568,
+    "letterboxd_short_url": "https://boxd.it/2anC",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "Italy"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "German",
+      "English",
+      "French",
+      "Italian"
+    ],
+    "runtime_minutes": 176,
+    "tmdb_url": "https://www.themoviedb.org/movie/439/",
+    "title_original": "La dolce vita",
+    "title_en": "La Dolce Vita",
+    "title_es": "La dolce vita"
+  },
+  {
     "title": "Tiempos modernos",
     "director": "Charles Chaplin",
     "year": 1936,
@@ -327,6 +366,43 @@
     "title_original": "2001: A Space Odyssey",
     "title_en": "2001: A Space Odyssey",
     "title_es": "2001: una odisea del espacio"
+  },
+  {
+    "title": "Millenium Actress",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057647/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/millenium-actress-wilder-cinema/"
+      }
+    ],
+    "director": "Satoshi Kon",
+    "year": 2001,
+    "letterboxd_url": "https://letterboxd.com/film/millennium-actress/",
+    "letterboxd_rating": 4.23,
+    "letterboxd_viewers": 200523,
+    "letterboxd_short_url": "https://boxd.it/1fK0",
+    "genres": [
+      "Drama",
+      "Animation",
+      "Romance",
+      "Fantasy"
+    ],
+    "country": [
+      "Japan"
+    ],
+    "primary_language": [
+      "Japanese"
+    ],
+    "spoken_languages": [
+      "Japanese"
+    ],
+    "runtime_minutes": 87,
+    "tmdb_url": "https://www.themoviedb.org/movie/33320/",
+    "title_original": "千年女優",
+    "title_en": "Millennium Actress",
+    "title_es": "Millennium Actress"
   },
   {
     "title": "Hamnet",
@@ -776,10 +852,82 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058041/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057945/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057814/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
         "timestamp": "2026-03-06 19:30",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
         "url_info": "https://salaequis.es/ciclos/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057949/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057817/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057953/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057820/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058052/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057959/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057824/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057963/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057827/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
         "timestamp": "2026-03-07 22:00",
@@ -788,16 +936,238 @@
         "url_info": "https://salaequis.es/ciclos/hamnet/"
       },
       {
+        "timestamp": "2026-03-07 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057967/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057830/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058063/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057973/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057834/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
         "timestamp": "2026-03-08 19:15",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2904&cine=EQUIS",
         "url_info": "https://salaequis.es/ciclos/hamnet/"
       },
       {
+        "timestamp": "2026-03-08 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057977/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057837/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057981/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057840/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058074/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057987/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057844/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057991/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057847/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057995/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057850/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058085/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058001/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057879/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058005/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057881/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
         "timestamp": "2026-03-10 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86495/hamnet?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
+      },
+      {
+        "timestamp": "2026-03-10 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058009/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057883/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058095/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058015/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057854/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058019/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057857/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058023/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057860/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058106/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 17:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058029/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 18:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057886/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058033/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 20:20",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057888/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 22:35",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058037/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057890/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
         "timestamp": "2026-03-15 19:00",
@@ -1106,6 +1476,18 @@
         "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
       },
       {
+        "timestamp": "2026-03-06 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057948/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-06 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057951/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
         "timestamp": "2026-03-06 22:00",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
@@ -1118,16 +1500,88 @@
         "url_info": "https://salaequis.es/ciclos/marty-supreme/"
       },
       {
+        "timestamp": "2026-03-07 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057962/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
         "timestamp": "2026-03-07 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86492/marty-supreme?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/87332_1_Z_1/marty-supreme-vose"
       },
       {
+        "timestamp": "2026-03-07 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057965/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-08 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057976/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-08 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057979/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-09 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057990/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-09 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057993/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-10 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058004/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-10 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058007/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
         "timestamp": "2026-03-10 22:00",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2902&cine=EQUIS",
         "url_info": "https://salaequis.es/ciclos/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058018/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-11 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058021/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058032/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-12 21:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058035/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
         "timestamp": "2026-03-13 22:00",
@@ -1318,6 +1772,90 @@
         "timestamp": "2026-03-05 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056663/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-06 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057759/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-06 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057760/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-07 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057764/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-07 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057765/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-08 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057769/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-08 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057770/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-09 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057774/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-09 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057775/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-10 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057779/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-10 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057780/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-11 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057784/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-11 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057785/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-12 17:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057789/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-12 20:20",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057790/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       },
       {
@@ -1755,10 +2293,178 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057681/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-06 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057654/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-06 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057655/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-06 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057689/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057692/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-07 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057658/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-07 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057659/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
         "timestamp": "2026-03-07 22:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-07 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057700/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057703/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-08 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057662/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-08 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057663/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-08 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057711/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057714/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-09 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057666/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-09 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057667/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-09 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057722/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057725/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-10 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057670/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-10 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057671/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-10 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057733/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057736/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-11 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057674/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-11 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057675/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-11 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057744/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057747/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-12 17:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057678/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-12 20:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057679/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-12 22:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057755/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       }
     ]
   },
@@ -2337,6 +3043,90 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-06 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058043/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057898/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-07 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058054/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057905/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-08 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058065/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057912/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-09 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058076/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057919/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-10 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058087/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057926/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-11 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058096/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057933/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-12 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058107/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057940/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
         "timestamp": "2026-03-22 21:45",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2906&cine=EQUIS",
@@ -2403,6 +3193,43 @@
     "title_original": "Three Billboards Outside Ebbing, Missouri",
     "title_en": "Three Billboards Outside Ebbing, Missouri",
     "title_es": "Tres anuncios en las afueras"
+  },
+  {
+    "title": "El Gabinete Del Dr. Caligari",
+    "dates": [
+      {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1056665/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-gabinete-del-dr-caligari-con-musica-en-directo/"
+      }
+    ],
+    "director": "Robert Wiene",
+    "year": 1920,
+    "letterboxd_url": "https://letterboxd.com/film/the-cabinet-of-dr-caligari-1920/",
+    "letterboxd_rating": 4.06,
+    "letterboxd_viewers": 345320,
+    "letterboxd_short_url": "https://boxd.it/2aOo",
+    "genres": [
+      "Drama",
+      "Horror",
+      "Thriller",
+      "Crime"
+    ],
+    "country": [
+      "Germany"
+    ],
+    "primary_language": [
+      "de"
+    ],
+    "spoken_languages": [
+      "No Language"
+    ],
+    "runtime_minutes": 77,
+    "tmdb_url": "https://www.themoviedb.org/movie/234/",
+    "title_original": "Das Cabinet des Dr. Caligari",
+    "title_en": "The Cabinet of Dr. Caligari",
+    "title_es": "El gabinete del doctor Caligari"
   },
   {
     "title": "Looking for Langston",
@@ -3112,6 +3939,174 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056981/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057942/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-06 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057946/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057950/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-06 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057954/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057956/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-07 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057960/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057964/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-07 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057968/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057970/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-08 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057974/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057978/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-08 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057982/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057984/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-09 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057988/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-09 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057992/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-09 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057996/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057999/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-10 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058002/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-10 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058006/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-10 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058010/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058012/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-11 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058016/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-11 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058020/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-11 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058024/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058026/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-12 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058030/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-12 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058034/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
+      },
+      {
+        "timestamp": "2026-03-12 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058038/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-domingos/"
       }
     ]
   },
@@ -3383,6 +4378,132 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056664/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260226050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057758/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-06 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057686/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057762/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057763/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-07 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057697/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057767/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057768/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-08 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057708/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057772/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057773/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-09 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057719/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057777/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057778/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-10 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057730/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057782/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057783/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-11 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057741/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057787/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057788/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-12 18:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057752/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057792/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/20260304050512-la-tarta-del-presidente/"
       }
     ]
   },
@@ -3550,6 +4671,48 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056633/",
         "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-06 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057761/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-07 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057766/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-08 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057771/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-09 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057776/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-10 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057781/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-11 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057786/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
+      },
+      {
+        "timestamp": "2026-03-12 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057791/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-chica-zurda/"
       }
     ]
   },
@@ -3712,6 +4875,48 @@
         "timestamp": "2026-03-05 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056842/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057941/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057955/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057969/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057983/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057997/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058011/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058025/",
         "url_info": "https://www.cinesrenoir.com/pelicula/rental-family-familia-de-alquiler/"
       }
     ]
@@ -4272,10 +5477,70 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057943/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057813/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057947/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057816/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058045/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-06 21:45",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057952/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057818/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057957/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057823/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057961/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
         "timestamp": "2026-03-07 19:15",
@@ -4284,10 +5549,232 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-07 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057826/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058056/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057966/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057828/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057971/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057833/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057975/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-08 19:15",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057836/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058067/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057980/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057838/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057985/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057843/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057989/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057846/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058079/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057994/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-09 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057848/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057998/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057878/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058003/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057880/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058008/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057882/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058013/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057853/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058017/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057856/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058099/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058022/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057858/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058027/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057885/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 18:55",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058031/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 19:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057887/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 21:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058036/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 22:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057889/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       }
     ]
   },
@@ -5467,10 +6954,40 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057682/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-06 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057684/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
         "timestamp": "2026-03-06 19:15",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-06 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057687/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-06 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057690/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057694/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
         "timestamp": "2026-03-07 17:00",
@@ -5479,16 +6996,154 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-07 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057695/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-07 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057698/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
         "timestamp": "2026-03-07 20:30",
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3492",
         "url_info": "https://salaberlanga.com/actividad/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-07 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057701/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057705/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057706/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057709/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
         "timestamp": "2026-03-08 22:00",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057712/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057715/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-09 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057717/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-09 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057720/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-09 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057723/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057726/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-10 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057728/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-10 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057731/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-10 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057734/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057738/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-11 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057739/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-11 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057742/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-11 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057745/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057749/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-12 18:10",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057750/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-12 20:25",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057753/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-12 22:40",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057756/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       }
     ],
     "director": "Anders Thomas Jensen",
@@ -6048,6 +7703,252 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1056764/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057812/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057892/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057815/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057895/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057896/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057819/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057822/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057899/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057825/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057902/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057903/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057829/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057832/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057906/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057835/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057909/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057910/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057839/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057842/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057913/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057845/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057916/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057917/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057849/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057865/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057920/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057867/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057923/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057924/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057870/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057851/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057927/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 18:05",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057855/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057930/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057931/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057859/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057872/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057934/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 18:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057937/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 20:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057938/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057876/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       }
     ]
   },
@@ -6160,6 +8061,174 @@
   {
     "title": "Pillion",
     "dates": [
+      {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058114/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-06 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058116/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-06 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058117/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-06 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058119/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058120/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-07 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058122/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-07 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058123/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-07 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058125/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058126/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-08 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058128/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-08 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058129/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-08 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058131/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058132/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-09 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058134/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-09 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058135/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-09 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058137/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058138/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-10 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058140/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-10 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058141/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-10 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058143/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058144/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-11 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058146/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-11 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058147/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-11 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058149/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058150/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-12 18:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058152/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-12 20:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058153/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-12 22:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058155/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
       {
         "timestamp": "2026-03-26 19:30",
         "location": "Sala Equis",
@@ -6315,6 +8384,90 @@
         "timestamp": "2026-03-05 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1056982/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-06 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058046/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-06 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058048/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-07 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058057/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-07 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058059/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-08 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058068/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-08 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058070/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-09 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058078/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-09 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058081/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-10 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058089/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-10 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058091/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-11 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058100/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-11 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058102/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-12 20:15",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058110/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
+      },
+      {
+        "timestamp": "2026-03-12 22:25",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058112/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sirat/"
       },
       {
@@ -7711,10 +9864,256 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057811/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-06 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057683/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
         "timestamp": "2026-03-06 17:00",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
+      },
+      {
+        "timestamp": "2026-03-06 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057685/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-06 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057861/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057688/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057691/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057821/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057693/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057696/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057862/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057699/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057702/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057831/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057704/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057707/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057863/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057710/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057713/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057841/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057716/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057718/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057864/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057721/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057724/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057877/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057727/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057729/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057891/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057732/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057735/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057852/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057737/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057740/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 20:25",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057871/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057743/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057746/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057884/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-12 16:00",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057748/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-12 18:15",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057751/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-12 20:30",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057754/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057757/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       }
     ]
   },
@@ -8983,6 +11382,300 @@
         "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058039/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057793/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057944/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057794/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058044/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057795/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-06 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058049/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058050/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057796/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057958/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057797/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058055/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057798/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-07 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058060/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058061/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057799/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057972/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057800/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058066/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057801/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-08 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058071/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058073/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057802/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057986/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057803/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058077/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057804/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-09 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058082/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058083/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057866/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058000/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057868/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058088/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057869/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-10 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058092/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058094/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057805/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058014/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057806/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058098/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057807/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-11 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058103/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058104/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 16:15",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057873/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058028/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057874/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 20:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058109/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 21:45",
+        "location": "Retiro",
+        "url_tickets": "https://www.pillalas.com/pase/1057875/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-12 22:30",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058113/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
         "timestamp": "2026-03-21 22:00",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2907&cine=EQUIS",
@@ -9381,6 +12074,90 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1056566/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057653/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-06 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057656/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057657/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-07 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057660/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057661/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-08 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057664/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057665/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-09 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057668/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057669/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-10 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057672/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057673/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-11 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057676/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057677/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-12 22:45",
+        "location": "Plaza de España",
+        "url_tickets": "https://www.pillalas.com/pase/1057680/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
       }
     ]
   },
@@ -9638,6 +12415,163 @@
     "title_en": "After the Hunt",
     "title_es": "Caza de brujas",
     "runtime_minutes": 139
+  },
+  {
+    "title": "El Mago Del Kremlin",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057893/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-06 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057894/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-06 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057897/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-07 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057900/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-07 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057901/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-07 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057904/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-08 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057907/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-08 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057908/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-08 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057911/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-09 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057914/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-09 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057915/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-09 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057918/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-10 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057921/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-10 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057922/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-10 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057925/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-11 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057928/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-11 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057929/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-11 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057932/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-12 16:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057935/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-12 17:40",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057936/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-12 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1057939/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      }
+    ],
+    "director": "Olivier Assayas",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-wizard-of-the-kremlin/",
+    "letterboxd_rating": 2.86,
+    "letterboxd_viewers": 25193,
+    "letterboxd_short_url": "https://boxd.it/NhhA",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "France",
+      "United States of America",
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "fr"
+    ],
+    "spoken_languages": [
+      "English",
+      "Russian"
+    ],
+    "runtime_minutes": 156,
+    "tmdb_url": "https://www.themoviedb.org/movie/1291659/",
+    "title_original": "Le Mage du Kremlin",
+    "title_en": "The Wizard of the Kremlin",
+    "title_es": "The Wizard Of The Kremlin"
   },
   {
     "title": "Una pastelería en Notting Hill",
@@ -11845,5 +14779,273 @@
     "title_original": null,
     "title_en": null,
     "title_es": null
+  },
+  {
+    "title": "Caminando Con El Diablo",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058042/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-07 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058053/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-08 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058064/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-09 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058075/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-10 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058086/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-11 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058097/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      },
+      {
+        "timestamp": "2026-03-12 18:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058108/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/caminando-con-el-diablo/"
+      }
+    ],
+    "director": "Rubén Pérez-Barrena",
+    "year": 2026,
+    "letterboxd_url": "https://letterboxd.com/film/the-devil-within-2026/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 10,
+    "letterboxd_short_url": "https://boxd.it/UkRg",
+    "genres": [
+      "Thriller"
+    ],
+    "country": [
+      "Spain"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": null,
+    "tmdb_url": "https://www.themoviedb.org/movie/1465685/",
+    "title_original": "The Devil Within",
+    "title_en": null,
+    "title_es": "Caminando con el diablo"
+  },
+  {
+    "title": "¡La Novia!",
+    "dates": [
+      {
+        "timestamp": "2026-03-06 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058040/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-06 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058115/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-06 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058118/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-06 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058047/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-07 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058051/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-07 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058121/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-07 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058124/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-07 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058058/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-08 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058062/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-08 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058127/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-08 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058130/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-08 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058069/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-09 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058072/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-09 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058133/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-09 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058136/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-09 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058080/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-10 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058084/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-10 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058139/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-10 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058142/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-10 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058090/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-11 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058093/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-11 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058145/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-11 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058148/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-11 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058101/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-12 15:50",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058105/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-12 18:00",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058151/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-12 20:20",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058154/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      },
+      {
+        "timestamp": "2026-03-12 22:10",
+        "location": "Princesa",
+        "url_tickets": "https://www.pillalas.com/pase/1058111/",
+        "url_info": "https://www.cinesrenoir.com/pelicula/la-novia/"
+      }
+    ],
+    "director": "Maggie Gyllenhaal",
+    "year": 2026,
+    "letterboxd_url": "https://letterboxd.com/film/the-bride-2026/",
+    "letterboxd_rating": null,
+    "letterboxd_viewers": 2648,
+    "letterboxd_short_url": "https://boxd.it/HSw6",
+    "genres": [
+      "Science Fiction",
+      "Horror",
+      "Comedy"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 126,
+    "tmdb_url": "https://www.themoviedb.org/movie/1159831/",
+    "title_original": "The Bride!",
+    "title_en": "The Bride!",
+    "title_es": "¡La novia!"
   }
 ]
