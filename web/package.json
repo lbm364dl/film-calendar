@@ -11,6 +11,8 @@
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.49.0",
+    "cheerio": "^1.2.0",
+    "jszip": "^3.10.1",
     "next": "^15.1.0",
     "papaparse": "^5.4.1",
     "react": "^19.0.0",

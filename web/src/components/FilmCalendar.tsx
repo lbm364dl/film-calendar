@@ -181,8 +181,17 @@ export default function FilmCalendar({
 
   const [openPopupId, setOpenPopupId] = useState<string | null>(null);
 
+  // Recommender state
+  const [matchScores, setMatchScores] = useState<Record<number, number>>({});
+  const [sortByMatch, setSortByMatch] = useState(false);
+  const [enrichmentTotal, setEnrichmentTotal] = useState(0);
+  const [enrichmentRemaining, setEnrichmentRemaining] = useState(0);
+  const [enrichmentActive, setEnrichmentActive] = useState(false);
+  const [recommendReady, setRecommendReady] = useState(false);
+
   const watchlistInputRef = useRef<HTMLInputElement>(null);
   const watchedInputRef = useRef<HTMLInputElement>(null);
+  const zipInputRef = useRef<HTMLInputElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
 
   // ─ Derived ─
@@ -324,12 +333,17 @@ export default function FilmCalendar({
   // ─ Sorting ─
   const sortedFilms = useMemo(() => {
     return [...filteredFilms].sort((a, b) => {
+      if (sortByMatch && Object.keys(matchScores).length > 0) {
+        const scoreA = matchScores[a.id] ?? -1;
+        const scoreB = matchScores[b.id] ?? -1;
+        if (scoreA !== scoreB) return scoreB - scoreA;
+      }
       if (a.rating !== null && b.rating !== null) return b.rating - a.rating;
       if (a.rating !== null) return -1;
       if (b.rating !== null) return 1;
       return a.title.localeCompare(b.title);
     });
-  }, [filteredFilms]);
+  }, [filteredFilms, sortByMatch, matchScores]);
 
   // ─ Pagination ─
   const columnsPerRow = 3; // approximate; CSS auto-fill handles actual layout
@@ -398,7 +412,7 @@ export default function FilmCalendar({
     return () => document.removeEventListener('keydown', handler);
   }, [closeModal]);
 
-  // ─ CSV upload handlers ─
+  // ─ CSV upload handler (watchlist only — watched now uses ZIP) ─
   const handleCsvUpload = useCallback((file: File, type: 'watchlist' | 'watched') => {
     Papa.parse(file, {
       header: true,
@@ -426,6 +440,116 @@ export default function FilmCalendar({
       },
     });
   }, [initialUserId]);
+
+  // ─ ZIP upload handler (Letterboxd export: watched + watchlist + ratings) ─
+  const handleZipUpload = useCallback(async (file: File) => {
+    if (!initialUserId) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const uploadResp = await fetch('/api/upload-watched', {
+        method: 'POST',
+        body: formData,
+      });
+      const uploadData = await uploadResp.json();
+      if (!uploadResp.ok) {
+        console.error('Upload error:', uploadData.error);
+        return;
+      }
+
+      // Update local state
+      setWatchedActive(true);
+      setEnrichmentTotal(uploadData.toEnrich);
+      setEnrichmentRemaining(uploadData.toEnrich);
+
+      if (uploadData.toEnrich > 0) {
+        // Start enrichment polling
+        setEnrichmentActive(true);
+        let remaining = uploadData.toEnrich;
+
+        while (remaining > 0) {
+          const batchResp = await fetch('/api/enrich-batch', { method: 'POST' });
+          const batchData = await batchResp.json();
+          if (!batchResp.ok) break;
+
+          remaining = batchData.remaining;
+          setEnrichmentRemaining(remaining);
+
+          if (batchData.done) break;
+        }
+        setEnrichmentActive(false);
+      }
+
+      // Fetch recommendations
+      await fetchRecommendations();
+    } catch (err) {
+      console.error('ZIP upload error:', err);
+      setEnrichmentActive(false);
+    }
+  }, [initialUserId]);
+
+  // ─ Fetch recommendations from API ─
+  const fetchRecommendations = useCallback(async () => {
+    try {
+      const resp = await fetch('/api/recommend');
+      const data = await resp.json();
+      if (resp.ok && data.scores) {
+        setMatchScores(data.scores);
+        setRecommendReady(true);
+      }
+    } catch (err) {
+      console.error('Recommend error:', err);
+    }
+  }, []);
+
+  // ─ Auto-resume enrichment + fetch recommendations on mount ─
+  useEffect(() => {
+    if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
+
+    let cancelled = false;
+
+    async function resumeEnrichmentAndRecommend() {
+      try {
+        // Check the enrichment queue for pending items
+        const statusResp = await fetch('/api/enrich-batch');
+        const statusData = await statusResp.json();
+
+        if (cancelled) return;
+
+        if (statusData.pending > 0) {
+          // Resume enrichment polling
+          setEnrichmentTotal(statusData.pending);
+          setEnrichmentRemaining(statusData.pending);
+          setEnrichmentActive(true);
+
+          let remaining = statusData.pending;
+          while (remaining > 0 && !cancelled) {
+            const batchResp = await fetch('/api/enrich-batch', { method: 'POST' });
+            const batchData = await batchResp.json();
+            if (!batchResp.ok) break;
+
+            remaining = batchData.remaining;
+            if (!cancelled) setEnrichmentRemaining(remaining);
+            if (batchData.done) break;
+          }
+          if (!cancelled) setEnrichmentActive(false);
+        }
+
+        // Fetch recommendation scores
+        if (!cancelled) {
+          await fetchRecommendations();
+        }
+      } catch (err) {
+        console.error('Auto-resume error:', err);
+        if (!cancelled) setEnrichmentActive(false);
+      }
+    }
+
+    resumeEnrichmentAndRecommend();
+    return () => { cancelled = true; };
+  }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, fetchRecommendations]);
 
   const clearWatchlist = useCallback(() => {
     setWatchlistUrls(null);
@@ -499,7 +623,7 @@ export default function FilmCalendar({
         )}
         {dateObj.version === 'dubbed' && (
           <span className="version-badge dubbed" title={t(lang, 'dubbedTooltip')}>
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
             <span>ES</span>
           </span>
         )}
@@ -519,7 +643,7 @@ export default function FilmCalendar({
     return (
       <>
         {sortedDays.map(dayKey => {
-          const sessions = grouped[dayKey].sort((a, b) => new Date(a.timestamp.replace(' ','T')).getTime() - new Date(b.timestamp.replace(' ','T')).getTime());
+          const sessions = grouped[dayKey].sort((a, b) => new Date(a.timestamp.replace(' ', 'T')).getTime() - new Date(b.timestamp.replace(' ', 'T')).getTime());
           const dayDate = new Date(dayKey + 'T12:00:00');
           const dayLabel = dayDate.toLocaleDateString(getDateLocale(), { weekday: 'short', day: 'numeric', month: 'short' });
 
@@ -528,13 +652,13 @@ export default function FilmCalendar({
               <div className="sessions-day-header">{dayLabel}</div>
               <div className="sessions-day-times">
                 {sessions.map((dateObj, i) => {
-                  const time = new Date(dateObj.timestamp.replace(' ','T')).toLocaleTimeString(getDateLocale(), { hour: '2-digit', minute: '2-digit' });
+                  const time = new Date(dateObj.timestamp.replace(' ', 'T')).toLocaleTimeString(getDateLocale(), { hour: '2-digit', minute: '2-digit' });
                   const calendarUrl = generateCalendarUrl(film, dateObj);
                   const hasDirectUrl = !!(dateObj.url_tickets && dateObj.url_tickets.trim());
                   const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
                   const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
                   const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
-                  const dateLabel = new Date(dateObj.timestamp.replace(' ','T')).toLocaleDateString(getDateLocale(), { weekday: 'short', day: 'numeric', month: 'short' });
+                  const dateLabel = new Date(dateObj.timestamp.replace(' ', 'T')).toLocaleDateString(getDateLocale(), { weekday: 'short', day: 'numeric', month: 'short' });
                   const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
 
                   return (
@@ -552,7 +676,7 @@ export default function FilmCalendar({
                       )}
                       {dateObj.version === 'dubbed' && (
                         <span className="version-badge dubbed" title={t(lang, 'dubbedTooltip')}>
-                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
                           <span>ES</span>
                         </span>
                       )}
@@ -576,9 +700,9 @@ export default function FilmCalendar({
     const isOpen = openPopupId === popupId;
 
     // Date range
-    const sorted = [...film.dates].sort((a, b) => new Date(a.timestamp.replace(' ','T')).getTime() - new Date(b.timestamp.replace(' ','T')).getTime());
-    const first = new Date(sorted[0].timestamp.replace(' ','T'));
-    const last = new Date(sorted[sorted.length - 1].timestamp.replace(' ','T'));
+    const sorted = [...film.dates].sort((a, b) => new Date(a.timestamp.replace(' ', 'T')).getTime() - new Date(b.timestamp.replace(' ', 'T')).getTime());
+    const first = new Date(sorted[0].timestamp.replace(' ', 'T'));
+    const last = new Date(sorted[sorted.length - 1].timestamp.replace(' ', 'T'));
     const fmtShort = (d: Date) => d.toLocaleDateString(getDateLocale(), { day: 'numeric', month: 'short' });
     const dateRange = first.toDateString() === last.toDateString() ? fmtShort(first) : `${fmtShort(first)} – ${fmtShort(last)}`;
 
@@ -624,6 +748,9 @@ export default function FilmCalendar({
         : t(lang, 'viewersLabel', film.viewers!.toLocaleString('en-US')))
       : '';
 
+    const filmMatchScore = matchScores[film.id];
+    const showMatch = recommendReady && filmMatchScore !== undefined;
+
     const titleText = getFilmTitle(film);
     const metadata: string[] = [];
     if (film.director) metadata.push(film.director);
@@ -643,6 +770,14 @@ export default function FilmCalendar({
             </div>
           </div>
           <div className="card-actions">
+            {showMatch && (
+              <div
+                className={`match-score ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
+                title={t(lang, 'matchScoreTooltip', filmMatchScore)}
+              >
+                <span className="match-value">{filmMatchScore}%</span>
+              </div>
+            )}
             {ratingValue && (
               <div className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
                 <span className="metric-icon rating-icon" aria-hidden="true" />
@@ -659,7 +794,7 @@ export default function FilmCalendar({
               <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '📽️'; }} />
+                <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
               </a>
             )}
           </div>
@@ -710,7 +845,7 @@ export default function FilmCalendar({
           min={dateMin}
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
-          onClick={(e) => { try { (e.target as any).showPicker(); } catch {} }}
+          onClick={(e) => { try { (e.target as any).showPicker(); } catch { } }}
           className={selectedDate ? 'has-value' : ''}
           lang={lang === 'es' ? 'es-ES' : 'en-GB'}
         />
@@ -816,7 +951,7 @@ export default function FilmCalendar({
                 </span>
               </span>
               <span className="csv-label-icon" title={t(lang, 'watchlistIconTitle')}>
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z" /></svg>
               </span>
             </button>
             {watchlistUrls && (
@@ -859,55 +994,107 @@ export default function FilmCalendar({
             </div>
           </div>
 
-          {/* Watched filter */}
-          <div className={`watched-filter ${watchedUrls ? 'loaded' : ''} ${watchedUrls && watchedActive ? 'active' : ''}`}>
-            <input
-              ref={watchedInputRef}
-              type="file"
-              accept=".csv"
-              hidden
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) handleCsvUpload(file, 'watched');
-                e.target.value = '';
-              }}
-            />
-            <button
-              className="csv-filter-btn"
-              title={t(lang, 'watchedBtnTitle')}
-              onClick={() => { if (!watchedUrls) watchedInputRef.current?.click(); }}
-            >
-              <span className="csv-label-text">
-                <span className="csv-label-full">
-                  {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedFull')) : t(lang, 'watchedFull')}
+          {/* Watched filter / ZIP upload */}
+          {initialUserId ? (
+            /* Authenticated: ZIP upload for recommendations */
+            <div className={`watched-filter ${recommendReady ? 'loaded active' : ''}`}>
+              <input
+                ref={zipInputRef}
+                type="file"
+                accept=".zip"
+                hidden
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleZipUpload(file);
+                  e.target.value = '';
+                }}
+              />
+              <button
+                className="csv-filter-btn"
+                title={t(lang, 'recommendBtnTitle')}
+                onClick={() => zipInputRef.current?.click()}
+                disabled={enrichmentActive}
+              >
+                <span className="csv-label-text">
+                  <span className="csv-label-full">
+                    {enrichmentActive
+                      ? t(lang, 'enrichmentProgress', enrichmentTotal - enrichmentRemaining, enrichmentTotal)
+                      : recommendReady
+                        ? t(lang, 'enrichmentDone')
+                        : t(lang, 'zipUploadLabel')}
+                  </span>
+                  <span className="csv-label-short">
+                    {enrichmentActive
+                      ? `${enrichmentTotal - enrichmentRemaining}/${enrichmentTotal}`
+                      : recommendReady
+                        ? '✓'
+                        : t(lang, 'zipUploadShort')}
+                  </span>
                 </span>
-                <span className="csv-label-short">
-                  {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedShort')) : t(lang, 'watchedShort')}
+                <span className="csv-label-icon" title={t(lang, 'recommendBtnTitle')} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                 </span>
-              </span>
-              <span className="csv-label-icon" title={t(lang, 'watchedIconTitle')} aria-hidden="true" />
-            </button>
-            {watchedUrls && (
-              <span className="csv-toggle-wrap">
-                <label className="toggle-switch" title={t(lang, 'watchedToggleTitle')}>
-                  <input
-                    type="checkbox"
-                    checked={watchedActive}
-                    onChange={(e) => {
-                      setWatchedActive(e.target.checked);
-                      if (initialUserId) savePreference({ watched_active: e.target.checked });
-                    }}
-                  />
-                  <span className="toggle-slider" />
-                </label>
-              </span>
-            )}
-            {watchedUrls && (
-              <button className="csv-remove-btn" title={t(lang, 'removeWatched')} onClick={(e) => { e.stopPropagation(); clearWatched(); }}>
-                &times;
               </button>
-            )}
-          </div>
+              {enrichmentActive && (
+                <div className="enrichment-progress">
+                  <div
+                    className="enrichment-bar"
+                    style={{ width: `${enrichmentTotal > 0 ? ((enrichmentTotal - enrichmentRemaining) / enrichmentTotal) * 100 : 0}%` }}
+                  />
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Anonymous: plain CSV watched filter */
+            <div className={`watched-filter ${watchedUrls ? 'loaded' : ''} ${watchedUrls && watchedActive ? 'active' : ''}`}>
+              <input
+                ref={watchedInputRef}
+                type="file"
+                accept=".csv"
+                hidden
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleCsvUpload(file, 'watched');
+                  e.target.value = '';
+                }}
+              />
+              <button
+                className="csv-filter-btn"
+                title={t(lang, 'watchedBtnTitle')}
+                onClick={() => { if (!watchedUrls) watchedInputRef.current?.click(); }}
+              >
+                <span className="csv-label-text">
+                  <span className="csv-label-full">
+                    {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedFull')) : t(lang, 'watchedFull')}
+                  </span>
+                  <span className="csv-label-short">
+                    {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedShort')) : t(lang, 'watchedShort')}
+                  </span>
+                </span>
+                <span className="csv-label-icon" title={t(lang, 'watchedIconTitle')} aria-hidden="true" />
+              </button>
+              {watchedUrls && (
+                <span className="csv-toggle-wrap">
+                  <label className="toggle-switch" title={t(lang, 'watchedToggleTitle')}>
+                    <input
+                      type="checkbox"
+                      checked={watchedActive}
+                      onChange={(e) => {
+                        setWatchedActive(e.target.checked);
+                        if (initialUserId) savePreference({ watched_active: e.target.checked });
+                      }}
+                    />
+                    <span className="toggle-slider" />
+                  </label>
+                </span>
+              )}
+              {watchedUrls && (
+                <button className="csv-remove-btn" title={t(lang, 'removeWatched')} onClick={(e) => { e.stopPropagation(); clearWatched(); }}>
+                  &times;
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Clear filters */}
           <button className="clear-filters-btn" title={t(lang, 'clearFiltersTitle')} onClick={clearAllFilters}>
@@ -916,9 +1103,17 @@ export default function FilmCalendar({
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Stats + Sort toggle */}
       <div className="stats">
         <span>{t(lang, 'filmCount', filteredFilms.length)}</span>
+        {recommendReady && (
+          <button
+            className={`sort-toggle ${sortByMatch ? 'active' : ''}`}
+            onClick={() => setSortByMatch(!sortByMatch)}
+          >
+            {sortByMatch ? t(lang, 'sortByRating') : t(lang, 'sortByMatch')}
+          </button>
+        )}
         <span className="calendar-hint">{t(lang, 'calendarHint')}</span>
       </div>
 
