@@ -888,6 +888,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-06 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96458&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057953/",
@@ -928,6 +934,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057827/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-07 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96473&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-07 22:00",
@@ -984,6 +996,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-08 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96488&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057981/",
@@ -1024,6 +1042,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057847/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-09 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96531&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-09 22:35",
@@ -1074,6 +1098,12 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/84910_1_Z_1/hamnet-vose"
       },
       {
+        "timestamp": "2026-03-10 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96542&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-10 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058009/",
@@ -1116,6 +1146,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-11 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96503&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 22:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058023/",
@@ -1156,6 +1192,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057888/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-12 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96518&eventCode=103859",
+        "url_info": "https://www.golem.es/golem/pelicula/Hamnet-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-12 22:35",
@@ -2305,6 +2347,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-06 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96457&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057655/",
@@ -2327,6 +2375,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057658/",
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-07 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96472&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-07 20:15",
@@ -2359,6 +2413,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-08 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96487&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057663/",
@@ -2381,6 +2441,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057666/",
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-09 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96530&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-09 20:15",
@@ -2407,6 +2473,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-10 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96544&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-10 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057671/",
@@ -2431,6 +2503,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96502&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057675/",
@@ -2453,6 +2531,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057678/",
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96517&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-12 20:15",
@@ -2687,6 +2771,36 @@
         "version": "dubbed"
       },
       {
+        "timestamp": "2026-03-06 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96456&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-07 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96471&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-08 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96486&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-11 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96501&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-12 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96516&eventCode=104549",
+        "url_info": "https://www.golem.es/golem/pelicula/Little-Amélie-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-15 17:00",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2903&cine=EQUIS",
@@ -2769,6 +2883,90 @@
         "timestamp": "2026-03-05 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96440&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-06 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96452&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-06 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96524&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-07 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96465&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-07 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96467&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-08 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96480&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-08 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96482&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-09 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96526&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-09 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96527&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-10 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96538&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-10 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96540&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-11 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96495&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-11 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96497&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-12 18:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96510&eventCode=108061",
+        "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-12 22:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96512&eventCode=108061",
         "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
       }
     ]
@@ -3043,10 +3241,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-06 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96451&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-06 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058043/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-06 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96450&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-06 22:45",
@@ -3055,10 +3265,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-07 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96464&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-07 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058054/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-07 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96466&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-07 22:45",
@@ -3067,10 +3289,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-08 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96479&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-08 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058065/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-08 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96481&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-08 22:45",
@@ -3079,10 +3313,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-09 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96525&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-09 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058076/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-09 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96528&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-09 22:45",
@@ -3091,10 +3337,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-10 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96537&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-10 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058087/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-10 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96539&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-10 22:45",
@@ -3103,10 +3361,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-11 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96494&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-11 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058096/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-11 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96496&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-11 22:45",
@@ -3115,10 +3385,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
       },
       {
+        "timestamp": "2026-03-12 16:10",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96509&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
         "timestamp": "2026-03-12 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058107/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-12 20:20",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96511&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-12 22:45",
@@ -5489,6 +5771,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-06 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96462&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057947/",
@@ -5505,6 +5793,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058045/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-06 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96463&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-06 21:45",
@@ -5537,6 +5831,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-07 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96477&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-07 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057961/",
@@ -5559,6 +5859,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058056/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-07 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96478&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-07 21:50",
@@ -5585,6 +5891,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-08 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96492&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057975/",
@@ -5607,6 +5919,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058067/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-08 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96493&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-08 21:50",
@@ -5651,6 +5969,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-09 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96536&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-09 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057994/",
@@ -5675,6 +5999,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-10 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96547&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-10 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058003/",
@@ -5685,6 +6015,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057880/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-10 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96548&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-10 21:50",
@@ -5711,6 +6047,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-11 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96507&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058017/",
@@ -5727,6 +6069,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058099/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-11 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96508&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-11 21:50",
@@ -5753,6 +6101,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-12 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96522&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-12 18:55",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058031/",
@@ -5763,6 +6117,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057887/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-12 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96523&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-12 21:50",
@@ -6960,6 +7320,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-06 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96453&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057684/",
@@ -6972,10 +7338,22 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-06 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96454&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057687/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-06 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96455&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-06 22:40",
@@ -6996,10 +7374,22 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-07 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96468&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-07 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057695/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-07 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96469&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-07 20:25",
@@ -7014,6 +7404,12 @@
         "url_info": "https://salaberlanga.com/actividad/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-07 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96470&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-07 22:40",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057701/",
@@ -7026,10 +7422,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-08 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96483&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057706/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-08 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96484&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-08 20:25",
@@ -7044,6 +7452,12 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-08 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96485&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 22:40",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057712/",
@@ -7056,16 +7470,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-09 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96535&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-09 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057717/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-09 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96533&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-09 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057720/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-09 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96534&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-09 22:40",
@@ -7080,6 +7512,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-10 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96541&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-10 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057728/",
@@ -7090,6 +7528,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057731/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-10 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96546&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-10 22:40",
@@ -7104,16 +7548,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-11 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96498&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057739/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-11 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96499&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057742/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-11 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96500&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-11 22:40",
@@ -7128,16 +7590,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-12 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96513&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-12 18:10",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057750/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-12 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96514&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-12 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057753/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-12 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96515&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-12 22:40",
@@ -7729,10 +8209,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-06 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96460&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-06 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057896/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-06 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96461&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-06 22:45",
@@ -7765,10 +8257,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-07 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96475&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-07 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057903/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-07 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96476&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-07 22:45",
@@ -7801,10 +8305,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-08 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96490&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-08 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057910/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-08 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96491&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-08 22:45",
@@ -7823,6 +8339,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057913/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-09 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96529&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-09 18:05",
@@ -7859,6 +8381,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057920/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-10 16:15",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96543&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-10 18:05",
@@ -7909,10 +8437,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-11 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96505&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-11 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057931/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-11 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96506&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-11 22:45",
@@ -7939,10 +8479,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-12 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96520&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-12 20:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057938/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-12 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96521&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-12 22:45",
@@ -8021,6 +8573,43 @@
     "title_original": "Historias de la radio",
     "title_en": "Radio Stories",
     "title_es": null
+  },
+  {
+    "title": "Conspiración en El Cairo",
+    "dates": [
+      {
+        "timestamp": "2026-03-09 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96449&eventCode=76775",
+        "url_info": "https://www.golem.es/golem/pelicula/Conspiración-en-El-Cairo-(V.O.S.E.)"
+      }
+    ],
+    "director": "Tarik Saleh",
+    "year": 2022,
+    "letterboxd_url": "https://letterboxd.com/film/cairo-conspiracy/",
+    "letterboxd_rating": 3.57,
+    "letterboxd_viewers": 30417,
+    "letterboxd_short_url": "https://boxd.it/tFAQ",
+    "genres": [
+      "Thriller"
+    ],
+    "country": [
+      "Denmark",
+      "Finland",
+      "France",
+      "Sweden"
+    ],
+    "primary_language": [
+      "fr"
+    ],
+    "spoken_languages": [
+      "Arabic"
+    ],
+    "runtime_minutes": 121,
+    "tmdb_url": "https://www.themoviedb.org/movie/788977/",
+    "title_original": "La Conspiration du Caire",
+    "title_en": "Cairo Conspiracy",
+    "title_es": "Conspiración en El Cairo"
   },
   {
     "title": "Home Sweet Home",
@@ -9189,6 +9778,48 @@
         "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-06 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96459&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-07 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96474&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-08 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96489&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-09 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96532&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-10 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96545&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-11 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96504&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-12 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96519&eventCode=108094",
+        "url_info": "https://www.golem.es/golem/pelicula/Hasta-la-montaña-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-22 18:00",
         "location": "Cineteca Madrid",
         "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/hasta-la-montana",
@@ -10337,6 +10968,12 @@
   {
     "title": "Águilas de El Cairo",
     "dates": [
+      {
+        "timestamp": "2026-03-09 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96448&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-del-Cairo-(V.O.S.E.)"
+      },
       {
         "timestamp": "2026-03-10 19:15",
         "location": "Embajadores Ercilla",
