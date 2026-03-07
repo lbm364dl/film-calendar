@@ -62,6 +62,13 @@ export const TRANSLATIONS: Record<LangKey, Record<string, TranslationValue>> = {
     viewOnGithub: 'Ver en GitHub',
     dubbedTooltip: 'Doblada al castellano',
     loadMore: (n: number) => `Mostrar más (${n} restantes)`,
+    uploadProgress: (pct: number) => `Procesando... ${pct}%`,
+    uploadProgressDetail: (done: number, total: number) => `${done} de ${total} películas procesadas`,
+    reuploadLabel: 'Actualizar datos',
+    reuploadShort: 'Actualizar',
+    reuploadHint: 'Recomendamos volver a subir tu ZIP de vez en cuando para mantener tus películas vistas al día.',
+    showWatched: 'Mostrar ya vistas',
+    hideWatched: 'Ocultar ya vistas',
   },
   en: {
     viewersLabel: (n: string) => `${n} viewers`,
@@ -122,6 +129,13 @@ export const TRANSLATIONS: Record<LangKey, Record<string, TranslationValue>> = {
     viewOnGithub: 'View on GitHub',
     dubbedTooltip: 'Dubbed in Spanish',
     loadMore: (n: number) => `Load more (${n} remaining)`,
+    uploadProgress: (pct: number) => `Processing... ${pct}%`,
+    uploadProgressDetail: (done: number, total: number) => `${done} of ${total} films processed`,
+    reuploadLabel: 'Update data',
+    reuploadShort: 'Update',
+    reuploadHint: 'We recommend re-uploading your ZIP from time to time to keep your watched films up to date.',
+    showWatched: 'Show already watched',
+    hideWatched: 'Hide already watched',
   }
 };
 

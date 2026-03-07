@@ -185,9 +185,10 @@ export default function FilmCalendar({
   const [matchScores, setMatchScores] = useState<Record<number, number>>({});
   const [sortByMatch, setSortByMatch] = useState(false);
   const [enrichmentTotal, setEnrichmentTotal] = useState(0);
-  const [enrichmentRemaining, setEnrichmentRemaining] = useState(0);
-  const [enrichmentActive, setEnrichmentActive] = useState(false);
+  const [enrichmentProcessed, setEnrichmentProcessed] = useState(0);
+  const [enrichmentPolling, setEnrichmentPolling] = useState(false);
   const [recommendReady, setRecommendReady] = useState(false);
+  const [showWatched, setShowWatched] = useState(false);
 
   const watchlistInputRef = useRef<HTMLInputElement>(null);
   const watchedInputRef = useRef<HTMLInputElement>(null);
@@ -322,13 +323,13 @@ export default function FilmCalendar({
         }
 
         let matchesWatched = true;
-        if (watchedUrls && watchedActive) {
+        if (watchedUrls && watchedActive && !showWatched) {
           matchesWatched = !(film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
         }
 
         return matchesSearch && matchesYear && matchesWatchlist && matchesWatched;
       });
-  }, [allFilms, searchTerm, selectedTheater, selectedDate, yearMin, yearMax, yearBoundsMin, yearBoundsMax, watchlistUrls, watchedUrls, watchlistActive, watchedActive]);
+  }, [allFilms, searchTerm, selectedTheater, selectedDate, yearMin, yearMax, yearBoundsMin, yearBoundsMax, watchlistUrls, watchedUrls, watchlistActive, watchedActive, showWatched]);
 
   // ─ Sorting ─
   const sortedFilms = useMemo(() => {
@@ -441,6 +442,50 @@ export default function FilmCalendar({
     });
   }, [initialUserId]);
 
+  // ─ Fetch recommendations from API ─
+  const fetchRecommendations = useCallback(async () => {
+    try {
+      const resp = await fetch('/api/recommend');
+      const data = await resp.json();
+      if (resp.ok && data.scores) {
+        setMatchScores(data.scores);
+        setRecommendReady(true);
+      }
+    } catch (err) {
+      console.error('Recommend error:', err);
+    }
+  }, []);
+
+  // ─ Poll enrichment progress (per-user) ─
+  const pollEnrichment = useCallback(async (cancelled?: { current: boolean }) => {
+    setEnrichmentPolling(true);
+    try {
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const resp = await fetch('/api/enrich-batch');
+        const data = await resp.json();
+        if (!resp.ok) break;
+        if (cancelled?.current) break;
+
+        setEnrichmentTotal(data.total);
+        setEnrichmentProcessed(data.processed);
+
+        if (data.total === 0 || data.processed >= data.total) {
+          // All done — fetch recommendations
+          setEnrichmentPolling(false);
+          await fetchRecommendations();
+          return;
+        }
+
+        await new Promise(r => setTimeout(r, 4000));
+        if (cancelled?.current) break;
+      }
+    } catch (err) {
+      console.error('Enrichment poll error:', err);
+    }
+    if (!cancelled?.current) setEnrichmentPolling(false);
+  }, [fetchRecommendations]);
+
   // ─ ZIP upload handler (Letterboxd export: watched + watchlist + ratings) ─
   const handleZipUpload = useCallback(async (file: File) => {
     if (!initialUserId) return;
@@ -461,94 +506,49 @@ export default function FilmCalendar({
 
       // Update local state
       setWatchedActive(true);
-      setEnrichmentTotal(uploadData.toEnrich);
-      setEnrichmentRemaining(uploadData.toEnrich);
+      setEnrichmentTotal(uploadData.total);
+      setEnrichmentProcessed(uploadData.alreadyKnown);
+      setRecommendReady(false);
 
-      if (uploadData.toEnrich > 0) {
-        // Poll for enrichment progress (processing happens server-side via Edge Function)
-        setEnrichmentActive(true);
-        let remaining = uploadData.toEnrich;
-
-        while (remaining > 0) {
-          await new Promise(r => setTimeout(r, 3000));
-          const statusResp = await fetch('/api/enrich-batch');
-          const statusData = await statusResp.json();
-          if (!statusResp.ok) break;
-
-          remaining = statusData.pending;
-          setEnrichmentRemaining(remaining);
-        }
-        setEnrichmentActive(false);
-      }
-
-      // Fetch recommendations
-      await fetchRecommendations();
+      // Start polling for progress
+      await pollEnrichment();
     } catch (err) {
       console.error('ZIP upload error:', err);
-      setEnrichmentActive(false);
+      setEnrichmentPolling(false);
     }
-  }, [initialUserId]);
-
-  // ─ Fetch recommendations from API ─
-  const fetchRecommendations = useCallback(async () => {
-    try {
-      const resp = await fetch('/api/recommend');
-      const data = await resp.json();
-      if (resp.ok && data.scores) {
-        setMatchScores(data.scores);
-        setRecommendReady(true);
-      }
-    } catch (err) {
-      console.error('Recommend error:', err);
-    }
-  }, []);
+  }, [initialUserId, pollEnrichment]);
 
   // ─ Auto-resume enrichment + fetch recommendations on mount ─
   useEffect(() => {
     if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
 
-    let cancelled = false;
+    const cancelRef = { current: false };
 
     async function resumeEnrichmentAndRecommend() {
       try {
-        // Check the enrichment queue for pending items
-        const statusResp = await fetch('/api/enrich-batch');
-        const statusData = await statusResp.json();
+        // Check per-user enrichment progress
+        const resp = await fetch('/api/enrich-batch');
+        const data = await resp.json();
+        if (cancelRef.current || !resp.ok) return;
 
-        if (cancelled) return;
+        setEnrichmentTotal(data.total);
+        setEnrichmentProcessed(data.processed);
 
-        if (statusData.pending > 0) {
-          // Poll for enrichment progress (processing happens server-side via Edge Function)
-          setEnrichmentTotal(statusData.pending);
-          setEnrichmentRemaining(statusData.pending);
-          setEnrichmentActive(true);
-
-          let remaining = statusData.pending;
-          while (remaining > 0 && !cancelled) {
-            await new Promise(r => setTimeout(r, 3000));
-            const pollResp = await fetch('/api/enrich-batch');
-            const pollData = await pollResp.json();
-            if (!pollResp.ok) break;
-
-            remaining = pollData.pending;
-            if (!cancelled) setEnrichmentRemaining(remaining);
-          }
-          if (!cancelled) setEnrichmentActive(false);
-        }
-
-        // Fetch recommendation scores
-        if (!cancelled) {
+        if (data.total > 0 && data.processed < data.total) {
+          // Still processing — poll until done
+          await pollEnrichment(cancelRef);
+        } else {
+          // All done — fetch recommendations directly
           await fetchRecommendations();
         }
       } catch (err) {
         console.error('Auto-resume error:', err);
-        if (!cancelled) setEnrichmentActive(false);
       }
     }
 
     resumeEnrichmentAndRecommend();
-    return () => { cancelled = true; };
-  }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, fetchRecommendations]);
+    return () => { cancelRef.current = true; };
+  }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, fetchRecommendations, pollEnrichment]);
 
   const clearWatchlist = useCallback(() => {
     setWatchlistUrls(null);
@@ -996,7 +996,7 @@ export default function FilmCalendar({
           {/* Watched filter / ZIP upload */}
           {initialUserId ? (
             /* Authenticated: ZIP upload for recommendations */
-            <div className={`watched-filter ${recommendReady ? 'loaded active' : ''}`}>
+            <div className={`watched-filter auth-watched ${(recommendReady || enrichmentTotal > 0) ? 'loaded' : ''} ${recommendReady ? 'active' : ''}`}>
               <input
                 ref={zipInputRef}
                 type="file"
@@ -1008,38 +1008,66 @@ export default function FilmCalendar({
                   e.target.value = '';
                 }}
               />
+              {/* Main button: upload or re-upload */}
               <button
                 className="csv-filter-btn"
-                title={t(lang, 'recommendBtnTitle')}
+                title={enrichmentTotal > 0 ? t(lang, 'reuploadHint') : t(lang, 'recommendBtnTitle')}
                 onClick={() => zipInputRef.current?.click()}
-                disabled={enrichmentActive}
+                disabled={enrichmentPolling}
               >
                 <span className="csv-label-text">
                   <span className="csv-label-full">
-                    {enrichmentActive
-                      ? t(lang, 'enrichmentProgress', enrichmentTotal - enrichmentRemaining, enrichmentTotal)
+                    {enrichmentPolling
+                      ? t(lang, 'uploadProgress', enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0)
                       : recommendReady
                         ? t(lang, 'enrichmentDone')
-                        : t(lang, 'zipUploadLabel')}
+                        : enrichmentTotal > 0
+                          ? t(lang, 'reuploadLabel')
+                          : t(lang, 'zipUploadLabel')}
                   </span>
                   <span className="csv-label-short">
-                    {enrichmentActive
-                      ? `${enrichmentTotal - enrichmentRemaining}/${enrichmentTotal}`
+                    {enrichmentPolling
+                      ? `${enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0}%`
                       : recommendReady
                         ? '✓'
-                        : t(lang, 'zipUploadShort')}
+                        : enrichmentTotal > 0
+                          ? t(lang, 'reuploadShort')
+                          : t(lang, 'zipUploadShort')}
                   </span>
                 </span>
                 <span className="csv-label-icon" title={t(lang, 'recommendBtnTitle')} aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                 </span>
               </button>
-              {enrichmentActive && (
+              {/* Progress bar */}
+              {enrichmentTotal > 0 && !recommendReady && (
                 <div className="enrichment-progress">
                   <div
                     className="enrichment-bar"
-                    style={{ width: `${enrichmentTotal > 0 ? ((enrichmentTotal - enrichmentRemaining) / enrichmentTotal) * 100 : 0}%` }}
+                    style={{ width: `${enrichmentTotal > 0 ? (enrichmentProcessed / enrichmentTotal) * 100 : 0}%` }}
                   />
+                  <span className="enrichment-label">
+                    {t(lang, 'uploadProgressDetail', enrichmentProcessed, enrichmentTotal)}
+                  </span>
+                </div>
+              )}
+              {/* Show/hide watched toggle */}
+              {watchedUrls && watchedActive && (
+                <button
+                  className={`show-watched-toggle ${showWatched ? 'active' : ''}`}
+                  onClick={() => setShowWatched(!showWatched)}
+                  title={showWatched ? t(lang, 'hideWatched') : t(lang, 'showWatched')}
+                >
+                  <span className="csv-label-text">
+                    <span className="csv-label-full">{showWatched ? t(lang, 'hideWatched') : t(lang, 'showWatched')}</span>
+                    <span className="csv-label-short">{showWatched ? '👁' : '👁‍🗨'}</span>
+                  </span>
+                </button>
+              )}
+              {/* Re-upload hint */}
+              {recommendReady && (
+                <div className="reupload-hint">
+                  {t(lang, 'reuploadHint')}
                 </div>
               )}
             </div>

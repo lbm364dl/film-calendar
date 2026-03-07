@@ -3,11 +3,10 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 /**
- * GET /api/enrich-batch — Check enrichment queue status.
+ * GET /api/enrich-batch — Check per-user enrichment progress.
  *
- * Processing is handled by the Supabase Edge Function (process-enrichment),
- * triggered automatically by database INSERT trigger and pg_cron.
- * This endpoint only reports progress for the client UI.
+ * Returns how many of the user's watched_urls are already in the films table
+ * vs how many total they have, giving an accurate per-user progress indicator.
  */
 export async function GET() {
     const cookieStore = await cookies();
@@ -35,18 +34,36 @@ export async function GET() {
         return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    const { count: pending } = await supabase
-        .from('film_enrichment_queue')
-        .select('*', { count: 'exact', head: true })
-        .in('status', ['pending', 'processing']);
+    // Get user's watched URLs
+    const { data: prefs } = await supabase
+        .from('user_preferences')
+        .select('watched_urls')
+        .eq('user_id', user.id)
+        .single();
 
-    const { count: failed } = await supabase
-        .from('film_enrichment_queue')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'failed');
+    const watchedUrls: string[] = prefs?.watched_urls ?? [];
+    const total = watchedUrls.length;
+
+    if (total === 0) {
+        return NextResponse.json({ total: 0, processed: 0 });
+    }
+
+    // Count how many of the user's watched URLs exist in the films table
+    const QUERY_BATCH = 300;
+    let processed = 0;
+
+    for (let i = 0; i < watchedUrls.length; i += QUERY_BATCH) {
+        const batch = watchedUrls.slice(i, i + QUERY_BATCH);
+        const { count } = await supabase
+            .from('films')
+            .select('*', { count: 'exact', head: true })
+            .in('letterboxd_short_url', batch);
+
+        processed += count ?? 0;
+    }
 
     return NextResponse.json({
-        pending: pending ?? 0,
-        failed: failed ?? 0,
+        total,
+        processed,
     });
 }
