@@ -459,7 +459,7 @@ export default function FilmCalendar({
       const data = await resp.json();
       if (resp.ok && data.scores) {
         setMatchScores(data.scores);
-        setRecommendReady(true);
+        setRecommendReady(Object.keys(data.scores).length > 0);
       }
     } catch (err) {
       console.error('Recommend error:', err);
@@ -481,9 +481,9 @@ export default function FilmCalendar({
         setEnrichmentProcessed(data.processed);
 
         if (data.total === 0 || data.processed >= data.total) {
-          // All done — fetch recommendations
-          setEnrichmentPolling(false);
+          // All done — fetch recommendations before clearing polling state
           await fetchRecommendations();
+          setEnrichmentPolling(false);
           return;
         }
 
@@ -504,6 +504,11 @@ export default function FilmCalendar({
     formData.append('file', file);
 
     try {
+      // Show progress immediately
+      setEnrichmentPolling(true);
+      setEnrichmentProcessed(0);
+      setRecommendReady(false);
+
       const uploadResp = await fetch('/api/upload-watched', {
         method: 'POST',
         body: formData,
@@ -578,7 +583,21 @@ export default function FilmCalendar({
     setWatchlistActive(false);
     setWatchedUrls(null);
     setWatchedActive(false);
-    if (initialUserId) savePreference({ watchlist_urls: [], watchlist_active: false, watched_urls: [], watched_active: false });
+    setMatchScores({});
+    setSortByMatch(false);
+    setEnrichmentTotal(0);
+    setEnrichmentProcessed(0);
+    setEnrichmentPolling(false);
+    setRecommendReady(false);
+    if (initialUserId) {
+      savePreference({ 
+        watchlist_urls: [], 
+        watchlist_active: false, 
+        watched_urls: [], 
+        watched_active: false,
+        watched_ratings: {} 
+      });
+    }
   }, [initialUserId]);
 
   const clearAllFilters = useCallback(() => {
@@ -1077,7 +1096,9 @@ export default function FilmCalendar({
                   <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep2') }} />
                   <li dangerouslySetInnerHTML={{ __html: t(lang, 'lbStep3') }} />
                 </ol>
-                <p className="lb-persistence-note">{t(lang, 'csvPersistence')}</p>
+                {!initialUserId && (
+                  <p className="lb-persistence-note">{t(lang, 'lbSignInPrompt')}</p>
+                )}
               </section>
 
               {/* ZIP upload (authenticated) */}
@@ -1086,30 +1107,29 @@ export default function FilmCalendar({
                   <h3 className="lb-section-title">{t(lang, 'lbRecommendationsTitle')}</h3>
                   <div className="lb-upload-row">
                     <button
-                      className={`lb-upload-btn${recommendReady ? ' done' : ''}${enrichmentPolling ? ' loading' : ''}`}
+                      className={`lb-upload-btn${enrichmentPolling ? ' polling' : ''}`}
                       onClick={() => zipInputRef.current?.click()}
                       disabled={enrichmentPolling}
                     >
                       {enrichmentPolling
                         ? t(lang, 'uploadProgress', enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0)
-                        : recommendReady
-                          ? t(lang, 'enrichmentDone')
-                          : enrichmentTotal > 0
-                            ? t(lang, 'reuploadLabel')
-                            : t(lang, 'zipUploadLabel')}
+                        : enrichmentTotal > 0
+                          ? t(lang, 'reuploadLabel')
+                          : t(lang, 'zipUploadLabel')}
                     </button>
                   </div>
-                  {enrichmentTotal > 0 && !recommendReady && (
+                  {recommendReady && (
+                    <div className="lb-stat">{t(lang, 'enrichmentDone')}</div>
+                  )}
+                  {(enrichmentPolling || (enrichmentTotal > 0 && !recommendReady)) && (
                     <div className="lb-progress">
-                      <div className="lb-progress-bar" style={{ width: `${(enrichmentProcessed / enrichmentTotal) * 100}%` }} />
-                      <span className="lb-progress-label">{t(lang, 'uploadProgressDetail', enrichmentProcessed, enrichmentTotal)}</span>
+                      <div className="lb-progress-bar" style={{ width: enrichmentTotal > 0 ? `${(enrichmentProcessed / enrichmentTotal) * 100}%` : '0%' }} />
+                      <span className="lb-progress-label">
+                        {enrichmentTotal > 0
+                          ? t(lang, 'uploadProgressDetail', enrichmentProcessed, enrichmentTotal)
+                          : t(lang, 'uploadStarting')}
+                      </span>
                     </div>
-                  )}
-                  {watchedUrls && (
-                    <div className="lb-stat">{t(lang, 'watchedCount', watchedUrls.size)}</div>
-                  )}
-                  {watchlistUrls && (
-                    <div className="lb-stat">{t(lang, 'watchlistCount', watchlistUrls.size)}</div>
                   )}
                   <p className="lb-reupload-note">{t(lang, 'reuploadHint')}</p>
                 </section>

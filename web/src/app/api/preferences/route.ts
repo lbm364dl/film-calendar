@@ -41,6 +41,7 @@ export async function POST(request: Request) {
   if (Array.isArray(body.watched_urls)) update.watched_urls = body.watched_urls;
   if (typeof body.watchlist_active === 'boolean') update.watchlist_active = body.watchlist_active;
   if (typeof body.watched_active === 'boolean') update.watched_active = body.watched_active;
+  if (body.watched_ratings !== undefined) update.watched_ratings = body.watched_ratings;
 
   if (Object.keys(update).length === 0) {
     return NextResponse.json({ error: 'No valid fields' }, { status: 400 });
