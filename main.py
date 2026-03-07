@@ -361,6 +361,7 @@ def run_merge(args):
             tmdb_infos = fetch_tmdb_info_batch(tmdb_urls_to_fetch)
             for idx, info in zip(tmdb_indices, tmdb_infos):
                 if info is None:
+                    print(f"  Warning: TMDB returned no data for {master_films[idx].get('tmdb_url')}")
                     continue
                 for key in tmdb_fields:
                     val = info.get(key)

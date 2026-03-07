@@ -189,13 +189,22 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
         if short_url_input:
             result["letterboxd_short_url"] = short_url_input.get("value")
 
-        # TMDB URL from body data attributes
-        body = soup.find("body")
-        if body:
-            tmdb_id = body.get("data-tmdb-id")
-            tmdb_type = body.get("data-tmdb-type", "movie")
-            if tmdb_id:
-                result["tmdb_url"] = f"https://www.themoviedb.org/{tmdb_type}/{tmdb_id}/"
+        # TMDB URL — prefer the actual <a> link to themoviedb.org on the page
+        # (the body data-tmdb-id attribute can be wrong for TV series)
+        tmdb_link = soup.find("a", href=re.compile(r"themoviedb\.org/(movie|tv)/"))
+        if tmdb_link:
+            href = tmdb_link.get("href", "")
+            if href:
+                result["tmdb_url"] = href if href.endswith("/") else href + "/"
+
+        # Fallback: body data attributes (less reliable for TV shows)
+        if not result["tmdb_url"]:
+            body = soup.find("body")
+            if body:
+                tmdb_id = body.get("data-tmdb-id")
+                tmdb_type = body.get("data-tmdb-type", "movie")
+                if tmdb_id:
+                    result["tmdb_url"] = f"https://www.themoviedb.org/{tmdb_type}/{tmdb_id}/"
 
     except Exception as e:
         print(f"  Phase 1 (requests) error for {url}: {e}")
