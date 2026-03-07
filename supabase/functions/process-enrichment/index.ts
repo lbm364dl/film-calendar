@@ -304,6 +304,7 @@ Deno.serve(async (req) => {
       if (lbInfo.tmdb_url) {
         tmdbInfo = await fetchTmdbInfo(lbInfo.tmdb_url);
         await delay(TMDB_DELAY_MS);
+        if (!tmdbInfo) throw new Error(`TMDB returned no data for ${lbInfo.tmdb_url}`);
       }
 
       // 4. Build film data
