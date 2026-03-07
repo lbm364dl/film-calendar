@@ -114,7 +114,7 @@ export async function POST(request: Request) {
         // Insert in small chunks so the INSERT trigger fires once per chunk,
         // spawning a parallel Edge Function worker for each. Chunk size matches
         // the Edge Function's BATCH_SIZE so each worker has exactly one batch ready.
-        const CHUNK_SIZE = 45;
+        const CHUNK_SIZE = 100;
         for (let i = 0; i < queueRows.length; i += CHUNK_SIZE) {
             const chunk = queueRows.slice(i, i + CHUNK_SIZE);
             await supabase

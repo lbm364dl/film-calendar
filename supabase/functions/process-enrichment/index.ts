@@ -23,7 +23,7 @@ import * as cheerio from "cheerio";
 
 // ── Configuration ────────────────────────────────────────────────────────────
 
-const BATCH_SIZE = 15;
+const BATCH_SIZE = 50;
 const TMDB_DELAY_MS = 300;
 const MAX_RETRIES = 5;
 const MAX_CHAIN_DEPTH = 50;
