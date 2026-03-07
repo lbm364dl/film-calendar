@@ -299,12 +299,13 @@ Deno.serve(async (req) => {
       // 2. Scrape Letterboxd page
       const lbInfo = await fetchLetterboxdInfo(fullUrl);
 
-      // 3. Fetch TMDB metadata
+      // 3. Fetch TMDB metadata (override takes precedence over Letterboxd-scraped URL)
+      const effectiveTmdbUrl = item.tmdb_url_override ?? lbInfo.tmdb_url;
       let tmdbInfo: TmdbInfo | null = null;
-      if (lbInfo.tmdb_url) {
-        tmdbInfo = await fetchTmdbInfo(lbInfo.tmdb_url);
+      if (effectiveTmdbUrl) {
+        tmdbInfo = await fetchTmdbInfo(effectiveTmdbUrl);
         await delay(TMDB_DELAY_MS);
-        if (!tmdbInfo) throw new Error(`TMDB returned no data for ${lbInfo.tmdb_url}`);
+        if (!tmdbInfo) throw new Error(`TMDB returned no data for ${effectiveTmdbUrl}`);
       }
 
       // 4. Build film data
@@ -317,7 +318,7 @@ Deno.serve(async (req) => {
         letterboxd_url: fullUrl,
         letterboxd_short_url: shortUrl,
         letterboxd_rating: lbInfo.letterboxd_rating,
-        tmdb_url: lbInfo.tmdb_url,
+        tmdb_url: effectiveTmdbUrl,
       };
 
       if (tmdbInfo) {
