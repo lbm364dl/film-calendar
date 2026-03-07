@@ -111,13 +111,15 @@ export async function POST(request: Request) {
             processed_at: null,
         }));
 
-        // Insert/update in batches to avoid payload limits
-        const BATCH_SIZE = 500;
-        for (let i = 0; i < queueRows.length; i += BATCH_SIZE) {
-            const batch = queueRows.slice(i, i + BATCH_SIZE);
+        // Insert in small chunks so the INSERT trigger fires once per chunk,
+        // spawning a parallel Edge Function worker for each. Chunk size matches
+        // the Edge Function's BATCH_SIZE so each worker has exactly one batch ready.
+        const CHUNK_SIZE = 45;
+        for (let i = 0; i < queueRows.length; i += CHUNK_SIZE) {
+            const chunk = queueRows.slice(i, i + CHUNK_SIZE);
             await supabase
                 .from('film_enrichment_queue')
-                .upsert(batch, { onConflict: 'letterboxd_short_url' });
+                .upsert(chunk, { onConflict: 'letterboxd_short_url' });
         }
     }
 

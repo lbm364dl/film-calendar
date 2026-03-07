@@ -465,19 +465,18 @@ export default function FilmCalendar({
       setEnrichmentRemaining(uploadData.toEnrich);
 
       if (uploadData.toEnrich > 0) {
-        // Start enrichment polling
+        // Poll for enrichment progress (processing happens server-side via Edge Function)
         setEnrichmentActive(true);
         let remaining = uploadData.toEnrich;
 
         while (remaining > 0) {
-          const batchResp = await fetch('/api/enrich-batch', { method: 'POST' });
-          const batchData = await batchResp.json();
-          if (!batchResp.ok) break;
+          await new Promise(r => setTimeout(r, 3000));
+          const statusResp = await fetch('/api/enrich-batch');
+          const statusData = await statusResp.json();
+          if (!statusResp.ok) break;
 
-          remaining = batchData.remaining;
+          remaining = statusData.pending;
           setEnrichmentRemaining(remaining);
-
-          if (batchData.done) break;
         }
         setEnrichmentActive(false);
       }
@@ -519,20 +518,20 @@ export default function FilmCalendar({
         if (cancelled) return;
 
         if (statusData.pending > 0) {
-          // Resume enrichment polling
+          // Poll for enrichment progress (processing happens server-side via Edge Function)
           setEnrichmentTotal(statusData.pending);
           setEnrichmentRemaining(statusData.pending);
           setEnrichmentActive(true);
 
           let remaining = statusData.pending;
           while (remaining > 0 && !cancelled) {
-            const batchResp = await fetch('/api/enrich-batch', { method: 'POST' });
-            const batchData = await batchResp.json();
-            if (!batchResp.ok) break;
+            await new Promise(r => setTimeout(r, 3000));
+            const pollResp = await fetch('/api/enrich-batch');
+            const pollData = await pollResp.json();
+            if (!pollResp.ok) break;
 
-            remaining = batchData.remaining;
+            remaining = pollData.pending;
             if (!cancelled) setEnrichmentRemaining(remaining);
-            if (batchData.done) break;
           }
           if (!cancelled) setEnrichmentActive(false);
         }
