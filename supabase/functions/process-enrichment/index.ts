@@ -375,10 +375,13 @@ Deno.serve(async (req) => {
 
   const done = (remaining ?? 0) === 0;
 
-  // Self-invoke if more work to do (with depth limit)
+  // Self-invoke if more work to do (with depth limit).
+  // Use EdgeRuntime.waitUntil() so the Deno runtime keeps the context alive
+  // until the outbound HTTP request is actually sent — without it, fire-and-forget
+  // fetches are cancelled as soon as the Response is returned.
   if (!done && chainDepth < MAX_CHAIN_DEPTH) {
     const selfUrl = `${supabaseUrl}/functions/v1/process-enrichment`;
-    fetch(selfUrl, {
+    const selfInvoke = fetch(selfUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -386,6 +389,9 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({ chain_depth: chainDepth + 1 }),
     }).catch((err) => console.error("Self-invoke failed:", err));
+
+    // Keep the execution context alive until the request is dispatched
+    EdgeRuntime.waitUntil(selfInvoke);
   }
 
   console.log(`Batch done: ${processedCount} processed, ${remaining ?? 0} remaining`);
