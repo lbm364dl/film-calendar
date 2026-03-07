@@ -19,7 +19,7 @@ DECLARE
   _url TEXT;
   _key TEXT;
   _processing INT;
-  MAX_CONCURRENT CONSTANT INT := 8;
+  MAX_CONCURRENT CONSTANT INT := 5;
   BATCH_SIZE     CONSTANT INT := 30;
 BEGIN
   -- Skip if enough workers are already running.

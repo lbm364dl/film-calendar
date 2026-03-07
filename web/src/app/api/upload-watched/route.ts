@@ -119,6 +119,8 @@ export async function POST(request: Request) {
         // Insert in small chunks so the INSERT trigger fires once per chunk,
         // spawning a parallel Edge Function worker for each. Chunk size matches
         // the Edge Function's BATCH_SIZE so each worker has exactly one batch ready.
+        // The Edge Function itself enforces MAX_CONCURRENT (5) — excess workers
+        // exit immediately with { throttled: true }.
         const CHUNK_SIZE = 30;
         for (let i = 0; i < queueRows.length; i += CHUNK_SIZE) {
             const chunk = queueRows.slice(i, i + CHUNK_SIZE);

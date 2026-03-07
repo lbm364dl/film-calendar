@@ -268,7 +268,10 @@ Deno.serve(async (req) => {
     chainDepth = body.chain_depth ?? 0;
   } catch { /* no body is fine */ }
 
-  // Take a batch from the queue (concurrent-safe via FOR UPDATE SKIP LOCKED)
+  // Take a batch from the queue.
+  // Concurrency is enforced atomically inside take_enrichment_batch() via
+  // pg_advisory_xact_lock — if MAX_CONCURRENT workers are already active,
+  // it returns an empty set instead of handing out more work.
   const { data: batch, error: rpcError } = await supabase
     .rpc("take_enrichment_batch", { batch_size: BATCH_SIZE });
 
