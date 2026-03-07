@@ -26,6 +26,8 @@ export interface ParsedExport {
     ratings: Record<string, number>;
     /** Map of full URL → short URL for cross-referencing */
     fullToShort: Record<string, string>;
+    /** Short URLs from watchlist.csv */
+    watchlistUrls: string[];
 }
 
 interface WatchedRow {
@@ -113,11 +115,13 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
     // Find watched.csv and ratings.csv (may be at root or in a subfolder)
     let watchedFile: JSZip.JSZipObject | null = null;
     let ratingsFile: JSZip.JSZipObject | null = null;
+    let watchlistFile: JSZip.JSZipObject | null = null;
 
     zip.forEach((path, file) => {
         const basename = path.split('/').pop()?.toLowerCase();
         if (basename === 'watched.csv') watchedFile = file;
         if (basename === 'ratings.csv') ratingsFile = file;
+        if (basename === 'watchlist.csv') watchlistFile = file;
     });
 
     if (!watchedFile) {
@@ -159,7 +163,18 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
         }
     }
 
-    return { watchedUrls, watchedFullUrls, ratings, fullToShort };
+    // Parse watchlist.csv (optional)
+    const watchlistUrls: string[] = [];
+    if (watchlistFile) {
+        const watchlistText = await (watchlistFile as JSZip.JSZipObject).async('string');
+        const watchlistRows = parseCSV(watchlistText);
+        for (const row of watchlistRows) {
+            const uri = (row as any)['Letterboxd URI']?.trim();
+            if (uri) watchlistUrls.push(uri);
+        }
+    }
+
+    return { watchedUrls, watchedFullUrls, ratings, fullToShort, watchlistUrls };
 }
 
 // ── Letterboxd HTTP Scraper (Phase 1 only) ──────────────────────────────────

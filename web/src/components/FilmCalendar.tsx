@@ -67,11 +67,13 @@ function getTheaterFallbackUrl(film: Film, dateObj: DateEntry) {
   return '#';
 }
 
-/** Convert ISO timestamp from DB to "YYYY-MM-DD HH:MM" local time string */
+/** Convert ISO timestamp from DB to "YYYY-MM-DD HH:MM" string.
+ *  Screenings are stored with a UTC-Z suffix but actually represent Madrid local
+ *  times, so we read the UTC fields directly to avoid any timezone shift. */
 function isoToLocal(iso: string): string {
   const d = new Date(iso);
   const pad = (n: number) => n.toString().padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
 }
 
 /** Map database rows to frontend Film objects */
@@ -189,6 +191,8 @@ export default function FilmCalendar({
   const [enrichmentPolling, setEnrichmentPolling] = useState(false);
   const [recommendReady, setRecommendReady] = useState(false);
   const [showWatched, setShowWatched] = useState(false);
+  const [showLbModal, setShowLbModal] = useState(false);
+  const [lbModalClosing, setLbModalClosing] = useState(false);
 
   const watchlistInputRef = useRef<HTMLInputElement>(null);
   const watchedInputRef = useRef<HTMLInputElement>(null);
@@ -401,17 +405,23 @@ export default function FilmCalendar({
     setTimeout(() => { setModal(null); setModalClosing(false); }, 220);
   }, [modal]);
 
-  // Escape key closes modal + popups
+  const closeLbModal = useCallback(() => {
+    setLbModalClosing(true);
+    setTimeout(() => { setShowLbModal(false); setLbModalClosing(false); }, 220);
+  }, []);
+
+  // Escape key closes modals + popups
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (showLbModal) { closeLbModal(); return; }
         closeModal();
         setOpenPopupId(null);
       }
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [closeModal]);
+  }, [closeModal, closeLbModal, showLbModal]);
 
   // ─ CSV upload handler (watchlist only — watched now uses ZIP) ─
   const handleCsvUpload = useCallback((file: File, type: 'watchlist' | 'watched') => {
@@ -504,8 +514,15 @@ export default function FilmCalendar({
         return;
       }
 
-      // Update local state
+      // Update local state immediately so filters work without reload
       setWatchedActive(true);
+      if (uploadData.watchedUrls?.length > 0) {
+        setWatchedUrls(new Set(uploadData.watchedUrls));
+      }
+      if (uploadData.watchlistUrls?.length > 0) {
+        setWatchlistUrls(new Set(uploadData.watchlistUrls));
+        setWatchlistActive(true);
+      }
       setEnrichmentTotal(uploadData.total);
       setEnrichmentProcessed(uploadData.alreadyKnown);
       setRecommendReady(false);
@@ -550,16 +567,18 @@ export default function FilmCalendar({
     return () => { cancelRef.current = true; };
   }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, fetchRecommendations, pollEnrichment]);
 
-  const clearWatchlist = useCallback(() => {
-    setWatchlistUrls(null);
-    setWatchlistActive(false);
-    if (initialUserId) savePreference({ watchlist_urls: [], watchlist_active: false });
-  }, [initialUserId]);
-
   const clearWatched = useCallback(() => {
     setWatchedUrls(null);
     setWatchedActive(false);
     if (initialUserId) savePreference({ watched_urls: [], watched_active: false });
+  }, [initialUserId]);
+
+  const clearLetterboxdData = useCallback(() => {
+    setWatchlistUrls(null);
+    setWatchlistActive(false);
+    setWatchedUrls(null);
+    setWatchedActive(false);
+    if (initialUserId) savePreference({ watchlist_urls: [], watchlist_active: false, watched_urls: [], watched_active: false });
   }, [initialUserId]);
 
   const clearAllFilters = useCallback(() => {
@@ -817,10 +836,14 @@ export default function FilmCalendar({
   }
 
   // ── Render ────────────────────────────────────────────────────────────────────
-  const [showCsvTooltip, setShowCsvTooltip] = useState(false);
+  const lbHasData = !!(watchlistUrls || watchedUrls || recommendReady || enrichmentTotal > 0);
+  const lbFilterActive = !!(
+    (watchlistUrls && watchlistActive) ||
+    (watchedUrls && watchedActive)
+  );
 
   return (
-    <div className="container" onClick={() => { setOpenPopupId(null); setShowCsvTooltip(false); }}>
+    <div className="container" onClick={() => { setOpenPopupId(null); }}>
       {/* Header */}
       <header>
         <div className="header-top-row">
@@ -923,205 +946,50 @@ export default function FilmCalendar({
         </div>
 
         <div className="actions-cell">
-          {/* Watchlist filter */}
-          <div className={`watchlist-filter ${watchlistUrls ? 'loaded' : ''} ${watchlistUrls && watchlistActive ? 'active' : ''}`}>
-            <input
-              ref={watchlistInputRef}
-              type="file"
-              accept=".csv"
-              hidden
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) handleCsvUpload(file, 'watchlist');
-                e.target.value = '';
-              }}
-            />
-            <button
-              className="csv-filter-btn"
-              title={t(lang, 'watchlistBtnTitle')}
-              onClick={() => { if (!watchlistUrls) watchlistInputRef.current?.click(); }}
-            >
-              <span className="csv-label-text">
-                <span className="csv-label-full">
-                  {watchlistUrls ? (watchlistActive ? t(lang, 'watchlistActive') : t(lang, 'watchlistFull')) : t(lang, 'watchlistFull')}
-                </span>
-                <span className="csv-label-short">
-                  {watchlistUrls ? (watchlistActive ? t(lang, 'watchlistActive') : t(lang, 'watchlistShort')) : t(lang, 'watchlistShort')}
-                </span>
-              </span>
-              <span className="csv-label-icon" title={t(lang, 'watchlistIconTitle')}>
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z" /></svg>
-              </span>
-            </button>
-            {watchlistUrls && (
-              <span className="csv-toggle-wrap">
-                <label className="toggle-switch" title={t(lang, 'watchlistToggleTitle')}>
-                  <input
-                    type="checkbox"
-                    checked={watchlistActive}
-                    onChange={(e) => {
-                      setWatchlistActive(e.target.checked);
-                      if (initialUserId) savePreference({ watchlist_active: e.target.checked });
-                    }}
-                  />
-                  <span className="toggle-slider" />
-                </label>
-              </span>
-            )}
-            {watchlistUrls && (
-              <button className="csv-remove-btn" title={t(lang, 'removeWatchlist')} onClick={(e) => { e.stopPropagation(); clearWatchlist(); }}>
-                &times;
-              </button>
-            )}
-            <div
-              className={`csv-info-trigger ${showCsvTooltip ? 'show' : ''}`}
-              onClick={(e) => { e.stopPropagation(); setShowCsvTooltip(!showCsvTooltip); }}
-            >
-              <span className="info-icon">?</span>
-              <div className="csv-info-tooltip" onClick={(e) => e.stopPropagation()}>
-                <p dangerouslySetInnerHTML={{ __html: t(lang, 'csvTooltipTitle') }} />
-                <ol>
-                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep1') }} />
-                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep2') }} />
-                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep3') }} />
-                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep4') }} />
-                </ol>
-                <p className="csv-persistence-note">{t(lang, 'csvPersistence')}</p>
-                {watchlistUrls && <p className="csv-count-info">{t(lang, 'watchlistCount', watchlistUrls.size)}</p>}
-                {watchedUrls && <p className="csv-count-info">{t(lang, 'watchedCount', watchedUrls.size)}</p>}
-              </div>
-            </div>
-          </div>
+          {/* Hidden file inputs */}
+          <input
+            ref={watchlistInputRef}
+            type="file"
+            accept=".csv"
+            hidden
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) handleCsvUpload(file, 'watchlist');
+              e.target.value = '';
+            }}
+          />
+          <input
+            ref={watchedInputRef}
+            type="file"
+            accept=".csv"
+            hidden
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) handleCsvUpload(file, 'watched');
+              e.target.value = '';
+            }}
+          />
+          <input
+            ref={zipInputRef}
+            type="file"
+            accept=".zip"
+            hidden
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) handleZipUpload(file);
+              e.target.value = '';
+            }}
+          />
 
-          {/* Watched filter / ZIP upload */}
-          {initialUserId ? (
-            /* Authenticated: ZIP upload for recommendations */
-            <div className={`watched-filter auth-watched ${(recommendReady || enrichmentTotal > 0) ? 'loaded' : ''} ${recommendReady ? 'active' : ''}`}>
-              <input
-                ref={zipInputRef}
-                type="file"
-                accept=".zip"
-                hidden
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) handleZipUpload(file);
-                  e.target.value = '';
-                }}
-              />
-              {/* Main button: upload or re-upload */}
-              <button
-                className="csv-filter-btn"
-                title={enrichmentTotal > 0 ? t(lang, 'reuploadHint') : t(lang, 'recommendBtnTitle')}
-                onClick={() => zipInputRef.current?.click()}
-                disabled={enrichmentPolling}
-              >
-                <span className="csv-label-text">
-                  <span className="csv-label-full">
-                    {enrichmentPolling
-                      ? t(lang, 'uploadProgress', enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0)
-                      : recommendReady
-                        ? t(lang, 'enrichmentDone')
-                        : enrichmentTotal > 0
-                          ? t(lang, 'reuploadLabel')
-                          : t(lang, 'zipUploadLabel')}
-                  </span>
-                  <span className="csv-label-short">
-                    {enrichmentPolling
-                      ? `${enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0}%`
-                      : recommendReady
-                        ? '✓'
-                        : enrichmentTotal > 0
-                          ? t(lang, 'reuploadShort')
-                          : t(lang, 'zipUploadShort')}
-                  </span>
-                </span>
-                <span className="csv-label-icon" title={t(lang, 'recommendBtnTitle')} aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                </span>
-              </button>
-              {/* Progress bar */}
-              {enrichmentTotal > 0 && !recommendReady && (
-                <div className="enrichment-progress">
-                  <div
-                    className="enrichment-bar"
-                    style={{ width: `${enrichmentTotal > 0 ? (enrichmentProcessed / enrichmentTotal) * 100 : 0}%` }}
-                  />
-                  <span className="enrichment-label">
-                    {t(lang, 'uploadProgressDetail', enrichmentProcessed, enrichmentTotal)}
-                  </span>
-                </div>
-              )}
-              {/* Show/hide watched toggle */}
-              {watchedUrls && watchedActive && (
-                <button
-                  className={`show-watched-toggle ${showWatched ? 'active' : ''}`}
-                  onClick={() => setShowWatched(!showWatched)}
-                  title={showWatched ? t(lang, 'hideWatched') : t(lang, 'showWatched')}
-                >
-                  <span className="csv-label-text">
-                    <span className="csv-label-full">{showWatched ? t(lang, 'hideWatched') : t(lang, 'showWatched')}</span>
-                    <span className="csv-label-short">{showWatched ? '👁' : '👁‍🗨'}</span>
-                  </span>
-                </button>
-              )}
-              {/* Re-upload hint */}
-              {recommendReady && (
-                <div className="reupload-hint">
-                  {t(lang, 'reuploadHint')}
-                </div>
-              )}
-            </div>
-          ) : (
-            /* Anonymous: plain CSV watched filter */
-            <div className={`watched-filter ${watchedUrls ? 'loaded' : ''} ${watchedUrls && watchedActive ? 'active' : ''}`}>
-              <input
-                ref={watchedInputRef}
-                type="file"
-                accept=".csv"
-                hidden
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) handleCsvUpload(file, 'watched');
-                  e.target.value = '';
-                }}
-              />
-              <button
-                className="csv-filter-btn"
-                title={t(lang, 'watchedBtnTitle')}
-                onClick={() => { if (!watchedUrls) watchedInputRef.current?.click(); }}
-              >
-                <span className="csv-label-text">
-                  <span className="csv-label-full">
-                    {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedFull')) : t(lang, 'watchedFull')}
-                  </span>
-                  <span className="csv-label-short">
-                    {watchedUrls ? (watchedActive ? t(lang, 'watchedActive') : t(lang, 'watchedShort')) : t(lang, 'watchedShort')}
-                  </span>
-                </span>
-                <span className="csv-label-icon" title={t(lang, 'watchedIconTitle')} aria-hidden="true" />
-              </button>
-              {watchedUrls && (
-                <span className="csv-toggle-wrap">
-                  <label className="toggle-switch" title={t(lang, 'watchedToggleTitle')}>
-                    <input
-                      type="checkbox"
-                      checked={watchedActive}
-                      onChange={(e) => {
-                        setWatchedActive(e.target.checked);
-                        if (initialUserId) savePreference({ watched_active: e.target.checked });
-                      }}
-                    />
-                    <span className="toggle-slider" />
-                  </label>
-                </span>
-              )}
-              {watchedUrls && (
-                <button className="csv-remove-btn" title={t(lang, 'removeWatched')} onClick={(e) => { e.stopPropagation(); clearWatched(); }}>
-                  &times;
-                </button>
-              )}
-            </div>
-          )}
+          {/* Single Letterboxd button */}
+          <button
+            className={`lb-open-btn${lbHasData ? ' has-data' : ''}${lbFilterActive ? ' filter-active' : ''}`}
+            onClick={(e) => { e.stopPropagation(); setShowLbModal(true); }}
+          >
+            <img src="/assets/letterboxd.svg" className="lb-open-btn-icon" alt="" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+            <span>Letterboxd</span>
+            {lbFilterActive && <span className="lb-active-dot" />}
+          </button>
 
           {/* Clear filters */}
           <button className="clear-filters-btn" title={t(lang, 'clearFiltersTitle')} onClick={clearAllFilters}>
@@ -1186,6 +1054,128 @@ export default function FilmCalendar({
           </p>
         </div>
       </footer>
+
+      {/* Letterboxd Modal */}
+      {(showLbModal || lbModalClosing) && (
+        <div className={`lb-modal-overlay${lbModalClosing ? ' closing' : ''}`} onClick={closeLbModal}>
+          <div className="lb-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="lb-modal-header">
+              <div className="lb-modal-title">
+                <img src="/assets/letterboxd.svg" className="lb-modal-logo" alt="Letterboxd" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                <span>Letterboxd</span>
+              </div>
+              <button className="lb-modal-close" onClick={closeLbModal}>&times;</button>
+            </div>
+
+            <div className="lb-modal-body">
+
+              {/* How to get your data */}
+              <section className="lb-modal-section lb-instructions">
+                <h3 className="lb-section-title">{t(lang, 'lbHowToTitle')}</h3>
+                <ol className="lb-steps">
+                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep1') }} />
+                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'csvStep2') }} />
+                  <li dangerouslySetInnerHTML={{ __html: t(lang, 'lbStep3') }} />
+                </ol>
+                <p className="lb-persistence-note">{t(lang, 'csvPersistence')}</p>
+              </section>
+
+              {/* ZIP upload (authenticated) */}
+              {initialUserId && (
+                <section className="lb-modal-section">
+                  <h3 className="lb-section-title">{t(lang, 'lbRecommendationsTitle')}</h3>
+                  <div className="lb-upload-row">
+                    <button
+                      className={`lb-upload-btn${recommendReady ? ' done' : ''}${enrichmentPolling ? ' loading' : ''}`}
+                      onClick={() => zipInputRef.current?.click()}
+                      disabled={enrichmentPolling}
+                    >
+                      {enrichmentPolling
+                        ? t(lang, 'uploadProgress', enrichmentTotal > 0 ? Math.round((enrichmentProcessed / enrichmentTotal) * 100) : 0)
+                        : recommendReady
+                          ? t(lang, 'enrichmentDone')
+                          : enrichmentTotal > 0
+                            ? t(lang, 'reuploadLabel')
+                            : t(lang, 'zipUploadLabel')}
+                    </button>
+                  </div>
+                  {enrichmentTotal > 0 && !recommendReady && (
+                    <div className="lb-progress">
+                      <div className="lb-progress-bar" style={{ width: `${(enrichmentProcessed / enrichmentTotal) * 100}%` }} />
+                      <span className="lb-progress-label">{t(lang, 'uploadProgressDetail', enrichmentProcessed, enrichmentTotal)}</span>
+                    </div>
+                  )}
+                  {watchedUrls && (
+                    <div className="lb-stat">{t(lang, 'watchedCount', watchedUrls.size)}</div>
+                  )}
+                  {watchlistUrls && (
+                    <div className="lb-stat">{t(lang, 'watchlistCount', watchlistUrls.size)}</div>
+                  )}
+                  <p className="lb-reupload-note">{t(lang, 'reuploadHint')}</p>
+                </section>
+              )}
+
+              {/* Filters section — only shown when there's data to filter on */}
+              {(watchlistUrls || watchedUrls) && (
+                <section className="lb-modal-section">
+                  <div className="lb-section-header">
+                    <h3 className="lb-section-title">{t(lang, 'lbFiltersTitle')}</h3>
+                    <button className="lb-clear-data-btn" onClick={() => clearLetterboxdData()}>{t(lang, 'removeLetterboxdData')}</button>
+                  </div>
+
+                  {/* Watchlist filter */}
+                  {watchlistUrls && (
+                    <div className="lb-filter-row">
+                      <div className="lb-filter-info">
+                        <span className="lb-filter-label">{t(lang, 'lbWatchlistLabel')}</span>
+                        <span className="lb-filter-count">{t(lang, 'watchlistCount', watchlistUrls.size)}</span>
+                      </div>
+                      <div className="lb-filter-controls">
+                        <label className="toggle-switch" title={t(lang, 'watchlistToggleTitle')}>
+                          <input
+                            type="checkbox"
+                            checked={watchlistActive}
+                            onChange={(e) => {
+                              setWatchlistActive(e.target.checked);
+                              if (initialUserId) savePreference({ watchlist_active: e.target.checked });
+                            }}
+                          />
+                          <span className="toggle-slider" />
+                        </label>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Watched: hide already-watched toggle */}
+                  {watchedUrls && (
+                    <div className="lb-filter-row">
+                      <div className="lb-filter-info">
+                        <span className="lb-filter-label">{t(lang, 'lbWatchedLabel')}</span>
+                        <span className="lb-filter-count">{t(lang, 'watchedCount', watchedUrls.size)}</span>
+                      </div>
+                      <div className="lb-filter-controls">
+                        <label className="toggle-switch" title={t(lang, 'watchedToggleTitle')}>
+                          <input
+                            type="checkbox"
+                            checked={watchedActive && !showWatched}
+                            onChange={(e) => {
+                              const hide = e.target.checked;
+                              setWatchedActive(hide);
+                              setShowWatched(!hide);
+                              if (initialUserId) savePreference({ watched_active: hide });
+                            }}
+                          />
+                          <span className="toggle-slider" />
+                        </label>
+                      </div>
+                    </div>
+                  )}
+                </section>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Session Modal */}
       {modal && (

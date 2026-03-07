@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: msg }, { status: 400 });
     }
 
-    const { watchedUrls, ratings } = parsed;
+    const { watchedUrls, watchlistUrls, ratings } = parsed;
     const total = watchedUrls.length;
 
     if (total === 0) {
@@ -60,14 +60,19 @@ export async function POST(request: Request) {
     }
 
     // Save to user_preferences
+    const prefsUpdate: Record<string, unknown> = {
+        user_id: user.id,
+        watched_urls: watchedUrls,
+        watched_ratings: ratings,
+        watched_active: true,
+    };
+    if (watchlistUrls.length > 0) {
+        prefsUpdate.watchlist_urls = watchlistUrls;
+        prefsUpdate.watchlist_active = true;
+    }
     const { error: prefsError } = await supabase
         .from('user_preferences')
-        .upsert({
-            user_id: user.id,
-            watched_urls: watchedUrls,
-            watched_ratings: ratings,
-            watched_active: true,
-        }, { onConflict: 'user_id' });
+        .upsert(prefsUpdate, { onConflict: 'user_id' });
 
     if (prefsError) {
         return NextResponse.json({ error: prefsError.message }, { status: 500 });
@@ -133,5 +138,7 @@ export async function POST(request: Request) {
         total,
         alreadyKnown: knownUrls.size,
         toEnrich: toEnrich ?? unknownUrls.length,
+        watchedUrls,
+        watchlistUrls,
     });
 }
