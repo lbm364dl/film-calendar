@@ -2,6 +2,7 @@
 
 import json
 import re
+import time
 import unicodedata
 
 import pandas as pd
@@ -253,6 +254,52 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
             print(f"  Phase 2 (Selenium) error for {url}: {e}")
 
     return result
+
+
+def fetch_viewers_batch(urls: list[str]):
+    """Fetch only viewer counts for multiple Letterboxd URLs.
+
+    Faster than fetch_letterboxd_info_batch: skips Phase 1 (HTTP request) and
+    the Cloudflare sleep, relying solely on WebDriverWait for the watches element.
+    Uses a single warm browser session across all URLs.
+
+    Yields viewer counts (int) or None for each URL as they are scraped.
+    """
+    browser = _create_browser()
+
+    try:
+        # Warm up: let Cloudflare resolve once before hitting film pages
+        print("  Warming up browser on Letterboxd...")
+        browser.get(LETTERBOXD)
+        time.sleep(3)
+        _dismiss_cookie_consent(browser, timeout=3)
+
+        for url in urls:
+            url = url.rstrip("/") + "/"
+            count = None
+            try:
+                browser.get(url)
+                try:
+                    WebDriverWait(browser, 8).until(
+                        EC.presence_of_element_located(
+                            (By.CSS_SELECTOR, "div.production-statistic.-watches")
+                        )
+                    )
+                except TimeoutException:
+                    pass
+
+                soup = BeautifulSoup(browser.page_source, "html.parser")
+                watches_div = soup.select_one("div.production-statistic.-watches")
+                if watches_div:
+                    aria = watches_div.get("aria-label", "")
+                    match = re.search(r"Watched by ([\d,]+)", aria.replace("\xa0", " "))
+                    if match:
+                        count = int(match.group(1).replace(",", ""))
+            except Exception as e:
+                print(f"  Error fetching viewers for {url}: {e}")
+            yield count
+    finally:
+        browser.quit()
 
 
 def fetch_letterboxd_info_batch(urls: list[str], use_selenium: bool = True) -> list[dict]:
