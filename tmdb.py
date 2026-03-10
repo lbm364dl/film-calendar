@@ -105,7 +105,7 @@ def fetch_tmdb_info(tmdb_url: str) -> dict | None:
 
     url = f"{TMDB_API_BASE}/{media_type}/{tmdb_id}"
     params = {
-        "append_to_response": "translations",
+        "append_to_response": "translations,credits,keywords",
         **_auth_params(),
     }
 
@@ -129,7 +129,9 @@ def fetch_tmdb_info(tmdb_url: str) -> dict | None:
 
 
 def _parse_tmdb_response(data: dict, media_type: str) -> dict:
-    """Parse a TMDB details+translations response into our schema."""
+    """Parse a TMDB details+translations+credits+keywords response into our schema."""
+    tmdb_id = data.get("id")
+
     # Genres
     genres = [g["name"] for g in data.get("genres", []) if g.get("name")]
 
@@ -195,6 +197,93 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
     if not primary_language and orig_lang_code:
         primary_language = [orig_lang_code]
 
+    # Directors (top 2, with TMDB person ID)
+    # Movies: from credits.crew where job == "Director"
+    # TV: from created_by (show creators), fallback to crew directors
+    directors = []
+    if media_type == "movie":
+        crew = data.get("credits", {}).get("crew", [])
+        for member in crew:
+            if member.get("job") == "Director" and member.get("name") and member.get("id"):
+                directors.append({"id": member["id"], "name": member["name"]})
+                if len(directors) >= 2:
+                    break
+    else:
+        # TV shows: use created_by first
+        for creator in data.get("created_by", []):
+            if creator.get("name") and creator.get("id"):
+                directors.append({"id": creator["id"], "name": creator["name"]})
+                if len(directors) >= 2:
+                    break
+        # Fallback: crew directors (if created_by is empty)
+        if not directors:
+            crew = data.get("credits", {}).get("crew", [])
+            # TV shows use job titles like "Series Director", "Director", etc.
+            # Prioritize by job title order: Series Director > Director
+            director_priority = {"Series Director": 0, "Director": 1}
+
+            # Collect all directors matching priority list
+            all_directors = []
+            for member in crew:
+                job = member.get("job", "")
+                if job in director_priority and member.get("name") and member.get("id"):
+                    priority = director_priority[job]
+                    all_directors.append((priority, member))
+
+            # Sort by priority and add top 2
+            all_directors.sort(key=lambda x: x[0])
+            for _, member in all_directors[:2]:
+                directors.append({"id": member["id"], "name": member["name"]})
+
+    # Cast (top 5 billed, with TMDB person ID)
+    top_cast = []
+    cast_list = data.get("credits", {}).get("cast", [])
+    for member in cast_list:
+        if member.get("name") and member.get("id"):
+            top_cast.append({"id": member["id"], "name": member["name"]})
+            if len(top_cast) >= 5:
+                break
+
+    # Keywords (with TMDB keyword ID)
+    keywords_raw = data.get("keywords", {})
+    # Movie: {"keywords": [...]}, TV: {"results": [...]}
+    kw_list = keywords_raw.get("keywords", []) or keywords_raw.get("results", [])
+    keywords = [
+        {"id": kw["id"], "name": kw["name"]}
+        for kw in kw_list
+        if kw.get("id") and kw.get("name")
+    ]
+
+    # TMDB rating and vote count
+    tmdb_rating = None
+    vote_avg = data.get("vote_average")
+    if isinstance(vote_avg, (int, float)) and vote_avg > 0:
+        tmdb_rating = round(vote_avg, 2)
+
+    tmdb_votes = None
+    vote_count = data.get("vote_count")
+    if isinstance(vote_count, int) and vote_count > 0:
+        tmdb_votes = vote_count
+
+    # Production companies (with TMDB company ID)
+    production_companies = [
+        {"id": c["id"], "name": c["name"]}
+        for c in data.get("production_companies", [])
+        if c.get("id") and c.get("name")
+    ]
+
+    # Collection / franchise
+    collection_name = None
+    collection_id = None
+    collection = data.get("belongs_to_collection")
+    if collection and isinstance(collection, dict):
+        collection_name = collection.get("name")
+        collection_id = collection.get("id")
+
+    # Overview and tagline
+    overview = data.get("overview") or None
+    tagline = data.get("tagline") or None
+
     # Original title
     if media_type == "movie":
         title_original = data.get("original_title") or None
@@ -233,11 +322,22 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
                 title_en = main_title
 
     return {
+        "tmdb_id": tmdb_id,
         "genres": genres,
         "country": countries,
         "primary_language": primary_language,
         "spoken_languages": spoken_languages,
         "runtime_minutes": runtime_minutes,
+        "directors": directors,
+        "top_cast": top_cast,
+        "keywords": keywords,
+        "tmdb_rating": tmdb_rating,
+        "tmdb_votes": tmdb_votes,
+        "production_companies": production_companies,
+        "collection_name": collection_name,
+        "collection_id": collection_id,
+        "overview": overview,
+        "tagline": tagline,
         "title_original": title_original,
         "title_en": title_en,
         "title_es": title_es,

@@ -2,6 +2,7 @@
 
 import json
 import re
+import time
 import unicodedata
 
 import pandas as pd
@@ -189,13 +190,22 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
         if short_url_input:
             result["letterboxd_short_url"] = short_url_input.get("value")
 
-        # TMDB URL from body data attributes
-        body = soup.find("body")
-        if body:
-            tmdb_id = body.get("data-tmdb-id")
-            tmdb_type = body.get("data-tmdb-type", "movie")
-            if tmdb_id:
-                result["tmdb_url"] = f"https://www.themoviedb.org/{tmdb_type}/{tmdb_id}/"
+        # TMDB URL — prefer the actual <a> link to themoviedb.org on the page
+        # (the body data-tmdb-id attribute can be wrong for TV series)
+        tmdb_link = soup.find("a", href=re.compile(r"themoviedb\.org/(movie|tv)/"))
+        if tmdb_link:
+            href = tmdb_link.get("href", "")
+            if href:
+                result["tmdb_url"] = href if href.endswith("/") else href + "/"
+
+        # Fallback: body data attributes (less reliable for TV shows)
+        if not result["tmdb_url"]:
+            body = soup.find("body")
+            if body:
+                tmdb_id = body.get("data-tmdb-id")
+                tmdb_type = body.get("data-tmdb-type", "movie")
+                if tmdb_id:
+                    result["tmdb_url"] = f"https://www.themoviedb.org/{tmdb_type}/{tmdb_id}/"
 
     except Exception as e:
         print(f"  Phase 1 (requests) error for {url}: {e}")
@@ -244,6 +254,52 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
             print(f"  Phase 2 (Selenium) error for {url}: {e}")
 
     return result
+
+
+def fetch_viewers_batch(urls: list[str]):
+    """Fetch only viewer counts for multiple Letterboxd URLs.
+
+    Faster than fetch_letterboxd_info_batch: skips Phase 1 (HTTP request) and
+    the Cloudflare sleep, relying solely on WebDriverWait for the watches element.
+    Uses a single warm browser session across all URLs.
+
+    Yields viewer counts (int) or None for each URL as they are scraped.
+    """
+    browser = _create_browser()
+
+    try:
+        # Warm up: let Cloudflare resolve once before hitting film pages
+        print("  Warming up browser on Letterboxd...")
+        browser.get(LETTERBOXD)
+        time.sleep(3)
+        _dismiss_cookie_consent(browser, timeout=3)
+
+        for url in urls:
+            url = url.rstrip("/") + "/"
+            count = None
+            try:
+                browser.get(url)
+                try:
+                    WebDriverWait(browser, 8).until(
+                        EC.presence_of_element_located(
+                            (By.CSS_SELECTOR, "div.production-statistic.-watches")
+                        )
+                    )
+                except TimeoutException:
+                    pass
+
+                soup = BeautifulSoup(browser.page_source, "html.parser")
+                watches_div = soup.select_one("div.production-statistic.-watches")
+                if watches_div:
+                    aria = watches_div.get("aria-label", "")
+                    match = re.search(r"Watched by ([\d,]+)", aria.replace("\xa0", " "))
+                    if match:
+                        count = int(match.group(1).replace(",", ""))
+            except Exception as e:
+                print(f"  Error fetching viewers for {url}: {e}")
+            yield count
+    finally:
+        browser.quit()
 
 
 def fetch_letterboxd_info_batch(urls: list[str], use_selenium: bool = True) -> list[dict]:
