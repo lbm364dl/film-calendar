@@ -33,14 +33,34 @@ const TMDB_API_BASE = "https://api.themoviedb.org/3";
 
 // ── TMDB helpers ─────────────────────────────────────────────────────────────
 
+interface TmdbPerson {
+  id: number;
+  name: string;
+}
+
+interface TmdbTagged {
+  id: number;
+  name: string;
+}
+
 interface TmdbInfo {
+  tmdb_id: number | null;
   genres: string[];
   country: string[];
   primary_language: string[];
   spoken_languages: string[];
   runtime_minutes: number | null;
   year: number | null;
-  director: string | null;
+  directors: TmdbPerson[];
+  top_cast: TmdbPerson[];
+  keywords: TmdbTagged[];
+  tmdb_rating: number | null;
+  tmdb_votes: number | null;
+  production_companies: TmdbTagged[];
+  collection_name: string | null;
+  collection_id: number | null;
+  overview: string | null;
+  tagline: string | null;
   title_original: string | null;
   title_en: string | null;
   title_es: string | null;
@@ -69,6 +89,8 @@ function parseTmdbUrl(tmdbUrl: string): { mediaType: string; tmdbId: string } | 
 
 // deno-lint-ignore no-explicit-any
 function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
+  const tmdbId: number | null = data.id ?? null;
+
   const genres = (data.genres ?? []).filter((g: any) => g.name).map((g: any) => g.name);
 
   let countries = (data.production_countries ?? []).filter((c: any) => c.name).map((c: any) => c.name);
@@ -111,10 +133,82 @@ function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
     if (!isNaN(y) && y > 0) year = y;
   }
 
-  let director: string | null = null;
-  const crew = data.credits?.crew ?? [];
-  const directorEntry = crew.find((c: any) => c.job === "Director");
-  if (directorEntry?.name) director = directorEntry.name;
+  // Directors (top 2, with TMDB person ID)
+  // Movies: from credits.crew where job == "Director"
+  // TV: from created_by (show creators), fallback to crew directors
+  const directors: TmdbPerson[] = [];
+  if (mediaType === "movie") {
+    const crew = data.credits?.crew ?? [];
+    for (const member of crew) {
+      if (member.job === "Director" && member.name && member.id) {
+        directors.push({ id: member.id, name: member.name });
+        if (directors.length >= 2) break;
+      }
+    }
+  } else {
+    // TV shows: use created_by first
+    for (const creator of data.created_by ?? []) {
+      if (creator.name && creator.id) {
+        directors.push({ id: creator.id, name: creator.name });
+        if (directors.length >= 2) break;
+      }
+    }
+    // Fallback: crew directors (if created_by is empty)
+    if (directors.length === 0) {
+      const crew = data.credits?.crew ?? [];
+      for (const member of crew) {
+        if (member.job === "Director" && member.name && member.id) {
+          directors.push({ id: member.id, name: member.name });
+          if (directors.length >= 2) break;
+        }
+      }
+    }
+  }
+
+  // Cast (top 5 billed, with TMDB person ID)
+  const topCast: TmdbPerson[] = [];
+  const castList = data.credits?.cast ?? [];
+  for (const member of castList) {
+    if (member.name && member.id) {
+      topCast.push({ id: member.id, name: member.name });
+      if (topCast.length >= 5) break;
+    }
+  }
+
+  // Keywords (with TMDB keyword ID)
+  const keywordsRaw = data.keywords ?? {};
+  // Movie: {"keywords": [...]}, TV: {"results": [...]}
+  const kwList = keywordsRaw.keywords ?? keywordsRaw.results ?? [];
+  const keywords: TmdbTagged[] = kwList
+    .filter((kw: any) => kw.id && kw.name)
+    .map((kw: any) => ({ id: kw.id, name: kw.name }));
+
+  // TMDB rating and vote count
+  let tmdbRating: number | null = null;
+  const voteAvg = data.vote_average;
+  if (typeof voteAvg === "number" && voteAvg > 0) tmdbRating = Math.round(voteAvg * 100) / 100;
+
+  let tmdbVotes: number | null = null;
+  const voteCount = data.vote_count;
+  if (typeof voteCount === "number" && voteCount > 0) tmdbVotes = voteCount;
+
+  // Production companies (with TMDB company ID)
+  const productionCompanies: TmdbTagged[] = (data.production_companies ?? [])
+    .filter((c: any) => c.id && c.name)
+    .map((c: any) => ({ id: c.id, name: c.name }));
+
+  // Collection / franchise
+  let collectionName: string | null = null;
+  let collectionId: number | null = null;
+  const collection = data.belongs_to_collection;
+  if (collection && typeof collection === "object") {
+    collectionName = collection.name ?? null;
+    collectionId = collection.id ?? null;
+  }
+
+  // Overview and tagline
+  const overview: string | null = data.overview || null;
+  const tagline: string | null = data.tagline || null;
 
   const titleOriginal = mediaType === "movie"
     ? data.original_title || null
@@ -146,16 +240,22 @@ function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
   }
 
   return {
+    tmdb_id: tmdbId,
     genres, country: countries, primary_language: primaryLanguage,
     spoken_languages: spokenLanguages, runtime_minutes: runtimeMinutes,
-    year, director, title_original: titleOriginal, title_en: titleEn, title_es: titleEs,
+    year, directors, top_cast: topCast, keywords,
+    tmdb_rating: tmdbRating, tmdb_votes: tmdbVotes,
+    production_companies: productionCompanies,
+    collection_name: collectionName, collection_id: collectionId,
+    overview, tagline,
+    title_original: titleOriginal, title_en: titleEn, title_es: titleEs,
   };
 }
 
 async function fetchTmdbByTypeAndId(
   mediaType: string, tmdbId: string, auth: ReturnType<typeof getTmdbAuth>,
 ): Promise<TmdbInfo | null> {
-  const params = new URLSearchParams({ append_to_response: "translations,credits", ...auth.params });
+  const params = new URLSearchParams({ append_to_response: "translations,credits,keywords", ...auth.params });
   const url = `${TMDB_API_BASE}/${mediaType}/${tmdbId}?${params}`;
 
   try {
@@ -325,13 +425,24 @@ Deno.serve(async (req) => {
       };
 
       if (tmdbInfo) {
+        filmData.tmdb_id = tmdbInfo.tmdb_id;
         filmData.genres = tmdbInfo.genres;
         filmData.country = tmdbInfo.country;
         filmData.primary_language = tmdbInfo.primary_language;
         filmData.spoken_languages = tmdbInfo.spoken_languages;
         filmData.runtime_minutes = tmdbInfo.runtime_minutes;
         filmData.year = tmdbInfo.year;
-        filmData.director = tmdbInfo.director;
+        filmData.director = tmdbInfo.directors?.[0]?.name ?? null;
+        filmData.directors = tmdbInfo.directors;
+        filmData.top_cast = tmdbInfo.top_cast;
+        filmData.keywords = tmdbInfo.keywords;
+        filmData.tmdb_rating = tmdbInfo.tmdb_rating;
+        filmData.tmdb_votes = tmdbInfo.tmdb_votes;
+        filmData.production_companies = tmdbInfo.production_companies;
+        filmData.collection_name = tmdbInfo.collection_name;
+        filmData.collection_id = tmdbInfo.collection_id;
+        filmData.overview = tmdbInfo.overview;
+        filmData.tagline = tmdbInfo.tagline;
         filmData.title_original = tmdbInfo.title_original;
         filmData.title_en = tmdbInfo.title_en;
         filmData.title_es = tmdbInfo.title_es;

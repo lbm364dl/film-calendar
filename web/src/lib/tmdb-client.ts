@@ -7,14 +7,34 @@
 
 // ── Types ───────────────────────────────────────────────────────────────────────
 
+interface TmdbPerson {
+    id: number;
+    name: string;
+}
+
+interface TmdbTagged {
+    id: number;
+    name: string;
+}
+
 export interface TmdbInfo {
+    tmdb_id: number | null;
     genres: string[];
     country: string[];
     primary_language: string[];
     spoken_languages: string[];
     runtime_minutes: number | null;
     year: number | null;
-    director: string | null;
+    directors: TmdbPerson[];
+    top_cast: TmdbPerson[];
+    keywords: TmdbTagged[];
+    tmdb_rating: number | null;
+    tmdb_votes: number | null;
+    production_companies: TmdbTagged[];
+    collection_name: string | null;
+    collection_id: number | null;
+    overview: string | null;
+    tagline: string | null;
     title_original: string | null;
     title_en: string | null;
     title_es: string | null;
@@ -70,7 +90,10 @@ export function parseTmdbUrl(tmdbUrl: string): { mediaType: string; tmdbId: stri
 
 // ── Response parser ─────────────────────────────────────────────────────────────
 
-function parseTmdbResponse(data: Record<string, unknown>, mediaType: string): TmdbInfo {
+// deno-lint-ignore no-explicit-any
+function parseTmdbResponse(data: Record<string, any>, mediaType: string): TmdbInfo {
+    const tmdbId: number | null = data.id ?? null;
+
     // Genres
     const genresRaw = (data.genres as Array<{ name?: string }>) ?? [];
     const genres = genresRaw.filter(g => g.name).map(g => g.name!);
@@ -133,14 +156,82 @@ function parseTmdbResponse(data: Record<string, unknown>, mediaType: string): Tm
         if (!isNaN(y) && y > 0) year = y;
     }
 
-    // Director (from credits.crew)
-    let director: string | null = null;
-    const creditsObj = data.credits as { crew?: Array<{ job?: string; name?: string }> } | undefined;
-    const crew = creditsObj?.crew ?? [];
-    const directorEntry = crew.find(c => c.job === 'Director');
-    if (directorEntry?.name) {
-        director = directorEntry.name;
+    // Directors (top 2, with TMDB person ID)
+    // Movies: from credits.crew where job == "Director"
+    // TV: from created_by (show creators), fallback to crew directors
+    const directors: TmdbPerson[] = [];
+    if (mediaType === 'movie') {
+        const crew = data.credits?.crew ?? [];
+        for (const member of crew) {
+            if (member.job === 'Director' && member.name && member.id) {
+                directors.push({ id: member.id, name: member.name });
+                if (directors.length >= 2) break;
+            }
+        }
+    } else {
+        // TV shows: use created_by first
+        for (const creator of data.created_by ?? []) {
+            if (creator.name && creator.id) {
+                directors.push({ id: creator.id, name: creator.name });
+                if (directors.length >= 2) break;
+            }
+        }
+        // Fallback: crew directors (if created_by is empty)
+        if (directors.length === 0) {
+            const crew = data.credits?.crew ?? [];
+            for (const member of crew) {
+                if (member.job === 'Director' && member.name && member.id) {
+                    directors.push({ id: member.id, name: member.name });
+                    if (directors.length >= 2) break;
+                }
+            }
+        }
     }
+
+    // Cast (top 5 billed, with TMDB person ID)
+    const topCast: TmdbPerson[] = [];
+    const castList = data.credits?.cast ?? [];
+    for (const member of castList) {
+        if (member.name && member.id) {
+            topCast.push({ id: member.id, name: member.name });
+            if (topCast.length >= 5) break;
+        }
+    }
+
+    // Keywords (with TMDB keyword ID)
+    const keywordsRaw = data.keywords ?? {};
+    // Movie: {"keywords": [...]}, TV: {"results": [...]}
+    const kwList = keywordsRaw.keywords ?? keywordsRaw.results ?? [];
+    const keywords: TmdbTagged[] = kwList
+        .filter((kw: any) => kw.id && kw.name)
+        .map((kw: any) => ({ id: kw.id, name: kw.name }));
+
+    // TMDB rating and vote count
+    let tmdbRating: number | null = null;
+    const voteAvg = data.vote_average;
+    if (typeof voteAvg === 'number' && voteAvg > 0) tmdbRating = Math.round(voteAvg * 100) / 100;
+
+    let tmdbVotes: number | null = null;
+    const voteCount = data.vote_count;
+    if (typeof voteCount === 'number' && voteCount > 0) tmdbVotes = voteCount;
+
+    // Production companies (with TMDB company ID)
+    const productionCompanies: TmdbTagged[] = (data.production_companies ?? [])
+        .filter((c: any) => c.id && c.name)
+        .map((c: any) => ({ id: c.id, name: c.name }));
+
+    // Collection / franchise
+    let collectionName: string | null = null;
+    let collectionId: number | null = null;
+    const collection = data.belongs_to_collection;
+    if (collection && typeof collection === 'object') {
+        collectionName = collection.name ?? null;
+        collectionId = collection.id ?? null;
+    }
+
+    // Overview and tagline
+    const overview: string | null = data.overview || null;
+    const tagline: string | null = data.tagline || null;
 
     // Titles
     const titleOriginal = mediaType === 'movie'
@@ -189,13 +280,23 @@ function parseTmdbResponse(data: Record<string, unknown>, mediaType: string): Tm
     }
 
     return {
+        tmdb_id: tmdbId,
         genres,
         country: countries,
         primary_language: primaryLanguage,
         spoken_languages: spokenLanguages,
         runtime_minutes: runtimeMinutes,
         year,
-        director,
+        directors,
+        top_cast: topCast,
+        keywords,
+        tmdb_rating: tmdbRating,
+        tmdb_votes: tmdbVotes,
+        production_companies: productionCompanies,
+        collection_name: collectionName,
+        collection_id: collectionId,
+        overview,
+        tagline,
         title_original: titleOriginal,
         title_en: titleEn,
         title_es: titleEs,
@@ -229,7 +330,7 @@ export async function fetchTmdbInfo(tmdbUrl: string): Promise<TmdbInfo | null> {
 async function fetchTmdbByTypeAndId(mediaType: string, tmdbId: string): Promise<TmdbInfo | null> {
     const authParams = getAuthParams();
     const params = new URLSearchParams({
-        append_to_response: 'translations,credits',
+        append_to_response: 'translations,credits,keywords',
         ...authParams,
     });
 

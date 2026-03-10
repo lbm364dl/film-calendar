@@ -173,8 +173,11 @@ def run_merge(args):
         "tmdb_url",
     ]
     tmdb_fields = [
-        "genres", "country", "primary_language", "spoken_languages",
-        "runtime_minutes", "title_original", "title_en", "title_es",
+        "tmdb_id", "genres", "country", "primary_language", "spoken_languages",
+        "runtime_minutes", "directors", "top_cast", "keywords",
+        "tmdb_rating", "tmdb_votes", "production_companies",
+        "collection_name", "collection_id", "overview", "tagline",
+        "title_original", "title_en", "title_es",
     ]
     new_fields = letterboxd_fields + tmdb_fields
 
@@ -254,12 +257,23 @@ def run_merge(args):
                 "letterboxd_rating": None,
                 "letterboxd_viewers": None,
                 "letterboxd_short_url": None,
+                "tmdb_url": None,
+                "tmdb_id": None,
                 "genres": [],
                 "country": [],
                 "primary_language": [],
                 "spoken_languages": [],
                 "runtime_minutes": None,
-                "tmdb_url": None,
+                "directors": [],
+                "top_cast": [],
+                "keywords": [],
+                "tmdb_rating": None,
+                "tmdb_votes": None,
+                "production_companies": [],
+                "collection_name": None,
+                "collection_id": None,
+                "overview": None,
+                "tagline": None,
                 "title_original": None,
                 "title_en": None,
                 "title_es": None,
