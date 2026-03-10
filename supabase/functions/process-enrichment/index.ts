@@ -156,11 +156,24 @@ function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
     // Fallback: crew directors (if created_by is empty)
     if (directors.length === 0) {
       const crew = data.credits?.crew ?? [];
+      // TV shows use job titles like "Series Director", "Director", etc.
+      // Prioritize by job title order: Series Director > Director
+      const directorPriority: Record<string, number> = { "Series Director": 0, "Director": 1 };
+
+      // Collect all directors matching priority list
+      const allDirectors: Array<{ priority: number; member: any }> = [];
       for (const member of crew) {
-        if (member.job === "Director" && member.name && member.id) {
-          directors.push({ id: member.id, name: member.name });
-          if (directors.length >= 2) break;
+        const job = member.job ?? "";
+        if (job in directorPriority && member.name && member.id) {
+          const priority = directorPriority[job];
+          allDirectors.push({ priority, member });
         }
+      }
+
+      // Sort by priority and add top 2
+      allDirectors.sort((a, b) => a.priority - b.priority);
+      for (const { member } of allDirectors.slice(0, 2)) {
+        directors.push({ id: member.id, name: member.name });
       }
     }
   }

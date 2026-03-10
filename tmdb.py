@@ -218,11 +218,22 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         # Fallback: crew directors (if created_by is empty)
         if not directors:
             crew = data.get("credits", {}).get("crew", [])
+            # TV shows use job titles like "Series Director", "Director", etc.
+            # Prioritize by job title order: Series Director > Director
+            director_priority = {"Series Director": 0, "Director": 1}
+
+            # Collect all directors matching priority list
+            all_directors = []
             for member in crew:
-                if member.get("job") == "Director" and member.get("name") and member.get("id"):
-                    directors.append({"id": member["id"], "name": member["name"]})
-                    if len(directors) >= 2:
-                        break
+                job = member.get("job", "")
+                if job in director_priority and member.get("name") and member.get("id"):
+                    priority = director_priority[job]
+                    all_directors.append((priority, member))
+
+            # Sort by priority and add top 2
+            all_directors.sort(key=lambda x: x[0])
+            for _, member in all_directors[:2]:
+                directors.append({"id": member["id"], "name": member["name"]})
 
     # Cast (top 5 billed, with TMDB person ID)
     top_cast = []

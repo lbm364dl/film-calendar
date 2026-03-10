@@ -308,6 +308,42 @@ class TestParseTmdbResponseTV:
         result = _parse_tmdb_response(data, "tv")
         assert result["directors"] == [{"id": 77777, "name": "Some Episode Director"}]
 
+    def test_tv_directors_series_director_job(self):
+        """TV shows with 'Series Director' job title should be recognized as directors."""
+        data = {
+            **SAMPLE_TV_RESPONSE,
+            "created_by": [],
+            "credits": {
+                "crew": [
+                    {"id": 1640656, "name": "Mamoru Hatakeyama", "job": "Series Director"},
+                    {"id": 9999, "name": "Some Editor", "job": "Editor"},
+                ],
+                "cast": [],
+            },
+        }
+        result = _parse_tmdb_response(data, "tv")
+        assert result["directors"] == [{"id": 1640656, "name": "Mamoru Hatakeyama"}]
+
+    def test_tv_directors_prioritizes_series_director(self):
+        """Series Director should be prioritized over regular Director."""
+        data = {
+            **SAMPLE_TV_RESPONSE,
+            "created_by": [],
+            "credits": {
+                "crew": [
+                    {"id": 100, "name": "Regular Director", "job": "Director"},
+                    {"id": 101, "name": "Series Director", "job": "Series Director"},
+                ],
+                "cast": [],
+            },
+        }
+        result = _parse_tmdb_response(data, "tv")
+        # Series Director should come first
+        assert result["directors"] == [
+            {"id": 101, "name": "Series Director"},
+            {"id": 100, "name": "Regular Director"},
+        ]
+
     def test_tv_cast(self):
         result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
         assert len(result["top_cast"]) == 2
