@@ -3,6 +3,33 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { computeRecommendations, type FilmFeatures } from '@/lib/recommender';
 
+/** All film columns needed for recommendation scoring. */
+const FILM_SELECT = 'id, genres, director, directors, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;
+
+/** Map a raw DB row to a FilmFeatures object, defaulting nulls to safe values. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toFilmFeatures(f: any): FilmFeatures {
+    return {
+        id: f.id,
+        genres: f.genres ?? [],
+        director: f.director ?? null,
+        directors: f.directors ?? [],
+        top_cast: f.top_cast ?? [],
+        keywords: f.keywords ?? [],
+        production_companies: f.production_companies ?? [],
+        country: f.country ?? [],
+        primary_language: f.primary_language ?? [],
+        spoken_languages: f.spoken_languages ?? [],
+        year: f.year ?? null,
+        runtime_minutes: f.runtime_minutes ?? null,
+        letterboxd_rating: f.letterboxd_rating ?? null,
+        tmdb_rating: f.tmdb_rating ?? null,
+        tmdb_votes: f.tmdb_votes ?? null,
+        letterboxd_viewers: f.letterboxd_viewers ?? null,
+        collection_id: f.collection_id ?? null,
+    };
+}
+
 /**
  * GET /api/recommend — Compute match scores for all currently-screened films.
  *
@@ -59,21 +86,12 @@ export async function GET() {
         const batch = watchedUrls.slice(i, i + BATCH);
         const { data: films } = await supabase
             .from('films')
-            .select('id, genres, director, country, primary_language, year, runtime_minutes, letterboxd_rating, letterboxd_short_url')
+            .select(`${FILM_SELECT}, letterboxd_short_url`)
             .in('letterboxd_short_url', batch);
 
         if (films) {
             for (const f of films) {
-                allWatchedFilms.push({
-                    id: f.id,
-                    genres: f.genres ?? [],
-                    director: f.director,
-                    country: f.country ?? [],
-                    primary_language: f.primary_language ?? [],
-                    year: f.year,
-                    runtime_minutes: f.runtime_minutes,
-                    letterboxd_rating: f.letterboxd_rating,
-                });
+                allWatchedFilms.push(toFilmFeatures(f));
                 urlMap[f.id] = f.letterboxd_short_url;
             }
         }
@@ -98,21 +116,12 @@ export async function GET() {
         const batch = uniqueFilmIds.slice(i, i + BATCH);
         const { data: films } = await supabase
             .from('films')
-            .select('id, genres, director, country, primary_language, year, runtime_minutes, letterboxd_rating')
+            .select(FILM_SELECT)
             .in('id', batch);
 
         if (films) {
             for (const f of films) {
-                screenedFilms.push({
-                    id: f.id,
-                    genres: f.genres ?? [],
-                    director: f.director,
-                    country: f.country ?? [],
-                    primary_language: f.primary_language ?? [],
-                    year: f.year,
-                    runtime_minutes: f.runtime_minutes,
-                    letterboxd_rating: f.letterboxd_rating,
-                });
+                screenedFilms.push(toFilmFeatures(f));
             }
         }
     }
