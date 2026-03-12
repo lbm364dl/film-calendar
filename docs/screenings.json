@@ -242,6 +242,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1058681/",
         "url_info": "https://www.cinesrenoir.com/pelicula/incontrolable-proyecto-viridiana/"
+      },
+      {
+        "timestamp": "2026-03-17 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86510/incontrolable-i-swear?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93425_1_Z_1/incontrolable-i-swear--vose"
       }
     ],
     "director": "Kirk Jones",
@@ -2523,6 +2529,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       },
       {
+        "timestamp": "2026-03-13 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86496/valor-sentimental?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
+      },
+      {
         "timestamp": "2026-03-14 15:50",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058799/",
@@ -4554,6 +4566,12 @@
         "timestamp": "2026-03-12 20:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86009/tres-anuncios-en-las-afueras?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/8756_1_Z_1/tres-anuncios-en-las-afueras-vose"
+      },
+      {
+        "timestamp": "2026-03-13 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86009/tres-anuncios-en-las-afueras?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/8756_1_Z_1/tres-anuncios-en-las-afueras-vose"
       }
     ],
@@ -7910,6 +7928,13 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-13 17:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86592/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-13 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059709/",
@@ -7926,6 +7951,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96597&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 20:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86593/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-13 21:45",
@@ -7952,6 +7983,13 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-14 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86746/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-14 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059711/",
@@ -7968,6 +8006,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96610&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86747/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-14 21:45",
@@ -7988,6 +8032,12 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-15 11:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86733/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-15 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059036/",
@@ -7998,6 +8048,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96625&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86743/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-15 18:45",
@@ -8016,6 +8073,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96624&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86734/el-agente-secreto?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-15 21:45",
@@ -8048,6 +8111,13 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-16 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86735/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-16 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059715/",
@@ -8078,10 +8148,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-16 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86736/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-17 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059064/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-17 16:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86737/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-17 17:00",
@@ -8102,6 +8185,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-17 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86738/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-17 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059071/",
@@ -8118,6 +8207,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96670&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86739/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-18 18:45",
@@ -8138,6 +8234,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-18 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86740/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-18 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059718/",
@@ -8154,6 +8256,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059092/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-19 16:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86741/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-19 17:00",
@@ -9882,6 +9991,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-13 15:40",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86549/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-13 15:50",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058776/",
@@ -9892,6 +10008,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96596&eventCode=104664",
         "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 17:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86550/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-13 18:10",
@@ -9912,6 +10035,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-13 21:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86551/el-ultimo-vikingo?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_Z_1/el-ultimo-vikingo-vose"
+      },
+      {
         "timestamp": "2026-03-13 22:45",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058888/",
@@ -9924,6 +10053,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-14 16:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86726/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-14 17:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96609&eventCode=104664",
@@ -9934,6 +10070,13 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058802/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-14 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86682/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-14 19:30",
@@ -9960,6 +10103,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-15 16:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86727/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-15 17:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96623&eventCode=104664",
@@ -9970,6 +10120,13 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058817/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-15 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86683/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-15 19:30",
@@ -10000,6 +10157,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96640&eventCode=104664",
         "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86728/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-16 18:10",
@@ -10044,6 +10208,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-17 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86749/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-17 20:20",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058849/",
@@ -10062,6 +10233,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-18 16:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86730/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-18 17:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96675&eventCode=104664",
@@ -10072,6 +10250,13 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058859/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-18 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86686/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-18 19:30",
@@ -10102,6 +10287,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96678&eventCode=104664",
         "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86731/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-19 18:10",
@@ -11169,6 +11361,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-13 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86565/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-13 20:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058941/",
@@ -11185,6 +11383,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058944/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-14 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86654/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
       },
       {
         "timestamp": "2026-03-14 18:05",
@@ -11211,6 +11415,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-15 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86655/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-15 18:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058957/",
@@ -11233,6 +11443,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058962/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-16 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86656/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
       },
       {
         "timestamp": "2026-03-16 18:05",
@@ -11259,6 +11475,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-17 16:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86657/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-17 18:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058975/",
@@ -11283,6 +11505,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-18 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86658/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-18 18:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058984/",
@@ -11305,6 +11533,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058990/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-19 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86659/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
       },
       {
         "timestamp": "2026-03-19 18:05",
@@ -12974,10 +13208,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-14 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86698/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-14 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059120/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-14 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86699/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-14 21:50",
@@ -12986,10 +13233,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-14 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86700/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-15 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059129/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-15 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86701/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-15 19:00",
@@ -12998,10 +13258,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-15 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86702/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-15 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059136/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-15 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86703/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-16 16:10",
@@ -13010,10 +13282,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-16 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86704/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-16 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059144/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-16 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86705/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-16 21:50",
@@ -13022,10 +13307,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-16 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86706/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-17 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059153/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-17 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86707/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-17 19:00",
@@ -13034,10 +13332,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-17 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86708/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-17 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059160/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-17 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86709/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-18 16:10",
@@ -13046,10 +13357,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-18 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86710/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-18 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059168/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-18 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86711/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-18 21:50",
@@ -13058,10 +13382,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-18 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86712/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-19 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059177/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-19 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86713/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-19 19:00",
@@ -13070,10 +13407,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86714/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-19 21:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059184/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-19 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86715/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       }
     ],
     "director": "Mona Fastvold",
@@ -14717,6 +15066,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86744/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-03-15 16:00",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058815/",
@@ -15176,6 +15531,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-14 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86662/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-14 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96602&eventCode=105387",
@@ -15192,6 +15554,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96601&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86663/aguilas-de-el-cairo?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-14 22:30",
@@ -15236,6 +15604,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-15 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86664/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-15 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96616&eventCode=105387",
@@ -15252,6 +15627,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96615&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86665/aguilas-de-el-cairo?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-15 22:30",
@@ -15290,6 +15671,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-16 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86666/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-16 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96637&eventCode=105387",
@@ -15306,6 +15694,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96636&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86667/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-16 22:30",
@@ -15344,6 +15738,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-17 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86668/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-17 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96645&eventCode=105387",
@@ -15360,6 +15761,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96644&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86669/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-17 22:30",
@@ -15398,6 +15805,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-18 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86670/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-18 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96661&eventCode=105387",
@@ -15414,6 +15828,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96660&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86671/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-18 22:30",
@@ -15452,6 +15872,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-19 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86672/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-19 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96680&eventCode=105387",
@@ -15468,6 +15895,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96679&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86673/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-19 22:30",
@@ -17034,6 +17467,19 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-13 16:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86529/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-13 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86530/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-13 19:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059189/",
@@ -17044,6 +17490,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059648/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-13 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86531/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-13 22:10",
@@ -17068,6 +17520,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059194/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-14 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86689/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-14 22:00",
@@ -17100,6 +17558,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-15 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86690/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-15 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059660/",
@@ -17130,6 +17594,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-16 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86691/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-16 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059666/",
@@ -17152,6 +17622,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059743/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-17 17:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86692/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_W_0/cumbres-borrascosas",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-17 19:45",
@@ -17190,6 +17667,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-18 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86693/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-18 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059672/",
@@ -17224,6 +17707,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059736/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-19 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86694/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-19 22:10",
@@ -17841,6 +18330,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057680/",
         "url_info": "https://www.cinesrenoir.com/pelicula/los-miserables-el-origen/"
+      },
+      {
+        "timestamp": "2026-03-13 17:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86558/los-miserables-el-origen?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90484_1_W_0/los-miserables-el-origen"
       }
     ]
   },
@@ -18349,6 +18844,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-13 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86579/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-13 17:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058998/",
@@ -18359,6 +18860,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058942/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-14 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86717/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-14 17:35",
@@ -18373,6 +18880,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-15 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86718/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-15 17:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059000/",
@@ -18383,6 +18896,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058960/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-16 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86719/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-16 17:35",
@@ -18397,6 +18916,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-17 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86720/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-17 17:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059002/",
@@ -18409,6 +18934,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-18 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86721/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-18 17:35",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059003/",
@@ -18419,6 +18950,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1058987/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-19 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86722/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-19 17:35",
@@ -20228,6 +20765,18 @@
     "title": "Las locas del obelisco",
     "dates": [
       {
+        "timestamp": "2026-03-14 12:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86651/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86676/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
         "timestamp": "2026-03-19 19:30",
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/las-locas-del-obelisco/34928/",
@@ -20236,17 +20785,19 @@
     ],
     "director": "Pablo Moreno",
     "year": 2026,
-    "letterboxd_url": null,
+    "letterboxd_url": "https://letterboxd.com/film/las-locas-del-obelisco/",
     "letterboxd_rating": null,
-    "letterboxd_viewers": null,
-    "letterboxd_short_url": null,
+    "letterboxd_viewers": 0,
+    "letterboxd_short_url": "https://boxd.it/11tZM",
     "genres": [],
     "country": [],
-    "primary_language": [],
+    "primary_language": [
+      "es"
+    ],
     "spoken_languages": [],
     "runtime_minutes": null,
-    "tmdb_url": null,
-    "title_original": null,
+    "tmdb_url": "https://www.themoviedb.org/movie/1648774/",
+    "title_original": "Las Locas del Obelisco",
     "title_en": null,
     "title_es": null
   },
@@ -21791,6 +22342,38 @@
     "tmdb_url": "https://www.themoviedb.org/movie/1217584/",
     "title_original": "Torrente presidente",
     "title_en": "Torrente for President",
+    "title_es": null
+  },
+  {
+    "title": "La gran fiesta del bosque",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86724/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86725/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
+      }
+    ],
+    "director": "Samantha Cutler",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
     "title_es": null
   }
 ]
