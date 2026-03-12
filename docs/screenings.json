@@ -2139,6 +2139,12 @@
         "url_info": "https://salaequis.es/ciclos/valor-sentimental/"
       },
       {
+        "timestamp": "2026-03-17 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96342&eventCode=102499",
+        "url_info": "https://www.golem.es/golem/pelicula/Affeksjonverdi"
+      },
+      {
         "timestamp": "2026-03-17 21:45",
         "location": "Sala Equis",
         "url_tickets": "https://kinetike.com:83/views/sesionesFuturas.aspx?idPelicula=2894&cine=EQUIS",
@@ -2797,10 +2803,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
       },
       {
+        "timestamp": "2026-03-13 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96592&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-13 21:45",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-14 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96605&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-14 19:15",
@@ -2809,10 +2827,40 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
       },
       {
+        "timestamp": "2026-03-15 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96619&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-15 19:15",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-16 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96632&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96648&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96664&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96667&eventCode=104688",
+        "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       }
     ]
   },
@@ -3722,6 +3770,90 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1057940/",
         "url_info": "https://www.cinesrenoir.com/pelicula/sorry-baby/"
+      },
+      {
+        "timestamp": "2026-03-13 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96593&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-13 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96594&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-14 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96606&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-14 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96607&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-15 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96620&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-15 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96621&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-16 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96633&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-16 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96638&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-17 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96649&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-17 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96650&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-18 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96665&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-18 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96673&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-19 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96668&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
+      },
+      {
+        "timestamp": "2026-03-19 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96676&eventCode=106434",
+        "url_info": "https://www.golem.es/golem/pelicula/sorryvose"
       },
       {
         "timestamp": "2026-03-22 21:45",
@@ -6783,16 +6915,100 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-13 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96626&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96597&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96611&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96610&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-14 22:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-15 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96625&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96624&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-15 22:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-16 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96635&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96634&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96653&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96652&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96670&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96669&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96672&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 20:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96671&eventCode=105704",
+        "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       }
     ]
   },
@@ -8483,6 +8699,84 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1057756/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-13 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96596&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96595&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96609&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96608&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96623&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96622&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96640&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96639&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96651&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96675&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96674&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96678&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96677&eventCode=104664",
+        "url_info": "https://www.golem.es/golem/pelicula/El-último-vikingo-(V.O.S.E.)"
       }
     ],
     "director": "Anders Thomas Jensen",
@@ -9512,6 +9806,48 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1057876/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-13 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96591&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96604&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96618&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96631&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96647&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96663&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 21:45",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96666&eventCode=104636",
+        "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       }
     ]
   },
@@ -10697,6 +11033,132 @@
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/espacio-queer-la-hija-pequena-vose/34975/",
         "url_info": "https://cinesembajadores.es/pelicula/espacio-queer-la-hija-pequena-vose/?ciudad=madrid",
         "version": "VOSE"
+      },
+      {
+        "timestamp": "2026-03-13 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96587&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96586&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96585&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96600&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96599&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96598&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96614&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96613&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96612&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96629&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96628&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96627&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96643&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96642&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96641&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96656&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96655&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96654&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 16:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96659&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 19:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96658&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 21:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96657&eventCode=108556",
+        "url_info": "https://www.golem.es/golem/pelicula/La-hija-pequeña-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-20 20:30",
@@ -12338,10 +12800,28 @@
         "version": "VOSE"
       },
       {
+        "timestamp": "2026-03-13 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96590&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-13 19:15",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-13 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96589&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-13 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96588&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
       },
       {
         "timestamp": "2026-03-14 17:00",
@@ -12350,10 +12830,118 @@
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-14 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96603&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96602&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-14 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96601&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
         "timestamp": "2026-03-15 17:00",
         "location": "Cine Estudio",
         "url_tickets": "",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-15 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96617&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96616&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-15 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96615&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96630&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96637&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-16 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96636&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96646&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96645&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-17 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96644&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96662&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96661&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-18 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96660&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 17:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96681&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96680&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 22:00",
+        "location": "Golem",
+        "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96679&eventCode=105387",
+        "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
       }
     ],
     "director": "Tarik Saleh",
