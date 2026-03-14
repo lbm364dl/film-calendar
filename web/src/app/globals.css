@@ -949,16 +949,6 @@ h1 {
     color: #e57373;
 }
 
-.match-score.loading {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-dim);
-    animation: pulse-opacity 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-opacity {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
 
 .rating {
     display: flex;

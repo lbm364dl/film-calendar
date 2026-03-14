@@ -51,8 +51,21 @@ export async function GET() {
         .eq('user_id', user.id)
         .not('film_id', 'is', null);
 
+    // Check if any queue entries are still actively processing for this user.
+    // Exclude retry_count >= 5: those are stuck (batch skips them) and will never complete.
+    const { count: activeQueue } = await supabase
+        .from('film_enrichment_queue')
+        .select('*', { count: 'exact', head: true })
+        .eq('requested_by', user.id)
+        .in('status', ['pending', 'processing'])
+        .lt('retry_count', 5);
+
+    // Done when nothing is pending/processing (failed entries are skipped by user)
+    const done = (activeQueue ?? 0) === 0;
+
     return NextResponse.json({
         total,
         processed: processed ?? 0,
+        done,
     });
 }

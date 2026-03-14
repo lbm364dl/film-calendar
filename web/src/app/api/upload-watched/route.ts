@@ -134,6 +134,16 @@ export async function POST(request: Request) {
                 .from('film_enrichment_queue')
                 .upsert(queueRows.slice(i, i + CHUNK_SIZE), { onConflict: 'letterboxd_short_url' });
         }
+
+        // Fix zombie items: upsert resets status to 'pending' but not retry_count,
+        // so previously-exhausted items end up pending with retry_count >= 5 and
+        // will never be picked up by the batch function. Mark them failed immediately.
+        await supabase
+            .from('film_enrichment_queue')
+            .update({ status: 'failed', processed_at: new Date().toISOString() })
+            .eq('requested_by', user.id)
+            .eq('status', 'pending')
+            .gte('retry_count', 5);
     }
 
     const { count: toEnrich } = await supabase

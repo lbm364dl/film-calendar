@@ -491,8 +491,8 @@ export default function FilmCalendar({
         setEnrichmentTotal(data.total);
         setEnrichmentProcessed(data.processed);
 
-        if (data.total === 0 || data.processed >= data.total) {
-          // All done — fetch recommendations before clearing polling state
+        if (data.total === 0 || data.done || data.processed >= data.total) {
+          // All done (or only failures remain) — fetch recommendations before clearing polling state
           await fetchRecommendations();
           setEnrichmentPolling(false);
           return;
@@ -541,6 +541,10 @@ export default function FilmCalendar({
       setEnrichmentProcessed(uploadData.alreadyKnown);
       setRecommendReady(false);
 
+      // Persist watched_active so auto-resume works on reload
+      setWatchedActive(true);
+      savePreference({ watched_active: true });
+
       // Start polling for progress
       await pollEnrichment();
     } catch (err) {
@@ -567,8 +571,6 @@ export default function FilmCalendar({
   // ─ Auto-resume enrichment + fetch recommendations on mount ─
   useEffect(() => {
     if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
-    // If we already have precomputed scores from SSR, skip the recommend call
-    if (hasInitialScores) return;
 
     const cancelRef = { current: false };
 
@@ -582,11 +584,11 @@ export default function FilmCalendar({
         setEnrichmentTotal(data.total);
         setEnrichmentProcessed(data.processed);
 
-        if (data.total > 0 && data.processed < data.total) {
-          // Still processing — poll until done
+        if (data.total > 0 && !data.done && data.processed < data.total) {
+          // Still processing — poll until done (shows progress bar even after reload)
           await pollEnrichment(cancelRef);
-        } else {
-          // All done — fetch recommendations directly
+        } else if (!hasInitialScores) {
+          // All done and no SSR scores yet — fetch recommendations
           await fetchRecommendations();
         }
       } catch (err) {
@@ -839,7 +841,6 @@ export default function FilmCalendar({
     const filmMatchScore = matchScores[film.id];
     const filmBreakdown = breakdowns[film.id];
     const showMatch = recommendReady && filmMatchScore !== undefined;
-    const showScoreLoading = scoresLoading && !showMatch && watchedActive;
     const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
 
     const titleText = getFilmTitle(film);
@@ -867,11 +868,6 @@ export default function FilmCalendar({
                 title={scoreTooltip}
               >
                 <span className="match-value">{filmMatchScore}%</span>
-              </div>
-            )}
-            {showScoreLoading && (
-              <div className="match-score loading" title={lang === 'es' ? 'Calculando...' : 'Computing...'}>
-                <span className="match-value">…</span>
               </div>
             )}
             {ratingValue && (
