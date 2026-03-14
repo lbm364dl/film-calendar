@@ -924,6 +924,42 @@ h1 {
     flex-shrink: 0;
 }
 
+.match-score {
+    display: flex;
+    align-items: center;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.match-score.high {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+.match-score.medium {
+    background: rgba(255, 183, 77, 0.2);
+    color: #ffb74d;
+}
+
+.match-score.low {
+    background: rgba(229, 115, 115, 0.15);
+    color: #e57373;
+}
+
+.match-score.loading {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-dim);
+    animation: pulse-opacity 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-opacity {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
 .rating {
     display: flex;
     align-items: center;

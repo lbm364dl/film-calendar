@@ -349,13 +349,10 @@ ALTER SEQUENCE "public"."screenings_id_seq" OWNED BY "public"."screenings"."id";
 CREATE TABLE IF NOT EXISTS "public"."user_preferences" (
     "user_id" "uuid" NOT NULL,
     "lang" "text" DEFAULT 'es'::"text",
-    "watchlist_urls" "text"[] DEFAULT '{}'::"text"[],
-    "watched_urls" "text"[] DEFAULT '{}'::"text"[],
     "watchlist_active" boolean DEFAULT false,
     "watched_active" boolean DEFAULT false,
     "created_at" timestamp with time zone DEFAULT "now"(),
     "updated_at" timestamp with time zone DEFAULT "now"(),
-    "watched_ratings" "jsonb" DEFAULT '{}'::"jsonb",
     CONSTRAINT "user_preferences_lang_check" CHECK (("lang" = ANY (ARRAY['es'::"text", 'en'::"text"])))
 );
 

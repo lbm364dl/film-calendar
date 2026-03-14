@@ -141,6 +141,7 @@ interface FilmCalendarProps {
   initialWatchedActive: boolean;
   initialUserId: string | null;
   initialUserEmail: string | null;
+  initialScores: Record<number, number>;
 }
 
 export default function FilmCalendar({
@@ -151,6 +152,7 @@ export default function FilmCalendar({
   initialWatchedActive,
   initialUserId,
   initialUserEmail,
+  initialScores,
 }: FilmCalendarProps) {
   // ─ State ─
   // All values come from the server (cookie for lang, DB for auth'd users).
@@ -184,12 +186,14 @@ export default function FilmCalendar({
   const [openPopupId, setOpenPopupId] = useState<string | null>(null);
 
   // Recommender state
-  const [matchScores, setMatchScores] = useState<Record<number, number>>({});
+  const hasInitialScores = Object.keys(initialScores).length > 0;
+  const [matchScores, setMatchScores] = useState<Record<number, number>>(initialScores);
   const [sortByMatch, setSortByMatch] = useState(false);
   const [enrichmentTotal, setEnrichmentTotal] = useState(0);
   const [enrichmentProcessed, setEnrichmentProcessed] = useState(0);
   const [enrichmentPolling, setEnrichmentPolling] = useState(false);
-  const [recommendReady, setRecommendReady] = useState(false);
+  const [recommendReady, setRecommendReady] = useState(hasInitialScores);
+  const [scoresLoading, setScoresLoading] = useState(false);
   const [showWatched, setShowWatched] = useState(false);
   const [showLbModal, setShowLbModal] = useState(false);
   const [lbModalClosing, setLbModalClosing] = useState(false);
@@ -423,11 +427,11 @@ export default function FilmCalendar({
     return () => document.removeEventListener('keydown', handler);
   }, [closeModal, closeLbModal, showLbModal]);
 
-  // ─ CSV upload handler (watchlist only — watched now uses ZIP) ─
+  // ─ CSV upload handler (watchlist only — watched uses ZIP) ─
   const handleCsvUpload = useCallback((file: File, type: 'watchlist' | 'watched') => {
     Papa.parse(file, {
       header: true,
-      complete: (results) => {
+      complete: async (results) => {
         const urls = new Set<string>();
         results.data.forEach((row: any) => {
           const uri = row['Letterboxd URI'];
@@ -438,13 +442,14 @@ export default function FilmCalendar({
             setWatchlistUrls(urls);
             setWatchlistActive(true);
             if (initialUserId) {
-              savePreference({ watchlist_urls: [...urls], watchlist_active: true });
-            }
-          } else {
-            setWatchedUrls(urls);
-            setWatchedActive(true);
-            if (initialUserId) {
-              savePreference({ watched_urls: [...urls], watched_active: true });
+              const supabase = getBrowserSupabase();
+              const wlRows = [...urls].map(url => ({ user_id: initialUserId, letterboxd_short_url: url }));
+              const BATCH = 500;
+              await supabase.from('user_watchlist_films').delete().eq('user_id', initialUserId);
+              for (let i = 0; i < wlRows.length; i += BATCH) {
+                await supabase.from('user_watchlist_films').insert(wlRows.slice(i, i + BATCH));
+              }
+              savePreference({ watchlist_active: true });
             }
           }
         }
@@ -454,6 +459,7 @@ export default function FilmCalendar({
 
   // ─ Fetch recommendations from API ─
   const fetchRecommendations = useCallback(async () => {
+    setScoresLoading(true);
     try {
       const resp = await fetch('/api/recommend');
       const data = await resp.json();
@@ -463,6 +469,8 @@ export default function FilmCalendar({
       }
     } catch (err) {
       console.error('Recommend error:', err);
+    } finally {
+      setScoresLoading(false);
     }
   }, []);
 
@@ -543,6 +551,8 @@ export default function FilmCalendar({
   // ─ Auto-resume enrichment + fetch recommendations on mount ─
   useEffect(() => {
     if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
+    // If we already have precomputed scores from SSR, skip the recommend call
+    if (hasInitialScores) return;
 
     const cancelRef = { current: false };
 
@@ -570,15 +580,9 @@ export default function FilmCalendar({
 
     resumeEnrichmentAndRecommend();
     return () => { cancelRef.current = true; };
-  }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, fetchRecommendations, pollEnrichment]);
+  }, [initialUserId, initialWatchedActive, initialWatchedUrls.length, hasInitialScores, fetchRecommendations, pollEnrichment]);
 
-  const clearWatched = useCallback(() => {
-    setWatchedUrls(null);
-    setWatchedActive(false);
-    if (initialUserId) savePreference({ watched_urls: [], watched_active: false });
-  }, [initialUserId]);
-
-  const clearLetterboxdData = useCallback(() => {
+  const clearLetterboxdData = useCallback(async () => {
     setWatchlistUrls(null);
     setWatchlistActive(false);
     setWatchedUrls(null);
@@ -590,13 +594,13 @@ export default function FilmCalendar({
     setEnrichmentPolling(false);
     setRecommendReady(false);
     if (initialUserId) {
-      savePreference({ 
-        watchlist_urls: [], 
-        watchlist_active: false, 
-        watched_urls: [], 
-        watched_active: false,
-        watched_ratings: {} 
-      });
+      const supabase = getBrowserSupabase();
+      await Promise.all([
+        supabase.from('user_watched_films').delete().eq('user_id', initialUserId),
+        supabase.from('user_watchlist_films').delete().eq('user_id', initialUserId),
+        supabase.from('user_film_scores').delete().eq('user_id', initialUserId),
+      ]);
+      savePreference({ watchlist_active: false, watched_active: false });
     }
   }, [initialUserId]);
 
@@ -787,6 +791,7 @@ export default function FilmCalendar({
 
     const filmMatchScore = matchScores[film.id];
     const showMatch = recommendReady && filmMatchScore !== undefined;
+    const showScoreLoading = scoresLoading && !showMatch && watchedActive;
 
     const titleText = getFilmTitle(film);
     const metadata: string[] = [];
@@ -813,6 +818,11 @@ export default function FilmCalendar({
                 title={t(lang, 'matchScoreTooltip', filmMatchScore)}
               >
                 <span className="match-value">{filmMatchScore}%</span>
+              </div>
+            )}
+            {showScoreLoading && (
+              <div className="match-score loading" title={lang === 'es' ? 'Calculando...' : 'Computing...'}>
+                <span className="match-value">…</span>
               </div>
             )}
             {ratingValue && (

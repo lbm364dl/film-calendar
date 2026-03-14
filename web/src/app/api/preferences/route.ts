@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 /**
  * POST /api/preferences — save user preferences to DB.
- * Body: { lang?, watchlist_urls?, watched_urls?, watchlist_active?, watched_active? }
+ * Body: { lang?, watchlist_active?, watched_active? }
  */
 export async function POST(request: Request) {
   const cookieStore = await cookies();
@@ -34,14 +34,10 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
-  // Build update object from provided fields
   const update: Record<string, unknown> = {};
   if (body.lang === 'en' || body.lang === 'es') update.lang = body.lang;
-  if (Array.isArray(body.watchlist_urls)) update.watchlist_urls = body.watchlist_urls;
-  if (Array.isArray(body.watched_urls)) update.watched_urls = body.watched_urls;
   if (typeof body.watchlist_active === 'boolean') update.watchlist_active = body.watchlist_active;
   if (typeof body.watched_active === 'boolean') update.watched_active = body.watched_active;
-  if (body.watched_ratings !== undefined) update.watched_ratings = body.watched_ratings;
 
   if (Object.keys(update).length === 0) {
     return NextResponse.json({ error: 'No valid fields' }, { status: 400 });

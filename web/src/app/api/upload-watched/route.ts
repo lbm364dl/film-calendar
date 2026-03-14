@@ -7,7 +7,7 @@ import { parseExportZip } from '@/lib/letterboxd';
  * POST /api/upload-watched — Parse a Letterboxd export ZIP and save data.
  *
  * Accepts: multipart/form-data with a 'file' field (ZIP)
- * Returns: { total, alreadyKnown, toEnrich }
+ * Returns: { total, alreadyKnown, toEnrich, watchedUrls, watchlistUrls }
  */
 export async function POST(request: Request) {
     const cookieStore = await cookies();
@@ -52,50 +52,63 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: msg }, { status: 400 });
     }
 
-    const { watchedUrls, watchlistUrls, ratings } = parsed;
+    const { watchedUrls, watchlistUrls, ratings, likedUrls, watchedDates } = parsed;
     const total = watchedUrls.length;
 
     if (total === 0) {
         return NextResponse.json({ error: 'No watched films found in ZIP' }, { status: 400 });
     }
 
-    // Save to user_preferences
+    // Update activity flags in user_preferences
     const prefsUpdate: Record<string, unknown> = {
         user_id: user.id,
-        watched_urls: watchedUrls,
-        watched_ratings: ratings,
         watched_active: true,
     };
     if (watchlistUrls.length > 0) {
-        prefsUpdate.watchlist_urls = watchlistUrls;
         prefsUpdate.watchlist_active = true;
     }
-    const { error: prefsError } = await supabase
-        .from('user_preferences')
-        .upsert(prefsUpdate, { onConflict: 'user_id' });
+    await supabase.from('user_preferences').upsert(prefsUpdate, { onConflict: 'user_id' });
 
-    if (prefsError) {
-        return NextResponse.json({ error: prefsError.message }, { status: 500 });
+    // Replace watched/watchlist/scores for this user (full replace on re-upload)
+    await supabase.from('user_watched_films').delete().eq('user_id', user.id);
+    await supabase.from('user_watchlist_films').delete().eq('user_id', user.id);
+    await supabase.from('user_film_scores').delete().eq('user_id', user.id);
+
+    // Insert watched films
+    const BATCH = 500;
+    const watchedRows = watchedUrls.map(url => ({
+        user_id: user.id,
+        letterboxd_short_url: url,
+        rating: ratings[url] ?? null,
+        liked: likedUrls.has(url),
+        watched_date: watchedDates[url] ?? null,
+    }));
+
+    for (let i = 0; i < watchedRows.length; i += BATCH) {
+        const { error } = await supabase.from('user_watched_films').insert(watchedRows.slice(i, i + BATCH));
+        if (error) console.error('Error inserting user_watched_films:', error);
     }
 
-    // Check which of these URLs are already in our films table.
-    // The watched CSV uses boxd.it short URLs — match against letterboxd_short_url.
-    // Must batch to avoid Supabase's default 1000-row limit and URL-length limits.
+    // Insert watchlist films
+    if (watchlistUrls.length > 0) {
+        const wlRows = watchlistUrls.map(url => ({ user_id: user.id, letterboxd_short_url: url }));
+        for (let i = 0; i < wlRows.length; i += BATCH) {
+            const { error } = await supabase.from('user_watchlist_films').insert(wlRows.slice(i, i + BATCH));
+            if (error) console.error('Error inserting user_watchlist_films:', error);
+        }
+    }
+
+    // Check which watched URLs are already enriched (in films table)
     const QUERY_BATCH = 300;
     const knownUrls = new Set<string>();
 
     for (let i = 0; i < watchedUrls.length; i += QUERY_BATCH) {
         const batch = watchedUrls.slice(i, i + QUERY_BATCH);
-        const { data: knownFilms, error: filmsError } = await supabase
+        const { data: knownFilms } = await supabase
             .from('films')
             .select('letterboxd_short_url')
             .in('letterboxd_short_url', batch)
             .limit(batch.length);
-
-        if (filmsError) {
-            console.error('Error querying films table:', filmsError);
-            return NextResponse.json({ error: 'Failed to check existing films' }, { status: 500 });
-        }
 
         for (const f of knownFilms ?? []) {
             knownUrls.add(f.letterboxd_short_url);
@@ -104,9 +117,7 @@ export async function POST(request: Request) {
 
     const unknownUrls = watchedUrls.filter(u => !knownUrls.has(u));
 
-    // Add unknown films to the enrichment queue.
-    // Using upsert WITHOUT ignoreDuplicates so that existing entries (done/failed)
-    // are reset to 'pending' for reprocessing on re-upload.
+    // Add unknown films to enrichment queue in chunks (each chunk triggers a worker)
     if (unknownUrls.length > 0) {
         const queueRows = unknownUrls.map(u => ({
             letterboxd_short_url: u,
@@ -116,21 +127,14 @@ export async function POST(request: Request) {
             processed_at: null,
         }));
 
-        // Insert in small chunks so the INSERT trigger fires once per chunk,
-        // spawning a parallel Edge Function worker for each. Chunk size matches
-        // the Edge Function's BATCH_SIZE so each worker has exactly one batch ready.
-        // The Edge Function itself enforces MAX_CONCURRENT (5) — excess workers
-        // exit immediately with { throttled: true }.
         const CHUNK_SIZE = 30;
         for (let i = 0; i < queueRows.length; i += CHUNK_SIZE) {
-            const chunk = queueRows.slice(i, i + CHUNK_SIZE);
             await supabase
                 .from('film_enrichment_queue')
-                .upsert(chunk, { onConflict: 'letterboxd_short_url' });
+                .upsert(queueRows.slice(i, i + CHUNK_SIZE), { onConflict: 'letterboxd_short_url' });
         }
     }
 
-    // Count actual pending items for the response
     const { count: toEnrich } = await supabase
         .from('film_enrichment_queue')
         .select('*', { count: 'exact', head: true })

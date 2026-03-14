@@ -28,6 +28,10 @@ export interface ParsedExport {
     fullToShort: Record<string, string>;
     /** Short URLs from watchlist.csv */
     watchlistUrls: string[];
+    /** Set of short URLs the user "liked" (hearted) on Letterboxd */
+    likedUrls: Set<string>;
+    /** Map of short URL → watched date (YYYY-MM-DD) from watched.csv */
+    watchedDates: Record<string, string>;
 }
 
 interface WatchedRow {
@@ -112,13 +116,18 @@ function parseCSVLine(line: string): string[] {
 export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport> {
     const zip = await JSZip.loadAsync(buffer);
 
-    // Find watched.csv and ratings.csv (may be at root or in a subfolder)
+    // Find CSV files in the ZIP (may be at root or in a subfolder)
     let watchedFile: JSZip.JSZipObject | null = null;
     let ratingsFile: JSZip.JSZipObject | null = null;
     let watchlistFile: JSZip.JSZipObject | null = null;
+    let likedFilmsFile: JSZip.JSZipObject | null = null;
 
     zip.forEach((path, file) => {
-        const basename = path.split('/').pop()?.toLowerCase();
+        const lower = path.toLowerCase();
+        // likes/films.csv must be matched before generic basename check
+        // to avoid confusing it with a top-level films.csv
+        if (lower.endsWith('likes/films.csv')) { likedFilmsFile = file; return; }
+        const basename = lower.split('/').pop();
         if (basename === 'watched.csv') watchedFile = file;
         if (basename === 'ratings.csv') ratingsFile = file;
         if (basename === 'watchlist.csv') watchlistFile = file;
@@ -135,13 +144,15 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
     const watchedUrls: string[] = [];
     const watchedFullUrls: string[] = [];
     const fullToShort: Record<string, string> = {};
+    const watchedDates: Record<string, string> = {};
 
     for (const row of watchedRows) {
         const uri = row['Letterboxd URI']?.trim();
         if (uri) {
             watchedUrls.push(uri);
-            // The URI column in watched.csv is the boxd.it short URL
-            // We'll need to look up the full URL later, but save these for now
+            // Extract watched date if available (format: YYYY-MM-DD)
+            const date = row['Date']?.trim();
+            if (date) watchedDates[uri] = date;
         }
     }
 
@@ -174,7 +185,18 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
         }
     }
 
-    return { watchedUrls, watchedFullUrls, ratings, fullToShort, watchlistUrls };
+    // Parse likes/films.csv (optional — liked/hearted films)
+    const likedUrls = new Set<string>();
+    if (likedFilmsFile) {
+        const likedText = await (likedFilmsFile as JSZip.JSZipObject).async('string');
+        const likedRows = parseCSV(likedText);
+        for (const row of likedRows) {
+            const uri = (row as Record<string, string>)['Letterboxd URI']?.trim();
+            if (uri) likedUrls.add(uri);
+        }
+    }
+
+    return { watchedUrls, watchedFullUrls, ratings, fullToShort, watchlistUrls, likedUrls, watchedDates };
 }
 
 // ── Letterboxd HTTP Scraper (Phase 1 only) ──────────────────────────────────

@@ -33,7 +33,10 @@ function toFilmFeatures(f: any): FilmFeatures {
 /**
  * GET /api/recommend — Compute match scores for all currently-screened films.
  *
- * Returns: { scores: { [filmId]: number }, ready: boolean, pending: number }
+ * Reads watched films from user_watched_films table, computes scores,
+ * persists them to user_film_scores, and returns them.
+ *
+ * Returns: { scores: { [filmId]: number } }
  */
 export async function GET() {
     const cookieStore = await cookies();
@@ -62,37 +65,59 @@ export async function GET() {
         return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    // Load user preferences
-    const { data: prefs } = await supabase
-        .from('user_preferences')
-        .select('watched_urls, watched_ratings, watched_active')
-        .eq('user_id', user.id)
-        .single();
+    // Load user's watched films from the new relational table
+    const BATCH = 500;
+    let allWatchedData: { letterboxd_short_url: string; film_id: number | null; rating: number | null; liked: boolean }[] = [];
+    let offset = 0;
 
-    if (!prefs?.watched_active || !prefs.watched_urls?.length) {
-        return NextResponse.json({ scores: {}, ready: false, pending: 0 });
+    // Paginate through all watched films
+    while (true) {
+        const { data, error: watchedError } = await supabase
+            .from('user_watched_films')
+            .select('letterboxd_short_url, film_id, rating, liked')
+            .eq('user_id', user.id)
+            .range(offset, offset + BATCH - 1);
+
+        if (watchedError || !data) break;
+        allWatchedData = allWatchedData.concat(data);
+        if (data.length < BATCH) break;
+        offset += BATCH;
     }
 
-    const watchedUrls: string[] = prefs.watched_urls;
-    const userRatings: Record<string, number> = prefs.watched_ratings ?? {};
+    if (allWatchedData.length === 0) {
+        return NextResponse.json({ scores: {}, ready: false });
+    }
 
-    // Load watched films from DB (match on letterboxd_short_url)
-    // Supabase .in() has a limit, so batch if needed
-    const BATCH = 500;
-    const allWatchedFilms: FilmFeatures[] = [];
+    // Build ratings map (including liked boost) and collect film_ids
+    const userRatings: Record<string, number> = {};
+    const filmIds: number[] = [];
     const urlMap: Record<number, string> = {};
 
-    for (let i = 0; i < watchedUrls.length; i += BATCH) {
-        const batch = watchedUrls.slice(i, i + BATCH);
+    for (const row of allWatchedData) {
+        if (row.rating != null) {
+            userRatings[row.letterboxd_short_url] = row.rating;
+        } else if (row.liked) {
+            // Liked but unrated: treat as a positive signal (equivalent to ~4 stars)
+            userRatings[row.letterboxd_short_url] = 4.0;
+        }
+        if (row.film_id != null) {
+            filmIds.push(row.film_id);
+            urlMap[row.film_id] = row.letterboxd_short_url;
+        }
+    }
+
+    // Load watched film features by film_id (much more efficient than URL matching)
+    const allWatchedFilms: FilmFeatures[] = [];
+    for (let i = 0; i < filmIds.length; i += BATCH) {
+        const batch = filmIds.slice(i, i + BATCH);
         const { data: films } = await supabase
             .from('films')
-            .select(`${FILM_SELECT}, letterboxd_short_url`)
-            .in('letterboxd_short_url', batch);
+            .select(FILM_SELECT)
+            .in('id', batch);
 
         if (films) {
             for (const f of films) {
                 allWatchedFilms.push(toFilmFeatures(f));
-                urlMap[f.id] = f.letterboxd_short_url;
             }
         }
     }
@@ -133,6 +158,23 @@ export async function GET() {
     const scores: Record<number, number> = {};
     for (const ms of matchScores) {
         scores[ms.filmId] = ms.score;
+    }
+
+    // Persist scores to user_film_scores for instant loading on next visit
+    const scoreRows = matchScores.map(ms => ({
+        user_id: user.id,
+        film_id: ms.filmId,
+        score: ms.score,
+        computed_at: new Date().toISOString(),
+    }));
+
+    if (scoreRows.length > 0) {
+        // Clear old scores and insert new ones
+        await supabase.from('user_film_scores').delete().eq('user_id', user.id);
+        for (let i = 0; i < scoreRows.length; i += BATCH) {
+            const batch = scoreRows.slice(i, i + BATCH);
+            await supabase.from('user_film_scores').insert(batch);
+        }
     }
 
     return NextResponse.json({ scores });

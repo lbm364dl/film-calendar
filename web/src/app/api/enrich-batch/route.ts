@@ -5,8 +5,8 @@ import { NextResponse } from 'next/server';
 /**
  * GET /api/enrich-batch — Check per-user enrichment progress.
  *
- * Returns how many of the user's watched_urls are already in the films table
- * vs how many total they have, giving an accurate per-user progress indicator.
+ * Counts how many of the user's watched films have been enriched
+ * (film_id resolved) vs total, giving an accurate progress indicator.
  */
 export async function GET() {
     const cookieStore = await cookies();
@@ -34,36 +34,25 @@ export async function GET() {
         return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    // Get user's watched URLs
-    const { data: prefs } = await supabase
-        .from('user_preferences')
-        .select('watched_urls')
-        .eq('user_id', user.id)
-        .single();
+    // Total watched films for this user
+    const { count: total } = await supabase
+        .from('user_watched_films')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id);
 
-    const watchedUrls: string[] = prefs?.watched_urls ?? [];
-    const total = watchedUrls.length;
-
-    if (total === 0) {
+    if (!total || total === 0) {
         return NextResponse.json({ total: 0, processed: 0 });
     }
 
-    // Count how many of the user's watched URLs exist in the films table
-    const QUERY_BATCH = 300;
-    let processed = 0;
-
-    for (let i = 0; i < watchedUrls.length; i += QUERY_BATCH) {
-        const batch = watchedUrls.slice(i, i + QUERY_BATCH);
-        const { count } = await supabase
-            .from('films')
-            .select('*', { count: 'exact', head: true })
-            .in('letterboxd_short_url', batch);
-
-        processed += count ?? 0;
-    }
+    // Count how many have film_id resolved (= enriched and in films table)
+    const { count: processed } = await supabase
+        .from('user_watched_films')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+        .not('film_id', 'is', null);
 
     return NextResponse.json({
         total,
-        processed,
+        processed: processed ?? 0,
     });
 }

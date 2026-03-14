@@ -15,6 +15,7 @@ async function getInitialProps() {
   let watchedActive = false;
   let userId: string | null = null;
   let userEmail: string | null = null;
+  let initialScores: Record<number, number> = {};
 
   // 1. Language from cookie (works for both logged-in and anonymous users)
   const langCookie = cookieStore.get('fc_lang')?.value;
@@ -33,23 +34,56 @@ async function getInitialProps() {
 
       const { data: prefs } = await supabase
         .from('user_preferences')
-        .select('*')
+        .select('lang, watchlist_active, watched_active')
         .eq('user_id', user.id)
         .single();
 
       if (prefs) {
         lang = prefs.lang || lang;
-        watchlistUrls = prefs.watchlist_urls || [];
-        watchedUrls = prefs.watched_urls || [];
         watchlistActive = prefs.watchlist_active ?? false;
         watchedActive = prefs.watched_active ?? false;
+      }
+
+      // Load watched URLs from new relational table
+      if (watchedActive) {
+        const { data: watchedData } = await supabase
+          .from('user_watched_films')
+          .select('letterboxd_short_url')
+          .eq('user_id', user.id);
+        if (watchedData) {
+          watchedUrls = watchedData.map(r => r.letterboxd_short_url);
+        }
+      }
+
+      // Load watchlist URLs from new relational table
+      if (watchlistActive) {
+        const { data: watchlistData } = await supabase
+          .from('user_watchlist_films')
+          .select('letterboxd_short_url')
+          .eq('user_id', user.id);
+        if (watchlistData) {
+          watchlistUrls = watchlistData.map(r => r.letterboxd_short_url);
+        }
+      }
+
+      // Load precomputed match scores
+      if (watchedActive) {
+        const { data: scores } = await supabase
+          .from('user_film_scores')
+          .select('film_id, score')
+          .eq('user_id', user.id);
+        if (scores && scores.length > 0) {
+          for (const s of scores) {
+            initialScores[s.film_id] = s.score;
+          }
+        }
       }
     }
   } catch {
     // Not logged in or DB error — use defaults
   }
 
-  return { lang, watchlistUrls, watchedUrls, watchlistActive, watchedActive, userId, userEmail };
+  return { lang, watchlistUrls, watchedUrls, watchlistActive, watchedActive, userId, userEmail, initialScores };
 }
 
 export default async function Home() {
@@ -64,6 +98,7 @@ export default async function Home() {
       initialWatchedActive={props.watchedActive}
       initialUserId={props.userId}
       initialUserEmail={props.userEmail}
+      initialScores={props.initialScores}
     />
   );
 }
