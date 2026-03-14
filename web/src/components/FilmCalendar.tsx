@@ -528,13 +528,11 @@ export default function FilmCalendar({
       }
 
       // Update local state immediately so filters work without reload
-      setWatchedActive(true);
       if (uploadData.watchedUrls?.length > 0) {
         setWatchedUrls(new Set(uploadData.watchedUrls));
       }
       if (uploadData.watchlistUrls?.length > 0) {
         setWatchlistUrls(new Set(uploadData.watchlistUrls));
-        setWatchlistActive(true);
       }
       setEnrichmentTotal(uploadData.total);
       setEnrichmentProcessed(uploadData.alreadyKnown);

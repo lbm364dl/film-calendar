@@ -59,15 +59,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'No watched films found in ZIP' }, { status: 400 });
     }
 
-    // Update activity flags in user_preferences
-    const prefsUpdate: Record<string, unknown> = {
-        user_id: user.id,
-        watched_active: true,
-    };
-    if (watchlistUrls.length > 0) {
-        prefsUpdate.watchlist_active = true;
-    }
-    await supabase.from('user_preferences').upsert(prefsUpdate, { onConflict: 'user_id' });
 
     // Replace watched/watchlist/scores for this user (full replace on re-upload)
     await supabase.from('user_watched_films').delete().eq('user_id', user.id);
@@ -76,9 +67,30 @@ export async function POST(request: Request) {
 
     // Insert watched films
     const BATCH = 500;
+    // Query which watched URLs are already in the films table (with their IDs),
+    // so we can set film_id immediately rather than waiting for the trigger.
+    const QUERY_BATCH = 300;
+    const knownFilmIdByUrl = new Map<string, number>();
+
+    const allUrls = [...new Set([...watchedUrls, ...watchlistUrls])];
+    for (let i = 0; i < allUrls.length; i += QUERY_BATCH) {
+        const batch = allUrls.slice(i, i + QUERY_BATCH);
+        const { data: knownFilms } = await supabase
+            .from('films')
+            .select('id, letterboxd_short_url')
+            .in('letterboxd_short_url', batch)
+            .limit(batch.length);
+
+        for (const f of knownFilms ?? []) {
+            knownFilmIdByUrl.set(f.letterboxd_short_url, f.id);
+        }
+    }
+
+    // Insert watched films with film_id pre-populated for already-known films
     const watchedRows = watchedUrls.map(url => ({
         user_id: user.id,
         letterboxd_short_url: url,
+        film_id: knownFilmIdByUrl.get(url) ?? null,
         rating: ratings[url] ?? null,
         liked: likedUrls.has(url),
         watched_date: watchedDates[url] ?? null,
@@ -89,32 +101,21 @@ export async function POST(request: Request) {
         if (error) console.error('Error inserting user_watched_films:', error);
     }
 
-    // Insert watchlist films
+    // Insert watchlist films with film_id pre-populated for already-known films
     if (watchlistUrls.length > 0) {
-        const wlRows = watchlistUrls.map(url => ({ user_id: user.id, letterboxd_short_url: url }));
+        const wlRows = watchlistUrls.map(url => ({
+            user_id: user.id,
+            letterboxd_short_url: url,
+            film_id: knownFilmIdByUrl.get(url) ?? null,
+        }));
         for (let i = 0; i < wlRows.length; i += BATCH) {
             const { error } = await supabase.from('user_watchlist_films').insert(wlRows.slice(i, i + BATCH));
             if (error) console.error('Error inserting user_watchlist_films:', error);
         }
     }
 
-    // Check which watched URLs are already enriched (in films table)
-    const QUERY_BATCH = 300;
-    const knownUrls = new Set<string>();
-
-    for (let i = 0; i < watchedUrls.length; i += QUERY_BATCH) {
-        const batch = watchedUrls.slice(i, i + QUERY_BATCH);
-        const { data: knownFilms } = await supabase
-            .from('films')
-            .select('letterboxd_short_url')
-            .in('letterboxd_short_url', batch)
-            .limit(batch.length);
-
-        for (const f of knownFilms ?? []) {
-            knownUrls.add(f.letterboxd_short_url);
-        }
-    }
-
+    const knownUrls = new Set(knownFilmIdByUrl.keys());
+    const knownWatchedCount = watchedUrls.filter(u => knownUrls.has(u)).length;
     const unknownUrls = watchedUrls.filter(u => !knownUrls.has(u));
 
     // Add unknown films to enrichment queue in chunks (each chunk triggers a worker)
@@ -142,7 +143,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
         total,
-        alreadyKnown: knownUrls.size,
+        alreadyKnown: knownWatchedCount,
         toEnrich: toEnrich ?? unknownUrls.length,
         watchedUrls,
         watchlistUrls,

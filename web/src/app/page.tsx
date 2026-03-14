@@ -44,30 +44,26 @@ async function getInitialProps() {
         watchedActive = prefs.watched_active ?? false;
       }
 
-      // Load watched URLs from new relational table
-      if (watchedActive) {
-        const { data: watchedData } = await supabase
-          .from('user_watched_films')
-          .select('letterboxd_short_url')
-          .eq('user_id', user.id);
-        if (watchedData) {
-          watchedUrls = watchedData.map(r => r.letterboxd_short_url);
-        }
+      // Load watched URLs from new relational table (always load if data exists, regardless of active state)
+      const { data: watchedData } = await supabase
+        .from('user_watched_films')
+        .select('letterboxd_short_url')
+        .eq('user_id', user.id);
+      if (watchedData) {
+        watchedUrls = watchedData.map(r => r.letterboxd_short_url);
       }
 
-      // Load watchlist URLs from new relational table
-      if (watchlistActive) {
-        const { data: watchlistData } = await supabase
-          .from('user_watchlist_films')
-          .select('letterboxd_short_url')
-          .eq('user_id', user.id);
-        if (watchlistData) {
-          watchlistUrls = watchlistData.map(r => r.letterboxd_short_url);
-        }
+      // Load watchlist URLs from new relational table (always load if data exists, regardless of active state)
+      const { data: watchlistData } = await supabase
+        .from('user_watchlist_films')
+        .select('letterboxd_short_url')
+        .eq('user_id', user.id);
+      if (watchlistData) {
+        watchlistUrls = watchlistData.map(r => r.letterboxd_short_url);
       }
 
-      // Load precomputed match scores
-      if (watchedActive) {
+      // Load precomputed match scores (always load if watched data exists, regardless of active state)
+      if (watchedUrls.length > 0) {
         const { data: scores } = await supabase
           .from('user_film_scores')
           .select('film_id, score')
