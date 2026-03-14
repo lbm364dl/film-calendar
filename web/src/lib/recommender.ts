@@ -79,17 +79,17 @@ export interface ScoreExplanation {
 // ── Feature weights ─────────────────────────────────────────────────────────────
 
 const WEIGHTS = {
-    genre: 0.22,
+    genre: 0.10,
     director: 0.14,
     cast: 0.14,
-    keyword: 0.14,
+    keyword: 0.20,
     country: 0.08,
-    language: 0.05,
+    language: 0.06,
     decade: 0.08,
-    company: 0.05,
-    collection: 0.03,
-    runtime: 0.03,
-    rating: 0.04,
+    company: 0.06,
+    collection: 0.04,
+    runtime: 0.04,
+    rating: 0.06,
 } as const;
 
 // ── Bucket helpers ──────────────────────────────────────────────────────────────
@@ -115,6 +115,12 @@ function getRuntimeBucket(minutes: number | null): string {
 const MAX_CAST = 5;
 /** Max keywords to consider (avoid noise from overly specific tags). */
 const MAX_KEYWORDS = 10;
+/**
+ * Minimum divisor for genre weight splitting.
+ * Prevents single-genre films (e.g. "Drama" only) from concentrating all
+ * genre weight into one dimension and dominating the similarity score.
+ */
+const MIN_GENRE_DIVISOR = 3;
 /** Max production companies to consider. */
 const MAX_COMPANIES = 3;
 
@@ -128,9 +134,9 @@ const MAX_COMPANIES = 3;
 function filmToVector(film: FilmFeatures): SparseVector {
     const vec: SparseVector = new Map();
 
-    // ── Genres (multi-hot) ──────────────────────────────────────────────
+    // ── Genres (multi-hot, with minimum divisor) ──────────────────────
     if (film.genres.length > 0) {
-        const per = WEIGHTS.genre / film.genres.length;
+        const per = WEIGHTS.genre / Math.max(film.genres.length, MIN_GENRE_DIVISOR);
         for (const g of film.genres) {
             vec.set(`genre:${g.toLowerCase()}`, per);
         }
@@ -515,5 +521,6 @@ export const _testing = {
     MAX_CAST,
     MAX_KEYWORDS,
     MAX_COMPANIES,
+    MIN_GENRE_DIVISOR,
     scoreFilmWithBreakdown,
 };

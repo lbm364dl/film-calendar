@@ -98,11 +98,17 @@ describe('filmToVector', () => {
         expect(vec.get('runtime:unknown')).toBe(WEIGHTS.runtime);
     });
 
-    it('encodes genres as multi-hot with weight split', () => {
+    it('encodes genres with minimum divisor to prevent single-genre dominance', () => {
+        // 2 genres still uses MIN_GENRE_DIVISOR (3) since 2 < 3
         const film = makeFilm({ id: 1, genres: ['Drama', 'Thriller'] });
         const vec = filmToVector(film);
-        expect(vec.get('genre:drama')).toBeCloseTo(WEIGHTS.genre / 2);
-        expect(vec.get('genre:thriller')).toBeCloseTo(WEIGHTS.genre / 2);
+        expect(vec.get('genre:drama')).toBeCloseTo(WEIGHTS.genre / 3);
+        expect(vec.get('genre:thriller')).toBeCloseTo(WEIGHTS.genre / 3);
+
+        // 4 genres uses actual count since 4 > 3
+        const film4 = makeFilm({ id: 2, genres: ['Drama', 'Thriller', 'Action', 'Sci-Fi'] });
+        const vec4 = filmToVector(film4);
+        expect(vec4.get('genre:drama')).toBeCloseTo(WEIGHTS.genre / 4);
     });
 
     it('prefers directors jsonb over director string', () => {
@@ -316,8 +322,8 @@ describe('buildUserProfile', () => {
         const film = makeFilm({ id: 1, genres: ['Horror'] });
         const profile = buildUserProfile([film], {}, { 1: 'url1' });
         // 3.0/5.0 = 0.6 weight, single film so normalized by 0.6
-        // genre:horror = WEIGHTS.genre * 0.6 / 0.6 = WEIGHTS.genre
-        expect(profile.get('genre:horror')).toBeCloseTo(WEIGHTS.genre);
+        // Single genre uses MIN_GENRE_DIVISOR (3), so weight = WEIGHTS.genre / 3
+        expect(profile.get('genre:horror')).toBeCloseTo(WEIGHTS.genre / 3);
     });
 });
 
@@ -343,7 +349,7 @@ describe('scoreFilm', () => {
         });
 
         const score = scoreFilm(profile, similar);
-        expect(score).toBeGreaterThan(70);
+        expect(score).toBeGreaterThan(40);
     });
 
     it('gives low score to very different film', () => {
@@ -484,7 +490,7 @@ describe('realistic recommendation scenario', () => {
         });
 
         const score = scoreFilm(profile, arrival);
-        expect(score).toBeGreaterThan(60);
+        expect(score).toBeGreaterThan(40);
     });
 
     it('ranks a romantic comedy much lower', () => {

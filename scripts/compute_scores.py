@@ -50,22 +50,23 @@ load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 # ── Feature weights (must match web/src/lib/recommender.ts) ─────────────────
 
 WEIGHTS = {
-    "genre":     0.22,
+    "genre":     0.10,
     "director":  0.14,
     "cast":      0.14,
-    "keyword":   0.14,
+    "keyword":   0.20,
     "country":   0.08,
-    "language":  0.05,
+    "language":  0.06,
     "decade":    0.08,
-    "company":   0.05,
-    "collection":0.03,
-    "runtime":   0.03,
-    "rating":    0.04,
+    "company":   0.06,
+    "collection":0.04,
+    "runtime":   0.04,
+    "rating":    0.06,
 }
 
 MAX_CAST      = 5
 MAX_KEYWORDS  = 10
 MAX_COMPANIES = 3
+MIN_GENRE_DIVISOR = 3
 
 
 # ── Bucket helpers ───────────────────────────────────────────────────────────
@@ -96,10 +97,10 @@ def film_to_vector(film: dict) -> dict:
     """Convert a film row to a weighted sparse feature vector (dict)."""
     vec = {}
 
-    # Genres (multi-hot)
+    # Genres (multi-hot, with minimum divisor)
     genres = film.get("genres") or []
     if genres:
-        per = WEIGHTS["genre"] / len(genres)
+        per = WEIGHTS["genre"] / max(len(genres), MIN_GENRE_DIVISOR)
         for g in genres:
             vec[f"genre:{g.lower()}"] = per
 
@@ -228,12 +229,21 @@ def build_user_profile(watched_films: list, user_ratings: dict, url_map: dict) -
 
 # ── Scoring ──────────────────────────────────────────────────────────────────
 
+def feature_coverage(film_vec: dict) -> float:
+    """Fraction of total feature weight budget with real (non-unknown) data."""
+    real_weight = sum(v for k, v in film_vec.items() if not k.endswith(":unknown"))
+    max_expected = 1.0 - WEIGHTS["collection"]
+    return min(real_weight / max_expected, 1.0)
+
+
 def score_film(user_profile: dict, film: dict) -> int:
     if not user_profile:
         return 0
     film_vec = film_to_vector(film)
     similarity = cosine_similarity(user_profile, film_vec)
-    boosted = similarity * popularity_boost(film.get("letterboxd_viewers"))
+    coverage = feature_coverage(film_vec)
+    coverage_penalty = math.sqrt(coverage)
+    boosted = similarity * popularity_boost(film.get("letterboxd_viewers")) * coverage_penalty
     return min(100, round(boosted * 100))
 
 
