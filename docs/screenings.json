@@ -3721,6 +3721,24 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058881/",
         "url_info": "https://www.cinesrenoir.com/pelicula/no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-20 19:15",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-21 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-22 21:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
       }
     ]
   },
@@ -6761,6 +6779,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058884/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260312050512-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-21 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
       }
     ]
   },
@@ -8696,6 +8720,12 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_Z_1/el-agente-secreto-vose"
       },
       {
+        "timestamp": "2026-03-18 21:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-18 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059718/",
@@ -8767,6 +8797,30 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059099/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-19 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-20 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-21 19:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-22 18:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       }
     ]
   },
@@ -9272,6 +9326,12 @@
       },
       {
         "timestamp": "2026-03-05 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-03-18 17:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
@@ -16134,6 +16194,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-19 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
+      },
+      {
         "timestamp": "2026-03-19 20:30",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058880/",
@@ -16144,6 +16210,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1058883/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-20 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
       }
     ]
   },
@@ -16930,6 +17002,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96681&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-19 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/aguilas-de-el-cairo/"
       },
       {
         "timestamp": "2026-03-19 18:00",
