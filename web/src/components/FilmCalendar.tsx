@@ -5,6 +5,7 @@ import Papa from 'papaparse';
 import { getBrowserSupabase } from '@/lib/supabase-browser';
 import { t, translateGenre, LangKey } from '@/lib/translations';
 import type { Film, FilmRow, DateEntry, SessionModalData } from '@/lib/types';
+import type { CompactBreakdown } from '@/lib/recommender';
 import AuthButton from '@/components/AuthButton';
 
 // ── Constants ───────────────────────────────────────────────────────────────────
@@ -188,6 +189,7 @@ export default function FilmCalendar({
   // Recommender state
   const hasInitialScores = Object.keys(initialScores).length > 0;
   const [matchScores, setMatchScores] = useState<Record<number, number>>(initialScores);
+  const [breakdowns, setBreakdowns] = useState<Record<number, CompactBreakdown>>({});
   const [sortByMatch, setSortByMatch] = useState(false);
   const [enrichmentTotal, setEnrichmentTotal] = useState(0);
   const [enrichmentProcessed, setEnrichmentProcessed] = useState(0);
@@ -466,6 +468,7 @@ export default function FilmCalendar({
       if (resp.ok && data.scores) {
         setMatchScores(data.scores);
         setRecommendReady(Object.keys(data.scores).length > 0);
+        if (data.breakdowns) setBreakdowns(data.breakdowns);
       }
     } catch (err) {
       console.error('Recommend error:', err);
@@ -546,6 +549,21 @@ export default function FilmCalendar({
     }
   }, [initialUserId, pollEnrichment]);
 
+  // ─ Fetch breakdowns in background when initial scores came from SSR cache ─
+  useEffect(() => {
+    if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
+    if (!hasInitialScores) return;
+    let cancelled = false;
+    fetch('/api/recommend').then(r => r.ok ? r.json() : null).then(data => {
+      if (cancelled || !data) return;
+      if (data.breakdowns) setBreakdowns(data.breakdowns);
+      // Also refresh scores in case they've changed since SSR
+      if (data.scores) setMatchScores(data.scores);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // ─ Auto-resume enrichment + fetch recommendations on mount ─
   useEffect(() => {
     if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
@@ -586,6 +604,7 @@ export default function FilmCalendar({
     setWatchedUrls(null);
     setWatchedActive(false);
     setMatchScores({});
+    setBreakdowns({});
     setSortByMatch(false);
     setEnrichmentTotal(0);
     setEnrichmentProcessed(0);
@@ -778,6 +797,36 @@ export default function FilmCalendar({
     );
   }
 
+  function buildScoreTooltip(score: number, breakdown: CompactBreakdown | undefined, lang: LangKey): string {
+    const base = lang === 'es' ? `${score}% de afinidad` : `${score}% match`;
+    if (!breakdown) return base;
+
+    const catLabels: Record<string, string> = {
+      genre: lang === 'es' ? 'Género' : 'Genre',
+      director: 'Director',
+      cast: lang === 'es' ? 'Reparto' : 'Cast',
+      keyword: lang === 'es' ? 'Temática' : 'Keywords',
+      decade: lang === 'es' ? 'Época' : 'Decade',
+      country: lang === 'es' ? 'País' : 'Country',
+      lang: lang === 'es' ? 'Idioma' : 'Language',
+      company: lang === 'es' ? 'Productora' : 'Studio',
+      rating: lang === 'es' ? 'Valoración' : 'Rating',
+      runtime: lang === 'es' ? 'Duración' : 'Runtime',
+    };
+
+    // Top categories by relative contribution
+    const topCats = Object.entries(breakdown.byCategory)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3)
+      .map(([cat, frac]) => `${catLabels[cat] ?? cat} ${Math.round(frac * 100)}%`)
+      .join(', ');
+
+    const coveragePct = Math.round(breakdown.coverage * 100);
+    const coverageLabel = lang === 'es' ? `Datos: ${coveragePct}%` : `Data: ${coveragePct}%`;
+
+    return topCats ? `${base}\n${topCats}\n${coverageLabel}` : `${base}\n${coverageLabel}`;
+  }
+
   function FilmCard({ film }: { film: Film }) {
     const ratingValue = film.rating ? film.rating.toFixed(1) : null;
     const viewersFormatted = formatViewerCount(film.viewers);
@@ -788,8 +837,10 @@ export default function FilmCalendar({
       : '';
 
     const filmMatchScore = matchScores[film.id];
+    const filmBreakdown = breakdowns[film.id];
     const showMatch = recommendReady && filmMatchScore !== undefined;
     const showScoreLoading = scoresLoading && !showMatch && watchedActive;
+    const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
 
     const titleText = getFilmTitle(film);
     const metadata: string[] = [];
@@ -813,7 +864,7 @@ export default function FilmCalendar({
             {showMatch && (
               <div
                 className={`match-score ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
-                title={t(lang, 'matchScoreTooltip', filmMatchScore)}
+                title={scoreTooltip}
               >
                 <span className="match-value">{filmMatchScore}%</span>
               </div>

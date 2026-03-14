@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { computeRecommendations, type FilmFeatures } from '@/lib/recommender';
+import { computeRecommendationsWithBreakdown, type FilmFeatures, type CompactBreakdown } from '@/lib/recommender';
 
 /** All film columns needed for recommendation scoring. */
 const FILM_SELECT = 'id, genres, director, directors, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;
@@ -151,13 +151,15 @@ export async function GET() {
         }
     }
 
-    // Compute recommendations
-    const matchScores = computeRecommendations(allWatchedFilms, userRatings, urlMap, screenedFilms);
+    // Compute recommendations with per-film breakdowns
+    const matchScores = computeRecommendationsWithBreakdown(allWatchedFilms, userRatings, urlMap, screenedFilms);
 
-    // Convert to { filmId: score } map
+    // Convert to { filmId: score } and { filmId: breakdown } maps
     const scores: Record<number, number> = {};
+    const breakdowns: Record<number, CompactBreakdown> = {};
     for (const ms of matchScores) {
         scores[ms.filmId] = ms.score;
+        breakdowns[ms.filmId] = ms.breakdown;
     }
 
     // Persist scores to user_film_scores for instant loading on next visit
@@ -177,5 +179,5 @@ export async function GET() {
         }
     }
 
-    return NextResponse.json({ scores });
+    return NextResponse.json({ scores, breakdowns });
 }

@@ -47,6 +47,35 @@ export interface MatchScore {
     score: number; // 0–100
 }
 
+/**
+ * Compact per-film breakdown returned by the recommend API.
+ * byCategory values are relative contributions (fractions of the dot product, sum ≈ 1).
+ */
+export interface CompactBreakdown {
+    coverage: number;                    // 0–1: fraction of feature budget with real data
+    byCategory: Record<string, number>;  // category → relative contribution
+}
+
+/** Detailed explanation of why a film got a particular score. */
+export interface ScoreExplanation {
+    score: number;
+    similarity: number; // 0–1, before popularity boost and coverage penalty
+    popularityBoost: number;
+    coverage: number;   // 0–1: fraction of feature budget with real data
+    featuresByCategory: Record<
+        string, // category (genre, director, etc.)
+        Array<{
+            feature: string;
+            contribution: number;
+        }>
+    >;
+    topMatchingFeatures: Array<{
+        feature: string;
+        contribution: number;
+        category: string;
+    }>;
+}
+
 // ── Feature weights ─────────────────────────────────────────────────────────────
 
 const WEIGHTS = {
@@ -227,6 +256,24 @@ function addScaled(acc: SparseVector, vec: SparseVector, weight: number): void {
     }
 }
 
+// ── Feature coverage ────────────────────────────────────────────────────────────
+
+/**
+ * Fraction of the total feature weight budget that has real data (non-unknown).
+ * Used to penalize films with very sparse metadata — e.g. a film with only a
+ * genre tag would otherwise score artificially high via cosine similarity.
+ * Range: 0–1.  A fully-described film scores close to 1.
+ */
+function featureCoverage(filmVec: SparseVector): number {
+    let realWeight = 0;
+    for (const [k, v] of filmVec) {
+        if (!k.endsWith(':unknown')) realWeight += v;
+    }
+    // collection is too rare to penalize missing films for lacking it
+    const MAX_EXPECTED = 1.0 - WEIGHTS.collection;
+    return Math.min(realWeight / MAX_EXPECTED, 1.0);
+}
+
 // ── Popularity boost ────────────────────────────────────────────────────────────
 
 /**
@@ -303,8 +350,87 @@ export function scoreFilm(userProfile: SparseVector, film: FilmFeatures): number
     if (userProfile.size === 0) return 0;
     const filmVec = filmToVector(film);
     const similarity = cosineSimilarity(userProfile, filmVec);
-    const boosted = similarity * popularityBoost(film.letterboxd_viewers);
+    const coverage = featureCoverage(filmVec);
+    // Penalize films with sparse metadata: sqrt keeps the penalty soft for
+    // moderately-complete films while substantially dampening drama-only entries.
+    const coveragePenalty = Math.sqrt(coverage);
+    const boosted = similarity * popularityBoost(film.letterboxd_viewers) * coveragePenalty;
     return Math.min(100, Math.round(boosted * 100));
+}
+
+/**
+ * Score a film and return a detailed breakdown of contributing features.
+ * Useful for understanding why a film got a particular score.
+ */
+export function scoreFilmWithBreakdown(
+    userProfile: SparseVector,
+    film: FilmFeatures,
+): ScoreExplanation {
+    if (userProfile.size === 0) {
+        return {
+            score: 0,
+            similarity: 0,
+            popularityBoost: 1.0,
+            coverage: 0,
+            featuresByCategory: {},
+            topMatchingFeatures: [],
+        };
+    }
+
+    const filmVec = filmToVector(film);
+
+    // Compute similarity, boost, and coverage penalty (mirrors scoreFilm)
+    const similarity = cosineSimilarity(userProfile, filmVec);
+    const boost = popularityBoost(film.letterboxd_viewers);
+    const coverage = featureCoverage(filmVec);
+    const coveragePenalty = Math.sqrt(coverage);
+    const boosted = similarity * boost * coveragePenalty;
+    const finalScore = Math.min(100, Math.round(boosted * 100));
+
+    // Decompose by feature category
+    const featuresByCategory: Record<string, Array<{ feature: string; contribution: number }>> = {};
+    const matchingFeatures: Array<{ feature: string; contribution: number; category: string }> = [];
+
+    for (const [featureKey, filmValue] of filmVec) {
+        const profileValue = userProfile.get(featureKey) ?? 0;
+        if (profileValue > 0) {
+            const contribution = profileValue * filmValue;
+
+            // Extract category (e.g., "genre:drama" → "genre")
+            const category = featureKey.split(':')[0];
+            if (!featuresByCategory[category]) {
+                featuresByCategory[category] = [];
+            }
+
+            featuresByCategory[category].push({
+                feature: featureKey,
+                contribution,
+            });
+
+            matchingFeatures.push({
+                feature: featureKey,
+                contribution,
+                category,
+            });
+        }
+    }
+
+    // Sort features within each category
+    for (const category in featuresByCategory) {
+        featuresByCategory[category].sort((a, b) => b.contribution - a.contribution);
+    }
+
+    // Sort overall matching features
+    matchingFeatures.sort((a, b) => b.contribution - a.contribution);
+
+    return {
+        score: finalScore,
+        similarity: Math.round(similarity * 10000) / 10000, // Round to 4 decimals
+        popularityBoost: Math.round(boost * 10000) / 10000,
+        coverage: Math.round(coverage * 100) / 100,
+        featuresByCategory,
+        topMatchingFeatures: matchingFeatures.slice(0, 10), // Top 10
+    };
 }
 
 /**
@@ -333,6 +459,46 @@ export function computeRecommendations(
     return scores;
 }
 
+/**
+ * Like computeRecommendations but also returns a compact per-film breakdown
+ * showing which feature categories matched and the film's data coverage.
+ */
+export function computeRecommendationsWithBreakdown(
+    watchedFilms: FilmFeatures[],
+    userRatings: Record<string, number>,
+    urlMap: Record<number, string>,
+    screenedFilms: FilmFeatures[],
+): Array<MatchScore & { breakdown: CompactBreakdown }> {
+    const profile = buildUserProfile(watchedFilms, userRatings, urlMap);
+
+    const results = screenedFilms.map(film => {
+        const explanation = scoreFilmWithBreakdown(profile, film);
+
+        // Build relative category contributions (fraction of total dot product)
+        const totalDot = Object.values(explanation.featuresByCategory)
+            .flatMap(feats => feats.map(f => f.contribution))
+            .reduce((a, b) => a + b, 0);
+
+        const byCategory: Record<string, number> = {};
+        for (const [cat, feats] of Object.entries(explanation.featuresByCategory)) {
+            const catTotal = feats.reduce((a, f) => a + f.contribution, 0);
+            byCategory[cat] = totalDot > 0 ? Math.round((catTotal / totalDot) * 100) / 100 : 0;
+        }
+
+        return {
+            filmId: film.id,
+            score: explanation.score,
+            breakdown: {
+                coverage: explanation.coverage,
+                byCategory,
+            },
+        };
+    });
+
+    results.sort((a, b) => b.score - a.score);
+    return results;
+}
+
 // ── Exports for testing ─────────────────────────────────────────────────────────
 
 export const _testing = {
@@ -343,9 +509,11 @@ export const _testing = {
     getDecadeBucket,
     getRuntimeBucket,
     popularityBoost,
+    featureCoverage,
     addScaled,
     WEIGHTS,
     MAX_CAST,
     MAX_KEYWORDS,
     MAX_COMPANIES,
+    scoreFilmWithBreakdown,
 };
