@@ -4303,6 +4303,18 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96512&eventCode=108061",
         "url_info": "https://www.golem.es/golem/pelicula/Manas-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-24 21:00",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3508",
+        "url_info": "https://salaberlanga.com/actividad/manas/"
+      },
+      {
+        "timestamp": "2026-03-26 18:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3509",
+        "url_info": "https://salaberlanga.com/actividad/manas/"
       }
     ]
   },
@@ -8821,6 +8833,18 @@
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-25 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3510",
+        "url_info": "https://salaberlanga.com/actividad/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-28 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3511",
+        "url_info": "https://salaberlanga.com/actividad/el-agente-secreto/"
       }
     ]
   },
@@ -9254,6 +9278,50 @@
     "title_en": "Rapture",
     "title_es": null,
     "runtime_minutes": 110
+  },
+  {
+    "title": "La misteriosa mirada del flamenco",
+    "dates": [
+      {
+        "timestamp": "2026-03-24 18:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3506",
+        "url_info": "https://salaberlanga.com/actividad/la-misteriosa-mirada-del-flamenco/"
+      },
+      {
+        "timestamp": "2026-03-27 20:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3507",
+        "url_info": "https://salaberlanga.com/actividad/la-misteriosa-mirada-del-flamenco/"
+      }
+    ],
+    "director": "Diego Céspedes",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-mysterious-gaze-of-the-flamingo/",
+    "letterboxd_rating": 3.8,
+    "letterboxd_viewers": 14331,
+    "letterboxd_short_url": "https://boxd.it/xR4q",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Chile",
+      "France",
+      "Spain",
+      "Belgium",
+      "Germany"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 108,
+    "tmdb_url": "https://www.themoviedb.org/movie/896096/",
+    "title_original": "La misteriosa mirada del flamenco",
+    "title_en": "The Mysterious Gaze of the Flamingo",
+    "title_es": null
   },
   {
     "title": "Historias del buen valle",
@@ -14391,6 +14459,50 @@
     "title_original": "The Testament of Ann Lee",
     "title_en": "The Testament of Ann Lee",
     "title_es": "El testimonio de Anne Lee"
+  },
+  {
+    "title": "La Virgen de la Tosquera",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 21:00",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3512",
+        "url_info": "https://salaberlanga.com/actividad/la-virgen-de-la-tosquera/"
+      },
+      {
+        "timestamp": "2026-03-28 18:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3513",
+        "url_info": "https://salaberlanga.com/actividad/la-virgen-de-la-tosquera/"
+      }
+    ],
+    "director": "Laura Casabé",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-virgin-of-the-quarry-lake/",
+    "letterboxd_rating": 3.52,
+    "letterboxd_viewers": 19876,
+    "letterboxd_short_url": "https://boxd.it/wAJ0",
+    "genres": [
+      "Horror",
+      "Drama",
+      "Thriller"
+    ],
+    "country": [
+      "Argentina",
+      "Spain",
+      "Mexico"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 90,
+    "tmdb_url": "https://www.themoviedb.org/movie/862739/",
+    "title_original": "La virgen de la tosquera",
+    "title_en": "The Virgin of the Quarry Lake",
+    "title_es": null
   },
   {
     "title": "Viva la muerte",
@@ -20379,6 +20491,47 @@
     "title_original": "Le Mage du Kremlin",
     "title_en": "The Wizard of the Kremlin",
     "title_es": "The Wizard Of The Kremlin"
+  },
+  {
+    "title": "La piel del agua",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 18:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3514",
+        "url_info": "https://salaberlanga.com/actividad/la-piel-del-agua/"
+      },
+      {
+        "timestamp": "2026-03-27 18:30",
+        "location": "Sala Berlanga",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3515",
+        "url_info": "https://salaberlanga.com/actividad/la-piel-del-agua/"
+      }
+    ],
+    "director": "Patricia Velásquez",
+    "year": 2024,
+    "letterboxd_url": "https://letterboxd.com/film/the-skin-of-the-water/",
+    "letterboxd_rating": 2.86,
+    "letterboxd_viewers": 420,
+    "letterboxd_short_url": "https://boxd.it/OeVk",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Chile",
+      "Costa Rica"
+    ],
+    "primary_language": [
+      "Spanish"
+    ],
+    "spoken_languages": [
+      "Spanish"
+    ],
+    "runtime_minutes": 79,
+    "tmdb_url": "https://www.themoviedb.org/movie/1317046/",
+    "title_original": "La piel del agua",
+    "title_en": "The Skin of the Water",
+    "title_es": null
   },
   {
     "title": "No Te Queda Otra",
