@@ -480,6 +480,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/your-name/"
       },
       {
+        "timestamp": "2026-03-21 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86610/your-name?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/5696_1_Z_1/your-name-10%E2%BA-aniversario--vose"
+      },
+      {
         "timestamp": "2026-03-21 18:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059996/",
@@ -490,6 +496,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059998/",
         "url_info": "https://www.cinesrenoir.com/pelicula/your-name/"
+      },
+      {
+        "timestamp": "2026-03-22 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86609/your-name?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/5696_1_Z_1/your-name-10%E2%BA-aniversario--vose"
       },
       {
         "timestamp": "2026-03-22 18:00",
@@ -2252,6 +2264,12 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85100/aftersun?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/39857_1_Z_1/aftersun-vose"
+      },
+      {
+        "timestamp": "2026-03-20 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/85100/aftersun?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/39857_1_Z_1/aftersun-vose"
       }
     ],
     "director": "Charlotte Wells",
@@ -3195,6 +3213,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       },
       {
+        "timestamp": "2026-03-21 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86815/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
+      },
+      {
         "timestamp": "2026-03-22 18:05",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060070/",
@@ -3205,6 +3229,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060073/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-22 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86816/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
       },
       {
         "timestamp": "2026-03-23 18:05",
@@ -3219,6 +3249,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       },
       {
+        "timestamp": "2026-03-23 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86817/valor-sentimental?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
+      },
+      {
         "timestamp": "2026-03-24 18:05",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060084/",
@@ -3231,6 +3267,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
       },
       {
+        "timestamp": "2026-03-24 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86818/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
+      },
+      {
         "timestamp": "2026-03-25 18:05",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060091/",
@@ -3241,6 +3283,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060094/",
         "url_info": "https://www.cinesrenoir.com/pelicula/valor-sentimental/"
+      },
+      {
+        "timestamp": "2026-03-25 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86819/valor-sentimental?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/81763_1_Z_1/valor-sentimental-vose"
       },
       {
         "timestamp": "2026-03-26 18:05",
@@ -3324,6 +3372,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060292/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-batalla-tras-otra/"
+      },
+      {
+        "timestamp": "2026-03-20 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86756/una-batalla-tras-otra?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/79750_1_Z_1/una-batalla-tras-otra-vose"
       },
       {
         "timestamp": "2026-03-21 20:30",
@@ -9662,6 +9716,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-20 16:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86741/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
+      },
+      {
         "timestamp": "2026-03-20 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059856/",
@@ -9702,6 +9762,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060163/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86801/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
       },
       {
         "timestamp": "2026-03-21 16:15",
@@ -9752,6 +9818,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86802/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
+      },
+      {
         "timestamp": "2026-03-22 16:15",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96722&eventCode=105704",
@@ -9800,6 +9872,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-23 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86803/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
+      },
+      {
         "timestamp": "2026-03-23 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059877/",
@@ -9836,6 +9914,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86804/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
+      },
+      {
         "timestamp": "2026-03-24 18:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059908/",
@@ -9870,6 +9954,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060218/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-25 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86805/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
       },
       {
         "timestamp": "2026-03-25 16:15",
@@ -9924,6 +10014,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96752&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-26 16:50",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86806/el-agente-secreto?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/89277_1_W_0/el-agente-secreto"
       },
       {
         "timestamp": "2026-03-26 18:45",
@@ -10897,6 +10993,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059937/",
         "url_info": "https://www.cinesrenoir.com/pelicula/calle-malaga-proyecto-viridiana/"
+      },
+      {
+        "timestamp": "2026-03-26 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86509/calle-malaga?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93416_1_W_0/calle-malaga"
       }
     ],
     "director": "Maryam Touzani",
@@ -12138,6 +12240,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-20 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86731/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
+      },
+      {
         "timestamp": "2026-03-20 18:00",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060104/",
@@ -12180,6 +12288,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-21 19:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86808/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
+      },
+      {
         "timestamp": "2026-03-21 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96709&eventCode=104664",
@@ -12214,6 +12328,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060118/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-22 19:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86809/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
       },
       {
         "timestamp": "2026-03-22 19:30",
@@ -12258,6 +12378,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-23 19:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86810/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
+      },
+      {
         "timestamp": "2026-03-23 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060126/",
@@ -12294,6 +12420,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
       },
       {
+        "timestamp": "2026-03-24 19:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86811/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
+      },
+      {
         "timestamp": "2026-03-24 20:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060133/",
@@ -12322,6 +12454,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060139/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-ultimo-vikingo/"
+      },
+      {
+        "timestamp": "2026-03-25 19:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86812/el-ultimo-vikingo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91083_1_W_0/el-ultimo-vikingo"
       },
       {
         "timestamp": "2026-03-25 19:30",
@@ -13714,6 +13852,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Tres-adioses-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-20 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86659/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-20 17:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060287/",
@@ -13726,6 +13870,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86850/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-21 17:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060300/",
@@ -13736,6 +13886,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060303/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86851/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
       },
       {
         "timestamp": "2026-03-22 17:45",
@@ -13762,10 +13918,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86852/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
+      },
+      {
         "timestamp": "2026-03-24 17:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060339/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-25 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86853/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/80605_1_W_0/tres-adioses"
       },
       {
         "timestamp": "2026-03-25 17:45",
@@ -16332,10 +16500,35 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-20 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86713/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_W_0/el-testamento-de-ann-lee",
+        "version": "dubbed"
+      },
+      {
+        "timestamp": "2026-03-20 19:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86714/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
+        "timestamp": "2026-03-20 22:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86715/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-21 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060025/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-21 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86794/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-22 16:00",
@@ -16344,10 +16537,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-22 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86795/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-23 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060035/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-23 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86796/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       },
       {
         "timestamp": "2026-03-24 16:00",
@@ -16356,16 +16561,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-24 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86797/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-25 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060045/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
       },
       {
+        "timestamp": "2026-03-25 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86798/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
+      },
+      {
         "timestamp": "2026-03-26 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060050/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-testamento-de-ann-lee/"
+      },
+      {
+        "timestamp": "2026-03-26 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86799/el-testamento-de-ann-lee?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91998_1_Z_1/el-testamento-de-ann-lee--vose"
       }
     ],
     "director": "Mona Fastvold",
@@ -18526,6 +18749,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
       },
       {
+        "timestamp": "2026-03-22 11:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86846/orwell-2-2-5?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/90646_1_W_0/orwell-2-2-5"
+      },
+      {
         "timestamp": "2026-03-22 18:15",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060256/",
@@ -19506,10 +19735,23 @@
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-20 19:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86672/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-20 20:20",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060106/",
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-20 22:10",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86673/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_Z_1/aguilas-de-el-cairo--vose"
       },
       {
         "timestamp": "2026-03-21 15:50",
@@ -19534,6 +19776,13 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060110/",
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-21 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86761/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-21 19:00",
@@ -19572,6 +19821,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-22 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86763/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-22 19:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96717&eventCode=105387",
@@ -19600,6 +19856,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96756&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-23 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86765/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-23 17:55",
@@ -19644,6 +19907,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-24 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86767/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-24 19:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96760&eventCode=105387",
@@ -19680,6 +19950,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-25 18:25",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86769/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-25 19:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96732&eventCode=105387",
@@ -19708,6 +19985,13 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96746&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-26 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86770/aguilas-de-el-cairo?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92116_1_W_0/aguilas-de-el-cairo",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-26 19:00",
@@ -20000,6 +20284,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
       },
       {
+        "timestamp": "2026-03-21 12:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86844/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
+      },
+      {
         "timestamp": "2026-03-21 15:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060296/",
@@ -20012,6 +20302,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
       },
       {
+        "timestamp": "2026-03-21 18:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86822/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
+      },
+      {
         "timestamp": "2026-03-21 20:25",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060170/",
@@ -20022,6 +20318,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060309/",
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
+      },
+      {
+        "timestamp": "2026-03-22 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86823/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
       },
       {
         "timestamp": "2026-03-22 18:30",
@@ -20042,6 +20344,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
       },
       {
+        "timestamp": "2026-03-23 18:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86824/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
+      },
+      {
         "timestamp": "2026-03-23 18:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060194/",
@@ -20058,6 +20366,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060335/",
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
+      },
+      {
+        "timestamp": "2026-03-24 18:05",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86825/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
       },
       {
         "timestamp": "2026-03-24 18:30",
@@ -20078,6 +20392,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
       },
       {
+        "timestamp": "2026-03-25 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86826/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
+      },
+      {
         "timestamp": "2026-03-25 18:30",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060222/",
@@ -20094,6 +20414,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060359/",
         "url_info": "https://www.cinesrenoir.com/pelicula/elegir-mi-vida/"
+      },
+      {
+        "timestamp": "2026-03-26 16:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86827/elegir-mi-vida?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94746_1_W_0/elegir-mi-vida"
       },
       {
         "timestamp": "2026-03-26 18:30",
@@ -21772,10 +22098,22 @@
         "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
+        "timestamp": "2026-03-20 22:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86694/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-20 22:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060158/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-21 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86773/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-21 22:00",
@@ -21796,6 +22134,12 @@
         "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-22 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86774/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-22 22:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060186/",
@@ -21808,10 +22152,28 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-23 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86775/cumbres-borrascosas?mode=widget&change=0&ref=750&language=VOSE&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
+        "timestamp": "2026-03-24 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86776/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-24 22:15",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060214/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-25 21:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86777/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-25 22:15",
@@ -21830,6 +22192,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060242/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-26 22:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86778/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-28 22:00",
@@ -23195,6 +23563,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-20 17:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86722/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-20 21:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060293/",
@@ -23205,6 +23579,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060298/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-21 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86787/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-21 21:45",
@@ -23219,6 +23599,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-22 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86788/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-22 21:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060319/",
@@ -23229,6 +23615,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060324/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-23 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86789/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-23 21:45",
@@ -23243,10 +23635,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-24 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86790/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
         "timestamp": "2026-03-25 16:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060349/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-25 19:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86791/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
         "timestamp": "2026-03-25 21:45",
@@ -23484,6 +23888,40 @@
     "title_original": "Love Sarah",
     "title_en": "Love Sarah",
     "title_es": "Una pastelería en Notting Hill"
+  },
+  {
+    "title": "La última cena",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86854/la-ultima-cena?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94790_1_W_0/la-ultima-cena"
+      }
+    ],
+    "director": "Mauro Borrelli",
+    "year": 2025,
+    "letterboxd_url": "https://letterboxd.com/film/the-last-supper-2025-1/",
+    "letterboxd_rating": 2.73,
+    "letterboxd_viewers": 1935,
+    "letterboxd_short_url": "https://boxd.it/R8tU",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "United States of America"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 114,
+    "tmdb_url": "https://www.themoviedb.org/movie/1380415/",
+    "title_original": "The Last Supper",
+    "title_en": "The Last Supper",
+    "title_es": "La Última Cena"
   },
   {
     "title": "Whistle. El silbido del mal",
@@ -25223,6 +25661,54 @@
         "location": "Embajadores Glorieta",
         "url_tickets": "https://www.reservaentradas.com/entrada/madrid/cineembajadores/las-locas-del-obelisco/35081/",
         "url_info": "https://cinesembajadores.es/pelicula/las-locas-del-obelisco/?ciudad=madrid"
+      },
+      {
+        "timestamp": "2026-03-21 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86842/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-21 16:15",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86845/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-22 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86843/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-22 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86781/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-23 15:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86782/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-24 15:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86783/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-25 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86784/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
+      },
+      {
+        "timestamp": "2026-03-26 15:55",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86785/las-locas-del-obelisco?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/93743_1_W_0/las-locas-del-obelisco"
       }
     ],
     "director": "Pablo Moreno",
@@ -25481,6 +25967,12 @@
     "dates": [
       {
         "timestamp": "2026-03-19 20:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86490/acto-libre?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92789_1_W_0/modo-avion-acto-libre"
+      },
+      {
+        "timestamp": "2026-03-20 20:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86490/acto-libre?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92789_1_W_0/modo-avion-acto-libre"
@@ -27724,6 +28216,18 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-21 11:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86617/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-21 15:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86634/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-21 16:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96699&eventCode=104656",
@@ -27752,6 +28256,18 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96696&eventCode=104656",
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
+      },
+      {
+        "timestamp": "2026-03-21 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86847/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-21 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86635/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-21 18:10",
@@ -27802,10 +28318,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-21 20:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86636/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-21 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060065/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-21 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86757/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-21 22:00",
@@ -27826,10 +28354,28 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-21 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86637/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-21 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060067/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-22 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86748/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-22 15:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86638/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-22 16:00",
@@ -27862,6 +28408,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
       },
       {
+        "timestamp": "2026-03-22 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86639/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-22 18:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060314/",
@@ -27892,6 +28444,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-22 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86832/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-22 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96712&eventCode=104656",
@@ -27910,10 +28468,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-22 20:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86640/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-22 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060072/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-22 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86833/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-22 22:00",
@@ -27934,10 +28504,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-22 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86641/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-22 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060074/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-23 15:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86619/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-23 16:00",
@@ -27968,6 +28550,18 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96776&eventCode=104656",
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
+      },
+      {
+        "timestamp": "2026-03-23 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86834/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-23 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86604/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-23 18:10",
@@ -28024,6 +28618,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-23 20:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86605/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-23 22:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96779&eventCode=104656",
@@ -28046,6 +28646,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060081/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-24 15:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86620/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-24 16:00",
@@ -28076,6 +28682,18 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96780&eventCode=104656",
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
+      },
+      {
+        "timestamp": "2026-03-24 17:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86836/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-24 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86643/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-24 18:10",
@@ -28120,6 +28738,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-24 20:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86644/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-24 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060086/",
@@ -28144,10 +28768,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-24 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86645/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-24 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060088/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-25 15:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86621/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-25 16:00",
@@ -28180,6 +28816,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
       },
       {
+        "timestamp": "2026-03-25 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86646/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-25 18:10",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060351/",
@@ -28210,6 +28852,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-25 19:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86838/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-25 19:30",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96727&eventCode=104656",
@@ -28228,10 +28876,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-25 20:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86647/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-25 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060093/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-25 21:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86839/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-25 22:00",
@@ -28250,6 +28910,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059852/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-25 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86648/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-25 22:35",
@@ -28282,10 +28948,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-26 16:45",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86622/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-26 17:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96741&eventCode=104656",
         "url_info": "https://www.golem.es/golem/pelicula/Amarga-Navidad"
+      },
+      {
+        "timestamp": "2026-03-26 18:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86649/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-26 18:10",
@@ -28336,6 +29014,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-26 20:20",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86650/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-26 20:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060279/",
@@ -28358,6 +29042,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059905/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-26 22:30",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86633/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
         "timestamp": "2026-03-26 22:35",
