@@ -480,6 +480,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/your-name/"
       },
       {
+        "timestamp": "2026-03-20 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130233",
+        "url_info": "https://madrid.cines-verdi.com/anime-day-your-name-vose"
+      },
+      {
         "timestamp": "2026-03-21 12:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86610/your-name?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
@@ -498,6 +504,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/your-name/"
       },
       {
+        "timestamp": "2026-03-21 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130610",
+        "url_info": "https://madrid.cines-verdi.com/your-name-vose"
+      },
+      {
         "timestamp": "2026-03-22 12:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86609/your-name?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
@@ -514,6 +526,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060002/",
         "url_info": "https://www.cinesrenoir.com/pelicula/your-name/"
+      },
+      {
+        "timestamp": "2026-03-22 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130611",
+        "url_info": "https://madrid.cines-verdi.com/your-name-vose"
+      },
+      {
+        "timestamp": "2026-03-23 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130612",
+        "url_info": "https://madrid.cines-verdi.com/your-name-vose"
       },
       {
         "timestamp": "2026-03-25 18:00",
@@ -1933,6 +1957,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-20 16:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130675",
+        "url_info": "https://madrid.cines-verdi.com/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-20 17:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060150/",
@@ -1979,6 +2009,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060162/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-21 16:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130628",
+        "url_info": "https://madrid.cines-verdi.com/hamnet-vose"
       },
       {
         "timestamp": "2026-03-21 17:50",
@@ -2029,6 +2065,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
       },
       {
+        "timestamp": "2026-03-22 16:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130619",
+        "url_info": "https://madrid.cines-verdi.com/hamnet-vose"
+      },
+      {
         "timestamp": "2026-03-22 17:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060178/",
@@ -2069,6 +2111,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060191/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-23 16:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130623",
+        "url_info": "https://madrid.cines-verdi.com/hamnet-vose"
       },
       {
         "timestamp": "2026-03-23 17:50",
@@ -2201,6 +2249,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060232/",
         "url_info": "https://www.cinesrenoir.com/pelicula/hamnet/"
+      },
+      {
+        "timestamp": "2026-03-26 16:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130770",
+        "url_info": "https://madrid.cines-verdi.com/hamnet-vose"
       },
       {
         "timestamp": "2026-03-26 17:50",
@@ -2793,16 +2847,52 @@
         "url_info": "https://salaequis.es/ciclos/marty-supreme/"
       },
       {
+        "timestamp": "2026-03-20 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130655",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-03-21 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130650",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-03-22 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130660",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
         "timestamp": "2026-03-23 22:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060006/",
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
       },
       {
+        "timestamp": "2026-03-23 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130665",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
         "timestamp": "2026-03-24 22:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060010/",
         "url_info": "https://www.cinesrenoir.com/pelicula/marty-supreme/"
+      },
+      {
+        "timestamp": "2026-03-24 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130714",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
+      },
+      {
+        "timestamp": "2026-03-25 22:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130670",
+        "url_info": "https://madrid.cines-verdi.com/marty-supreme-vose"
       },
       {
         "timestamp": "2026-03-26 22:00",
@@ -9740,6 +9830,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-20 21:10",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130636",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-20 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059858/",
@@ -9800,6 +9896,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-21 21:10",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130632",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-21 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059865/",
@@ -9854,6 +9956,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-22 21:10",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130640",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-22 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059872/",
@@ -9896,6 +10004,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-23 21:10",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130644",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
+      },
+      {
         "timestamp": "2026-03-23 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059879/",
@@ -9936,6 +10050,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96767&eventCode=105704",
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-24 21:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130709",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-24 21:45",
@@ -10002,6 +10122,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060227/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-25 22:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130739",
+        "url_info": "https://madrid.cines-verdi.com/el-agente-secreto-vose"
       },
       {
         "timestamp": "2026-03-26 16:00",
@@ -10347,6 +10473,51 @@
     "title_en": "The Mystery of Picasso",
     "title_es": "El misterio de Picasso",
     "runtime_minutes": 78
+  },
+  {
+    "title": "Mediterráneo",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 11:40",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130783",
+        "url_info": "https://madrid.cines-verdi.com/jueves-de-imprescindibles-mediterre1neo-vose"
+      },
+      {
+        "timestamp": "2026-03-26 21:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130784",
+        "url_info": "https://madrid.cines-verdi.com/jueves-de-imprescindibles-mediterre1neo-vose"
+      }
+    ],
+    "director": "Gabriele Salvatores",
+    "year": 1991,
+    "letterboxd_url": "https://letterboxd.com/film/mediterraneo/",
+    "letterboxd_rating": 3.82,
+    "letterboxd_viewers": 24914,
+    "letterboxd_short_url": "https://boxd.it/16qK",
+    "genres": [
+      "Comedy",
+      "Romance",
+      "War"
+    ],
+    "country": [
+      "Italy"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "Turkish",
+      "Italian",
+      "Greek",
+      "English"
+    ],
+    "runtime_minutes": 96,
+    "tmdb_url": "https://www.themoviedb.org/movie/38251/",
+    "title_original": "Mediterraneo",
+    "title_en": null,
+    "title_es": "Mediterráneo"
   },
   {
     "title": "Nuevos Horizontes",
@@ -13864,6 +14035,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-20 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130653",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
+      },
+      {
         "timestamp": "2026-03-20 20:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060290/",
@@ -13880,6 +14057,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060300/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-21 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130648",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-21 20:05",
@@ -13900,6 +14083,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-22 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130658",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
+      },
+      {
         "timestamp": "2026-03-22 20:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060316/",
@@ -13910,6 +14099,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060326/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-23 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130663",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-23 20:05",
@@ -13930,6 +14125,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
       },
       {
+        "timestamp": "2026-03-24 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130712",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
+      },
+      {
         "timestamp": "2026-03-25 16:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86853/tres-adioses?mode=widget&change=0&ref=750&forceproxy=1",
@@ -13940,6 +14141,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060350/",
         "url_info": "https://www.cinesrenoir.com/pelicula/tres-adioses/"
+      },
+      {
+        "timestamp": "2026-03-25 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130668",
+        "url_info": "https://madrid.cines-verdi.com/tres-adioses-vose"
       },
       {
         "timestamp": "2026-03-25 20:05",
@@ -14900,6 +15107,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
       },
       {
+        "timestamp": "2026-03-20 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130683",
+        "url_info": "https://madrid.cines-verdi.com/pillion-vose"
+      },
+      {
         "timestamp": "2026-03-20 18:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060372/",
@@ -14990,6 +15203,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
       },
       {
+        "timestamp": "2026-03-23 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130700",
+        "url_info": "https://madrid.cines-verdi.com/pillion-vose"
+      },
+      {
         "timestamp": "2026-03-23 18:05",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060387/",
@@ -15044,6 +15263,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
       },
       {
+        "timestamp": "2026-03-24 22:45",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130724",
+        "url_info": "https://madrid.cines-verdi.com/pillion-vose"
+      },
+      {
         "timestamp": "2026-03-25 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060395/",
@@ -15066,6 +15291,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060399/",
         "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-25 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130747",
+        "url_info": "https://madrid.cines-verdi.com/pillion-vose"
       },
       {
         "timestamp": "2026-03-25 22:40",
@@ -15102,6 +15333,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060404/",
         "url_info": "https://www.cinesrenoir.com/pelicula/pillion/"
+      },
+      {
+        "timestamp": "2026-03-26 22:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130764",
+        "url_info": "https://madrid.cines-verdi.com/pillion-vose"
       },
       {
         "timestamp": "2026-03-27 22:00",
@@ -17173,6 +17410,42 @@
     "runtime_minutes": 92
   },
   {
+    "title": "Van Gogh de los campos de trigo, bajo cielos nublados",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 17:45",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130782",
+        "url_info": "https://madrid.cines-verdi.com/mie9rcoles-cultural-van-gogh-de-los-campos-de-trigo-bajo-cielos-nublados-vose"
+      }
+    ],
+    "director": "Giovanni Piscaglia",
+    "year": 2018,
+    "letterboxd_url": "https://letterboxd.com/film/van-gogh-of-wheat-fields-and-clouded-skies/",
+    "letterboxd_rating": 3.46,
+    "letterboxd_viewers": 392,
+    "letterboxd_short_url": "https://boxd.it/iL8m",
+    "genres": [
+      "Documentary"
+    ],
+    "country": [
+      "Italy"
+    ],
+    "primary_language": [
+      "Italian"
+    ],
+    "spoken_languages": [
+      "English",
+      "French",
+      "Italian"
+    ],
+    "runtime_minutes": 90,
+    "tmdb_url": "https://www.themoviedb.org/movie/517510/",
+    "title_original": "Van Gogh - Tra il grano e il cielo",
+    "title_en": "Van Gogh: Of Wheat Fields and Clouded Skies",
+    "title_es": "Van Gogh: De los campos de trigo bajo cielos nublados"
+  },
+  {
     "title": "Sin conexión",
     "director": "Bradley Cooper",
     "year": 2025,
@@ -17541,10 +17814,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-20 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130652",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-20 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130677",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-20 20:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059993/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-20 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130654",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-21 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130651",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-21 16:00",
@@ -17553,10 +17850,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130647",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-21 18:30",
         "location": "Cineteca Madrid",
         "url_tickets": "https://tienda.madrid-destino.com/es/cineteca/una-hija-en-tokio",
         "url_info": "https://www.cinetecamadrid.com/programacion/una-hija-en-tokio"
+      },
+      {
+        "timestamp": "2026-03-21 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130616",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-21 20:00",
@@ -17565,10 +17874,34 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-21 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130649",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-22 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130661",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-22 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1059999/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130657",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-22 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130620",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-22 20:00",
@@ -17577,10 +17910,28 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-22 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130659",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-23 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130666",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-23 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060003/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-23 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130662",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-23 18:00",
@@ -17589,10 +17940,28 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-23 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130624",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-23 20:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060005/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-23 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130664",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
+        "timestamp": "2026-03-24 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130715",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-24 16:00",
@@ -17601,10 +17970,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130711",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-24 18:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060008/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-24 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130704",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-24 20:00",
@@ -17613,10 +17994,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-24 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130713",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-25 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060011/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-25 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130729",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-25 20:00",
@@ -17625,10 +18018,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-25 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130669",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-26 16:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060015/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-26 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130767",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       },
       {
         "timestamp": "2026-03-26 18:00",
@@ -17637,10 +18042,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
       },
       {
+        "timestamp": "2026-03-26 18:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130766",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
+      },
+      {
         "timestamp": "2026-03-26 20:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060017/",
         "url_info": "https://www.cinesrenoir.com/pelicula/una-hija-en-tokio/"
+      },
+      {
+        "timestamp": "2026-03-26 20:20",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130773",
+        "url_info": "https://madrid.cines-verdi.com/una-hija-en-tokio-vose"
       }
     ],
     "director": "Guillaume Senez",
@@ -19711,6 +20128,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-20 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130634",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
+      },
+      {
         "timestamp": "2026-03-20 16:15",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059854/",
@@ -19760,6 +20183,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130633",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
+      },
+      {
         "timestamp": "2026-03-21 16:15",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059861/",
@@ -19801,6 +20230,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060255/",
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130638",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
       },
       {
         "timestamp": "2026-03-22 16:15",
@@ -19846,6 +20281,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-23 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130642",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
+      },
+      {
         "timestamp": "2026-03-23 16:15",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059875/",
@@ -19883,10 +20324,22 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
       },
       {
+        "timestamp": "2026-03-24 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130781",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
+      },
+      {
         "timestamp": "2026-03-24 15:50",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060265/",
         "url_info": "https://www.cinesrenoir.com/pelicula/aguilas-de-el-cairo/"
+      },
+      {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130785",
+        "url_info": "https://madrid.cines-verdi.com/c1guilas-de-el-cairo-vose"
       },
       {
         "timestamp": "2026-03-24 16:15",
@@ -20459,6 +20912,73 @@
     "title_original": "Partir un jour",
     "title_en": "Leave One Day",
     "title_es": "Elegir mi vida"
+  },
+  {
+    "title": "La gran fiesta del bosque",
+    "dates": [
+      {
+        "timestamp": "2026-03-14 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130607",
+        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-14 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86724/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-15 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130608",
+        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-15 12:00",
+        "location": "Cine Paz",
+        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86725/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
+        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-21 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130646",
+        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
+      },
+      {
+        "timestamp": "2026-03-22 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130641",
+        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
+      }
+    ],
+    "director": "Samantha Cutler",
+    "year": null,
+    "letterboxd_url": "https://letterboxd.com/film/the-scarecrows-wedding/",
+    "letterboxd_rating": 3.21,
+    "letterboxd_viewers": 2525,
+    "letterboxd_short_url": "https://boxd.it/VhHu",
+    "genres": [
+      "Animation",
+      "Family",
+      "Romance",
+      "TV Movie"
+    ],
+    "country": [
+      "United Kingdom"
+    ],
+    "primary_language": [
+      "English"
+    ],
+    "spoken_languages": [
+      "English"
+    ],
+    "runtime_minutes": 26,
+    "tmdb_url": "https://www.themoviedb.org/movie/1488459/",
+    "title_original": "The Scarecrows' Wedding",
+    "title_en": "The Scarecrows' Wedding",
+    "title_es": "La gran fiesta del bosque"
   },
   {
     "title": "Salvajes",
@@ -22098,6 +22618,12 @@
         "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
+        "timestamp": "2026-03-20 20:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130681",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-20 22:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86694/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
@@ -22108,6 +22634,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060158/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-21 20:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130674",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-21 21:00",
@@ -22134,6 +22666,12 @@
         "url_info": "https://salaequis.es/ciclos/cumbres-borrascosas/"
       },
       {
+        "timestamp": "2026-03-22 20:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130695",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-22 21:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86774/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
@@ -22144,6 +22682,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060186/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-23 20:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130702",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-23 22:15",
@@ -22158,6 +22702,12 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/88284_1_Z_1/cumbres-borrascosas-vose"
       },
       {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130726",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
+      },
+      {
         "timestamp": "2026-03-24 21:00",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86776/cumbres-borrascosas?mode=widget&change=0&ref=750&forceproxy=1&language=VOSE",
@@ -22168,6 +22718,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060214/",
         "url_info": "https://www.cinesrenoir.com/pelicula/cumbres-borrascosas/"
+      },
+      {
+        "timestamp": "2026-03-25 20:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130745",
+        "url_info": "https://madrid.cines-verdi.com/cumbres-borrascosas-vose"
       },
       {
         "timestamp": "2026-03-25 21:00",
@@ -22838,6 +23394,30 @@
         "timestamp": "2026-03-19 16:00",
         "location": "Verdi",
         "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130469",
+        "url_info": "https://madrid.cines-verdi.com/los-miserables-el-origen-vose"
+      },
+      {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130673",
+        "url_info": "https://madrid.cines-verdi.com/los-miserables-el-origen-vose"
+      },
+      {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130690",
+        "url_info": "https://madrid.cines-verdi.com/los-miserables-el-origen-vose"
+      },
+      {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130718",
+        "url_info": "https://madrid.cines-verdi.com/los-miserables-el-origen-vose"
+      },
+      {
+        "timestamp": "2026-03-26 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130759",
         "url_info": "https://madrid.cines-verdi.com/los-miserables-el-origen-vose"
       }
     ]
@@ -23569,6 +24149,12 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
       },
       {
+        "timestamp": "2026-03-20 18:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130635",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
+      },
+      {
         "timestamp": "2026-03-20 21:45",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060293/",
@@ -23579,6 +24165,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060298/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-21 18:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130631",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
       },
       {
         "timestamp": "2026-03-21 19:15",
@@ -23599,6 +24191,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-22 18:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130639",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
+      },
+      {
         "timestamp": "2026-03-22 19:15",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86788/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
@@ -23615,6 +24213,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060324/",
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
+      },
+      {
+        "timestamp": "2026-03-23 18:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130643",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
       },
       {
         "timestamp": "2026-03-23 19:15",
@@ -23635,6 +24239,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-mago-del-kremlin/"
       },
       {
+        "timestamp": "2026-03-24 18:35",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130708",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
+      },
+      {
         "timestamp": "2026-03-24 19:15",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86790/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
@@ -23651,6 +24261,12 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86791/el-mago-del-kremlin?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/91076_1_W_0/el-mago-del-kremlin"
+      },
+      {
+        "timestamp": "2026-03-25 19:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130738",
+        "url_info": "https://madrid.cines-verdi.com/el-mago-del-kremlin-vose"
       },
       {
         "timestamp": "2026-03-25 21:45",
@@ -27660,6 +28276,12 @@
         "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
+        "timestamp": "2026-03-20 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130685",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-20 15:50",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060147/",
@@ -27676,6 +28298,12 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059815/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-20 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130680",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-20 18:20",
@@ -27696,6 +28324,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-20 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130676",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-20 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059819/",
@@ -27706,6 +28340,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060160/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-20 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130682",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
+        "timestamp": "2026-03-21 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130686",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-21 15:50",
@@ -27726,6 +28372,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-21 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130672",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-21 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060165/",
@@ -27744,6 +28396,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-21 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130617",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-21 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059827/",
@@ -27754,6 +28412,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060174/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-21 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130618",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
+        "timestamp": "2026-03-22 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130692",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-22 15:50",
@@ -27774,6 +28444,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-22 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130691",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-22 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060179/",
@@ -27792,6 +28468,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-22 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130621",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-22 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059835/",
@@ -27802,6 +28484,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060188/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-22 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130622",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
+        "timestamp": "2026-03-23 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130699",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-23 15:50",
@@ -27822,6 +28516,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-23 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130701",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-23 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060193/",
@@ -27840,6 +28540,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-23 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130625",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-23 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059843/",
@@ -27850,6 +28556,18 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060202/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-23 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130626",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
+        "timestamp": "2026-03-24 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130720",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-24 15:50",
@@ -27870,6 +28588,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-24 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130717",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-24 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060207/",
@@ -27888,6 +28612,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-24 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130728",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-24 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059895/",
@@ -27898,6 +28628,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060216/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-24 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130727",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-25 15:50",
@@ -27918,6 +28654,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-25 18:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130743",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-25 18:20",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060221/",
@@ -27936,6 +28678,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
       },
       {
+        "timestamp": "2026-03-25 20:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130730",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
+      },
+      {
         "timestamp": "2026-03-25 22:00",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059851/",
@@ -27946,6 +28694,12 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060230/",
         "url_info": "https://www.cinesrenoir.com/pelicula/torrente-presidente/"
+      },
+      {
+        "timestamp": "2026-03-25 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130731",
+        "url_info": "https://madrid.cines-verdi.com/torrente-presidente"
       },
       {
         "timestamp": "2026-03-26 15:50",
@@ -28021,50 +28775,6 @@
     "title_es": null
   },
   {
-    "title": "La gran fiesta del bosque",
-    "dates": [
-      {
-        "timestamp": "2026-03-14 11:30",
-        "location": "Verdi",
-        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130607",
-        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
-      },
-      {
-        "timestamp": "2026-03-14 12:00",
-        "location": "Cine Paz",
-        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86724/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
-        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
-      },
-      {
-        "timestamp": "2026-03-15 11:30",
-        "location": "Verdi",
-        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130608",
-        "url_info": "https://madrid.cines-verdi.com/la-gran-fiesta-del-bosque"
-      },
-      {
-        "timestamp": "2026-03-15 12:00",
-        "location": "Cine Paz",
-        "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86725/la-gran-fiesta-del-bosque?mode=widget&change=0&ref=750&forceproxy=1",
-        "url_info": "https://www.cinepazmadrid.es/es/detalles/94129_1_W_0/la-gran-fiesta-del-bosque"
-      }
-    ],
-    "director": "Samantha Cutler",
-    "year": null,
-    "letterboxd_url": null,
-    "letterboxd_rating": null,
-    "letterboxd_viewers": null,
-    "letterboxd_short_url": null,
-    "genres": [],
-    "country": [],
-    "primary_language": [],
-    "spoken_languages": [],
-    "runtime_minutes": null,
-    "tmdb_url": null,
-    "title_original": null,
-    "title_en": null,
-    "title_es": null
-  },
-  {
     "title": "Historias de Tokio",
     "dates": [
       {
@@ -28108,6 +28818,13 @@
     "title": "Amarga Navidad",
     "dates": [
       {
+        "timestamp": "2026-03-20 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130684",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-20 16:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96685&eventCode=104656",
@@ -28124,6 +28841,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059814/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-20 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130679",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-20 16:05",
@@ -28162,6 +28886,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-20 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130422",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-20 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060373/",
@@ -28192,6 +28923,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-20 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130421",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-20 22:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96684&eventCode=104656",
@@ -28210,6 +28948,12 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-20 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130678",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-20 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060060/",
@@ -28220,6 +28964,13 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86617/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-21 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130687",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-21 15:45",
@@ -28244,6 +28995,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060297/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-21 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130629",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-21 16:05",
@@ -28294,6 +29052,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-21 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130424",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-21 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060378/",
@@ -28330,6 +29095,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-21 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130423",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-21 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86757/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
@@ -28360,10 +29132,23 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
+        "timestamp": "2026-03-21 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130630",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-21 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060067/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-22 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130693",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-22 12:00",
@@ -28394,6 +29179,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060310/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-22 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130688",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-22 16:05",
@@ -28438,6 +29230,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-22 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130426",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-22 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060383/",
@@ -28480,6 +29279,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-22 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130425",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-22 21:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86833/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
@@ -28510,10 +29316,23 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
+        "timestamp": "2026-03-22 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130689",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-22 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060074/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-23 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130698",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-23 15:45",
@@ -28538,6 +29357,13 @@
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059838/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-23 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130697",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-23 16:05",
@@ -28588,6 +29414,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-23 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130428",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-23 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060388/",
@@ -28618,6 +29451,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-23 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130427",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-23 20:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86605/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
@@ -28642,10 +29482,23 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-23 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130696",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-23 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060081/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-24 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130703",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-24 15:45",
@@ -28672,6 +29525,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-24 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130725",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-24 16:05",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060083/",
@@ -28694,6 +29554,13 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86643/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-24 18:05",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130723",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-24 18:10",
@@ -28750,6 +29617,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-24 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130721",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-24 22:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96782&eventCode=104656",
@@ -28772,6 +29646,12 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86645/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-24 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130722",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
       },
       {
         "timestamp": "2026-03-24 22:35",
@@ -28846,6 +29726,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-25 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130734",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-25 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060397/",
@@ -28888,6 +29775,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-25 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130733",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-25 21:30",
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86839/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
@@ -28918,10 +29812,23 @@
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
       },
       {
+        "timestamp": "2026-03-25 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130736",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
+      },
+      {
         "timestamp": "2026-03-25 22:35",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060095/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-26 11:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130752",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-26 16:00",
@@ -28940,6 +29847,13 @@
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060360/",
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
+      },
+      {
+        "timestamp": "2026-03-26 16:00",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130750",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
       },
       {
         "timestamp": "2026-03-26 16:05",
@@ -28990,6 +29904,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-26 18:15",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130749",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-26 19:00",
         "location": "Princesa",
         "url_tickets": "https://www.pillalas.com/pase/1060402/",
@@ -29026,6 +29947,13 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/amarga-navidad/"
       },
       {
+        "timestamp": "2026-03-26 20:25",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130748",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad",
+        "version": "dubbed"
+      },
+      {
         "timestamp": "2026-03-26 22:00",
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96743&eventCode=104656",
@@ -29048,6 +29976,12 @@
         "location": "Cine Paz",
         "url_tickets": "https://cine.entradas.com/cine/madrid/cine-paz/evento/86633/amarga-navidad?mode=widget&change=0&ref=750&forceproxy=1",
         "url_info": "https://www.cinepazmadrid.es/es/detalles/92726_1_W_0/amarga-navidad"
+      },
+      {
+        "timestamp": "2026-03-26 22:30",
+        "location": "Verdi",
+        "url_tickets": "https://verdimadrid.admit-one.eu/?p=tickets&s=VERDIMAD&perfCode=130751",
+        "url_info": "https://madrid.cines-verdi.com/amarga-navidad"
       },
       {
         "timestamp": "2026-03-26 22:35",
