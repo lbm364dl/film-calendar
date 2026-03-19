@@ -4586,10 +4586,28 @@
         "url_info": "https://www.golem.es/golem/pelicula/No-hay-otra-opción-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-26 21:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
         "timestamp": "2026-03-26 22:25",
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060146/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260319050511-no-hay-otra-opcion/"
+      },
+      {
+        "timestamp": "2026-03-28 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
+      },
+      {
+        "timestamp": "2026-03-29 19:15",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/no-hay-otra-opcion/2661/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-hay-otra-opcion-eojjeolsuga-eobsda/"
       }
     ]
   },
@@ -5949,6 +5967,40 @@
     "title_original": "Walkabout",
     "title_en": "Walkabout",
     "title_es": null
+  },
+  {
+    "title": "A Well for the Thirsty",
+    "dates": [
+      {
+        "timestamp": "2026-03-26 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/a-well-for-the-thirsty/"
+      }
+    ],
+    "director": "Yuri Ilienko",
+    "year": 1965,
+    "letterboxd_url": "https://letterboxd.com/film/a-spring-for-the-thirsty/",
+    "letterboxd_rating": 4.01,
+    "letterboxd_viewers": 1945,
+    "letterboxd_short_url": "https://boxd.it/4Jea",
+    "genres": [
+      "Drama"
+    ],
+    "country": [
+      "Soviet Union"
+    ],
+    "primary_language": [
+      "Ukrainian"
+    ],
+    "spoken_languages": [
+      "Ukrainian"
+    ],
+    "runtime_minutes": 73,
+    "tmdb_url": "https://www.themoviedb.org/movie/149455/",
+    "title_original": "Криниця для спраглих",
+    "title_en": "A Spring for the Thirsty",
+    "title_es": "Una fuente para el sediento"
   },
   {
     "title": "El dinero",
@@ -7829,6 +7881,18 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060096/",
         "url_info": "https://www.cinesrenoir.com/pelicula/20260319050511-la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-27 19:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
+      },
+      {
+        "timestamp": "2026-03-28 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/la-tarta-del-presidente/2656/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/la-tarta-del-presidente/"
       }
     ]
   },
@@ -10209,6 +10273,12 @@
         "url_info": "https://www.golem.es/golem/pelicula/El-agente-secreto-(V.O.S.E.)"
       },
       {
+        "timestamp": "2026-03-25 21:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-25 21:45",
         "location": "Retiro",
         "url_tickets": "https://www.pillalas.com/pase/1059886/",
@@ -10275,10 +10345,28 @@
         "url_info": "https://www.cinesrenoir.com/pelicula/el-agente-secreto/"
       },
       {
+        "timestamp": "2026-03-27 21:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-28 19:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
+      },
+      {
         "timestamp": "2026-03-28 20:30",
         "location": "Sala Berlanga",
         "url_tickets": "https://cine.entradas.com/cine/madrid/sala-berlanga/evento/3511",
         "url_info": "https://salaberlanga.com/actividad/el-agente-secreto/"
+      },
+      {
+        "timestamp": "2026-03-29 22:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/el-agente-secreto/2665/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/el-agente-secreto/"
       }
     ]
   },
@@ -10879,6 +10967,18 @@
       },
       {
         "timestamp": "2026-03-18 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-03-25 17:30",
+        "location": "Cine Estudio",
+        "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
+      },
+      {
+        "timestamp": "2026-03-29 17:00",
         "location": "Cine Estudio",
         "url_tickets": "https://www.reservaentradas.com/sesiones/madrid/circulobellasartes/historias-del-buen-valle/2662/",
         "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/historias-del-buen-valle/"
@@ -19603,6 +19703,12 @@
         "location": "Plaza de España",
         "url_tickets": "https://www.pillalas.com/pase/1060100/",
         "url_info": "https://www.cinesrenoir.com/pelicula/orwell-22-5/"
+      },
+      {
+        "timestamp": "2026-03-27 17:30",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/orwell-2-2-5/"
       }
     ]
   },
@@ -20802,6 +20908,12 @@
         "location": "Golem",
         "url_tickets": "https://www.golem.es/golem/urlcheck.php?idCine=8&perfCode=96746&eventCode=105387",
         "url_info": "https://www.golem.es/golem/pelicula/Águilas-de-el-Cairo-(V.O.S.E.)"
+      },
+      {
+        "timestamp": "2026-03-26 17:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/aguilas-de-el-cairo/"
       },
       {
         "timestamp": "2026-03-26 17:30",
@@ -30906,6 +31018,32 @@
       }
     ],
     "director": "Laura Grande",
+    "year": null,
+    "letterboxd_url": null,
+    "letterboxd_rating": null,
+    "letterboxd_viewers": null,
+    "letterboxd_short_url": null,
+    "genres": [],
+    "country": [],
+    "primary_language": [],
+    "spoken_languages": [],
+    "runtime_minutes": null,
+    "tmdb_url": null,
+    "title_original": null,
+    "title_en": null,
+    "title_es": null
+  },
+  {
+    "title": "No passport for Spain(1969) + La resistencia en España (1973)",
+    "dates": [
+      {
+        "timestamp": "2026-03-25 20:00",
+        "location": "Cine Estudio",
+        "url_tickets": "",
+        "url_info": "https://www.circulobellasartes.com/ciclos-cine/peliculas/no-passport-for-spain-1969-la-resistencia-en-espana-1973/"
+      }
+    ],
+    "director": null,
     "year": null,
     "letterboxd_url": null,
     "letterboxd_rating": null,
