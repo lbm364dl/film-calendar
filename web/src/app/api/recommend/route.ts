@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { computeRecommendationsWithBreakdown, type FilmFeatures, type CompactBreakdown } from '@/lib/recommender';
+import { computeRecommendationsWithBreakdown, type FilmFeatures, type CompactBreakdown } from '@/lib/recommender-pagerank';
 
 /** All film columns needed for recommendation scoring. */
 const FILM_SELECT = 'id, genres, director, directors, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;

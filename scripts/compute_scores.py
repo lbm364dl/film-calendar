@@ -332,6 +332,194 @@ def score_film_with_breakdown(user_profile: dict, film: dict, film_names: dict =
     }
 
 
+# ══════════════════════════════════════════════════════════════════════════════
+# PERSONALIZED PAGERANK (default algorithm — mirrors recommender-pagerank.ts)
+# ══════════════════════════════════════════════════════════════════════════════
+
+EDGE_WEIGHTS = {
+    "director": 3.0, "genre": 2.0, "cast": 1.5, "keyword": 1.5,
+    "country": 2.0, "language": 1.0, "decade": 1.5, "collection": 1.0,
+    "company": 1.0,
+}
+
+
+def build_knowledge_graph(films):
+    """Build knowledge graph from film metadata.
+
+    Returns (nodes, adjacency, node_index) where:
+    - nodes[i] = (node_id, category)
+    - adjacency[i] = [(neighbor_idx, weight), ...]
+    - node_index[node_id] = i
+    """
+    node_index = {}
+    nodes = []
+    adjacency = []
+
+    def get_or_create(node_id, category):
+        if node_id in node_index:
+            return node_index[node_id]
+        idx = len(nodes)
+        node_index[node_id] = idx
+        nodes.append((node_id, category))
+        adjacency.append([])
+        return idx
+
+    def add_edge(a, b, weight):
+        adjacency[a].append((b, weight))
+        adjacency[b].append((a, weight))
+
+    for film in films:
+        fi = get_or_create(f"film:{film['id']}", "film")
+
+        # Directors
+        directors = film.get("directors") or []
+        if directors:
+            for d in directors[:2]:
+                if isinstance(d, dict) and d.get("id"):
+                    di = get_or_create(f"director:{d['id']}", "director")
+                    add_edge(fi, di, EDGE_WEIGHTS["director"])
+        elif film.get("director"):
+            for name in film["director"].split(",")[:2]:
+                di = get_or_create(f"director:{name.strip().lower()}", "director")
+                add_edge(fi, di, EDGE_WEIGHTS["director"])
+
+        for g in (film.get("genres") or []):
+            gi = get_or_create(f"genre:{g.lower()}", "genre")
+            add_edge(fi, gi, EDGE_WEIGHTS["genre"])
+
+        cast = (film.get("top_cast") or [])[:MAX_CAST]
+        for i, m in enumerate(cast):
+            if isinstance(m, dict) and m.get("id"):
+                w = EDGE_WEIGHTS["cast"] * (1.5 if i < 2 else 1.0)
+                ci = get_or_create(f"cast:{m['id']}", "cast")
+                add_edge(fi, ci, w)
+
+        for kw in (film.get("keywords") or [])[:MAX_KEYWORDS]:
+            if isinstance(kw, dict) and kw.get("id"):
+                ki = get_or_create(f"keyword:{kw['id']}", "keyword")
+                add_edge(fi, ki, EDGE_WEIGHTS["keyword"])
+
+        for c in (film.get("country") or []):
+            ci = get_or_create(f"country:{c.lower()}", "country")
+            add_edge(fi, ci, EDGE_WEIGHTS["country"])
+
+        langs = set()
+        for l in (film.get("primary_language") or []): langs.add(l.lower())
+        for l in (film.get("spoken_languages") or []): langs.add(l.lower())
+        for l in langs:
+            li = get_or_create(f"lang:{l}", "language")
+            add_edge(fi, li, EDGE_WEIGHTS["language"])
+
+        year = film.get("year")
+        dec = "unknown" if year is None else ("pre-1960" if year < 1960 else f"{(year // 10) * 10}s")
+        di = get_or_create(f"decade:{dec}", "decade")
+        add_edge(fi, di, EDGE_WEIGHTS["decade"])
+
+        if film.get("collection_id"):
+            ci = get_or_create(f"collection:{film['collection_id']}", "collection")
+            add_edge(fi, ci, EDGE_WEIGHTS["collection"])
+
+        for co in (film.get("production_companies") or [])[:MAX_COMPANIES]:
+            if isinstance(co, dict) and co.get("id"):
+                ci = get_or_create(f"company:{co['id']}", "company")
+                add_edge(fi, ci, EDGE_WEIGHTS["company"])
+
+    return nodes, adjacency, node_index
+
+
+def run_ppr(adjacency, seed_indices, seed_weights, alpha=0.15, iterations=25):
+    """Run Personalized PageRank via power iteration."""
+    n = len(adjacency)
+    if n == 0 or not seed_indices:
+        return [0.0] * n
+
+    # Build restart distribution
+    restart = [0.0] * n
+    total_sw = sum(seed_weights)
+    if total_sw > 0:
+        for idx, w in zip(seed_indices, seed_weights):
+            restart[idx] = w / total_sw
+
+    # Precompute outgoing weights
+    out_weights = [sum(w for _, w in adj) for adj in adjacency]
+
+    p = restart[:]
+    for _ in range(iterations):
+        next_p = [0.0] * n
+        for i in range(n):
+            if p[i] == 0:
+                continue
+            ow = out_weights[i]
+            if ow == 0:
+                continue
+            for nb, w in adjacency[i]:
+                next_p[nb] += (1 - alpha) * p[i] * (w / ow)
+        for i in range(n):
+            next_p[i] += alpha * restart[i]
+        p = next_p
+
+    return p
+
+
+def score_films_pagerank(watched_films, screened_films, user_ratings, url_map):
+    """Score screened films using Personalized PageRank.
+
+    Returns dict of {film_id: score (0-100)}.
+    """
+    # Deduplicate films
+    all_films_map = {}
+    for f in watched_films:
+        all_films_map[f["id"]] = f
+    for f in screened_films:
+        all_films_map[f["id"]] = f
+    all_films = list(all_films_map.values())
+
+    nodes, adjacency, node_index = build_knowledge_graph(all_films)
+
+    # Build seeds from highly-rated watched films
+    watched_ids = {f["id"] for f in watched_films}
+    seed_indices = []
+    seed_weights = []
+    for film in watched_films:
+        short_url = url_map.get(film["id"])
+        rating = user_ratings.get(short_url, 3.0) if short_url else 3.0
+        if rating < 3.0:
+            continue
+        film_node = f"film:{film['id']}"
+        idx = node_index.get(film_node)
+        if idx is None:
+            continue
+        weight = ((rating - 1.5) / 2.5) ** 2
+        seed_indices.append(idx)
+        seed_weights.append(weight)
+
+    if not seed_indices:
+        return {f["id"]: 0 for f in screened_films}
+
+    probs = run_ppr(adjacency, seed_indices, seed_weights)
+
+    # Extract raw scores for screened films
+    raw_scores = {}
+    for film in screened_films:
+        if film["id"] in watched_ids:
+            continue
+        film_node = f"film:{film['id']}"
+        idx = node_index.get(film_node)
+        raw_scores[film["id"]] = probs[idx] if idx is not None else 0.0
+
+    # Min-max normalize to 5-95
+    if not raw_scores:
+        return {}
+    vals = list(raw_scores.values())
+    mn, mx = min(vals), max(vals)
+    rng = mx - mn
+    result = {}
+    for fid, raw in raw_scores.items():
+        normalized = (raw - mn) / rng if rng > 0 else 0.5
+        result[fid] = round(5 + normalized * 90)
+    return result
+
+
 # ── Supabase helpers ─────────────────────────────────────────────────────────
 
 FILM_COLUMNS = (
@@ -385,6 +573,10 @@ def main():
     parser.add_argument(
         "--dry-run", action="store_true",
         help="Print what would be written without touching the DB."
+    )
+    parser.add_argument(
+        "--algorithm", choices=["pagerank", "cosine"], default="pagerank",
+        help="Algorithm to use. Default: pagerank. Use 'cosine' for the old cosine-similarity approach."
     )
     args = parser.parse_args()
 
@@ -480,22 +672,27 @@ def main():
         watched_films = fetch_in_batches(supabase, "films", "id", film_ids, select=FILM_COLUMNS)
         print(f"  Loaded {len(watched_films)} watched film(s) for profile.")
 
-        # Build user taste profile
-        profile = build_user_profile(watched_films, user_ratings, url_map)
-
-        # Score only the films that need it
+        # Score the films that need it
         score_rows = []
-        for film_id in films_to_score_ids:
-            film = screened_by_id.get(film_id)
-            if film is None:
-                continue
-            s = score_film(profile, film)
-            score_rows.append({
-                "user_id": user_id,
-                "film_id": film_id,
-                "score": s,
-                "computed_at": now_str,
-            })
+        films_to_score = [screened_by_id[fid] for fid in films_to_score_ids if fid in screened_by_id]
+
+        if args.algorithm == "pagerank":
+            # Personalized PageRank
+            ppr_scores = score_films_pagerank(watched_films, films_to_score, user_ratings, url_map)
+            for film_id, s in ppr_scores.items():
+                score_rows.append({
+                    "user_id": user_id, "film_id": film_id,
+                    "score": s, "computed_at": now_str,
+                })
+        else:
+            # Cosine similarity (old algorithm)
+            profile = build_user_profile(watched_films, user_ratings, url_map)
+            for film in films_to_score:
+                s = score_film(profile, film)
+                score_rows.append({
+                    "user_id": user_id, "film_id": film["id"],
+                    "score": s, "computed_at": now_str,
+                })
 
         if not score_rows:
             print("  No scores to write.")
