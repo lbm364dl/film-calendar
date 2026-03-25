@@ -10,6 +10,7 @@ from fetch_films.embajadores import EmbajadoresScraper
 from fetch_films.cine_paz import CinePazScraper
 from fetch_films.verdi import VerdiScraper
 from fetch_films.sala_equis import SalaEquisScraper
+from fetch_films.yelmo import YelmoScraper
 
 # Class-based registry (new pattern)
 SCRAPERS = {
@@ -23,6 +24,7 @@ SCRAPERS = {
     "cine-paz": CinePazScraper(),
     "verdi": VerdiScraper(),
     "sala-equis": SalaEquisScraper(),
+    "yelmo": YelmoScraper(),
 }
 
 
