@@ -12,6 +12,7 @@ from fetch_films.verdi import VerdiScraper
 from fetch_films.sala_equis import SalaEquisScraper
 from fetch_films.artistic_metropol import ArtisticMetropolScraper
 from fetch_films.mk2_palacio_de_hielo import Mk2PalacioDeHieloScraper
+from fetch_films.ocine_caleido import OcineCaleidoScraper
 
 # Class-based registry (new pattern)
 SCRAPERS = {
@@ -27,6 +28,7 @@ SCRAPERS = {
     "sala-equis": SalaEquisScraper(),
     "artistic-metropol": ArtisticMetropolScraper(),
     "mk2-palacio-de-hielo": Mk2PalacioDeHieloScraper(),
+    "ocine-caleido": OcineCaleidoScraper(),
 }
 
 
