@@ -1,0 +1,1895 @@
+{
+  "events": [
+    {
+      "id": 23291,
+      "global_id": "artisticmetropol.es?id=23291",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23291"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-22 14:22:16",
+      "date_utc": "2026-03-22 13:22:16",
+      "modified": "2026-03-22 14:22:16",
+      "modified_utc": "2026-03-22 13:22:16",
+      "url": "https://artisticmetropol.es/sesion/sala-1-el-agente-secreto-2025-doblada-al-espanol-3/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23291",
+      "title": "SALA 1: EL AGENTE SECRETO (2025) Doblada al español",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=el-agente-secreto-2025-doblada-al-espan\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-el-agente-secreto-2025-doblada-al-espanol-3",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 12:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "12",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 12:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "12",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 11:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 11:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23264,
+      "global_id": "artisticmetropol.es?id=23264",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23264"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 15:01:24",
+      "date_utc": "2026-03-17 14:01:24",
+      "modified": "2026-03-17 15:01:24",
+      "modified_utc": "2026-03-17 14:01:24",
+      "url": "https://artisticmetropol.es/sesion/sala-1-freaks-1932-v-o-s-e/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23264",
+      "title": "SALA 1: FREAKS (1932) V.O.S.E.",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=freaks-1932-vose\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-freaks-1932-v-o-s-e",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 16:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 16:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 15:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 15:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23271,
+      "global_id": "artisticmetropol.es?id=23271",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23271"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 20:50:09",
+      "date_utc": "2026-03-17 19:50:09",
+      "modified": "2026-03-17 20:50:09",
+      "modified_utc": "2026-03-17 19:50:09",
+      "url": "https://artisticmetropol.es/sesion/sala-2-valor-sentimental-2025-doblada-al-espanol-8/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23271",
+      "title": "SALA 2: VALOR SENTIMENTAL (2025) Doblada al español",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=valor-sentimental-2025-doblada-al-espan\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-2-valor-sentimental-2025-doblada-al-espanol-8",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 16:45:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "16",
+        "minutes": "45",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 16:45:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "16",
+        "minutes": "45",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 15:45:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "15",
+        "minutes": "45",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 15:45:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "15",
+        "minutes": "45",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23256,
+      "global_id": "artisticmetropol.es?id=23256",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23256"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 14:46:03",
+      "date_utc": "2026-03-17 13:46:03",
+      "modified": "2026-03-22 14:26:21",
+      "modified_utc": "2026-03-22 13:26:21",
+      "url": "https://artisticmetropol.es/sesion/sala-1-el-agente-secreto-2025-doblada-al-espanol-2/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23256",
+      "title": "SALA 1: Pase PRIVADO",
+      "description": "",
+      "excerpt": "",
+      "slug": "sala-1-el-agente-secreto-2025-doblada-al-espanol-2",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 18:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 18:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 17:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 17:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23240,
+      "global_id": "artisticmetropol.es?id=23240",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23240"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 13:23:00",
+      "date_utc": "2026-03-17 12:23:00",
+      "modified": "2026-03-22 14:20:54",
+      "modified_utc": "2026-03-22 13:20:54",
+      "url": "https://artisticmetropol.es/sesion/sala-1-aguilas-de-el-cairo-2025-doblada-al-espanol-4/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23240",
+      "title": "SALA 2: AGUILAS DE EL CAIRO (2025) Doblada al español",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=aguila-de-el-cairo-2025-doblada-al-espanol\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-aguilas-de-el-cairo-2025-doblada-al-espanol-4",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 19:50:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "19",
+        "minutes": "50",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 19:50:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "19",
+        "minutes": "50",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 18:50:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "18",
+        "minutes": "50",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 18:50:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "18",
+        "minutes": "50",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23294,
+      "global_id": "artisticmetropol.es?id=23294",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23294"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-22 14:29:39",
+      "date_utc": "2026-03-22 13:29:39",
+      "modified": "2026-03-22 14:29:39",
+      "modified_utc": "2026-03-22 13:29:39",
+      "url": "https://artisticmetropol.es/sesion/sala-1-freaks-1932-v-o-s-e-2/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23294",
+      "title": "SALA 1: FREAKS (1932) V.O.S.E.",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=freaks-1932-vose\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-freaks-1932-v-o-s-e-2",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 21:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 21:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 20:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 20:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23212,
+      "global_id": "artisticmetropol.es?id=23212",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23212"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-16 10:50:03",
+      "date_utc": "2026-03-16 09:50:03",
+      "modified": "2026-03-16 10:50:03",
+      "modified_utc": "2026-03-16 09:50:03",
+      "url": "https://artisticmetropol.es/sesion/sala-2-pase-privado-927/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23212",
+      "title": "SALA 2: Pase PRIVADO",
+      "description": "",
+      "excerpt": "",
+      "slug": "sala-2-pase-privado-927",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 22:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 22:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 21:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 21:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23252,
+      "global_id": "artisticmetropol.es?id=23252",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23252"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 14:23:01",
+      "date_utc": "2026-03-17 13:23:01",
+      "modified": "2026-03-17 14:23:01",
+      "modified_utc": "2026-03-17 13:23:01",
+      "url": "https://artisticmetropol.es/sesion/sala-1-visiones-bad-dreams-1988-v-o-s-e/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23252",
+      "title": "SALA 1: VISIONES: BAD DREAMS (1988) V.O.S.E.",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=visiones-bad-dreams-1988-vose\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-visiones-bad-dreams-1988-v-o-s-e",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-25 22:15:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "22",
+        "minutes": "15",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-25 22:15:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "22",
+        "minutes": "15",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-25 21:15:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "15",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-25 21:15:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "25",
+        "hour": "21",
+        "minutes": "15",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23220,
+      "global_id": "artisticmetropol.es?id=23220",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23220"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-16 10:53:47",
+      "date_utc": "2026-03-16 09:53:47",
+      "modified": "2026-03-16 10:53:47",
+      "modified_utc": "2026-03-16 09:53:47",
+      "url": "https://artisticmetropol.es/sesion/sala-2-monograficos-sobre-cine-contemporaneo-marzo-2026-4/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23220",
+      "title": "SALA 2: MONOGRÁFICOS SOBRE CINE CONTEMPORANEO MARZO 2026",
+      "description": "<div>Jueves, 5 de marzo: El cine de Roman Polanski a través de&nbsp;<em>La Venus de las pieles</em>.</div>\n<div>Jueves, 12 de marzo: El cine de Jim Jarmusch a través de&nbsp;<em>Solo los amantes sobreviven</em>.</div>\n<div>Jueves, 19 de marzo: El cine de Jia Zhangke a través de&nbsp;<em>Un toque de violencia</em>.</div>\n<div>Jueves, 26 de marzo: El cine de Carlos Vermut a través de&nbsp;<em>Magical Girl</em>.</div>\n<div><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=monograficos-sobre-cine-contemporaneo-marzo-2026\">COMPRAR ENTRADAS</a></div>",
+      "excerpt": "",
+      "slug": "sala-2-monograficos-sobre-cine-contemporaneo-marzo-2026-4",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 11:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 11:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 10:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "10",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 10:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "10",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23254,
+      "global_id": "artisticmetropol.es?id=23254",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23254"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 14:39:51",
+      "date_utc": "2026-03-17 13:39:51",
+      "modified": "2026-03-17 14:39:51",
+      "modified_utc": "2026-03-17 13:39:51",
+      "url": "https://artisticmetropol.es/sesion/sala-1-tres-adioses-2025-doblada-al-espanol-11/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23254",
+      "title": "SALA 1: TRES ADIOSES (2025) Doblada al español",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=tres-adioses-2025-doblada-al-es\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-tres-adioses-2025-doblada-al-espanol-11",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 16:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 16:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 15:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 15:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23184,
+      "global_id": "artisticmetropol.es?id=23184",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23184"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-16 10:41:43",
+      "date_utc": "2026-03-16 09:41:43",
+      "modified": "2026-03-16 10:41:43",
+      "modified_utc": "2026-03-16 09:41:43",
+      "url": "https://artisticmetropol.es/sesion/sala-1-pase-privado-1137/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23184",
+      "title": "SALA 1: Pase PRIVADO",
+      "description": "",
+      "excerpt": "",
+      "slug": "sala-1-pase-privado-1137",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 18:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 18:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 17:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 17:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23214,
+      "global_id": "artisticmetropol.es?id=23214",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23214"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-16 10:50:25",
+      "date_utc": "2026-03-16 09:50:25",
+      "modified": "2026-03-16 10:50:25",
+      "modified_utc": "2026-03-16 09:50:25",
+      "url": "https://artisticmetropol.es/sesion/sala-2-pase-privado-928/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23214",
+      "title": "SALA 2: Pase PRIVADO",
+      "description": "",
+      "excerpt": "",
+      "slug": "sala-2-pase-privado-928",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 18:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 18:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 17:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 17:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23136,
+      "global_id": "artisticmetropol.es?id=23136",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23136"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-15 13:16:45",
+      "date_utc": "2026-03-15 12:16:45",
+      "modified": "2026-03-15 13:16:45",
+      "modified_utc": "2026-03-15 12:16:45",
+      "url": "https://artisticmetropol.es/sesion/sala-1-semillas-2025-2/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23136",
+      "title": "SALA 1: SEMILLAS (2025)",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=semillas-202\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-semillas-2025-2",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 20:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 20:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 19:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "19",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 19:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "19",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23216,
+      "global_id": "artisticmetropol.es?id=23216",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23216"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-16 10:50:45",
+      "date_utc": "2026-03-16 09:50:45",
+      "modified": "2026-03-16 10:50:45",
+      "modified_utc": "2026-03-16 09:50:45",
+      "url": "https://artisticmetropol.es/sesion/sala-2-pase-privado-929/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23216",
+      "title": "SALA 2: Pase PRIVADO",
+      "description": "",
+      "excerpt": "",
+      "slug": "sala-2-pase-privado-929",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 20:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 20:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "20",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 19:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "19",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 19:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "19",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23246,
+      "global_id": "artisticmetropol.es?id=23246",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23246"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 14:01:23",
+      "date_utc": "2026-03-17 13:01:23",
+      "modified": "2026-03-17 14:01:23",
+      "modified_utc": "2026-03-17 13:01:23",
+      "url": "https://artisticmetropol.es/sesion/sala-1-aguilas-de-el-cairo-2025-v-o-s-e-2/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23246",
+      "title": "SALA 1: AGUILAS DE EL CAIRO (2025) V.O.S.E.",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=aguilas-de-el-cairo-2025-vose\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-1-aguilas-de-el-cairo-2025-v-o-s-e-2",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 22:00:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 22:00:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 21:00:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 21:00:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "21",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    },
+    {
+      "id": 23242,
+      "global_id": "artisticmetropol.es?id=23242",
+      "global_id_lineage": [
+        "artisticmetropol.es?id=23242"
+      ],
+      "author": "2",
+      "status": "publish",
+      "date": "2026-03-17 13:35:42",
+      "date_utc": "2026-03-17 12:35:42",
+      "modified": "2026-03-17 13:35:42",
+      "modified_utc": "2026-03-17 12:35:42",
+      "url": "https://artisticmetropol.es/sesion/sala-2-doctor-cyclops-1940-v-o-s-e/",
+      "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/23242",
+      "title": "SALA 2: DOCTOR CYCLOPS (1940) V.O.S.E.",
+      "description": "<p><a class=\"fasc-button fasc-size-medium fasc-type-flat\" style=\"background-color: #33809e; color: #ffffff;\" href=\"https://www.giglon.com/todos?idEvent=doctor-cyclops-1940-vose\">COMPRAR ENTRADAS</a></p>",
+      "excerpt": "",
+      "slug": "sala-2-doctor-cyclops-1940-v-o-s-e",
+      "image": false,
+      "all_day": false,
+      "start_date": "2026-03-26 22:55:00",
+      "start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "22",
+        "minutes": "55",
+        "seconds": "00"
+      },
+      "end_date": "2026-03-26 22:55:00",
+      "end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "22",
+        "minutes": "55",
+        "seconds": "00"
+      },
+      "utc_start_date": "2026-03-26 21:55:00",
+      "utc_start_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "21",
+        "minutes": "55",
+        "seconds": "00"
+      },
+      "utc_end_date": "2026-03-26 21:55:00",
+      "utc_end_date_details": {
+        "year": "2026",
+        "month": "03",
+        "day": "26",
+        "hour": "21",
+        "minutes": "55",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Madrid",
+      "timezone_abbr": "CET",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "",
+        "currency_code": "",
+        "currency_position": "",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [],
+      "tags": [],
+      "venue": {
+        "id": 2333,
+        "author": "1",
+        "status": "publish",
+        "date": "2023-02-20 12:56:13",
+        "date_utc": "2023-02-20 11:56:13",
+        "modified": "2023-02-20 12:56:13",
+        "modified_utc": "2023-02-20 11:56:13",
+        "url": "https://artisticmetropol.es/local/artistic-cinema/",
+        "venue": "Artistic Cinema",
+        "slug": "artistic-cinema",
+        "address": "Cigarreras 6",
+        "city": "Madrid",
+        "country": "España",
+        "province": "Madrid",
+        "phone": "+34 915272792",
+        "website": "https://artisticmetropol.es",
+        "stateprovince": "Madrid",
+        "show_map": true,
+        "show_map_link": true,
+        "global_id": "artisticmetropol.es?id=2333",
+        "global_id_lineage": [
+          "artisticmetropol.es?id=2333"
+        ]
+      },
+      "organizer": [
+        {
+          "id": 2334,
+          "author": "1",
+          "status": "publish",
+          "date": "2023-02-20 12:56:13",
+          "date_utc": "2023-02-20 11:56:13",
+          "modified": "2023-02-20 12:56:13",
+          "modified_utc": "2023-02-20 11:56:13",
+          "url": "https://artisticmetropol.es/organizador/artistic-cinema/",
+          "organizer": "Artistic Cinema",
+          "slug": "artistic-cinema",
+          "global_id": "artisticmetropol.es?id=2334",
+          "global_id_lineage": [
+            "artisticmetropol.es?id=2334"
+          ]
+        }
+      ],
+      "ticketed": false
+    }
+  ],
+  "rest_url": "https://artisticmetropol.es/wp-json/tribe/events/v1/events/?page=1&per_page=50&start_date=2026-03-25 00:00:00&end_date=2026-03-26 23:59:59&status=publish",
+  "total": 16,
+  "total_pages": 1
+}
