@@ -527,6 +527,12 @@ def run_new_cinema(args):
     generate_cinema_boilerplate(args.key, args.name, args.url)
 
 
+def run_seo(args):
+    """Execute the seo command - inject structured data into index.html."""
+    from seo import run_seo as _run_seo
+    _run_seo()
+
+
 if __name__ == "__main__":
     args = parse_args()
 
@@ -540,3 +546,5 @@ if __name__ == "__main__":
         run_archive(args)
     elif args.command == "new-cinema":
         run_new_cinema(args)
+    elif args.command == "seo":
+        run_seo(args)
