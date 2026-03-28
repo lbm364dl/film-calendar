@@ -173,6 +173,19 @@ def parse_args():
         help="Print what would happen without writing any files.",
     )
 
+    # Status subcommand
+    status_parser = subparsers.add_parser(
+        "status",
+        help="Show session coverage per theater (last session date, session count)",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    status_parser.add_argument(
+        "--source",
+        type=str,
+        default="docs/screenings.json",
+        help="Path to the screenings JSON (default: docs/screenings.json)",
+    )
+
     # SEO subcommand
     seo_parser = subparsers.add_parser(
         "seo",
