@@ -28,6 +28,7 @@ class FilmInfo:
     dates: list[str] = field(default_factory=list)
     director: Optional[str] = None
     year: Optional[str] = None
+    special: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary for DataFrame compatibility."""

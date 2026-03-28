@@ -187,6 +187,11 @@ def run_merge(args):
         theater = row.get("theater", "Unknown") if pd.notna(row.get("theater")) else "Unknown"
         link = row.get("theater_film_link", "") if pd.notna(row.get("theater_film_link")) else ""
 
+        # Read top-level special column (takes precedence over per-session values)
+        row_special = row.get("special")
+        if pd.isna(row_special) if isinstance(row_special, float) else not row_special:
+            row_special = None
+
         new_dates = []
         for d in raw_dates:
             if isinstance(d, dict):
@@ -198,8 +203,14 @@ def run_merge(args):
                 }
                 if d.get("version"):
                     item["version"] = d["version"]
+                # Top-level special column takes precedence, fall back to per-session
+                special = row_special or d.get("special")
+                if special:
+                    item["special"] = special
             elif isinstance(d, str):
                 item = {"timestamp": d, "location": theater, "url_tickets": "", "url_info": link}
+                if row_special:
+                    item["special"] = row_special
             else:
                 continue
             if item.get("timestamp"):
