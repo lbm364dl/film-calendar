@@ -13,6 +13,7 @@
     --accent: #ff6b6b;
     --border: #333;
     --rating-gold: #f5c518;
+    --special: #e8a040;
     --csv-loaded-controls-gap: 0.6rem;
 }
 
@@ -294,6 +295,53 @@ h1 {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text);
     border-color: var(--text-dim);
+}
+
+.special-filter-btn {
+    flex: 1;
+    min-height: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.special-filter-btn:hover {
+    background: rgba(232, 160, 64, 0.08);
+    color: var(--text);
+    border-color: var(--special);
+}
+
+.special-filter-btn.active {
+    background: rgba(232, 160, 64, 0.15);
+    color: var(--special);
+    border-color: var(--special);
+}
+
+.special-filter-btn svg {
+    flex-shrink: 0;
+}
+
+.special-label-short {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .special-label-full {
+        display: none;
+    }
+    .special-label-short {
+        display: inline;
+    }
 }
 
 .watchlist-filter,
@@ -1059,6 +1107,18 @@ h1 {
 .version-badge.dubbed {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-dim);
+}
+
+.special-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(232, 160, 64, 0.15);
+    color: var(--special);
 }
 
 .calendar-btn {
