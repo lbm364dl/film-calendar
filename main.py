@@ -65,6 +65,10 @@ def run_scrape(args):
     for theater in theaters_list:
         fetched_films += theaters.fetch_films(theater, start_date, end_date)
 
+    if not fetched_films:
+        print("\n✓ Scraped 0 films (no sessions found in the requested date range)")
+        return
+
     df = (
         pd.DataFrame(fetched_films)
         .drop_duplicates("theater_film_link")
@@ -72,7 +76,7 @@ def run_scrape(args):
     )
     df = df[~df["title"].isna()]
     df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
-    
+
     df.to_csv(output_csv, index=False)
     print(f"\n✓ Scraped {len(df)} films → {output_csv}")
     print(f"  Next: python main.py match --input {output_csv}")
