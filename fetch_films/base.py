@@ -45,7 +45,7 @@ class BaseCinemaScraper(ABC):
     - parse_film_page: extract film info from a film detail page
     """
     
-    HEADERS = {"User-Agent": "Chrome/131.0.0.0"}
+    HEADERS = {"User-Agent": "curl/8.5.0", "Accept": "*/*"}
 
     @property
     @abstractmethod
