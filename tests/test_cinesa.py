@@ -140,7 +140,7 @@ class TestParseCartelera(unittest.TestCase):
                 )
                 self.assertEqual(d["location"], "Cinesa Proyecciones")
                 self.assertIn("url_tickets", d)
-                self.assertIn("url_info", d)
+                self.assertNotIn("url_info", d)
 
     def test_ticket_urls_decoded(self):
         films = self.scraper.parse_cartelera(
@@ -155,20 +155,8 @@ class TestParseCartelera(unittest.TestCase):
                         f"Ticket URL should contain cinesa.es: {d['url_tickets']}",
                     )
 
-    def test_vose_sessions_tagged(self):
-        films = self.scraper.parse_cartelera(
-            self.html, "Cinesa Proyecciones", self.start, self.end
-        )
-        vose_sessions = []
-        for film in films:
-            for d in film["dates"]:
-                if d.get("version") == "VOSE":
-                    vose_sessions.append(d)
-        self.assertTrue(
-            len(vose_sessions) > 0, "Should find VOSE sessions"
-        )
-
-    def test_digital_sessions_not_tagged(self):
+    def test_vose_sessions_not_tagged(self):
+        """VOSE sessions should have no version tag (original is the default)."""
         films = self.scraper.parse_cartelera(
             self.html, "Cinesa Proyecciones", self.start, self.end
         )
@@ -176,10 +164,23 @@ class TestParseCartelera(unittest.TestCase):
             for d in film["dates"]:
                 if d.get("version"):
                     self.assertNotEqual(
-                        d["version"],
-                        "DIGITAL",
-                        "DIGITAL sessions should not have a version tag",
+                        d["version"], "VOSE",
+                        "VOSE sessions should not have a version tag",
                     )
+
+    def test_digital_sessions_tagged_as_dubbed(self):
+        """DIGITAL sessions should be tagged as dubbed."""
+        films = self.scraper.parse_cartelera(
+            self.html, "Cinesa Proyecciones", self.start, self.end
+        )
+        dubbed_sessions = []
+        for film in films:
+            for d in film["dates"]:
+                if d.get("version") == "dubbed":
+                    dubbed_sessions.append(d)
+        self.assertTrue(
+            len(dubbed_sessions) > 0, "Should find dubbed (DIGITAL) sessions"
+        )
 
     def test_date_range_filtering(self):
         # Only include March 25
