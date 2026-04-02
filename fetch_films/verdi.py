@@ -30,6 +30,7 @@ TITLE_PREFIXES = [
     "Sesión TETA:",
     "Verdi Club:",
     "Mañanas de Ópera y Ballet:",
+    "F. Espectador:",
 ]
 
 # Regex for the VOSE suffix in title attributes

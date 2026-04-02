@@ -13,7 +13,7 @@ Version logic:
 """
 
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from bs4 import BeautifulSoup
 
@@ -70,11 +70,13 @@ def _resolve_date(label: str, reference_year: int) -> datetime | None:
     """Turn a day label like ``'Domingo 01/03'`` into a datetime.
 
     *reference_year* is the year to assume for ambiguous DD/MM dates.
-    For ``'Hoy'`` we return ``None`` (caller must handle separately).
+    For ``'Hoy'`` and ``'Mañana'`` we return ``None`` (caller resolves them).
     """
     label = label.strip()
     if label.lower() == "hoy":
         return None  # Sentinel – caller resolves with today's date
+    if label.lower() == "mañana":
+        return None  # Sentinel – caller resolves as today + 1 day
 
     # Expected format: "DayName DD/MM"
     m = re.search(r"(\d{2})/(\d{2})", label)
@@ -199,6 +201,9 @@ class CinePazScraper(BaseCinemaScraper):
                 resolved = _resolve_date(label, ref_year)
                 if resolved is None and label.lower() == "hoy":
                     current_date = datetime(today.year, today.month, today.day)
+                elif resolved is None and label.lower() == "mañana":
+                    tomorrow = today + timedelta(days=1)
+                    current_date = datetime(tomorrow.year, tomorrow.month, tomorrow.day)
                 elif resolved is not None:
                     # Handle year rollover
                     if resolved.month < start_date.month:

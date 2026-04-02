@@ -28,6 +28,7 @@ class FilmInfo:
     dates: list[str] = field(default_factory=list)
     director: Optional[str] = None
     year: Optional[str] = None
+    special: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary for DataFrame compatibility."""
@@ -44,7 +45,7 @@ class BaseCinemaScraper(ABC):
     - parse_film_page: extract film info from a film detail page
     """
     
-    HEADERS = {"User-Agent": "Chrome/131.0.0.0"}
+    HEADERS = {"User-Agent": "curl/8.5.0", "Accept": "*/*"}
 
     @property
     @abstractmethod

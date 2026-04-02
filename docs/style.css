@@ -13,6 +13,7 @@
     --accent: #ff6b6b;
     --border: #333;
     --rating-gold: #f5c518;
+    --special: #e8a040;
     --csv-loaded-controls-gap: 0.6rem;
 }
 
@@ -119,12 +120,23 @@ h1 {
 
 .actions-cell {
     grid-column: 9 / 14;
-    grid-row: 2;
+    grid-row: 2 / 4;
     display: grid;
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
     gap: 0.35rem;
     height: 100%;
     position: relative;
+}
+
+.toggle-row {
+    grid-column: 1 / 9;
+    grid-row: 3;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.toggle-row > * {
+    flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -135,11 +147,11 @@ h1 {
     }
 
     .filters-grid {
-        grid-template-columns: repeat(9, 1fr);
+        grid-template-columns: repeat(10, 1fr);
     }
 
     .search-box {
-        grid-column: 1 / 10;
+        grid-column: 1 / 11;
         grid-row: 1;
     }
 
@@ -149,7 +161,7 @@ h1 {
     }
 
     #theater-filter {
-        grid-column: 5 / 10;
+        grid-column: 5 / 11;
         grid-row: 2;
     }
 
@@ -158,9 +170,21 @@ h1 {
         grid-row: 3;
     }
 
+    .toggle-row {
+        grid-column: 1 / 6;
+        grid-row: 4;
+        display: flex;
+        gap: 0.35rem;
+    }
+
+    .toggle-row > * {
+        flex: 1;
+    }
+
     .actions-cell {
-        grid-column: 6 / 10;
-        grid-row: 3;
+        grid-column: 6 / 11;
+        grid-row: 3 / 5;
+        grid-template-rows: repeat(4, minmax(0, 1fr));
     }
 }
 
@@ -273,6 +297,36 @@ h1 {
     min-height: 52px;
 }
 
+/* Toggle filter buttons (version, sort) */
+.toggle-filter-btn {
+    flex: 1;
+    min-height: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.toggle-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border-color: var(--text-dim);
+}
+
+.toggle-filter-btn.active {
+    background: rgba(255, 107, 107, 0.12);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 .clear-filters-btn {
     flex: 1;
     min-height: 0;
@@ -294,6 +348,53 @@ h1 {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text);
     border-color: var(--text-dim);
+}
+
+.special-filter-btn {
+    flex: 1;
+    min-height: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.special-filter-btn:hover {
+    background: rgba(232, 160, 64, 0.08);
+    color: var(--text);
+    border-color: var(--special);
+}
+
+.special-filter-btn.active {
+    background: rgba(232, 160, 64, 0.15);
+    color: var(--special);
+    border-color: var(--special);
+}
+
+.special-filter-btn svg {
+    flex-shrink: 0;
+}
+
+.special-label-short {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .special-label-full {
+        display: none;
+    }
+    .special-label-short {
+        display: inline;
+    }
 }
 
 .watchlist-filter,
@@ -1059,6 +1160,18 @@ h1 {
 .version-badge.dubbed {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-dim);
+}
+
+.special-badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(232, 160, 64, 0.15);
+    color: var(--special);
 }
 
 .calendar-btn {

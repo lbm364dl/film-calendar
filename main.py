@@ -65,6 +65,10 @@ def run_scrape(args):
     for theater in theaters_list:
         fetched_films += theaters.fetch_films(theater, start_date, end_date)
 
+    if not fetched_films:
+        print("\n✓ Scraped 0 films (no sessions found in the requested date range)")
+        return
+
     df = (
         pd.DataFrame(fetched_films)
         .drop_duplicates("theater_film_link")
@@ -72,7 +76,7 @@ def run_scrape(args):
     )
     df = df[~df["title"].isna()]
     df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
-    
+
     df.to_csv(output_csv, index=False)
     print(f"\n✓ Scraped {len(df)} films → {output_csv}")
     print(f"  Next: python main.py match --input {output_csv}")
@@ -187,6 +191,11 @@ def run_merge(args):
         theater = row.get("theater", "Unknown") if pd.notna(row.get("theater")) else "Unknown"
         link = row.get("theater_film_link", "") if pd.notna(row.get("theater_film_link")) else ""
 
+        # Read top-level special column (takes precedence over per-session values)
+        row_special = row.get("special")
+        if pd.isna(row_special) if isinstance(row_special, float) else not row_special:
+            row_special = None
+
         new_dates = []
         for d in raw_dates:
             if isinstance(d, dict):
@@ -194,12 +203,18 @@ def run_merge(args):
                     "timestamp": d.get("timestamp"),
                     "location": d.get("location", theater),
                     "url_tickets": d.get("url_tickets", d.get("url", "")),
-                    "url_info": d.get("url_info", link),
+                    "url_info": d.get("url_info", ""),
                 }
                 if d.get("version"):
                     item["version"] = d["version"]
+                # Top-level special column takes precedence, fall back to per-session
+                special = row_special or d.get("special")
+                if special:
+                    item["special"] = special
             elif isinstance(d, str):
                 item = {"timestamp": d, "location": theater, "url_tickets": "", "url_info": link}
+                if row_special:
+                    item["special"] = row_special
             else:
                 continue
             if item.get("timestamp"):
@@ -371,6 +386,16 @@ def run_merge(args):
         except Exception as e:
             print(f"  Error during TMDB batch fetch: {e}")
 
+    # ── Strip "dubbed" tag from Spanish-language films ───────────────────
+    # A Spanish film screened at Cinesa as "DIGITAL" is the original version.
+    for film in master_films:
+        lang = film.get("primary_language")
+        lang_values = lang if isinstance(lang, list) else ([lang] if lang else [])
+        if any(v in ("es", "Spanish") for v in lang_values):
+            for d in film.get("dates", []):
+                if isinstance(d, dict) and d.get("version") == "dubbed":
+                    del d["version"]
+
     # ── Sort by rating and write ──────────────────────────────────────────
     master_films.sort(
         key=lambda f: (f.get("letterboxd_rating") or 0,),
@@ -527,6 +552,59 @@ def run_new_cinema(args):
     generate_cinema_boilerplate(args.key, args.name, args.url)
 
 
+def run_status(args):
+    """Show session coverage per theater, sorted by last session date (ascending)."""
+    from collections import defaultdict
+    from datetime import datetime as _dt
+
+    master_films = read_master_json(args.source)
+
+    locations = defaultdict(lambda: {"dates": [], "special": 0})
+
+    for film in master_films:
+        for d in film.get("dates", []):
+            if not isinstance(d, dict):
+                continue
+            loc = d.get("location", "Unknown")
+            ts = d.get("timestamp", "")
+            if ts:
+                locations[loc]["dates"].append(ts)
+            if d.get("special"):
+                locations[loc]["special"] += 1
+
+    rows = []
+    for loc, info in locations.items():
+        parsed = []
+        for ts in info["dates"]:
+            try:
+                parsed.append(_dt.strptime(ts.strip(), "%Y-%m-%d %H:%M"))
+            except ValueError:
+                try:
+                    parsed.append(_dt.strptime(ts.strip(), "%Y-%m-%d"))
+                except ValueError:
+                    pass
+        last = max(parsed).strftime("%Y-%m-%d") if parsed else "N/A"
+        rows.append((loc, len(info["dates"]), last, info["special"]))
+
+    rows.sort(key=lambda r: r[2])
+
+    # Print markdown table
+    print(f"Session coverage from {args.source} (sorted by urgency)\n")
+    print(f"| {'Theater':<25} | {'Sessions':>8} | {'Last Session':<12} | {'Special':>7} |")
+    print(f"|{'-' * 27}|{'-' * 10}|{'-' * 14}|{'-' * 9}|")
+    for loc, count, last, special in rows:
+        sp = str(special) if special else ""
+        print(f"| {loc:<25} | {count:>8} | {last:<12} | {sp:>7} |")
+
+    print(f"\nTotal: {sum(r[1] for r in rows)} sessions across {len(rows)} theaters")
+
+
+def run_seo(args):
+    """Execute the seo command - inject structured data into index.html."""
+    from seo import run_seo as _run_seo
+    _run_seo()
+
+
 if __name__ == "__main__":
     args = parse_args()
 
@@ -540,3 +618,7 @@ if __name__ == "__main__":
         run_archive(args)
     elif args.command == "new-cinema":
         run_new_cinema(args)
+    elif args.command == "status":
+        run_status(args)
+    elif args.command == "seo":
+        run_seo(args)

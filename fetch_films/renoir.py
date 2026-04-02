@@ -141,6 +141,9 @@ class RenoirScraper(BaseCinemaScraper):
                 continue
             
             title = title_tag.text.strip()
+            # Strip program-label suffixes, e.g. " [Wilder Cinema]"
+            if " [" in title:
+                title = title[:title.index(" [")].strip()
             # If title is all uppercase, convert to title case
             if title.isupper():
                 title = title.title()
