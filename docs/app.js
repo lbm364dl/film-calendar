@@ -5,7 +5,7 @@ const TRANSLATIONS = {
     es: {
         viewersLabel: (n) => `Vista por ${n} personas`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Más próximamente...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
         selectDate: 'Elegir día',
         allTheaters: 'Todos los cines',
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     en: {
         viewersLabel: (n) => `${n} viewers`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • More coming...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • More coming...',
         searchPlaceholder: 'Search by title or director',
         selectDate: 'Select date',
         allTheaters: 'All Theaters',
@@ -465,6 +465,11 @@ function isCinesaLocation(location) {
     return location && location.startsWith('Cinesa ');
 }
 
+// Yelmo cinema locations
+function isYelmoLocation(location) {
+    return location && location.startsWith('Yelmo ');
+}
+
 function isSpanishFilm(film) {
     const lang = film.primaryLanguage;
     if (!lang) return false;
@@ -494,6 +499,8 @@ function filterFilms() {
                     if (!isEmbajadoresLocation(d.location)) return false;
                 } else if (selectedTheater === 'Cinesa') {
                     if (!isCinesaLocation(d.location)) return false;
+                } else if (selectedTheater === 'Cines Yelmo') {
+                    if (!isYelmoLocation(d.location)) return false;
                 } else if (d.location !== selectedTheater) {
                     return false;
                 }
