@@ -26,8 +26,7 @@ _API_URL = "https://yelmocines.es/now-playing.aspx/GetNowPlaying"
 _DATE_RE = re.compile(r"/Date\((\d+)\)/")
 
 # Madrid Yelmo locations (the API returns all 10 in one response).
-# We keep a static mapping from CinemaId → short display name used in
-# the ``location`` field of each session.
+# We keep static mappings from CinemaId → display name / URL key.
 LOCATIONS = {
     35: "Yelmo Ideal",
     82: "Yelmo La Vaguada",
@@ -40,6 +39,7 @@ LOCATIONS = {
     37: "Yelmo Rivas H2O",
     38: "Yelmo TresAguas",
 }
+
 
 
 def _parse_dotnet_date(s: str) -> datetime | None:
@@ -164,12 +164,15 @@ class YelmoScraper(BaseCinemaScraper):
                             if st["CinemaId"] != cinema_id:
                                 continue
 
-                            sinopsis = self._sinopsis_url(mkey)
                             session = {
                                 "timestamp": f"{day_str} {st['Time']}",
                                 "location": location,
-                                "url_tickets": sinopsis,
-                                "url_info": sinopsis,
+                                "url_tickets": (
+                                    f"https://compra.yelmocines.es/"
+                                    f"?cinemaVistaId={st['VistaCinemaId']}"
+                                    f"&showtimeVistaId={st['ShowtimeId']}"
+                                ),
+                                "url_info": self._sinopsis_url(mkey),
                                 "_vose": vose,
                                 "_espanol": espanol,
                             }
@@ -212,7 +215,7 @@ class YelmoScraper(BaseCinemaScraper):
     def _build_film_stub(movie: dict) -> dict:
         """Create a film dict (without dates) from an API movie object."""
         title = movie["Title"].strip()
-        director = movie.get("Director", "").strip() or None
+        director = " ".join(movie.get("Director", "").split()) or None
         # Normalise director casing if all-caps
         if director and director == director.upper():
             director = director.title()
@@ -228,3 +231,4 @@ class YelmoScraper(BaseCinemaScraper):
     @staticmethod
     def _sinopsis_url(movie_key: str) -> str:
         return f"https://yelmocines.es/sinopsis/{movie_key}"
+

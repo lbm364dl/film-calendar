@@ -137,13 +137,21 @@ class TestParseResponse(unittest.TestCase):
             )
 
     def test_info_urls_present(self):
-        """Each session should have url_info and url_tickets."""
+        """Each session should have url_info pointing to sinopsis and url_tickets to compra."""
         films = self._parse()
         for f in films:
             for d in f["dates"]:
-                self.assertTrue(d["url_info"], f"Missing url_info for {f['title']}")
                 self.assertTrue(
-                    d["url_tickets"], f"Missing url_tickets for {f['title']}"
+                    d["url_info"].startswith("https://yelmocines.es/sinopsis/"),
+                    f"Bad url_info for {f['title']}: {d['url_info']}",
+                )
+                self.assertTrue(
+                    d["url_tickets"].startswith("https://compra.yelmocines.es/?cinemaVistaId="),
+                    f"Bad url_tickets for {f['title']}: {d['url_tickets']}",
+                )
+                self.assertIn(
+                    "showtimeVistaId=", d["url_tickets"],
+                    f"url_tickets missing showtimeVistaId for {f['title']}",
                 )
 
     def test_directors_extracted(self):
