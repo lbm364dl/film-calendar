@@ -45,8 +45,8 @@ PUBLICINE_BASE = "https://www.publicine.net"
 # "VOSE" = original version with Spanish subtitles.
 # "3D DIGITAL" / "3D VOSE" etc. also possible.
 VERSION_MAP = {
-    "VOSE": "VOSE",
-    "3D VOSE": "VOSE",
+    "DIGITAL": "dubbed",
+    "3D DIGITAL": "dubbed",
 }
 
 
@@ -268,7 +268,6 @@ class CinesaScraper(BaseCinemaScraper):
                         "timestamp": timestamp,
                         "location": location_name,
                         "url_tickets": ticket_url,
-                        "url_info": film_url,
                     }
 
                     version_tag = VERSION_MAP.get(version_text)
