@@ -51,6 +51,10 @@ const TRANSLATIONS = {
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
         viewOnGithub: 'Ver en GitHub',
         dubbedTooltip: 'Doblada al castellano',
+        versionOriginal: 'Versión original',
+        versionDubbed: 'En español',
+        sortByRating: 'Ordenar por nota',
+        sortByViewers: 'Ordenar por viewers',
         loadMore: (n) => `Mostrar más (${n} restantes)`,
         specialFilterFull: 'Sesiones especiales',
         specialFilterShort: 'Especiales',
@@ -106,6 +110,10 @@ const TRANSLATIONS = {
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
         viewOnGithub: 'View on GitHub',
         dubbedTooltip: 'Dubbed in Spanish',
+        versionOriginal: 'Original version',
+        versionDubbed: 'In Spanish',
+        sortByRating: 'Sort by rating',
+        sortByViewers: 'Sort by viewers',
         loadMore: (n) => `Load more (${n} remaining)`,
         specialFilterFull: 'Special sessions',
         specialFilterShort: 'Special',
@@ -452,10 +460,23 @@ function isEmbajadoresLocation(location) {
     return location && EMBAJADORES_LOCATIONS.includes(location);
 }
 
+// Cinesa cinema locations
+function isCinesaLocation(location) {
+    return location && location.startsWith('Cinesa ');
+}
+
+function isSpanishFilm(film) {
+    const lang = film.primaryLanguage;
+    if (!lang) return false;
+    const values = Array.isArray(lang) ? lang : [lang];
+    return values.some(v => v === 'es' || v === 'Spanish');
+}
+
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
     const selectedTheater = document.getElementById('theater-filter').value;
     const selectedDate = document.getElementById('date-filter').value;
+    const selectedVersion = document.getElementById('version-filter').dataset.current;
     const todayStart = getLocalTodayStart();
 
     filteredFilms = allFilms.map(film => {
@@ -464,13 +485,15 @@ function filterFilms() {
             return dateObj && dateObj >= todayStart;
         });
 
-        // Apply theater/date filters at the session level so both constraints match the same session.
+        // Apply theater/date/version filters at the session level so all constraints match the same session.
         const sessionFilteredDates = futureDates.filter(d => {
             if (selectedTheater) {
                 if (selectedTheater === 'Cines Renoir') {
                     if (!isRenoirLocation(d.location)) return false;
                 } else if (selectedTheater === 'Cines Embajadores') {
                     if (!isEmbajadoresLocation(d.location)) return false;
+                } else if (selectedTheater === 'Cinesa') {
+                    if (!isCinesaLocation(d.location)) return false;
                 } else if (d.location !== selectedTheater) {
                     return false;
                 }
@@ -478,6 +501,11 @@ function filterFilms() {
 
             if (selectedDate && !d.timestamp.startsWith(selectedDate)) {
                 return false;
+            }
+
+            if (selectedVersion && !isSpanishFilm(film)) {
+                if (selectedVersion === 'original' && d.version === 'dubbed') return false;
+                if (selectedVersion === 'dubbed' && d.version !== 'dubbed') return false;
             }
 
             return true;
@@ -560,13 +588,20 @@ function renderFilms() {
 
     noResults.style.display = 'none';
 
-    // Sort by rating (highest first), then by title
+    // Sort by selected criterion, then by title
+    const sortBy = document.getElementById('sort-filter').dataset.current;
     sortedFilms = [...filteredFilms].sort((a, b) => {
-        if (a.rating !== null && b.rating !== null) {
-            return b.rating - a.rating;
+        if (sortBy === 'viewers') {
+            const av = a.viewers ?? 0;
+            const bv = b.viewers ?? 0;
+            if (av !== bv) return bv - av;
+        } else {
+            if (a.rating !== null && b.rating !== null) {
+                if (a.rating !== b.rating) return b.rating - a.rating;
+            }
+            if (a.rating !== null) return -1;
+            if (b.rating !== null) return 1;
         }
-        if (a.rating !== null) return -1;
-        if (b.rating !== null) return 1;
         return a.title.localeCompare(b.title);
     });
 
@@ -684,6 +719,7 @@ function createSessionRow(film, dateObj) {
     // Check if session has a direct ticket URL
     const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
     const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+    const hasFilmUrl = !!(dateObj.url_info && dateObj.url_info.trim() !== '');
     const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
 
     let locationBadge = '';
@@ -712,7 +748,7 @@ function createSessionRow(film, dateObj) {
     const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
 
     return `
-        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}', '${hasFilmUrl}')">
             <span class="date-badge">${formatted}</span>
             ${locationBadge}
             ${versionBadge}
@@ -763,7 +799,7 @@ function toggleSessionAction(event, actionId) {
 }
 
 // Open session action modal (for popup sessions)
-function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl) {
+function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl, hasFilmUrl) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -782,18 +818,18 @@ function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, 
             <a href="${ticketUrl}" class="session-modal-action" target="_blank">
                 ${t('buyTickets')}
             </a>
-            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+            ${hasFilmUrl === 'true' ? `<a href="${filmPageUrl}" class="session-modal-action" target="_blank">
                 ${t('viewFilmPage')}
-            </a>
+            </a>` : ''}
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
                 ${t('addToCalendar')}
             </a>
         `;
     } else {
         actionsHtml = `
-            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+            ${hasFilmUrl === 'true' ? `<a href="${filmPageUrl}" class="session-modal-action" target="_blank">
                 ${t('buyTickets')}
-            </a>
+            </a>` : ''}
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
                 ${t('addToCalendar')}
             </a>
@@ -938,6 +974,7 @@ function createGroupedSessions(film) {
             // Check if session has a direct ticket URL
             const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
             const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+            const hasFilmUrl = !!(dateObj.url_info && dateObj.url_info.trim() !== '');
             const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
             const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
 
@@ -962,7 +999,7 @@ function createGroupedSessions(film) {
             const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
 
             return `
-                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}', '${hasFilmUrl}')">
                     <span class="time">${time}</span>
                     ${location}
                     ${versionTag}
@@ -1051,9 +1088,34 @@ document.getElementById('theater-filter').addEventListener('change', () => {
     filterFilms();
     updateURLParams();
 });
-document.getElementById('theater-filter').addEventListener('change', () => {
-    filterFilms();
-    updateURLParams();
+// Toggle filter buttons (version, sort)
+document.querySelectorAll('.toggle-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const values = btn.dataset.values.split(',');
+        const currentIdx = values.indexOf(btn.dataset.current);
+        const nextIdx = (currentIdx + 1) % values.length;
+        btn.dataset.current = values[nextIdx];
+
+        // Update label via i18n key mapping
+        const labelMap = {
+            'version-filter': { original: 'versionOriginal', dubbed: 'versionDubbed' },
+            'sort-filter': { rating: 'sortByRating', viewers: 'sortByViewers' },
+        };
+        const map = labelMap[btn.id];
+        if (map) {
+            const span = btn.querySelector('span');
+            span.dataset.i18n = map[values[nextIdx]];
+            span.textContent = t(map[values[nextIdx]]);
+        }
+
+        // Active state for version filter
+        if (btn.id === 'version-filter') {
+            btn.classList.toggle('active', btn.dataset.current === 'original');
+        }
+
+        filterFilms();
+        updateURLParams();
+    });
 });
 // Special sessions filter
 document.getElementById('special-filter').addEventListener('click', () => {
@@ -1222,6 +1284,16 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     document.getElementById('date-filter').value = '';
     updateDatePlaceholder();
     document.getElementById('theater-filter').value = '';
+    const versionBtn = document.getElementById('version-filter');
+    versionBtn.dataset.current = 'original';
+    versionBtn.querySelector('span').textContent = t('versionOriginal');
+    versionBtn.querySelector('span').dataset.i18n = 'versionOriginal';
+    versionBtn.classList.add('active');
+
+    const sortBtn = document.getElementById('sort-filter');
+    sortBtn.dataset.current = 'rating';
+    sortBtn.querySelector('span').textContent = t('sortByRating');
+    sortBtn.querySelector('span').dataset.i18n = 'sortByRating';
 
     // Reset year filter
     const yearMinInput = document.getElementById('year-min');
@@ -1313,6 +1385,25 @@ function applyFiltersFromURL() {
         }
     }
 
+    const version = params.get('version');
+    if (version && ['original', 'dubbed'].includes(version)) {
+        const versionBtn = document.getElementById('version-filter');
+        versionBtn.dataset.current = version;
+        const versionMap = { original: 'versionOriginal', dubbed: 'versionDubbed' };
+        versionBtn.querySelector('span').dataset.i18n = versionMap[version];
+        versionBtn.querySelector('span').textContent = t(versionMap[version]);
+        versionBtn.classList.toggle('active', version === 'original');
+    }
+
+    const sort = params.get('sort');
+    if (sort && ['rating', 'viewers'].includes(sort)) {
+        const sortBtn = document.getElementById('sort-filter');
+        sortBtn.dataset.current = sort;
+        const sortMap = { rating: 'sortByRating', viewers: 'sortByViewers' };
+        sortBtn.querySelector('span').dataset.i18n = sortMap[sort];
+        sortBtn.querySelector('span').textContent = t(sortMap[sort]);
+    }
+
     const special = params.get('special');
     if (special === '1') {
         specialFilterActive = true;
@@ -1334,11 +1425,17 @@ function updateURLParams() {
     const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
     const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
 
+    const version = document.getElementById('version-filter').dataset.current;
+
     const params = new URLSearchParams();
 
     if (search) params.set('search', search);
     if (theater) params.set('theater', theater);
     if (date) params.set('date', date);
+    if (version && version !== 'original') params.set('version', version);
+
+    const sort = document.getElementById('sort-filter').dataset.current;
+    if (sort && sort !== 'rating') params.set('sort', sort);
 
     // Only add year params if they differ from global bounds
     if (currentMin > minYear) params.set('min_year', currentMin);
