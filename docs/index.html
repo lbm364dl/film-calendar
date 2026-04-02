@@ -104,7 +104,7 @@
                 <button class="lang-btn" data-lang="en">EN</button>
             </div>
             <h1 data-i18n="siteTitle">🎬 Madrid Film Calendar</h1>
-            <p class="subtitle" data-i18n="subtitle">Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Verdi • Más próximamente...</p>
+            <p class="subtitle" data-i18n="subtitle">Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Más próximamente...</p>
         </header>
 
         <nav aria-label="Filtros de búsqueda">
@@ -128,6 +128,7 @@
                 <option value="Cine Paz">Cine Paz</option>
                 <option value="Sala Equis">Sala Equis</option>
                 <option value="Verdi">Verdi Madrid</option>
+                <option value="Cinesa">Cinesa</option>
             </select>
 
             <div class="year-filter">
@@ -146,6 +147,16 @@
                     <input type="range" id="year-min" min="1900" max="2026" value="1900">
                     <input type="range" id="year-max" min="1900" max="2026" value="2026">
                 </div>
+            </div>
+
+            <div class="toggle-row">
+                <button id="version-filter" class="toggle-filter-btn active" data-values="original,dubbed" data-current="original">
+                    <span data-i18n="versionOriginal">Versión original</span>
+                </button>
+
+                <button id="sort-filter" class="toggle-filter-btn" data-values="rating,viewers" data-current="rating">
+                    <span data-i18n="sortByRating">Ordenar por nota</span>
+                </button>
             </div>
 
             <div class="actions-cell">
@@ -200,7 +211,6 @@
                         </label>
                     </span>
                     <button id="watched-remove-btn" class="csv-remove-btn" title="Quitar vistas" data-i18n-title="removeWatched" style="display:none">&times;</button>
-
                 </div>
 
                 <button id="special-filter" class="special-filter-btn" title="Mostrar solo sesiones especiales" data-i18n-title="specialFilterTitle">

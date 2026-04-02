@@ -203,7 +203,7 @@ def run_merge(args):
                     "timestamp": d.get("timestamp"),
                     "location": d.get("location", theater),
                     "url_tickets": d.get("url_tickets", d.get("url", "")),
-                    "url_info": d.get("url_info", link),
+                    "url_info": d.get("url_info", ""),
                 }
                 if d.get("version"):
                     item["version"] = d["version"]
@@ -385,6 +385,16 @@ def run_merge(args):
                         master_films[idx][key] = val
         except Exception as e:
             print(f"  Error during TMDB batch fetch: {e}")
+
+    # ── Strip "dubbed" tag from Spanish-language films ───────────────────
+    # A Spanish film screened at Cinesa as "DIGITAL" is the original version.
+    for film in master_films:
+        lang = film.get("primary_language")
+        lang_values = lang if isinstance(lang, list) else ([lang] if lang else [])
+        if any(v in ("es", "Spanish") for v in lang_values):
+            for d in film.get("dates", []):
+                if isinstance(d, dict) and d.get("version") == "dubbed":
+                    del d["version"]
 
     # ── Sort by rating and write ──────────────────────────────────────────
     master_films.sort(
