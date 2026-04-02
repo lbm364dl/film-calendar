@@ -72,6 +72,151 @@ CINEMA_ADDRESSES = {
         "postalCode": "28008",
         "url": "https://www.circulobellasartes.com",
     },
+    "Cinesa Equinoccio": {
+        "streetAddress": "Avenida de la Vega, 2",
+        "postalCode": "28108",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa La Gavia": {
+        "streetAddress": "Calle Adolfo Bioy Casares, 2",
+        "postalCode": "28051",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa La Moraleja": {
+        "streetAddress": "Avenida de Europa, 13",
+        "postalCode": "28108",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Las Rosas": {
+        "streetAddress": "Calle Aracne, s/n",
+        "postalCode": "28022",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Las Rozas": {
+        "streetAddress": "Calle Pablo Picasso, s/n",
+        "postalCode": "28232",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Manoteras": {
+        "streetAddress": "Calle Ulises, 11",
+        "postalCode": "28033",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Mendez Alvaro": {
+        "streetAddress": "Calle del Río Manzanares, s/n",
+        "postalCode": "28045",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Nassica": {
+        "streetAddress": "Avenida de las Ciudades, s/n",
+        "postalCode": "28903",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Oasiz": {
+        "streetAddress": "Avenida de Torrejón de Ardoz, s/n",
+        "postalCode": "28850",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Parquesur": {
+        "streetAddress": "Calle Real, 2",
+        "postalCode": "28916",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Plaza Loranca 2": {
+        "streetAddress": "Calle Picasso, 15",
+        "postalCode": "28942",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Principe Pio": {
+        "streetAddress": "Paseo de la Florida, 2",
+        "postalCode": "28008",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Proyecciones": {
+        "streetAddress": "Calle de Fuencarral, 136",
+        "postalCode": "28010",
+        "url": "https://www.cinesa.es",
+    },
+    "Cinesa Xanadu": {
+        "streetAddress": "Autovía A-5, km 23.5",
+        "postalCode": "28939",
+        "url": "https://www.cinesa.es",
+    },
+    "Embajadores Ercilla": {
+        "streetAddress": "Calle del General Lacy, 15",
+        "postalCode": "28045",
+        "url": "https://www.cinesembajadores.es",
+    },
+    "Embajadores Glorieta": {
+        "streetAddress": "Glorieta de Embajadores, 3",
+        "postalCode": "28012",
+        "url": "https://www.cinesembajadores.es",
+    },
+    "Plaza de España": {
+        "streetAddress": "Plaza de España, 8",
+        "postalCode": "28008",
+        "url": "https://www.cinesrenoir.com",
+    },
+    "Princesa": {
+        "streetAddress": "Calle de la Princesa, 3",
+        "postalCode": "28008",
+        "url": "https://www.cinesprincesa.com",
+    },
+    "Retiro": {
+        "streetAddress": "Calle de Narváez, 42",
+        "postalCode": "28009",
+        "url": "https://www.cinesrenoir.com",
+    },
+    "Yelmo Ideal": {
+        "streetAddress": "Calle del Doctor Cortezo, 6",
+        "postalCode": "28012",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Islazul": {
+        "streetAddress": "Calle Nuestra Señora de la Luz, 36",
+        "postalCode": "28019",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo La Vaguada": {
+        "streetAddress": "Avenida de Monforte de Lemos, 36",
+        "postalCode": "28029",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Palafox Luxury": {
+        "streetAddress": "Calle de Luchana, 15",
+        "postalCode": "28010",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Parque Corredor": {
+        "streetAddress": "Carretera Nacional II, km 32.5",
+        "postalCode": "28850",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Planetocio": {
+        "streetAddress": "Calle Complutense, 1",
+        "postalCode": "28805",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Plaza Norte 2": {
+        "streetAddress": "Carretera de Burgos A-1, km 18.2",
+        "postalCode": "28703",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Plenilunio": {
+        "streetAddress": "Calle Arroyo del Santo, 2",
+        "postalCode": "28022",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo Rivas H2O": {
+        "streetAddress": "Avenida de la Técnica, s/n",
+        "postalCode": "28522",
+        "url": "https://www.yelmocines.es",
+    },
+    "Yelmo TresAguas": {
+        "streetAddress": "Avenida de los Ríos, s/n",
+        "postalCode": "28922",
+        "url": "https://www.yelmocines.es",
+    },
 }
 
 
