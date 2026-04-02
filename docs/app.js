@@ -5,7 +5,7 @@ const TRANSLATIONS = {
     es: {
         viewersLabel: (n) => `Vista por ${n} personas`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Más próximamente...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
         selectDate: 'Elegir día',
         allTheaters: 'Todos los cines',
@@ -53,8 +53,8 @@ const TRANSLATIONS = {
         dubbedTooltip: 'Doblada al castellano',
         versionOriginal: 'Versión original',
         versionDubbed: 'En español',
-        sortByRating: 'Ordenar por nota',
-        sortByViewers: 'Ordenar por viewers',
+        sortByRating: 'Ordenado por nota',
+        sortByViewers: 'Ordenado por viewers',
         loadMore: (n) => `Mostrar más (${n} restantes)`,
         specialFilterFull: 'Sesiones especiales',
         specialFilterShort: 'Especiales',
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     en: {
         viewersLabel: (n) => `${n} viewers`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • More coming...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • More coming...',
         searchPlaceholder: 'Search by title or director',
         selectDate: 'Select date',
         allTheaters: 'All Theaters',
@@ -112,8 +112,8 @@ const TRANSLATIONS = {
         dubbedTooltip: 'Dubbed in Spanish',
         versionOriginal: 'Original version',
         versionDubbed: 'In Spanish',
-        sortByRating: 'Sort by rating',
-        sortByViewers: 'Sort by viewers',
+        sortByRating: 'Sorted by rating',
+        sortByViewers: 'Sorted by viewers',
         loadMore: (n) => `Load more (${n} remaining)`,
         specialFilterFull: 'Special sessions',
         specialFilterShort: 'Special',
@@ -176,6 +176,7 @@ const SPECIAL_TYPE_LABELS = {
         ballet: 'Ballet',
         theater: 'Teatro',
         concert: 'Concierto',
+        tv: 'TV',
     },
     en: {
         conference: 'Conference',
@@ -187,6 +188,7 @@ const SPECIAL_TYPE_LABELS = {
         ballet: 'Ballet',
         theater: 'Theater',
         concert: 'Concert',
+        tv: 'TV',
     }
 };
 
@@ -465,6 +467,11 @@ function isCinesaLocation(location) {
     return location && location.startsWith('Cinesa ');
 }
 
+// Yelmo cinema locations
+function isYelmoLocation(location) {
+    return location && location.startsWith('Yelmo ');
+}
+
 function isSpanishFilm(film) {
     const lang = film.primaryLanguage;
     if (!lang) return false;
@@ -494,6 +501,8 @@ function filterFilms() {
                     if (!isEmbajadoresLocation(d.location)) return false;
                 } else if (selectedTheater === 'Cinesa') {
                     if (!isCinesaLocation(d.location)) return false;
+                } else if (selectedTheater === 'Cines Yelmo') {
+                    if (!isYelmoLocation(d.location)) return false;
                 } else if (d.location !== selectedTheater) {
                     return false;
                 }
