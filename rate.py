@@ -421,6 +421,15 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict =
         to_match = result
         print(f"Matching {len(to_match)} films")
 
+    # Skip special sessions (conferences, shorts programs, events, etc.)
+    has_special = "special" in result.columns
+    if has_special:
+        special_mask = to_match["special"].notna() & (to_match["special"] != "")
+        special_count = special_mask.sum()
+        if special_count > 0:
+            to_match = to_match[~special_mask]
+            print(f"Skipping {special_count} special sessions (not films)")
+
     browser = None
     try:
         browser = _create_browser()

@@ -52,6 +52,10 @@ const TRANSLATIONS = {
         viewOnGithub: 'Ver en GitHub',
         dubbedTooltip: 'Doblada al castellano',
         loadMore: (n) => `Mostrar más (${n} restantes)`,
+        specialFilterFull: 'Sesiones especiales',
+        specialFilterShort: 'Especiales',
+        specialFilterTitle: 'Mostrar solo sesiones especiales',
+        specialTooltip: (type) => `Sesión especial: ${type}`,
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
@@ -103,6 +107,10 @@ const TRANSLATIONS = {
         viewOnGithub: 'View on GitHub',
         dubbedTooltip: 'Dubbed in Spanish',
         loadMore: (n) => `Load more (${n} remaining)`,
+        specialFilterFull: 'Special sessions',
+        specialFilterShort: 'Special',
+        specialFilterTitle: 'Show only special sessions',
+        specialTooltip: (type) => `Special session: ${type}`,
     }
 };
 
@@ -148,6 +156,37 @@ const GENRE_TRANSLATIONS_ES = {
     'war': 'Bélico',
     'western': 'Wéstern',
 };
+
+const SPECIAL_TYPE_LABELS = {
+    es: {
+        conference: 'Conferencia',
+        shorts: 'Cortometrajes',
+        festival: 'Festival',
+        event: 'Evento',
+        compilation: 'Compilación',
+        opera: 'Ópera',
+        ballet: 'Ballet',
+        theater: 'Teatro',
+        concert: 'Concierto',
+    },
+    en: {
+        conference: 'Conference',
+        shorts: 'Shorts',
+        festival: 'Festival',
+        event: 'Event',
+        compilation: 'Compilation',
+        opera: 'Opera',
+        ballet: 'Ballet',
+        theater: 'Theater',
+        concert: 'Concert',
+    }
+};
+
+function translateSpecialType(type) {
+    if (!type) return type;
+    const labels = SPECIAL_TYPE_LABELS[currentLang] || SPECIAL_TYPE_LABELS.en;
+    return labels[type.toLowerCase()] || type;
+}
 
 function translateGenre(genre) {
     if (!genre || currentLang !== 'es') {
@@ -217,6 +256,7 @@ let watchedUrls = null;
 // Whether each filter is actively applied (toggles)
 let watchlistFilterActive = false;
 let watchedFilterActive = false;
+let specialFilterActive = false;
 
 // ── Pagination ──────────────────────────────────────────────────────────────────
 const ROWS_PER_PAGE = 10;
@@ -350,7 +390,7 @@ function normalizeParsedDates(parsed) {
     return parsed.map(item => {
         if (typeof item === 'string') {
             // Old format: plain string timestamp
-            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '', version: null };
+            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '', version: null, special: null };
         } else if (typeof item === 'object' && item !== null) {
             // New format: object with timestamp/location/urls/version
             return {
@@ -360,6 +400,7 @@ function normalizeParsedDates(parsed) {
                 url_tickets: item.url_tickets || item.url || '', // Support both old 'url' and new 'url_tickets'
                 url_info: item.url_info || '',
                 version: item.version || null,
+                special: item.special || null,
             };
         }
         return null;
@@ -491,7 +532,13 @@ function filterFilms() {
             matchesWatched = !(film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
         }
 
-        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched;
+        // Special sessions filter
+        let matchesSpecial = true;
+        if (specialFilterActive) {
+            matchesSpecial = film.dates.some(d => d.special);
+        }
+
+        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched && matchesSpecial;
     });
 
     renderFilms();
@@ -656,6 +703,11 @@ function createSessionRow(film, dateObj) {
         ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
         : '';
 
+    // Special session badge
+    const specialBadge = dateObj.special
+        ? `<span class="special-badge" title="${escapeHtml(t('specialTooltip', translateSpecialType(dateObj.special)))}">${escapeHtml(translateSpecialType(dateObj.special))}</span>`
+        : '';
+
     // Create full date/time label for modal header
     const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
 
@@ -664,6 +716,7 @@ function createSessionRow(film, dateObj) {
             <span class="date-badge">${formatted}</span>
             ${locationBadge}
             ${versionBadge}
+            ${specialBadge}
         </button>
     `;
 }
@@ -896,6 +949,10 @@ function createGroupedSessions(film) {
                 ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
                 : '';
 
+            const specialTag = dateObj.special
+                ? `<span class="special-badge" title="${escapeHtml(t('specialTooltip', translateSpecialType(dateObj.special)))}">${escapeHtml(translateSpecialType(dateObj.special))}</span>`
+                : '';
+
             // Create date/time label for modal header
             const dateLabel = new Date(dateObj.timestamp).toLocaleDateString(getDateLocale(), {
                 weekday: 'short',
@@ -909,6 +966,7 @@ function createGroupedSessions(film) {
                     <span class="time">${time}</span>
                     ${location}
                     ${versionTag}
+                    ${specialTag}
                 </button>
                         `;
         }).join('')}
@@ -997,7 +1055,14 @@ document.getElementById('theater-filter').addEventListener('change', () => {
     filterFilms();
     updateURLParams();
 });
-// Rated only filter removed
+// Special sessions filter
+document.getElementById('special-filter').addEventListener('click', () => {
+    specialFilterActive = !specialFilterActive;
+    document.getElementById('special-filter').classList.toggle('active', specialFilterActive);
+    filterFilms();
+    updateURLParams();
+});
+
 const dateFilter = document.getElementById('date-filter');
 
 function setDateFilterMin() {
@@ -1171,6 +1236,11 @@ document.getElementById('clear-filters').addEventListener('click', () => {
 
     updateSliderDisplay();
 
+    // Reset special filter
+    specialFilterActive = false;
+    const specialBtn = document.getElementById('special-filter');
+    if (specialBtn) specialBtn.classList.remove('active');
+
     // updateURLParams will act on changed values, but let's clear URL explicitly
     const url = new URL(window.location);
     url.search = '';
@@ -1243,6 +1313,13 @@ function applyFiltersFromURL() {
         }
     }
 
+    const special = params.get('special');
+    if (special === '1') {
+        specialFilterActive = true;
+        const specialBtn = document.getElementById('special-filter');
+        if (specialBtn) specialBtn.classList.add('active');
+    }
+
     // Year filter is initialized in initYearFilter() after films load
 }
 
@@ -1266,6 +1343,8 @@ function updateURLParams() {
     // Only add year params if they differ from global bounds
     if (currentMin > minYear) params.set('min_year', currentMin);
     if (currentMax < maxYear) params.set('max_year', currentMax);
+
+    if (specialFilterActive) params.set('special', '1');
 
     const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     window.history.replaceState({}, '', newURL);
