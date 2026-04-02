@@ -53,8 +53,8 @@ const TRANSLATIONS = {
         dubbedTooltip: 'Doblada al castellano',
         versionOriginal: 'Versión original',
         versionDubbed: 'En español',
-        sortByRating: 'Ordenar por nota',
-        sortByViewers: 'Ordenar por viewers',
+        sortByRating: 'Ordenado por nota',
+        sortByViewers: 'Ordenado por viewers',
         loadMore: (n) => `Mostrar más (${n} restantes)`,
         specialFilterFull: 'Sesiones especiales',
         specialFilterShort: 'Especiales',
@@ -112,8 +112,8 @@ const TRANSLATIONS = {
         dubbedTooltip: 'Dubbed in Spanish',
         versionOriginal: 'Original version',
         versionDubbed: 'In Spanish',
-        sortByRating: 'Sort by rating',
-        sortByViewers: 'Sort by viewers',
+        sortByRating: 'Sorted by rating',
+        sortByViewers: 'Sorted by viewers',
         loadMore: (n) => `Load more (${n} remaining)`,
         specialFilterFull: 'Special sessions',
         specialFilterShort: 'Special',
@@ -176,6 +176,7 @@ const SPECIAL_TYPE_LABELS = {
         ballet: 'Ballet',
         theater: 'Teatro',
         concert: 'Concierto',
+        tv: 'TV',
     },
     en: {
         conference: 'Conference',
@@ -187,6 +188,7 @@ const SPECIAL_TYPE_LABELS = {
         ballet: 'Ballet',
         theater: 'Theater',
         concert: 'Concert',
+        tv: 'TV',
     }
 };
 
