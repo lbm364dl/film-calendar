@@ -60,6 +60,14 @@ const TRANSLATIONS = {
         specialFilterShort: 'Especiales',
         specialFilterTitle: 'Mostrar solo sesiones especiales',
         specialTooltip: (type) => `Sesión especial: ${type}`,
+        searchTheaters: 'Buscar cine...',
+        selectAll: 'Todos',
+        selectNone: 'Ninguno',
+        nTheatersSelected: (n, total) => n === total ? 'Todos los cines' : n === 0 ? 'Ningún cine' : `${n} de ${total} cines`,
+        theaterTooltipTitle: '<strong>Selección de cines</strong>',
+        theaterTooltipBody: 'Tu selección de cines se guarda en el navegador. Si hay cines a los que nunca vas, desmárcalos para no ver sus sesiones.',
+        showSalas: (selected, total) => `${selected}/${total} sedes ▾`,
+        hideSalas: 'ocultar ▴',
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
@@ -119,6 +127,14 @@ const TRANSLATIONS = {
         specialFilterShort: 'Special',
         specialFilterTitle: 'Show only special sessions',
         specialTooltip: (type) => `Special session: ${type}`,
+        searchTheaters: 'Search theaters...',
+        selectAll: 'All',
+        selectNone: 'None',
+        nTheatersSelected: (n, total) => n === total ? 'All Theaters' : n === 0 ? 'No theaters' : `${n} of ${total} theaters`,
+        theaterTooltipTitle: '<strong>Theater selection</strong>',
+        theaterTooltipBody: 'Your theater selection is saved in your browser. Uncheck theaters you never visit to keep their sessions out of your results.',
+        showSalas: (selected, total) => `${selected}/${total} venues ▾`,
+        hideSalas: 'hide ▴',
     }
 };
 
@@ -250,6 +266,7 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     applyStaticTranslations();
+    updateTheaterTriggerLabel();
     if (allFilms.length > 0) {
         renderFilms();
     }
@@ -321,7 +338,7 @@ async function loadFilms() {
 
             // Derive theater from dates (unique locations)
             const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
-            let theaterDisplay = locations.length > 0 ? locations.join(', ') : 'Unknown';
+            let theaterDisplay = locations.length > 0 ? locations.map(getDisplayName).join(', ') : 'Unknown';
             if (locations.length > 2) theaterDisplay = t('nLocations', locations.length);
 
             // Derive main link from first date with info url, or fallback
@@ -479,9 +496,13 @@ function isSpanishFilm(film) {
     return values.some(v => v === 'es' || v === 'Spanish');
 }
 
+function matchesSelectedTheaters(location) {
+    return selectedTheaters.has(location);
+}
+
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
-    const selectedTheater = document.getElementById('theater-filter').value;
+    const allTheatersSelected = selectedTheaters.size === ALL_THEATER_VALUES.length;
     const selectedDate = document.getElementById('date-filter').value;
     const selectedVersion = document.getElementById('version-filter').dataset.current;
     const todayStart = getLocalTodayStart();
@@ -494,18 +515,8 @@ function filterFilms() {
 
         // Apply theater/date/version filters at the session level so all constraints match the same session.
         const sessionFilteredDates = futureDates.filter(d => {
-            if (selectedTheater) {
-                if (selectedTheater === 'Cines Renoir') {
-                    if (!isRenoirLocation(d.location)) return false;
-                } else if (selectedTheater === 'Cines Embajadores') {
-                    if (!isEmbajadoresLocation(d.location)) return false;
-                } else if (selectedTheater === 'Cinesa') {
-                    if (!isCinesaLocation(d.location)) return false;
-                } else if (selectedTheater === 'Cines Yelmo') {
-                    if (!isYelmoLocation(d.location)) return false;
-                } else if (d.location !== selectedTheater) {
-                    return false;
-                }
+            if (!allTheatersSelected) {
+                if (!matchesSelectedTheaters(d.location)) return false;
             }
 
             if (selectedDate && !d.timestamp.startsWith(selectedDate)) {
@@ -734,13 +745,9 @@ function createSessionRow(film, dateObj) {
     let locationBadge = '';
     let locationText = '';
     if (dateObj.location && dateObj.location !== 'Unknown') {
-        // For inline rows, prefix cinema name to sub-location names
-        let displayLocation = dateObj.location;
-        if (isRenoirLocation(dateObj.location)) {
-            displayLocation = `Renoir ${dateObj.location}`;
-        }
-        locationBadge = `<span class="location-badge">${escapeHtml(displayLocation)}</span>`;
-        locationText = displayLocation;
+        const locName = getDisplayName(dateObj.location);
+        locationBadge = `<span class="location-badge">${escapeHtml(locName)}</span>`;
+        locationText = locName;
     }
 
     // Version badge for dubbed sessions
@@ -775,13 +782,13 @@ function getTheaterFallbackUrl(film, dateObj) {
     if (isEmbajadoresLocation(location)) {
         return 'https://cinesembajadores.es/madrid/';
     }
-    if (film.theater === 'Cineteca Madrid') {
+    if (film.theater === 'Cineteca' || location === 'Cineteca Madrid') {
         return 'https://www.cinetecamadrid.com/';
     }
-    if (film.theater === 'Cine Doré') {
+    if (film.theater === 'Doré' || location === 'Cine Doré') {
         return 'https://www.culturaydeporte.gob.es/filmoteca/el-cine-dore.html';
     }
-    if (film.theater === 'Golem Madrid') {
+    if (film.theater === 'Golem') {
         return 'https://www.golem.es/golem/golem-madrid';
     }
     if (film.theater === 'Sala Berlanga' || location === 'Sala Berlanga') {
@@ -912,6 +919,10 @@ function getDateRange(dates) {
     return `${formatShort(firstDate)} – ${formatShort(lastDate)}`;
 }
 
+function getDisplayName(location) {
+    return THEATER_DISPLAY_NAMES[location] || location;
+}
+
 function getLocationSummary(dates) {
     // Get unique locations
     const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
@@ -931,8 +942,7 @@ function getLocationSummary(dates) {
     }
 
     if (locations.length === 1) {
-        // Single location
-        return locations[0];
+        return getDisplayName(locations[0]);
     }
 
     // Multiple different theaters
@@ -988,7 +998,7 @@ function createGroupedSessions(film) {
             const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
 
             const location = dateObj.location && dateObj.location !== 'Unknown'
-                ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
+                ? `<span class="location">${escapeHtml(getDisplayName(dateObj.location))}</span>`
                 : '';
 
             const versionTag = dateObj.version === 'dubbed'
@@ -1005,7 +1015,7 @@ function createGroupedSessions(film) {
                 day: 'numeric',
                 month: 'short'
             });
-            const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
+            const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + getDisplayName(dateObj.location) : ''}`;
 
             return `
                 <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}', '${hasFilmUrl}')">
@@ -1088,12 +1098,349 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// ── Theater Multi-Select ────────────────────────────────────────────────────
+const THEATER_GROUPS = [
+    { label: 'Renoir', children: [
+        { value: 'Princesa', label: 'Princesa' },
+        { value: 'Retiro', label: 'Retiro' },
+        { value: 'Plaza de España', label: 'Plaza de España' },
+    ]},
+    { value: 'Cineteca Madrid', label: 'Cineteca' },
+    { value: 'Cine Doré', label: 'Doré' },
+    { value: 'Cine Estudio', label: 'Cine Estudio' },
+    { value: 'Golem', label: 'Golem' },
+    { value: 'Sala Berlanga', label: 'Sala Berlanga' },
+    { label: 'Embajadores', children: [
+        { value: 'Embajadores Glorieta', label: 'Glorieta' },
+        { value: 'Embajadores Ercilla', label: 'Ercilla' },
+    ]},
+    { value: 'Cine Paz', label: 'Cine Paz' },
+    { value: 'Sala Equis', label: 'Sala Equis' },
+    { value: 'Verdi', label: 'Verdi' },
+    { label: 'Cinesa', children: [
+        { value: 'Cinesa Equinoccio', label: 'Equinoccio' },
+        { value: 'Cinesa La Gavia', label: 'La Gavia' },
+        { value: 'Cinesa La Moraleja', label: 'La Moraleja' },
+        { value: 'Cinesa Las Rosas', label: 'Las Rosas' },
+        { value: 'Cinesa Las Rozas', label: 'Las Rozas' },
+        { value: 'Cinesa Manoteras', label: 'Manoteras' },
+        { value: 'Cinesa Mendez Alvaro', label: 'Méndez Álvaro' },
+        { value: 'Cinesa Nassica', label: 'Nassica' },
+        { value: 'Cinesa Oasiz', label: 'Oasiz' },
+        { value: 'Cinesa Parquesur', label: 'Parquesur' },
+        { value: 'Cinesa Plaza Loranca 2', label: 'Plaza Loranca 2' },
+        { value: 'Cinesa Principe Pio', label: 'Príncipe Pío' },
+        { value: 'Cinesa Proyecciones', label: 'Proyecciones' },
+        { value: 'Cinesa Xanadu', label: 'Xanadú' },
+    ]},
+    { label: 'Yelmo', children: [
+        { value: 'Yelmo Ideal', label: 'Ideal' },
+        { value: 'Yelmo Islazul', label: 'Islazul' },
+        { value: 'Yelmo La Vaguada', label: 'La Vaguada' },
+        { value: 'Yelmo Palafox Luxury', label: 'Palafox Luxury' },
+        { value: 'Yelmo Parque Corredor', label: 'Parque Corredor' },
+        { value: 'Yelmo Plaza Norte 2', label: 'Plaza Norte 2' },
+        { value: 'Yelmo Planetocio', label: 'Planetocio' },
+        { value: 'Yelmo Plenilunio', label: 'Plenilunio' },
+        { value: 'Yelmo Rivas H2O', label: 'Rivas H2O' },
+        { value: 'Yelmo TresAguas', label: 'TresAguas' },
+    ]},
+];
+
+// Flat list of all selectable location values + display name map
+const ALL_THEATER_VALUES = [];
+const THEATER_DISPLAY_NAMES = {};
+THEATER_GROUPS.forEach(g => {
+    if (g.children) {
+        g.children.forEach(c => {
+            ALL_THEATER_VALUES.push(c.value);
+            THEATER_DISPLAY_NAMES[c.value] = g.label + ' ' + c.label;
+        });
+    } else {
+        ALL_THEATER_VALUES.push(g.value);
+        THEATER_DISPLAY_NAMES[g.value] = g.label;
+    }
+});
+
+let selectedTheaters = new Set(ALL_THEATER_VALUES);
+
+// Migrate old localStorage format (chain names → individual locations)
+const OLD_TO_NEW = {
+    'Cines Renoir': ['Princesa', 'Retiro', 'Plaza de España'],
+    'Cineteca Madrid': ['Cineteca Madrid'],
+    'Cines Embajadores': ['Embajadores Glorieta', 'Embajadores Ercilla'],
+    'Cinesa': THEATER_GROUPS.find(g => g.label === 'Cinesa').children.map(c => c.value),
+    'Cines Yelmo': THEATER_GROUPS.find(g => g.label === 'Yelmo').children.map(c => c.value),
+};
+
+function loadTheaterSelection() {
+    const saved = localStorage.getItem('selectedTheaters');
+    if (saved) {
+        try {
+            const arr = JSON.parse(saved);
+            if (Array.isArray(arr)) {
+                // Migrate old chain-level values
+                const expanded = [];
+                arr.forEach(v => {
+                    if (OLD_TO_NEW[v]) expanded.push(...OLD_TO_NEW[v]);
+                    else expanded.push(v);
+                });
+                const valid = expanded.filter(v => ALL_THEATER_VALUES.includes(v));
+                selectedTheaters = new Set(valid);
+            }
+        } catch (e) { /* ignore */ }
+    }
+}
+
+function saveTheaterSelection() {
+    localStorage.setItem('selectedTheaters', JSON.stringify([...selectedTheaters]));
+}
+
+function updateTheaterTriggerLabel() {
+    const trigger = document.getElementById('theater-trigger');
+    const span = trigger.querySelector('span');
+    const total = ALL_THEATER_VALUES.length;
+    const n = selectedTheaters.size;
+    span.textContent = t('nTheatersSelected', n, total);
+}
+
+function updateGroupCheckbox(groupCb, childValues) {
+    const checkedCount = childValues.filter(v => selectedTheaters.has(v)).length;
+    groupCb.checked = checkedCount === childValues.length;
+    groupCb.indeterminate = checkedCount > 0 && checkedCount < childValues.length;
+}
+
+function buildTheaterOptions() {
+    const container = document.getElementById('theater-options');
+    container.innerHTML = '';
+
+    THEATER_GROUPS.forEach(group => {
+        if (group.children) {
+            const childValues = group.children.map(c => c.value);
+            const searchLabel = (group.label + ' ' + group.children.map(c => c.label).join(' ')).toLowerCase();
+
+            // Group wrapper
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'theater-group';
+            groupDiv.dataset.label = searchLabel;
+
+            // Group header row
+            const header = document.createElement('div');
+            header.className = 'theater-option theater-group-header';
+            const groupCb = document.createElement('input');
+            groupCb.type = 'checkbox';
+            updateGroupCheckbox(groupCb, childValues);
+            groupCb.addEventListener('change', (e) => {
+                e.stopPropagation();
+                childValues.forEach(v => {
+                    if (groupCb.checked) selectedTheaters.add(v);
+                    else selectedTheaters.delete(v);
+                });
+                groupDiv.querySelectorAll('.theater-sub-option input[type="checkbox"]')
+                    .forEach(cb => cb.checked = groupCb.checked);
+                updateExpandLabel();
+                updateTheaterTriggerLabel();
+                saveTheaterSelection();
+                filterFilms();
+                updateURLParams();
+            });
+            const headerLabel = document.createElement('label');
+            headerLabel.appendChild(groupCb);
+            headerLabel.appendChild(document.createTextNode(group.label));
+
+            const expandBtn = document.createElement('button');
+            expandBtn.type = 'button';
+            expandBtn.className = 'theater-expand-btn';
+            const updateExpandLabel = () => {
+                if (groupDiv.classList.contains('expanded')) {
+                    expandBtn.textContent = t('hideSalas');
+                } else {
+                    const selected = childValues.filter(v => selectedTheaters.has(v)).length;
+                    expandBtn.textContent = t('showSalas', selected, childValues.length);
+                }
+            };
+            expandBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                groupDiv.classList.toggle('expanded');
+                updateExpandLabel();
+            });
+            updateExpandLabel();
+
+            header.appendChild(headerLabel);
+            header.appendChild(expandBtn);
+            groupDiv.appendChild(header);
+
+            // Children container
+            const childrenDiv = document.createElement('div');
+            childrenDiv.className = 'theater-sub-list';
+
+            group.children.forEach(child => {
+                const label = document.createElement('label');
+                label.className = 'theater-option theater-sub-option';
+                label.dataset.value = child.value;
+                label.dataset.label = (group.label + ' ' + child.label).toLowerCase();
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = selectedTheaters.has(child.value);
+                cb.addEventListener('change', () => {
+                    if (cb.checked) selectedTheaters.add(child.value);
+                    else selectedTheaters.delete(child.value);
+                    updateGroupCheckbox(groupCb, childValues);
+                    updateExpandLabel();
+                    updateTheaterTriggerLabel();
+                    saveTheaterSelection();
+                    filterFilms();
+                    updateURLParams();
+                });
+                label.appendChild(cb);
+                label.appendChild(document.createTextNode(child.label));
+                childrenDiv.appendChild(label);
+            });
+
+            groupDiv.appendChild(childrenDiv);
+            container.appendChild(groupDiv);
+        } else {
+            const label = document.createElement('label');
+            label.className = 'theater-option';
+            label.dataset.value = group.value;
+            label.dataset.label = group.label.toLowerCase();
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = selectedTheaters.has(group.value);
+            cb.addEventListener('change', () => {
+                if (cb.checked) selectedTheaters.add(group.value);
+                else selectedTheaters.delete(group.value);
+                updateTheaterTriggerLabel();
+                saveTheaterSelection();
+                filterFilms();
+                updateURLParams();
+            });
+            label.appendChild(cb);
+            label.appendChild(document.createTextNode(group.label));
+            container.appendChild(label);
+        }
+    });
+}
+
+function initTheaterMultiselect() {
+    loadTheaterSelection();
+    buildTheaterOptions();
+    updateTheaterTriggerLabel();
+
+    const wrapper = document.getElementById('theater-filter');
+    const trigger = document.getElementById('theater-trigger');
+    const dropdown = document.getElementById('theater-dropdown');
+    const searchInput = document.getElementById('theater-search');
+
+    trigger.addEventListener('click', (e) => {
+        if (e.target.closest('.theater-info-trigger')) return;
+        e.stopPropagation();
+        wrapper.classList.toggle('open');
+        if (wrapper.classList.contains('open')) {
+            searchInput.value = '';
+            searchInput.focus();
+            buildTheaterOptions();
+        }
+    });
+
+    searchInput.addEventListener('input', () => {
+        const q = normalizeText(searchInput.value);
+        const isSearching = q.length > 0;
+
+        // Standalone options
+        document.querySelectorAll('#theater-options > .theater-option').forEach(opt => {
+            opt.classList.toggle('hidden', !normalizeText(opt.dataset.label).includes(q));
+        });
+
+        // Groups
+        document.querySelectorAll('.theater-group').forEach(group => {
+            const groupLabel = normalizeText(group.dataset.label);
+            const groupMatches = groupLabel.includes(q);
+
+            // Show/hide individual children
+            let anyChildVisible = false;
+            group.querySelectorAll('.theater-sub-option').forEach(opt => {
+                const matches = groupMatches || normalizeText(opt.dataset.label).includes(q);
+                opt.classList.toggle('hidden', !matches);
+                if (matches) anyChildVisible = true;
+            });
+
+            group.classList.toggle('hidden', !groupMatches && !anyChildVisible);
+            // Auto-expand groups when searching, collapse when cleared
+            if (isSearching && anyChildVisible) group.classList.add('expanded');
+            else if (!isSearching) group.classList.remove('expanded');
+        });
+    });
+
+    searchInput.addEventListener('click', (e) => e.stopPropagation());
+
+    document.getElementById('theater-select-all').addEventListener('click', (e) => {
+        e.stopPropagation();
+        ALL_THEATER_VALUES.forEach(v => selectedTheaters.add(v));
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.getElementById('theater-select-none').addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedTheaters.clear();
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+            wrapper.classList.remove('show-help');
+        } else if (!infoTrigger.contains(e.target) && !infoTooltip.contains(e.target)) {
+            wrapper.classList.remove('show-help');
+        }
+    });
+
+    const infoTrigger = document.getElementById('theater-info-trigger');
+    const infoTooltip = document.getElementById('theater-info-tooltip');
+
+    let isTouch = false;
+
+    infoTrigger.addEventListener('touchstart', () => {
+        isTouch = true;
+    }, { passive: true });
+
+    infoTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        wrapper.classList.toggle('show-help');
+        isTouch = false;
+    });
+
+    infoTrigger.addEventListener('mouseenter', () => {
+        if (!isTouch) wrapper.classList.add('show-help');
+    });
+
+    infoTrigger.addEventListener('mouseleave', (e) => {
+        if (!isTouch && !infoTooltip.matches(':hover')) {
+            wrapper.classList.remove('show-help');
+        }
+    });
+
+    infoTooltip.addEventListener('mouseleave', () => {
+        if (!isTouch) wrapper.classList.remove('show-help');
+    });
+
+    infoTooltip.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+
+initTheaterMultiselect();
+
 // Event listeners
 document.getElementById('search').addEventListener('input', () => {
-    filterFilms();
-    updateURLParams();
-});
-document.getElementById('theater-filter').addEventListener('change', () => {
     filterFilms();
     updateURLParams();
 });
@@ -1292,7 +1639,7 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     document.getElementById('search').value = '';
     document.getElementById('date-filter').value = '';
     updateDatePlaceholder();
-    document.getElementById('theater-filter').value = '';
+    // Theater selection is a persistent preference — don't reset it
     const versionBtn = document.getElementById('version-filter');
     versionBtn.dataset.current = 'original';
     versionBtn.querySelector('span').textContent = t('versionOriginal');
@@ -1368,19 +1715,37 @@ function applyFiltersFromURL() {
     const params = new URLSearchParams(window.location.search);
 
     const search = params.get('search');
-    const theater = params.get('theater');
     const date = params.get('date');
 
     if (search) {
         document.getElementById('search').value = search;
     }
 
-    if (theater) {
-        const theaterSelect = document.getElementById('theater-filter');
-        // Verify it's a valid option
-        if ([...theaterSelect.options].some(o => o.value === theater)) {
-            theaterSelect.value = theater;
+    // Handle multi-theater URL params
+    const excludeParam = params.get('exclude_theaters');
+    const theaterParam = params.get('theater'); // backwards compat with old single-theater URLs
+    if (excludeParam) {
+        if (excludeParam === 'all') {
+            selectedTheaters.clear();
+        } else {
+            const excluded = excludeParam.split(',');
+            selectedTheaters = new Set(ALL_THEATER_VALUES);
+            excluded.forEach(v => selectedTheaters.delete(v));
         }
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+    } else if (theaterParam) {
+        // Old URL format: single theater selected — expand chain names
+        const expanded = OLD_TO_NEW[theaterParam];
+        if (expanded) {
+            selectedTheaters = new Set(expanded);
+        } else if (ALL_THEATER_VALUES.includes(theaterParam)) {
+            selectedTheaters = new Set([theaterParam]);
+        }
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
     }
 
     if (date) {
@@ -1425,7 +1790,6 @@ function applyFiltersFromURL() {
 
 function updateURLParams() {
     const search = document.getElementById('search').value;
-    const theater = document.getElementById('theater-filter').value;
     const date = document.getElementById('date-filter').value;
 
     // Get current slider values
@@ -1439,7 +1803,13 @@ function updateURLParams() {
     const params = new URLSearchParams();
 
     if (search) params.set('search', search);
-    if (theater) params.set('theater', theater);
+    // Store excluded theaters in URL (compact when most are selected)
+    const excluded = ALL_THEATER_VALUES.filter(v => !selectedTheaters.has(v));
+    if (excluded.length > 0 && excluded.length < ALL_THEATER_VALUES.length) {
+        params.set('exclude_theaters', excluded.join(','));
+    } else if (excluded.length === ALL_THEATER_VALUES.length) {
+        params.set('exclude_theaters', 'all');
+    }
     if (date) params.set('date', date);
     if (version && version !== 'original') params.set('version', version);
 

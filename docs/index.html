@@ -119,21 +119,27 @@
                     placeholder="Buscar por título o director" autocomplete="off">
             </div>
 
-            <select id="theater-filter">
-                <option value="" data-i18n="allTheaters">Todos los cines</option>
-                <option value="Cines Renoir">Cines Renoir</option>
-                <option value="Cineteca Madrid">Cineteca Madrid</option>
-                <option value="Cine Doré">Cine Doré</option>
-                <option value="Cine Estudio">Cine Estudio</option>
-                <option value="Golem">Golem Madrid</option>
-                <option value="Sala Berlanga">Sala Berlanga</option>
-                <option value="Cines Embajadores">Cines Embajadores</option>
-                <option value="Cine Paz">Cine Paz</option>
-                <option value="Sala Equis">Sala Equis</option>
-                <option value="Verdi">Verdi Madrid</option>
-                <option value="Cinesa">Cinesa</option>
-                <option value="Cines Yelmo">Cines Yelmo</option>
-            </select>
+            <div class="theater-multiselect" id="theater-filter">
+                <button type="button" class="theater-multiselect-trigger" id="theater-trigger">
+                    <span>Todos los cines</span>
+                    <svg class="theater-chevron" width="12" height="8" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                    <div class="theater-info-trigger" id="theater-info-trigger">
+                        <span class="info-icon">?</span>
+                    </div>
+                </button>
+                <div class="theater-info-tooltip" id="theater-info-tooltip">
+                    <p data-i18n-html="theaterTooltipTitle"><strong>Selección de cines</strong></p>
+                    <p data-i18n="theaterTooltipBody">Tu selección de cines se guarda en el navegador. Si hay cines a los que nunca vas, desmárcalos para no ver sus sesiones.</p>
+                </div>
+                <div class="theater-dropdown" id="theater-dropdown">
+                    <input type="text" class="theater-search" id="theater-search" data-i18n-placeholder="searchTheaters" placeholder="Buscar cine..." autocomplete="off">
+                    <div class="theater-actions">
+                        <button type="button" id="theater-select-all" data-i18n="selectAll">Todos</button>
+                        <button type="button" id="theater-select-none" data-i18n="selectNone">Ninguno</button>
+                    </div>
+                    <div class="theater-options" id="theater-options"></div>
+                </div>
+            </div>
 
             <div class="year-filter">
                 <div class="year-inputs">
