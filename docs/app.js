@@ -76,6 +76,23 @@ const TRANSLATIONS = {
         nCountriesSelected: (n, total) => n === total ? 'Todos los países' : n === 0 ? 'Ningún país' : `${n} de ${total} países`,
         countryTooltipTitle: '<strong>Filtro por país</strong>',
         countryTooltipBody: 'Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.',
+        allLanguages: 'Todos los idiomas',
+        searchLanguages: 'Buscar idioma...',
+        nLanguagesSelected: (n, total) => n === total ? 'Todos los idiomas' : n === 0 ? 'Ningún idioma' : `${n} de ${total} idiomas`,
+        moreFilters: 'Más filtros',
+        decades: 'Décadas',
+        runtime: 'Duración',
+        dayOfWeek: 'Día de la semana',
+        genreLabel: 'Género',
+        countryLabel: 'País',
+        languageLabel: 'Idioma',
+        lastChance: 'Última oportunidad',
+        lastChanceTitle: 'Películas cuya última sesión es en los próximos 3 días',
+        decadeHelpTitle: '<strong>Selección por chips</strong>',
+        decadeHelpBody: 'Pulsa un chip para filtrar. Si hay uno seleccionado, pulsa otro para seleccionar todo el rango. Esto funciona igual en décadas, duración y días de la semana.',
+        resetFilter: 'Reiniciar',
+        lastChanceHelpTitle: '<strong>Última oportunidad</strong>',
+        lastChanceHelpBody: 'Muestra películas cuya última sesión conocida es en los próximos 3 días. Esto se basa en los datos disponibles. Es posible que el cine programe más sesiones que aún no hemos recogido.',
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
@@ -151,6 +168,23 @@ const TRANSLATIONS = {
         nCountriesSelected: (n, total) => n === total ? 'All countries' : n === 0 ? 'No countries' : `${n} of ${total} countries`,
         countryTooltipTitle: '<strong>Country filter</strong>',
         countryTooltipBody: 'This filter is approximate. It means the country was involved in the production or is related to the film, not necessarily that the film is in that country\'s language. Data from TMDB.',
+        allLanguages: 'All languages',
+        searchLanguages: 'Search languages...',
+        nLanguagesSelected: (n, total) => n === total ? 'All languages' : n === 0 ? 'No languages' : `${n} of ${total} languages`,
+        moreFilters: 'More filters',
+        decades: 'Decades',
+        runtime: 'Runtime',
+        dayOfWeek: 'Day of week',
+        genreLabel: 'Genre',
+        countryLabel: 'Country',
+        languageLabel: 'Language',
+        lastChance: 'Last chance',
+        lastChanceTitle: 'Films with final screening in next 3 days',
+        decadeHelpTitle: '<strong>Chip selection</strong>',
+        decadeHelpBody: 'Tap a chip to filter. If one is selected, tap another to select the entire range. This works the same for decades, runtime, and day of week.',
+        resetFilter: 'Reset',
+        lastChanceHelpTitle: '<strong>Last chance</strong>',
+        lastChanceHelpBody: 'Shows films whose last known screening is within the next 3 days. This is based on available data. The theater may schedule more sessions that we haven\'t collected yet.',
     }
 };
 
@@ -285,6 +319,8 @@ function setLanguage(lang) {
     updateTheaterTriggerLabel();
     if (selectedGenres) updateFilterTriggerLabel('genre', selectedGenres, allGenres);
     if (selectedCountries) updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    if (selectedLanguages) updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    buildDayChips();
     if (allFilms.length > 0) {
         renderFilms();
     }
@@ -302,6 +338,29 @@ let watchedUrls = null;
 let watchlistFilterActive = false;
 let watchedFilterActive = false;
 let specialFilterActive = false;
+let lastChanceFilterActive = false;
+
+// Decade / runtime / day chip state
+let selectedDecades = new Set();
+let selectedRuntimeCategories = new Set();
+let selectedDays = new Set();
+// DECADES built dynamically from data in initGenreCountryFilters
+let DECADES = [];
+
+const RUNTIME_CATEGORIES = [
+    { label: '< 1h', min: 0, max: 59 },
+    { label: '1h – 1.5h', min: 60, max: 89 },
+    { label: '1.5h – 2h', min: 90, max: 119 },
+    { label: '2h – 3h', min: 120, max: 179 },
+    { label: '3h+', min: 180, max: Infinity },
+];
+
+const DAY_LABELS = {
+    es: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+    en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+};
+// Chip index 0=Mon(1), 1=Tue(2), ..., 6=Sun(0) in JS getDay()
+const CHIP_TO_JS_DAY = [1, 2, 3, 4, 5, 6, 0];
 
 // ── Pagination ──────────────────────────────────────────────────────────────────
 const ROWS_PER_PAGE = 10;
@@ -385,7 +444,7 @@ async function loadFilms() {
         }).filter(film => film.title);
 
         // Initial render
-        initYearFilter(); // Initialize slider with data bounds
+        // initYearFilter removed — decade chips replace year slider
         initGenreCountryFilters(); // Initialize genre/country dropdowns from data
         applyFiltersFromURL(); // Then apply any URL params
         filterFilms();
@@ -532,7 +591,7 @@ function filterFilms() {
             return dateObj && dateObj >= todayStart;
         });
 
-        // Apply theater/date/version filters at the session level so all constraints match the same session.
+        // Apply theater/date/version/day filters at the session level
         const sessionFilteredDates = futureDates.filter(d => {
             if (!allTheatersSelected) {
                 if (!matchesSelectedTheaters(d.location)) return false;
@@ -545,6 +604,15 @@ function filterFilms() {
             if (selectedVersion && !isSpanishFilm(film)) {
                 if (selectedVersion === 'original' && d.version === 'dubbed') return false;
                 if (selectedVersion === 'dubbed' && d.version !== 'dubbed') return false;
+            }
+
+            // Day of week filter (session-level)
+            if (selectedDays.size > 0) {
+                const dt = getDateOnly(d.timestamp);
+                if (dt) {
+                    const jsDay = dt.getDay();
+                    if (![...selectedDays].some(ci => CHIP_TO_JS_DAY[ci] === jsDay)) return false;
+                }
             }
 
             return true;
@@ -562,28 +630,16 @@ function filterFilms() {
             (film.titleEn && normalizeText(film.titleEn).includes(searchTerm)) ||
             (film.director && normalizeText(film.director).includes(searchTerm));
 
-        // Year filter
-        let matchesYear = true;
-        const minInput = document.getElementById('year-min');
-        const maxInput = document.getElementById('year-max');
-        if (minInput && maxInput) {
-            const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
-            const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
-
+        // Decade filter (empty = no filter, show all)
+        let matchesDecade = true;
+        if (selectedDecades.size > 0) {
             if (film.year) {
-                matchesYear = film.year >= currentMin && film.year <= currentMax;
+                matchesDecade = [...selectedDecades].some(idx => {
+                    const d = DECADES[idx];
+                    return film.year >= d.start && film.year <= d.end;
+                });
             } else {
-                // Should we show films with no year? 
-                // If the range is the full range, yes. If strict subset, maybe?
-                // For now, let's include them only if the filter covers the full range (implied default)
-                // Or separate toggle? Let's just exclude if outside known range for now to be safe, 
-                // or include if "unknown" is acceptable.
-                // Decision: Include if range covers standard min/max, otherwise exclude?
-                // Simplest: If year is null, it doesn't match a specific range unless we have a specific rule.
-                // Let's exclude unknown years when filtering.
-                matchesYear = false;
-                // BUT if filter is at default (full range), ideally we show everything.
-                if (currentMin === minYear && currentMax === maxYear) matchesYear = true;
+                matchesDecade = false;
             }
         }
 
@@ -617,9 +673,42 @@ function filterFilms() {
             matchesCountry = film.country && film.country.some(c => selectedCountries.has(c));
         }
 
-        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched && matchesSpecial && matchesGenre && matchesCountry;
+        // Language filter
+        let matchesLanguage = true;
+        if (selectedLanguages && selectedLanguages.size < allLanguages.length) {
+            const pl = film.primaryLanguage;
+            if (Array.isArray(pl)) {
+                matchesLanguage = pl.some(l => selectedLanguages.has(l));
+            } else if (pl) {
+                matchesLanguage = selectedLanguages.has(pl);
+            } else {
+                matchesLanguage = false;
+            }
+        }
+
+        // Runtime category filter
+        let matchesRuntime = true;
+        if (selectedRuntimeCategories.size > 0) {
+            if (film.runtimeMinutes) {
+                matchesRuntime = [...selectedRuntimeCategories].some(idx => {
+                    const cat = RUNTIME_CATEGORIES[idx];
+                    return film.runtimeMinutes >= cat.min && film.runtimeMinutes <= cat.max;
+                });
+            } else {
+                matchesRuntime = false;
+            }
+        }
+
+        // Last chance filter
+        let matchesLastChance = true;
+        if (lastChanceFilterActive) {
+            matchesLastChance = film._isLastChance || false;
+        }
+
+        return matchesSearch && matchesDecade && matchesWatchlist && matchesWatched && matchesSpecial && matchesGenre && matchesCountry && matchesLanguage && matchesRuntime && matchesLastChance;
     });
 
+    updateFilterBadge();
     renderFilms();
 }
 
@@ -911,6 +1000,7 @@ function closeSessionModal(event) {
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        closeFilterModal();
         closeSessionModal();
         document.querySelectorAll('.sessions-popup.show').forEach(p => {
             closeSessionsPopup(p, p.previousElementSibling);
@@ -1504,33 +1594,90 @@ function translateCountry(country) {
     return country;
 }
 
-// State for genre/country filters
+const LANGUAGE_TRANSLATIONS_ES = {
+    'English': 'Inglés', 'French': 'Francés', 'Spanish': 'Español',
+    'German': 'Alemán', 'Italian': 'Italiano', 'Japanese': 'Japonés',
+    'Korean': 'Coreano', 'Chinese': 'Chino', 'Portuguese': 'Portugués',
+    'Russian': 'Ruso', 'Arabic': 'Árabe', 'Hindi': 'Hindi',
+    'Swedish': 'Sueco', 'Danish': 'Danés', 'Norwegian': 'Noruego',
+    'Polish': 'Polaco', 'Czech': 'Checo', 'Romanian': 'Rumano',
+    'Ukrainian': 'Ucraniano', 'Catalan': 'Catalán', 'Slovak': 'Eslovaco',
+    'Malayalam': 'Malabar', 'Tagalog': 'Tagalo', 'Urdu': 'Urdu',
+    'Azerbaijani': 'Azerí', 'No spoken language': 'Sin diálogo',
+};
+
+function translateLanguage(lang) {
+    if (currentLang === 'es') return LANGUAGE_TRANSLATIONS_ES[lang] || lang;
+    return lang;
+}
+
+// State for genre/country/language filters
 let allGenres = [];
 let allCountries = [];
-let selectedGenres = null; // null = all (not yet initialized)
+let allLanguages = [];
+let selectedGenres = null;
 let selectedCountries = null;
+let selectedLanguages = null;
+
 
 function initGenreCountryFilters() {
-    // Collect unique values from loaded data
+    // Collect unique values only from films with future sessions
+    const todayStart = getLocalTodayStart();
     const genreSet = new Set();
     const countrySet = new Set();
-    allFilms.forEach(film => {
+    const langSet = new Set();
+    const filmsWithFutureDates = allFilms.filter(film =>
+        film.dates.some(d => { const dt = getDateOnly(d.timestamp); return dt && dt >= todayStart; })
+    );
+    filmsWithFutureDates.forEach(film => {
         (film.genres || []).forEach(g => genreSet.add(g));
         (film.country || []).forEach(c => countrySet.add(c));
+        const pl = film.primaryLanguage;
+        if (Array.isArray(pl)) pl.forEach(l => langSet.add(l));
+        else if (pl) langSet.add(pl);
     });
     allGenres = [...genreSet].sort((a, b) => translateGenre(a).localeCompare(translateGenre(b), currentLang));
     allCountries = [...countrySet].sort((a, b) => translateCountry(a).localeCompare(translateCountry(b), currentLang));
+    allLanguages = [...langSet].sort((a, b) => translateLanguage(a).localeCompare(translateLanguage(b), currentLang));
 
-    // Load from localStorage or default to all
+    // Build decades from data — group anything before 1920 into "< 20s"
+    const decadeSet = new Set();
+    let hasPreTwenties = false;
+    filmsWithFutureDates.forEach(film => {
+        if (film.year) {
+            const d = Math.floor(film.year / 10) * 10;
+            if (d < 1920) hasPreTwenties = true;
+            else decadeSet.add(d);
+        }
+    });
+    DECADES = [];
+    if (hasPreTwenties) DECADES.push({ label: '< 20s', start: 0, end: 1919 });
+    [...decadeSet].sort().forEach(d => {
+        DECADES.push({ label: `${d}s`, start: d, end: d + 9 });
+    });
+
     selectedGenres = new Set(allGenres);
     selectedCountries = new Set(allCountries);
+    selectedLanguages = new Set(allLanguages);
 
     buildFilterDropdown('genre', allGenres, selectedGenres, translateGenre);
     buildFilterDropdown('country', allCountries, selectedCountries, translateCountry);
+    buildFilterDropdown('language', allLanguages, selectedLanguages, translateLanguage);
     updateFilterTriggerLabel('genre', selectedGenres, allGenres);
     updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
     initFilterDropdownEvents('genre', allGenres, selectedGenres, translateGenre);
     initFilterDropdownEvents('country', allCountries, selectedCountries, translateCountry);
+    initFilterDropdownEvents('language', allLanguages, selectedLanguages, translateLanguage);
+
+    // Build chip filters — empty selection = no filter (show all)
+    initDecadeActions();
+    buildDecadeChips();
+    initRuntimeActions();
+    buildRuntimeChips();
+    initDayActions();
+    buildDayChips();
+    computeLastChance();
 }
 
 
@@ -1540,6 +1687,8 @@ function updateFilterTriggerLabel(type, selected, all) {
     const total = all.length;
     if (type === 'genre') {
         span.textContent = t('nGenresSelected', n, total);
+    } else if (type === 'language') {
+        span.textContent = t('nLanguagesSelected', n, total);
     } else {
         span.textContent = t('nCountriesSelected', n, total);
     }
@@ -1572,6 +1721,46 @@ function buildFilterDropdown(type, allValues, selected, translateFn) {
     });
 }
 
+function positionFixedTooltip(trigger, tooltip, opts = {}) {
+    if (!trigger.closest('.filter-modal')) return;
+    // opts.anchor: element to use for position (defaults to trigger)
+    // opts.alignRight: align tooltip's right edge to anchor's right edge
+    const anchor = opts.anchor || trigger;
+    const anchorRect = anchor.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - anchorRect.bottom;
+    if (spaceBelow < 250) {
+        tooltip.style.bottom = (window.innerHeight - anchorRect.top + 6) + 'px';
+        tooltip.style.top = 'auto';
+    } else {
+        tooltip.style.top = (anchorRect.bottom + 6) + 'px';
+        tooltip.style.bottom = 'auto';
+    }
+    if (opts.alignRight) {
+        const tooltipWidth = tooltip.offsetWidth || 250;
+        tooltip.style.left = Math.max(8, anchorRect.right - tooltipWidth) + 'px';
+    } else {
+        tooltip.style.left = anchorRect.left + 'px';
+    }
+}
+
+function positionFilterDropdown(wrapper) {
+    const dropdown = wrapper.querySelector('.filter-dropdown');
+    if (!dropdown || !wrapper.closest('.filter-modal')) return;
+    const triggerRect = wrapper.querySelector('.filter-multiselect-trigger').getBoundingClientRect();
+    const spaceBelow = window.innerHeight - triggerRect.bottom;
+    const spaceAbove = triggerRect.top;
+    // Open upward if not enough space below
+    if (spaceBelow < 250 && spaceAbove > spaceBelow) {
+        dropdown.style.bottom = (window.innerHeight - triggerRect.top + 4) + 'px';
+        dropdown.style.top = 'auto';
+    } else {
+        dropdown.style.top = (triggerRect.bottom + 4) + 'px';
+        dropdown.style.bottom = 'auto';
+    }
+    dropdown.style.left = triggerRect.left + 'px';
+    dropdown.style.width = triggerRect.width + 'px';
+}
+
 function initFilterDropdownEvents(type, allValues, selected, translateFn) {
     const wrapper = document.getElementById(`${type}-filter`);
     const trigger = document.getElementById(`${type}-trigger`);
@@ -1588,6 +1777,7 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
         if (wrapper.classList.contains('open')) {
             searchInput.value = '';
             buildFilterDropdown(type, allValues, selected, translateFn);
+            positionFilterDropdown(wrapper);
             searchInput.focus();
         }
     });
@@ -1639,11 +1829,15 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
         infoTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
             wrapper.classList.toggle('show-help');
+            if (wrapper.classList.contains('show-help')) positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
             isTouch = false;
         });
 
         infoTrigger.addEventListener('mouseenter', () => {
-            if (!isTouch) wrapper.classList.add('show-help');
+            if (!isTouch) {
+                wrapper.classList.add('show-help');
+                positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
+            }
         });
 
         infoTrigger.addEventListener('mouseleave', () => {
@@ -1655,6 +1849,269 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
         });
 
         infoTooltip.addEventListener('click', (e) => e.stopPropagation());
+    }
+}
+
+// ── Filter Modal ────────────────────────────────────────────────────────────
+function openFilterModal() {
+    const modal = document.getElementById('filter-modal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFilterModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    const modal = document.getElementById('filter-modal');
+    if (!modal.classList.contains('show')) return;
+    modal.classList.add('closing');
+    setTimeout(() => {
+        modal.classList.remove('show', 'closing');
+        document.body.style.overflow = '';
+    }, 220);
+}
+
+document.getElementById('more-filters-btn').addEventListener('click', openFilterModal);
+
+// ── Chip Builders ───────────────────────────────────────────────────────────
+function initDecadeActions() {
+    const actions = document.getElementById('decade-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedDecades.clear();
+        updateDecadeChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+
+    // Help icon events
+    const help = document.getElementById('decade-help');
+    const helpTooltip = document.getElementById('decade-help-tooltip');
+    let helpIsTouch = false;
+    help.addEventListener('touchstart', () => { helpIsTouch = true; }, { passive: true });
+    help.addEventListener('click', (e) => {
+        e.stopPropagation();
+        help.classList.toggle('show');
+        if (help.classList.contains('show')) positionFixedTooltip(help, helpTooltip);
+        helpIsTouch = false;
+    });
+    help.addEventListener('mouseenter', () => {
+        if (!helpIsTouch) {
+            help.classList.add('show');
+            positionFixedTooltip(help, helpTooltip);
+        }
+    });
+    help.addEventListener('mouseleave', () => {
+        if (!helpIsTouch) help.classList.remove('show');
+    });
+}
+
+function buildDecadeChips() {
+    const container = document.getElementById('decade-chips');
+    container.innerHTML = '';
+    DECADES.forEach((decade, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedDecades.has(index) ? ' active' : '');
+        chip.textContent = decade.label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedDecades.size === 1 && !selectedDecades.has(index)) {
+                const anchor = [...selectedDecades][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedDecades.clear();
+                for (let i = from; i <= to; i++) selectedDecades.add(i);
+            } else {
+                if (selectedDecades.has(index)) selectedDecades.delete(index);
+                else selectedDecades.add(index);
+            }
+            updateDecadeChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+function updateDecadeChipUI() {
+    document.querySelectorAll('#decade-chips .chip').forEach(c => {
+        c.classList.toggle('active', selectedDecades.has(parseInt(c.dataset.index)));
+    });
+}
+
+function initRuntimeActions() {
+    const actions = document.getElementById('runtime-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedRuntimeCategories.clear();
+        updateRuntimeChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+}
+
+function updateRuntimeChipUI() {
+    document.querySelectorAll('#runtime-chips .chip').forEach((c, i) => {
+        c.classList.toggle('active', selectedRuntimeCategories.has(i));
+    });
+}
+
+function buildRuntimeChips() {
+    const container = document.getElementById('runtime-chips');
+    container.innerHTML = '';
+    RUNTIME_CATEGORIES.forEach((cat, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedRuntimeCategories.has(index) ? ' active' : '');
+        chip.textContent = cat.label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedRuntimeCategories.size === 1 && !selectedRuntimeCategories.has(index)) {
+                const anchor = [...selectedRuntimeCategories][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedRuntimeCategories.clear();
+                for (let i = from; i <= to; i++) selectedRuntimeCategories.add(i);
+            } else {
+                if (selectedRuntimeCategories.has(index)) selectedRuntimeCategories.delete(index);
+                else selectedRuntimeCategories.add(index);
+            }
+            updateRuntimeChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+function initDayActions() {
+    const actions = document.getElementById('day-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedDays.clear();
+        updateDayChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+}
+
+function updateDayChipUI() {
+    document.querySelectorAll('#day-chips .chip').forEach((c, i) => {
+        c.classList.toggle('active', selectedDays.has(i));
+    });
+}
+
+function buildDayChips() {
+    const container = document.getElementById('day-chips');
+    container.innerHTML = '';
+    const labels = DAY_LABELS[currentLang] || DAY_LABELS.en;
+    labels.forEach((label, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedDays.has(index) ? ' active' : '');
+        chip.textContent = label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedDays.size === 1 && !selectedDays.has(index)) {
+                const anchor = [...selectedDays][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedDays.clear();
+                for (let i = from; i <= to; i++) selectedDays.add(i);
+            } else {
+                if (selectedDays.has(index)) selectedDays.delete(index);
+                else selectedDays.add(index);
+            }
+            updateDayChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+// Last chance: precompute on each film
+function computeLastChance() {
+    const todayStart = getLocalTodayStart();
+    const threeDays = new Date(todayStart);
+    threeDays.setDate(threeDays.getDate() + 3);
+    threeDays.setHours(23, 59, 59);
+
+    allFilms.forEach(film => {
+        let latest = null;
+        film.dates.forEach(d => {
+            const dt = getDateOnly(d.timestamp);
+            if (dt && dt >= todayStart && (!latest || dt > latest)) latest = dt;
+        });
+        film._isLastChance = latest && latest <= threeDays;
+    });
+}
+
+document.getElementById('last-chance-filter').addEventListener('click', (e) => {
+    if (e.target.closest('.chip-help')) return;
+    lastChanceFilterActive = !lastChanceFilterActive;
+    document.getElementById('last-chance-filter').classList.toggle('active', lastChanceFilterActive);
+    filterFilms();
+    updateURLParams();
+});
+
+// Last chance help icon
+(function() {
+    const help = document.getElementById('last-chance-help');
+    const tooltip = document.getElementById('last-chance-help-tooltip');
+    let isTouch = false;
+    help.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
+    help.addEventListener('click', (e) => {
+        e.stopPropagation();
+        help.classList.toggle('show');
+        if (help.classList.contains('show')) positionFixedTooltip(help, tooltip);
+        isTouch = false;
+    });
+    help.addEventListener('mouseenter', () => {
+        if (!isTouch) { help.classList.add('show'); positionFixedTooltip(help, tooltip); }
+    });
+    help.addEventListener('mouseleave', () => {
+        if (!isTouch) help.classList.remove('show');
+    });
+})();
+
+// Badge
+function updateFilterBadge() {
+    let count = 0;
+    if (selectedDecades.size > 0) count++;
+    if (selectedRuntimeCategories.size > 0) count++;
+    if (selectedDays.size > 0) count++;
+    if (lastChanceFilterActive) count++;
+    if (specialFilterActive) count++;
+    if (selectedGenres && selectedGenres.size < allGenres.length) count++;
+    if (selectedCountries && selectedCountries.size < allCountries.length) count++;
+    if (selectedLanguages && selectedLanguages.size < allLanguages.length) count++;
+    const versionBtn = document.getElementById('version-filter');
+    if (versionBtn && versionBtn.dataset.current === 'dubbed') count++;
+    if (watchlistUrls && watchlistFilterActive) count++;
+    if (watchedUrls && watchedFilterActive) count++;
+
+    const badge = document.getElementById('filter-badge');
+    if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = '';
+    } else {
+        badge.style.display = 'none';
     }
 }
 
@@ -1745,112 +2202,9 @@ dateFilter.addEventListener('change', handleDateFilterChange);
 
 setDateFilterMin();
 
-let minYear = 1900;
-let maxYear = new Date().getFullYear();
+/* minYear/maxYear removed — decade chips replace year slider */
 
-function initYearFilter() {
-    // Calculate min/max years only from films that still have upcoming sessions
-    const todayStart = getLocalTodayStart();
-    const validYears = allFilms
-        .filter(film => film.dates?.some(d => {
-            const dateObj = getDateOnly(d.timestamp);
-            return dateObj && dateObj >= todayStart;
-        }))
-        .map(f => f.year)
-        .filter(y => y !== null && !isNaN(y));
-
-    if (validYears.length > 0) {
-        minYear = Math.min(...validYears);
-        maxYear = Math.max(...validYears);
-    }
-
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    // Set slider range and inputs
-    [yearMinInput, yearMaxInput, yearMinVal, yearMaxVal].forEach(input => {
-        input.min = minYear;
-        input.max = maxYear;
-    });
-
-    // Set initial values from URL or defaults
-    const params = new URLSearchParams(window.location.search);
-    const startMin = params.get('min_year') || minYear;
-    const startMax = params.get('max_year') || maxYear;
-
-    yearMinInput.value = startMin;
-    yearMaxInput.value = startMax;
-    yearMinVal.value = startMin;
-    yearMaxVal.value = startMax;
-
-    updateSliderDisplay();
-}
-
-function updateSliderDisplay() {
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    let minVal = parseInt(yearMinInput.value);
-    let maxVal = parseInt(yearMaxInput.value);
-
-    // Validate range
-    if (minVal > maxVal) {
-        const temp = minVal;
-        minVal = maxVal;
-        maxVal = temp;
-    }
-
-    // Update text inputs if they aren't focused (to avoid interrupting typing)
-    if (document.activeElement !== yearMinVal) yearMinVal.value = minVal;
-    if (document.activeElement !== yearMaxVal) yearMaxVal.value = maxVal;
-
-    updateTrack(minVal, maxVal);
-}
-
-function updateTrack(minVal, maxVal) {
-    const track = document.querySelector('.slider-track');
-    const range = maxYear - minYear;
-    if (range <= 0) return;
-
-    const ratio1 = (minVal - minYear) / range;
-    const ratio2 = (maxVal - minYear) / range;
-
-    // Align gradient stops with the center of the thumbs (16px width)
-    const thumbW = 16;
-    const stop1 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio1})`;
-    const stop2 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio2})`;
-
-    track.style.background = `linear-gradient(to right, var(--border) ${stop1}, var(--accent) ${stop1}, var(--accent) ${stop2}, var(--border) ${stop2})`;
-}
-
-// Event listeners for SLIDERS
-['year-min', 'year-max'].forEach(id => {
-    document.getElementById(id).addEventListener('input', () => {
-        updateSliderDisplay();
-        filterFilms();
-
-        // Debounce URL update
-        clearTimeout(window.updateUrlTimeout);
-        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
-    });
-});
-
-// Event listeners for TEXT inputs
-['year-min-val', 'year-max-val'].forEach(id => {
-    const input = document.getElementById(id);
-    input.addEventListener('change', () => {
-        validateAndSyncInputs();
-        filterFilms();
-
-        // Debounce URL update
-        clearTimeout(window.updateUrlTimeout);
-        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
-    });
-});
+/* Year/runtime sliders removed — replaced by decade/runtime chips */
 
 // Clear filters button
 document.getElementById('clear-filters').addEventListener('click', () => {
@@ -1870,25 +2224,19 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     sortBtn.querySelector('span').textContent = t('sortByRating');
     sortBtn.querySelector('span').dataset.i18n = 'sortByRating';
 
-    // Reset year filter
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    yearMinInput.value = minYear;
-    yearMaxInput.value = maxYear;
-    yearMinVal.value = minYear;
-    yearMaxVal.value = maxYear;
-
-    updateSliderDisplay();
+    // Reset chip filters
+    selectedDecades.clear(); buildDecadeChips();
+    selectedRuntimeCategories.clear(); buildRuntimeChips();
+    selectedDays.clear(); buildDayChips();
+    lastChanceFilterActive = false;
+    document.getElementById('last-chance-filter').classList.remove('active');
 
     // Reset special filter
     specialFilterActive = false;
     const specialBtn = document.getElementById('special-filter');
     if (specialBtn) specialBtn.classList.remove('active');
 
-    // Reset genre/country filters
+    // Reset genre/country/language filters
     if (selectedGenres) {
         allGenres.forEach(v => selectedGenres.add(v));
         updateFilterTriggerLabel('genre', selectedGenres, allGenres);
@@ -1896,6 +2244,10 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     if (selectedCountries) {
         allCountries.forEach(v => selectedCountries.add(v));
         updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    }
+    if (selectedLanguages) {
+        allLanguages.forEach(v => selectedLanguages.add(v));
+        updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
     }
 
     // updateURLParams will act on changed values, but let's clear URL explicitly
@@ -1906,38 +2258,6 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     filterFilms();
 });
 
-function validateAndSyncInputs() {
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    let minVal = parseInt(yearMinVal.value);
-    let maxVal = parseInt(yearMaxVal.value);
-
-    // Clamp to global bounds
-    if (minVal < minYear) minVal = minYear;
-    if (maxVal > maxYear) maxVal = maxYear;
-    if (minVal > maxYear) minVal = maxYear;
-    if (maxVal < minYear) maxVal = minYear;
-
-    // Ensure min <= max
-    if (minVal > maxVal) {
-        const temp = minVal;
-        minVal = maxVal;
-        maxVal = temp;
-    }
-
-    // Update inputs with clamped values
-    yearMinVal.value = minVal;
-    yearMaxVal.value = maxVal;
-
-    // Sync sliders
-    yearMinInput.value = minVal;
-    yearMaxInput.value = maxVal;
-
-    updateTrack(minVal, maxVal);
-}
 
 // URL Parameter Handling
 function applyFiltersFromURL() {
@@ -2014,25 +2334,38 @@ function applyFiltersFromURL() {
         if (specialBtn) specialBtn.classList.add('active');
     }
 
-    // Year filter is initialized in initYearFilter() after films load
+    const decadesParam = params.get('decades');
+    if (decadesParam) {
+        selectedDecades = new Set(decadesParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < DECADES.length));
+        buildDecadeChips();
+    }
+
+    const runtimeParam = params.get('runtime');
+    if (runtimeParam) {
+        selectedRuntimeCategories = new Set(runtimeParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < RUNTIME_CATEGORIES.length));
+        buildRuntimeChips();
+    }
+
+    const daysParam = params.get('days');
+    if (daysParam) {
+        selectedDays = new Set(daysParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < 7));
+        buildDayChips();
+    }
+
+    if (params.get('lastchance') === '1') {
+        lastChanceFilterActive = true;
+        document.getElementById('last-chance-filter').classList.add('active');
+    }
 }
 
 function updateURLParams() {
     const search = document.getElementById('search').value;
     const date = document.getElementById('date-filter').value;
-
-    // Get current slider values
-    const minInput = document.getElementById('year-min');
-    const maxInput = document.getElementById('year-max');
-    const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
-    const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
-
     const version = document.getElementById('version-filter').dataset.current;
 
     const params = new URLSearchParams();
 
     if (search) params.set('search', search);
-    // Store excluded theaters in URL (compact when most are selected)
     const excluded = ALL_THEATER_VALUES.filter(v => !selectedTheaters.has(v));
     if (excluded.length > 0 && excluded.length < ALL_THEATER_VALUES.length) {
         params.set('exclude_theaters', excluded.join(','));
@@ -2045,10 +2378,10 @@ function updateURLParams() {
     const sort = document.getElementById('sort-filter').dataset.current;
     if (sort && sort !== 'rating') params.set('sort', sort);
 
-    // Only add year params if they differ from global bounds
-    if (currentMin > minYear) params.set('min_year', currentMin);
-    if (currentMax < maxYear) params.set('max_year', currentMax);
-
+    if (selectedDecades.size > 0) params.set('decades', [...selectedDecades].join(','));
+    if (selectedRuntimeCategories.size > 0) params.set('runtime', [...selectedRuntimeCategories].join(','));
+    if (selectedDays.size > 0) params.set('days', [...selectedDays].join(','));
+    if (lastChanceFilterActive) params.set('lastchance', '1');
     if (specialFilterActive) params.set('special', '1');
 
     const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
@@ -2359,9 +2692,36 @@ document.getElementById('watched-upload').addEventListener('change', (event) => 
 
 // ── Info tooltip ─────────────────────────────────────────────────────────────
 
-document.getElementById('csv-info-trigger').addEventListener('click', (e) => {
+const csvInfoTrigger = document.getElementById('csv-info-trigger');
+const csvTooltip = document.getElementById('csv-tooltip');
+let csvIsTouch = false;
+
+csvInfoTrigger.addEventListener('touchstart', () => { csvIsTouch = true; }, { passive: true });
+
+csvInfoTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
-    e.currentTarget.classList.toggle('show');
+    csvInfoTrigger.classList.toggle('show');
+    if (csvInfoTrigger.classList.contains('show')) {
+        positionFixedTooltip(csvInfoTrigger, csvTooltip, { anchor: csvInfoTrigger.closest('.watchlist-filter') });
+    }
+    csvIsTouch = false;
+});
+
+csvInfoTrigger.addEventListener('mouseenter', () => {
+    if (!csvIsTouch) {
+        csvInfoTrigger.classList.add('show');
+        positionFixedTooltip(csvInfoTrigger, csvTooltip, { anchor: csvInfoTrigger.closest('.watchlist-filter') });
+    }
+});
+
+csvInfoTrigger.addEventListener('mouseleave', (e) => {
+    if (!csvIsTouch && !csvTooltip.matches(':hover')) {
+        csvInfoTrigger.classList.remove('show');
+    }
+});
+
+csvTooltip.addEventListener('mouseleave', () => {
+    if (!csvIsTouch) csvInfoTrigger.classList.remove('show');
 });
 
 document.getElementById('csv-tooltip').addEventListener('click', (e) => {

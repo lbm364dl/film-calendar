@@ -141,136 +141,11 @@
                 </div>
             </div>
 
-            <div class="filter-multiselects">
-                <div class="filter-multiselect" id="genre-filter">
-                    <button type="button" class="filter-multiselect-trigger" id="genre-trigger">
-                        <span data-i18n="allGenres">Todos los géneros</span>
-                        <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
-                    </button>
-                    <div class="filter-dropdown" id="genre-dropdown">
-                        <input type="text" class="filter-search" id="genre-search" data-i18n-placeholder="searchGenres" placeholder="Buscar género..." autocomplete="off">
-                        <div class="filter-dd-actions">
-                            <button type="button" class="filter-dd-select-all" data-target="genre">Todos</button>
-                            <button type="button" class="filter-dd-select-none" data-target="genre">Ninguno</button>
-                        </div>
-                        <div class="filter-dd-options" id="genre-options"></div>
-                    </div>
-                </div>
-                <div class="filter-multiselect" id="country-filter">
-                    <button type="button" class="filter-multiselect-trigger" id="country-trigger">
-                        <span data-i18n="allCountries">Todos los países</span>
-                        <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
-                        <div class="country-info-trigger" id="country-info-trigger">
-                            <span class="info-icon">?</span>
-                        </div>
-                    </button>
-                    <div class="country-info-tooltip" id="country-info-tooltip">
-                        <p data-i18n-html="countryTooltipTitle"><strong>Filtro por país</strong></p>
-                        <p data-i18n="countryTooltipBody">Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.</p>
-                    </div>
-                    <div class="filter-dropdown" id="country-dropdown">
-                        <input type="text" class="filter-search" id="country-search" data-i18n-placeholder="searchCountries" placeholder="Buscar país..." autocomplete="off">
-                        <div class="filter-dd-actions">
-                            <button type="button" class="filter-dd-select-all" data-target="country">Todos</button>
-                            <button type="button" class="filter-dd-select-none" data-target="country">Ninguno</button>
-                        </div>
-                        <div class="filter-dd-options" id="country-options"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="year-filter">
-                <div class="year-inputs">
-                    <div class="year-input-group">
-                        <label for="year-min-val" data-i18n="yearFrom">Año desde</label>
-                        <input type="number" id="year-min-val" min="1900" max="2030">
-                    </div>
-                    <div class="year-input-group">
-                        <label for="year-max-val" data-i18n="yearTo">Año hasta</label>
-                        <input type="number" id="year-max-val" min="1900" max="2030">
-                    </div>
-                </div>
-                <div class="range-slider">
-                    <div class="slider-track"></div>
-                    <input type="range" id="year-min" min="1900" max="2026" value="1900">
-                    <input type="range" id="year-max" min="1900" max="2026" value="2026">
-                </div>
-            </div>
-
-            <div class="toggle-row">
-                <button id="version-filter" class="toggle-filter-btn active" data-values="original,dubbed" data-current="original">
-                    <span data-i18n="versionOriginal">Versión original</span>
-                </button>
-
-                <button id="sort-filter" class="toggle-filter-btn" data-values="rating,viewers" data-current="rating">
-                    <span data-i18n="sortByRating">Ordenar por nota</span>
-                </button>
-            </div>
-
-            <div class="actions-cell">
-                <div class="watchlist-filter">
-                    <input type="file" id="watchlist-upload" accept=".csv" hidden>
-                    <button class="csv-filter-btn" id="watchlist-btn" title="Filtrar por watchlist de Letterboxd" data-i18n-title="watchlistBtnTitle">
-                        <span class="csv-label-text">
-                            <span id="watchlist-label-full" class="csv-label-full" data-i18n="watchlistFull">Watchlist de Letterboxd</span>
-                            <span id="watchlist-label-short" class="csv-label-short" data-i18n="watchlistShort">Watchlist</span>
-                        </span>
-                        <span class="csv-label-icon" title="Watchlist" data-i18n-title="watchlistIconTitle">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-                        </span>
-                    </button>
-                    <span id="watchlist-toggle-wrap" class="csv-toggle-wrap" style="display:none">
-                        <label class="toggle-switch" title="Activar/desactivar filtro de watchlist" data-i18n-title="watchlistToggleTitle">
-                            <input type="checkbox" id="watchlist-toggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </span>
-                    <button id="watchlist-remove-btn" class="csv-remove-btn" title="Quitar watchlist" data-i18n-title="removeWatchlist" style="display:none">&times;</button>
-                    <div class="csv-info-trigger" id="csv-info-trigger">
-                        <span class="info-icon" id="info-icon">?</span>
-                        <div class="csv-info-tooltip" id="csv-tooltip">
-                            <p data-i18n-html="csvTooltipTitle"><strong>Filtrar con tus datos de Letterboxd</strong></p>
-                            <ol>
-                                <li data-i18n-html="csvStep1">Ve a <a href="https://letterboxd.com/settings/data/" target="_blank">letterboxd.com/settings/data</a></li>
-                                <li data-i18n-html="csvStep2">Haz clic en <em>Export your data</em></li>
-                                <li data-i18n-html="csvStep3">Del ZIP descargado, sube <em>watchlist.csv</em> y/o <em>watched.csv</em> aquí</li>
-                                <li data-i18n-html="csvStep4">Activa/desactiva los filtros</li>
-                            </ol>
-                            <p class="csv-persistence-note" data-i18n="csvPersistence">Los archivos se guardan en el navegador y sobreviven cuando vuelvas a abrir la página.</p>
-                            <p id="watchlist-count-info" class="csv-count-info" style="display:none"></p>
-                            <p id="watched-count-info" class="csv-count-info" style="display:none"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="watched-filter">
-                    <input type="file" id="watched-upload" accept=".csv" hidden>
-                    <button class="csv-filter-btn" id="watched-btn" title="Filtrar por películas vistas en Letterboxd" data-i18n-title="watchedBtnTitle">
-                        <span class="csv-label-text">
-                            <span id="watched-label-full" class="csv-label-full" data-i18n="watchedFull">Vistas Letterboxd</span>
-                            <span id="watched-label-short" class="csv-label-short" data-i18n="watchedShort">Vistas</span>
-                        </span>
-                        <span class="csv-label-icon" title="No vistas" data-i18n-title="watchedIconTitle" aria-hidden="true"></span>
-                    </button>
-                    <span id="watched-toggle-wrap" class="csv-toggle-wrap" style="display:none">
-                        <label class="toggle-switch" title="Activar/desactivar filtro de no vistas" data-i18n-title="watchedToggleTitle">
-                            <input type="checkbox" id="watched-toggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </span>
-                    <button id="watched-remove-btn" class="csv-remove-btn" title="Quitar vistas" data-i18n-title="removeWatched" style="display:none">&times;</button>
-                </div>
-
-                <button id="special-filter" class="special-filter-btn" title="Mostrar solo sesiones especiales" data-i18n-title="specialFilterTitle">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <span class="special-label-full" data-i18n="specialFilterFull">Sesiones especiales</span>
-                    <span class="special-label-short" data-i18n="specialFilterShort">Especiales</span>
-                </button>
-
-                <button id="clear-filters" class="clear-filters-btn" title="Limpiar todos los filtros" data-i18n-title="clearFiltersTitle">
-                    <span data-i18n="clearFilters">Limpiar filtros</span>
-                </button>
-            </div>
+            <button type="button" class="more-filters-btn" id="more-filters-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="18" r="2" fill="currentColor"/></svg>
+                <span data-i18n="moreFilters">Más filtros</span>
+                <span class="filter-badge" id="filter-badge" style="display:none">0</span>
+            </button>
         </div>
 
         </nav>
@@ -9157,6 +9032,192 @@
         </footer>
 
         <!-- Session Action Modal -->
+        <div id="filter-modal" class="filter-modal" onclick="closeFilterModal(event)">
+            <div class="filter-modal-content" onclick="event.stopPropagation(); document.querySelectorAll('.chip-help.show').forEach(h => { if (!h.contains(event.target)) h.classList.remove('show'); }); document.querySelectorAll('.filter-multiselect.open').forEach(el => { if (!el.contains(event.target)) el.classList.remove('open'); })">
+                <div class="filter-modal-header">
+                    <h3 data-i18n="moreFilters">Más filtros</h3>
+                    <button class="filter-modal-close" onclick="closeFilterModal()">&times;</button>
+                </div>
+                <div class="filter-modal-body">
+                    <div class="filter-section">
+                        <div class="filter-section-header">
+                            <div class="filter-section-header-left">
+                                <label class="filter-section-label" data-i18n="decades">Décadas</label>
+                                <div class="chip-help" id="decade-help">
+                                    <span class="info-icon">?</span>
+                                    <div class="chip-help-tooltip" id="decade-help-tooltip">
+                                        <p data-i18n-html="decadeHelpTitle"><strong>Selección por décadas</strong></p>
+                                        <p data-i18n="decadeHelpBody">Pulsa una década para filtrar. Pulsa otra para seleccionar todo el rango entre ambas. Usa los botones Todos/Ninguno para seleccionar o deseleccionar todo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chip-actions" id="decade-actions"></div>
+                        </div>
+                        <div class="chip-group" id="decade-chips"></div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-section-header">
+                            <label class="filter-section-label" data-i18n="runtime">Duración</label>
+                            <div class="chip-actions" id="runtime-actions"></div>
+                        </div>
+                        <div class="chip-group" id="runtime-chips"></div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-section-header">
+                            <label class="filter-section-label" data-i18n="dayOfWeek">Día de la semana</label>
+                            <div class="chip-actions" id="day-actions"></div>
+                        </div>
+                        <div class="chip-group" id="day-chips"></div>
+                    </div>
+
+                    <div class="filter-section filter-multiselect-row">
+                        <div class="filter-multiselect-col">
+                            <label class="filter-section-label" data-i18n="genreLabel">Género</label>
+                            <div class="filter-multiselect" id="genre-filter">
+                                <button type="button" class="filter-multiselect-trigger" id="genre-trigger">
+                                    <span data-i18n="allGenres">Todos los géneros</span>
+                                    <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                                </button>
+                                <div class="filter-dropdown" id="genre-dropdown">
+                                    <input type="text" class="filter-search" id="genre-search" data-i18n-placeholder="searchGenres" placeholder="Buscar género..." autocomplete="off">
+                                    <div class="filter-dd-actions">
+                                        <button type="button" class="filter-dd-select-all" data-target="genre">Todos</button>
+                                        <button type="button" class="filter-dd-select-none" data-target="genre">Ninguno</button>
+                                    </div>
+                                    <div class="filter-dd-options" id="genre-options"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-multiselect-col">
+                            <label class="filter-section-label" data-i18n="countryLabel">País</label>
+                            <div class="filter-multiselect" id="country-filter">
+                                <button type="button" class="filter-multiselect-trigger" id="country-trigger">
+                                    <span data-i18n="allCountries">Todos los países</span>
+                                    <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                                    <div class="country-info-trigger" id="country-info-trigger">
+                                        <span class="info-icon">?</span>
+                                    </div>
+                                </button>
+                                <div class="country-info-tooltip" id="country-info-tooltip">
+                                    <p data-i18n-html="countryTooltipTitle"><strong>Filtro por país</strong></p>
+                                    <p data-i18n="countryTooltipBody">Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.</p>
+                                </div>
+                                <div class="filter-dropdown" id="country-dropdown">
+                                    <input type="text" class="filter-search" id="country-search" data-i18n-placeholder="searchCountries" placeholder="Buscar país..." autocomplete="off">
+                                    <div class="filter-dd-actions">
+                                        <button type="button" class="filter-dd-select-all" data-target="country">Todos</button>
+                                        <button type="button" class="filter-dd-select-none" data-target="country">Ninguno</button>
+                                    </div>
+                                    <div class="filter-dd-options" id="country-options"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-multiselect-col">
+                            <label class="filter-section-label" data-i18n="languageLabel">Idioma</label>
+                            <div class="filter-multiselect" id="language-filter">
+                                <button type="button" class="filter-multiselect-trigger" id="language-trigger">
+                                    <span data-i18n="allLanguages">Todos los idiomas</span>
+                                    <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                                </button>
+                                <div class="filter-dropdown" id="language-dropdown">
+                                    <input type="text" class="filter-search" id="language-search" data-i18n-placeholder="searchLanguages" placeholder="Buscar idioma..." autocomplete="off">
+                                    <div class="filter-dd-actions">
+                                        <button type="button" class="filter-dd-select-all" data-target="language">Todos</button>
+                                        <button type="button" class="filter-dd-select-none" data-target="language">Ninguno</button>
+                                    </div>
+                                    <div class="filter-dd-options" id="language-options"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section csv-filters-row">
+                        <div class="watchlist-filter">
+                            <input type="file" id="watchlist-upload" accept=".csv" hidden>
+                            <button class="csv-filter-btn" id="watchlist-btn" title="Filtrar por watchlist de Letterboxd" data-i18n-title="watchlistBtnTitle">
+                                <span class="csv-label-text">
+                                    <span id="watchlist-label-full" class="csv-label-full" data-i18n="watchlistFull">Watchlist de Letterboxd</span>
+                                    <span id="watchlist-label-short" class="csv-label-short" data-i18n="watchlistShort">Watchlist</span>
+                                </span>
+                                <span class="csv-label-icon" title="Watchlist" data-i18n-title="watchlistIconTitle">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                                </span>
+                            </button>
+                            <span id="watchlist-toggle-wrap" class="csv-toggle-wrap" style="display:none">
+                                <label class="toggle-switch" title="Activar/desactivar filtro de watchlist" data-i18n-title="watchlistToggleTitle">
+                                    <input type="checkbox" id="watchlist-toggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </span>
+                            <button id="watchlist-remove-btn" class="csv-remove-btn" title="Quitar watchlist" data-i18n-title="removeWatchlist" style="display:none">&times;</button>
+                            <div class="csv-info-trigger" id="csv-info-trigger">
+                                <span class="info-icon" id="info-icon">?</span>
+                                <div class="csv-info-tooltip" id="csv-tooltip">
+                                    <p data-i18n-html="csvTooltipTitle"><strong>Filtrar con tus datos de Letterboxd</strong></p>
+                                    <ol>
+                                        <li data-i18n-html="csvStep1">Ve a <a href="https://letterboxd.com/settings/data/" target="_blank">letterboxd.com/settings/data</a></li>
+                                        <li data-i18n-html="csvStep2">Haz clic en <em>Export your data</em></li>
+                                        <li data-i18n-html="csvStep3">Del ZIP descargado, sube <em>watchlist.csv</em> y/o <em>watched.csv</em> aquí</li>
+                                        <li data-i18n-html="csvStep4">Activa/desactiva los filtros</li>
+                                    </ol>
+                                    <p class="csv-persistence-note" data-i18n="csvPersistence">Los archivos se guardan en el navegador y sobreviven cuando vuelvas a abrir la página.</p>
+                                    <p id="watchlist-count-info" class="csv-count-info" style="display:none"></p>
+                                    <p id="watched-count-info" class="csv-count-info" style="display:none"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="watched-filter">
+                            <input type="file" id="watched-upload" accept=".csv" hidden>
+                            <button class="csv-filter-btn" id="watched-btn" title="Filtrar por películas vistas en Letterboxd" data-i18n-title="watchedBtnTitle">
+                                <span class="csv-label-text">
+                                    <span id="watched-label-full" class="csv-label-full" data-i18n="watchedFull">Vistas Letterboxd</span>
+                                    <span id="watched-label-short" class="csv-label-short" data-i18n="watchedShort">Vistas</span>
+                                </span>
+                                <span class="csv-label-icon" title="No vistas" data-i18n-title="watchedIconTitle" aria-hidden="true"></span>
+                            </button>
+                            <span id="watched-toggle-wrap" class="csv-toggle-wrap" style="display:none">
+                                <label class="toggle-switch" title="Activar/desactivar filtro de no vistas" data-i18n-title="watchedToggleTitle">
+                                    <input type="checkbox" id="watched-toggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </span>
+                            <button id="watched-remove-btn" class="csv-remove-btn" title="Quitar vistas" data-i18n-title="removeWatched" style="display:none">&times;</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section filter-toggles-grid">
+                        <button id="version-filter" class="toggle-filter-btn active" data-values="original,dubbed" data-current="original">
+                            <span data-i18n="versionOriginal">Versión original</span>
+                        </button>
+                        <button id="sort-filter" class="toggle-filter-btn" data-values="rating,viewers" data-current="rating">
+                            <span data-i18n="sortByRating">Ordenar por nota</span>
+                        </button>
+                        <button type="button" id="last-chance-filter" class="toggle-filter-btn" data-i18n-title="lastChanceTitle" title="Películas cuya última sesión es en los próximos 3 días">
+                            <span data-i18n="lastChance">Última oportunidad</span>
+                            <div class="chip-help" id="last-chance-help">
+                                <span class="info-icon">?</span>
+                                <div class="chip-help-tooltip" id="last-chance-help-tooltip">
+                                    <p data-i18n-html="lastChanceHelpTitle"><strong>Última oportunidad</strong></p>
+                                    <p data-i18n="lastChanceHelpBody">Muestra películas cuya última sesión conocida es en los próximos 3 días. Esto se basa en los datos disponibles. Es posible que el cine programe más sesiones que aún no hemos recogido.</p>
+                                </div>
+                            </div>
+                        </button>
+                        <button id="special-filter" class="toggle-filter-btn" title="Mostrar solo sesiones especiales" data-i18n-title="specialFilterTitle">
+                            <span data-i18n="specialFilterFull">Sesiones especiales</span>
+                        </button>
+                    </div>
+
+                    <div class="filter-modal-footer">
+                        <button id="clear-filters" class="clear-filters-btn" title="Limpiar todos los filtros" data-i18n-title="clearFiltersTitle">
+                            <span data-i18n="clearFilters">Limpiar filtros</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="session-modal" class="session-modal" onclick="closeSessionModal(event)">
             <div class="session-modal-content" onclick="event.stopPropagation()">
                 <div class="session-modal-header">
