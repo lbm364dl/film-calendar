@@ -191,9 +191,22 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         if lang.get("iso_639_1") == orig_lang_code and lang_name:
             primary_language = [lang_name]
 
-    # If primary language wasn't found in spoken_languages, use the code
+    # If primary language wasn't found in spoken_languages, map from ISO code
+    ISO_LANG_NAMES = {
+        'en': 'English', 'fr': 'French', 'es': 'Spanish', 'de': 'German',
+        'it': 'Italian', 'pt': 'Portuguese', 'ja': 'Japanese', 'ko': 'Korean',
+        'zh': 'Chinese', 'ru': 'Russian', 'ar': 'Arabic', 'hi': 'Hindi',
+        'sv': 'Swedish', 'da': 'Danish', 'no': 'Norwegian', 'pl': 'Polish',
+        'cs': 'Czech', 'ro': 'Romanian', 'uk': 'Ukrainian', 'ca': 'Catalan',
+        'sk': 'Slovak', 'ml': 'Malayalam', 'tl': 'Tagalog', 'ur': 'Urdu',
+        'az': 'Azerbaijani', 'nl': 'Dutch', 'fi': 'Finnish', 'el': 'Greek',
+        'he': 'Hebrew', 'hu': 'Hungarian', 'id': 'Indonesian', 'ms': 'Malay',
+        'th': 'Thai', 'tr': 'Turkish', 'vi': 'Vietnamese', 'bn': 'Bengali',
+        'fa': 'Persian', 'ta': 'Tamil', 'te': 'Telugu', 'la': 'Latin',
+        'xx': 'No spoken language',
+    }
     if not primary_language and orig_lang_code:
-        primary_language = [orig_lang_code]
+        primary_language = [ISO_LANG_NAMES.get(orig_lang_code, orig_lang_code)]
 
     # Original title
     if media_type == "movie":
