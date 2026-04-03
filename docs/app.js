@@ -93,6 +93,8 @@ const TRANSLATIONS = {
         resetFilter: 'Reiniciar',
         lastChanceHelpTitle: '<strong>Última oportunidad</strong>',
         lastChanceHelpBody: 'Muestra películas cuya última sesión conocida es en los próximos 3 días. Esto se basa en los datos disponibles. Es posible que el cine programe más sesiones que aún no hemos recogido.',
+        languageTooltipTitle: '<strong>Filtro por idioma</strong>',
+        languageTooltipBody: 'Muestra el idioma principal según TMDB. Una película puede tener más idiomas hablados que no aparecen aquí.',
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
@@ -185,6 +187,8 @@ const TRANSLATIONS = {
         resetFilter: 'Reset',
         lastChanceHelpTitle: '<strong>Last chance</strong>',
         lastChanceHelpBody: 'Shows films whose last known screening is within the next 3 days. This is based on available data. The theater may schedule more sessions that we haven\'t collected yet.',
+        languageTooltipTitle: '<strong>Language filter</strong>',
+        languageTooltipBody: 'Shows the primary language according to TMDB. A film may have additional spoken languages not shown here.',
     }
 };
 
@@ -436,7 +440,11 @@ async function loadFilms() {
                 rating: film.letterboxd_rating ? parseFloat(film.letterboxd_rating) : null,
                 viewers: film.letterboxd_viewers,
                 genres: film.genres || [],
-                country: film.country || [],
+                country: (film.country || []).map(c => {
+                    if (c === 'UK') return 'United Kingdom';
+                    if (c === 'USA') return 'United States of America';
+                    return c;
+                }),
                 primaryLanguage: film.primary_language || [],
                 spokenLanguages: film.spoken_languages || [],
                 tmdbUrl: film.tmdb_url,
@@ -1562,8 +1570,8 @@ initTheaterMultiselect();
 
 // ── Genre / Country Multi-Selects ───────────────────────────────────────────
 const COUNTRY_TRANSLATIONS_ES = {
-    'United States of America': 'Estados Unidos', 'USA': 'EE.UU.',
-    'United Kingdom': 'Reino Unido', 'UK': 'Reino Unido',
+    'United States of America': 'Estados Unidos',
+    'United Kingdom': 'Reino Unido',
     'France': 'Francia', 'Germany': 'Alemania', 'Italy': 'Italia',
     'Spain': 'España', 'Japan': 'Japón', 'China': 'China',
     'Brazil': 'Brasil', 'Mexico': 'México', 'Argentina': 'Argentina',
@@ -1589,9 +1597,16 @@ const COUNTRY_TRANSLATIONS_ES = {
     'Soviet Union': 'Unión Soviética', 'Cyprus': 'Chipre',
 };
 
+const COUNTRY_DISPLAY_EN = {
+    'United States of America': 'United States',
+    'United Kingdom': 'UK',
+    'Palestinian Territory': 'Palestine',
+    'Soviet Union': 'USSR',
+};
+
 function translateCountry(country) {
     if (currentLang === 'es') return COUNTRY_TRANSLATIONS_ES[country] || country;
-    return country;
+    return COUNTRY_DISPLAY_EN[country] || country;
 }
 
 const LANGUAGE_TRANSLATIONS_ES = {
@@ -1767,7 +1782,7 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
     const searchInput = document.getElementById(`${type}-search`);
 
     trigger.addEventListener('click', (e) => {
-        if (e.target.closest('.country-info-trigger')) return;
+        if (e.target.closest('.country-info-trigger') || e.target.closest('.language-info-trigger')) return;
         e.stopPropagation();
         // Close other filter dropdowns
         document.querySelectorAll('.filter-multiselect.open').forEach(el => {
@@ -1822,6 +1837,39 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
     if (type === 'country') {
         const infoTrigger = document.getElementById('country-info-trigger');
         const infoTooltip = document.getElementById('country-info-tooltip');
+        let isTouch = false;
+
+        infoTrigger.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
+
+        infoTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            wrapper.classList.toggle('show-help');
+            if (wrapper.classList.contains('show-help')) positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
+            isTouch = false;
+        });
+
+        infoTrigger.addEventListener('mouseenter', () => {
+            if (!isTouch) {
+                wrapper.classList.add('show-help');
+                positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
+            }
+        });
+
+        infoTrigger.addEventListener('mouseleave', () => {
+            if (!isTouch && !infoTooltip.matches(':hover')) wrapper.classList.remove('show-help');
+        });
+
+        infoTooltip.addEventListener('mouseleave', () => {
+            if (!isTouch) wrapper.classList.remove('show-help');
+        });
+
+        infoTooltip.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Language info tooltip
+    if (type === 'language') {
+        const infoTrigger = document.getElementById('language-info-trigger');
+        const infoTooltip = document.getElementById('language-info-tooltip');
         let isTouch = false;
 
         infoTrigger.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });

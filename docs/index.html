@@ -9120,7 +9120,14 @@
                                 <button type="button" class="filter-multiselect-trigger" id="language-trigger">
                                     <span data-i18n="allLanguages">Todos los idiomas</span>
                                     <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                                    <div class="language-info-trigger" id="language-info-trigger">
+                                        <span class="info-icon">?</span>
+                                    </div>
                                 </button>
+                                <div class="language-info-tooltip" id="language-info-tooltip">
+                                    <p data-i18n-html="languageTooltipTitle"><strong>Filtro por idioma</strong></p>
+                                    <p data-i18n="languageTooltipBody">Muestra el idioma principal según TMDB. Una película puede tener más idiomas hablados que no aparecen aquí.</p>
+                                </div>
                                 <div class="filter-dropdown" id="language-dropdown">
                                     <input type="text" class="filter-search" id="language-search" data-i18n-placeholder="searchLanguages" placeholder="Buscar idioma..." autocomplete="off">
                                     <div class="filter-dd-actions">
