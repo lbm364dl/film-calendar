@@ -68,6 +68,14 @@ const TRANSLATIONS = {
         theaterTooltipBody: 'Tu selección de cines se guarda en el navegador. Si hay cines a los que nunca vas, desmárcalos para no ver sus sesiones.',
         showSalas: (selected, total) => `${selected}/${total} sedes ▾`,
         hideSalas: 'ocultar ▴',
+        allGenres: 'Todos los géneros',
+        allCountries: 'Todos los países',
+        searchGenres: 'Buscar género...',
+        searchCountries: 'Buscar país...',
+        nGenresSelected: (n, total) => n === total ? 'Todos los géneros' : n === 0 ? 'Ningún género' : `${n} de ${total} géneros`,
+        nCountriesSelected: (n, total) => n === total ? 'Todos los países' : n === 0 ? 'Ningún país' : `${n} de ${total} países`,
+        countryTooltipTitle: '<strong>Filtro por país</strong>',
+        countryTooltipBody: 'Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.',
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
@@ -135,6 +143,14 @@ const TRANSLATIONS = {
         theaterTooltipBody: 'Your theater selection is saved in your browser. Uncheck theaters you never visit to keep their sessions out of your results.',
         showSalas: (selected, total) => `${selected}/${total} venues ▾`,
         hideSalas: 'hide ▴',
+        allGenres: 'All genres',
+        allCountries: 'All countries',
+        searchGenres: 'Search genres...',
+        searchCountries: 'Search countries...',
+        nGenresSelected: (n, total) => n === total ? 'All genres' : n === 0 ? 'No genres' : `${n} of ${total} genres`,
+        nCountriesSelected: (n, total) => n === total ? 'All countries' : n === 0 ? 'No countries' : `${n} of ${total} countries`,
+        countryTooltipTitle: '<strong>Country filter</strong>',
+        countryTooltipBody: 'This filter is approximate. It means the country was involved in the production or is related to the film, not necessarily that the film is in that country\'s language. Data from TMDB.',
     }
 };
 
@@ -267,6 +283,8 @@ function setLanguage(lang) {
     localStorage.setItem('lang', lang);
     applyStaticTranslations();
     updateTheaterTriggerLabel();
+    if (selectedGenres) updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    if (selectedCountries) updateFilterTriggerLabel('country', selectedCountries, allCountries);
     if (allFilms.length > 0) {
         renderFilms();
     }
@@ -368,6 +386,7 @@ async function loadFilms() {
 
         // Initial render
         initYearFilter(); // Initialize slider with data bounds
+        initGenreCountryFilters(); // Initialize genre/country dropdowns from data
         applyFiltersFromURL(); // Then apply any URL params
         filterFilms();
 
@@ -586,7 +605,19 @@ function filterFilms() {
             matchesSpecial = film.dates.some(d => d.special);
         }
 
-        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched && matchesSpecial;
+        // Genre filter
+        let matchesGenre = true;
+        if (selectedGenres && selectedGenres.size < allGenres.length) {
+            matchesGenre = film.genres && film.genres.some(g => selectedGenres.has(g));
+        }
+
+        // Country filter
+        let matchesCountry = true;
+        if (selectedCountries && selectedCountries.size < allCountries.length) {
+            matchesCountry = film.country && film.country.some(c => selectedCountries.has(c));
+        }
+
+        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched && matchesSpecial && matchesGenre && matchesCountry;
     });
 
     renderFilms();
@@ -1439,6 +1470,194 @@ function initTheaterMultiselect() {
 
 initTheaterMultiselect();
 
+// ── Genre / Country Multi-Selects ───────────────────────────────────────────
+const COUNTRY_TRANSLATIONS_ES = {
+    'United States of America': 'Estados Unidos', 'USA': 'EE.UU.',
+    'United Kingdom': 'Reino Unido', 'UK': 'Reino Unido',
+    'France': 'Francia', 'Germany': 'Alemania', 'Italy': 'Italia',
+    'Spain': 'España', 'Japan': 'Japón', 'China': 'China',
+    'Brazil': 'Brasil', 'Mexico': 'México', 'Argentina': 'Argentina',
+    'South Korea': 'Corea del Sur', 'India': 'India', 'Russia': 'Rusia',
+    'Sweden': 'Suecia', 'Denmark': 'Dinamarca', 'Norway': 'Noruega',
+    'Finland': 'Finlandia', 'Poland': 'Polonia', 'Netherlands': 'Países Bajos',
+    'Belgium': 'Bélgica', 'Switzerland': 'Suiza', 'Austria': 'Austria',
+    'Portugal': 'Portugal', 'Ireland': 'Irlanda', 'Romania': 'Rumanía',
+    'Hungary': 'Hungría', 'Czech Republic': 'República Checa',
+    'Czechoslovakia': 'Checoslovaquia', 'Turkey': 'Turquía',
+    'Greece': 'Grecia', 'Iran': 'Irán', 'Egypt': 'Egipto',
+    'Morocco': 'Marruecos', 'Tunisia': 'Túnez', 'Colombia': 'Colombia',
+    'Chile': 'Chile', 'Peru': 'Perú', 'Cuba': 'Cuba', 'Uruguay': 'Uruguay',
+    'Paraguay': 'Paraguay', 'Panama': 'Panamá', 'Costa Rica': 'Costa Rica',
+    'Dominican Republic': 'República Dominicana', 'Philippines': 'Filipinas',
+    'Australia': 'Australia', 'New Zealand': 'Nueva Zelanda',
+    'Canada': 'Canadá', 'Iceland': 'Islandia', 'Lebanon': 'Líbano',
+    'Pakistan': 'Pakistán', 'Taiwan': 'Taiwán', 'Vietnam': 'Vietnam',
+    'Singapore': 'Singapur', 'South Africa': 'Sudáfrica',
+    'Palestinian Territory': 'Palestina', 'Latvia': 'Letonia',
+    'Lithuania': 'Lituania', 'Slovakia': 'Eslovaquia',
+    'Luxembourg': 'Luxemburgo', 'Andorra': 'Andorra',
+    'Soviet Union': 'Unión Soviética', 'Cyprus': 'Chipre',
+};
+
+function translateCountry(country) {
+    if (currentLang === 'es') return COUNTRY_TRANSLATIONS_ES[country] || country;
+    return country;
+}
+
+// State for genre/country filters
+let allGenres = [];
+let allCountries = [];
+let selectedGenres = null; // null = all (not yet initialized)
+let selectedCountries = null;
+
+function initGenreCountryFilters() {
+    // Collect unique values from loaded data
+    const genreSet = new Set();
+    const countrySet = new Set();
+    allFilms.forEach(film => {
+        (film.genres || []).forEach(g => genreSet.add(g));
+        (film.country || []).forEach(c => countrySet.add(c));
+    });
+    allGenres = [...genreSet].sort((a, b) => translateGenre(a).localeCompare(translateGenre(b), currentLang));
+    allCountries = [...countrySet].sort((a, b) => translateCountry(a).localeCompare(translateCountry(b), currentLang));
+
+    // Load from localStorage or default to all
+    selectedGenres = new Set(allGenres);
+    selectedCountries = new Set(allCountries);
+
+    buildFilterDropdown('genre', allGenres, selectedGenres, translateGenre);
+    buildFilterDropdown('country', allCountries, selectedCountries, translateCountry);
+    updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    initFilterDropdownEvents('genre', allGenres, selectedGenres, translateGenre);
+    initFilterDropdownEvents('country', allCountries, selectedCountries, translateCountry);
+}
+
+
+function updateFilterTriggerLabel(type, selected, all) {
+    const span = document.getElementById(`${type}-trigger`).querySelector('span');
+    const n = selected.size;
+    const total = all.length;
+    if (type === 'genre') {
+        span.textContent = t('nGenresSelected', n, total);
+    } else {
+        span.textContent = t('nCountriesSelected', n, total);
+    }
+    // Remove data-i18n so applyStaticTranslations doesn't overwrite
+    span.removeAttribute('data-i18n');
+}
+
+function buildFilterDropdown(type, allValues, selected, translateFn) {
+    const container = document.getElementById(`${type}-options`);
+    container.innerHTML = '';
+    allValues.forEach(value => {
+        const label = document.createElement('label');
+        label.className = 'filter-dd-option';
+        label.dataset.value = value;
+        label.dataset.label = (translateFn(value) + ' ' + value).toLowerCase();
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = selected.has(value);
+        cb.addEventListener('change', () => {
+            if (cb.checked) selected.add(value);
+            else selected.delete(value);
+            updateFilterTriggerLabel(type, selected, allValues);
+
+            filterFilms();
+            updateURLParams();
+        });
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(translateFn(value)));
+        container.appendChild(label);
+    });
+}
+
+function initFilterDropdownEvents(type, allValues, selected, translateFn) {
+    const wrapper = document.getElementById(`${type}-filter`);
+    const trigger = document.getElementById(`${type}-trigger`);
+    const searchInput = document.getElementById(`${type}-search`);
+
+    trigger.addEventListener('click', (e) => {
+        if (e.target.closest('.country-info-trigger')) return;
+        e.stopPropagation();
+        // Close other filter dropdowns
+        document.querySelectorAll('.filter-multiselect.open').forEach(el => {
+            if (el !== wrapper) el.classList.remove('open');
+        });
+        wrapper.classList.toggle('open');
+        if (wrapper.classList.contains('open')) {
+            searchInput.value = '';
+            buildFilterDropdown(type, allValues, selected, translateFn);
+            searchInput.focus();
+        }
+    });
+
+    searchInput.addEventListener('input', () => {
+        const q = normalizeText(searchInput.value);
+        document.querySelectorAll(`#${type}-options .filter-dd-option`).forEach(opt => {
+            opt.classList.toggle('hidden', !normalizeText(opt.dataset.label).includes(q));
+        });
+    });
+
+    searchInput.addEventListener('click', (e) => e.stopPropagation());
+
+    wrapper.querySelector('.filter-dd-select-all').addEventListener('click', (e) => {
+        e.stopPropagation();
+        allValues.forEach(v => selected.add(v));
+        wrapper.querySelectorAll('.filter-dd-option input[type="checkbox"]').forEach(cb => cb.checked = true);
+        updateFilterTriggerLabel(type, selected, allValues);
+
+        filterFilms();
+        updateURLParams();
+    });
+
+    wrapper.querySelector('.filter-dd-select-none').addEventListener('click', (e) => {
+        e.stopPropagation();
+        selected.clear();
+        wrapper.querySelectorAll('.filter-dd-option input[type="checkbox"]').forEach(cb => cb.checked = false);
+        updateFilterTriggerLabel(type, selected, allValues);
+
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+            wrapper.classList.remove('show-help');
+        }
+    });
+
+    // Country info tooltip
+    if (type === 'country') {
+        const infoTrigger = document.getElementById('country-info-trigger');
+        const infoTooltip = document.getElementById('country-info-tooltip');
+        let isTouch = false;
+
+        infoTrigger.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
+
+        infoTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            wrapper.classList.toggle('show-help');
+            isTouch = false;
+        });
+
+        infoTrigger.addEventListener('mouseenter', () => {
+            if (!isTouch) wrapper.classList.add('show-help');
+        });
+
+        infoTrigger.addEventListener('mouseleave', () => {
+            if (!isTouch && !infoTooltip.matches(':hover')) wrapper.classList.remove('show-help');
+        });
+
+        infoTooltip.addEventListener('mouseleave', () => {
+            if (!isTouch) wrapper.classList.remove('show-help');
+        });
+
+        infoTooltip.addEventListener('click', (e) => e.stopPropagation());
+    }
+}
+
 // Event listeners
 document.getElementById('search').addEventListener('input', () => {
     filterFilms();
@@ -1668,6 +1887,16 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     specialFilterActive = false;
     const specialBtn = document.getElementById('special-filter');
     if (specialBtn) specialBtn.classList.remove('active');
+
+    // Reset genre/country filters
+    if (selectedGenres) {
+        allGenres.forEach(v => selectedGenres.add(v));
+        updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    }
+    if (selectedCountries) {
+        allCountries.forEach(v => selectedCountries.add(v));
+        updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    }
 
     // updateURLParams will act on changed values, but let's clear URL explicitly
     const url = new URL(window.location);

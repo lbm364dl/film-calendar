@@ -413,8 +413,17 @@ h1 {
     font-size: 0.82rem;
 }
 
+.filter-multiselects {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    z-index: 90;
+}
+
 .year-filter {
-    grid-column: 1 / 10;
+    grid-column: 5 / 10;
     grid-row: 2;
 }
 
@@ -430,6 +439,7 @@ h1 {
 
 .toggle-row {
     grid-column: 1 / 10;
+
     grid-row: 3;
     display: flex;
     gap: 0.5rem;
@@ -437,6 +447,235 @@ h1 {
 
 .toggle-row > * {
     flex: 1;
+}
+
+/* Genre / Country Multi-Select */
+.filter-multiselect {
+    position: relative;
+}
+
+.filter-multiselect-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 0.35rem 0.6rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.8rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: left;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.filter-multiselect-trigger > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.filter-chevron {
+    flex-shrink: 0;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+.filter-multiselect.open .filter-multiselect-trigger {
+    border-color: var(--accent);
+}
+
+.filter-multiselect.open .filter-chevron {
+    transform: rotate(180deg);
+}
+
+.filter-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 0.5rem;
+    z-index: 200;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.55), 0 0 0 1.5px var(--border);
+}
+
+.filter-multiselect.open .filter-dropdown {
+    display: block;
+}
+
+.filter-search {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.8rem;
+    outline: none;
+    margin-bottom: 0.3rem;
+}
+
+.filter-search:focus {
+    border-color: var(--accent);
+}
+
+.filter-dd-actions {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.filter-dd-actions button {
+    flex: 1;
+    padding: 0.2rem 0.4rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.filter-dd-actions button:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+}
+
+.filter-dd-options {
+    max-height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.filter-dd-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filter-dd-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filter-dd-options::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.filter-dd-option {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--text);
+    transition: background 0.12s;
+    user-select: none;
+}
+
+.filter-dd-option:hover {
+    background: var(--bg-hover);
+}
+
+.filter-dd-option.hidden {
+    display: none;
+}
+
+.filter-dd-option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.filter-dd-option input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.filter-dd-option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3.5px;
+    top: 1px;
+    width: 4px;
+    height: 7px;
+    border: solid #fff;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+}
+
+/* Country info tooltip */
+.country-info-trigger {
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    z-index: 10;
+    margin-left: 0.15rem;
+}
+
+.country-info-trigger:hover .info-icon {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.country-info-tooltip {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 0.85rem;
+    width: 240px;
+    z-index: 300;
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.55), 0 0 0 1.5px var(--border);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    white-space: normal;
+}
+
+.country-info-tooltip::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 0;
+    width: 30px;
+    height: 10px;
+}
+
+#country-filter.show-help .country-info-tooltip {
+    display: block;
+}
+
+.country-info-tooltip p {
+    margin: 0;
+}
+
+.country-info-tooltip p + p {
+    margin-top: 0.4rem;
+    color: var(--text-dim);
 }
 
 @media (max-width: 768px) {
@@ -471,14 +710,29 @@ h1 {
         width: 100%;
     }
 
+    .filter-multiselects {
+        grid-column: 1 / 11;
+        grid-row: 3;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .filter-multiselect {
+        flex: 1;
+    }
+
+    .filter-dropdown {
+        width: 100%;
+    }
+
     .year-filter {
         grid-column: 1 / 6;
-        grid-row: 3;
+        grid-row: 4;
     }
 
     .toggle-row {
         grid-column: 1 / 6;
-        grid-row: 4;
+        grid-row: 5;
         display: flex;
         gap: 0.35rem;
     }
@@ -489,7 +743,7 @@ h1 {
 
     .actions-cell {
         grid-column: 6 / 11;
-        grid-row: 3 / 5;
+        grid-row: 4 / 6;
         grid-template-rows: repeat(4, minmax(0, 1fr));
     }
 }

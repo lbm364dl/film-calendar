@@ -141,6 +141,44 @@
                 </div>
             </div>
 
+            <div class="filter-multiselects">
+                <div class="filter-multiselect" id="genre-filter">
+                    <button type="button" class="filter-multiselect-trigger" id="genre-trigger">
+                        <span data-i18n="allGenres">Todos los géneros</span>
+                        <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                    </button>
+                    <div class="filter-dropdown" id="genre-dropdown">
+                        <input type="text" class="filter-search" id="genre-search" data-i18n-placeholder="searchGenres" placeholder="Buscar género..." autocomplete="off">
+                        <div class="filter-dd-actions">
+                            <button type="button" class="filter-dd-select-all" data-target="genre">Todos</button>
+                            <button type="button" class="filter-dd-select-none" data-target="genre">Ninguno</button>
+                        </div>
+                        <div class="filter-dd-options" id="genre-options"></div>
+                    </div>
+                </div>
+                <div class="filter-multiselect" id="country-filter">
+                    <button type="button" class="filter-multiselect-trigger" id="country-trigger">
+                        <span data-i18n="allCountries">Todos los países</span>
+                        <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
+                        <div class="country-info-trigger" id="country-info-trigger">
+                            <span class="info-icon">?</span>
+                        </div>
+                    </button>
+                    <div class="country-info-tooltip" id="country-info-tooltip">
+                        <p data-i18n-html="countryTooltipTitle"><strong>Filtro por país</strong></p>
+                        <p data-i18n="countryTooltipBody">Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.</p>
+                    </div>
+                    <div class="filter-dropdown" id="country-dropdown">
+                        <input type="text" class="filter-search" id="country-search" data-i18n-placeholder="searchCountries" placeholder="Buscar país..." autocomplete="off">
+                        <div class="filter-dd-actions">
+                            <button type="button" class="filter-dd-select-all" data-target="country">Todos</button>
+                            <button type="button" class="filter-dd-select-none" data-target="country">Ninguno</button>
+                        </div>
+                        <div class="filter-dd-options" id="country-options"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="year-filter">
                 <div class="year-inputs">
                     <div class="year-input-group">
