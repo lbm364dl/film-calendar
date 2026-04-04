@@ -5,7 +5,7 @@ const TRANSLATIONS = {
     es: {
         viewersLabel: (n) => `Vista por ${n} personas`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Más próximamente...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • Más próximamente...',
         searchPlaceholder: 'Buscar por título o director',
         selectDate: 'Elegir día',
         allTheaters: 'Todos los cines',
@@ -51,12 +51,55 @@ const TRANSLATIONS = {
         footerMistakes: 'Si encuentras algún error, <a href="mailto:ctl.covaci@gmail.com">escríbeme</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">abre una issue en GitHub</a> o <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">corrígelo tú mismo</a> con una Pull Request.',
         viewOnGithub: 'Ver en GitHub',
         dubbedTooltip: 'Doblada al castellano',
+        versionOriginal: 'Versión original',
+        versionDubbed: 'En español',
+        sortByRating: 'Ordenado por nota',
+        sortByViewers: 'Ordenado por viewers',
         loadMore: (n) => `Mostrar más (${n} restantes)`,
+        specialFilterFull: 'Sesiones especiales',
+        specialFilterShort: 'Especiales',
+        specialFilterTitle: 'Mostrar solo sesiones especiales',
+        specialTooltip: (type) => `Sesión especial: ${type}`,
+        searchTheaters: 'Buscar cine...',
+        selectAll: 'Todos',
+        selectNone: 'Ninguno',
+        nTheatersSelected: (n, total) => n === total ? 'Todos los cines' : n === 0 ? 'Ningún cine' : `${n} de ${total} cines`,
+        theaterTooltipTitle: '<strong>Selección de cines</strong>',
+        theaterTooltipBody: 'Tu selección de cines se guarda en el navegador. Si hay cines a los que nunca vas, desmárcalos para no ver sus sesiones.',
+        showSalas: (selected, total) => `${selected}/${total} sedes ▾`,
+        hideSalas: 'ocultar ▴',
+        allGenres: 'Todos los géneros',
+        allCountries: 'Todos los países',
+        searchGenres: 'Buscar género...',
+        searchCountries: 'Buscar país...',
+        nGenresSelected: (n, total) => n === total ? 'Todos los géneros' : n === 0 ? 'Ningún género' : `${n} de ${total} géneros`,
+        nCountriesSelected: (n, total) => n === total ? 'Todos los países' : n === 0 ? 'Ningún país' : `${n} de ${total} países`,
+        countryTooltipTitle: '<strong>Filtro por país</strong>',
+        countryTooltipBody: 'Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.',
+        allLanguages: 'Todos los idiomas',
+        searchLanguages: 'Buscar idioma...',
+        nLanguagesSelected: (n, total) => n === total ? 'Todos los idiomas' : n === 0 ? 'Ningún idioma' : `${n} de ${total} idiomas`,
+        moreFilters: 'Más filtros',
+        decades: 'Décadas',
+        runtime: 'Duración',
+        dayOfWeek: 'Día de la semana',
+        genreLabel: 'Género',
+        countryLabel: 'País',
+        languageLabel: 'Idioma',
+        lastChance: 'Última oportunidad',
+        lastChanceTitle: 'Películas cuya última sesión es en los próximos 3 días',
+        decadeHelpTitle: '<strong>Selección por chips</strong>',
+        decadeHelpBody: 'Pulsa un chip para filtrar. Si hay uno seleccionado, pulsa otro para seleccionar todo el rango. Esto funciona igual en décadas, duración y días de la semana.',
+        resetFilter: 'Reiniciar',
+        lastChanceHelpTitle: '<strong>Última oportunidad</strong>',
+        lastChanceHelpBody: 'Muestra películas cuya última sesión conocida es en los próximos 3 días. Esto se basa en los datos disponibles. Es posible que el cine programe más sesiones que aún no hemos recogido.',
+        languageTooltipTitle: '<strong>Filtro por idioma</strong>',
+        languageTooltipBody: 'Muestra el idioma principal según TMDB. Una película puede tener más idiomas hablados que no aparecen aquí.',
     },
     en: {
         viewersLabel: (n) => `${n} viewers`,
         siteTitle: '🎬 Madrid Film Calendar',
-        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • More coming...',
+        subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo • More coming...',
         searchPlaceholder: 'Search by title or director',
         selectDate: 'Select date',
         allTheaters: 'All Theaters',
@@ -102,7 +145,50 @@ const TRANSLATIONS = {
         footerMistakes: 'If you find any mistakes, <a href="mailto:ctl.covaci@gmail.com">write to me</a>, <a href="https://github.com/lbm364dl/film-calendar/issues">open a GitHub issue</a> or <a href="https://github.com/lbm364dl/film-calendar/blob/main/docs/screenings.json" target="_blank">fix it yourself</a> via Pull Request.',
         viewOnGithub: 'View on GitHub',
         dubbedTooltip: 'Dubbed in Spanish',
+        versionOriginal: 'Original version',
+        versionDubbed: 'In Spanish',
+        sortByRating: 'Sorted by rating',
+        sortByViewers: 'Sorted by viewers',
         loadMore: (n) => `Load more (${n} remaining)`,
+        specialFilterFull: 'Special sessions',
+        specialFilterShort: 'Special',
+        specialFilterTitle: 'Show only special sessions',
+        specialTooltip: (type) => `Special session: ${type}`,
+        searchTheaters: 'Search theaters...',
+        selectAll: 'All',
+        selectNone: 'None',
+        nTheatersSelected: (n, total) => n === total ? 'All Theaters' : n === 0 ? 'No theaters' : `${n} of ${total} theaters`,
+        theaterTooltipTitle: '<strong>Theater selection</strong>',
+        theaterTooltipBody: 'Your theater selection is saved in your browser. Uncheck theaters you never visit to keep their sessions out of your results.',
+        showSalas: (selected, total) => `${selected}/${total} venues ▾`,
+        hideSalas: 'hide ▴',
+        allGenres: 'All genres',
+        allCountries: 'All countries',
+        searchGenres: 'Search genres...',
+        searchCountries: 'Search countries...',
+        nGenresSelected: (n, total) => n === total ? 'All genres' : n === 0 ? 'No genres' : `${n} of ${total} genres`,
+        nCountriesSelected: (n, total) => n === total ? 'All countries' : n === 0 ? 'No countries' : `${n} of ${total} countries`,
+        countryTooltipTitle: '<strong>Country filter</strong>',
+        countryTooltipBody: 'This filter is approximate. It means the country was involved in the production or is related to the film, not necessarily that the film is in that country\'s language. Data from TMDB.',
+        allLanguages: 'All languages',
+        searchLanguages: 'Search languages...',
+        nLanguagesSelected: (n, total) => n === total ? 'All languages' : n === 0 ? 'No languages' : `${n} of ${total} languages`,
+        moreFilters: 'More filters',
+        decades: 'Decades',
+        runtime: 'Runtime',
+        dayOfWeek: 'Day of week',
+        genreLabel: 'Genre',
+        countryLabel: 'Country',
+        languageLabel: 'Language',
+        lastChance: 'Last chance',
+        lastChanceTitle: 'Films with final screening in next 3 days',
+        decadeHelpTitle: '<strong>Chip selection</strong>',
+        decadeHelpBody: 'Tap a chip to filter. If one is selected, tap another to select the entire range. This works the same for decades, runtime, and day of week.',
+        resetFilter: 'Reset',
+        lastChanceHelpTitle: '<strong>Last chance</strong>',
+        lastChanceHelpBody: 'Shows films whose last known screening is within the next 3 days. This is based on available data. The theater may schedule more sessions that we haven\'t collected yet.',
+        languageTooltipTitle: '<strong>Language filter</strong>',
+        languageTooltipBody: 'Shows the primary language according to TMDB. A film may have additional spoken languages not shown here.',
     }
 };
 
@@ -148,6 +234,39 @@ const GENRE_TRANSLATIONS_ES = {
     'war': 'Bélico',
     'western': 'Wéstern',
 };
+
+const SPECIAL_TYPE_LABELS = {
+    es: {
+        conference: 'Conferencia',
+        shorts: 'Cortometrajes',
+        festival: 'Festival',
+        event: 'Evento',
+        compilation: 'Compilación',
+        opera: 'Ópera',
+        ballet: 'Ballet',
+        theater: 'Teatro',
+        concert: 'Concierto',
+        tv: 'TV',
+    },
+    en: {
+        conference: 'Conference',
+        shorts: 'Shorts',
+        festival: 'Festival',
+        event: 'Event',
+        compilation: 'Compilation',
+        opera: 'Opera',
+        ballet: 'Ballet',
+        theater: 'Theater',
+        concert: 'Concert',
+        tv: 'TV',
+    }
+};
+
+function translateSpecialType(type) {
+    if (!type) return type;
+    const labels = SPECIAL_TYPE_LABELS[currentLang] || SPECIAL_TYPE_LABELS.en;
+    return labels[type.toLowerCase()] || type;
+}
 
 function translateGenre(genre) {
     if (!genre || currentLang !== 'es') {
@@ -201,6 +320,11 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     applyStaticTranslations();
+    updateTheaterTriggerLabel();
+    if (selectedGenres) updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    if (selectedCountries) updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    if (selectedLanguages) updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    buildDayChips();
     if (allFilms.length > 0) {
         renderFilms();
     }
@@ -217,6 +341,30 @@ let watchedUrls = null;
 // Whether each filter is actively applied (toggles)
 let watchlistFilterActive = false;
 let watchedFilterActive = false;
+let specialFilterActive = false;
+let lastChanceFilterActive = false;
+
+// Decade / runtime / day chip state
+let selectedDecades = new Set();
+let selectedRuntimeCategories = new Set();
+let selectedDays = new Set();
+// DECADES built dynamically from data in initGenreCountryFilters
+let DECADES = [];
+
+const RUNTIME_CATEGORIES = [
+    { label: '< 1h', min: 0, max: 59 },
+    { label: '1–1.5h', min: 60, max: 89 },
+    { label: '1.5–2h', min: 90, max: 119 },
+    { label: '2–3h', min: 120, max: 179 },
+    { label: '3h+', min: 180, max: Infinity },
+];
+
+const DAY_LABELS = {
+    es: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+    en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+};
+// Chip index 0=Mon(1), 1=Tue(2), ..., 6=Sun(0) in JS getDay()
+const CHIP_TO_JS_DAY = [1, 2, 3, 4, 5, 6, 0];
 
 // ── Pagination ──────────────────────────────────────────────────────────────────
 const ROWS_PER_PAGE = 10;
@@ -271,7 +419,7 @@ async function loadFilms() {
 
             // Derive theater from dates (unique locations)
             const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
-            let theaterDisplay = locations.length > 0 ? locations.join(', ') : 'Unknown';
+            let theaterDisplay = locations.length > 0 ? locations.map(getDisplayName).join(', ') : 'Unknown';
             if (locations.length > 2) theaterDisplay = t('nLocations', locations.length);
 
             // Derive main link from first date with info url, or fallback
@@ -292,7 +440,11 @@ async function loadFilms() {
                 rating: film.letterboxd_rating ? parseFloat(film.letterboxd_rating) : null,
                 viewers: film.letterboxd_viewers,
                 genres: film.genres || [],
-                country: film.country || [],
+                country: (film.country || []).map(c => {
+                    if (c === 'UK') return 'United Kingdom';
+                    if (c === 'USA') return 'United States of America';
+                    return c;
+                }),
                 primaryLanguage: film.primary_language || [],
                 spokenLanguages: film.spoken_languages || [],
                 tmdbUrl: film.tmdb_url,
@@ -300,7 +452,8 @@ async function loadFilms() {
         }).filter(film => film.title);
 
         // Initial render
-        initYearFilter(); // Initialize slider with data bounds
+        // initYearFilter removed — decade chips replace year slider
+        initGenreCountryFilters(); // Initialize genre/country dropdowns from data
         applyFiltersFromURL(); // Then apply any URL params
         filterFilms();
 
@@ -350,7 +503,7 @@ function normalizeParsedDates(parsed) {
     return parsed.map(item => {
         if (typeof item === 'string') {
             // Old format: plain string timestamp
-            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '', version: null };
+            return { timestamp: item, location: 'Unknown', url_tickets: '', url_info: '', version: null, special: null };
         } else if (typeof item === 'object' && item !== null) {
             // New format: object with timestamp/location/urls/version
             return {
@@ -360,6 +513,7 @@ function normalizeParsedDates(parsed) {
                 url_tickets: item.url_tickets || item.url || '', // Support both old 'url' and new 'url_tickets'
                 url_info: item.url_info || '',
                 version: item.version || null,
+                special: item.special || null,
             };
         }
         return null;
@@ -411,10 +565,32 @@ function isEmbajadoresLocation(location) {
     return location && EMBAJADORES_LOCATIONS.includes(location);
 }
 
+// Cinesa cinema locations
+function isCinesaLocation(location) {
+    return location && location.startsWith('Cinesa ');
+}
+
+// Yelmo cinema locations
+function isYelmoLocation(location) {
+    return location && location.startsWith('Yelmo ');
+}
+
+function isSpanishFilm(film) {
+    const lang = film.primaryLanguage;
+    if (!lang) return false;
+    const values = Array.isArray(lang) ? lang : [lang];
+    return values.some(v => v === 'es' || v === 'Spanish');
+}
+
+function matchesSelectedTheaters(location) {
+    return selectedTheaters.has(location);
+}
+
 function filterFilms() {
     const searchTerm = normalizeText(document.getElementById('search').value);
-    const selectedTheater = document.getElementById('theater-filter').value;
+    const allTheatersSelected = selectedTheaters.size === ALL_THEATER_VALUES.length;
     const selectedDate = document.getElementById('date-filter').value;
+    const selectedVersion = document.getElementById('version-filter').dataset.current;
     const todayStart = getLocalTodayStart();
 
     filteredFilms = allFilms.map(film => {
@@ -423,20 +599,28 @@ function filterFilms() {
             return dateObj && dateObj >= todayStart;
         });
 
-        // Apply theater/date filters at the session level so both constraints match the same session.
+        // Apply theater/date/version/day filters at the session level
         const sessionFilteredDates = futureDates.filter(d => {
-            if (selectedTheater) {
-                if (selectedTheater === 'Cines Renoir') {
-                    if (!isRenoirLocation(d.location)) return false;
-                } else if (selectedTheater === 'Cines Embajadores') {
-                    if (!isEmbajadoresLocation(d.location)) return false;
-                } else if (d.location !== selectedTheater) {
-                    return false;
-                }
+            if (!allTheatersSelected) {
+                if (!matchesSelectedTheaters(d.location)) return false;
             }
 
             if (selectedDate && !d.timestamp.startsWith(selectedDate)) {
                 return false;
+            }
+
+            if (selectedVersion && !isSpanishFilm(film)) {
+                if (selectedVersion === 'original' && d.version === 'dubbed') return false;
+                if (selectedVersion === 'dubbed' && d.version !== 'dubbed') return false;
+            }
+
+            // Day of week filter (session-level)
+            if (selectedDays.size > 0) {
+                const dt = getDateOnly(d.timestamp);
+                if (dt) {
+                    const jsDay = dt.getDay();
+                    if (![...selectedDays].some(ci => CHIP_TO_JS_DAY[ci] === jsDay)) return false;
+                }
             }
 
             return true;
@@ -454,28 +638,16 @@ function filterFilms() {
             (film.titleEn && normalizeText(film.titleEn).includes(searchTerm)) ||
             (film.director && normalizeText(film.director).includes(searchTerm));
 
-        // Year filter
-        let matchesYear = true;
-        const minInput = document.getElementById('year-min');
-        const maxInput = document.getElementById('year-max');
-        if (minInput && maxInput) {
-            const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
-            const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
-
+        // Decade filter (empty = no filter, show all)
+        let matchesDecade = true;
+        if (selectedDecades.size > 0) {
             if (film.year) {
-                matchesYear = film.year >= currentMin && film.year <= currentMax;
+                matchesDecade = [...selectedDecades].some(idx => {
+                    const d = DECADES[idx];
+                    return film.year >= d.start && film.year <= d.end;
+                });
             } else {
-                // Should we show films with no year? 
-                // If the range is the full range, yes. If strict subset, maybe?
-                // For now, let's include them only if the filter covers the full range (implied default)
-                // Or separate toggle? Let's just exclude if outside known range for now to be safe, 
-                // or include if "unknown" is acceptable.
-                // Decision: Include if range covers standard min/max, otherwise exclude?
-                // Simplest: If year is null, it doesn't match a specific range unless we have a specific rule.
-                // Let's exclude unknown years when filtering.
-                matchesYear = false;
-                // BUT if filter is at default (full range), ideally we show everything.
-                if (currentMin === minYear && currentMax === maxYear) matchesYear = true;
+                matchesDecade = false;
             }
         }
 
@@ -491,9 +663,60 @@ function filterFilms() {
             matchesWatched = !(film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
         }
 
-        return matchesSearch && matchesYear && matchesWatchlist && matchesWatched;
+        // Special sessions filter
+        let matchesSpecial = true;
+        if (specialFilterActive) {
+            matchesSpecial = film.dates.some(d => d.special);
+        }
+
+        // Genre filter
+        let matchesGenre = true;
+        if (selectedGenres && selectedGenres.size < allGenres.length) {
+            matchesGenre = film.genres && film.genres.some(g => selectedGenres.has(g));
+        }
+
+        // Country filter
+        let matchesCountry = true;
+        if (selectedCountries && selectedCountries.size < allCountries.length) {
+            matchesCountry = film.country && film.country.some(c => selectedCountries.has(c));
+        }
+
+        // Language filter
+        let matchesLanguage = true;
+        if (selectedLanguages && selectedLanguages.size < allLanguages.length) {
+            const pl = film.primaryLanguage;
+            if (Array.isArray(pl)) {
+                matchesLanguage = pl.some(l => selectedLanguages.has(l));
+            } else if (pl) {
+                matchesLanguage = selectedLanguages.has(pl);
+            } else {
+                matchesLanguage = false;
+            }
+        }
+
+        // Runtime category filter
+        let matchesRuntime = true;
+        if (selectedRuntimeCategories.size > 0) {
+            if (film.runtimeMinutes) {
+                matchesRuntime = [...selectedRuntimeCategories].some(idx => {
+                    const cat = RUNTIME_CATEGORIES[idx];
+                    return film.runtimeMinutes >= cat.min && film.runtimeMinutes <= cat.max;
+                });
+            } else {
+                matchesRuntime = false;
+            }
+        }
+
+        // Last chance filter
+        let matchesLastChance = true;
+        if (lastChanceFilterActive) {
+            matchesLastChance = film._isLastChance || false;
+        }
+
+        return matchesSearch && matchesDecade && matchesWatchlist && matchesWatched && matchesSpecial && matchesGenre && matchesCountry && matchesLanguage && matchesRuntime && matchesLastChance;
     });
 
+    updateFilterBadge();
     renderFilms();
 }
 
@@ -513,13 +736,20 @@ function renderFilms() {
 
     noResults.style.display = 'none';
 
-    // Sort by rating (highest first), then by title
+    // Sort by selected criterion, then by title
+    const sortBy = document.getElementById('sort-filter').dataset.current;
     sortedFilms = [...filteredFilms].sort((a, b) => {
-        if (a.rating !== null && b.rating !== null) {
-            return b.rating - a.rating;
+        if (sortBy === 'viewers') {
+            const av = a.viewers ?? 0;
+            const bv = b.viewers ?? 0;
+            if (av !== bv) return bv - av;
+        } else {
+            if (a.rating !== null && b.rating !== null) {
+                if (a.rating !== b.rating) return b.rating - a.rating;
+            }
+            if (a.rating !== null) return -1;
+            if (b.rating !== null) return 1;
         }
-        if (a.rating !== null) return -1;
-        if (b.rating !== null) return 1;
         return a.title.localeCompare(b.title);
     });
 
@@ -637,18 +867,15 @@ function createSessionRow(film, dateObj) {
     // Check if session has a direct ticket URL
     const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
     const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+    const hasFilmUrl = !!(dateObj.url_info && dateObj.url_info.trim() !== '');
     const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
 
     let locationBadge = '';
     let locationText = '';
     if (dateObj.location && dateObj.location !== 'Unknown') {
-        // For inline rows, prefix cinema name to sub-location names
-        let displayLocation = dateObj.location;
-        if (isRenoirLocation(dateObj.location)) {
-            displayLocation = `Renoir ${dateObj.location}`;
-        }
-        locationBadge = `<span class="location-badge">${escapeHtml(displayLocation)}</span>`;
-        locationText = displayLocation;
+        const locName = getDisplayName(dateObj.location);
+        locationBadge = `<span class="location-badge">${escapeHtml(locName)}</span>`;
+        locationText = locName;
     }
 
     // Version badge for dubbed sessions
@@ -656,14 +883,20 @@ function createSessionRow(film, dateObj) {
         ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
         : '';
 
+    // Special session badge
+    const specialBadge = dateObj.special
+        ? `<span class="special-badge" title="${escapeHtml(t('specialTooltip', translateSpecialType(dateObj.special)))}">${escapeHtml(translateSpecialType(dateObj.special))}</span>`
+        : '';
+
     // Create full date/time label for modal header
     const timeLabel = `${formatted}${locationText ? ' - ' + locationText : ''}`;
 
     return `
-        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+        <button class="date-row" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}', '${hasFilmUrl}')">
             <span class="date-badge">${formatted}</span>
             ${locationBadge}
             ${versionBadge}
+            ${specialBadge}
         </button>
     `;
 }
@@ -677,13 +910,13 @@ function getTheaterFallbackUrl(film, dateObj) {
     if (isEmbajadoresLocation(location)) {
         return 'https://cinesembajadores.es/madrid/';
     }
-    if (film.theater === 'Cineteca Madrid') {
+    if (film.theater === 'Cineteca' || location === 'Cineteca Madrid') {
         return 'https://www.cinetecamadrid.com/';
     }
-    if (film.theater === 'Cine Doré') {
+    if (film.theater === 'Doré' || location === 'Cine Doré') {
         return 'https://www.culturaydeporte.gob.es/filmoteca/el-cine-dore.html';
     }
-    if (film.theater === 'Golem Madrid') {
+    if (film.theater === 'Golem') {
         return 'https://www.golem.es/golem/golem-madrid';
     }
     if (film.theater === 'Sala Berlanga' || location === 'Sala Berlanga') {
@@ -710,7 +943,7 @@ function toggleSessionAction(event, actionId) {
 }
 
 // Open session action modal (for popup sessions)
-function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl) {
+function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, calendarUrl, hasDirectUrl, hasFilmUrl) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -729,18 +962,18 @@ function openSessionModal(event, titleLabel, timeLabel, ticketUrl, filmPageUrl, 
             <a href="${ticketUrl}" class="session-modal-action" target="_blank">
                 ${t('buyTickets')}
             </a>
-            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+            ${hasFilmUrl === 'true' ? `<a href="${filmPageUrl}" class="session-modal-action" target="_blank">
                 ${t('viewFilmPage')}
-            </a>
+            </a>` : ''}
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
                 ${t('addToCalendar')}
             </a>
         `;
     } else {
         actionsHtml = `
-            <a href="${filmPageUrl}" class="session-modal-action" target="_blank">
+            ${hasFilmUrl === 'true' ? `<a href="${filmPageUrl}" class="session-modal-action" target="_blank">
                 ${t('buyTickets')}
-            </a>
+            </a>` : ''}
             <a href="${calendarUrl}" class="session-modal-action" target="_blank">
                 ${t('addToCalendar')}
             </a>
@@ -775,6 +1008,7 @@ function closeSessionModal(event) {
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        closeFilterModal();
         closeSessionModal();
         document.querySelectorAll('.sessions-popup.show').forEach(p => {
             closeSessionsPopup(p, p.previousElementSibling);
@@ -814,6 +1048,10 @@ function getDateRange(dates) {
     return `${formatShort(firstDate)} – ${formatShort(lastDate)}`;
 }
 
+function getDisplayName(location) {
+    return THEATER_DISPLAY_NAMES[location] || location;
+}
+
 function getLocationSummary(dates) {
     // Get unique locations
     const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
@@ -833,8 +1071,7 @@ function getLocationSummary(dates) {
     }
 
     if (locations.length === 1) {
-        // Single location
-        return locations[0];
+        return getDisplayName(locations[0]);
     }
 
     // Multiple different theaters
@@ -885,15 +1122,20 @@ function createGroupedSessions(film) {
             // Check if session has a direct ticket URL
             const hasDirectUrl = dateObj.url_tickets && dateObj.url_tickets.trim() !== '';
             const ticketUrl = hasDirectUrl ? dateObj.url_tickets : '';
+            const hasFilmUrl = !!(dateObj.url_info && dateObj.url_info.trim() !== '');
             const filmPageUrl = dateObj.url_info || film.theaterLink || getTheaterFallbackUrl(film, dateObj);
             const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
 
             const location = dateObj.location && dateObj.location !== 'Unknown'
-                ? `<span class="location">${escapeHtml(dateObj.location)}</span>`
+                ? `<span class="location">${escapeHtml(getDisplayName(dateObj.location))}</span>`
                 : '';
 
             const versionTag = dateObj.version === 'dubbed'
                 ? `<span class="version-badge dubbed" title="${t('dubbedTooltip')}"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg><span>ES</span></span>`
+                : '';
+
+            const specialTag = dateObj.special
+                ? `<span class="special-badge" title="${escapeHtml(t('specialTooltip', translateSpecialType(dateObj.special)))}">${escapeHtml(translateSpecialType(dateObj.special))}</span>`
                 : '';
 
             // Create date/time label for modal header
@@ -902,13 +1144,14 @@ function createGroupedSessions(film) {
                 day: 'numeric',
                 month: 'short'
             });
-            const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + dateObj.location : ''}`;
+            const timeLabel = `${dateLabel} ${time}${dateObj.location ? ' - ' + getDisplayName(dateObj.location) : ''}`;
 
             return `
-                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}')">
+                <button class="session-time" onclick="openSessionModal(event, '${escapeHtml(titleLabel)}', '${escapeHtml(timeLabel)}', '${escapeHtml(ticketUrl)}', '${escapeHtml(filmPageUrl)}', '${escapeHtml(calendarUrl)}', '${hasDirectUrl}', '${hasFilmUrl}')">
                     <span class="time">${time}</span>
                     ${location}
                     ${versionTag}
+                    ${specialTag}
                 </button>
                         `;
         }).join('')}
@@ -984,20 +1227,960 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// ── Theater Multi-Select ────────────────────────────────────────────────────
+const THEATER_GROUPS = [
+    { label: 'Renoir', children: [
+        { value: 'Princesa', label: 'Princesa' },
+        { value: 'Retiro', label: 'Retiro' },
+        { value: 'Plaza de España', label: 'Plaza de España' },
+    ]},
+    { value: 'Cineteca Madrid', label: 'Cineteca' },
+    { value: 'Cine Doré', label: 'Doré' },
+    { value: 'Cine Estudio', label: 'Cine Estudio' },
+    { value: 'Golem', label: 'Golem' },
+    { value: 'Sala Berlanga', label: 'Sala Berlanga' },
+    { label: 'Embajadores', children: [
+        { value: 'Embajadores Glorieta', label: 'Glorieta' },
+        { value: 'Embajadores Ercilla', label: 'Ercilla' },
+    ]},
+    { value: 'Cine Paz', label: 'Cine Paz' },
+    { value: 'Sala Equis', label: 'Sala Equis' },
+    { value: 'Verdi', label: 'Verdi' },
+    { label: 'Cinesa', children: [
+        { value: 'Cinesa Equinoccio', label: 'Equinoccio' },
+        { value: 'Cinesa La Gavia', label: 'La Gavia' },
+        { value: 'Cinesa La Moraleja', label: 'La Moraleja' },
+        { value: 'Cinesa Las Rosas', label: 'Las Rosas' },
+        { value: 'Cinesa Las Rozas', label: 'Las Rozas' },
+        { value: 'Cinesa Manoteras', label: 'Manoteras' },
+        { value: 'Cinesa Mendez Alvaro', label: 'Méndez Álvaro' },
+        { value: 'Cinesa Nassica', label: 'Nassica' },
+        { value: 'Cinesa Oasiz', label: 'Oasiz' },
+        { value: 'Cinesa Parquesur', label: 'Parquesur' },
+        { value: 'Cinesa Plaza Loranca 2', label: 'Plaza Loranca 2' },
+        { value: 'Cinesa Principe Pio', label: 'Príncipe Pío' },
+        { value: 'Cinesa Proyecciones', label: 'Proyecciones' },
+        { value: 'Cinesa Xanadu', label: 'Xanadú' },
+    ]},
+    { label: 'Yelmo', children: [
+        { value: 'Yelmo Ideal', label: 'Ideal' },
+        { value: 'Yelmo Islazul', label: 'Islazul' },
+        { value: 'Yelmo La Vaguada', label: 'La Vaguada' },
+        { value: 'Yelmo Palafox Luxury', label: 'Palafox Luxury' },
+        { value: 'Yelmo Parque Corredor', label: 'Parque Corredor' },
+        { value: 'Yelmo Plaza Norte 2', label: 'Plaza Norte 2' },
+        { value: 'Yelmo Planetocio', label: 'Planetocio' },
+        { value: 'Yelmo Plenilunio', label: 'Plenilunio' },
+        { value: 'Yelmo Rivas H2O', label: 'Rivas H2O' },
+        { value: 'Yelmo TresAguas', label: 'TresAguas' },
+    ]},
+];
+
+// Flat list of all selectable location values + display name map
+const ALL_THEATER_VALUES = [];
+const THEATER_DISPLAY_NAMES = {};
+THEATER_GROUPS.forEach(g => {
+    if (g.children) {
+        g.children.forEach(c => {
+            ALL_THEATER_VALUES.push(c.value);
+            THEATER_DISPLAY_NAMES[c.value] = g.label + ' ' + c.label;
+        });
+    } else {
+        ALL_THEATER_VALUES.push(g.value);
+        THEATER_DISPLAY_NAMES[g.value] = g.label;
+    }
+});
+
+let selectedTheaters = new Set(ALL_THEATER_VALUES);
+
+// Migrate old localStorage format (chain names → individual locations)
+const OLD_TO_NEW = {
+    'Cines Renoir': ['Princesa', 'Retiro', 'Plaza de España'],
+    'Cineteca Madrid': ['Cineteca Madrid'],
+    'Cines Embajadores': ['Embajadores Glorieta', 'Embajadores Ercilla'],
+    'Cinesa': THEATER_GROUPS.find(g => g.label === 'Cinesa').children.map(c => c.value),
+    'Cines Yelmo': THEATER_GROUPS.find(g => g.label === 'Yelmo').children.map(c => c.value),
+};
+
+function loadTheaterSelection() {
+    const saved = localStorage.getItem('selectedTheaters');
+    if (saved) {
+        try {
+            const arr = JSON.parse(saved);
+            if (Array.isArray(arr)) {
+                // Migrate old chain-level values
+                const expanded = [];
+                arr.forEach(v => {
+                    if (OLD_TO_NEW[v]) expanded.push(...OLD_TO_NEW[v]);
+                    else expanded.push(v);
+                });
+                const valid = expanded.filter(v => ALL_THEATER_VALUES.includes(v));
+                selectedTheaters = new Set(valid);
+            }
+        } catch (e) { /* ignore */ }
+    }
+}
+
+function saveTheaterSelection() {
+    localStorage.setItem('selectedTheaters', JSON.stringify([...selectedTheaters]));
+}
+
+function updateTheaterTriggerLabel() {
+    const trigger = document.getElementById('theater-trigger');
+    const span = trigger.querySelector('span');
+    const total = ALL_THEATER_VALUES.length;
+    const n = selectedTheaters.size;
+    span.textContent = t('nTheatersSelected', n, total);
+}
+
+function updateGroupCheckbox(groupCb, childValues) {
+    const checkedCount = childValues.filter(v => selectedTheaters.has(v)).length;
+    groupCb.checked = checkedCount === childValues.length;
+    groupCb.indeterminate = checkedCount > 0 && checkedCount < childValues.length;
+}
+
+function buildTheaterOptions() {
+    const container = document.getElementById('theater-options');
+    container.innerHTML = '';
+
+    THEATER_GROUPS.forEach(group => {
+        if (group.children) {
+            const childValues = group.children.map(c => c.value);
+            const searchLabel = (group.label + ' ' + group.children.map(c => c.label).join(' ')).toLowerCase();
+
+            // Group wrapper
+            const groupDiv = document.createElement('div');
+            groupDiv.className = 'theater-group';
+            groupDiv.dataset.label = searchLabel;
+
+            // Group header row
+            const header = document.createElement('div');
+            header.className = 'theater-option theater-group-header';
+            const groupCb = document.createElement('input');
+            groupCb.type = 'checkbox';
+            updateGroupCheckbox(groupCb, childValues);
+            groupCb.addEventListener('change', (e) => {
+                e.stopPropagation();
+                childValues.forEach(v => {
+                    if (groupCb.checked) selectedTheaters.add(v);
+                    else selectedTheaters.delete(v);
+                });
+                groupDiv.querySelectorAll('.theater-sub-option input[type="checkbox"]')
+                    .forEach(cb => cb.checked = groupCb.checked);
+                updateExpandLabel();
+                updateTheaterTriggerLabel();
+                saveTheaterSelection();
+                filterFilms();
+                updateURLParams();
+            });
+            const headerLabel = document.createElement('label');
+            headerLabel.appendChild(groupCb);
+            headerLabel.appendChild(document.createTextNode(group.label));
+
+            const expandBtn = document.createElement('button');
+            expandBtn.type = 'button';
+            expandBtn.className = 'theater-expand-btn';
+            const updateExpandLabel = () => {
+                if (groupDiv.classList.contains('expanded')) {
+                    expandBtn.textContent = t('hideSalas');
+                } else {
+                    const selected = childValues.filter(v => selectedTheaters.has(v)).length;
+                    expandBtn.textContent = t('showSalas', selected, childValues.length);
+                }
+            };
+            expandBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                groupDiv.classList.toggle('expanded');
+                updateExpandLabel();
+            });
+            updateExpandLabel();
+
+            header.appendChild(headerLabel);
+            header.appendChild(expandBtn);
+            groupDiv.appendChild(header);
+
+            // Children container
+            const childrenDiv = document.createElement('div');
+            childrenDiv.className = 'theater-sub-list';
+
+            group.children.forEach(child => {
+                const label = document.createElement('label');
+                label.className = 'theater-option theater-sub-option';
+                label.dataset.value = child.value;
+                label.dataset.label = (group.label + ' ' + child.label).toLowerCase();
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = selectedTheaters.has(child.value);
+                cb.addEventListener('change', () => {
+                    if (cb.checked) selectedTheaters.add(child.value);
+                    else selectedTheaters.delete(child.value);
+                    updateGroupCheckbox(groupCb, childValues);
+                    updateExpandLabel();
+                    updateTheaterTriggerLabel();
+                    saveTheaterSelection();
+                    filterFilms();
+                    updateURLParams();
+                });
+                label.appendChild(cb);
+                label.appendChild(document.createTextNode(child.label));
+                childrenDiv.appendChild(label);
+            });
+
+            groupDiv.appendChild(childrenDiv);
+            container.appendChild(groupDiv);
+        } else {
+            const label = document.createElement('label');
+            label.className = 'theater-option';
+            label.dataset.value = group.value;
+            label.dataset.label = group.label.toLowerCase();
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = selectedTheaters.has(group.value);
+            cb.addEventListener('change', () => {
+                if (cb.checked) selectedTheaters.add(group.value);
+                else selectedTheaters.delete(group.value);
+                updateTheaterTriggerLabel();
+                saveTheaterSelection();
+                filterFilms();
+                updateURLParams();
+            });
+            label.appendChild(cb);
+            label.appendChild(document.createTextNode(group.label));
+            container.appendChild(label);
+        }
+    });
+}
+
+function initTheaterMultiselect() {
+    loadTheaterSelection();
+    buildTheaterOptions();
+    updateTheaterTriggerLabel();
+
+    const wrapper = document.getElementById('theater-filter');
+    const trigger = document.getElementById('theater-trigger');
+    const dropdown = document.getElementById('theater-dropdown');
+    const searchInput = document.getElementById('theater-search');
+
+    trigger.addEventListener('click', (e) => {
+        if (e.target.closest('.theater-info-trigger')) return;
+        e.stopPropagation();
+        wrapper.classList.toggle('open');
+        if (wrapper.classList.contains('open')) {
+            searchInput.value = '';
+            searchInput.focus();
+            buildTheaterOptions();
+        }
+    });
+
+    searchInput.addEventListener('input', () => {
+        const q = normalizeText(searchInput.value);
+        const isSearching = q.length > 0;
+
+        // Standalone options
+        document.querySelectorAll('#theater-options > .theater-option').forEach(opt => {
+            opt.classList.toggle('hidden', !normalizeText(opt.dataset.label).includes(q));
+        });
+
+        // Groups
+        document.querySelectorAll('.theater-group').forEach(group => {
+            const groupLabel = normalizeText(group.dataset.label);
+            const groupMatches = groupLabel.includes(q);
+
+            // Show/hide individual children
+            let anyChildVisible = false;
+            group.querySelectorAll('.theater-sub-option').forEach(opt => {
+                const matches = groupMatches || normalizeText(opt.dataset.label).includes(q);
+                opt.classList.toggle('hidden', !matches);
+                if (matches) anyChildVisible = true;
+            });
+
+            group.classList.toggle('hidden', !groupMatches && !anyChildVisible);
+            // Auto-expand groups when searching, collapse when cleared
+            if (isSearching && anyChildVisible) group.classList.add('expanded');
+            else if (!isSearching) group.classList.remove('expanded');
+        });
+    });
+
+    searchInput.addEventListener('click', (e) => e.stopPropagation());
+
+    document.getElementById('theater-select-all').addEventListener('click', (e) => {
+        e.stopPropagation();
+        ALL_THEATER_VALUES.forEach(v => selectedTheaters.add(v));
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.getElementById('theater-select-none').addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedTheaters.clear();
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+            wrapper.classList.remove('show-help');
+        } else if (!infoTrigger.contains(e.target) && !infoTooltip.contains(e.target)) {
+            wrapper.classList.remove('show-help');
+        }
+    });
+
+    const infoTrigger = document.getElementById('theater-info-trigger');
+    const infoTooltip = document.getElementById('theater-info-tooltip');
+
+    let isTouch = false;
+
+    infoTrigger.addEventListener('touchstart', () => {
+        isTouch = true;
+    }, { passive: true });
+
+    infoTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllHelpTooltips(infoTrigger);
+        wrapper.classList.toggle('show-help');
+        isTouch = false;
+    });
+
+    infoTrigger.addEventListener('mouseenter', () => {
+        if (!isTouch) wrapper.classList.add('show-help');
+    });
+
+    infoTrigger.addEventListener('mouseleave', (e) => {
+        if (!isTouch && !infoTooltip.matches(':hover')) {
+            wrapper.classList.remove('show-help');
+        }
+    });
+
+    infoTooltip.addEventListener('mouseleave', () => {
+        if (!isTouch) wrapper.classList.remove('show-help');
+    });
+
+    infoTooltip.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+
+initTheaterMultiselect();
+
+// ── Genre / Country Multi-Selects ───────────────────────────────────────────
+const COUNTRY_TRANSLATIONS_ES = {
+    'United States of America': 'Estados Unidos',
+    'United Kingdom': 'Reino Unido',
+    'France': 'Francia', 'Germany': 'Alemania', 'Italy': 'Italia',
+    'Spain': 'España', 'Japan': 'Japón', 'China': 'China',
+    'Brazil': 'Brasil', 'Mexico': 'México', 'Argentina': 'Argentina',
+    'South Korea': 'Corea del Sur', 'India': 'India', 'Russia': 'Rusia',
+    'Sweden': 'Suecia', 'Denmark': 'Dinamarca', 'Norway': 'Noruega',
+    'Finland': 'Finlandia', 'Poland': 'Polonia', 'Netherlands': 'Países Bajos',
+    'Belgium': 'Bélgica', 'Switzerland': 'Suiza', 'Austria': 'Austria',
+    'Portugal': 'Portugal', 'Ireland': 'Irlanda', 'Romania': 'Rumanía',
+    'Hungary': 'Hungría', 'Czech Republic': 'República Checa',
+    'Czechoslovakia': 'Checoslovaquia', 'Turkey': 'Turquía',
+    'Greece': 'Grecia', 'Iran': 'Irán', 'Egypt': 'Egipto',
+    'Morocco': 'Marruecos', 'Tunisia': 'Túnez', 'Colombia': 'Colombia',
+    'Chile': 'Chile', 'Peru': 'Perú', 'Cuba': 'Cuba', 'Uruguay': 'Uruguay',
+    'Paraguay': 'Paraguay', 'Panama': 'Panamá', 'Costa Rica': 'Costa Rica',
+    'Dominican Republic': 'República Dominicana', 'Philippines': 'Filipinas',
+    'Australia': 'Australia', 'New Zealand': 'Nueva Zelanda',
+    'Canada': 'Canadá', 'Iceland': 'Islandia', 'Lebanon': 'Líbano',
+    'Pakistan': 'Pakistán', 'Taiwan': 'Taiwán', 'Vietnam': 'Vietnam',
+    'Singapore': 'Singapur', 'South Africa': 'Sudáfrica',
+    'Palestinian Territory': 'Palestina', 'Latvia': 'Letonia',
+    'Lithuania': 'Lituania', 'Slovakia': 'Eslovaquia',
+    'Luxembourg': 'Luxemburgo', 'Andorra': 'Andorra',
+    'Soviet Union': 'Unión Soviética', 'Cyprus': 'Chipre',
+};
+
+const COUNTRY_DISPLAY_EN = {
+    'United States of America': 'United States',
+    'United Kingdom': 'UK',
+    'Palestinian Territory': 'Palestine',
+    'Soviet Union': 'USSR',
+};
+
+function translateCountry(country) {
+    if (currentLang === 'es') return COUNTRY_TRANSLATIONS_ES[country] || country;
+    return COUNTRY_DISPLAY_EN[country] || country;
+}
+
+const LANGUAGE_TRANSLATIONS_ES = {
+    'English': 'Inglés', 'French': 'Francés', 'Spanish': 'Español',
+    'German': 'Alemán', 'Italian': 'Italiano', 'Japanese': 'Japonés',
+    'Korean': 'Coreano', 'Chinese': 'Chino', 'Portuguese': 'Portugués',
+    'Russian': 'Ruso', 'Arabic': 'Árabe', 'Hindi': 'Hindi',
+    'Swedish': 'Sueco', 'Danish': 'Danés', 'Norwegian': 'Noruego',
+    'Polish': 'Polaco', 'Czech': 'Checo', 'Romanian': 'Rumano',
+    'Ukrainian': 'Ucraniano', 'Catalan': 'Catalán', 'Slovak': 'Eslovaco',
+    'Malayalam': 'Malabar', 'Tagalog': 'Tagalo', 'Urdu': 'Urdu',
+    'Azerbaijani': 'Azerí', 'No spoken language': 'Sin diálogo',
+};
+
+function translateLanguage(lang) {
+    if (currentLang === 'es') return LANGUAGE_TRANSLATIONS_ES[lang] || lang;
+    return lang;
+}
+
+// State for genre/country/language filters
+let allGenres = [];
+let allCountries = [];
+let allLanguages = [];
+let selectedGenres = null;
+let selectedCountries = null;
+let selectedLanguages = null;
+
+
+function initGenreCountryFilters() {
+    // Collect unique values only from films with future sessions
+    const todayStart = getLocalTodayStart();
+    const genreSet = new Set();
+    const countrySet = new Set();
+    const langSet = new Set();
+    const filmsWithFutureDates = allFilms.filter(film =>
+        film.dates.some(d => { const dt = getDateOnly(d.timestamp); return dt && dt >= todayStart; })
+    );
+    filmsWithFutureDates.forEach(film => {
+        (film.genres || []).forEach(g => genreSet.add(g));
+        (film.country || []).forEach(c => countrySet.add(c));
+        const pl = film.primaryLanguage;
+        if (Array.isArray(pl)) pl.forEach(l => langSet.add(l));
+        else if (pl) langSet.add(pl);
+    });
+    allGenres = [...genreSet].sort((a, b) => translateGenre(a).localeCompare(translateGenre(b), currentLang));
+    allCountries = [...countrySet].sort((a, b) => translateCountry(a).localeCompare(translateCountry(b), currentLang));
+    allLanguages = [...langSet].sort((a, b) => translateLanguage(a).localeCompare(translateLanguage(b), currentLang));
+
+    // Build decades from data — group anything before 1920 into "< 20s"
+    const decadeSet = new Set();
+    let hasPreTwenties = false;
+    filmsWithFutureDates.forEach(film => {
+        if (film.year) {
+            const d = Math.floor(film.year / 10) * 10;
+            if (d < 1920) hasPreTwenties = true;
+            else decadeSet.add(d);
+        }
+    });
+    DECADES = [];
+    if (hasPreTwenties) DECADES.push({ label: '< 20s', start: 0, end: 1919 });
+    [...decadeSet].sort().forEach(d => {
+        DECADES.push({ label: `${d}s`, start: d, end: d + 9 });
+    });
+
+    selectedGenres = new Set(allGenres);
+    selectedCountries = new Set(allCountries);
+    selectedLanguages = new Set(allLanguages);
+
+    buildFilterDropdown('genre', allGenres, selectedGenres, translateGenre);
+    buildFilterDropdown('country', allCountries, selectedCountries, translateCountry);
+    buildFilterDropdown('language', allLanguages, selectedLanguages, translateLanguage);
+    updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    initFilterDropdownEvents('genre', allGenres, selectedGenres, translateGenre);
+    initFilterDropdownEvents('country', allCountries, selectedCountries, translateCountry);
+    initFilterDropdownEvents('language', allLanguages, selectedLanguages, translateLanguage);
+
+    // Build chip filters — empty selection = no filter (show all)
+    initDecadeActions();
+    buildDecadeChips();
+    initRuntimeActions();
+    buildRuntimeChips();
+    initDayActions();
+    buildDayChips();
+    computeLastChance();
+}
+
+
+function updateFilterTriggerLabel(type, selected, all) {
+    const span = document.getElementById(`${type}-trigger`).querySelector('span');
+    const n = selected.size;
+    const total = all.length;
+    if (type === 'genre') {
+        span.textContent = t('nGenresSelected', n, total);
+    } else if (type === 'language') {
+        span.textContent = t('nLanguagesSelected', n, total);
+    } else {
+        span.textContent = t('nCountriesSelected', n, total);
+    }
+    // Remove data-i18n so applyStaticTranslations doesn't overwrite
+    span.removeAttribute('data-i18n');
+}
+
+function buildFilterDropdown(type, allValues, selected, translateFn) {
+    const container = document.getElementById(`${type}-options`);
+    container.innerHTML = '';
+    allValues.forEach(value => {
+        const label = document.createElement('label');
+        label.className = 'filter-dd-option';
+        label.dataset.value = value;
+        label.dataset.label = (translateFn(value) + ' ' + value).toLowerCase();
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = selected.has(value);
+        cb.addEventListener('change', () => {
+            if (cb.checked) selected.add(value);
+            else selected.delete(value);
+            updateFilterTriggerLabel(type, selected, allValues);
+
+            filterFilms();
+            updateURLParams();
+        });
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(translateFn(value)));
+        container.appendChild(label);
+    });
+}
+
+function closeAllHelpTooltips(except) {
+    document.querySelectorAll('.chip-help.show, .csv-info-trigger.show').forEach(el => {
+        if (el !== except) el.classList.remove('show');
+    });
+    // Theater uses show-help on its wrapper
+    const theaterWrapper = document.getElementById('theater-multiselect');
+    if (theaterWrapper && (!except || !theaterWrapper.contains(except))) {
+        theaterWrapper.classList.remove('show-help');
+    }
+}
+
+function positionFixedTooltip(trigger, tooltip, opts = {}) {
+    if (!trigger.closest('.filter-modal')) return;
+    // opts.anchor: element to use for position (defaults to trigger)
+    // opts.alignRight: align tooltip's right edge to anchor's right edge
+    const anchor = opts.anchor || trigger;
+    const anchorRect = anchor.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - anchorRect.bottom;
+    if (spaceBelow < 250) {
+        tooltip.style.bottom = (window.innerHeight - anchorRect.top + 6) + 'px';
+        tooltip.style.top = 'auto';
+    } else {
+        tooltip.style.top = (anchorRect.bottom + 6) + 'px';
+        tooltip.style.bottom = 'auto';
+    }
+    if (opts.alignRight) {
+        const tooltipWidth = tooltip.offsetWidth || 250;
+        tooltip.style.left = Math.max(8, anchorRect.right - tooltipWidth) + 'px';
+    } else {
+        tooltip.style.left = anchorRect.left + 'px';
+    }
+}
+
+function positionFilterDropdown(wrapper) {
+    const dropdown = wrapper.querySelector('.filter-dropdown');
+    if (!dropdown || !wrapper.closest('.filter-modal')) return;
+    const triggerRect = wrapper.querySelector('.filter-multiselect-trigger').getBoundingClientRect();
+    const spaceBelow = window.innerHeight - triggerRect.bottom;
+    const spaceAbove = triggerRect.top;
+    // Open upward if not enough space below
+    if (spaceBelow < 250 && spaceAbove > spaceBelow) {
+        dropdown.style.bottom = (window.innerHeight - triggerRect.top + 4) + 'px';
+        dropdown.style.top = 'auto';
+    } else {
+        dropdown.style.top = (triggerRect.bottom + 4) + 'px';
+        dropdown.style.bottom = 'auto';
+    }
+    dropdown.style.left = triggerRect.left + 'px';
+    dropdown.style.width = triggerRect.width + 'px';
+}
+
+function initFilterDropdownEvents(type, allValues, selected, translateFn) {
+    const wrapper = document.getElementById(`${type}-filter`);
+    const trigger = document.getElementById(`${type}-trigger`);
+    const searchInput = document.getElementById(`${type}-search`);
+
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Close other filter dropdowns
+        document.querySelectorAll('.filter-multiselect.open').forEach(el => {
+            if (el !== wrapper) el.classList.remove('open');
+        });
+        wrapper.classList.toggle('open');
+        if (wrapper.classList.contains('open')) {
+            searchInput.value = '';
+            buildFilterDropdown(type, allValues, selected, translateFn);
+            positionFilterDropdown(wrapper);
+            searchInput.focus();
+        }
+    });
+
+    searchInput.addEventListener('input', () => {
+        const q = normalizeText(searchInput.value);
+        document.querySelectorAll(`#${type}-options .filter-dd-option`).forEach(opt => {
+            opt.classList.toggle('hidden', !normalizeText(opt.dataset.label).includes(q));
+        });
+    });
+
+    searchInput.addEventListener('click', (e) => e.stopPropagation());
+
+    wrapper.querySelector('.filter-dd-select-all').addEventListener('click', (e) => {
+        e.stopPropagation();
+        allValues.forEach(v => selected.add(v));
+        wrapper.querySelectorAll('.filter-dd-option input[type="checkbox"]').forEach(cb => cb.checked = true);
+        updateFilterTriggerLabel(type, selected, allValues);
+
+        filterFilms();
+        updateURLParams();
+    });
+
+    wrapper.querySelector('.filter-dd-select-none').addEventListener('click', (e) => {
+        e.stopPropagation();
+        selected.clear();
+        wrapper.querySelectorAll('.filter-dd-option input[type="checkbox"]').forEach(cb => cb.checked = false);
+        updateFilterTriggerLabel(type, selected, allValues);
+
+        filterFilms();
+        updateURLParams();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+        }
+    });
+
+    // Country / Language info tooltips — now chip-help elements next to the label
+    if (type === 'country' || type === 'language') {
+        const help = document.getElementById(`${type}-info-trigger`);
+        const helpTooltip = document.getElementById(`${type}-info-tooltip`);
+        const isTouchDevice = () => 'ontouchstart' in window;
+        help.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeAllHelpTooltips(help);
+            help.classList.toggle('show');
+            if (help.classList.contains('show')) positionFixedTooltip(help, helpTooltip);
+        });
+        help.addEventListener('mouseenter', () => {
+            if (isTouchDevice()) return;
+            help.classList.add('show');
+            positionFixedTooltip(help, helpTooltip);
+        });
+        help.addEventListener('mouseleave', () => {
+            if (isTouchDevice()) return;
+            if (!helpTooltip.matches(':hover')) help.classList.remove('show');
+        });
+        helpTooltip.addEventListener('mouseleave', () => {
+            if (isTouchDevice()) return;
+            help.classList.remove('show');
+        });
+        helpTooltip.addEventListener('click', (e) => {
+            e.stopPropagation();
+            help.classList.remove('show');
+        });
+    }
+}
+
+// ── Filter Modal ────────────────────────────────────────────────────────────
+function openFilterModal() {
+    const modal = document.getElementById('filter-modal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFilterModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    const modal = document.getElementById('filter-modal');
+    if (!modal.classList.contains('show')) return;
+    modal.classList.add('closing');
+    setTimeout(() => {
+        modal.classList.remove('show', 'closing');
+        document.body.style.overflow = '';
+    }, 220);
+}
+
+document.getElementById('more-filters-btn').addEventListener('click', openFilterModal);
+
+// ── Chip Builders ───────────────────────────────────────────────────────────
+function initDecadeActions() {
+    const actions = document.getElementById('decade-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedDecades.clear();
+        updateDecadeChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+
+    // Help icon events
+    const help = document.getElementById('decade-help');
+    const helpTooltip = document.getElementById('decade-help-tooltip');
+    let helpIsTouch = false;
+    help.addEventListener('touchstart', () => { helpIsTouch = true; }, { passive: true });
+    help.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllHelpTooltips(help);
+        help.classList.toggle('show');
+        if (help.classList.contains('show')) positionFixedTooltip(help, helpTooltip);
+        helpIsTouch = false;
+    });
+    help.addEventListener('mouseenter', () => {
+        if (!helpIsTouch) {
+            help.classList.add('show');
+            positionFixedTooltip(help, helpTooltip);
+        }
+    });
+    help.addEventListener('mouseleave', () => {
+        if (!helpIsTouch) help.classList.remove('show');
+    });
+}
+
+function buildDecadeChips() {
+    const container = document.getElementById('decade-chips');
+    container.innerHTML = '';
+    DECADES.forEach((decade, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedDecades.has(index) ? ' active' : '');
+        chip.textContent = decade.label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedDecades.size === 1 && !selectedDecades.has(index)) {
+                const anchor = [...selectedDecades][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedDecades.clear();
+                for (let i = from; i <= to; i++) selectedDecades.add(i);
+            } else {
+                if (selectedDecades.has(index)) selectedDecades.delete(index);
+                else selectedDecades.add(index);
+            }
+            updateDecadeChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+function updateDecadeChipUI() {
+    document.querySelectorAll('#decade-chips .chip').forEach(c => {
+        c.classList.toggle('active', selectedDecades.has(parseInt(c.dataset.index)));
+    });
+}
+
+function initRuntimeActions() {
+    const actions = document.getElementById('runtime-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedRuntimeCategories.clear();
+        updateRuntimeChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+}
+
+function updateRuntimeChipUI() {
+    document.querySelectorAll('#runtime-chips .chip').forEach((c, i) => {
+        c.classList.toggle('active', selectedRuntimeCategories.has(i));
+    });
+}
+
+function buildRuntimeChips() {
+    const container = document.getElementById('runtime-chips');
+    container.innerHTML = '';
+    RUNTIME_CATEGORIES.forEach((cat, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedRuntimeCategories.has(index) ? ' active' : '');
+        chip.textContent = cat.label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedRuntimeCategories.size === 1 && !selectedRuntimeCategories.has(index)) {
+                const anchor = [...selectedRuntimeCategories][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedRuntimeCategories.clear();
+                for (let i = from; i <= to; i++) selectedRuntimeCategories.add(i);
+            } else {
+                if (selectedRuntimeCategories.has(index)) selectedRuntimeCategories.delete(index);
+                else selectedRuntimeCategories.add(index);
+            }
+            updateRuntimeChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+function initDayActions() {
+    const actions = document.getElementById('day-actions');
+    const resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'chip-action-btn';
+    resetBtn.textContent = t('resetFilter');
+    resetBtn.dataset.i18n = 'resetFilter';
+    resetBtn.addEventListener('click', () => {
+        selectedDays.clear();
+        updateDayChipUI();
+        filterFilms();
+        updateURLParams();
+    });
+    actions.appendChild(resetBtn);
+}
+
+function updateDayChipUI() {
+    document.querySelectorAll('#day-chips .chip').forEach((c, i) => {
+        c.classList.toggle('active', selectedDays.has(i));
+    });
+}
+
+function buildDayChips() {
+    const container = document.getElementById('day-chips');
+    container.innerHTML = '';
+    const labels = DAY_LABELS[currentLang] || DAY_LABELS.en;
+    labels.forEach((label, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (selectedDays.has(index) ? ' active' : '');
+        chip.textContent = label;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+            if (selectedDays.size === 1 && !selectedDays.has(index)) {
+                const anchor = [...selectedDays][0];
+                const from = Math.min(anchor, index);
+                const to = Math.max(anchor, index);
+                selectedDays.clear();
+                for (let i = from; i <= to; i++) selectedDays.add(i);
+            } else {
+                if (selectedDays.has(index)) selectedDays.delete(index);
+                else selectedDays.add(index);
+            }
+            updateDayChipUI();
+            filterFilms();
+            updateURLParams();
+        });
+        container.appendChild(chip);
+    });
+}
+
+// Last chance: precompute on each film
+function computeLastChance() {
+    const todayStart = getLocalTodayStart();
+    const threeDays = new Date(todayStart);
+    threeDays.setDate(threeDays.getDate() + 3);
+    threeDays.setHours(23, 59, 59);
+
+    allFilms.forEach(film => {
+        let latest = null;
+        film.dates.forEach(d => {
+            const dt = getDateOnly(d.timestamp);
+            if (dt && dt >= todayStart && (!latest || dt > latest)) latest = dt;
+        });
+        film._isLastChance = latest && latest <= threeDays;
+    });
+}
+
+document.getElementById('last-chance-filter').addEventListener('click', (e) => {
+    if (e.target.closest('.chip-help')) return;
+    lastChanceFilterActive = !lastChanceFilterActive;
+    document.getElementById('last-chance-filter').classList.toggle('active', lastChanceFilterActive);
+    filterFilms();
+    updateURLParams();
+});
+
+// Last chance help icon
+(function() {
+    const help = document.getElementById('last-chance-help');
+    const tooltip = document.getElementById('last-chance-help-tooltip');
+    let isTouch = false;
+    help.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
+    help.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeAllHelpTooltips(help);
+        help.classList.toggle('show');
+        if (help.classList.contains('show')) positionFixedTooltip(help, tooltip);
+        isTouch = false;
+    });
+    help.addEventListener('mouseenter', () => {
+        if (!isTouch) { help.classList.add('show'); positionFixedTooltip(help, tooltip); }
+    });
+    help.addEventListener('mouseleave', () => {
+        if (!isTouch) help.classList.remove('show');
+    });
+})();
+
+// Badge
+function updateFilterBadge() {
+    let count = 0;
+    if (selectedDecades.size > 0) count++;
+    if (selectedRuntimeCategories.size > 0) count++;
+    if (selectedDays.size > 0) count++;
+    if (lastChanceFilterActive) count++;
+    if (specialFilterActive) count++;
+    if (selectedGenres && selectedGenres.size < allGenres.length) count++;
+    if (selectedCountries && selectedCountries.size < allCountries.length) count++;
+    if (selectedLanguages && selectedLanguages.size < allLanguages.length) count++;
+    const versionBtn = document.getElementById('version-filter');
+    if (versionBtn && versionBtn.dataset.current === 'dubbed') count++;
+    if (watchlistUrls && watchlistFilterActive) count++;
+    if (watchedUrls && watchedFilterActive) count++;
+
+    const badge = document.getElementById('filter-badge');
+    if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = '';
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
 // Event listeners
 document.getElementById('search').addEventListener('input', () => {
     filterFilms();
     updateURLParams();
 });
-document.getElementById('theater-filter').addEventListener('change', () => {
+// Toggle filter buttons (version, sort)
+document.querySelectorAll('.toggle-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const values = btn.dataset.values.split(',');
+        const currentIdx = values.indexOf(btn.dataset.current);
+        const nextIdx = (currentIdx + 1) % values.length;
+        btn.dataset.current = values[nextIdx];
+
+        // Update label via i18n key mapping
+        const labelMap = {
+            'version-filter': { original: 'versionOriginal', dubbed: 'versionDubbed' },
+            'sort-filter': { rating: 'sortByRating', viewers: 'sortByViewers' },
+        };
+        const map = labelMap[btn.id];
+        if (map) {
+            const span = btn.querySelector('span');
+            span.dataset.i18n = map[values[nextIdx]];
+            span.textContent = t(map[values[nextIdx]]);
+        }
+
+        // Active state for version filter
+        if (btn.id === 'version-filter') {
+            btn.classList.toggle('active', btn.dataset.current === 'original');
+        }
+
+        filterFilms();
+        updateURLParams();
+    });
+});
+// Special sessions filter
+document.getElementById('special-filter').addEventListener('click', () => {
+    specialFilterActive = !specialFilterActive;
+    document.getElementById('special-filter').classList.toggle('active', specialFilterActive);
     filterFilms();
     updateURLParams();
 });
-document.getElementById('theater-filter').addEventListener('change', () => {
-    filterFilms();
-    updateURLParams();
-});
-// Rated only filter removed
+
 const dateFilter = document.getElementById('date-filter');
 
 function setDateFilterMin() {
@@ -1043,112 +2226,9 @@ dateFilter.addEventListener('change', handleDateFilterChange);
 
 setDateFilterMin();
 
-let minYear = 1900;
-let maxYear = new Date().getFullYear();
+/* minYear/maxYear removed — decade chips replace year slider */
 
-function initYearFilter() {
-    // Calculate min/max years only from films that still have upcoming sessions
-    const todayStart = getLocalTodayStart();
-    const validYears = allFilms
-        .filter(film => film.dates?.some(d => {
-            const dateObj = getDateOnly(d.timestamp);
-            return dateObj && dateObj >= todayStart;
-        }))
-        .map(f => f.year)
-        .filter(y => y !== null && !isNaN(y));
-
-    if (validYears.length > 0) {
-        minYear = Math.min(...validYears);
-        maxYear = Math.max(...validYears);
-    }
-
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    // Set slider range and inputs
-    [yearMinInput, yearMaxInput, yearMinVal, yearMaxVal].forEach(input => {
-        input.min = minYear;
-        input.max = maxYear;
-    });
-
-    // Set initial values from URL or defaults
-    const params = new URLSearchParams(window.location.search);
-    const startMin = params.get('min_year') || minYear;
-    const startMax = params.get('max_year') || maxYear;
-
-    yearMinInput.value = startMin;
-    yearMaxInput.value = startMax;
-    yearMinVal.value = startMin;
-    yearMaxVal.value = startMax;
-
-    updateSliderDisplay();
-}
-
-function updateSliderDisplay() {
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    let minVal = parseInt(yearMinInput.value);
-    let maxVal = parseInt(yearMaxInput.value);
-
-    // Validate range
-    if (minVal > maxVal) {
-        const temp = minVal;
-        minVal = maxVal;
-        maxVal = temp;
-    }
-
-    // Update text inputs if they aren't focused (to avoid interrupting typing)
-    if (document.activeElement !== yearMinVal) yearMinVal.value = minVal;
-    if (document.activeElement !== yearMaxVal) yearMaxVal.value = maxVal;
-
-    updateTrack(minVal, maxVal);
-}
-
-function updateTrack(minVal, maxVal) {
-    const track = document.querySelector('.slider-track');
-    const range = maxYear - minYear;
-    if (range <= 0) return;
-
-    const ratio1 = (minVal - minYear) / range;
-    const ratio2 = (maxVal - minYear) / range;
-
-    // Align gradient stops with the center of the thumbs (16px width)
-    const thumbW = 16;
-    const stop1 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio1})`;
-    const stop2 = `calc(${thumbW / 2}px + (100% - ${thumbW}px) * ${ratio2})`;
-
-    track.style.background = `linear-gradient(to right, var(--border) ${stop1}, var(--accent) ${stop1}, var(--accent) ${stop2}, var(--border) ${stop2})`;
-}
-
-// Event listeners for SLIDERS
-['year-min', 'year-max'].forEach(id => {
-    document.getElementById(id).addEventListener('input', () => {
-        updateSliderDisplay();
-        filterFilms();
-
-        // Debounce URL update
-        clearTimeout(window.updateUrlTimeout);
-        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
-    });
-});
-
-// Event listeners for TEXT inputs
-['year-min-val', 'year-max-val'].forEach(id => {
-    const input = document.getElementById(id);
-    input.addEventListener('change', () => {
-        validateAndSyncInputs();
-        filterFilms();
-
-        // Debounce URL update
-        clearTimeout(window.updateUrlTimeout);
-        window.updateUrlTimeout = setTimeout(updateURLParams, 500);
-    });
-});
+/* Year/runtime sliders removed — replaced by decade/runtime chips */
 
 // Clear filters button
 document.getElementById('clear-filters').addEventListener('click', () => {
@@ -1156,20 +2236,43 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     document.getElementById('search').value = '';
     document.getElementById('date-filter').value = '';
     updateDatePlaceholder();
-    document.getElementById('theater-filter').value = '';
+    // Theater selection is a persistent preference — don't reset it
+    const versionBtn = document.getElementById('version-filter');
+    versionBtn.dataset.current = 'original';
+    versionBtn.querySelector('span').textContent = t('versionOriginal');
+    versionBtn.querySelector('span').dataset.i18n = 'versionOriginal';
+    versionBtn.classList.add('active');
 
-    // Reset year filter
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
+    const sortBtn = document.getElementById('sort-filter');
+    sortBtn.dataset.current = 'rating';
+    sortBtn.querySelector('span').textContent = t('sortByRating');
+    sortBtn.querySelector('span').dataset.i18n = 'sortByRating';
 
-    yearMinInput.value = minYear;
-    yearMaxInput.value = maxYear;
-    yearMinVal.value = minYear;
-    yearMaxVal.value = maxYear;
+    // Reset chip filters
+    selectedDecades.clear(); buildDecadeChips();
+    selectedRuntimeCategories.clear(); buildRuntimeChips();
+    selectedDays.clear(); buildDayChips();
+    lastChanceFilterActive = false;
+    document.getElementById('last-chance-filter').classList.remove('active');
 
-    updateSliderDisplay();
+    // Reset special filter
+    specialFilterActive = false;
+    const specialBtn = document.getElementById('special-filter');
+    if (specialBtn) specialBtn.classList.remove('active');
+
+    // Reset genre/country/language filters
+    if (selectedGenres) {
+        allGenres.forEach(v => selectedGenres.add(v));
+        updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    }
+    if (selectedCountries) {
+        allCountries.forEach(v => selectedCountries.add(v));
+        updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    }
+    if (selectedLanguages) {
+        allLanguages.forEach(v => selectedLanguages.add(v));
+        updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    }
 
     // updateURLParams will act on changed values, but let's clear URL explicitly
     const url = new URL(window.location);
@@ -1179,57 +2282,43 @@ document.getElementById('clear-filters').addEventListener('click', () => {
     filterFilms();
 });
 
-function validateAndSyncInputs() {
-    const yearMinInput = document.getElementById('year-min');
-    const yearMaxInput = document.getElementById('year-max');
-    const yearMinVal = document.getElementById('year-min-val');
-    const yearMaxVal = document.getElementById('year-max-val');
-
-    let minVal = parseInt(yearMinVal.value);
-    let maxVal = parseInt(yearMaxVal.value);
-
-    // Clamp to global bounds
-    if (minVal < minYear) minVal = minYear;
-    if (maxVal > maxYear) maxVal = maxYear;
-    if (minVal > maxYear) minVal = maxYear;
-    if (maxVal < minYear) maxVal = minYear;
-
-    // Ensure min <= max
-    if (minVal > maxVal) {
-        const temp = minVal;
-        minVal = maxVal;
-        maxVal = temp;
-    }
-
-    // Update inputs with clamped values
-    yearMinVal.value = minVal;
-    yearMaxVal.value = maxVal;
-
-    // Sync sliders
-    yearMinInput.value = minVal;
-    yearMaxInput.value = maxVal;
-
-    updateTrack(minVal, maxVal);
-}
 
 // URL Parameter Handling
 function applyFiltersFromURL() {
     const params = new URLSearchParams(window.location.search);
 
     const search = params.get('search');
-    const theater = params.get('theater');
     const date = params.get('date');
 
     if (search) {
         document.getElementById('search').value = search;
     }
 
-    if (theater) {
-        const theaterSelect = document.getElementById('theater-filter');
-        // Verify it's a valid option
-        if ([...theaterSelect.options].some(o => o.value === theater)) {
-            theaterSelect.value = theater;
+    // Handle multi-theater URL params
+    const excludeParam = params.get('exclude_theaters');
+    const theaterParam = params.get('theater'); // backwards compat with old single-theater URLs
+    if (excludeParam) {
+        if (excludeParam === 'all') {
+            selectedTheaters.clear();
+        } else {
+            const excluded = excludeParam.split(',');
+            selectedTheaters = new Set(ALL_THEATER_VALUES);
+            excluded.forEach(v => selectedTheaters.delete(v));
         }
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
+    } else if (theaterParam) {
+        // Old URL format: single theater selected — expand chain names
+        const expanded = OLD_TO_NEW[theaterParam];
+        if (expanded) {
+            selectedTheaters = new Set(expanded);
+        } else if (ALL_THEATER_VALUES.includes(theaterParam)) {
+            selectedTheaters = new Set([theaterParam]);
+        }
+        buildTheaterOptions();
+        updateTheaterTriggerLabel();
+        saveTheaterSelection();
     }
 
     if (date) {
@@ -1243,29 +2332,118 @@ function applyFiltersFromURL() {
         }
     }
 
-    // Year filter is initialized in initYearFilter() after films load
+    const version = params.get('version');
+    if (version && ['original', 'dubbed'].includes(version)) {
+        const versionBtn = document.getElementById('version-filter');
+        versionBtn.dataset.current = version;
+        const versionMap = { original: 'versionOriginal', dubbed: 'versionDubbed' };
+        versionBtn.querySelector('span').dataset.i18n = versionMap[version];
+        versionBtn.querySelector('span').textContent = t(versionMap[version]);
+        versionBtn.classList.toggle('active', version === 'original');
+    }
+
+    const sort = params.get('sort');
+    if (sort && ['rating', 'viewers'].includes(sort)) {
+        const sortBtn = document.getElementById('sort-filter');
+        sortBtn.dataset.current = sort;
+        const sortMap = { rating: 'sortByRating', viewers: 'sortByViewers' };
+        sortBtn.querySelector('span').dataset.i18n = sortMap[sort];
+        sortBtn.querySelector('span').textContent = t(sortMap[sort]);
+    }
+
+    const special = params.get('special');
+    if (special === '1') {
+        specialFilterActive = true;
+        const specialBtn = document.getElementById('special-filter');
+        if (specialBtn) specialBtn.classList.add('active');
+    }
+
+    const decadesParam = params.get('decades');
+    if (decadesParam) {
+        selectedDecades = new Set(decadesParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < DECADES.length));
+        buildDecadeChips();
+    }
+
+    const runtimeParam = params.get('runtime');
+    if (runtimeParam) {
+        selectedRuntimeCategories = new Set(runtimeParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < RUNTIME_CATEGORIES.length));
+        buildRuntimeChips();
+    }
+
+    const daysParam = params.get('days');
+    if (daysParam) {
+        selectedDays = new Set(daysParam.split(',').map(Number).filter(n => !isNaN(n) && n >= 0 && n < 7));
+        buildDayChips();
+    }
+
+    if (params.get('lastchance') === '1') {
+        lastChanceFilterActive = true;
+        document.getElementById('last-chance-filter').classList.add('active');
+    }
+
+    const genresParam = params.get('genres');
+    if (genresParam && selectedGenres) {
+        selectedGenres.clear();
+        if (genresParam !== 'none') {
+            genresParam.split(',').filter(v => allGenres.includes(v)).forEach(v => selectedGenres.add(v));
+        }
+        buildFilterDropdown('genre', allGenres, selectedGenres, translateGenre);
+        updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    }
+    const countriesParam = params.get('countries');
+    if (countriesParam && selectedCountries) {
+        selectedCountries.clear();
+        if (countriesParam !== 'none') {
+            countriesParam.split(',').filter(v => allCountries.includes(v)).forEach(v => selectedCountries.add(v));
+        }
+        buildFilterDropdown('country', allCountries, selectedCountries, translateCountry);
+        updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    }
+    const languagesParam = params.get('languages');
+    if (languagesParam && selectedLanguages) {
+        selectedLanguages.clear();
+        if (languagesParam !== 'none') {
+            languagesParam.split(',').filter(v => allLanguages.includes(v)).forEach(v => selectedLanguages.add(v));
+        }
+        buildFilterDropdown('language', allLanguages, selectedLanguages, translateLanguage);
+        updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    }
 }
 
 function updateURLParams() {
     const search = document.getElementById('search').value;
-    const theater = document.getElementById('theater-filter').value;
     const date = document.getElementById('date-filter').value;
-
-    // Get current slider values
-    const minInput = document.getElementById('year-min');
-    const maxInput = document.getElementById('year-max');
-    const currentMin = Math.min(parseInt(minInput.value), parseInt(maxInput.value));
-    const currentMax = Math.max(parseInt(minInput.value), parseInt(maxInput.value));
+    const version = document.getElementById('version-filter').dataset.current;
 
     const params = new URLSearchParams();
 
     if (search) params.set('search', search);
-    if (theater) params.set('theater', theater);
+    const excluded = ALL_THEATER_VALUES.filter(v => !selectedTheaters.has(v));
+    if (excluded.length > 0 && excluded.length < ALL_THEATER_VALUES.length) {
+        params.set('exclude_theaters', excluded.join(','));
+    } else if (excluded.length === ALL_THEATER_VALUES.length) {
+        params.set('exclude_theaters', 'all');
+    }
     if (date) params.set('date', date);
+    if (version && version !== 'original') params.set('version', version);
 
-    // Only add year params if they differ from global bounds
-    if (currentMin > minYear) params.set('min_year', currentMin);
-    if (currentMax < maxYear) params.set('max_year', currentMax);
+    const sort = document.getElementById('sort-filter').dataset.current;
+    if (sort && sort !== 'rating') params.set('sort', sort);
+
+    if (selectedDecades.size > 0) params.set('decades', [...selectedDecades].join(','));
+    if (selectedRuntimeCategories.size > 0) params.set('runtime', [...selectedRuntimeCategories].join(','));
+    if (selectedDays.size > 0) params.set('days', [...selectedDays].join(','));
+    if (lastChanceFilterActive) params.set('lastchance', '1');
+    if (specialFilterActive) params.set('special', '1');
+    if (selectedGenres && selectedGenres.size < allGenres.length) {
+        params.set('genres', selectedGenres.size === 0 ? 'none' : [...selectedGenres].join(','));
+    }
+    if (selectedCountries && selectedCountries.size < allCountries.length) {
+        params.set('countries', selectedCountries.size === 0 ? 'none' : [...selectedCountries].join(','));
+    }
+    if (selectedLanguages && selectedLanguages.size < allLanguages.length) {
+        params.set('languages', selectedLanguages.size === 0 ? 'none' : [...selectedLanguages].join(','));
+    }
 
     const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     window.history.replaceState({}, '', newURL);
@@ -1575,9 +2753,37 @@ document.getElementById('watched-upload').addEventListener('change', (event) => 
 
 // ── Info tooltip ─────────────────────────────────────────────────────────────
 
-document.getElementById('csv-info-trigger').addEventListener('click', (e) => {
+const csvInfoTrigger = document.getElementById('csv-info-trigger');
+const csvTooltip = document.getElementById('csv-tooltip');
+let csvIsTouch = false;
+
+csvInfoTrigger.addEventListener('touchstart', () => { csvIsTouch = true; }, { passive: true });
+
+csvInfoTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
-    e.currentTarget.classList.toggle('show');
+    closeAllHelpTooltips(csvInfoTrigger);
+    csvInfoTrigger.classList.toggle('show');
+    if (csvInfoTrigger.classList.contains('show')) {
+        positionFixedTooltip(csvInfoTrigger, csvTooltip, { anchor: csvInfoTrigger.closest('.watchlist-filter') });
+    }
+    csvIsTouch = false;
+});
+
+csvInfoTrigger.addEventListener('mouseenter', () => {
+    if (!csvIsTouch) {
+        csvInfoTrigger.classList.add('show');
+        positionFixedTooltip(csvInfoTrigger, csvTooltip, { anchor: csvInfoTrigger.closest('.watchlist-filter') });
+    }
+});
+
+csvInfoTrigger.addEventListener('mouseleave', (e) => {
+    if (!csvIsTouch && !csvTooltip.matches(':hover')) {
+        csvInfoTrigger.classList.remove('show');
+    }
+});
+
+csvTooltip.addEventListener('mouseleave', () => {
+    if (!csvIsTouch) csvInfoTrigger.classList.remove('show');
 });
 
 document.getElementById('csv-tooltip').addEventListener('click', (e) => {
@@ -1585,8 +2791,7 @@ document.getElementById('csv-tooltip').addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', () => {
-    const trigger = document.getElementById('csv-info-trigger');
-    trigger.classList.remove('show');
+    closeAllHelpTooltips();
 });
 
 // ── Clear helpers ────────────────────────────────────────────────────────────

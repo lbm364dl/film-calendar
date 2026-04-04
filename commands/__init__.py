@@ -28,3 +28,13 @@ def run_archive(args):
 def run_new_cinema(args):
     from .new_cinema import run_new_cinema as _run
     _run(args)
+
+
+def run_status(args):
+    from .status import run_status as _run
+    _run(args)
+
+
+def run_seo(args):
+    from .seo import run_seo as _run
+    _run(args)
