@@ -269,6 +269,68 @@ describe('Personalized PageRank Recommender', () => {
     });
   });
 
+  describe('no-ratings user (liked + recency signals)', () => {
+    it('liked films are strong seeds even without ratings', () => {
+      const dirA = { id: 100, name: 'Fave Director' };
+      const dirB = { id: 200, name: 'Other Director' };
+      const watched = [
+        makeFilm({ id: 1, directors: [dirA], genres: ['Drama'] }),
+        makeFilm({ id: 2, directors: [dirB], genres: ['Comedy'] }),
+      ];
+      const screened = [
+        makeFilm({ id: 10, directors: [dirA], genres: ['Thriller'] }),
+        makeFilm({ id: 11, directors: [dirB], genres: ['Thriller'] }),
+      ];
+      // No ratings at all — only liked signal
+      const ratings = {};
+      const urlMap = { 1: 'u1', 2: 'u2' };
+      const signals = { liked: { 'u1': true } };
+
+      const result = computeRecommendationsWithBreakdown(watched, ratings, urlMap, screened, signals);
+      // Liked director's film should rank higher
+      expect(result[0].filmId).toBe(10);
+    });
+
+    it('recently watched films get more weight than old ones', () => {
+      const dirA = { id: 100, name: 'Recent Director' };
+      const dirB = { id: 200, name: 'Old Director' };
+      const watched = [
+        makeFilm({ id: 1, directors: [dirA], genres: ['Drama'] }),
+        makeFilm({ id: 2, directors: [dirB], genres: ['Drama'] }),
+      ];
+      const screened = [
+        makeFilm({ id: 10, directors: [dirA], genres: ['Action'] }),
+        makeFilm({ id: 11, directors: [dirB], genres: ['Action'] }),
+      ];
+      const ratings = {};
+      const urlMap = { 1: 'u1', 2: 'u2' };
+      const today = new Date().toISOString().slice(0, 10);
+      const signals = {
+        watchedDates: { 'u1': today, 'u2': '2020-01-01' },
+      };
+
+      const result = computeRecommendationsWithBreakdown(watched, ratings, urlMap, screened, signals);
+      // Recently watched director should rank higher
+      expect(result[0].filmId).toBe(10);
+    });
+
+    it('all watched films are seeds when no ratings exist', () => {
+      const watched = [
+        makeFilm({ id: 1, genres: ['Drama'] }),
+        makeFilm({ id: 2, genres: ['Comedy'] }),
+      ];
+      const screened = [
+        makeFilm({ id: 10, genres: ['Drama'] }),
+        makeFilm({ id: 11, genres: ['Comedy'] }),
+      ];
+      // No ratings, no likes — just watched
+      const result = computeRecommendationsWithBreakdown(watched, {}, { 1: 'u1', 2: 'u2' }, screened);
+      // Should still return scores (not empty)
+      expect(result.length).toBeGreaterThan(0);
+      expect(result[0].score).toBeGreaterThan(0);
+    });
+  });
+
   describe('computeRecommendations (without breakdown)', () => {
     it('returns MatchScore array without breakdown', () => {
       const watched = [makeFilm({ id: 1, genres: ['Drama'] })];

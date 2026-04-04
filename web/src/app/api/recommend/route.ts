@@ -67,14 +67,14 @@ export async function GET() {
 
     // Load user's watched films from the new relational table
     const BATCH = 500;
-    let allWatchedData: { letterboxd_short_url: string; film_id: number | null; rating: number | null; liked: boolean }[] = [];
+    let allWatchedData: { letterboxd_short_url: string; film_id: number | null; rating: number | null; liked: boolean; watched_date: string | null }[] = [];
     let offset = 0;
 
     // Paginate through all watched films
     while (true) {
         const { data, error: watchedError } = await supabase
             .from('user_watched_films')
-            .select('letterboxd_short_url, film_id, rating, liked')
+            .select('letterboxd_short_url, film_id, rating, liked, watched_date')
             .eq('user_id', user.id)
             .range(offset, offset + BATCH - 1);
 
@@ -88,17 +88,22 @@ export async function GET() {
         return NextResponse.json({ scores: {}, ready: false });
     }
 
-    // Build ratings map (including liked boost) and collect film_ids
+    // Build signal maps and collect film_ids
     const userRatings: Record<string, number> = {};
+    const userLiked: Record<string, boolean> = {};
+    const userWatchedDates: Record<string, string> = {};
     const filmIds: number[] = [];
     const urlMap: Record<number, string> = {};
 
     for (const row of allWatchedData) {
         if (row.rating != null) {
             userRatings[row.letterboxd_short_url] = row.rating;
-        } else if (row.liked) {
-            // Liked but unrated: treat as a positive signal (equivalent to ~4 stars)
-            userRatings[row.letterboxd_short_url] = 4.0;
+        }
+        if (row.liked) {
+            userLiked[row.letterboxd_short_url] = true;
+        }
+        if (row.watched_date) {
+            userWatchedDates[row.letterboxd_short_url] = row.watched_date;
         }
         if (row.film_id != null) {
             filmIds.push(row.film_id);
@@ -152,7 +157,10 @@ export async function GET() {
     }
 
     // Compute recommendations with per-film breakdowns
-    const matchScores = computeRecommendationsWithBreakdown(allWatchedFilms, userRatings, urlMap, screenedFilms);
+    const matchScores = computeRecommendationsWithBreakdown(
+        allWatchedFilms, userRatings, urlMap, screenedFilms,
+        { liked: userLiked, watchedDates: userWatchedDates },
+    );
 
     // Convert to { filmId: score } and { filmId: breakdown } maps
     const scores: Record<number, number> = {};

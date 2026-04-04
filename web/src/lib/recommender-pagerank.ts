@@ -19,15 +19,22 @@ export type { FilmFeatures, MatchScore, CompactBreakdown };
 /** Edge weights per category — controls how much influence flows through each type. */
 const EDGE_WEIGHTS: Record<string, number> = {
   director: 3.0,
-  genre: 2.0,
-  cast: 1.5,
-  keyword: 1.5,
+  keyword: 2.5,
   country: 2.0,
-  language: 1.0,
+  cast: 1.5,
+  genre: 1.5,
   decade: 1.5,
   collection: 1.0,
+  language: 1.0,
   company: 1.0,
 };
+
+/**
+ * Maximum fraction of films an attribute node can connect to before being
+ * pruned as noise. E.g., if "english" connects to 60% of films, it's not
+ * discriminating — it just pulls everything toward the mean.
+ */
+const MAX_HUB_FRACTION = 0.30;
 
 /** Maximum items per category to avoid noise. */
 const MAX_CAST = 5;
@@ -147,6 +154,30 @@ function buildGraph(films: FilmFeatures[]) {
         const coIdx = getOrCreateNode(`company:${co.id}`, 'company');
         addEdge(filmIdx, coIdx, EDGE_WEIGHTS.company);
       }
+    }
+  }
+
+  // ── Prune noisy hub nodes ──────────────────────────────────────────────
+  // Attribute nodes connected to too many films act as noise (e.g. "english",
+  // "united states", "2020s", "drama"). Remove their edges so they don't
+  // distort the random walk. Only prune broad categories — directors, cast,
+  // keywords, collections, and companies are specific enough to keep.
+  const PRUNABLE_CATEGORIES = new Set(['genre', 'country', 'language', 'decade']);
+  const filmCount = films.length;
+  const maxConnections = Math.max(3, Math.floor(filmCount * MAX_HUB_FRACTION));
+
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+    if (!PRUNABLE_CATEGORIES.has(node.category)) continue;
+
+    const filmNeighbors = adjacency[i].filter(e => nodes[e.target].category === 'film').length;
+    if (filmNeighbors <= maxConnections) continue;
+
+    // Disconnect: remove all edges from this node AND back-references to it
+    const targets = adjacency[i].map(e => e.target);
+    adjacency[i] = [];
+    for (const t of targets) {
+      adjacency[t] = adjacency[t].filter(e => e.target !== i);
     }
   }
 
@@ -275,6 +306,86 @@ function computeBreakdown(
 }
 
 
+// ── Seed weight computation ────────────────────────────────────────────────
+
+/** Extra signals beyond numeric ratings. */
+export interface UserSignals {
+  /** Map of letterboxd_short_url → true for hearted films. */
+  liked?: Record<string, boolean>;
+  /** Map of letterboxd_short_url → ISO date string (e.g. "2025-03-15"). */
+  watchedDates?: Record<string, string>;
+}
+
+/**
+ * Compute a seed weight for a watched film using all available signals.
+ *
+ * Priority:
+ *   1. Explicit rating  → quadratic scaling (existing behavior)
+ *   2. Liked (hearted)  → strong positive (equivalent to ~4.5★)
+ *   3. Watched-only     → recency-based: recent watches weigh more
+ *
+ * Returns 0 to exclude the film as a seed (e.g. rated < 3).
+ */
+function computeSeedWeight(
+  url: string | undefined,
+  ratings: Record<string, number>,
+  signals: UserSignals,
+  now: number,
+): number {
+  if (!url) return DEFAULT_WATCHED_WEIGHT;
+
+  const rating = ratings[url];
+
+  // ── 1. Has an explicit rating ──────────────────────────────────────
+  if (rating != null) {
+    if (rating < 3.0) return 0;                       // exclude disliked
+    return Math.pow((rating - 1.5) / 2.5, 2);         // 5★→4.0  4★→1.56  3★→0.56
+  }
+
+  // ── 2. Liked but not rated ─────────────────────────────────────────
+  const liked = signals.liked?.[url];
+  if (liked) {
+    // Equivalent to 5★ → 4.0, modulated by recency if available.
+    // Liking is a deliberate positive signal — treat it as strongly as
+    // a top rating so users who don't rate still get sharp recommendations.
+    const recency = recencyFactor(url, signals.watchedDates, now);
+    return 4.0 * recency;
+  }
+
+  // ── 3. Watched only (no rating, no like) ───────────────────────────
+  // Still a positive signal (user chose to watch it), but weaker.
+  // Recency matters more here: a film watched last week is a stronger
+  // signal than one watched 5 years ago.
+  const recency = recencyFactor(url, signals.watchedDates, now);
+  return DEFAULT_WATCHED_WEIGHT * recency;
+}
+
+/** Base weight for watched-but-unrated-unliked films (≈ 3★ equivalent). */
+const DEFAULT_WATCHED_WEIGHT = 0.5625;
+
+/**
+ * Recency multiplier: 1.0 for films watched today, decays to 0.3 over
+ * ~2 years via exponential decay (half-life ≈ 6 months).
+ * Returns 1.0 if no watched_date is available (no penalty for missing data).
+ */
+function recencyFactor(
+  url: string,
+  watchedDates: Record<string, string> | undefined,
+  now: number,
+): number {
+  if (!watchedDates) return 1.0;
+  const dateStr = watchedDates[url];
+  if (!dateStr) return 1.0;
+
+  const watchedMs = new Date(dateStr).getTime();
+  if (isNaN(watchedMs)) return 1.0;
+
+  const daysSince = (now - watchedMs) / (1000 * 60 * 60 * 24);
+  // Exponential decay: half-life ~180 days, floor at 0.3
+  return Math.max(0.3, Math.exp(-0.00385 * daysSince));
+}
+
+
 // ── Public API (same interface as recommender.ts) ───────────────────────────
 
 /**
@@ -284,6 +395,7 @@ function computeBreakdown(
  * @param userRatings - Map of letterboxd_short_url → rating (0.5-5.0)
  * @param urlToFilmId - Map of film_id → letterboxd_short_url
  * @param screenedFilms - Currently-screening candidate films
+ * @param signals - Optional extra signals (liked, watched dates) for users who don't rate
  * @returns Sorted array of match scores with breakdowns
  */
 export function computeRecommendationsWithBreakdown(
@@ -291,6 +403,7 @@ export function computeRecommendationsWithBreakdown(
   userRatings: Record<string, number>,
   urlToFilmId: Record<number, string>,
   screenedFilms: FilmFeatures[],
+  signals: UserSignals = {},
 ): (MatchScore & { breakdown: CompactBreakdown })[] {
   if (watchedFilms.length === 0 || screenedFilms.length === 0) {
     return [];
@@ -305,26 +418,23 @@ export function computeRecommendationsWithBreakdown(
   // Build graph
   const { nodes, adjacency, nodeIndex } = buildGraph(allFilms);
 
-  // Identify seed nodes: watched films with high ratings
+  // Identify seed nodes from watched films
   const seedIndices: number[] = [];
   const seedWeights: number[] = [];
   const watchedIds = new Set<number>();
+  const now = Date.now();
 
   for (const film of watchedFilms) {
     watchedIds.add(film.id);
     const url = urlToFilmId[film.id];
-    const rating = url ? (userRatings[url] ?? 3.0) : 3.0;
+    const weight = computeSeedWeight(url, userRatings, signals, now);
 
-    // Only seed from films rated 3+ (skip disliked films)
-    if (rating < 3.0) continue;
+    if (weight <= 0) continue;   // excluded (rated < 3)
 
     const filmNodeId = `film:${film.id}`;
     const idx = nodeIndex.get(filmNodeId);
     if (idx === undefined) continue;
 
-    // Weight: quadratic scaling emphasizes highly-rated films
-    // 5★ → 4.0, 4★ → 1.5625, 3★ → 0.5625
-    const weight = Math.pow((rating - 1.5) / 2.5, 2);
     seedIndices.push(idx);
     seedWeights.push(weight);
   }
@@ -389,8 +499,9 @@ export function computeRecommendations(
   userRatings: Record<string, number>,
   urlToFilmId: Record<number, string>,
   screenedFilms: FilmFeatures[],
+  signals: UserSignals = {},
 ): MatchScore[] {
   return computeRecommendationsWithBreakdown(
-    watchedFilms, userRatings, urlToFilmId, screenedFilms,
+    watchedFilms, userRatings, urlToFilmId, screenedFilms, signals,
   ).map(({ filmId, score }) => ({ filmId, score }));
 }
