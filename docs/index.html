@@ -9091,19 +9091,21 @@
                             </div>
                         </div>
                         <div class="filter-multiselect-col">
-                            <label class="filter-section-label" data-i18n="countryLabel">País</label>
+                            <div class="filter-section-label-row">
+                                <label class="filter-section-label" data-i18n="countryLabel">País</label>
+                                <div class="chip-help" id="country-info-trigger">
+                                    <span class="info-icon">?</span>
+                                    <div class="chip-help-tooltip" id="country-info-tooltip">
+                                        <p data-i18n-html="countryTooltipTitle"><strong>Filtro por país</strong></p>
+                                        <p data-i18n="countryTooltipBody">Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="filter-multiselect" id="country-filter">
                                 <button type="button" class="filter-multiselect-trigger" id="country-trigger">
                                     <span data-i18n="allCountries">Todos los países</span>
                                     <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
-                                    <div class="country-info-trigger" id="country-info-trigger">
-                                        <span class="info-icon">?</span>
-                                    </div>
                                 </button>
-                                <div class="country-info-tooltip" id="country-info-tooltip">
-                                    <p data-i18n-html="countryTooltipTitle"><strong>Filtro por país</strong></p>
-                                    <p data-i18n="countryTooltipBody">Este filtro es orientativo. Indica que el país participó en la producción o está relacionado con la película, no necesariamente que esté en el idioma de ese país. Datos obtenidos de TMDB.</p>
-                                </div>
                                 <div class="filter-dropdown" id="country-dropdown">
                                     <input type="text" class="filter-search" id="country-search" data-i18n-placeholder="searchCountries" placeholder="Buscar país..." autocomplete="off">
                                     <div class="filter-dd-actions">
@@ -9115,19 +9117,21 @@
                             </div>
                         </div>
                         <div class="filter-multiselect-col">
-                            <label class="filter-section-label" data-i18n="languageLabel">Idioma</label>
+                            <div class="filter-section-label-row">
+                                <label class="filter-section-label" data-i18n="languageLabel">Idioma</label>
+                                <div class="chip-help" id="language-info-trigger">
+                                    <span class="info-icon">?</span>
+                                    <div class="chip-help-tooltip" id="language-info-tooltip">
+                                        <p data-i18n-html="languageTooltipTitle"><strong>Filtro por idioma</strong></p>
+                                        <p data-i18n="languageTooltipBody">Muestra el idioma principal según TMDB. Una película puede tener más idiomas hablados que no aparecen aquí.</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="filter-multiselect" id="language-filter">
                                 <button type="button" class="filter-multiselect-trigger" id="language-trigger">
                                     <span data-i18n="allLanguages">Todos los idiomas</span>
                                     <svg class="filter-chevron" width="10" height="6" viewBox="0 0 12 8"><path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z"/></svg>
-                                    <div class="language-info-trigger" id="language-info-trigger">
-                                        <span class="info-icon">?</span>
-                                    </div>
                                 </button>
-                                <div class="language-info-tooltip" id="language-info-tooltip">
-                                    <p data-i18n-html="languageTooltipTitle"><strong>Filtro por idioma</strong></p>
-                                    <p data-i18n="languageTooltipBody">Muestra el idioma principal según TMDB. Una película puede tener más idiomas hablados que no aparecen aquí.</p>
-                                </div>
                                 <div class="filter-dropdown" id="language-dropdown">
                                     <input type="text" class="filter-search" id="language-search" data-i18n-placeholder="searchLanguages" placeholder="Buscar idioma..." autocomplete="off">
                                     <div class="filter-dd-actions">
