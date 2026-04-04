@@ -353,9 +353,9 @@ let DECADES = [];
 
 const RUNTIME_CATEGORIES = [
     { label: '< 1h', min: 0, max: 59 },
-    { label: '1h – 1.5h', min: 60, max: 89 },
-    { label: '1.5h – 2h', min: 90, max: 119 },
-    { label: '2h – 3h', min: 120, max: 179 },
+    { label: '1–1.5h', min: 60, max: 89 },
+    { label: '1.5–2h', min: 90, max: 119 },
+    { label: '2–3h', min: 120, max: 179 },
     { label: '3h+', min: 180, max: Infinity },
 ];
 
@@ -1543,6 +1543,7 @@ function initTheaterMultiselect() {
 
     infoTrigger.addEventListener('click', (e) => {
         e.stopPropagation();
+        closeAllHelpTooltips(infoTrigger);
         wrapper.classList.toggle('show-help');
         isTouch = false;
     });
@@ -1736,6 +1737,17 @@ function buildFilterDropdown(type, allValues, selected, translateFn) {
     });
 }
 
+function closeAllHelpTooltips(except) {
+    document.querySelectorAll('.chip-help.show, .csv-info-trigger.show').forEach(el => {
+        if (el !== except) el.classList.remove('show');
+    });
+    // Theater uses show-help on its wrapper
+    const theaterWrapper = document.getElementById('theater-multiselect');
+    if (theaterWrapper && (!except || !theaterWrapper.contains(except))) {
+        theaterWrapper.classList.remove('show-help');
+    }
+}
+
 function positionFixedTooltip(trigger, tooltip, opts = {}) {
     if (!trigger.closest('.filter-modal')) return;
     // opts.anchor: element to use for position (defaults to trigger)
@@ -1782,7 +1794,6 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
     const searchInput = document.getElementById(`${type}-search`);
 
     trigger.addEventListener('click', (e) => {
-        if (e.target.closest('.country-info-trigger') || e.target.closest('.language-info-trigger')) return;
         e.stopPropagation();
         // Close other filter dropdowns
         document.querySelectorAll('.filter-multiselect.open').forEach(el => {
@@ -1829,74 +1840,37 @@ function initFilterDropdownEvents(type, allValues, selected, translateFn) {
     document.addEventListener('click', (e) => {
         if (!wrapper.contains(e.target)) {
             wrapper.classList.remove('open');
-            wrapper.classList.remove('show-help');
         }
     });
 
-    // Country info tooltip
-    if (type === 'country') {
-        const infoTrigger = document.getElementById('country-info-trigger');
-        const infoTooltip = document.getElementById('country-info-tooltip');
-        let isTouch = false;
-
-        infoTrigger.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
-
-        infoTrigger.addEventListener('click', (e) => {
+    // Country / Language info tooltips — now chip-help elements next to the label
+    if (type === 'country' || type === 'language') {
+        const help = document.getElementById(`${type}-info-trigger`);
+        const helpTooltip = document.getElementById(`${type}-info-tooltip`);
+        const isTouchDevice = () => 'ontouchstart' in window;
+        help.addEventListener('click', (e) => {
             e.stopPropagation();
-            wrapper.classList.toggle('show-help');
-            if (wrapper.classList.contains('show-help')) positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
-            isTouch = false;
+            closeAllHelpTooltips(help);
+            help.classList.toggle('show');
+            if (help.classList.contains('show')) positionFixedTooltip(help, helpTooltip);
         });
-
-        infoTrigger.addEventListener('mouseenter', () => {
-            if (!isTouch) {
-                wrapper.classList.add('show-help');
-                positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
-            }
+        help.addEventListener('mouseenter', () => {
+            if (isTouchDevice()) return;
+            help.classList.add('show');
+            positionFixedTooltip(help, helpTooltip);
         });
-
-        infoTrigger.addEventListener('mouseleave', () => {
-            if (!isTouch && !infoTooltip.matches(':hover')) wrapper.classList.remove('show-help');
+        help.addEventListener('mouseleave', () => {
+            if (isTouchDevice()) return;
+            if (!helpTooltip.matches(':hover')) help.classList.remove('show');
         });
-
-        infoTooltip.addEventListener('mouseleave', () => {
-            if (!isTouch) wrapper.classList.remove('show-help');
+        helpTooltip.addEventListener('mouseleave', () => {
+            if (isTouchDevice()) return;
+            help.classList.remove('show');
         });
-
-        infoTooltip.addEventListener('click', (e) => e.stopPropagation());
-    }
-
-    // Language info tooltip
-    if (type === 'language') {
-        const infoTrigger = document.getElementById('language-info-trigger');
-        const infoTooltip = document.getElementById('language-info-tooltip');
-        let isTouch = false;
-
-        infoTrigger.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
-
-        infoTrigger.addEventListener('click', (e) => {
+        helpTooltip.addEventListener('click', (e) => {
             e.stopPropagation();
-            wrapper.classList.toggle('show-help');
-            if (wrapper.classList.contains('show-help')) positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
-            isTouch = false;
+            help.classList.remove('show');
         });
-
-        infoTrigger.addEventListener('mouseenter', () => {
-            if (!isTouch) {
-                wrapper.classList.add('show-help');
-                positionFixedTooltip(infoTrigger, infoTooltip, { alignRight: true });
-            }
-        });
-
-        infoTrigger.addEventListener('mouseleave', () => {
-            if (!isTouch && !infoTooltip.matches(':hover')) wrapper.classList.remove('show-help');
-        });
-
-        infoTooltip.addEventListener('mouseleave', () => {
-            if (!isTouch) wrapper.classList.remove('show-help');
-        });
-
-        infoTooltip.addEventListener('click', (e) => e.stopPropagation());
     }
 }
 
@@ -1943,6 +1917,7 @@ function initDecadeActions() {
     help.addEventListener('touchstart', () => { helpIsTouch = true; }, { passive: true });
     help.addEventListener('click', (e) => {
         e.stopPropagation();
+        closeAllHelpTooltips(help);
         help.classList.toggle('show');
         if (help.classList.contains('show')) positionFixedTooltip(help, helpTooltip);
         helpIsTouch = false;
@@ -2126,6 +2101,7 @@ document.getElementById('last-chance-filter').addEventListener('click', (e) => {
     help.addEventListener('touchstart', () => { isTouch = true; }, { passive: true });
     help.addEventListener('click', (e) => {
         e.stopPropagation();
+        closeAllHelpTooltips(help);
         help.classList.toggle('show');
         if (help.classList.contains('show')) positionFixedTooltip(help, tooltip);
         isTouch = false;
@@ -2404,6 +2380,34 @@ function applyFiltersFromURL() {
         lastChanceFilterActive = true;
         document.getElementById('last-chance-filter').classList.add('active');
     }
+
+    const genresParam = params.get('genres');
+    if (genresParam && selectedGenres) {
+        selectedGenres.clear();
+        if (genresParam !== 'none') {
+            genresParam.split(',').filter(v => allGenres.includes(v)).forEach(v => selectedGenres.add(v));
+        }
+        buildFilterDropdown('genre', allGenres, selectedGenres, translateGenre);
+        updateFilterTriggerLabel('genre', selectedGenres, allGenres);
+    }
+    const countriesParam = params.get('countries');
+    if (countriesParam && selectedCountries) {
+        selectedCountries.clear();
+        if (countriesParam !== 'none') {
+            countriesParam.split(',').filter(v => allCountries.includes(v)).forEach(v => selectedCountries.add(v));
+        }
+        buildFilterDropdown('country', allCountries, selectedCountries, translateCountry);
+        updateFilterTriggerLabel('country', selectedCountries, allCountries);
+    }
+    const languagesParam = params.get('languages');
+    if (languagesParam && selectedLanguages) {
+        selectedLanguages.clear();
+        if (languagesParam !== 'none') {
+            languagesParam.split(',').filter(v => allLanguages.includes(v)).forEach(v => selectedLanguages.add(v));
+        }
+        buildFilterDropdown('language', allLanguages, selectedLanguages, translateLanguage);
+        updateFilterTriggerLabel('language', selectedLanguages, allLanguages);
+    }
 }
 
 function updateURLParams() {
@@ -2431,6 +2435,15 @@ function updateURLParams() {
     if (selectedDays.size > 0) params.set('days', [...selectedDays].join(','));
     if (lastChanceFilterActive) params.set('lastchance', '1');
     if (specialFilterActive) params.set('special', '1');
+    if (selectedGenres && selectedGenres.size < allGenres.length) {
+        params.set('genres', selectedGenres.size === 0 ? 'none' : [...selectedGenres].join(','));
+    }
+    if (selectedCountries && selectedCountries.size < allCountries.length) {
+        params.set('countries', selectedCountries.size === 0 ? 'none' : [...selectedCountries].join(','));
+    }
+    if (selectedLanguages && selectedLanguages.size < allLanguages.length) {
+        params.set('languages', selectedLanguages.size === 0 ? 'none' : [...selectedLanguages].join(','));
+    }
 
     const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     window.history.replaceState({}, '', newURL);
@@ -2748,6 +2761,7 @@ csvInfoTrigger.addEventListener('touchstart', () => { csvIsTouch = true; }, { pa
 
 csvInfoTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
+    closeAllHelpTooltips(csvInfoTrigger);
     csvInfoTrigger.classList.toggle('show');
     if (csvInfoTrigger.classList.contains('show')) {
         positionFixedTooltip(csvInfoTrigger, csvTooltip, { anchor: csvInfoTrigger.closest('.watchlist-filter') });
@@ -2777,8 +2791,7 @@ document.getElementById('csv-tooltip').addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', () => {
-    const trigger = document.getElementById('csv-info-trigger');
-    trigger.classList.remove('show');
+    closeAllHelpTooltips();
 });
 
 // ── Clear helpers ────────────────────────────────────────────────────────────
