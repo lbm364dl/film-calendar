@@ -979,11 +979,23 @@ h1 {
     border-radius: 0 0 12px 12px;
 }
 
+.similar-prefix {
+    flex-shrink: 0;
+    color: var(--text-dim);
+}
+
 .similar-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+a.similar-title:hover {
+    text-decoration: underline;
+    color: var(--accent);
 }
 
 .similar-tag {

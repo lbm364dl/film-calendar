@@ -193,16 +193,20 @@ export async function GET() {
         for (const co of f.production_companies ?? []) attrNames[`company:${co.id}`] = co.name;
     }
 
-    // Build film ID → title lookup for resolving similarTo IDs
+    // Build film ID → title + URL lookup for resolving similarTo IDs
     const allFilmTitles: Record<number, string> = {};
-    for (const f of allWatchedFilms) allFilmTitles[f.id] = '';
-    for (const f of screenedFilms) allFilmTitles[f.id] = '';
-    // Fetch titles for all referenced films
+    const allFilmUrls: Record<number, string> = {};
+    for (const f of allWatchedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
+    for (const f of screenedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
+    // Fetch titles + letterboxd URLs for all referenced films
     const titleIds = Object.keys(allFilmTitles).map(Number);
     for (let i = 0; i < titleIds.length; i += BATCH) {
         const batch = titleIds.slice(i, i + BATCH);
-        const { data: films } = await supabase.from('films').select('id, title').in('id', batch);
-        if (films) for (const f of films) allFilmTitles[f.id] = f.title;
+        const { data: films } = await supabase.from('films').select('id, title, letterboxd_url').in('id', batch);
+        if (films) for (const f of films) {
+            allFilmTitles[f.id] = f.title;
+            allFilmUrls[f.id] = f.letterboxd_url || '';
+        }
     }
 
     // Convert to { filmId: score } and { filmId: breakdown } maps
@@ -221,7 +225,7 @@ export async function GET() {
                     // Resolve attribute value to human name
                     const key = `${r.reason}:${r.attrValue}`;
                     const resolvedValue = attrNames[key] || r.attrValue;
-                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue };
+                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined };
                 });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             delete (bd as any)._similarRaw;

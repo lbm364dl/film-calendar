@@ -8,12 +8,11 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarLine(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string } | null {
+function buildSimilarData(breakdown: CompactBreakdown | undefined): { title: string; value: string; url?: string } | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
   const s = items[0];
-  const value = s.value || s.reason;
-  return { title: s.title, value };
+  return { title: s.title, value: s.value || s.reason, url: s.url };
 }
 
 interface FilmCardProps {
@@ -47,7 +46,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarLine = showMatch ? buildSimilarLine(breakdown, lang) : null;
+  const similarData = showMatch ? buildSimilarData(breakdown) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
@@ -131,10 +130,15 @@ export default memo(function FilmCard({
           </a>
         )}
       </div>
-      {similarLine && (
+      {similarData && (
         <div className="card-similar">
-          <span className="similar-title">{similarLine.title}</span>
-          <span className="similar-tag">{similarLine.value}</span>
+          <span className="similar-prefix">{lang === 'es' ? 'Te gustó' : 'You liked'}:</span>
+          {similarData.url ? (
+            <a href={similarData.url} className="similar-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
+          ) : (
+            <span className="similar-title">{similarData.title}</span>
+          )}
+          <span className="similar-tag">{similarData.value}</span>
         </div>
       )}
     </div>
