@@ -92,7 +92,8 @@ export function useUrlParams(config: UrlParamsConfig) {
       const v = params.get('version')!;
       if (v === 'original' || v === 'dubbed') setVersionFilter(v);
     }
-    // sortBy is initialized from URL in useFilmFilters — no need to set here
+    const sortParam = params.get('sort');
+    if (sortParam === 'viewers' || sortParam === 'affinity') setSortBy(sortParam);
     if (params.get('special') === '1') setSpecialFilter(true);
     if (params.get('lastchance') === '1') setLastChanceFilter(true);
 

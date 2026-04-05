@@ -197,7 +197,6 @@ export default function FilmCalendar({
           <span>{t(lang, 'filmCount', filters.filteredFilms.length)}</span>
           <button
             className="sort-toggle"
-            suppressHydrationWarning
             onClick={() => {
               const options: Array<'rating' | 'viewers' | 'affinity'> = lb.recommendReady
                 ? ['rating', 'viewers', 'affinity']
@@ -209,7 +208,7 @@ export default function FilmCalendar({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 6h18M3 12h12M3 18h6" />
             </svg>
-            <span suppressHydrationWarning>
+            <span>
               {filters.sortBy === 'rating' ? t(lang, 'sortByRating')
                 : filters.sortBy === 'viewers' ? t(lang, 'sortByViewers')
                 : t(lang, 'sortByMatch')}

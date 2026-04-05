@@ -116,11 +116,7 @@ export function useFilmFilters(options: FilterOptions) {
 
   // ── Toggle filters ─────────────────────────────────────────────────────
   const [versionFilter, setVersionFilter] = useState<'all' | 'original' | 'dubbed'>('original');
-  const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>(() => {
-    if (typeof window === 'undefined') return 'rating';
-    const p = new URLSearchParams(window.location.search).get('sort');
-    return p === 'viewers' || p === 'affinity' ? p : 'rating';
-  });
+  const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>('rating');
   const [specialFilter, setSpecialFilter] = useState(false);
   const [lastChanceFilter, setLastChanceFilter] = useState(false);
 
