@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import { formatViewerCount } from '@/lib/film-helpers';
-import { t, translateGenre } from '@/lib/translations';
+import { t, translateGenre, translateSpecialType } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
@@ -91,8 +91,13 @@ export default memo(function FilmCard({
       )}
 
       {/* Genres */}
-      {film.genres.length > 0 && (
+      {(film.genres.length > 0 || film.dates.some(d => d.special)) && (
         <div className="film-genres">
+          {film.dates.some(d => d.special) && (
+            <span className="special-badge">
+              {translateSpecialType(film.dates.find(d => d.special)!.special!, lang)}
+            </span>
+          )}
           {film.genres.map((g, i) => (
             <span key={i} className="genre-badge">{translateGenre(g, lang)}</span>
           ))}

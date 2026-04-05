@@ -49,11 +49,6 @@ export default function SessionRow({
           <span>ES</span>
         </span>
       )}
-      {dateObj.special && (
-        <span className="special-badge" title={t(lang, 'specialTooltip', translateSpecialType(dateObj.special, lang))}>
-          {translateSpecialType(dateObj.special, lang)}
-        </span>
-      )}
     </button>
   );
 }
