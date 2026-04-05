@@ -114,7 +114,7 @@ export default memo(function FilmCard({
             </span>
           )}
           {isWatched && matchScore !== undefined && (
-            <span className="watched-label">{lang === 'es' ? 'Vista' : 'Seen'}</span>
+            <span className="watched-label">{lang === 'es' ? 'Vista' : 'Watched'}</span>
           )}
         </div>
         {showMatch && (
