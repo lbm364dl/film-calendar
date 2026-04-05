@@ -3,6 +3,9 @@ import { cookies } from 'next/headers';
 import FilmCalendar from '@/components/FilmCalendar';
 import type { LangKey } from '@/lib/translations';
 
+// Force dynamic rendering — page depends on auth cookies
+export const dynamic = 'force-dynamic';
+
 /** Read user preferences from DB (if logged in) or fall back to cookie/defaults. */
 async function getInitialProps() {
   const cookieStore = await cookies();
