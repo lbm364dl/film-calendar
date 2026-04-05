@@ -450,24 +450,23 @@ export function computeRecommendationsWithBreakdown(
   // Run Personalized PageRank
   const probabilities = personalizedPageRank(adjacency, seedIndices, seedWeights);
 
-  // Extract scores for screened films (excluding already-watched)
-  const rawScores: { filmId: number; raw: number; idx: number }[] = [];
+  // Extract scores for all screened films (including already-watched)
+  const rawScores: { filmId: number; raw: number; idx: number; watched: boolean }[] = [];
   for (const film of screenedFilms) {
-    if (watchedIds.has(film.id)) continue; // Skip already watched
-
     const filmNodeId = `film:${film.id}`;
     const idx = nodeIndex.get(filmNodeId);
     if (idx === undefined) {
-      rawScores.push({ filmId: film.id, raw: 0, idx: -1 });
+      rawScores.push({ filmId: film.id, raw: 0, idx: -1, watched: watchedIds.has(film.id) });
       continue;
     }
-    rawScores.push({ filmId: film.id, raw: probabilities[idx], idx });
+    rawScores.push({ filmId: film.id, raw: probabilities[idx], idx, watched: watchedIds.has(film.id) });
   }
 
-  // Min-max normalize to 0-100
-  const rawValues = rawScores.map(s => s.raw);
-  const minRaw = Math.min(...rawValues);
-  const maxRaw = Math.max(...rawValues);
+  // Min-max normalize using only unwatched films (watched films are seeds and
+  // would dominate the scale, compressing everything else to near-zero)
+  const unwatchedRaws = rawScores.filter(s => !s.watched).map(s => s.raw);
+  const minRaw = unwatchedRaws.length > 0 ? Math.min(...unwatchedRaws) : 0;
+  const maxRaw = unwatchedRaws.length > 0 ? Math.max(...unwatchedRaws) : 1;
   const range = maxRaw - minRaw;
 
   const results: (MatchScore & { breakdown: CompactBreakdown })[] = [];
