@@ -222,11 +222,11 @@ export async function GET() {
             bd.similarTo = raw
                 .filter(r => allFilmTitles[r.filmId])
                 .map(r => {
-                    // Resolve attribute value to human name
                     const key = `${r.reason}:${r.attrValue}`;
-                    const resolvedValue = attrNames[key] || r.attrValue;
+                    const resolvedValue = attrNames[key] || '';
                     return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined };
-                });
+                })
+                .filter(r => r.value); // Skip entries where the attribute couldn't be resolved
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             delete (bd as any)._similarRaw;
         }
