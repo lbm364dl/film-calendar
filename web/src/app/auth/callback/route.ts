@@ -46,7 +46,9 @@ export async function GET(request: Request) {
       // Clear the cookie
       cookieStore.set('fc_auth_next', '', { path: '/', maxAge: 0 });
 
-      return NextResponse.redirect(`${origin}${safePath}`);
+      // Add auth=1 param so client knows to reload for fresh SSR with cookies
+      const separator = safePath.includes('?') ? '&' : '?';
+      return NextResponse.redirect(`${origin}${safePath}${separator}auth=1`);
     }
   }
 
