@@ -1809,6 +1809,7 @@ a.similar-title:hover {
 .filter-modal .filter-dropdown {
     position: fixed;
     z-index: 5000;
+    overflow-y: auto;
 }
 
 @media (max-width: 768px) {
