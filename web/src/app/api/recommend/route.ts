@@ -128,7 +128,8 @@ export async function GET() {
     }
 
     // Load currently-screened films (films with future screenings)
-    const now = new Date().toISOString();
+    // DB stores naive Madrid timestamps, so compare with Madrid "now"
+    const now = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Madrid' });
     const { data: screenedFilmIds } = await supabase
         .from('screenings')
         .select('film_id')

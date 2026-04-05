@@ -61,12 +61,10 @@ export function getTheaterFallbackUrl(film: Film, dateObj: DateEntry) {
 }
 
 /** Convert ISO timestamp from DB to "YYYY-MM-DD HH:MM" string.
- *  Screenings are stored with a UTC-Z suffix but actually represent Madrid local
- *  times, so we read the UTC fields directly to avoid any timezone shift. */
+ *  DB stores naive Madrid timestamps (no timezone). Extract YYYY-MM-DD HH:MM. */
 export function isoToLocal(iso: string): string {
-  const d = new Date(iso);
-  const pad = (n: number) => n.toString().padStart(2, '0');
-  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
+  const m = iso.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}:\d{2})/);
+  return m ? `${m[1]} ${m[2]}` : iso;
 }
 
 /** Map database rows to frontend Film objects */

@@ -39,9 +39,9 @@ MADRID_TZ = ZoneInfo("Europe/Madrid")
 
 
 def parse_timestamp(ts: str) -> str:
-    """Convert 'YYYY-MM-DD HH:MM' (Madrid local time) to ISO 8601 with offset."""
-    dt = datetime.strptime(ts.strip(), "%Y-%m-%d %H:%M").replace(tzinfo=MADRID_TZ)
-    return dt.isoformat()
+    """Normalize 'YYYY-MM-DD HH:MM' to 'YYYY-MM-DD HH:MM:00' for DB storage as naive timestamp."""
+    dt = datetime.strptime(ts.strip(), "%Y-%m-%d %H:%M")
+    return dt.strftime("%Y-%m-%d %H:%M:00")
 
 
 def build_film_row(film: dict, tmdb_info: dict | None) -> dict:
