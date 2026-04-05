@@ -44,6 +44,15 @@ const MAX_CAST = 5;
 const MAX_KEYWORDS = 10;
 const MAX_COMPANIES = 3;
 
+/** Keywords that are metadata tags, not taste signals — skip in graph. */
+const BLOCKED_KEYWORDS = new Set([
+  'aftercreditsstinger', 'duringcreditsstinger', 'post-credits scene',
+  'black and white', 'woman director', 'anime', 'based on manga',
+  'excited', 'amused', 'admiring', 'dramatic', 'inspirational',
+  'somber', 'playful', 'suspenseful', 'tense', 'angry', 'defiant',
+  'arrogant', 'sequel', 'remake', '3d',
+]);
+
 interface GraphNode {
   id: string;         // e.g., "film:42", "director:125025", "genre:drama"
   category: string;   // "film", "director", "genre", "cast", etc.
@@ -141,9 +150,9 @@ function buildGraph(films: FilmFeatures[]) {
       }
     }
 
-    // Keywords
+    // Keywords (skip blocked metadata tags)
     for (const kw of (film.keywords ?? []).slice(0, MAX_KEYWORDS)) {
-      if (kw?.id) {
+      if (kw?.id && !BLOCKED_KEYWORDS.has(kw.name?.toLowerCase())) {
         const kIdx = getOrCreateNode(`keyword:${kw.id}`, 'keyword');
         addEdge(filmIdx, kIdx, EDGE_WEIGHTS.keyword);
       }
