@@ -201,6 +201,11 @@ h1 {
     outline: none;
     transition: border-color 0.2s;
     line-height: normal;
+    text-align: center;
+}
+
+.search-box input:not(:placeholder-shown) {
+    text-align: left;
 }
 
 .search-box input:focus {
