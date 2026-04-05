@@ -1818,8 +1818,8 @@ a.similar-title:hover {
         top: auto !important;
         left: auto !important;
         width: 100% !important;
-        max-height: 200px !important;
         margin-top: 4px;
+        overflow: visible;
     }
 }
 
