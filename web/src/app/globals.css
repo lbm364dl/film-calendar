@@ -2643,7 +2643,7 @@ footer p {
 .auth-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    right: 0;
+    left: 0;
     background: var(--bg);
     border: 2px solid var(--accent);
     border-radius: 12px;
