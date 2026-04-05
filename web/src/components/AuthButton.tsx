@@ -57,6 +57,18 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authClosing, setAuthClosing] = useState(false);
+
+  // Listen for auth state changes (e.g., after OAuth redirect)
+  // and reload to pick up the new session in SSR
+  useEffect(() => {
+    const supabase = getBrowserSupabase();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN' && !userId) {
+        window.location.reload();
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [userId]);
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

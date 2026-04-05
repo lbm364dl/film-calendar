@@ -18,19 +18,15 @@ export async function GET(request: Request) {
       process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    // Capture cookies set during session exchange
-    const newCookies: { name: string; value: string; options: any }[] = [];
-
     const supabase = createServerClient(url, key!, {
       cookies: {
         getAll() {
           return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            cookieStore.set(name, value, options);
-            newCookies.push({ name, value, options });
-          });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          );
         },
       },
     });
@@ -42,12 +38,7 @@ export async function GET(request: Request) {
       const safePath = next.startsWith('/') ? next : '/';
       cookieStore.set('fc_auth_next', '', { path: '/', maxAge: 0 });
 
-      // Use NextResponse.redirect and explicitly set the auth cookies on it
-      const response = NextResponse.redirect(`${origin}${safePath}`);
-      for (const { name, value, options } of newCookies) {
-        response.cookies.set(name, value, options);
-      }
-      return response;
+      return NextResponse.redirect(`${origin}${safePath}`);
     }
   }
 
