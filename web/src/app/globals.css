@@ -1708,7 +1708,11 @@ h1 {
 
 /* Multiselect dropdowns inside modal */
 .filter-modal .filter-dropdown {
-    z-index: 3100;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 4px;
 }
 
 .filter-modal .filter-dd-options {
