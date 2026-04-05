@@ -288,6 +288,22 @@ export function translateGenre(genre: string, lang: LangKey): string {
   return GENRE_TRANSLATIONS_ES[genre.trim().toLowerCase()] || genre;
 }
 
+const COUNTRY_SHORT_NAMES: Record<string, string> = {
+  'United States of America': 'USA',
+  'United Kingdom': 'UK',
+  'Palestinian Territory': 'Palestine',
+  'Czech Republic': 'Czechia',
+  'Republic of Korea': 'South Korea',
+  'Democratic People\'s Republic of Korea': 'North Korea',
+  'Russian Federation': 'Russia',
+  'Islamic Republic of Iran': 'Iran',
+  'Republic of China': 'Taiwan',
+};
+
+export function shortenCountry(name: string): string {
+  return COUNTRY_SHORT_NAMES[name] || name;
+}
+
 const KEYWORD_TRANSLATIONS_ES: Record<string, string> = {
   // Common thematic keywords
   'based on novel or book': 'basado en libro',

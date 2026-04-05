@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import { t, translateGenre } from '@/lib/translations';
+import { t, translateGenre, shortenCountry } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import { RUNTIME_CATEGORIES, DAY_LABELS } from '@/lib/constants';
 import { handleChipRangeToggle } from '@/hooks/useFilmFilters';
@@ -139,6 +139,7 @@ export default function MoreFiltersModal({
               onToggle={makeToggle(selectedCountries, setSelectedCountries)}
               onSelectAll={() => setSelectedCountries(new Set(allCountries))}
               onSelectNone={() => setSelectedCountries(new Set())}
+              translateFn={shortenCountry}
               triggerLabelKey="nCountriesSelected"
               searchPlaceholderKey="searchCountries"
               onHelp={() => onHelp(t(lang, 'countryTooltipTitle'), t(lang, 'countryTooltipBody'))}
