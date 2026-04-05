@@ -133,7 +133,7 @@ export default memo(function FilmCard({
       </div>
       {similarData && (
         <div className="card-similar">
-          <span className="similar-prefix">{lang === 'es' ? 'Te gustó' : 'You liked'}:</span>
+          <span className="similar-prefix">{lang === 'es' ? 'Has visto' : 'You watched'}:</span>
           {similarData.url ? (
             <a href={similarData.url} className="similar-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
           ) : (
