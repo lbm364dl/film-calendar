@@ -35,6 +35,42 @@ export function useLbModal() {
   return { showLbModal, lbModalClosing, openLbModal, closeLbModal };
 }
 
+export function useMoreFiltersModal() {
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
+  const [moreFiltersClosing, setMoreFiltersClosing] = useState(false);
+
+  const scrollYRef = { current: 0 };
+
+  const openMoreFilters = useCallback(() => {
+    setShowMoreFilters(true);
+    scrollYRef.current = window.scrollY;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+  }, []);
+
+  const closeMoreFilters = useCallback(() => {
+    setMoreFiltersClosing(true);
+    setTimeout(() => {
+      setShowMoreFilters(false);
+      setMoreFiltersClosing(false);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      window.scrollTo(0, scrollYRef.current);
+    }, 220);
+  }, []);
+
+  return { showMoreFilters, moreFiltersClosing, openMoreFilters, closeMoreFilters };
+}
+
 export function useEscapeKey(handlers: (() => void)[]) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
