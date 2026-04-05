@@ -50,6 +50,7 @@ interface AuthButtonProps {
 export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authClosing, setAuthClosing] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,11 +79,13 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  const openAuth = () => { setShowAuthModal(true); setAuthClosing(false); setError(''); setMessage(''); };
+  const closeAuth = () => { setAuthClosing(true); setTimeout(() => { setShowAuthModal(false); setAuthClosing(false); }, 150); };
+
   // Listen for 'open-auth' custom event from other components
   useEffect(() => {
-    const handler = () => { setShowAuthModal(true); setError(''); setMessage(''); };
-    window.addEventListener('open-auth', handler);
-    return () => window.removeEventListener('open-auth', handler);
+    window.addEventListener('open-auth', openAuth);
+    return () => window.removeEventListener('open-auth', openAuth);
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -178,14 +181,14 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
   // Not logged in: show login button + modal
   return (
     <>
-      <button className="auth-login-btn" onClick={() => { setShowAuthModal(true); setError(''); setMessage(''); }}>
+      <button className="auth-login-btn" onClick={openAuth}>
         {t.login}
       </button>
 
       {showAuthModal && (
-        <div className="auth-modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowAuthModal(false); }}>
+        <div className={`auth-modal-overlay${authClosing ? ' closing' : ''}`} onClick={(e) => { if (e.target === e.currentTarget) closeAuth(); }}>
           <div className="auth-modal">
-            <button className="auth-modal-close" onClick={() => setShowAuthModal(false)}>&times;</button>
+            <button className="auth-modal-close" onClick={closeAuth}>&times;</button>
             <h2>{isSignup ? t.signup : t.login}</h2>
 
             <button type="button" className="auth-oauth-btn" onClick={handleGoogleLogin} disabled={submitting}>

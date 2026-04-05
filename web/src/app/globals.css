@@ -2611,13 +2611,13 @@ footer p {
     color: var(--accent);
     cursor: pointer;
     font-size: inherit;
-    font-weight: 600;
-    text-decoration: underline;
+    font-style: italic;
     padding: 0;
+    text-decoration: none;
 }
 
 .lb-signin-link:hover {
-    color: var(--text);
+    text-decoration: underline;
 }
 
 .auth-avatar {
@@ -2682,27 +2682,39 @@ footer p {
 .auth-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 4000;
     padding: 1rem;
+    animation: modalFadeIn 0.15s ease-out;
+}
+
+.auth-modal-overlay.closing {
+    animation: modalFadeOut 0.15s ease-in forwards;
+}
+
+.auth-modal-overlay.closing .auth-modal {
+    animation: modalSlideOut 0.15s ease-in forwards;
 }
 
 .auth-modal {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 16px;
     padding: 2rem;
     max-width: 400px;
-    width: 100%;
+    width: 90vw;
     position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 107, 107, 0.15);
+    animation: modalSlideIn 0.15s ease-out;
 }
 
 .auth-modal h2 {
     margin-bottom: 1.25rem;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     color: var(--text);
 }
 
@@ -2780,7 +2792,7 @@ footer p {
 }
 
 .auth-modal-close:hover {
-    color: var(--text);
+    color: var(--accent);
 }
 
 .auth-modal form {
