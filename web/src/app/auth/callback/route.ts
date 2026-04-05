@@ -7,8 +7,13 @@ import { NextResponse } from 'next/server';
  * or OAuth login. Exchanges the code for a session and redirects to home.
  */
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');
+
+  // Use forwarded host (from Vercel/proxy) or fall back to request URL origin
+  const forwardedHost = request.headers.get('x-forwarded-host');
+  const forwardedProto = request.headers.get('x-forwarded-proto') || 'https';
+  const origin = forwardedHost ? `${forwardedProto}://${forwardedHost}` : new URL(request.url).origin;
 
   if (code) {
     const cookieStore = await cookies();
