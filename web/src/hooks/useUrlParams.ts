@@ -93,7 +93,8 @@ export function useUrlParams(config: UrlParamsConfig) {
       if (v === 'original' || v === 'dubbed') setVersionFilter(v);
     }
     const sortParam = params.get('sort');
-    if (sortParam === 'viewers' || sortParam === 'affinity') setSortBy(sortParam);
+    if (sortParam === 'viewers') setSortBy('viewers');
+    // 'affinity' is restored only if scores exist — handled by auto-switch effect
     if (params.get('special') === '1') setSpecialFilter(true);
     if (params.get('lastchance') === '1') setLastChanceFilter(true);
 

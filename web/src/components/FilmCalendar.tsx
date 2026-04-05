@@ -107,16 +107,17 @@ export default function FilmCalendar({
     setLastChanceFilter: filters.setLastChanceFilter,
   });
 
-  // ─ Auto-switch to affinity sort when recommendations are available ─
+  // ─ Auto-switch sort based on recommendation availability ─
   const prevRecommendReady = useRef(false);
   useEffect(() => {
     if (lb.recommendReady && !prevRecommendReady.current) {
-      // Only auto-switch if the user hasn't explicitly chosen a sort via URL
       const urlSort = new URLSearchParams(window.location.search).get('sort');
       if (!urlSort) filters.setSortBy('affinity');
+    } else if (!lb.recommendReady && filters.sortBy === 'affinity') {
+      filters.setSortBy('rating');
     }
     prevRecommendReady.current = lb.recommendReady;
-  }, [lb.recommendReady, filters.setSortBy]);
+  }, [lb.recommendReady, filters.setSortBy, filters.sortBy]);
 
   // ─ Modals ─
   const { modal, modalClosing, openModal, closeModal } = useSessionModal();
