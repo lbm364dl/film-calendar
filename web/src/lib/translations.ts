@@ -477,15 +477,19 @@ const KEYWORD_TRANSLATIONS_ES: Record<string, string> = {
   'gay theme': 'temática gay',
 };
 
+function titleCase(s: string): string {
+  return s.replace(/\b\w/g, c => c.toUpperCase());
+}
+
 /** Translate an explainer attribute value (keyword/genre) to the user's language. */
 export function translateExplainerValue(value: string, reason: string, lang: LangKey): string {
-  if (lang !== 'es') return value;
-  // Genres
-  if (reason === 'genre') {
-    return GENRE_TRANSLATIONS_ES[value.trim().toLowerCase()] || value;
+  if (lang === 'es') {
+    if (reason === 'genre') {
+      const translated = GENRE_TRANSLATIONS_ES[value.trim().toLowerCase()];
+      return translated ? titleCase(translated) : titleCase(value);
+    }
+    const kwLower = value.trim().toLowerCase();
+    if (KEYWORD_TRANSLATIONS_ES[kwLower]) return titleCase(KEYWORD_TRANSLATIONS_ES[kwLower]);
   }
-  // Keywords
-  const kwLower = value.trim().toLowerCase();
-  if (KEYWORD_TRANSLATIONS_ES[kwLower]) return KEYWORD_TRANSLATIONS_ES[kwLower];
-  return value;
+  return titleCase(value);
 }
