@@ -53,6 +53,13 @@ const BLOCKED_KEYWORDS = new Set([
   'arrogant', 'sequel', 'remake', '3d',
 ]);
 
+/** Block keywords matching decade patterns like "1970s", "1880s" */
+function isBlockedKeyword(name: string): boolean {
+  if (BLOCKED_KEYWORDS.has(name.toLowerCase())) return true;
+  if (/^\d{4}s$/.test(name)) return true; // "1970s", "2000s", etc.
+  return false;
+}
+
 interface GraphNode {
   id: string;         // e.g., "film:42", "director:125025", "genre:drama"
   category: string;   // "film", "director", "genre", "cast", etc.
@@ -152,7 +159,7 @@ function buildGraph(films: FilmFeatures[]) {
 
     // Keywords (skip blocked metadata tags)
     for (const kw of (film.keywords ?? []).slice(0, MAX_KEYWORDS)) {
-      if (kw?.id && !BLOCKED_KEYWORDS.has(kw.name?.toLowerCase())) {
+      if (kw?.id && !isBlockedKeyword(kw.name ?? '')) {
         const kIdx = getOrCreateNode(`keyword:${kw.id}`, 'keyword');
         addEdge(filmIdx, kIdx, EDGE_WEIGHTS.keyword);
       }
