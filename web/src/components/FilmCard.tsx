@@ -8,12 +8,13 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarLine(breakdown: CompactBreakdown | undefined): string | null {
+function buildSimilarLine(breakdown: CompactBreakdown | undefined, lang: LangKey): string | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
   const s = items[0];
   const value = s.value || s.reason;
-  return `${s.title} · ${value}`;
+  const prefix = lang === 'es' ? 'Te gustó' : 'You liked';
+  return `${prefix}: ${s.title} · ${value}`;
 }
 
 interface FilmCardProps {
@@ -47,7 +48,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarLine = showMatch ? buildSimilarLine(breakdown) : null;
+  const similarLine = showMatch ? buildSimilarLine(breakdown, lang) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
