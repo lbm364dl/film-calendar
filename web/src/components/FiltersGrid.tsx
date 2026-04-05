@@ -129,8 +129,8 @@ export default function FiltersGrid({
         onHelp={() => onHelp(t(lang, 'theaterTooltipTitle'), t(lang, 'theaterTooltipBody'))}
       />
 
-      <button type="button" className="clear-grid-btn" title={t(lang, 'clearFiltersTitle')} onClick={onClearAllFilters}>
-        &times;
+      <button type="button" className="clear-grid-btn" onClick={onClearAllFilters}>
+        {t(lang, 'clearFilters')}
       </button>
     </div>
   );
