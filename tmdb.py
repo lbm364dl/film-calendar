@@ -248,6 +248,34 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
             for _, member in all_directors[:2]:
                 directors.append({"id": member["id"], "name": member["name"]})
 
+    # Cinematographers (top 2, from crew)
+    cinematographers = []
+    for member in data.get("credits", {}).get("crew", []):
+        if member.get("job") == "Director of Photography" and member.get("name") and member.get("id"):
+            cinematographers.append({"id": member["id"], "name": member["name"]})
+            if len(cinematographers) >= 2:
+                break
+
+    # Composers (top 2, from crew)
+    composers = []
+    for member in data.get("credits", {}).get("crew", []):
+        if member.get("job") == "Original Music Composer" and member.get("name") and member.get("id"):
+            composers.append({"id": member["id"], "name": member["name"]})
+            if len(composers) >= 2:
+                break
+
+    # Writers (top 3, from crew)
+    writers = []
+    writer_jobs = {"Writer", "Screenplay", "Story", "Novel"}
+    seen_writers = set()
+    for member in data.get("credits", {}).get("crew", []):
+        if member.get("job") in writer_jobs and member.get("name") and member.get("id"):
+            if member["id"] not in seen_writers:
+                writers.append({"id": member["id"], "name": member["name"]})
+                seen_writers.add(member["id"])
+                if len(writers) >= 3:
+                    break
+
     # Cast (top 5 billed, with TMDB person ID)
     top_cast = []
     cast_list = data.get("credits", {}).get("cast", [])
@@ -342,6 +370,9 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         "spoken_languages": spoken_languages,
         "runtime_minutes": runtime_minutes,
         "directors": directors,
+        "cinematographers": cinematographers,
+        "composers": composers,
+        "writers": writers,
         "top_cast": top_cast,
         "keywords": keywords,
         "tmdb_rating": tmdb_rating,

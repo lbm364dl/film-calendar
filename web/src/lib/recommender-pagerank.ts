@@ -19,14 +19,17 @@ export type { FilmFeatures, MatchScore, CompactBreakdown };
 /** Edge weights per category — controls how much influence flows through each type. */
 const EDGE_WEIGHTS: Record<string, number> = {
   director: 3.0,
-  keyword: 2.5,
-  country: 2.0,
-  cast: 1.5,
+  cinematographer: 2.5,
+  writer: 2.5,
+  cast: 2.5,
+  keyword: 2.0,
+  composer: 2.0,
   genre: 1.5,
-  decade: 1.5,
-  collection: 1.0,
-  language: 1.0,
+  collection: 1.5,
   company: 1.0,
+  country: 0.5,
+  decade: 0.5,
+  language: 0.3,
 };
 
 /**
@@ -93,6 +96,30 @@ function buildGraph(films: FilmFeatures[]) {
       for (const name of film.director.split(',').map(s => s.trim()).slice(0, 2)) {
         const dIdx = getOrCreateNode(`director:${name.toLowerCase()}`, 'director');
         addEdge(filmIdx, dIdx, EDGE_WEIGHTS.director);
+      }
+    }
+
+    // Cinematographers
+    for (const dp of (film.cinematographers ?? []).slice(0, 2)) {
+      if (dp?.id) {
+        const dpIdx = getOrCreateNode(`cinematographer:${dp.id}`, 'cinematographer');
+        addEdge(filmIdx, dpIdx, EDGE_WEIGHTS.cinematographer);
+      }
+    }
+
+    // Composers
+    for (const comp of (film.composers ?? []).slice(0, 2)) {
+      if (comp?.id) {
+        const compIdx = getOrCreateNode(`composer:${comp.id}`, 'composer');
+        addEdge(filmIdx, compIdx, EDGE_WEIGHTS.composer);
+      }
+    }
+
+    // Writers
+    for (const w of (film.writers ?? []).slice(0, 3)) {
+      if (w?.id) {
+        const wIdx = getOrCreateNode(`writer:${w.id}`, 'writer');
+        addEdge(filmIdx, wIdx, EDGE_WEIGHTS.writer);
       }
     }
 
@@ -326,9 +353,21 @@ function findSimilarWatched(
     const attrNode = nodes[edge.target];
     if (attrNode.category === 'film') continue;
 
-    // Skip hub nodes — too many films connected, not discriminating
+    // Only use specific/interesting attributes for explainers
+    const INTERESTING = new Set(['director', 'cinematographer', 'composer', 'writer', 'cast', 'collection']);
     const filmNeighborCount = adjacency[edge.target].filter(e => nodes[e.target].category === 'film').length;
-    if (filmNeighborCount > totalFilms * 0.15) continue;
+    // For interesting categories: only skip if truly a mega-hub (>25% of films)
+    // For generic categories (genre, country, keyword, decade): skip entirely for explainers
+    if (INTERESTING.has(attrNode.category)) {
+      if (filmNeighborCount > totalFilms * 0.25) continue;
+    } else {
+      // Only allow very specific keywords (connected to <3% of films)
+      if (attrNode.category === 'keyword' && filmNeighborCount <= totalFilms * 0.03) {
+        // Keep niche keywords
+      } else {
+        continue;
+      }
+    }
 
     const attrProb = probabilities[edge.target];
     for (const attrEdge of adjacency[edge.target]) {
@@ -372,6 +411,8 @@ export interface UserSignals {
   liked?: Record<string, boolean>;
   /** Map of letterboxd_short_url → ISO date string (e.g. "2025-03-15"). */
   watchedDates?: Record<string, string>;
+  /** Map of letterboxd_short_url → number of rewatches from diary.csv. */
+  rewatchCounts?: Record<string, number>;
 }
 
 /**
@@ -393,11 +434,14 @@ function computeSeedWeight(
   if (!url) return DEFAULT_WATCHED_WEIGHT;
 
   const rating = ratings[url];
+  // Rewatch boost: rewatched films are stronger signals
+  const rewatches = signals.rewatchCounts?.[url] ?? 0;
+  const rewatchMultiplier = rewatches > 0 ? 1 + 0.3 * Math.log2(1 + rewatches) : 1;
 
   // ── 1. Has an explicit rating ──────────────────────────────────────
   if (rating != null) {
     if (rating < 3.0) return 0;                       // exclude disliked
-    return Math.pow((rating - 1.5) / 2.5, 2);         // 5★→4.0  4★→1.56  3★→0.56
+    return Math.pow((rating - 1.5) / 2.5, 2) * rewatchMultiplier;
   }
 
   // ── 2. Liked but not rated ─────────────────────────────────────────
@@ -407,15 +451,12 @@ function computeSeedWeight(
     // Liking is a deliberate positive signal — treat it as strongly as
     // a top rating so users who don't rate still get sharp recommendations.
     const recency = recencyFactor(url, signals.watchedDates, now);
-    return 4.0 * recency;
+    return 4.0 * recency * rewatchMultiplier;
   }
 
   // ── 3. Watched only (no rating, no like) ───────────────────────────
-  // Still a positive signal (user chose to watch it), but weaker.
-  // Recency matters more here: a film watched last week is a stronger
-  // signal than one watched 5 years ago.
   const recency = recencyFactor(url, signals.watchedDates, now);
-  return DEFAULT_WATCHED_WEIGHT * recency;
+  return DEFAULT_WATCHED_WEIGHT * recency * rewatchMultiplier;
 }
 
 /** Base weight for watched-but-unrated-unliked films (≈ 3★ equivalent). */
@@ -512,8 +553,11 @@ export function computeRecommendationsWithBreakdown(
     }));
   }
 
+  // Adaptive damping: new users stay closer to seeds, cinephiles explore more
+  const alpha = 0.10 + 0.15 * Math.exp(-watchedFilms.length / 200);
+
   // Run Personalized PageRank
-  const probabilities = personalizedPageRank(adjacency, seedIndices, seedWeights);
+  const probabilities = personalizedPageRank(adjacency, seedIndices, seedWeights, alpha);
 
   // Extract scores for all screened films (including already-watched)
   const rawScores: { filmId: number; raw: number; idx: number; watched: boolean }[] = [];

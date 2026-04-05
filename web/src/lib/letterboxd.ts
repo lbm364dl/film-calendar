@@ -32,6 +32,8 @@ export interface ParsedExport {
     likedUrls: Set<string>;
     /** Map of short URL → watched date (YYYY-MM-DD) from watched.csv */
     watchedDates: Record<string, string>;
+    /** Map of short URL → rewatch count from diary.csv */
+    rewatchCounts: Record<string, number>;
 }
 
 interface WatchedRow {
@@ -121,6 +123,7 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
     let ratingsFile: JSZip.JSZipObject | null = null;
     let watchlistFile: JSZip.JSZipObject | null = null;
     let likedFilmsFile: JSZip.JSZipObject | null = null;
+    let diaryFile: JSZip.JSZipObject | null = null;
 
     zip.forEach((path, file) => {
         const lower = path.toLowerCase();
@@ -131,6 +134,7 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
         if (basename === 'watched.csv') watchedFile = file;
         if (basename === 'ratings.csv') ratingsFile = file;
         if (basename === 'watchlist.csv') watchlistFile = file;
+        if (basename === 'diary.csv') diaryFile = file;
     });
 
     if (!watchedFile) {
@@ -196,7 +200,21 @@ export async function parseExportZip(buffer: ArrayBuffer): Promise<ParsedExport>
         }
     }
 
-    return { watchedUrls, watchedFullUrls, ratings, fullToShort, watchlistUrls, likedUrls, watchedDates };
+    // Parse diary.csv for rewatch counts
+    const rewatchCounts: Record<string, number> = {};
+    if (diaryFile) {
+        const diaryText = await (diaryFile as JSZip.JSZipObject).async('string');
+        const diaryRows = parseCSV(diaryText);
+        for (const row of diaryRows) {
+            const uri = (row as any)['Letterboxd URI']?.trim();
+            const rewatch = (row as any)['Rewatch']?.trim();
+            if (uri && rewatch?.toLowerCase() === 'yes') {
+                rewatchCounts[uri] = (rewatchCounts[uri] ?? 0) + 1;
+            }
+        }
+    }
+
+    return { watchedUrls, watchedFullUrls, ratings, fullToShort, watchlistUrls, likedUrls, watchedDates, rewatchCounts };
 }
 
 // ── Letterboxd HTTP Scraper (Phase 1 only) ──────────────────────────────────

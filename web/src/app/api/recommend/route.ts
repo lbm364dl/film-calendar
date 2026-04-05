@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { computeRecommendationsWithBreakdown, type FilmFeatures, type CompactBreakdown } from '@/lib/recommender-pagerank';
 
 /** All film columns needed for recommendation scoring. */
-const FILM_SELECT = 'id, genres, director, directors, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;
+const FILM_SELECT = 'id, genres, director, directors, cinematographers, composers, writers, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;
 
 /** Map a raw DB row to a FilmFeatures object, defaulting nulls to safe values. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,6 +14,9 @@ function toFilmFeatures(f: any): FilmFeatures {
         genres: f.genres ?? [],
         director: f.director ?? null,
         directors: f.directors ?? [],
+        cinematographers: f.cinematographers ?? [],
+        composers: f.composers ?? [],
+        writers: f.writers ?? [],
         top_cast: f.top_cast ?? [],
         keywords: f.keywords ?? [],
         production_companies: f.production_companies ?? [],
@@ -67,14 +70,14 @@ export async function GET() {
 
     // Load user's watched films from the new relational table
     const BATCH = 500;
-    let allWatchedData: { letterboxd_short_url: string; film_id: number | null; rating: number | null; liked: boolean; watched_date: string | null }[] = [];
+    let allWatchedData: { letterboxd_short_url: string; film_id: number | null; rating: number | null; liked: boolean; watched_date: string | null; rewatch_count: number }[] = [];
     let offset = 0;
 
     // Paginate through all watched films
     while (true) {
         const { data, error: watchedError } = await supabase
             .from('user_watched_films')
-            .select('letterboxd_short_url, film_id, rating, liked, watched_date')
+            .select('letterboxd_short_url, film_id, rating, liked, watched_date, rewatch_count')
             .eq('user_id', user.id)
             .range(offset, offset + BATCH - 1);
 
@@ -92,6 +95,7 @@ export async function GET() {
     const userRatings: Record<string, number> = {};
     const userLiked: Record<string, boolean> = {};
     const userWatchedDates: Record<string, string> = {};
+    const userRewatchCounts: Record<string, number> = {};
     const filmIds: number[] = [];
     const urlMap: Record<number, string> = {};
 
@@ -104,6 +108,9 @@ export async function GET() {
         }
         if (row.watched_date) {
             userWatchedDates[row.letterboxd_short_url] = row.watched_date;
+        }
+        if (row.rewatch_count > 0) {
+            userRewatchCounts[row.letterboxd_short_url] = row.rewatch_count;
         }
         if (row.film_id != null) {
             filmIds.push(row.film_id);
@@ -169,13 +176,16 @@ export async function GET() {
     // Compute recommendations with per-film breakdowns
     const matchScores = computeRecommendationsWithBreakdown(
         allWatchedFilms, userRatings, urlMap, screenedFilms,
-        { liked: userLiked, watchedDates: userWatchedDates },
+        { liked: userLiked, watchedDates: userWatchedDates, rewatchCounts: userRewatchCounts },
     );
 
     // Build attribute ID → name lookup from film data (for directors, cast, keywords, companies)
     const attrNames: Record<string, string> = {};
     for (const f of [...allWatchedFilms, ...screenedFilms]) {
         for (const d of f.directors ?? []) attrNames[`director:${d.id}`] = d.name;
+        for (const dp of f.cinematographers ?? []) attrNames[`cinematographer:${dp.id}`] = dp.name;
+        for (const comp of f.composers ?? []) attrNames[`composer:${comp.id}`] = comp.name;
+        for (const w of f.writers ?? []) attrNames[`writer:${w.id}`] = w.name;
         for (const c of f.top_cast ?? []) attrNames[`cast:${c.id}`] = c.name;
         for (const k of f.keywords ?? []) attrNames[`keyword:${k.id}`] = k.name;
         for (const co of f.production_companies ?? []) attrNames[`company:${co.id}`] = co.name;

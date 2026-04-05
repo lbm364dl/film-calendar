@@ -23,6 +23,9 @@ export interface FilmFeatures {
     genres: string[];
     director: string | null;
     directors: NamedEntity[];
+    cinematographers: NamedEntity[];
+    composers: NamedEntity[];
+    writers: NamedEntity[];
     top_cast: NamedEntity[];
     keywords: NamedEntity[];
     production_companies: NamedEntity[];

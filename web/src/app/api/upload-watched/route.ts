@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: msg }, { status: 400 });
     }
 
-    const { watchedUrls, watchlistUrls, ratings, likedUrls, watchedDates } = parsed;
+    const { watchedUrls, watchlistUrls, ratings, likedUrls, watchedDates, rewatchCounts } = parsed;
     const total = watchedUrls.length;
 
     if (total === 0) {
@@ -94,6 +94,7 @@ export async function POST(request: Request) {
         rating: ratings[url] ?? null,
         liked: likedUrls.has(url),
         watched_date: watchedDates[url] ?? null,
+        rewatch_count: rewatchCounts[url] ?? 0,
     }));
 
     for (let i = 0; i < watchedRows.length; i += BATCH) {
