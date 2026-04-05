@@ -400,7 +400,7 @@ export function useFilmFilters(options: FilterOptions) {
     specialFilter, setSpecialFilter,
     lastChanceFilter, setLastChanceFilter,
     // Computed
-    lastChanceFilmIds, activeAdvancedFilterCount,
+    activeAdvancedFilterCount,
     filteredFilms, sortedFilms, visibleFilms, remaining, isFiltering,
     clearAllFilters, loadMore,
   };

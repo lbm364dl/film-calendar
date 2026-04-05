@@ -229,10 +229,9 @@ export default function FilmCalendar({
                     dateLocale={dateLocale}
                     openPopupId={openPopupId}
                     setOpenPopupId={setOpenPopupId}
-                    matchScores={lb.matchScores}
-                    breakdowns={lb.breakdowns}
-                    recommendReady={lb.recommendReady}
-                    watchedUrls={lb.watchedUrls}
+                    matchScore={lb.matchScores[film.id]}
+                    breakdown={lb.breakdowns[film.id]}
+                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
                     formatDate={formatDate}
                     getFilmTitle={getFilmTitle}
                     getCalendarUrl={getCalendarUrl}
@@ -300,7 +299,6 @@ export default function FilmCalendar({
           setSpecialFilter={filters.setSpecialFilter}
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
-          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
           onHelp={helpModal.open}
         />
       )}

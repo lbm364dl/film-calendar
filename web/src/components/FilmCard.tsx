@@ -43,10 +43,9 @@ interface FilmCardProps {
   dateLocale: string;
   openPopupId: string | null;
   setOpenPopupId: (id: string | null) => void;
-  matchScores: Record<number, number>;
-  breakdowns: Record<number, CompactBreakdown>;
-  recommendReady: boolean;
-  watchedUrls: Set<string> | null;
+  matchScore?: number;
+  breakdown?: CompactBreakdown;
+  isWatched: boolean;
   formatDate: (dateStr: string) => string;
   getFilmTitle: (film: Film) => string;
   getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
@@ -57,7 +56,7 @@ interface FilmCardProps {
 export default memo(function FilmCard({
   film, lang, dateLocale,
   openPopupId, setOpenPopupId,
-  matchScores, breakdowns, recommendReady, watchedUrls,
+  matchScore, breakdown, isWatched,
   formatDate, getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
 }: FilmCardProps) {
   const ratingValue = film.rating ? film.rating.toFixed(1) : null;
@@ -68,11 +67,9 @@ export default memo(function FilmCard({
       : t(lang, 'viewersLabel', film.viewers!.toLocaleString('en-US')))
     : '';
 
-  const filmMatchScore = matchScores[film.id];
-  const filmBreakdown = breakdowns[film.id];
-  const isWatched = !!(watchedUrls && film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
-  const showMatch = recommendReady && filmMatchScore !== undefined && !isWatched;
-  const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
+  const showMatch = matchScore !== undefined && !isWatched;
+  const scoreTooltip = showMatch ? buildScoreTooltip(matchScore, breakdown, lang) : '';
+  const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
   const letterboxdLink = film.letterboxdShortUrl || film.letterboxdUrl;
@@ -91,9 +88,9 @@ export default memo(function FilmCard({
       )}
 
       {/* Genres */}
-      {(film.genres.length > 0 || film.dates.some(d => d.special)) && (
+      {(film.genres.length > 0 || hasSpecial) && (
         <div className="film-genres">
-          {film.dates.some(d => d.special) && (
+          {hasSpecial && (
             <span className="special-badge">
               {translateSpecialType(film.dates.find(d => d.special)!.special!, lang)}
             </span>
@@ -137,17 +134,17 @@ export default memo(function FilmCard({
               {viewersFormatted}
             </span>
           )}
-          {isWatched && recommendReady && (
+          {isWatched && matchScore !== undefined && (
             <span className="watched-label">{lang === 'es' ? 'Vista' : 'Seen'}</span>
           )}
         </div>
         {showMatch && (
           <div
-            className={`card-affinity ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
+            className={`card-affinity ${matchScore! >= 70 ? 'high' : matchScore! >= 40 ? 'medium' : 'low'}`}
             title={scoreTooltip}
           >
-            <div className="card-affinity-fill" style={{ width: `${Math.min(filmMatchScore, 100)}%` }} />
-            <span className="card-affinity-label">{filmMatchScore}%</span>
+            <div className="card-affinity-fill" style={{ width: `${Math.min(matchScore!, 100)}%` }} />
+            <span className="card-affinity-label">{matchScore}%</span>
           </div>
         )}
         {letterboxdLink && (

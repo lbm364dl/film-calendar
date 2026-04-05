@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { SessionModalData } from '@/lib/types';
 
 export function useSessionModal() {
@@ -39,7 +39,7 @@ export function useMoreFiltersModal() {
   const [showMoreFilters, setShowMoreFilters] = useState(false);
   const [moreFiltersClosing, setMoreFiltersClosing] = useState(false);
 
-  const scrollYRef = { current: 0 };
+  const scrollYRef = useRef(0);
 
   const openMoreFilters = useCallback(() => {
     setShowMoreFilters(true);

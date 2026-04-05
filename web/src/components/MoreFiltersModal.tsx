@@ -36,7 +36,6 @@ interface MoreFiltersModalProps {
   setSpecialFilter: (v: boolean) => void;
   lastChanceFilter: boolean;
   setLastChanceFilter: (v: boolean) => void;
-  activeAdvancedFilterCount: number;
   onHelp: (title: string, body: string) => void;
 }
 
@@ -51,32 +50,19 @@ export default function MoreFiltersModal({
   versionFilter, setVersionFilter,
   specialFilter, setSpecialFilter,
   lastChanceFilter, setLastChanceFilter,
-  activeAdvancedFilterCount, onHelp,
+  onHelp,
 }: MoreFiltersModalProps) {
   const toggleVersion = useCallback(() => {
     setVersionFilter(versionFilter === 'original' ? 'dubbed' : 'original');
   }, [versionFilter, setVersionFilter]);
 
-  const toggleGenre = useCallback((v: string) => {
-    if (!selectedGenres) return;
-    const next = new Set(selectedGenres);
-    if (next.has(v)) next.delete(v); else next.add(v);
-    setSelectedGenres(next);
-  }, [selectedGenres, setSelectedGenres]);
-
-  const toggleCountry = useCallback((v: string) => {
-    if (!selectedCountries) return;
-    const next = new Set(selectedCountries);
-    if (next.has(v)) next.delete(v); else next.add(v);
-    setSelectedCountries(next);
-  }, [selectedCountries, setSelectedCountries]);
-
-  const toggleLanguage = useCallback((v: string) => {
-    if (!selectedLanguages) return;
-    const next = new Set(selectedLanguages);
-    if (next.has(v)) next.delete(v); else next.add(v);
-    setSelectedLanguages(next);
-  }, [selectedLanguages, setSelectedLanguages]);
+  const makeToggle = (selected: Set<string> | null, setter: (v: Set<string>) => void) =>
+    (v: string) => {
+      if (!selected) return;
+      const next = new Set(selected);
+      if (next.has(v)) next.delete(v); else next.add(v);
+      setter(next);
+    };
 
   if (!show && !closing) return null;
 
@@ -135,7 +121,7 @@ export default function MoreFiltersModal({
               lang={lang}
               allValues={allGenres}
               selectedValues={selectedGenres}
-              onToggle={toggleGenre}
+              onToggle={makeToggle(selectedGenres, setSelectedGenres)}
               onSelectAll={() => setSelectedGenres(new Set(allGenres))}
               onSelectNone={() => setSelectedGenres(new Set())}
               translateFn={(g) => translateGenre(g, lang)}
@@ -150,7 +136,7 @@ export default function MoreFiltersModal({
               lang={lang}
               allValues={allCountries}
               selectedValues={selectedCountries}
-              onToggle={toggleCountry}
+              onToggle={makeToggle(selectedCountries, setSelectedCountries)}
               onSelectAll={() => setSelectedCountries(new Set(allCountries))}
               onSelectNone={() => setSelectedCountries(new Set())}
               triggerLabelKey="nCountriesSelected"
@@ -165,7 +151,7 @@ export default function MoreFiltersModal({
               lang={lang}
               allValues={allLanguages}
               selectedValues={selectedLanguages}
-              onToggle={toggleLanguage}
+              onToggle={makeToggle(selectedLanguages, setSelectedLanguages)}
               onSelectAll={() => setSelectedLanguages(new Set(allLanguages))}
               onSelectNone={() => setSelectedLanguages(new Set())}
               triggerLabelKey="nLanguagesSelected"
