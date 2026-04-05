@@ -83,7 +83,7 @@ export default memo(function FilmCard({
 
   return (
     <div className="film-card">
-      {/* Title + Letterboxd icon */}
+      {/* Title */}
       <div className="film-header">
         <div className="film-title">
           {titleText}
@@ -91,13 +91,6 @@ export default memo(function FilmCard({
             <span className="title-meta"> ({metadata.join(', ')})</span>
           )}
         </div>
-        {letterboxdLink && (
-          <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
-          </a>
-        )}
       </div>
 
       {/* Genres */}
@@ -154,6 +147,13 @@ export default memo(function FilmCard({
             <div className="card-affinity-fill" style={{ width: `${Math.min(filmMatchScore, 100)}%` }} />
             <span className="card-affinity-label">{filmMatchScore}%</span>
           </div>
+        )}
+        {letterboxdLink && (
+          <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
+          </a>
         )}
       </div>
     </div>
