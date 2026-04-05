@@ -9,12 +9,15 @@ import { useFilmData } from '@/hooks/useFilmData';
 import { useFilmFilters } from '@/hooks/useFilmFilters';
 import { useUrlParams } from '@/hooks/useUrlParams';
 import { useLetterboxd } from '@/hooks/useLetterboxd';
-import { useSessionModal, useLbModal, useEscapeKey } from '@/hooks/useModal';
+import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '@/hooks/useModal';
+import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
 import FilmCard from '@/components/FilmCard';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
+import MoreFiltersModal from '@/components/MoreFiltersModal';
+import HelpModal from '@/components/HelpModal';
 
 interface FilmCalendarProps {
   initialLang: LangKey;
@@ -48,7 +51,7 @@ export default function FilmCalendar({
   const dateLocale = lang === 'es' ? 'es-ES' : 'en-GB';
 
   // ─ Data ─
-  const { allFilms, loading, error, yearBoundsMin, yearBoundsMax } = useFilmData();
+  const { allFilms, loading, error } = useFilmData();
 
   // ─ Letterboxd ─
   const lb = useLetterboxd({
@@ -61,36 +64,61 @@ export default function FilmCalendar({
   const [openPopupId, setOpenPopupId] = useState<string | null>(null);
 
   const filters = useFilmFilters({
-    allFilms, yearBoundsMin, yearBoundsMax,
+    allFilms,
     watchlistUrls: lb.watchlistUrls, watchedUrls: lb.watchedUrls,
     watchlistActive: lb.watchlistActive, watchedActive: lb.watchedActive,
     showWatched: lb.showWatched,
-    sortByMatch: lb.sortByMatch, matchScores: lb.matchScores,
+    matchScores: lb.matchScores,
   });
 
   // ─ URL sync ─
   useUrlParams({
     searchTerm: filters.searchTerm,
-    selectedTheater: filters.selectedTheater,
     selectedDate: filters.selectedDate,
-    yearMin: filters.yearMin,
-    yearMax: filters.yearMax,
-    yearBoundsMin, yearBoundsMax,
+    selectedTheaters: filters.selectedTheaters,
+    selectedGenres: filters.selectedGenres,
+    selectedCountries: filters.selectedCountries,
+    selectedLanguages: filters.selectedLanguages,
+    allGenres: filters.allGenres,
+    allCountries: filters.allCountries,
+    allLanguages: filters.allLanguages,
+    selectedDecades: filters.selectedDecades,
+    selectedRuntimeCategories: filters.selectedRuntimeCategories,
+    selectedDays: filters.selectedDays,
+    decades: filters.decades,
+    versionFilter: filters.versionFilter,
+    sortBy: filters.sortBy,
+    specialFilter: filters.specialFilter,
+    lastChanceFilter: filters.lastChanceFilter,
     allFilmsLength: allFilms.length,
     setSearchTerm: filters.setSearchTerm,
-    setSelectedTheater: filters.setSelectedTheater,
     setSelectedDate: filters.setSelectedDate,
-    setYearMin: filters.setYearMin,
-    setYearMax: filters.setYearMax,
+    setSelectedGenres: filters.setSelectedGenres,
+    setSelectedCountries: filters.setSelectedCountries,
+    setSelectedLanguages: filters.setSelectedLanguages,
+    setSelectedDecades: filters.setSelectedDecades,
+    setSelectedRuntimeCategories: filters.setSelectedRuntimeCategories,
+    setSelectedDays: filters.setSelectedDays,
+    setVersionFilter: filters.setVersionFilter,
+    setSortBy: filters.setSortBy,
+    setSpecialFilter: filters.setSpecialFilter,
+    setLastChanceFilter: filters.setLastChanceFilter,
   });
 
   // ─ Modals ─
   const { modal, modalClosing, openModal, closeModal } = useSessionModal();
   const { showLbModal, lbModalClosing, openLbModal, closeLbModal } = useLbModal();
+  const { showMoreFilters, moreFiltersClosing, openMoreFilters, closeMoreFilters } = useMoreFiltersModal();
+  const helpModal = useHelpModal();
 
   const escapeHandlers = useMemo(() => [
-    () => { if (showLbModal) { closeLbModal(); return; } closeModal(); setOpenPopupId(null); },
-  ], [showLbModal, closeLbModal, closeModal]);
+    () => {
+      if (showLbModal) { closeLbModal(); return; }
+      if (showMoreFilters) { closeMoreFilters(); return; }
+      closeModal();
+      setOpenPopupId(null);
+    },
+  ], [showLbModal, closeLbModal, showMoreFilters, closeMoreFilters, closeModal]);
   useEscapeKey(escapeHandlers);
 
   // ─ Derived helpers ─
@@ -136,38 +164,43 @@ export default function FilmCalendar({
         lang={lang}
         searchTerm={filters.searchTerm}
         setSearchTerm={filters.setSearchTerm}
-        selectedTheater={filters.selectedTheater}
-        setSelectedTheater={filters.setSelectedTheater}
         selectedDate={filters.selectedDate}
         setSelectedDate={filters.setSelectedDate}
-        yearMin={filters.yearMin}
-        setYearMin={filters.setYearMin}
-        yearMax={filters.yearMax}
-        setYearMax={filters.setYearMax}
-        yearBoundsMin={yearBoundsMin}
-        yearBoundsMax={yearBoundsMax}
+        selectedTheaters={filters.selectedTheaters}
+        onToggleTheater={filters.toggleTheater}
+        onToggleTheaterGroup={filters.toggleTheaterGroup}
+        onSelectAllTheaters={filters.selectAllTheaters}
+        onSelectNoneTheaters={filters.selectNoneTheaters}
         lbHasData={lbHasData}
         lbFilterActive={lbFilterActive}
         onOpenLbModal={openLbModal}
-        onClearAllFilters={filters.clearAllFilters}
-        watchlistInputRef={lb.watchlistInputRef}
-        watchedInputRef={lb.watchedInputRef}
+        onOpenMoreFilters={openMoreFilters}
+        activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
         zipInputRef={lb.zipInputRef}
-        onCsvUpload={lb.handleCsvUpload}
         onZipUpload={lb.handleZipUpload}
+        onHelp={helpModal.open}
       />
 
       {/* Stats + Sort toggle */}
       <div className="stats">
         <span>{t(lang, 'filmCount', filters.filteredFilms.length)}</span>
-        {lb.recommendReady && (
-          <button
-            className={`sort-toggle ${lb.sortByMatch ? 'active' : ''}`}
-            onClick={() => lb.setSortByMatch(!lb.sortByMatch)}
-          >
-            {lb.sortByMatch ? t(lang, 'sortByRating') : t(lang, 'sortByMatch')}
-          </button>
-        )}
+        <button
+          className="sort-toggle"
+          onClick={() => {
+            const options: Array<'rating' | 'viewers' | 'affinity'> = lb.recommendReady
+              ? ['rating', 'viewers', 'affinity']
+              : ['rating', 'viewers'];
+            const idx = options.indexOf(filters.sortBy);
+            filters.setSortBy(options[(idx + 1) % options.length]);
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 6h18M3 12h12M3 18h6" />
+          </svg>
+          {filters.sortBy === 'rating' && t(lang, 'sortByRating')}
+          {filters.sortBy === 'viewers' && t(lang, 'sortByViewers')}
+          {filters.sortBy === 'affinity' && t(lang, 'sortByMatch')}
+        </button>
         <span className="calendar-hint">{t(lang, 'calendarHint')}</span>
       </div>
 
@@ -182,6 +215,8 @@ export default function FilmCalendar({
             <div className="no-results" style={{ display: 'block' }}>{t(lang, 'noResults')}</div>
           ) : (
             <>
+              <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
+              {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
               <div className="films-grid" style={{ display: 'grid' }}>
                 {filters.visibleFilms.map(film => (
                   <FilmCard
@@ -194,6 +229,7 @@ export default function FilmCalendar({
                     matchScores={lb.matchScores}
                     breakdowns={lb.breakdowns}
                     recommendReady={lb.recommendReady}
+                    watchedUrls={lb.watchedUrls}
                     formatDate={formatDate}
                     getFilmTitle={getFilmTitle}
                     getCalendarUrl={getCalendarUrl}
@@ -201,6 +237,7 @@ export default function FilmCalendar({
                     onOpenModal={openModal}
                   />
                 ))}
+              </div>
               </div>
               {filters.remaining > 0 && (
                 <div className="load-more-container">
@@ -230,6 +267,41 @@ export default function FilmCalendar({
           </p>
         </div>
       </footer>
+
+      {/* More Filters Modal */}
+      {(showMoreFilters || moreFiltersClosing) && (
+        <MoreFiltersModal
+          show={showMoreFilters}
+          closing={moreFiltersClosing}
+          onClose={closeMoreFilters}
+          lang={lang}
+          decades={filters.decades}
+          selectedDecades={filters.selectedDecades}
+          setSelectedDecades={filters.setSelectedDecades}
+          selectedRuntimeCategories={filters.selectedRuntimeCategories}
+          setSelectedRuntimeCategories={filters.setSelectedRuntimeCategories}
+          selectedDays={filters.selectedDays}
+          setSelectedDays={filters.setSelectedDays}
+          allGenres={filters.allGenres}
+          selectedGenres={filters.selectedGenres}
+          setSelectedGenres={filters.setSelectedGenres}
+          allCountries={filters.allCountries}
+          selectedCountries={filters.selectedCountries}
+          setSelectedCountries={filters.setSelectedCountries}
+          allLanguages={filters.allLanguages}
+          selectedLanguages={filters.selectedLanguages}
+          setSelectedLanguages={filters.setSelectedLanguages}
+          versionFilter={filters.versionFilter}
+          setVersionFilter={filters.setVersionFilter}
+          specialFilter={filters.specialFilter}
+          setSpecialFilter={filters.setSpecialFilter}
+          lastChanceFilter={filters.lastChanceFilter}
+          setLastChanceFilter={filters.setLastChanceFilter}
+          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
+          onClearAll={filters.clearAllFilters}
+          onHelp={helpModal.open}
+        />
+      )}
 
       {/* Letterboxd Modal */}
       {(showLbModal || lbModalClosing) && (
@@ -262,6 +334,16 @@ export default function FilmCalendar({
           modalClosing={modalClosing}
           lang={lang}
           onClose={closeModal}
+        />
+      )}
+
+      {/* Help Modal */}
+      {helpModal.content && (
+        <HelpModal
+          title={helpModal.content.title}
+          body={helpModal.content.body}
+          closing={helpModal.closing}
+          onClose={helpModal.close}
         />
       )}
     </div>

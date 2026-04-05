@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { formatViewerCount } from '@/lib/film-helpers';
 import { t, translateGenre } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
@@ -45,6 +46,7 @@ interface FilmCardProps {
   matchScores: Record<number, number>;
   breakdowns: Record<number, CompactBreakdown>;
   recommendReady: boolean;
+  watchedUrls: Set<string> | null;
   formatDate: (dateStr: string) => string;
   getFilmTitle: (film: Film) => string;
   getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
@@ -52,10 +54,10 @@ interface FilmCardProps {
   onOpenModal: (data: SessionModalData) => void;
 }
 
-export default function FilmCard({
+export default memo(function FilmCard({
   film, lang, dateLocale,
   openPopupId, setOpenPopupId,
-  matchScores, breakdowns, recommendReady,
+  matchScores, breakdowns, recommendReady, watchedUrls,
   formatDate, getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
 }: FilmCardProps) {
   const ratingValue = film.rating ? film.rating.toFixed(1) : null;
@@ -68,8 +70,9 @@ export default function FilmCard({
 
   const filmMatchScore = matchScores[film.id];
   const filmBreakdown = breakdowns[film.id];
+  const isWatched = !!(watchedUrls && film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
   const showMatch = recommendReady && filmMatchScore !== undefined;
-  const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
+  const scoreTooltip = showMatch && !isWatched ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
 
   const titleText = getFilmTitle(film);
   const metadata: string[] = [];
@@ -90,14 +93,6 @@ export default function FilmCard({
           </div>
         </div>
         <div className="card-actions">
-          {showMatch && (
-            <div
-              className={`match-score ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
-              title={scoreTooltip}
-            >
-              <span className="match-value">{filmMatchScore}%</span>
-            </div>
-          )}
           {ratingValue && (
             <div className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
               <span className="metric-icon rating-icon" aria-hidden="true" />
@@ -144,6 +139,22 @@ export default function FilmCard({
           />
         </div>
       )}
+
+      {showMatch && (
+        isWatched ? (
+          <div className="match-bar watched">
+            <span className="match-bar-label">{lang === 'es' ? 'Ya vista' : 'Watched'}</span>
+          </div>
+        ) : (
+          <div
+            className={`match-bar ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
+            title={scoreTooltip}
+          >
+            <div className="match-bar-fill" style={{ width: `${Math.min(filmMatchScore, 100)}%` }} />
+            <span className="match-bar-label">{filmMatchScore}%</span>
+          </div>
+        )
+      )}
     </div>
   );
-}
+})

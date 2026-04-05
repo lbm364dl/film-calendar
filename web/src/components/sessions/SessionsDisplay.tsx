@@ -25,23 +25,18 @@ export default function SessionsDisplay({
   film, lang, dateLocale, openPopupId, setOpenPopupId,
   formatDate, getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
 }: SessionsDisplayProps) {
-  if (film.dates.length <= SESSIONS_COLLAPSE_THRESHOLD) {
+  if (film.dates.length === 1) {
     return (
-      <>
-        {film.dates.map((d, i) => (
-          <SessionRow
-            key={i}
-            film={film}
-            dateObj={d}
-            lang={lang}
-            formatDate={formatDate}
-            getFilmTitle={getFilmTitle}
-            getCalendarUrl={getCalendarUrl}
-            getFallbackUrl={getFallbackUrl}
-            onOpenModal={onOpenModal}
-          />
-        ))}
-      </>
+      <SessionRow
+        film={film}
+        dateObj={film.dates[0]}
+        lang={lang}
+        formatDate={formatDate}
+        getFilmTitle={getFilmTitle}
+        getCalendarUrl={getCalendarUrl}
+        getFallbackUrl={getFallbackUrl}
+        onOpenModal={onOpenModal}
+      />
     );
   }
 
