@@ -45,35 +45,44 @@ async function getInitialProps() {
         watchedActive = prefs.watched_active ?? false;
       }
 
-      // Load watched URLs from new relational table (always load if data exists, regardless of active state)
-      const { data: watchedData } = await supabase
-        .from('user_watched_films')
-        .select('letterboxd_short_url')
-        .eq('user_id', user.id);
-      if (watchedData) {
-        watchedUrls = watchedData.map(r => r.letterboxd_short_url);
+      // Load watched URLs (paginated)
+      let watchedOffset = 0;
+      while (true) {
+        const { data } = await supabase.from('user_watched_films')
+          .select('letterboxd_short_url').eq('user_id', user.id)
+          .range(watchedOffset, watchedOffset + 999);
+        if (!data || data.length === 0) break;
+        watchedUrls.push(...data.map(r => r.letterboxd_short_url));
+        if (data.length < 1000) break;
+        watchedOffset += 1000;
       }
 
-      // Load watchlist URLs from new relational table (always load if data exists, regardless of active state)
-      const { data: watchlistData } = await supabase
-        .from('user_watchlist_films')
-        .select('letterboxd_short_url')
-        .eq('user_id', user.id);
-      if (watchlistData) {
-        watchlistUrls = watchlistData.map(r => r.letterboxd_short_url);
+      // Load watchlist URLs (paginated)
+      let wlOffset = 0;
+      while (true) {
+        const { data } = await supabase.from('user_watchlist_films')
+          .select('letterboxd_short_url').eq('user_id', user.id)
+          .range(wlOffset, wlOffset + 999);
+        if (!data || data.length === 0) break;
+        watchlistUrls.push(...data.map(r => r.letterboxd_short_url));
+        if (data.length < 1000) break;
+        wlOffset += 1000;
       }
 
-      // Load precomputed match scores (always load if watched data exists, regardless of active state)
+      // Load precomputed match scores + breakdowns (paginated)
       if (watchedUrls.length > 0) {
-        const { data: scores } = await supabase
-          .from('user_film_scores')
-          .select('film_id, score, breakdown')
-          .eq('user_id', user.id);
-        if (scores && scores.length > 0) {
-          for (const s of scores) {
+        let scoreOffset = 0;
+        while (true) {
+          const { data } = await supabase.from('user_film_scores')
+            .select('film_id, score, breakdown').eq('user_id', user.id)
+            .range(scoreOffset, scoreOffset + 999);
+          if (!data || data.length === 0) break;
+          for (const s of data) {
             initialScores[s.film_id] = s.score;
             if (s.breakdown) initialBreakdowns[s.film_id] = s.breakdown;
           }
+          if (data.length < 1000) break;
+          scoreOffset += 1000;
         }
       }
     }
