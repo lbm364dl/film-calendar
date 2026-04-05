@@ -54,7 +54,7 @@ export interface MatchScore {
 export interface CompactBreakdown {
     coverage: number;                    // 0–1: fraction of feature budget with real data
     byCategory: Record<string, number>;  // category → relative contribution
-    similarTo?: { title: string; reason: string }[];  // top similar watched films with connection reason
+    similarTo?: { title: string; reason: string; value: string }[];  // top similar watched films with connection
 }
 
 /** Detailed explanation of why a film got a particular score. */

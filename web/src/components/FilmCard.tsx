@@ -8,29 +8,13 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-const REASON_LABELS: Record<string, Record<string, string>> = {
-  es: {
-    director: 'mismo director', cast: 'mismo reparto', genre: 'mismo género',
-    keyword: 'temática similar', decade: 'misma época', country: 'mismo país',
-    lang: 'mismo idioma', company: 'misma productora', collection: 'misma saga',
-  },
-  en: {
-    director: 'same director', cast: 'same cast', genre: 'same genre',
-    keyword: 'similar themes', decade: 'same era', country: 'same country',
-    lang: 'same language', company: 'same studio', collection: 'same franchise',
-  },
-};
-
-function buildSimilarLabel(breakdown: CompactBreakdown | undefined, lang: LangKey): string | null {
+function buildSimilarItems(breakdown: CompactBreakdown | undefined): { title: string; tag: string }[] | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
-
-  const labels = REASON_LABELS[lang] || REASON_LABELS.en;
-  // Pick the top 2 for brevity
-  return items.slice(0, 2).map(s => {
-    const reason = labels[s.reason] || s.reason;
-    return `${s.title} (${reason})`;
-  }).join(' · ');
+  return items.slice(0, 2).map(s => ({
+    title: s.title,
+    tag: s.value || s.reason,
+  }));
 }
 
 interface FilmCardProps {
@@ -64,7 +48,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarLabel = showMatch ? buildSimilarLabel(breakdown, lang) : null;
+  const similarItems = showMatch ? buildSimilarItems(breakdown) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
@@ -148,8 +132,15 @@ export default memo(function FilmCard({
           </a>
         )}
       </div>
-      {similarLabel && (
-        <div className="card-similar">{similarLabel}</div>
+      {similarItems && (
+        <div className="card-similar">
+          {similarItems.map((s, i) => (
+            <span key={i} className="similar-item">
+              <span className="similar-title">{s.title}</span>
+              <span className="similar-tag">{s.tag}</span>
+            </span>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -172,6 +172,15 @@ export async function GET() {
         { liked: userLiked, watchedDates: userWatchedDates },
     );
 
+    // Build attribute ID → name lookup from film data (for directors, cast, keywords, companies)
+    const attrNames: Record<string, string> = {};
+    for (const f of [...allWatchedFilms, ...screenedFilms]) {
+        for (const d of f.directors ?? []) attrNames[`director:${d.id}`] = d.name;
+        for (const c of f.top_cast ?? []) attrNames[`cast:${c.id}`] = c.name;
+        for (const k of f.keywords ?? []) attrNames[`keyword:${k.id}`] = k.name;
+        for (const co of f.production_companies ?? []) attrNames[`company:${co.id}`] = co.name;
+    }
+
     // Build film ID → title lookup for resolving similarTo IDs
     const allFilmTitles: Record<number, string> = {};
     for (const f of allWatchedFilms) allFilmTitles[f.id] = '';
@@ -192,11 +201,16 @@ export async function GET() {
         scores[ms.filmId] = ms.score;
         const bd = { ...ms.breakdown };
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const raw = (bd as any)._similarRaw as { filmId: number; reason: string }[] | undefined;
+        const raw = (bd as any)._similarRaw as { filmId: number; reason: string; attrValue: string }[] | undefined;
         if (raw) {
             bd.similarTo = raw
                 .filter(r => allFilmTitles[r.filmId])
-                .map(r => ({ title: allFilmTitles[r.filmId], reason: r.reason }));
+                .map(r => {
+                    // Resolve attribute value to human name
+                    const key = `${r.reason}:${r.attrValue}`;
+                    const resolvedValue = attrNames[key] || r.attrValue;
+                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue };
+                });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             delete (bd as any)._similarRaw;
         }

@@ -317,9 +317,9 @@ function findSimilarWatched(
   probabilities: Float64Array,
   watchedFilmIndices: Set<number>,
   topN: number = 3,
-): { filmId: number; reason: string }[] {
-  // Per watched film: total score + per-category scores
-  const watchedData = new Map<number, { total: number; cats: Map<string, number> }>();
+): { filmId: number; reason: string; attrValue: string }[] {
+  // Per watched film: total score + per attribute node scores
+  const watchedData = new Map<number, { total: number; attrs: Map<number, number> }>();
 
   for (const edge of adjacency[filmNodeIdx]) {
     const attrNode = nodes[edge.target];
@@ -330,9 +330,10 @@ function findSimilarWatched(
       if (!watchedFilmIndices.has(attrEdge.target)) continue;
       const contribution = attrProb * edge.weight * attrEdge.weight;
       let entry = watchedData.get(attrEdge.target);
-      if (!entry) { entry = { total: 0, cats: new Map() }; watchedData.set(attrEdge.target, entry); }
+      if (!entry) { entry = { total: 0, attrs: new Map() }; watchedData.set(attrEdge.target, entry); }
       entry.total += contribution;
-      entry.cats.set(attrNode.category, (entry.cats.get(attrNode.category) ?? 0) + contribution);
+      // Track individual attribute node (not just category)
+      entry.attrs.set(edge.target, (entry.attrs.get(edge.target) ?? 0) + contribution);
     }
   }
 
@@ -340,15 +341,20 @@ function findSimilarWatched(
     .sort((a, b) => b[1].total - a[1].total)
     .slice(0, topN)
     .map(([idx, data]) => {
-      // Top contributing category
-      let topCat = '';
+      // Find the top contributing attribute node
+      let topAttrIdx = -1;
       let topVal = 0;
-      for (const [cat, val] of data.cats) {
-        if (val > topVal) { topCat = cat; topVal = val; }
+      for (const [attrIdx, val] of data.attrs) {
+        if (val > topVal) { topAttrIdx = attrIdx; topVal = val; }
       }
+      const attrNode = topAttrIdx >= 0 ? nodes[topAttrIdx] : null;
+      // Extract the value from the node ID: "genre:drama" → "drama", "director:12345" → keep ID for now
+      const reason = attrNode?.category ?? '';
+      const attrValue = attrNode ? attrNode.id.split(':').slice(1).join(':') : '';
       return {
         filmId: parseInt(nodes[idx].id.split(':')[1], 10),
-        reason: topCat,
+        reason,
+        attrValue,
       };
     });
 }
