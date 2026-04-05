@@ -864,6 +864,7 @@ h1 {
     transition: all 0.2s;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -910,6 +911,7 @@ h1 {
     padding: 0.4rem 1.25rem;
     border-top: 1px solid var(--border);
     min-height: 2rem;
+    overflow: hidden;
 }
 
 .card-metrics {
