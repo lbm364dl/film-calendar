@@ -35,6 +35,10 @@ export default function MultiSelectDropdown({
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener('mousedown', handle);
+    // Scroll modal to show dropdown
+    requestAnimationFrame(() => {
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
     return () => document.removeEventListener('mousedown', handle);
   }, [open]);
 

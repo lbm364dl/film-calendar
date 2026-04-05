@@ -1805,12 +1805,17 @@ a.similar-title:hover {
 }
 
 /* Multiselect dropdowns inside modal */
+/* Dropdowns inside modal: inline flow so modal scrolls to show them */
 .filter-modal .filter-dropdown {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
     margin-top: 4px;
+}
+
+.filter-modal .filter-multiselect.open {
+    z-index: 3100;
 }
 
 .filter-modal .filter-dd-options {
