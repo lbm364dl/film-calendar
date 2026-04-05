@@ -478,15 +478,21 @@ const KEYWORD_TRANSLATIONS_ES: Record<string, string> = {
 };
 
 function titleCase(s: string): string {
-  return s.replace(/\b\w/g, c => c.toUpperCase());
+  return s.replace(/(^|\s)\S/g, c => c.toUpperCase());
 }
+
+/** Categories where the value is a proper name (don't title-case). */
+const PROPER_NAME_CATEGORIES = new Set(['director', 'cast', 'cinematographer', 'composer', 'writer', 'company']);
 
 /** Translate an explainer attribute value (keyword/genre) to the user's language. */
 export function translateExplainerValue(value: string, reason: string, lang: LangKey): string {
+  // Proper names: return as-is from TMDB
+  if (PROPER_NAME_CATEGORIES.has(reason)) return value;
+
   if (lang === 'es') {
     if (reason === 'genre') {
       const translated = GENRE_TRANSLATIONS_ES[value.trim().toLowerCase()];
-      return translated ? titleCase(translated) : titleCase(value);
+      return titleCase(translated || value);
     }
     const kwLower = value.trim().toLowerCase();
     if (KEYWORD_TRANSLATIONS_ES[kwLower]) return titleCase(KEYWORD_TRANSLATIONS_ES[kwLower]);
