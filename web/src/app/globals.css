@@ -2643,39 +2643,42 @@ footer p {
 .auth-dropdown {
     position: absolute;
     top: calc(100% + 8px);
-    left: 0;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem;
-    min-width: 200px;
+    right: 0;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 1rem;
+    min-width: 220px;
     max-width: calc(100vw - 2rem);
     z-index: 100;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 107, 107, 0.1);
 }
 
 .auth-dropdown-email {
     font-size: 0.8rem;
     color: var(--text-dim);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
     word-break: break-all;
 }
 
 .auth-dropdown-btn {
     background: transparent;
-    border: none;
-    color: var(--accent);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
     cursor: pointer;
-    font-size: 0.85rem;
-    padding: 0.25rem 0;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
     width: 100%;
-    text-align: left;
+    text-align: center;
+    transition: all 0.2s;
 }
 
 .auth-dropdown-btn:hover {
-    text-decoration: underline;
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 /* Auth modal */
