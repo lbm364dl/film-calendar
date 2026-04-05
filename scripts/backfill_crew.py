@@ -62,9 +62,17 @@ def fetch_crew_and_recs(tmdb_id: int) -> dict:
     }
 
 def main():
-    # Get all films with TMDB URLs but no crew data
-    result = supabase.table("films").select("id, tmdb_url").eq("cinematographers", []).execute()
-    films = result.data or []
+    # Get all films with TMDB URLs but no crew data (paginate to avoid 1000-row limit)
+    films = []
+    offset = 0
+    QUERY_BATCH = 500
+    while True:
+        result = supabase.table("films").select("id, tmdb_url").eq("cinematographers", []).range(offset, offset + QUERY_BATCH - 1).execute()
+        batch = result.data or []
+        films.extend(batch)
+        if len(batch) < QUERY_BATCH:
+            break
+        offset += QUERY_BATCH
     print(f"Found {len(films)} films to backfill")
 
     updated = 0
