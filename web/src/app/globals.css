@@ -2766,10 +2766,22 @@ footer p {
     font-size: 0.7rem;
     color: var(--text-dim);
     text-align: left;
-    margin: 0.75rem 0 0;
-    padding: 0 0.25rem;
+    margin: 1.25rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
     line-height: 1.5;
     opacity: 0.7;
+}
+
+.auth-domain-note p {
+    margin: 0 0 0.2rem;
+}
+
+.auth-domain-url {
+    text-align: center;
+    font-style: italic;
+    color: var(--text);
+    margin: 0.3rem 0 !important;
 }
 
 .auth-oauth-divider {

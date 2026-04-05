@@ -19,8 +19,10 @@ const labels = {
     checkEmail: 'Revisa tu email para confirmar tu cuenta',
     loggingIn: 'Entrando...',
     signingUp: 'Creando cuenta...',
-    continueGoogle: 'Continuar con Google',
-    domainNote: 'Google mostrará "continuar a dkhesnmqbdxofhbtuzgr.supabase.co". Es nuestro servidor de autenticación gratuito, así mantenemos los costes al mínimo.',
+    continueGoogle: 'Continuar con Google *',
+    domainNote: '* Google mostrará',
+    domainUrl: 'continuar a dkhesnmqbdxofhbtuzgr.supabase.co',
+    domainExplain: 'Es nuestro servidor de autenticación gratuito, así mantenemos los costes al mínimo.',
     orWithEmail: 'o con email',
   },
   en: {
@@ -37,8 +39,10 @@ const labels = {
     checkEmail: 'Check your email to confirm your account',
     loggingIn: 'Signing in...',
     signingUp: 'Creating account...',
-    continueGoogle: 'Continue with Google',
-    domainNote: 'Google will show "continue to dkhesnmqbdxofhbtuzgr.supabase.co". That\'s our free auth server, it helps us keep maintenance costs as low as possible.',
+    continueGoogle: 'Continue with Google *',
+    domainNote: '* Google will show',
+    domainUrl: 'continue to dkhesnmqbdxofhbtuzgr.supabase.co',
+    domainExplain: 'That\'s our free auth server, it helps us keep maintenance costs as low as possible.',
     orWithEmail: 'or with email',
   },
 };
@@ -204,7 +208,6 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
               <span className="auth-oauth-google-g">G</span>
               <span>{t.continueGoogle}</span>
             </button>
-            <p className="auth-domain-note">{t.domainNote}</p>
 
             <div className="auth-oauth-divider">
               <span>{t.orWithEmail}</span>
@@ -246,6 +249,12 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
             >
               {isSignup ? t.switchToLogin : t.switchToSignup}
             </button>
+
+            <div className="auth-domain-note">
+              <p>{t.domainNote}</p>
+              <p className="auth-domain-url">{t.domainUrl}</p>
+              <p>{t.domainExplain}</p>
+            </div>
           </div>
         </div>
       )}
