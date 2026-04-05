@@ -71,8 +71,8 @@ export default memo(function FilmCard({
   const filmMatchScore = matchScores[film.id];
   const filmBreakdown = breakdowns[film.id];
   const isWatched = !!(watchedUrls && film.letterboxdShortUrl && watchedUrls.has(film.letterboxdShortUrl));
-  const showMatch = recommendReady && filmMatchScore !== undefined;
-  const scoreTooltip = showMatch && !isWatched ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
+  const showMatch = recommendReady && filmMatchScore !== undefined && !isWatched;
+  const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
 
   const titleText = getFilmTitle(film);
   const metadata: string[] = [];
@@ -83,38 +83,24 @@ export default memo(function FilmCard({
 
   return (
     <div className="film-card">
+      {/* Title + Letterboxd icon */}
       <div className="film-header">
-        <div className="film-title-row">
-          <div className="film-title">
-            {titleText}
-            {metadata.length > 0 && (
-              <span className="title-meta"> ({metadata.join(', ')})</span>
-            )}
-          </div>
-        </div>
-        <div className="card-actions">
-          {ratingValue && (
-            <div className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
-              <span className="metric-icon rating-icon" aria-hidden="true" />
-              {ratingValue}
-            </div>
-          )}
-          {viewersFormatted && (
-            <div className="viewers" title={viewersTooltip}>
-              <span className="metric-icon viewers-icon" aria-hidden="true" />
-              {viewersFormatted}
-            </div>
-          )}
-          {letterboxdLink && (
-            <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
-            </a>
+        <div className="film-title">
+          {titleText}
+          {metadata.length > 0 && (
+            <span className="title-meta"> ({metadata.join(', ')})</span>
           )}
         </div>
+        {letterboxdLink && (
+          <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
+          </a>
+        )}
       </div>
 
+      {/* Genres */}
       {film.genres.length > 0 && (
         <div className="film-genres">
           {film.genres.map((g, i) => (
@@ -123,6 +109,7 @@ export default memo(function FilmCard({
         </div>
       )}
 
+      {/* Sessions */}
       {film.dates.length > 0 && (
         <div className="film-dates">
           <SessionsDisplay
@@ -140,21 +127,35 @@ export default memo(function FilmCard({
         </div>
       )}
 
-      {showMatch && (
-        isWatched ? (
-          <div className="match-bar watched">
-            <span className="match-bar-label">{lang === 'es' ? 'Ya vista' : 'Watched'}</span>
-          </div>
-        ) : (
+      {/* Bottom strip: metrics + affinity */}
+      <div className="card-bottom-strip">
+        <div className="card-metrics">
+          {ratingValue && (
+            <span className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
+              <span className="metric-icon rating-icon" aria-hidden="true" />
+              {ratingValue}
+            </span>
+          )}
+          {viewersFormatted && (
+            <span className="viewers" title={viewersTooltip}>
+              <span className="metric-icon viewers-icon" aria-hidden="true" />
+              {viewersFormatted}
+            </span>
+          )}
+          {isWatched && recommendReady && (
+            <span className="watched-label">{lang === 'es' ? 'Vista' : 'Seen'}</span>
+          )}
+        </div>
+        {showMatch && (
           <div
-            className={`match-bar ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
+            className={`card-affinity ${filmMatchScore >= 70 ? 'high' : filmMatchScore >= 40 ? 'medium' : 'low'}`}
             title={scoreTooltip}
           >
-            <div className="match-bar-fill" style={{ width: `${Math.min(filmMatchScore, 100)}%` }} />
-            <span className="match-bar-label">{filmMatchScore}%</span>
+            <div className="card-affinity-fill" style={{ width: `${Math.min(filmMatchScore, 100)}%` }} />
+            <span className="card-affinity-label">{filmMatchScore}%</span>
           </div>
-        )
-      )}
+        )}
+      </div>
     </div>
   );
 })

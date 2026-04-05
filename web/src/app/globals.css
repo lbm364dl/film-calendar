@@ -843,12 +843,8 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-bottom: 0.75rem;
-}
-
-.film-title-row {
-    flex: 1;
 }
 
 .film-title {
@@ -856,6 +852,7 @@ h1 {
     font-weight: 600;
     line-height: 1.4;
     color: var(--text);
+    flex: 1;
 }
 
 .title-meta {
@@ -864,69 +861,70 @@ h1 {
     font-size: 0.95rem;
 }
 
-.card-actions {
+/* Bottom strip: metrics + affinity bar */
+.card-bottom-strip {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin: 0.75rem -1.25rem -1.25rem;
+    padding: 0.4rem 1.25rem;
+    border-top: 1px solid var(--border);
+    min-height: 2rem;
+}
+
+.card-metrics {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     flex-shrink: 0;
 }
 
-/* Affinity bar at bottom of card */
-.match-bar {
+.card-metrics .rating,
+.card-metrics .viewers {
+    font-size: 0.8rem;
+}
+
+.watched-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+.card-affinity {
+    flex: 1;
     position: relative;
-    height: 18px;
-    margin-top: 0.75rem;
-    border-radius: 0 0 8px 8px;
-    margin: 0.75rem -1.25rem -1.25rem;
+    height: 14px;
+    border-radius: 7px;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
     cursor: help;
 }
 
-.match-bar-fill {
+.card-affinity-fill {
     position: absolute;
     inset: 0;
-    border-radius: 0 0 8px 8px;
+    border-radius: 7px;
     transition: width 0.4s ease;
 }
 
-.match-bar.high .match-bar-fill {
-    background: rgba(76, 175, 80, 0.25);
-}
+.card-affinity.high .card-affinity-fill { background: rgba(76, 175, 80, 0.3); }
+.card-affinity.medium .card-affinity-fill { background: rgba(255, 183, 77, 0.25); }
+.card-affinity.low .card-affinity-fill { background: rgba(229, 115, 115, 0.2); }
 
-.match-bar.medium .match-bar-fill {
-    background: rgba(255, 183, 77, 0.2);
-}
-
-.match-bar.low .match-bar-fill {
-    background: rgba(229, 115, 115, 0.15);
-}
-
-.match-bar-label {
+.card-affinity-label {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
     pointer-events: none;
 }
 
-.match-bar.high .match-bar-label { color: #81c784; }
-.match-bar.medium .match-bar-label { color: #ffb74d; }
-.match-bar.low .match-bar-label { color: #e57373; }
-
-.match-bar.watched {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.match-bar.watched .match-bar-label {
-    color: var(--text-dim);
-    font-weight: 500;
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
-}
+.card-affinity.high .card-affinity-label { color: #81c784; }
+.card-affinity.medium .card-affinity-label { color: #ffb74d; }
+.card-affinity.low .card-affinity-label { color: #e57373; }
 
 
 .rating {
