@@ -45,10 +45,15 @@ export async function GET(request: Request) {
 
       // Return HTML that redirects client-side — ensures cookies are
       // stored by the browser before the next page load
-      return new NextResponse(
+      const response = new NextResponse(
         `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=${origin}${safePath}"><script>window.location.href="${origin}${safePath}"</script></head><body>Redirecting...</body></html>`,
         { headers: { 'content-type': 'text/html' } }
       );
+      // Copy auth cookies to the HTML response
+      for (const cookie of cookieStore.getAll()) {
+        response.cookies.set(cookie.name, cookie.value, cookie);
+      }
+      return response;
     }
   }
 
