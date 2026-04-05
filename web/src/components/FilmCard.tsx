@@ -75,23 +75,20 @@ export default memo(function FilmCard({
   const scoreTooltip = showMatch ? buildScoreTooltip(filmMatchScore, filmBreakdown, lang) : '';
 
   const titleText = getFilmTitle(film);
-  const metadata: string[] = [];
-  if (film.director) metadata.push(film.director);
-  if (film.year) metadata.push(String(film.year));
-  if (film.runtimeMinutes) metadata.push(`${film.runtimeMinutes} min`);
   const letterboxdLink = film.letterboxdShortUrl || film.letterboxdUrl;
 
   return (
     <div className="film-card">
-      {/* Title */}
       <div className="film-header">
         <div className="film-title">
-          {titleText}
-          {metadata.length > 0 && (
-            <span className="title-meta"> ({metadata.join(', ')})</span>
-          )}
+          {titleText}{film.year && <span className="title-year"> ({film.year})</span>}
         </div>
       </div>
+      {film.director && (
+        <div className="film-subtitle">
+          {film.director}{film.runtimeMinutes ? ` (${film.runtimeMinutes} min)` : ''}
+        </div>
+      )}
 
       {/* Genres */}
       {film.genres.length > 0 && (

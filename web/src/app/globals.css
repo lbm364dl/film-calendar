@@ -855,10 +855,15 @@ h1 {
     flex: 1;
 }
 
-.title-meta {
+.title-year {
     color: var(--text-dim);
     font-weight: 400;
-    font-size: 0.95rem;
+}
+
+.film-subtitle {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Bottom strip: metrics + affinity bar */
