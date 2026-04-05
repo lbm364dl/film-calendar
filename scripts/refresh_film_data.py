@@ -52,40 +52,52 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-def get_screened_films(viewers_only=False, recent_years=0):
-    """Get films with future screenings, optionally filtered."""
+def get_films(viewers_only=False, recent_years=0, future_only=False):
+    """Get films to process, optionally filtered."""
     from datetime import datetime
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:00")
-
-    all_film_ids = set()
-    offset = 0
     batch = 500
-    while True:
-        result = supabase.table("screenings").select("film_id").gte("showtime", now).range(offset, offset + batch - 1).execute()
-        rows = result.data or []
-        for r in rows:
-            all_film_ids.add(r["film_id"])
-        if len(rows) < batch:
-            break
-        offset += batch
 
-    if not all_film_ids:
-        return []
+    if future_only:
+        # Only films with future screenings
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:00")
+        all_film_ids = set()
+        offset = 0
+        while True:
+            result = supabase.table("screenings").select("film_id").gte("showtime", now).range(offset, offset + batch - 1).execute()
+            rows = result.data or []
+            for r in rows:
+                all_film_ids.add(r["film_id"])
+            if len(rows) < batch:
+                break
+            offset += batch
 
-    # Fetch film data
-    films = []
-    ids = list(all_film_ids)
-    for i in range(0, len(ids), batch):
-        chunk = ids[i:i + batch]
-        cols = "id, title, year, letterboxd_url, letterboxd_viewers, tmdb_url"
-        result = supabase.table("films").select(cols).in_("id", chunk).execute()
-        films.extend(result.data or [])
+        if not all_film_ids:
+            return []
+
+        films = []
+        ids = list(all_film_ids)
+        for i in range(0, len(ids), batch):
+            chunk = ids[i:i + batch]
+            cols = "id, title, year, letterboxd_url, letterboxd_viewers, tmdb_url"
+            result = supabase.table("films").select(cols).in_("id", chunk).execute()
+            films.extend(result.data or [])
+    else:
+        # All films in the database
+        films = []
+        offset = 0
+        while True:
+            cols = "id, title, year, letterboxd_url, letterboxd_viewers, tmdb_url"
+            result = supabase.table("films").select(cols).range(offset, offset + batch - 1).execute()
+            rows = result.data or []
+            films.extend(rows)
+            if len(rows) < batch:
+                break
+            offset += batch
 
     if viewers_only:
         films = [f for f in films if not f.get("letterboxd_viewers")]
 
     if recent_years > 0:
-        from datetime import datetime
         min_year = datetime.now().year - recent_years
         films = [f for f in films if (f.get("year") or 0) >= min_year]
 
@@ -199,6 +211,8 @@ def main():
     )
     parser.add_argument("--viewers-only", action="store_true",
                         help="Only fill missing letterboxd_viewers (no TMDB refresh)")
+    parser.add_argument("--future-only", action="store_true",
+                        help="Only process films with future screenings (default: all films)")
     parser.add_argument("--limit", type=int, default=0,
                         help="Stop after processing N films (0 = all)")
     parser.add_argument("--recent", type=int, default=0, metavar="YEARS",
@@ -207,7 +221,7 @@ def main():
                         help="Print what would be updated without writing to DB")
     args = parser.parse_args()
 
-    films = get_screened_films(viewers_only=args.viewers_only, recent_years=args.recent)
+    films = get_films(viewers_only=args.viewers_only, recent_years=args.recent, future_only=args.future_only)
 
     if not films:
         print("No films to process.")
