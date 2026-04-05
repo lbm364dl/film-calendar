@@ -7,13 +7,13 @@ import type { LangKey } from '@/lib/translations';
 const labels = {
   es: {
     login: 'Iniciar sesión',
-    signup: 'Registrarse',
+    signup: 'Crear cuenta',
     logout: 'Cerrar sesión',
     email: 'Email',
     password: 'Contraseña',
-    loginBtn: 'Entrar',
+    loginBtn: 'Iniciar sesión',
     signupBtn: 'Crear cuenta',
-    switchToSignup: '¿No tienes cuenta? Regístrate',
+    switchToSignup: '¿No tienes cuenta? Créala aquí',
     switchToLogin: '¿Ya tienes cuenta? Inicia sesión',
     error: 'Error',
     checkEmail: 'Revisa tu email para confirmar tu cuenta',
@@ -23,19 +23,19 @@ const labels = {
     orWithEmail: 'o con email',
   },
   en: {
-    login: 'Log in',
-    signup: 'Sign up',
-    logout: 'Log out',
+    login: 'Sign in',
+    signup: 'Create account',
+    logout: 'Sign out',
     email: 'Email',
     password: 'Password',
-    loginBtn: 'Log in',
-    signupBtn: 'Sign up',
-    switchToSignup: "Don't have an account? Sign up",
-    switchToLogin: 'Already have an account? Log in',
+    loginBtn: 'Sign in',
+    signupBtn: 'Create account',
+    switchToSignup: "Don't have an account? Create one",
+    switchToLogin: 'Already have an account? Sign in',
     error: 'Error',
     checkEmail: 'Check your email to confirm your account',
-    loggingIn: 'Logging in...',
-    signingUp: 'Signing up...',
+    loggingIn: 'Signing in...',
+    signingUp: 'Creating account...',
     continueGoogle: 'Continue with Google',
     orWithEmail: 'or with email',
   },
@@ -76,6 +76,13 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  // Listen for 'open-auth' custom event from other components
+  useEffect(() => {
+    const handler = () => { setShowAuthModal(true); setError(''); setMessage(''); };
+    window.addEventListener('open-auth', handler);
+    return () => window.removeEventListener('open-auth', handler);
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {

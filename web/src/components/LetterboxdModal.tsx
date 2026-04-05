@@ -59,7 +59,16 @@ export default function LetterboxdModal({
               <li dangerouslySetInnerHTML={{ __html: t(lang, 'lbStep3') }} />
             </ol>
             {!initialUserId && (
-              <p className="lb-persistence-note">{t(lang, 'lbSignInPrompt')}</p>
+              <p className="lb-persistence-note">
+                <button
+                  type="button"
+                  className="lb-signin-link"
+                  onClick={() => { onClose(); window.dispatchEvent(new Event('open-auth')); }}
+                >
+                  {t(lang, 'lbSignInAction')}
+                </button>
+                {' '}{t(lang, 'lbSignInSuffix')}
+              </p>
             )}
           </section>
 

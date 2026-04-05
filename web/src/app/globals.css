@@ -2589,18 +2589,34 @@ footer p {
 }
 
 .auth-login-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 0.35rem 0.85rem;
-    border-radius: 6px;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: var(--accent);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 0.8rem;
+    font-weight: 500;
     transition: all 0.2s;
 }
 
 .auth-login-btn:hover {
+    background: rgba(255, 107, 107, 0.2);
     border-color: var(--accent);
+}
+
+.lb-signin-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.lb-signin-link:hover {
     color: var(--text);
 }
 
