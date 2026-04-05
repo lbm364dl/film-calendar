@@ -172,12 +172,31 @@ export async function GET() {
         { liked: userLiked, watchedDates: userWatchedDates },
     );
 
+    // Build film ID → title lookup for resolving similarTo IDs
+    const allFilmTitles: Record<number, string> = {};
+    for (const f of allWatchedFilms) allFilmTitles[f.id] = '';
+    for (const f of screenedFilms) allFilmTitles[f.id] = '';
+    // Fetch titles for all referenced films
+    const titleIds = Object.keys(allFilmTitles).map(Number);
+    for (let i = 0; i < titleIds.length; i += BATCH) {
+        const batch = titleIds.slice(i, i + BATCH);
+        const { data: films } = await supabase.from('films').select('id, title').in('id', batch);
+        if (films) for (const f of films) allFilmTitles[f.id] = f.title;
+    }
+
     // Convert to { filmId: score } and { filmId: breakdown } maps
+    // Resolve similarTo IDs to titles
     const scores: Record<number, number> = {};
     const breakdowns: Record<number, CompactBreakdown> = {};
     for (const ms of matchScores) {
         scores[ms.filmId] = ms.score;
-        breakdowns[ms.filmId] = ms.breakdown;
+        const bd = { ...ms.breakdown };
+        if (bd.similarTo) {
+            bd.similarTo = (bd.similarTo as unknown as number[])
+                .map(id => allFilmTitles[id])
+                .filter(Boolean);
+        }
+        breakdowns[ms.filmId] = bd;
     }
 
     // Persist scores to user_film_scores for instant loading on next visit

@@ -54,6 +54,7 @@ export interface MatchScore {
 export interface CompactBreakdown {
     coverage: number;                    // 0–1: fraction of feature budget with real data
     byCategory: Record<string, number>;  // category → relative contribution
+    similarTo?: string[];                // titles of most similar watched films (top 3)
 }
 
 /** Detailed explanation of why a film got a particular score. */

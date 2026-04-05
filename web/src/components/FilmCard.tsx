@@ -8,9 +8,18 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildScoreTooltip(score: number, breakdown: CompactBreakdown | undefined, lang: LangKey): string {
+function buildScoreTooltip(
+  score: number,
+  breakdown: CompactBreakdown | undefined,
+  lang: LangKey,
+): string {
   const base = lang === 'es' ? `${score}% de afinidad` : `${score}% match`;
   if (!breakdown) return base;
+
+  const similarNames = breakdown.similarTo ?? [];
+  const similarLine = similarNames.length > 0
+    ? (lang === 'es' ? 'Similar a: ' : 'Similar to: ') + similarNames.join(', ')
+    : '';
 
   const catLabels: Record<string, string> = {
     genre: lang === 'es' ? 'Género' : 'Genre',
@@ -31,10 +40,10 @@ function buildScoreTooltip(score: number, breakdown: CompactBreakdown | undefine
     .map(([cat, frac]) => `${catLabels[cat] ?? cat} ${Math.round(frac * 100)}%`)
     .join(', ');
 
-  const coveragePct = Math.round(breakdown.coverage * 100);
-  const coverageLabel = lang === 'es' ? `Datos: ${coveragePct}%` : `Data: ${coveragePct}%`;
-
-  return topCats ? `${base}\n${topCats}\n${coverageLabel}` : `${base}\n${coverageLabel}`;
+  const parts = [base];
+  if (similarLine) parts.push(similarLine);
+  if (topCats) parts.push(topCats);
+  return parts.join('\n');
 }
 
 interface FilmCardProps {

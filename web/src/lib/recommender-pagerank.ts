@@ -305,6 +305,43 @@ function computeBreakdown(
   return { coverage, byCategory };
 }
 
+/**
+ * Find the top N watched films most connected to a screened film through
+ * shared attribute nodes in the graph. Uses PageRank probabilities as weights.
+ */
+function findSimilarWatched(
+  filmNodeIdx: number,
+  adjacency: GraphEdge[][],
+  nodes: GraphNode[],
+  probabilities: Float64Array,
+  watchedFilmIndices: Set<number>,
+  topN: number = 3,
+): number[] {
+  // For each attribute neighbor of this film, find which watched films share it
+  const watchedScores = new Map<number, number>();
+
+  for (const edge of adjacency[filmNodeIdx]) {
+    const attrNode = nodes[edge.target];
+    if (attrNode.category === 'film') continue;
+
+    const attrProb = probabilities[edge.target];
+    // Look at all films connected to this attribute
+    for (const attrEdge of adjacency[edge.target]) {
+      if (!watchedFilmIndices.has(attrEdge.target)) continue;
+      const contribution = attrProb * edge.weight * attrEdge.weight;
+      watchedScores.set(attrEdge.target, (watchedScores.get(attrEdge.target) ?? 0) + contribution);
+    }
+  }
+
+  // Sort by score, return top N film IDs
+  return [...watchedScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, topN)
+    .map(([idx]) => {
+      const id = nodes[idx].id; // "film:1234"
+      return parseInt(id.split(':')[1], 10);
+    });
+}
 
 // ── Seed weight computation ────────────────────────────────────────────────
 
@@ -439,6 +476,13 @@ export function computeRecommendationsWithBreakdown(
     seedWeights.push(weight);
   }
 
+  // Collect all watched film node indices for similarity lookup
+  const watchedFilmNodeIndices = new Set<number>();
+  for (const film of watchedFilms) {
+    const idx = nodeIndex.get(`film:${film.id}`);
+    if (idx !== undefined) watchedFilmNodeIndices.add(idx);
+  }
+
   if (seedIndices.length === 0) {
     return screenedFilms.map(f => ({
       filmId: f.id,
@@ -476,10 +520,13 @@ export function computeRecommendationsWithBreakdown(
     const normalized = range > 0 ? (raw - minRaw) / range : 0.5;
     const score = Math.round(5 + normalized * 90);
 
-    // Compute breakdown
+    // Compute breakdown + similar watched films
     const breakdown = idx >= 0
       ? computeBreakdown(idx, adjacency, nodes, probabilities)
       : { coverage: 0, byCategory: {} };
+    if (idx >= 0) {
+      breakdown.similarTo = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices);
+    }
 
     results.push({ filmId, score, breakdown });
   }
