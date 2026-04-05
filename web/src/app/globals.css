@@ -1871,13 +1871,9 @@ h1 {
 
 .filter-toggles-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.35rem;
     width: 100%;
-}
-
-.filter-section.filter-toggles-grid {
-    margin-bottom: 0.35rem;
 }
 
 .toggle-filter-btn {
