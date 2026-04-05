@@ -28,6 +28,7 @@ interface FilmCalendarProps {
   initialUserId: string | null;
   initialUserEmail: string | null;
   initialScores: Record<number, number>;
+  initialBreakdowns: Record<number, any>;
 }
 
 export default function FilmCalendar({
@@ -39,6 +40,7 @@ export default function FilmCalendar({
   initialUserId,
   initialUserEmail,
   initialScores,
+  initialBreakdowns,
 }: FilmCalendarProps) {
   // ─ Language ─
   const [lang, setLangState] = useState<LangKey>(initialLang);
@@ -57,7 +59,7 @@ export default function FilmCalendar({
   const lb = useLetterboxd({
     initialWatchlistUrls, initialWatchedUrls,
     initialWatchlistActive, initialWatchedActive,
-    initialUserId, initialScores,
+    initialUserId, initialScores, initialBreakdowns,
   });
 
   // ─ Filters ─

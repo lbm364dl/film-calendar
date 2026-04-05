@@ -16,6 +16,7 @@ async function getInitialProps() {
   let userId: string | null = null;
   let userEmail: string | null = null;
   let initialScores: Record<number, number> = {};
+  let initialBreakdowns: Record<number, any> = {};
 
   // 1. Language from cookie (works for both logged-in and anonymous users)
   const langCookie = cookieStore.get('fc_lang')?.value;
@@ -66,11 +67,12 @@ async function getInitialProps() {
       if (watchedUrls.length > 0) {
         const { data: scores } = await supabase
           .from('user_film_scores')
-          .select('film_id, score')
+          .select('film_id, score, breakdown')
           .eq('user_id', user.id);
         if (scores && scores.length > 0) {
           for (const s of scores) {
             initialScores[s.film_id] = s.score;
+            if (s.breakdown) initialBreakdowns[s.film_id] = s.breakdown;
           }
         }
       }
@@ -79,7 +81,7 @@ async function getInitialProps() {
     // Not logged in or DB error — use defaults
   }
 
-  return { lang, watchlistUrls, watchedUrls, watchlistActive, watchedActive, userId, userEmail, initialScores };
+  return { lang, watchlistUrls, watchedUrls, watchlistActive, watchedActive, userId, userEmail, initialScores, initialBreakdowns };
 }
 
 export default async function Home() {
@@ -95,6 +97,7 @@ export default async function Home() {
       initialUserId={props.userId}
       initialUserEmail={props.userEmail}
       initialScores={props.initialScores}
+      initialBreakdowns={props.initialBreakdowns}
     />
   );
 }

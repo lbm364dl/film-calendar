@@ -13,13 +13,14 @@ interface UseLetterboxdOptions {
   initialWatchedActive: boolean;
   initialUserId: string | null;
   initialScores: Record<number, number>;
+  initialBreakdowns: Record<number, any>;
 }
 
 export function useLetterboxd(options: UseLetterboxdOptions) {
   const {
     initialWatchlistUrls, initialWatchedUrls,
     initialWatchlistActive, initialWatchedActive,
-    initialUserId, initialScores,
+    initialUserId, initialScores, initialBreakdowns,
   } = options;
 
   const hasInitialScores = Object.keys(initialScores).length > 0;
@@ -34,7 +35,7 @@ export function useLetterboxd(options: UseLetterboxdOptions) {
   const [watchedActive, setWatchedActive] = useState(initialWatchedActive);
 
   const [matchScores, setMatchScores] = useState<Record<number, number>>(initialScores);
-  const [breakdowns, setBreakdowns] = useState<Record<number, CompactBreakdown>>({});
+  const [breakdowns, setBreakdowns] = useState<Record<number, CompactBreakdown>>(initialBreakdowns ?? {});
   const [sortByMatch, setSortByMatch] = useState(false);
   const [enrichmentTotal, setEnrichmentTotal] = useState(0);
   const [enrichmentProcessed, setEnrichmentProcessed] = useState(0);
@@ -166,19 +167,7 @@ export function useLetterboxd(options: UseLetterboxdOptions) {
     }
   }, [initialUserId, pollEnrichment]);
 
-  // Fetch breakdowns in background when initial scores came from SSR cache
-  useEffect(() => {
-    if (!initialUserId || !initialWatchedActive || initialWatchedUrls.length === 0) return;
-    if (!hasInitialScores) return;
-    let cancelled = false;
-    fetch('/api/recommend').then(r => r.ok ? r.json() : null).then(data => {
-      if (cancelled || !data) return;
-      if (data.breakdowns) setBreakdowns(data.breakdowns);
-      if (data.scores) setMatchScores(data.scores);
-    }).catch(() => {});
-    return () => { cancelled = true; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Breakdowns are now cached in user_film_scores alongside scores — no background fetch needed
 
   // Auto-resume enrichment + fetch recommendations on mount
   useEffect(() => {

@@ -236,11 +236,12 @@ export async function GET() {
         breakdowns[ms.filmId] = bd;
     }
 
-    // Persist scores to user_film_scores for instant loading on next visit
+    // Persist scores + breakdowns to user_film_scores for instant loading on next visit
     const scoreRows = matchScores.map(ms => ({
         user_id: user.id,
         film_id: ms.filmId,
         score: ms.score,
+        breakdown: breakdowns[ms.filmId] ?? null,
         computed_at: new Date().toISOString(),
     }));
 
