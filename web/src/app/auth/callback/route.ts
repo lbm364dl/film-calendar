@@ -38,20 +38,19 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      // Read return path from cookie (set before OAuth started)
       const rawNext = cookieStore.get('fc_auth_next')?.value;
       const next = rawNext ? decodeURIComponent(rawNext) : '/';
       const safePath = next.startsWith('/') ? next : '/';
-
-      // Clear the cookie
       cookieStore.set('fc_auth_next', '', { path: '/', maxAge: 0 });
 
-      // Add auth=1 param so client knows to reload for fresh SSR with cookies
-      const separator = safePath.includes('?') ? '&' : '?';
-      return NextResponse.redirect(`${origin}${safePath}${separator}auth=1`);
+      // Return HTML that redirects client-side — ensures cookies are
+      // stored by the browser before the next page load
+      return new NextResponse(
+        `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=${origin}${safePath}"><script>window.location.href="${origin}${safePath}"</script></head><body>Redirecting...</body></html>`,
+        { headers: { 'content-type': 'text/html' } }
+      );
     }
   }
 
-  // If something went wrong, redirect home anyway
   return NextResponse.redirect(`${origin}/`);
 }

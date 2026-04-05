@@ -70,13 +70,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <script dangerouslySetInnerHTML={{ __html: `
-          if(new URLSearchParams(location.search).has('auth')){
-            var u=new URL(location.href);u.searchParams.delete('auth');
-            history.replaceState(null,'',u.toString());
-            location.reload();
-          }
-        `}} />
       </body>
     </html>
   );
