@@ -772,12 +772,18 @@ h1 {
     cursor: pointer;
     padding: 0.3rem 0.9rem;
     transition: all 0.2s;
-    min-width: 170px;
-    text-align: center;
+    width: 190px;
     display: inline-flex;
     align-items: center;
+    position: relative;
+    padding-left: 1.8rem;
+    padding-right: 0.5rem;
     justify-content: center;
-    gap: 0.35rem;
+}
+
+.sort-toggle svg {
+    position: absolute;
+    left: 0.7rem;
 }
 
 .sort-toggle:hover {
@@ -1014,6 +1020,7 @@ h1 {
     justify-content: center;
     font-size: 1.5rem;
     text-decoration: none;
+    margin-left: auto;
     opacity: 0.8;
     transition: all 0.2s;
     background: rgba(255, 255, 255, 0.1);
@@ -1726,13 +1733,28 @@ h1 {
 .filter-dd-option input[type="checkbox"]:checked::after {
     content: '';
     position: absolute;
-    left: 3.5px;
-    top: 1px;
+    inset: 0;
+    margin: auto;
     width: 4px;
     height: 7px;
     border: solid #fff;
     border-width: 0 1.5px 1.5px 0;
-    transform: rotate(45deg);
+    transform: translateY(-1px) rotate(45deg);
+}
+
+.filter-dd-option input[type="checkbox"]:indeterminate {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.filter-dd-option input[type="checkbox"]:indeterminate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 6px;
+    height: 0;
+    border-bottom: 1.5px solid #fff;
 }
 
 /* Multiselect dropdowns inside modal */
