@@ -88,6 +88,13 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
     return () => window.removeEventListener('open-auth', openAuth);
   }, []);
 
+  useEffect(() => {
+    if (!showAuthModal) return;
+    const handle = (e: KeyboardEvent) => { if (e.key === 'Escape') closeAuth(); };
+    document.addEventListener('keydown', handle);
+    return () => document.removeEventListener('keydown', handle);
+  }, [showAuthModal]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
