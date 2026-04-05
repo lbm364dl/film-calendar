@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Madrid Film Calendar' }],
   openGraph: {
     type: 'website',
-    url: 'https://madrid-film-calendar.vercel.app/',
+    url: 'https://madridfilmcalendar.com/',
     title: 'Madrid Film Calendar — Cartelera de cine independiente en Madrid',
     description: 'Cartelera de cine independiente y alternativo en Madrid. Sesiones, horarios y películas en Cineteca, Doré, Sala Berlanga, Sala Equis, Renoir, Golem, Embajadores y más. Actualizado a diario.',
     siteName: 'Madrid Film Calendar',
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "WebApplication",
               "name": "Madrid Film Calendar",
               "alternateName": "Cartelera de cine independiente en Madrid",
-              "url": "https://madrid-film-calendar.vercel.app/",
+              "url": "https://madridfilmcalendar.com/",
               "description": "Cartelera de cine independiente y alternativo en Madrid. Sesiones, horarios y películas en Cineteca, Doré, Sala Berlanga, Sala Equis, Cines Renoir, Golem, Embajadores y más.",
               "applicationCategory": "EntertainmentApplication",
               "operatingSystem": "Web",
