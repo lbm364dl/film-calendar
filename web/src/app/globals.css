@@ -975,7 +975,7 @@ h1 {
     font-size: 0.75rem;
     color: var(--text-dim);
     padding: 0.4rem 1.25rem 0.5rem;
-    margin: 0.35rem -1.25rem -1.25rem;
+    margin: 0.5rem -1.25rem -1.25rem;
     border-radius: 0 0 12px 12px;
 }
 
@@ -1001,8 +1001,8 @@ a.similar-title:hover {
 .similar-tag {
     flex-shrink: 0;
     font-size: 0.65rem;
-    color: var(--accent);
-    background: rgba(255, 107, 107, 0.1);
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.06);
     padding: 0.1rem 0.4rem;
     border-radius: 3px;
     white-space: nowrap;

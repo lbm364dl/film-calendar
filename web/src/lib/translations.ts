@@ -283,3 +283,69 @@ export function translateGenre(genre: string, lang: LangKey): string {
   if (!genre || lang !== 'es') return genre;
   return GENRE_TRANSLATIONS_ES[genre.trim().toLowerCase()] || genre;
 }
+
+const KEYWORD_TRANSLATIONS_ES: Record<string, string> = {
+  'based on novel or book': 'basado en libro',
+  'based on true story': 'historia real',
+  'coming of age': 'madurez',
+  'friendship': 'amistad',
+  'murder': 'asesinato',
+  'love': 'amor',
+  'dark comedy': 'comedia negra',
+  'high school': 'instituto',
+  'romance': 'romance',
+  'tragedy': 'tragedia',
+  'parent child relationship': 'relación padre-hijo',
+  'surrealism': 'surrealismo',
+  'villain': 'villano',
+  'revenge': 'venganza',
+  'dystopia': 'distopía',
+  'loneliness': 'soledad',
+  'escape': 'huida',
+  'prison': 'prisión',
+  'death': 'muerte',
+  'war': 'guerra',
+  'racism': 'racismo',
+  'corruption': 'corrupción',
+  'kidnapping': 'secuestro',
+  'politics': 'política',
+  'homosexuality': 'homosexualidad',
+  'jealousy': 'celos',
+  'betrayal': 'traición',
+  'obsession': 'obsesión',
+  'time travel': 'viajes en el tiempo',
+  'heist': 'atraco',
+  'martial arts': 'artes marciales',
+  'alien': 'alienígena',
+  'zombie': 'zombi',
+  'vampire': 'vampiro',
+  'spy': 'espía',
+  'dream': 'sueño',
+  'supernatural': 'sobrenatural',
+  'biography': 'biografía',
+  'satire': 'sátira',
+  'immigration': 'inmigración',
+  'poverty': 'pobreza',
+  'memory': 'memoria',
+  'identity': 'identidad',
+  'isolation': 'aislamiento',
+  'rebellion': 'rebelión',
+  'survival': 'supervivencia',
+  'guilt': 'culpa',
+  'madness': 'locura',
+  'fate': 'destino',
+  'philosophical': 'filosófico',
+};
+
+/** Translate an explainer attribute value (keyword/genre) to the user's language. */
+export function translateExplainerValue(value: string, reason: string, lang: LangKey): string {
+  if (lang !== 'es') return value;
+  // Genres
+  if (reason === 'genre') {
+    return GENRE_TRANSLATIONS_ES[value.trim().toLowerCase()] || value;
+  }
+  // Keywords
+  const kwLower = value.trim().toLowerCase();
+  if (KEYWORD_TRANSLATIONS_ES[kwLower]) return KEYWORD_TRANSLATIONS_ES[kwLower];
+  return value;
+}

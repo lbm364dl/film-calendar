@@ -2,17 +2,18 @@
 
 import { memo } from 'react';
 import { formatViewerCount } from '@/lib/film-helpers';
-import { t, translateGenre, translateSpecialType } from '@/lib/translations';
+import { t, translateGenre, translateSpecialType, translateExplainerValue } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarData(breakdown: CompactBreakdown | undefined): { title: string; value: string; url?: string } | null {
+function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string } | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
   const s = items[0];
-  return { title: s.title, value: s.value || s.reason, url: s.url };
+  const rawValue = s.value || s.reason;
+  return { title: s.title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url };
 }
 
 interface FilmCardProps {
@@ -46,7 +47,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarData = showMatch ? buildSimilarData(breakdown) : null;
+  const similarData = showMatch ? buildSimilarData(breakdown, lang) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
