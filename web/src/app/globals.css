@@ -99,14 +99,14 @@ h1 {
 }
 
 .theater-multiselect {
-    grid-column: 1 / 11;
+    grid-column: 1 / 8;
     grid-row: 1;
     position: relative;
     z-index: 100;
 }
 
 .clear-grid-btn {
-    grid-column: 11 / 13;
+    grid-column: 8 / 13;
     grid-row: 1;
     display: flex;
     align-items: center;
@@ -152,12 +152,12 @@ h1 {
     }
 
     .theater-multiselect {
-        grid-column: 1 / 11;
+        grid-column: 1 / 8;
         grid-row: 1;
     }
 
     .clear-grid-btn {
-        grid-column: 11 / 13;
+        grid-column: 8 / 13;
         grid-row: 1;
     }
 
