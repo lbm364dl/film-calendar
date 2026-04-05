@@ -20,7 +20,7 @@ const labels = {
     loggingIn: 'Entrando...',
     signingUp: 'Creando cuenta...',
     continueGoogle: 'Continuar con Google',
-    domainNote: 'Google mostrará "continuar a dkhesnmqbdxofhbtuzgr.supabase.co". Es nuestro servidor de autenticación gratuito — así mantenemos los costes al mínimo.',
+    domainNote: 'Google mostrará "continuar a dkhesnmqbdxofhbtuzgr.supabase.co". Es nuestro servidor de autenticación gratuito, así mantenemos los costes al mínimo.',
     orWithEmail: 'o con email',
   },
   en: {
@@ -38,7 +38,7 @@ const labels = {
     loggingIn: 'Signing in...',
     signingUp: 'Creating account...',
     continueGoogle: 'Continue with Google',
-    domainNote: 'Google will show "continue to dkhesnmqbdxofhbtuzgr.supabase.co". That\'s our free auth server — it helps us keep maintenance costs as low as possible.',
+    domainNote: 'Google will show "continue to dkhesnmqbdxofhbtuzgr.supabase.co". That\'s our free auth server, it helps us keep maintenance costs as low as possible.',
     orWithEmail: 'or with email',
   },
 };
