@@ -179,6 +179,7 @@ export default function FilmCalendar({
         zipInputRef={lb.zipInputRef}
         onZipUpload={lb.handleZipUpload}
         onHelp={helpModal.open}
+        onClearAllFilters={filters.clearAllFilters}
       />
 
       {/* Stats + Sort toggle */}

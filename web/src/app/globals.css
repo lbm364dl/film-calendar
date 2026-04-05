@@ -99,10 +99,30 @@ h1 {
 }
 
 .theater-multiselect {
-    grid-column: 1 / 13;
+    grid-column: 1 / 11;
     grid-row: 1;
     position: relative;
     z-index: 100;
+}
+
+.clear-grid-btn {
+    grid-column: 11 / 13;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.clear-grid-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 .search-box {
@@ -132,7 +152,12 @@ h1 {
     }
 
     .theater-multiselect {
-        grid-column: 1 / 13;
+        grid-column: 1 / 11;
+        grid-row: 1;
+    }
+
+    .clear-grid-btn {
+        grid-column: 11 / 13;
         grid-row: 1;
     }
 

@@ -25,6 +25,7 @@ interface FiltersGridProps {
   // Actions
   onOpenMoreFilters: () => void;
   activeAdvancedFilterCount: number;
+  onClearAllFilters: () => void;
   // File inputs
   zipInputRef: React.RefObject<HTMLInputElement | null>;
   onZipUpload: (file: File) => void;
@@ -38,7 +39,7 @@ export default function FiltersGrid({
   selectedTheaters, onToggleTheater, onToggleTheaterGroup, onSelectAllTheaters, onSelectNoneTheaters,
   lbHasData, lbFilterActive, onOpenLbModal,
   onOpenMoreFilters, activeAdvancedFilterCount,
-  zipInputRef, onZipUpload, onHelp,
+  zipInputRef, onZipUpload, onHelp, onClearAllFilters,
 }: FiltersGridProps) {
   const dateInputRef = useRef<HTMLInputElement>(null);
   const dateMin = formatDateInputValue(getLocalTodayStart());
@@ -127,6 +128,10 @@ export default function FiltersGrid({
         onSelectNone={onSelectNoneTheaters}
         onHelp={() => onHelp(t(lang, 'theaterTooltipTitle'), t(lang, 'theaterTooltipBody'))}
       />
+
+      <button type="button" className="clear-grid-btn" title={t(lang, 'clearFiltersTitle')} onClick={onClearAllFilters}>
+        &times;
+      </button>
     </div>
   );
 }
