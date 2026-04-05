@@ -316,6 +316,7 @@ function findSimilarWatched(
   nodes: GraphNode[],
   probabilities: Float64Array,
   watchedFilmIndices: Set<number>,
+  totalFilms: number,
   topN: number = 3,
 ): { filmId: number; reason: string; attrValue: string }[] {
   // Per watched film: total score + per attribute node scores
@@ -324,6 +325,10 @@ function findSimilarWatched(
   for (const edge of adjacency[filmNodeIdx]) {
     const attrNode = nodes[edge.target];
     if (attrNode.category === 'film') continue;
+
+    // Skip hub nodes — too many films connected, not discriminating
+    const filmNeighborCount = adjacency[edge.target].filter(e => nodes[e.target].category === 'film').length;
+    if (filmNeighborCount > totalFilms * 0.15) continue;
 
     const attrProb = probabilities[edge.target];
     for (const attrEdge of adjacency[edge.target]) {
@@ -542,7 +547,7 @@ export function computeRecommendationsWithBreakdown(
       : { coverage: 0, byCategory: {} };
     if (idx >= 0) {
       // Store as {filmId, reason} temporarily — API resolves filmId to title
-      (breakdown as any)._similarRaw = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices);
+      (breakdown as any)._similarRaw = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices, allFilms.length);
     }
 
     results.push({ filmId, score, breakdown });
