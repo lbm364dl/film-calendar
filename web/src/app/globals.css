@@ -967,34 +967,13 @@ h1 {
 .card-affinity.low .card-affinity-label { color: #e57373; }
 
 .card-similar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding: 0.5rem 1.25rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    padding: 0.35rem 1.25rem;
     margin: 0 -1.25rem -1.25rem;
     border-radius: 0 0 12px 12px;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid var(--border);
-}
-
-.similar-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.75rem;
-    color: var(--text);
-}
-
-.similar-title {
-    font-weight: 500;
-}
-
-.similar-tag {
-    font-size: 0.65rem;
-    color: var(--accent);
-    background: rgba(255, 107, 107, 0.1);
-    padding: 0.1rem 0.4rem;
-    border-radius: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 

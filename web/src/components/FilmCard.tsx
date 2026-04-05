@@ -8,13 +8,12 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarItems(breakdown: CompactBreakdown | undefined): { title: string; tag: string }[] | null {
+function buildSimilarLine(breakdown: CompactBreakdown | undefined): string | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
-  return items.slice(0, 2).map(s => ({
-    title: s.title,
-    tag: s.value || s.reason,
-  }));
+  const s = items[0];
+  const value = s.value || s.reason;
+  return `${s.title} · ${value}`;
 }
 
 interface FilmCardProps {
@@ -48,7 +47,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarItems = showMatch ? buildSimilarItems(breakdown) : null;
+  const similarLine = showMatch ? buildSimilarLine(breakdown) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
@@ -132,15 +131,8 @@ export default memo(function FilmCard({
           </a>
         )}
       </div>
-      {similarItems && (
-        <div className="card-similar">
-          {similarItems.map((s, i) => (
-            <span key={i} className="similar-item">
-              <span className="similar-title">{s.title}</span>
-              <span className="similar-tag">{s.tag}</span>
-            </span>
-          ))}
-        </div>
+      {similarLine && (
+        <div className="card-similar">{similarLine}</div>
       )}
     </div>
   );
