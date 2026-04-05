@@ -434,6 +434,7 @@ const KEYWORD_TRANSLATIONS_ES: Record<string, string> = {
   'hotel': 'hotel',
   'hospital': 'hospital',
   'train': 'tren',
+  'travel': 'viajes',
   // Locations
   'los angeles, california': 'Los Ángeles',
   'new york city': 'Nueva York',
