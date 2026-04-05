@@ -73,10 +73,9 @@ def fetch_letterboxd_info(url: str, browser=None) -> dict:
     if browser:
         try:
             browser.get(url)
-            time.sleep(2)
 
             try:
-                WebDriverWait(browser, 8).until(
+                WebDriverWait(browser, 5).until(
                     EC.presence_of_element_located(
                         (By.CSS_SELECTOR, "div.production-statistic.-watches, a.display-rating")
                     )
