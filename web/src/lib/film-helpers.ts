@@ -13,6 +13,13 @@ export function isEmbajadoresLocation(loc: string) {
   return EMBAJADORES_LOCATIONS.includes(loc);
 }
 
+export function isSpanishFilm(film: Film) {
+  const lang = film.primaryLanguage;
+  if (!lang) return false;
+  const values = Array.isArray(lang) ? lang : [lang];
+  return values.some(v => v === 'es' || v === 'Spanish');
+}
+
 export function normalizeText(text: string) {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
@@ -71,6 +78,7 @@ export function mapFilmRows(rows: FilmRow[]): Film[] {
       url_tickets: s.url_tickets || '',
       url_info: s.url_info || '',
       version: s.version || null,
+      special: (s as any).special || null,
     }));
 
     const locations = [...new Set(dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];

@@ -7,6 +7,7 @@ export interface Screening {
   url_tickets: string;
   url_info: string;
   version: string | null;
+  special: string | null;
 }
 
 /** A film row from the database, with nested screenings. */
@@ -60,6 +61,7 @@ export interface DateEntry {
   url_tickets: string;
   url_info: string;
   version: string | null;
+  special: string | null;
 }
 
 export interface SessionModalData {
