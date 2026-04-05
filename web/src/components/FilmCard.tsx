@@ -8,12 +8,12 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string } | null {
+function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string; valueUrl?: string } | null {
   const items = breakdown?.similarTo;
   if (!items || items.length === 0) return null;
   const s = items[0];
   const rawValue = s.value || s.reason;
-  return { title: s.title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url };
+  return { title: s.title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
 }
 
 interface FilmCardProps {
@@ -139,7 +139,11 @@ export default memo(function FilmCard({
           ) : (
             <span className="similar-title">{similarData.title}</span>
           )}
-          <span className="similar-tag">{similarData.value}</span>
+          {similarData.valueUrl ? (
+            <a href={similarData.valueUrl} className="similar-tag similar-tag-link" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.value}</a>
+          ) : (
+            <span className="similar-tag">{similarData.value}</span>
+          )}
         </div>
       )}
     </div>

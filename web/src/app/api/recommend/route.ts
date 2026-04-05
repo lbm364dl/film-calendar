@@ -224,7 +224,10 @@ export async function GET() {
                 .map(r => {
                     const key = `${r.reason}:${r.attrValue}`;
                     const resolvedValue = attrNames[key] || '';
-                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined };
+                    const PERSON_CATEGORIES = ['director', 'cast', 'cinematographer', 'composer', 'writer'];
+                    const valueUrl = PERSON_CATEGORIES.includes(r.reason) && r.attrValue
+                        ? `https://www.themoviedb.org/person/${r.attrValue}` : undefined;
+                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined, valueUrl };
                 })
                 .filter(r => r.value); // Skip entries where the attribute couldn't be resolved
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
