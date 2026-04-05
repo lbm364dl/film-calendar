@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PageRank Graph — Film Recommendations</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,system-ui,'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;overflow:hidden;height:100vh}
+
+.top-bar{display:flex;align-items:center;gap:12px;padding:8px 16px;background:#111;border-bottom:1px solid #222;z-index:10;position:relative}
+.top-bar h1{font-size:1em;font-weight:600;white-space:nowrap}
+.top-bar .controls{display:flex;gap:8px;align-items:center;flex:1;flex-wrap:wrap}
+.top-bar label{font-size:.75em;color:#999}
+.top-bar select,.top-bar input[type=range]{font-size:.75em;background:#1a1a1a;color:#ccc;border:1px solid #333;border-radius:4px;padding:2px 6px}
+.top-bar input[type=range]{width:80px}
+.top-bar .val{font-size:.7em;color:#666;min-width:20px}
+
+#drop-zone{padding:4px 12px;border:1px dashed #444;border-radius:4px;font-size:.7em;color:#888;cursor:pointer;text-align:center;min-width:200px;transition:.2s}
+#drop-zone:hover,#drop-zone.over{border-color:#f5c518;color:#f5c518}
+#drop-zone.loaded{border-color:#4CAF50;color:#4CAF50;border-style:solid}
+#file-input{display:none}
+
+.canvas-wrap{position:relative;width:100%;height:calc(100vh - 44px)}
+canvas{display:block;width:100%;height:100%}
+
+#tooltip{position:absolute;pointer-events:none;background:rgba(20,20,20,.95);border:1px solid #333;border-radius:6px;padding:8px 12px;font-size:.8em;max-width:320px;display:none;z-index:20;line-height:1.4}
+#tooltip .tt-title{font-weight:700;margin-bottom:4px}
+#tooltip .tt-cat{color:#999;font-size:.85em;margin-bottom:4px}
+#tooltip .tt-details{font-size:.85em;color:#bbb}
+#tooltip .tt-score{color:#f5c518;font-weight:600}
+
+.legend{position:absolute;bottom:12px;left:12px;background:rgba(15,15,15,.9);border:1px solid #222;border-radius:6px;padding:8px 12px;font-size:.7em;z-index:10}
+.legend-row{display:flex;align-items:center;gap:6px;margin:2px 0}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.legend .legend-section{color:#999;font-weight:600;margin-top:4px;margin-bottom:2px}
+
+.stats{position:absolute;top:52px;right:12px;background:rgba(15,15,15,.9);border:1px solid #222;border-radius:6px;padding:8px 12px;font-size:.7em;z-index:10;min-width:170px}
+.stats div{margin:2px 0}
+.stats .stat-val{color:#f5c518;font-weight:600}
+
+#info-panel{position:absolute;top:52px;left:12px;background:rgba(15,15,15,.95);border:1px solid #333;border-radius:6px;padding:12px 16px;font-size:.8em;z-index:10;max-width:320px;display:none;max-height:calc(100vh - 120px);overflow-y:auto}
+#info-panel .ip-title{font-weight:700;font-size:1.1em;margin-bottom:6px}
+#info-panel .ip-close{position:absolute;top:4px;right:8px;cursor:pointer;color:#666;font-size:1.2em}
+#info-panel .ip-row{margin:3px 0;color:#bbb}
+#info-panel .ip-label{color:#888;font-size:.85em}
+#info-panel .ip-connections{margin-top:8px;border-top:1px solid #222;padding-top:6px}
+#info-panel .ip-conn{display:flex;align-items:center;gap:4px;margin:2px 0;font-size:.85em}
+#info-panel .ip-conn .cd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>PageRank Graph</h1>
+  <div class="controls">
+    <label>Top films:
+      <select id="top-n">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+    </label>
+    <label>Seeds:
+      <select id="seed-n">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+      </select>
+    </label>
+    <label>Repulsion: <input type="range" id="repulsion" min="50" max="600" value="200"> <span class="val" id="repulsion-val">200</span></label>
+    <label>Link dist: <input type="range" id="link-dist" min="30" max="200" value="80"> <span class="val" id="link-dist-val">80</span></label>
+  </div>
+  <div id="drop-zone" tabindex="0" role="button">
+    Drop Letterboxd export .zip here
+  </div>
+  <input type="file" id="file-input" accept=".zip,.csv">
+</div>
+
+<div class="canvas-wrap">
+  <canvas id="graph"></canvas>
+  <div id="tooltip"></div>
+  <div id="info-panel"></div>
+
+  <div class="legend">
+    <div class="legend-section">Node types</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#f5c518"></div> Seed film (watched/liked)</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#e74c3c"></div> Recommended film</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#3498db"></div> Director</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#2ecc71"></div> Genre</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#9b59b6"></div> Country</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#e67e22"></div> Language</div>
+    <div class="legend-row"><div class="legend-dot" style="background:#1abc9c"></div> Decade</div>
+    <div class="legend-section" style="margin-top:6px">Size = PageRank probability</div>
+    <div class="legend-section">Scroll to zoom, drag to pan</div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+</div>
+
+<script>
+const CAT_COLORS = {
+  seed:      '#f5c518',
+  recommend: '#e74c3c',
+  director:  '#3498db',
+  genre:     '#2ecc71',
+  country:   '#9b59b6',
+  language:  '#e67e22',
+  decade:    '#1abc9c',
+};
+
+const EDGE_WEIGHTS = { director: 3.0, keyword: 2.5, country: 2.0, cast: 1.5, genre: 1.5, decade: 1.5, collection: 1.0, language: 1.0, company: 1.0 };
+const MAX_HUB_FRACTION = 0.30;
+
+// ── State ──────────────────────────────────────────────────────────────────
+let allFilms = [];
+let userRatings = {};       // url -> rating (0.5-5.0)
+let userLiked = {};         // url -> true
+let userWatchedDates = {};  // url -> "YYYY-MM-DD"
+let watchedFilms = [];      // film objects parsed from export
+let graphData = null;
+
+// ── Load screenings.json ───────────────────────────────────────────────────
+async function loadScreenings() {
+  try {
+    const resp = await fetch('docs/screenings.json');
+    allFilms = await resp.json();
+    document.getElementById('stats').innerHTML =
+      `<div>Films loaded: <span class="stat-val">${allFilms.length}</span></div>
+       <div>Drop Letterboxd .zip to start</div>`;
+  } catch (e) {
+    document.getElementById('stats').innerHTML =
+      `<div style="color:#e74c3c">Failed to load screenings.json</div>
+       <div style="color:#999">Serve with: python3 -m http.server 8000</div>`;
+  }
+}
+
+// ── CSV parsing ────────────────────────────────────────────────────────────
+function parseCSVRow(line) {
+  const result = [];
+  let current = '', inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') { inQuotes = !inQuotes; continue; }
+    if (ch === ',' && !inQuotes) { result.push(current); current = ''; continue; }
+    current += ch;
+  }
+  result.push(current);
+  return result;
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return [];
+  const headers = parseCSVRow(lines[0]).map(h => h.trim());
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const vals = parseCSVRow(lines[i]);
+    const row = {};
+    for (let j = 0; j < headers.length; j++) row[headers[j]] = vals[j]?.trim() || '';
+    rows.push(row);
+  }
+  return rows;
+}
+
+// ── Parse Letterboxd ZIP export ────────────────────────────────────────────
+async function parseLetterboxdZip(buffer) {
+  const zip = await JSZip.loadAsync(buffer);
+
+  let watchedFile = null, ratingsFile = null, likedFile = null;
+  zip.forEach((path, file) => {
+    const lower = path.toLowerCase();
+    if (lower.endsWith('likes/films.csv')) { likedFile = file; return; }
+    const base = lower.split('/').pop();
+    if (base === 'watched.csv') watchedFile = file;
+    if (base === 'ratings.csv') ratingsFile = file;
+  });
+
+  if (!watchedFile) throw new Error('No watched.csv found in ZIP');
+
+  // Parse watched.csv
+  const watchedRows = parseCSV(await watchedFile.async('string'));
+  const ratings = {};
+  const liked = {};
+  const dates = {};
+  const films = [];
+
+  for (const row of watchedRows) {
+    const url = row['Letterboxd URI'];
+    if (!url) continue;
+    const date = row['Date'];
+    if (date) dates[url] = date;
+    films.push({
+      letterboxd_url: url,
+      title: row['Name'] || url.split('/').filter(Boolean).pop(),
+      year: row['Year'] ? parseInt(row['Year']) : null,
+      director: null, genres: [], country: [], primary_language: [], spoken_languages: [],
+    });
+  }
+
+  // Parse ratings.csv
+  if (ratingsFile) {
+    for (const row of parseCSV(await ratingsFile.async('string'))) {
+      const url = row['Letterboxd URI'];
+      const r = parseFloat(row['Rating']);
+      if (url && !isNaN(r) && r > 0) ratings[url] = r;
+    }
+  }
+
+  // Parse likes/films.csv
+  if (likedFile) {
+    for (const row of parseCSV(await likedFile.async('string'))) {
+      const url = row['Letterboxd URI'];
+      if (url) liked[url] = true;
+    }
+  }
+
+  return { ratings, liked, dates, films };
+}
+
+// ── Fallback: parse a single ratings.csv ───────────────────────────────────
+function parseRatingsCSV(text) {
+  const rows = parseCSV(text);
+  const ratings = {}, films = [];
+  for (const row of rows) {
+    const url = row['Letterboxd URI'];
+    const r = parseFloat(row['Rating']);
+    if (url && !isNaN(r) && r > 0) {
+      ratings[url] = r;
+      films.push({
+        letterboxd_url: url,
+        title: row['Name'] || url.split('/').filter(Boolean).pop(),
+        year: row['Year'] ? parseInt(row['Year']) : null,
+        director: null, genres: [], country: [], primary_language: [], spoken_languages: [],
+      });
+    }
+  }
+  return { ratings, liked: {}, dates: {}, films };
+}
+
+// ── Seed weight (mirrors recommender-pagerank.ts) ──────────────────────────
+const DEFAULT_WATCHED_WEIGHT = 0.5625;
+
+function recencyFactor(url, now) {
+  const dateStr = userWatchedDates[url];
+  if (!dateStr) return 1.0;
+  const watchedMs = new Date(dateStr).getTime();
+  if (isNaN(watchedMs)) return 1.0;
+  const daysSince = (now - watchedMs) / (1000 * 60 * 60 * 24);
+  return Math.max(0.3, Math.exp(-0.00385 * daysSince));
+}
+
+function computeSeedWeight(url, now) {
+  const rating = userRatings[url];
+  if (rating != null) {
+    if (rating < 3.0) return 0;
+    return Math.pow((rating - 1.5) / 2.5, 2);
+  }
+  if (userLiked[url]) {
+    return 4.0 * recencyFactor(url, now);
+  }
+  return DEFAULT_WATCHED_WEIGHT * recencyFactor(url, now);
+}
+
+// ── Build knowledge graph ──────────────────────────────────────────────────
+function buildGraph(screenedFilms, seedFilms, topN, seedN) {
+  const nodeIndex = new Map(), nodes = [], adjacency = [];
+
+  function getOrCreate(id, category) {
+    let idx = nodeIndex.get(id);
+    if (idx !== undefined) return idx;
+    idx = nodes.length;
+    nodeIndex.set(id, idx);
+    nodes.push({ id, category });
+    adjacency.push([]);
+    return idx;
+  }
+  function addEdge(a, b, weight) {
+    adjacency[a].push({ target: b, weight });
+    adjacency[b].push({ target: a, weight });
+  }
+  function connectAttrs(film, filmIdx) {
+    if (film.director) {
+      for (const name of film.director.split(',').map(s => s.trim()).slice(0, 2)) {
+        if (!name) continue;
+        addEdge(filmIdx, getOrCreate('director:' + name.toLowerCase(), 'director'), EDGE_WEIGHTS.director);
+      }
+    }
+    for (const g of (film.genres || []))
+      addEdge(filmIdx, getOrCreate('genre:' + g.toLowerCase(), 'genre'), EDGE_WEIGHTS.genre);
+    for (const c of (film.country || []))
+      addEdge(filmIdx, getOrCreate('country:' + c.toLowerCase(), 'country'), EDGE_WEIGHTS.country);
+    const langs = new Set();
+    for (const l of (film.primary_language || [])) langs.add(l.toLowerCase());
+    for (const l of (film.spoken_languages || [])) langs.add(l.toLowerCase());
+    for (const l of langs)
+      addEdge(filmIdx, getOrCreate('lang:' + l, 'language'), EDGE_WEIGHTS.language);
+    addEdge(filmIdx, getOrCreate('decade:' + getDecade(film.year), 'decade'), EDGE_WEIGHTS.decade);
+  }
+
+  const watchedUrlSet = new Set(seedFilms.map(f => f.letterboxd_url));
+  const screenedUrlSet = new Set();
+
+  // 1. Add all screened films
+  for (const film of screenedFilms) {
+    screenedUrlSet.add(film.letterboxd_url);
+    const isSeed = watchedUrlSet.has(film.letterboxd_url);
+    connectAttrs(film, getOrCreate('film:' + film.letterboxd_url, isSeed ? 'seed' : 'recommend'));
+  }
+
+  // 2. Add seed films NOT in screenings (bridge through shared attributes)
+  for (const film of seedFilms) {
+    if (screenedUrlSet.has(film.letterboxd_url)) continue;
+    if (!film.director && !(film.genres?.length) && !(film.country?.length) && !film.year) continue;
+    connectAttrs(film, getOrCreate('film:' + film.letterboxd_url, 'seed'));
+  }
+
+  // 2b. Prune noisy hub nodes (e.g. "english", "united states", "2020s", "drama")
+  const PRUNABLE = new Set(['genre', 'country', 'language', 'decade']);
+  const totalFilms = screenedFilms.length + seedFilms.length;
+  const maxConn = Math.max(3, Math.floor(totalFilms * MAX_HUB_FRACTION));
+  for (let i = 0; i < nodes.length; i++) {
+    if (!PRUNABLE.has(nodes[i].category)) continue;
+    const filmNeighbors = adjacency[i].filter(e => nodes[e.target].category === 'seed' || nodes[e.target].category === 'recommend').length;
+    if (filmNeighbors <= maxConn) continue;
+    const targets = adjacency[i].map(e => e.target);
+    adjacency[i] = [];
+    for (const t of targets) adjacency[t] = adjacency[t].filter(e => e.target !== i);
+  }
+
+  // 3. Run Personalized PageRank with 3-tier seeding
+  const seedIndices = [], seedWeights = [];
+  let matchedSeedCount = 0;
+  const now = Date.now();
+
+  for (const film of seedFilms) {
+    const idx = nodeIndex.get('film:' + film.letterboxd_url);
+    if (idx === undefined) continue;
+    const weight = computeSeedWeight(film.letterboxd_url, now);
+    if (weight <= 0) continue;
+    matchedSeedCount++;
+    seedIndices.push(idx);
+    seedWeights.push(weight);
+  }
+
+  if (seedIndices.length === 0) {
+    return { nodes: [], links: [], stats: { totalGraphNodes: nodes.length, totalGraphEdges: 0, visibleNodes: 0, visibleLinks: 0, topScore: 0, seedCount: 0, watchedCount: seedFilms.length, ratedCount: Object.keys(userRatings).length, likedCount: Object.keys(userLiked).length, matchedSeeds: 0 } };
+  }
+
+  const probs = personalizedPageRank(adjacency, seedIndices, seedWeights);
+
+  // 4. Top-N recommended (non-seed)
+  const candidates = [];
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].category === 'recommend') candidates.push({ idx: i, prob: probs[i] });
+  }
+  candidates.sort((a, b) => b.prob - a.prob);
+  const topRecs = candidates.slice(0, topN);
+
+  // 5. Top seeds by PageRank
+  const seedCandidates = [];
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].category === 'seed') seedCandidates.push({ idx: i, prob: probs[i] });
+  }
+  seedCandidates.sort((a, b) => b.prob - a.prob);
+  const topSeeds = seedCandidates.slice(0, seedN);
+
+  // 6. Build vis subgraph
+  const visFilmSet = new Set([...topRecs.map(r => r.idx), ...topSeeds.map(s => s.idx)]);
+  const attrCounts = new Map();
+  for (const fi of visFilmSet) {
+    for (const e of adjacency[fi]) {
+      const n = nodes[e.target];
+      if (n.category !== 'seed' && n.category !== 'recommend')
+        attrCounts.set(e.target, (attrCounts.get(e.target) || 0) + 1);
+    }
+  }
+  const visAttrSet = new Set();
+  for (const [idx, cnt] of attrCounts) { if (cnt >= 2) visAttrSet.add(idx); }
+
+  const urlToFilm = new Map();
+  for (const f of screenedFilms) urlToFilm.set(f.letterboxd_url, f);
+  for (const f of seedFilms) { if (!urlToFilm.has(f.letterboxd_url)) urlToFilm.set(f.letterboxd_url, f); }
+
+  const visNodeMap = new Map(), visNodes = [], visLinks = [];
+  function addVisNode(ii) {
+    if (visNodeMap.has(ii)) return visNodeMap.get(ii);
+    const node = nodes[ii], vi = visNodes.length;
+    let label, filmData = null;
+    if (node.category === 'seed' || node.category === 'recommend') {
+      const url = node.id.replace('film:', '');
+      const film = urlToFilm.get(url);
+      label = film ? film.title : url.split('/').filter(Boolean).pop();
+      filmData = film;
+    } else {
+      label = node.id.replace(/^[^:]+:/, '');
+      label = label.charAt(0).toUpperCase() + label.slice(1);
+    }
+    visNodes.push({ idx: vi, internalIdx: ii, id: node.id, category: node.category, label, prob: probs[ii], filmData, x: 0, y: 0, vx: 0, vy: 0 });
+    visNodeMap.set(ii, vi);
+    return vi;
+  }
+
+  for (const fi of visFilmSet) addVisNode(fi);
+  for (const fi of visFilmSet) {
+    const fvi = visNodeMap.get(fi);
+    for (const e of adjacency[fi]) {
+      if (!visAttrSet.has(e.target)) continue;
+      visLinks.push({ source: fvi, target: addVisNode(e.target), weight: e.weight });
+    }
+  }
+
+  const minP = candidates.length ? Math.min(...candidates.map(c => c.prob)) : 0;
+  const maxP = candidates.length ? Math.max(...candidates.map(c => c.prob)) : 0;
+
+  return {
+    nodes: visNodes, links: visLinks,
+    stats: {
+      totalGraphNodes: nodes.length,
+      totalGraphEdges: adjacency.reduce((s, a) => s + a.length, 0) / 2,
+      visibleNodes: visNodes.length, visibleLinks: visLinks.length,
+      topScore: topRecs[0] ? normalizeScore(topRecs[0].prob, minP, maxP) : 0,
+      seedCount: topSeeds.length,
+      watchedCount: seedFilms.length,
+      ratedCount: Object.keys(userRatings).length,
+      likedCount: Object.keys(userLiked).length,
+      matchedSeeds: matchedSeedCount,
+    },
+  };
+}
+
+function getDecade(year) {
+  if (year == null) return 'unknown';
+  if (year < 1960) return 'pre-1960';
+  return `${Math.floor(year / 10) * 10}s`;
+}
+function normalizeScore(prob, minP, maxP) {
+  const range = maxP - minP;
+  return range === 0 ? 50 : Math.round(5 + ((prob - minP) / range) * 90);
+}
+
+// ── Personalized PageRank ──────────────────────────────────────────────────
+function personalizedPageRank(adjacency, seedIndices, seedWeights, alpha = 0.15, iterations = 25) {
+  const n = adjacency.length;
+  if (n === 0 || seedIndices.length === 0) return new Float64Array(n);
+  const restart = new Float64Array(n);
+  let totalSW = 0;
+  for (let i = 0; i < seedIndices.length; i++) totalSW += seedWeights[i];
+  if (totalSW > 0) {
+    for (let i = 0; i < seedIndices.length; i++) restart[seedIndices[i]] = seedWeights[i] / totalSW;
+  }
+  const outWeights = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    let t = 0; for (const e of adjacency[i]) t += e.weight; outWeights[i] = t;
+  }
+  let p = new Float64Array(restart);
+  for (let iter = 0; iter < iterations; iter++) {
+    const next = new Float64Array(n);
+    for (let i = 0; i < n; i++) {
+      if (p[i] === 0) continue;
+      const ow = outWeights[i]; if (ow === 0) continue;
+      for (const e of adjacency[i]) next[e.target] += (1 - alpha) * p[i] * (e.weight / ow);
+    }
+    for (let i = 0; i < n; i++) next[i] += alpha * restart[i];
+    p = next;
+  }
+  return p;
+}
+
+// ── Canvas rendering ───────────────────────────────────────────────────────
+const canvas = document.getElementById('graph');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+let W, H, dpr;
+let hoveredNode = null, dragNode = null, isDragging = false;
+let camX = 0, camY = 0, camZoom = 1;
+let isPanning = false, panStartX, panStartY, panCamX, panCamY;
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  W = rect.width; H = rect.height;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+function screenToWorld(sx, sy) {
+  return { x: (sx - W / 2) / camZoom + camX, y: (sy - H / 2) / camZoom + camY };
+}
+
+let maxProb = 1;
+function nodeRadius(node) {
+  const base = (node.category === 'seed' || node.category === 'recommend') ? 22 : 14;
+  return 4 + (node.prob / maxProb) * (base - 4);
+}
+function nodeColor(node) { return CAT_COLORS[node.category] || '#666'; }
+
+let connCache = null;
+function buildConnCache() {
+  if (!graphData) return;
+  connCache = graphData.nodes.map(() => new Set());
+  for (const l of graphData.links) { connCache[l.source].add(l.target); connCache[l.target].add(l.source); }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  if (!graphData || !graphData.nodes.length) { requestAnimationFrame(draw); return; }
+
+  ctx.save();
+  ctx.translate(W / 2, H / 2);
+  ctx.scale(camZoom, camZoom);
+  ctx.translate(-camX, -camY);
+
+  const { nodes, links } = graphData;
+  for (const link of links) {
+    const s = nodes[link.source], t = nodes[link.target];
+    const a = hoveredNode != null ? (link.source === hoveredNode || link.target === hoveredNode ? 0.6 : 0.04) : 0.12;
+    ctx.strokeStyle = `rgba(255,255,255,${a})`;
+    ctx.lineWidth = Math.min(link.weight * 0.4, 1.5);
+    ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y); ctx.stroke();
+  }
+
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i], r = nodeRadius(node), color = nodeColor(node);
+    const dimmed = hoveredNode != null && hoveredNode !== i && !connCache?.[hoveredNode]?.has(i);
+    ctx.globalAlpha = dimmed ? 0.08 : 1;
+    if ((node.category === 'seed' || i === hoveredNode) && !dimmed) {
+      ctx.shadowColor = color; ctx.shadowBlur = 10;
+    }
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, Math.PI * 2); ctx.fill();
+    if (node.category === 'seed' || node.category === 'recommend') {
+      ctx.strokeStyle = dimmed ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.25)';
+      ctx.lineWidth = 1; ctx.stroke();
+    }
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    if (!dimmed && camZoom > 0.35) {
+      const fs = Math.max(8, Math.min(11, r));
+      ctx.font = `${(node.category === 'seed' || node.category === 'recommend') ? '600' : '400'} ${fs}px -apple-system,system-ui,sans-serif`;
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      ctx.fillText(node.label.length > 22 ? node.label.slice(0, 20) + '..' : node.label, node.x, node.y + r + 2);
+    }
+  }
+  ctx.restore();
+  requestAnimationFrame(draw);
+}
+
+// ── Force simulation ───────────────────────────────────────────────────────
+let simAlpha = 1, simRunning = false;
+function runSimulation() {
+  if (!graphData || simRunning) return;
+  simRunning = true; simAlpha = 1;
+  const { nodes, links } = graphData;
+  const repStr = parseFloat(document.getElementById('repulsion').value);
+  const linkDist = parseFloat(document.getElementById('link-dist').value);
+  for (let i = 0; i < nodes.length; i++) {
+    const a = (i / nodes.length) * Math.PI * 2, r = 100 + Math.random() * 80;
+    nodes[i].x = Math.cos(a) * r; nodes[i].y = Math.sin(a) * r;
+    nodes[i].vx = 0; nodes[i].vy = 0;
+  }
+  function tick() {
+    if (simAlpha < 0.001) { simRunning = false; return; }
+    simAlpha *= 0.995;
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        let dx = nodes[j].x - nodes[i].x, dy = nodes[j].y - nodes[i].y;
+        let d = Math.sqrt(dx * dx + dy * dy) || 1;
+        let f = repStr * simAlpha / (d * d);
+        let fx = (dx / d) * f, fy = (dy / d) * f;
+        nodes[i].vx -= fx; nodes[i].vy -= fy;
+        nodes[j].vx += fx; nodes[j].vy += fy;
+      }
+    }
+    for (const l of links) {
+      const s = nodes[l.source], t = nodes[l.target];
+      let dx = t.x - s.x, dy = t.y - s.y;
+      let d = Math.sqrt(dx * dx + dy * dy) || 1;
+      let f = (d - linkDist) * 0.05 * simAlpha * (l.weight / 3);
+      let fx = (dx / d) * f, fy = (dy / d) * f;
+      s.vx += fx; s.vy += fy; t.vx -= fx; t.vy -= fy;
+    }
+    for (const n of nodes) { n.vx -= n.x * 0.01 * simAlpha; n.vy -= n.y * 0.01 * simAlpha; }
+    for (const n of nodes) {
+      if (n === dragNode) continue;
+      n.vx *= 0.6; n.vy *= 0.6; n.x += n.vx; n.y += n.vy;
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+// ── Interaction ────────────────────────────────────────────────────────────
+function findNodeAt(mx, my) {
+  if (!graphData) return null;
+  const { x: wx, y: wy } = screenToWorld(mx, my);
+  let best = null, bestD = Infinity;
+  for (let i = 0; i < graphData.nodes.length; i++) {
+    const n = graphData.nodes[i], r = nodeRadius(n);
+    const d = Math.sqrt((n.x - wx) ** 2 + (n.y - wy) ** 2);
+    if (d < r + 4 && d < bestD) { best = i; bestD = d; }
+  }
+  return best;
+}
+
+function seedSignalLabel(url) {
+  if (userRatings[url]) return `Rated ${userRatings[url]}`;
+  if (userLiked[url]) return 'Liked';
+  return 'Watched';
+}
+
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  if (isDragging && dragNode) {
+    const { x, y } = screenToWorld(mx, my);
+    dragNode.x = x; dragNode.y = y; dragNode.vx = 0; dragNode.vy = 0; return;
+  }
+  if (isPanning) {
+    camX = panCamX - (mx - panStartX) / camZoom;
+    camY = panCamY - (my - panStartY) / camZoom; return;
+  }
+  const idx = findNodeAt(mx, my);
+  hoveredNode = idx;
+  canvas.style.cursor = idx != null ? 'pointer' : 'grab';
+  if (idx != null && graphData) {
+    const node = graphData.nodes[idx];
+    let html = `<div class="tt-title">${esc(node.label)}</div><div class="tt-cat">${node.category}</div>`;
+    if (node.filmData) {
+      const f = node.filmData;
+      html += '<div class="tt-details">';
+      if (f.director) html += `Director: ${esc(f.director)}<br>`;
+      if (f.year) html += `Year: ${f.year}<br>`;
+      if (f.genres?.length) html += `Genres: ${f.genres.join(', ')}<br>`;
+      if (f.letterboxd_rating) html += `Letterboxd: <span class="tt-score">${f.letterboxd_rating.toFixed(2)}</span><br>`;
+      if (node.category === 'seed') {
+        html += `Signal: <span class="tt-score">${seedSignalLabel(f.letterboxd_url)}</span><br>`;
+        const d = userWatchedDates[f.letterboxd_url];
+        if (d) html += `Watched: ${d}<br>`;
+      }
+      html += '</div>';
+    }
+    html += `<div class="tt-details">PageRank: ${node.prob.toExponential(2)}</div>`;
+    tooltip.innerHTML = html; tooltip.style.display = 'block';
+    let tx = e.clientX + 12, ty = e.clientY + 12;
+    if (tx + 300 > window.innerWidth) tx = e.clientX - 300;
+    if (ty + 200 > window.innerHeight) ty = e.clientY - 200;
+    tooltip.style.left = tx + 'px'; tooltip.style.top = ty + 'px';
+  } else { tooltip.style.display = 'none'; }
+});
+
+canvas.addEventListener('mousedown', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const idx = findNodeAt(mx, my);
+  if (idx != null && graphData) { dragNode = graphData.nodes[idx]; isDragging = true; }
+  else { isPanning = true; panStartX = mx; panStartY = my; panCamX = camX; panCamY = camY; }
+  canvas.style.cursor = 'grabbing';
+});
+canvas.addEventListener('mouseup', () => {
+  if (isDragging) simAlpha = Math.max(simAlpha, 0.05);
+  isDragging = false; dragNode = null; isPanning = false;
+});
+canvas.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  camZoom = Math.max(0.1, Math.min(5, camZoom * (e.deltaY > 0 ? 0.9 : 1.1)));
+}, { passive: false });
+
+canvas.addEventListener('click', (e) => {
+  if (isDragging) return;
+  const rect = canvas.getBoundingClientRect();
+  const idx = findNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+  if (idx != null && graphData) {
+    const node = graphData.nodes[idx], panel = document.getElementById('info-panel');
+    let html = `<span class="ip-close" onclick="this.parentElement.style.display='none'">&times;</span>`;
+    html += `<div class="ip-title">${esc(node.label)}</div>`;
+    if (node.filmData) {
+      const f = node.filmData;
+      const type = node.category === 'seed' ? `Seed (${seedSignalLabel(f.letterboxd_url)})` : 'Recommended';
+      html += `<div class="ip-row"><span class="ip-label">Type:</span> ${type}</div>`;
+      if (f.director) html += `<div class="ip-row"><span class="ip-label">Director:</span> ${esc(f.director)}</div>`;
+      if (f.year) html += `<div class="ip-row"><span class="ip-label">Year:</span> ${f.year}</div>`;
+      if (f.genres?.length) html += `<div class="ip-row"><span class="ip-label">Genres:</span> ${f.genres.join(', ')}</div>`;
+      if (f.country?.length) html += `<div class="ip-row"><span class="ip-label">Country:</span> ${f.country.join(', ')}</div>`;
+      if (f.letterboxd_rating) html += `<div class="ip-row"><span class="ip-label">Letterboxd:</span> ${f.letterboxd_rating.toFixed(2)}</div>`;
+      const d = userWatchedDates[f.letterboxd_url];
+      if (d) html += `<div class="ip-row"><span class="ip-label">Watched:</span> ${d}</div>`;
+    }
+    if (connCache?.[idx]) {
+      html += '<div class="ip-connections"><div class="ip-label">Connected to:</div>';
+      const conns = [...connCache[idx]].map(i => graphData.nodes[i]).sort((a, b) => b.prob - a.prob);
+      for (const c of conns.slice(0, 20))
+        html += `<div class="ip-conn"><div class="cd" style="background:${nodeColor(c)}"></div>${esc(c.label)}</div>`;
+      if (conns.length > 20) html += `<div class="ip-conn" style="color:#666">+${conns.length - 20} more</div>`;
+      html += '</div>';
+    }
+    panel.innerHTML = html; panel.style.display = 'block';
+  }
+});
+
+function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+// ── Rebuild ────────────────────────────────────────────────────────────────
+function rebuildAndRender() {
+  if (!allFilms.length || !watchedFilms.length) return;
+
+  const topN = parseInt(document.getElementById('top-n').value);
+  const seedN = parseInt(document.getElementById('seed-n').value);
+
+  // Build seed films: prefer rich data from screenings.json
+  const screeningsMap = new Map();
+  for (const f of allFilms) { if (f.letterboxd_url) screeningsMap.set(f.letterboxd_url, f); }
+
+  const seedFilms = [];
+  for (const wf of watchedFilms) {
+    const weight = computeSeedWeight(wf.letterboxd_url, Date.now());
+    if (weight <= 0) continue;
+    seedFilms.push(screeningsMap.get(wf.letterboxd_url) || wf);
+  }
+
+  const screenedFilms = allFilms.filter(f => f.letterboxd_url);
+
+  const withMeta = seedFilms.filter(f => f.director).length;
+  console.log(`Seeds: ${seedFilms.length} (${withMeta} with metadata), Screened: ${screenedFilms.length}`);
+
+  graphData = buildGraph(screenedFilms, seedFilms, topN, seedN);
+  buildConnCache();
+  maxProb = Math.max(...graphData.nodes.map(n => n.prob), 1e-10);
+
+  const s = graphData.stats;
+  document.getElementById('stats').innerHTML = `
+    <div>Full graph: <span class="stat-val">${s.totalGraphNodes}</span> nodes, <span class="stat-val">${s.totalGraphEdges}</span> edges</div>
+    <div>Visible: <span class="stat-val">${s.visibleNodes}</span> nodes, <span class="stat-val">${s.visibleLinks}</span> links</div>
+    <div>Watched: <span class="stat-val">${s.watchedCount}</span></div>
+    <div>Rated: <span class="stat-val">${s.ratedCount}</span> / Liked: <span class="stat-val">${s.likedCount}</span></div>
+    <div>Seeds in graph: <span class="stat-val">${s.matchedSeeds}</span></div>
+    <div>Top score: <span class="stat-val">${s.topScore}</span></div>
+  `;
+
+  camX = 0; camY = 0; camZoom = 1; hoveredNode = null;
+  simRunning = false;
+  runSimulation();
+}
+
+// ── File handling ──────────────────────────────────────────────────────────
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('over'));
+dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('over'); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+async function handleFile(file) {
+  try {
+    let parsed;
+    if (file.name.endsWith('.zip')) {
+      const buffer = await file.arrayBuffer();
+      parsed = await parseLetterboxdZip(buffer);
+    } else {
+      // Fallback: single CSV
+      const text = await file.text();
+      parsed = parseRatingsCSV(text);
+    }
+
+    userRatings = parsed.ratings;
+    userLiked = parsed.liked;
+    userWatchedDates = parsed.dates;
+    watchedFilms = parsed.films;
+
+    const rCount = Object.keys(userRatings).length;
+    const lCount = Object.keys(userLiked).length;
+    const parts = [`${watchedFilms.length} watched`];
+    if (rCount) parts.push(`${rCount} rated`);
+    if (lCount) parts.push(`${lCount} liked`);
+    dropZone.textContent = parts.join(', ');
+    dropZone.classList.add('loaded');
+
+    rebuildAndRender();
+  } catch (err) {
+    alert('Error parsing file: ' + err.message);
+  }
+}
+
+// ── Controls ───────────────────────────────────────────────────────────────
+document.getElementById('top-n').addEventListener('change', rebuildAndRender);
+document.getElementById('seed-n').addEventListener('change', rebuildAndRender);
+document.getElementById('repulsion').addEventListener('input', (e) => {
+  document.getElementById('repulsion-val').textContent = e.target.value;
+  rebuildAndRender();
+});
+document.getElementById('link-dist').addEventListener('input', (e) => {
+  document.getElementById('link-dist-val').textContent = e.target.value;
+  rebuildAndRender();
+});
+
+// ── Init ───────────────────────────────────────────────────────────────────
+window.addEventListener('resize', resize);
+resize();
+requestAnimationFrame(draw);
+loadScreenings();
+</script>
+</body>
+</html>

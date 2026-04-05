@@ -93,6 +93,35 @@ SAMPLE_MOVIE_RESPONSE = {
         ]
     },
     "runtime": 161,
+    "vote_average": 8.5,
+    "vote_count": 8200,
+    "overview": "While the Civil War rages on, three men set out to find a fortune in gold.",
+    "tagline": "For three men the Civil War wasn't hell. It was practice.",
+    "belongs_to_collection": None,
+    "credits": {
+        "crew": [
+            {"id": 3153, "name": "Sergio Leone", "job": "Director"},
+            {"id": 9999, "name": "Some Editor", "job": "Editor"},
+        ],
+        "cast": [
+            {"id": 190, "name": "Clint Eastwood", "order": 0},
+            {"id": 4776, "name": "Lee Van Cleef", "order": 1},
+            {"id": 4774, "name": "Eli Wallach", "order": 2},
+            {"id": 11000, "name": "Aldo Giuffrè", "order": 3},
+            {"id": 12000, "name": "Luigi Pistilli", "order": 4},
+            {"id": 13000, "name": "Rada Rassimov", "order": 5},
+        ],
+    },
+    "keywords": {
+        "keywords": [
+            {"id": 616, "name": "civil war"},
+            {"id": 803, "name": "treasure"},
+        ]
+    },
+    "production_companies": [
+        {"id": 60, "name": "United Artists"},
+        {"id": 10690, "name": "Produzioni Europee Associate"},
+    ],
 }
 
 
@@ -131,6 +160,55 @@ class TestParseTmdbResponseMovie:
         result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
         assert result["runtime_minutes"] == 161
 
+    def test_tmdb_id(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["tmdb_id"] == 429
+
+    def test_directors(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["directors"] == [{"id": 3153, "name": "Sergio Leone"}]
+
+    def test_top_cast(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert len(result["top_cast"]) == 5
+        assert result["top_cast"][0] == {"id": 190, "name": "Clint Eastwood"}
+        assert result["top_cast"][4] == {"id": 12000, "name": "Luigi Pistilli"}
+
+    def test_keywords(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["keywords"] == [
+            {"id": 616, "name": "civil war"},
+            {"id": 803, "name": "treasure"},
+        ]
+
+    def test_tmdb_rating(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["tmdb_rating"] == 8.5
+
+    def test_tmdb_votes(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["tmdb_votes"] == 8200
+
+    def test_production_companies(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["production_companies"] == [
+            {"id": 60, "name": "United Artists"},
+            {"id": 10690, "name": "Produzioni Europee Associate"},
+        ]
+
+    def test_overview(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert "three men" in result["overview"]
+
+    def test_tagline(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert "practice" in result["tagline"]
+
+    def test_collection_none(self):
+        result = _parse_tmdb_response(SAMPLE_MOVIE_RESPONSE, "movie")
+        assert result["collection_name"] is None
+        assert result["collection_id"] is None
+
 
 # =============================================================================
 # _parse_tmdb_response tests — TV
@@ -167,6 +245,31 @@ SAMPLE_TV_RESPONSE = {
         ]
     },
     "episode_run_time": [7],
+    "vote_average": 6.8,
+    "vote_count": 50,
+    "overview": "An animated series about Samuel.",
+    "tagline": "",
+    "created_by": [
+        {"id": 55555, "name": "Alice Creator"},
+        {"id": 55556, "name": "Bob Creator"},
+    ],
+    "credits": {
+        "crew": [
+            {"id": 77777, "name": "Some Episode Director", "job": "Director"},
+        ],
+        "cast": [
+            {"id": 88001, "name": "Voice Actor 1", "order": 0},
+            {"id": 88002, "name": "Voice Actor 2", "order": 1},
+        ],
+    },
+    "keywords": {
+        "results": [
+            {"id": 1000, "name": "animation"},
+        ]
+    },
+    "production_companies": [
+        {"id": 500, "name": "French Studio"},
+    ],
 }
 
 
@@ -190,6 +293,97 @@ class TestParseTmdbResponseTV:
     def test_runtime_minutes_from_episode_run_time(self):
         result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
         assert result["runtime_minutes"] == 294
+
+    def test_tv_directors_from_created_by(self):
+        """TV directors should come from created_by, not crew."""
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["directors"] == [
+            {"id": 55555, "name": "Alice Creator"},
+            {"id": 55556, "name": "Bob Creator"},
+        ]
+
+    def test_tv_directors_fallback_to_crew(self):
+        """When created_by is empty, fall back to crew directors."""
+        data = {**SAMPLE_TV_RESPONSE, "created_by": []}
+        result = _parse_tmdb_response(data, "tv")
+        assert result["directors"] == [{"id": 77777, "name": "Some Episode Director"}]
+
+    def test_tv_directors_series_director_job(self):
+        """TV shows with 'Series Director' job title should be recognized as directors."""
+        data = {
+            **SAMPLE_TV_RESPONSE,
+            "created_by": [],
+            "credits": {
+                "crew": [
+                    {"id": 1640656, "name": "Mamoru Hatakeyama", "job": "Series Director"},
+                    {"id": 9999, "name": "Some Editor", "job": "Editor"},
+                ],
+                "cast": [],
+            },
+        }
+        result = _parse_tmdb_response(data, "tv")
+        assert result["directors"] == [{"id": 1640656, "name": "Mamoru Hatakeyama"}]
+
+    def test_tv_directors_prioritizes_series_director(self):
+        """Series Director should be prioritized over regular Director."""
+        data = {
+            **SAMPLE_TV_RESPONSE,
+            "created_by": [],
+            "credits": {
+                "crew": [
+                    {"id": 100, "name": "Regular Director", "job": "Director"},
+                    {"id": 101, "name": "Series Director", "job": "Series Director"},
+                ],
+                "cast": [],
+            },
+        }
+        result = _parse_tmdb_response(data, "tv")
+        # Series Director should come first
+        assert result["directors"] == [
+            {"id": 101, "name": "Series Director"},
+            {"id": 100, "name": "Regular Director"},
+        ]
+
+    def test_tv_cast(self):
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert len(result["top_cast"]) == 2
+        assert result["top_cast"][0] == {"id": 88001, "name": "Voice Actor 1"}
+
+    def test_tv_keywords(self):
+        """TV keywords come from 'results' key (not 'keywords')."""
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["keywords"] == [{"id": 1000, "name": "animation"}]
+
+    def test_tv_tmdb_rating(self):
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["tmdb_rating"] == 6.8
+
+    def test_tv_production_companies(self):
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["production_companies"] == [{"id": 500, "name": "French Studio"}]
+
+    def test_tv_overview(self):
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["overview"] == "An animated series about Samuel."
+
+    def test_tv_tagline_empty(self):
+        result = _parse_tmdb_response(SAMPLE_TV_RESPONSE, "tv")
+        assert result["tagline"] is None  # empty string → None
+
+
+# =============================================================================
+# _parse_tmdb_response — collection
+# =============================================================================
+
+class TestParseTmdbResponseCollection:
+    def test_collection_present(self):
+        data = {
+            **SAMPLE_MOVIE_RESPONSE,
+            "belongs_to_collection": {"id": 2344, "name": "The Dollars Trilogy"},
+        }
+        result = _parse_tmdb_response(data, "movie")
+        assert result["collection_name"] == "The Dollars Trilogy"
+        assert result["collection_id"] == 2344
 
 
 # =============================================================================
@@ -297,7 +491,7 @@ class TestFetchTmdbInfo:
         mock_get.assert_called_once()
         call_args = mock_get.call_args
         assert "movie/429" in call_args[0][0]
-        assert call_args[1]["params"]["append_to_response"] == "translations"
+        assert call_args[1]["params"]["append_to_response"] == "translations,credits,keywords"
         assert call_args[1]["params"]["api_key"] == "test_token"
 
     @patch("tmdb._get_api_token", return_value="test_token")

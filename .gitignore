@@ -2,3 +2,6 @@ env/
 __pycache__/
 *.csv
 .env
+
+supabase/.temp/
+.playwright-mcp/
