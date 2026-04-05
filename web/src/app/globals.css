@@ -1805,10 +1805,21 @@ a.similar-title:hover {
 }
 
 /* Multiselect dropdowns inside modal */
-/* Dropdowns inside modal: fixed position to escape overflow clipping */
+/* Dropdowns inside modal: fixed on desktop, inline on mobile */
 .filter-modal .filter-dropdown {
     position: fixed;
     z-index: 5000;
+}
+
+@media (max-width: 768px) {
+    .filter-modal .filter-dropdown {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        max-height: 200px !important;
+        margin-top: 4px;
+    }
 }
 
 .filter-modal .filter-dd-options {
