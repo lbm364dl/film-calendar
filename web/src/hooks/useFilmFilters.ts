@@ -122,26 +122,35 @@ export function useFilmFilters(options: FilterOptions) {
 
   // ── Computed: unique values from film data ─────────────────────────────
 
+  // Films with at least one future screening — used to derive filter options
+  const activeFilms = useMemo(() => {
+    const now = new Date();
+    return allFilms.filter(f => f.dates.some(d => {
+      const dt = getDateOnly(d.timestamp);
+      return dt && dt >= now;
+    }));
+  }, [allFilms]);
+
   const allGenres = useMemo(() => {
     const set = new Set<string>();
-    for (const f of allFilms) for (const g of f.genres) set.add(g);
+    for (const f of activeFilms) for (const g of f.genres) set.add(g);
     return [...set].sort();
-  }, [allFilms]);
+  }, [activeFilms]);
 
   const allCountries = useMemo(() => {
     const set = new Set<string>();
-    for (const f of allFilms) for (const c of f.country) set.add(c);
+    for (const f of activeFilms) for (const c of f.country) set.add(c);
     return [...set].sort();
-  }, [allFilms]);
+  }, [activeFilms]);
 
   const allLanguages = useMemo(() => {
     const set = new Set<string>();
-    for (const f of allFilms) for (const l of f.primaryLanguage) set.add(l);
+    for (const f of activeFilms) for (const l of f.primaryLanguage) set.add(l);
     return [...set].sort();
-  }, [allFilms]);
+  }, [activeFilms]);
 
   const decades = useMemo<DecadeEntry[]>(() => {
-    const years = allFilms.map(f => f.year).filter((y): y is number => y != null);
+    const years = activeFilms.map(f => f.year).filter((y): y is number => y != null);
     if (years.length === 0) return [];
     // Group anything before 1920 into "< 20s"
     const decadeSet = new Set<number>();
@@ -157,7 +166,7 @@ export function useFilmFilters(options: FilterOptions) {
       result.push({ label: `${d}s`, start: d, end: d + 9 });
     }
     return result;
-  }, [allFilms]);
+  }, [activeFilms]);
 
   // ── Computed: last chance film IDs ──────────────────────────────────────
 
