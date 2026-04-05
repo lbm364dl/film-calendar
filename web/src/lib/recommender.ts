@@ -39,6 +39,8 @@ export interface FilmFeatures {
     tmdb_votes: number | null;
     letterboxd_viewers: number | null;
     collection_id: number | null;
+    tmdb_id: number | null;
+    tmdb_recommendations: number[];
 }
 
 /** Sparse vector: dimension key → value. */

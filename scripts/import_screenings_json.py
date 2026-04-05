@@ -80,6 +80,7 @@ def build_film_row(film: dict, tmdb_info: dict | None) -> dict:
             "production_companies": tmdb_info.get("production_companies", []),
             "collection_name": tmdb_info.get("collection_name"),
             "collection_id": tmdb_info.get("collection_id"),
+            "tmdb_recommendations": tmdb_info.get("tmdb_recommendations", []),
             "overview": tmdb_info.get("overview"),
             "tagline": tmdb_info.get("tagline"),
         })

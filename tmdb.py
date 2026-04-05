@@ -105,7 +105,7 @@ def fetch_tmdb_info(tmdb_url: str) -> dict | None:
 
     url = f"{TMDB_API_BASE}/{media_type}/{tmdb_id}"
     params = {
-        "append_to_response": "translations,credits,keywords",
+        "append_to_response": "translations,credits,keywords,recommendations",
         **_auth_params(),
     }
 
@@ -313,6 +313,13 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         if c.get("id") and c.get("name")
     ]
 
+    # TMDB recommendations (collaborative filtering — top 10 TMDB IDs)
+    tmdb_recommendations = [
+        r["id"]
+        for r in data.get("recommendations", {}).get("results", [])[:10]
+        if r.get("id")
+    ]
+
     # Collection / franchise
     collection_name = None
     collection_id = None
@@ -380,6 +387,7 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         "production_companies": production_companies,
         "collection_name": collection_name,
         "collection_id": collection_id,
+        "tmdb_recommendations": tmdb_recommendations,
         "overview": overview,
         "tagline": tagline,
         "title_original": title_original,

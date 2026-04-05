@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import { computeRecommendationsWithBreakdown, type FilmFeatures, type CompactBreakdown } from '@/lib/recommender-pagerank';
 
 /** All film columns needed for recommendation scoring. */
-const FILM_SELECT = 'id, genres, director, directors, cinematographers, composers, writers, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id' as const;
+const FILM_SELECT = 'id, genres, director, directors, cinematographers, composers, writers, top_cast, keywords, production_companies, country, primary_language, spoken_languages, year, runtime_minutes, letterboxd_rating, tmdb_rating, tmdb_votes, letterboxd_viewers, collection_id, tmdb_id, tmdb_recommendations' as const;
 
 /** Map a raw DB row to a FilmFeatures object, defaulting nulls to safe values. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,6 +30,8 @@ function toFilmFeatures(f: any): FilmFeatures {
         tmdb_votes: f.tmdb_votes ?? null,
         letterboxd_viewers: f.letterboxd_viewers ?? null,
         collection_id: f.collection_id ?? null,
+        tmdb_id: f.tmdb_id ?? null,
+        tmdb_recommendations: f.tmdb_recommendations ?? [],
     };
 }
 

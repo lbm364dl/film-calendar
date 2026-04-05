@@ -184,6 +184,31 @@ function buildGraph(films: FilmFeatures[]) {
     }
   }
 
+  // ── TMDB recommendation edges (direct film-to-film, collaborative signal) ──
+  // Build tmdb_id → node index lookup
+  const tmdbIdToNodeIdx = new Map<number, number>();
+  for (const film of films) {
+    if (film.tmdb_id) {
+      const idx = nodeIndex.get(`film:${film.id}`);
+      if (idx !== undefined) tmdbIdToNodeIdx.set(film.tmdb_id, idx);
+    }
+  }
+  const TMDB_REC_WEIGHT = 2.0;
+  for (const film of films) {
+    if (!film.tmdb_recommendations?.length) continue;
+    const filmIdx = nodeIndex.get(`film:${film.id}`);
+    if (filmIdx === undefined) continue;
+    for (const recTmdbId of film.tmdb_recommendations) {
+      const recIdx = tmdbIdToNodeIdx.get(recTmdbId);
+      if (recIdx !== undefined && recIdx !== filmIdx) {
+        // Direct film-to-film edge (only add once per pair)
+        if (!adjacency[filmIdx].some(e => e.target === recIdx)) {
+          addEdge(filmIdx, recIdx, TMDB_REC_WEIGHT);
+        }
+      }
+    }
+  }
+
   // ── Prune noisy hub nodes ──────────────────────────────────────────────
   // Attribute nodes connected to too many films act as noise (e.g. "english",
   // "united states", "2020s", "drama"). Remove their edges so they don't

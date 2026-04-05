@@ -17,14 +17,17 @@ if not all([TMDB_KEY, SUPABASE_URL, SUPABASE_KEY]):
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-def fetch_crew(tmdb_id: int) -> dict:
-    """Fetch crew from TMDB credits endpoint."""
-    url = f"https://api.themoviedb.org/3/movie/{tmdb_id}/credits"
-    resp = requests.get(url, params={"api_key": TMDB_KEY}, timeout=10)
+def fetch_crew_and_recs(tmdb_id: int) -> dict:
+    """Fetch crew and recommendations from TMDB in one call."""
+    url = f"https://api.themoviedb.org/3/movie/{tmdb_id}"
+    resp = requests.get(url, params={
+        "api_key": TMDB_KEY,
+        "append_to_response": "credits,recommendations",
+    }, timeout=10)
     if resp.status_code != 200:
         return {}
     data = resp.json()
-    crew = data.get("crew", [])
+    crew = data.get("credits", {}).get("crew", [])
 
     cinematographers = []
     composers = []
@@ -44,10 +47,18 @@ def fetch_crew(tmdb_id: int) -> dict:
                 writers.append({"id": m["id"], "name": m["name"]})
                 seen_writers.add(m["id"])
 
+    # TMDB recommendations (top 10 TMDB IDs)
+    tmdb_recommendations = [
+        r["id"]
+        for r in data.get("recommendations", {}).get("results", [])[:10]
+        if r.get("id")
+    ]
+
     return {
         "cinematographers": cinematographers,
         "composers": composers,
         "writers": writers,
+        "tmdb_recommendations": tmdb_recommendations,
     }
 
 def main():
@@ -72,7 +83,7 @@ def main():
             skipped += 1
             continue
 
-        crew = fetch_crew(tmdb_id)
+        crew = fetch_crew_and_recs(tmdb_id)
         if not any(crew.values()):
             skipped += 1
             continue
