@@ -191,10 +191,14 @@ export async function GET() {
     for (const ms of matchScores) {
         scores[ms.filmId] = ms.score;
         const bd = { ...ms.breakdown };
-        if (bd.similarTo) {
-            bd.similarTo = (bd.similarTo as unknown as number[])
-                .map(id => allFilmTitles[id])
-                .filter(Boolean);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const raw = (bd as any)._similarRaw as { filmId: number; reason: string }[] | undefined;
+        if (raw) {
+            bd.similarTo = raw
+                .filter(r => allFilmTitles[r.filmId])
+                .map(r => ({ title: allFilmTitles[r.filmId], reason: r.reason }));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            delete (bd as any)._similarRaw;
         }
         breakdowns[ms.filmId] = bd;
     }

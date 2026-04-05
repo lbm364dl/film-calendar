@@ -8,42 +8,29 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildScoreTooltip(
-  score: number,
-  breakdown: CompactBreakdown | undefined,
-  lang: LangKey,
-): string {
-  const base = lang === 'es' ? `${score}% de afinidad` : `${score}% match`;
-  if (!breakdown) return base;
+const REASON_LABELS: Record<string, Record<string, string>> = {
+  es: {
+    director: 'mismo director', cast: 'mismo reparto', genre: 'mismo género',
+    keyword: 'temática similar', decade: 'misma época', country: 'mismo país',
+    lang: 'mismo idioma', company: 'misma productora', collection: 'misma saga',
+  },
+  en: {
+    director: 'same director', cast: 'same cast', genre: 'same genre',
+    keyword: 'similar themes', decade: 'same era', country: 'same country',
+    lang: 'same language', company: 'same studio', collection: 'same franchise',
+  },
+};
 
-  const similarNames = breakdown.similarTo ?? [];
-  const similarLine = similarNames.length > 0
-    ? (lang === 'es' ? 'Similar a: ' : 'Similar to: ') + similarNames.join(', ')
-    : '';
+function buildSimilarLabel(breakdown: CompactBreakdown | undefined, lang: LangKey): string | null {
+  const items = breakdown?.similarTo;
+  if (!items || items.length === 0) return null;
 
-  const catLabels: Record<string, string> = {
-    genre: lang === 'es' ? 'Género' : 'Genre',
-    director: 'Director',
-    cast: lang === 'es' ? 'Reparto' : 'Cast',
-    keyword: lang === 'es' ? 'Temática' : 'Keywords',
-    decade: lang === 'es' ? 'Época' : 'Decade',
-    country: lang === 'es' ? 'País' : 'Country',
-    lang: lang === 'es' ? 'Idioma' : 'Language',
-    company: lang === 'es' ? 'Productora' : 'Studio',
-    rating: lang === 'es' ? 'Valoración' : 'Rating',
-    runtime: lang === 'es' ? 'Duración' : 'Runtime',
-  };
-
-  const topCats = Object.entries(breakdown.byCategory)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 3)
-    .map(([cat, frac]) => `${catLabels[cat] ?? cat} ${Math.round(frac * 100)}%`)
-    .join(', ');
-
-  const parts = [base];
-  if (similarLine) parts.push(similarLine);
-  if (topCats) parts.push(topCats);
-  return parts.join('\n');
+  const labels = REASON_LABELS[lang] || REASON_LABELS.en;
+  // Pick the top 2 for brevity
+  return items.slice(0, 2).map(s => {
+    const reason = labels[s.reason] || s.reason;
+    return `${s.title} (${reason})`;
+  }).join(' · ');
 }
 
 interface FilmCardProps {
@@ -77,7 +64,7 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const scoreTooltip = showMatch ? buildScoreTooltip(matchScore, breakdown, lang) : '';
+  const similarLabel = showMatch ? buildSimilarLabel(breakdown, lang) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
@@ -148,10 +135,7 @@ export default memo(function FilmCard({
           )}
         </div>
         {showMatch && (
-          <div
-            className={`card-affinity ${matchScore! >= 70 ? 'high' : matchScore! >= 40 ? 'medium' : 'low'}`}
-            title={scoreTooltip}
-          >
+          <div className={`card-affinity ${matchScore! >= 70 ? 'high' : matchScore! >= 40 ? 'medium' : 'low'}`}>
             <div className="card-affinity-fill" style={{ width: `${Math.min(matchScore!, 100)}%` }} />
             <span className="card-affinity-label">{matchScore}%</span>
           </div>
@@ -164,6 +148,9 @@ export default memo(function FilmCard({
           </a>
         )}
       </div>
+      {similarLabel && (
+        <div className="card-similar">{similarLabel}</div>
+      )}
     </div>
   );
 })

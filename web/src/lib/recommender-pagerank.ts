@@ -307,7 +307,8 @@ function computeBreakdown(
 
 /**
  * Find the top N watched films most connected to a screened film through
- * shared attribute nodes in the graph. Uses PageRank probabilities as weights.
+ * shared attribute nodes in the graph. Returns film IDs with the primary
+ * attribute category that connects them (e.g. "director", "cast", "keyword").
  */
 function findSimilarWatched(
   filmNodeIdx: number,
@@ -316,30 +317,39 @@ function findSimilarWatched(
   probabilities: Float64Array,
   watchedFilmIndices: Set<number>,
   topN: number = 3,
-): number[] {
-  // For each attribute neighbor of this film, find which watched films share it
-  const watchedScores = new Map<number, number>();
+): { filmId: number; reason: string }[] {
+  // Per watched film: total score + per-category scores
+  const watchedData = new Map<number, { total: number; cats: Map<string, number> }>();
 
   for (const edge of adjacency[filmNodeIdx]) {
     const attrNode = nodes[edge.target];
     if (attrNode.category === 'film') continue;
 
     const attrProb = probabilities[edge.target];
-    // Look at all films connected to this attribute
     for (const attrEdge of adjacency[edge.target]) {
       if (!watchedFilmIndices.has(attrEdge.target)) continue;
       const contribution = attrProb * edge.weight * attrEdge.weight;
-      watchedScores.set(attrEdge.target, (watchedScores.get(attrEdge.target) ?? 0) + contribution);
+      let entry = watchedData.get(attrEdge.target);
+      if (!entry) { entry = { total: 0, cats: new Map() }; watchedData.set(attrEdge.target, entry); }
+      entry.total += contribution;
+      entry.cats.set(attrNode.category, (entry.cats.get(attrNode.category) ?? 0) + contribution);
     }
   }
 
-  // Sort by score, return top N film IDs
-  return [...watchedScores.entries()]
-    .sort((a, b) => b[1] - a[1])
+  return [...watchedData.entries()]
+    .sort((a, b) => b[1].total - a[1].total)
     .slice(0, topN)
-    .map(([idx]) => {
-      const id = nodes[idx].id; // "film:1234"
-      return parseInt(id.split(':')[1], 10);
+    .map(([idx, data]) => {
+      // Top contributing category
+      let topCat = '';
+      let topVal = 0;
+      for (const [cat, val] of data.cats) {
+        if (val > topVal) { topCat = cat; topVal = val; }
+      }
+      return {
+        filmId: parseInt(nodes[idx].id.split(':')[1], 10),
+        reason: topCat,
+      };
     });
 }
 
@@ -525,7 +535,8 @@ export function computeRecommendationsWithBreakdown(
       ? computeBreakdown(idx, adjacency, nodes, probabilities)
       : { coverage: 0, byCategory: {} };
     if (idx >= 0) {
-      breakdown.similarTo = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices);
+      // Store as {filmId, reason} temporarily — API resolves filmId to title
+      (breakdown as any)._similarRaw = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices);
     }
 
     results.push({ filmId, score, breakdown });
