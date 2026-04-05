@@ -210,11 +210,9 @@ export default function FilmCalendar({
               <path d="M3 6h18M3 12h12M3 18h6" />
             </svg>
             <span suppressHydrationWarning>
-              {typeof window !== 'undefined'
-                ? (filters.sortBy === 'rating' ? t(lang, 'sortByRating')
-                  : filters.sortBy === 'viewers' ? t(lang, 'sortByViewers')
-                  : t(lang, 'sortByMatch'))
-                : '\u00A0'}
+              {filters.sortBy === 'rating' ? t(lang, 'sortByRating')
+                : filters.sortBy === 'viewers' ? t(lang, 'sortByViewers')
+                : t(lang, 'sortByMatch')}
             </span>
           </button>
         </div>

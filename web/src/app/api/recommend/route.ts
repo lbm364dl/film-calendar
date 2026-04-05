@@ -225,8 +225,8 @@ export async function GET() {
                     const key = `${r.reason}:${r.attrValue}`;
                     const resolvedValue = attrNames[key] || '';
                     const PERSON_CATEGORIES = ['director', 'cast', 'cinematographer', 'composer', 'writer'];
-                    const valueUrl = PERSON_CATEGORIES.includes(r.reason) && resolvedValue
-                        ? `https://letterboxd.com/search/${encodeURIComponent(resolvedValue)}/` : undefined;
+                    const valueUrl = PERSON_CATEGORIES.includes(r.reason) && r.attrValue
+                        ? `https://www.themoviedb.org/person/${r.attrValue}` : undefined;
                     return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined, valueUrl };
                 })
                 .filter(r => r.value); // Skip entries where the attribute couldn't be resolved
