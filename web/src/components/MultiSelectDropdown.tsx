@@ -27,7 +27,9 @@ export default function MultiSelectDropdown({
 }: MultiSelectDropdownProps) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [ddStyle, setDdStyle] = useState<React.CSSProperties>({});
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -35,10 +37,19 @@ export default function MultiSelectDropdown({
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener('mousedown', handle);
-    // Scroll modal to show dropdown
-    requestAnimationFrame(() => {
-      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
+
+    // Position fixed dropdown relative to trigger
+    if (triggerRef.current?.closest('.filter-modal')) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      const maxH = window.innerHeight - rect.bottom - 8;
+      setDdStyle({
+        top: rect.bottom + 2,
+        left: rect.left,
+        width: rect.width,
+        maxHeight: Math.min(250, maxH),
+      });
+    }
+
     return () => document.removeEventListener('mousedown', handle);
   }, [open]);
 
@@ -62,6 +73,7 @@ export default function MultiSelectDropdown({
       <div className={`filter-multiselect${open ? ' open' : ''}`} ref={ref}>
         <button
           type="button"
+          ref={triggerRef}
           className="filter-multiselect-trigger"
           onClick={() => setOpen(!open)}
         >
@@ -71,7 +83,7 @@ export default function MultiSelectDropdown({
           </svg>
         </button>
         {open && (
-          <div className="filter-dropdown">
+          <div className="filter-dropdown" style={ddStyle}>
             <input
               type="text"
               className="filter-dd-search"
