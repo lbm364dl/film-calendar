@@ -749,16 +749,18 @@ h1 {
     margin-bottom: 1.5rem;
     color: var(--text-dim);
     font-size: 0.95rem;
+}
+
+.stats-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
 }
 
 .calendar-hint {
     font-size: 0.85rem;
     opacity: 0.7;
+    margin-top: 0.25rem;
 }
 
 .sort-toggle {
@@ -770,16 +772,15 @@ h1 {
     cursor: pointer;
     padding: 0.3rem 0.9rem;
     transition: all 0.2s;
-    white-space: nowrap;
+    min-width: 170px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
 }
 
 .sort-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.sort-toggle.active {
-    background: rgba(255, 107, 107, 0.12);
     border-color: var(--accent);
     color: var(--accent);
 }
