@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import type { Film, DateEntry } from '@/lib/types';
@@ -104,6 +104,15 @@ export default function FilmCalendar({
     setSpecialFilter: filters.setSpecialFilter,
     setLastChanceFilter: filters.setLastChanceFilter,
   });
+
+  // ─ Auto-switch to affinity sort when recommendations first load ─
+  const prevRecommendReady = useRef(lb.recommendReady);
+  useEffect(() => {
+    if (lb.recommendReady && !prevRecommendReady.current) {
+      filters.setSortBy('affinity');
+    }
+    prevRecommendReady.current = lb.recommendReady;
+  }, [lb.recommendReady, filters.setSortBy]);
 
   // ─ Modals ─
   const { modal, modalClosing, openModal, closeModal } = useSessionModal();
