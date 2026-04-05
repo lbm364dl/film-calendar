@@ -41,12 +41,10 @@ export default function MultiSelectDropdown({
     // Desktop: position fixed relative to trigger. Mobile: inline (CSS handles it)
     if (triggerRef.current?.closest('.filter-modal') && window.innerWidth > 768) {
       const rect = triggerRef.current.getBoundingClientRect();
-      const maxH = window.innerHeight - rect.bottom - 8;
       setDdStyle({
         top: rect.bottom + 2,
         left: rect.left,
         width: rect.width,
-        maxHeight: Math.min(250, maxH),
       });
     } else {
       setDdStyle({});
