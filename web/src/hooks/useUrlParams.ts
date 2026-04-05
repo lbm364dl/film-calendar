@@ -23,7 +23,7 @@ interface UrlParamsConfig {
   selectedDays: Set<number>;
   decades: DecadeEntry[];
   // Toggles
-  versionFilter: 'all' | 'original' | 'dubbed';
+  versionFilter: 'original' | 'dubbed';
   sortBy: 'rating' | 'viewers' | 'affinity';
   specialFilter: boolean;
   lastChanceFilter: boolean;
@@ -39,7 +39,7 @@ interface UrlParamsConfig {
   setSelectedDecades: (v: Set<number>) => void;
   setSelectedRuntimeCategories: (v: Set<number>) => void;
   setSelectedDays: (v: Set<number>) => void;
-  setVersionFilter: (v: 'all' | 'original' | 'dubbed') => void;
+  setVersionFilter: (v: 'original' | 'dubbed') => void;
   setSortBy: (v: 'rating' | 'viewers') => void;
   setSpecialFilter: (v: boolean) => void;
   setLastChanceFilter: (v: boolean) => void;
@@ -146,7 +146,7 @@ export function useUrlParams(config: UrlParamsConfig) {
       }
     }
 
-    if (versionFilter !== 'all') params.set('version', versionFilter);
+    if (versionFilter !== 'original') params.set('version', versionFilter);
     if (sortBy !== 'rating') params.set('sort', sortBy);
     if (specialFilter) params.set('special', '1');
     if (lastChanceFilter) params.set('lastchance', '1');

@@ -115,7 +115,7 @@ export function useFilmFilters(options: FilterOptions) {
   const [selectedDays, setSelectedDays] = useState<Set<number>>(new Set());
 
   // ── Toggle filters ─────────────────────────────────────────────────────
-  const [versionFilter, setVersionFilter] = useState<'all' | 'original' | 'dubbed'>('original');
+  const [versionFilter, setVersionFilter] = useState<'original' | 'dubbed'>('original');
   const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>('rating');
   const [specialFilter, setSpecialFilter] = useState(false);
   const [lastChanceFilter, setLastChanceFilter] = useState(false);
@@ -219,7 +219,7 @@ export function useFilmFilters(options: FilterOptions) {
           // Date
           if (selectedDate && !d.timestamp.startsWith(selectedDate)) return false;
           // Version
-          if (versionFilter !== 'all' && !isSpanishFilm(film)) {
+          if (!isSpanishFilm(film)) {
             if (versionFilter === 'original' && d.version === 'dubbed') return false;
             if (versionFilter === 'dubbed' && d.version !== 'dubbed') return false;
           }
