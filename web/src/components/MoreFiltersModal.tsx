@@ -37,7 +37,6 @@ interface MoreFiltersModalProps {
   lastChanceFilter: boolean;
   setLastChanceFilter: (v: boolean) => void;
   activeAdvancedFilterCount: number;
-  onClearAll: () => void;
   onHelp: (title: string, body: string) => void;
 }
 
@@ -52,7 +51,7 @@ export default function MoreFiltersModal({
   versionFilter, setVersionFilter,
   specialFilter, setSpecialFilter,
   lastChanceFilter, setLastChanceFilter,
-  activeAdvancedFilterCount, onClearAll, onHelp,
+  activeAdvancedFilterCount, onHelp,
 }: MoreFiltersModalProps) {
   const toggleVersion = useCallback(() => {
     setVersionFilter(versionFilter === 'original' ? 'dubbed' : 'original');
@@ -201,11 +200,6 @@ export default function MoreFiltersModal({
           </button>
         </div>
 
-        <div className="filter-modal-footer">
-          <button type="button" className="clear-filters-btn" onClick={onClearAll}>
-            {t(lang, 'clearFilters')}
-          </button>
-        </div>
       </div>
     </div>
   );

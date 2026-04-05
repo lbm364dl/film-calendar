@@ -115,10 +115,12 @@ h1 {
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-dim);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
-    white-space: nowrap;
+    padding: 0.25rem 0.75rem;
+    text-align: center;
+    line-height: 1.2;
 }
 
 .clear-grid-btn:hover {

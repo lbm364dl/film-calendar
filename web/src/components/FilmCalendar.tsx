@@ -299,7 +299,6 @@ export default function FilmCalendar({
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
           activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
-          onClearAll={filters.clearAllFilters}
           onHelp={helpModal.open}
         />
       )}
