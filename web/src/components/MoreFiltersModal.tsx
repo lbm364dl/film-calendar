@@ -186,18 +186,18 @@ export default function MoreFiltersModal({
           </button>
           <button
             type="button"
+            className={`toggle-filter-btn${specialFilter ? ' active' : ''}`}
+            onClick={() => setSpecialFilter(!specialFilter)}
+          >
+            <span>{t(lang, 'specialFilterFull')}</span>
+          </button>
+          <button
+            type="button"
             className={`toggle-filter-btn${lastChanceFilter ? ' active' : ''}`}
             onClick={() => setLastChanceFilter(!lastChanceFilter)}
           >
             <span>{t(lang, 'lastChance')}</span>
             <span className="info-icon" onClick={(e) => { e.stopPropagation(); onHelp(t(lang, 'lastChanceHelpTitle'), t(lang, 'lastChanceHelpBody')); }}>?</span>
-          </button>
-          <button
-            type="button"
-            className={`toggle-filter-btn${specialFilter ? ' active' : ''}`}
-            onClick={() => setSpecialFilter(!specialFilter)}
-          >
-            <span>{t(lang, 'specialFilterFull')}</span>
           </button>
         </div>
 
