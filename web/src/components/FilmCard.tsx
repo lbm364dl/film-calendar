@@ -13,7 +13,8 @@ function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey
   if (!items || items.length === 0) return null;
   const s = items[0];
   const rawValue = s.value || s.reason;
-  return { title: s.title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
+  const title = (lang === 'en' && s.titleEn) ? s.titleEn : s.title;
+  return { title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
 }
 
 interface FilmCardProps {

@@ -195,16 +195,18 @@ export async function GET() {
 
     // Build film ID → title + URL lookup for resolving similarTo IDs
     const allFilmTitles: Record<number, string> = {};
+    const allFilmTitlesEn: Record<number, string> = {};
     const allFilmUrls: Record<number, string> = {};
     for (const f of allWatchedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
     for (const f of screenedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
-    // Fetch titles + letterboxd URLs for all referenced films
+    // Fetch titles (both languages) + letterboxd URLs for all referenced films
     const titleIds = Object.keys(allFilmTitles).map(Number);
     for (let i = 0; i < titleIds.length; i += BATCH) {
         const batch = titleIds.slice(i, i + BATCH);
-        const { data: films } = await supabase.from('films').select('id, title, letterboxd_url').in('id', batch);
+        const { data: films } = await supabase.from('films').select('id, title, title_en, letterboxd_url').in('id', batch);
         if (films) for (const f of films) {
             allFilmTitles[f.id] = f.title;
+            allFilmTitlesEn[f.id] = f.title_en || '';
             allFilmUrls[f.id] = f.letterboxd_url || '';
         }
     }
@@ -227,7 +229,8 @@ export async function GET() {
                     const PERSON_CATEGORIES = ['director', 'cast', 'cinematographer', 'composer', 'writer'];
                     const valueUrl = PERSON_CATEGORIES.includes(r.reason) && r.attrValue
                         ? `https://www.themoviedb.org/person/${r.attrValue}` : undefined;
-                    return { title: allFilmTitles[r.filmId], reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined, valueUrl };
+                    const titleEn = allFilmTitlesEn[r.filmId] || undefined;
+                    return { title: allFilmTitles[r.filmId], titleEn, reason: r.reason, value: resolvedValue, url: allFilmUrls[r.filmId] || undefined, valueUrl };
                 })
                 .filter(r => r.value); // Skip entries where the attribute couldn't be resolved
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
