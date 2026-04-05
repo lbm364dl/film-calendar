@@ -227,6 +227,7 @@ def main():
                 "url_tickets": d.get("url_tickets", ""),
                 "url_info": d.get("url_info", ""),
                 "version": d.get("version"),
+                "special": d.get("special"),
             }
             try:
                 supabase.table("screenings").upsert(
