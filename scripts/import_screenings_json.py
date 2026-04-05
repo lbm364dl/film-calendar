@@ -12,6 +12,7 @@ Usage:
 
 Options:
     --json PATH       Path to JSON file (default: docs/screenings.json)
+    --clear           Delete all existing screenings/films and related data first
     --skip-tmdb       Don't fetch from TMDB (faster, only imports JSON fields)
     --dry-run         Print what would be inserted without writing to the DB
     --delay SECS      Delay between TMDB requests in seconds (default: 0.3)
@@ -100,6 +101,7 @@ def build_film_row(film: dict, tmdb_info: dict | None) -> dict:
 def main():
     parser = argparse.ArgumentParser(description="Import screenings.json into Supabase")
     parser.add_argument("--json", default="docs/screenings.json", help="Path to JSON file")
+    parser.add_argument("--clear", action="store_true", help="Delete all existing data first (films, screenings, scores, queue)")
     parser.add_argument("--skip-tmdb", action="store_true", help="Skip TMDB enrichment")
     parser.add_argument("--dry-run", action="store_true", help="Print without writing")
     parser.add_argument("--delay", type=float, default=0.3, help="Delay between TMDB requests (seconds)")
@@ -135,6 +137,32 @@ def main():
             print("Install supabase-py:  pip install supabase")
             sys.exit(1)
 
+    # Clear all data if requested
+    if args.clear and args.dry_run:
+        print("[dry-run] Would clear ALL tables: user_film_scores, film_enrichment_queue,")
+        print("  screenings, user_watched_films, user_watchlist_films, films\n")
+    elif args.clear and supabase:
+        print("Clearing all data...")
+        # Order matters: respect foreign key dependencies
+        # 1. User-facing tables that reference films
+        supabase.table("user_film_scores").delete().gte("score", -1).execute()
+        print("  Cleared user_film_scores")
+        # 2. Enrichment queue (references films by URL, not FK)
+        supabase.table("film_enrichment_queue").delete().neq("id", 0).execute()
+        print("  Cleared film_enrichment_queue")
+        # 3. Screenings (FK to films, CASCADE would handle this but be explicit)
+        supabase.table("screenings").delete().neq("id", 0).execute()
+        print("  Cleared screenings")
+        # 4. User watched/watchlist films
+        supabase.table("user_watched_films").delete().gte("created_at", "1970-01-01").execute()
+        print("  Cleared user_watched_films")
+        supabase.table("user_watchlist_films").delete().gte("created_at", "1970-01-01").execute()
+        print("  Cleared user_watchlist_films")
+        # 5. Films (now safe — no remaining FK references)
+        supabase.table("films").delete().neq("id", 0).execute()
+        print("  Cleared films")
+        print("  Done. Clean slate — user will need to re-upload Letterboxd export.\n")
+
     films_upserted = 0
     screenings_upserted = 0
     tmdb_fetched = 0
@@ -147,9 +175,9 @@ def main():
 
         print(f"[{i+1}/{len(films_data)}] {title}")
 
-        # Fetch TMDB enrichment
+        # Fetch TMDB enrichment (skip during dry-run)
         tmdb_info = None
-        if fetch_tmdb and tmdb_url:
+        if fetch_tmdb and tmdb_url and not args.dry_run:
             try:
                 tmdb_info = fetch_tmdb_info(tmdb_url)
                 if tmdb_info:
