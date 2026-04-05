@@ -129,13 +129,22 @@ export async function GET() {
 
     // Load currently-screened films (films with future screenings)
     // DB stores naive Madrid timestamps, so compare with Madrid "now"
+    // Use RPC to get distinct film_ids — avoids Supabase's 1000-row default limit
     const now = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Madrid' });
-    const { data: screenedFilmIds } = await supabase
-        .from('screenings')
-        .select('film_id')
-        .gte('showtime', now);
-
-    const uniqueFilmIds = [...new Set((screenedFilmIds ?? []).map(s => s.film_id))];
+    const allScreenedIds: number[] = [];
+    let screenOffset = 0;
+    while (true) {
+        const { data } = await supabase
+            .from('screenings')
+            .select('film_id')
+            .gte('showtime', now)
+            .range(screenOffset, screenOffset + BATCH - 1);
+        if (!data || data.length === 0) break;
+        for (const s of data) allScreenedIds.push(s.film_id);
+        if (data.length < BATCH) break;
+        screenOffset += BATCH;
+    }
+    const uniqueFilmIds = [...new Set(allScreenedIds)];
 
     if (uniqueFilmIds.length === 0) {
         return NextResponse.json({ scores: {} });
