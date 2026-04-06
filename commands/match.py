@@ -1,11 +1,85 @@
 """Match command: find Letterboxd URLs for scraped films."""
 
-from pathlib import Path
+import os
+import sys
 
 import pandas as pd
+from dotenv import load_dotenv
 
-from json_io import read_master_json, parse_dates_column
 from rate import match_films
+
+load_dotenv()
+
+PAGE_SIZE = 1000
+
+
+def _load_cache_from_supabase():
+    """Load caches from Supabase for matching.
+
+    Returns:
+        url_cache: theater_film_link (url_info) → letterboxd_url
+        title_cache: film title → letterboxd_url
+    """
+    url = os.environ.get("SUPABASE_URL")
+    key = os.environ.get("SUPABASE_SECRET_KEY") or os.environ.get("SUPABASE_SERVICE_KEY")
+    if not url or not key:
+        print("  Warning: SUPABASE_URL / SUPABASE_SECRET_KEY not set, skipping cache")
+        return {}, {}
+
+    try:
+        from supabase import create_client
+        supabase = create_client(url, key)
+    except ImportError:
+        print("  Warning: supabase-py not installed, skipping cache")
+        return {}, {}
+
+    # 1. Build title → letterboxd_url from films table (paginated)
+    title_cache = {}
+    offset = 0
+    while True:
+        result = (
+            supabase.table("films")
+            .select("title, letterboxd_url")
+            .not_.is_("letterboxd_url", "null")
+            .range(offset, offset + PAGE_SIZE - 1)
+            .execute()
+        )
+        rows = result.data or []
+        for row in rows:
+            title = row.get("title")
+            lb_url = row.get("letterboxd_url")
+            if title and lb_url:
+                title_cache[title] = lb_url
+        if len(rows) < PAGE_SIZE:
+            break
+        offset += PAGE_SIZE
+
+    # 2. Build url_info → letterboxd_url from screenings+films (paginated)
+    url_cache = {}
+    offset = 0
+    while True:
+        result = (
+            supabase.table("screenings")
+            .select("url_info, films!inner(letterboxd_url)")
+            .not_.is_("url_info", "null")
+            .neq("url_info", "")
+            .range(offset, offset + PAGE_SIZE - 1)
+            .execute()
+        )
+        rows = result.data or []
+        for row in rows:
+            url_info = row.get("url_info")
+            film = row.get("films")
+            if not url_info or not film:
+                continue
+            lb_url = film.get("letterboxd_url") if isinstance(film, dict) else None
+            if lb_url and url_info not in url_cache:
+                url_cache[url_info] = lb_url
+        if len(rows) < PAGE_SIZE:
+            break
+        offset += PAGE_SIZE
+
+    return url_cache, title_cache
 
 
 def run_match(args):
@@ -14,46 +88,12 @@ def run_match(args):
     output_csv = args.output
     skip_existing = args.skip_existing
 
-    url_cache = {}
-    master_path = Path(args.cache) if args.cache else None
-
-    if master_path and master_path.exists():
-        print(f"Loading cache from {master_path} ...")
-        try:
-            if master_path.suffix == ".json":
-                master_films = read_master_json(str(master_path))
-                count_cached = 0
-                for film in master_films:
-                    lb_url = film.get("letterboxd_url")
-                    if not lb_url:
-                        continue
-                    for d in film.get("dates", []):
-                        if isinstance(d, dict):
-                            link = d.get("url_info")
-                            if link and link not in url_cache:
-                                url_cache[link] = lb_url
-                                count_cached += 1
-            else:
-                master_df = pd.read_csv(str(master_path))
-                count_cached = 0
-                for _, row in master_df.iterrows():
-                    lb_url = row.get("letterboxd_url")
-                    if pd.isna(lb_url):
-                        continue
-                    dates = parse_dates_column(row.get("dates"))
-                    for d in dates:
-                        if isinstance(d, dict):
-                            link = d.get("url_info")
-                            if link and link not in url_cache:
-                                url_cache[link] = lb_url
-                                count_cached += 1
-
-            print(f"  → Cached {count_cached} links")
-        except Exception as e:
-            print(f"  → Failed to load cache: {e}")
+    print("Loading cache from Supabase ...")
+    url_cache, title_cache = _load_cache_from_supabase()
+    print(f"  → Cached {len(url_cache)} links, {len(title_cache)} titles")
 
     df = pd.read_csv(input_csv)
-    df = match_films(df, skip_existing=skip_existing, url_cache=url_cache)
+    df = match_films(df, skip_existing=skip_existing, url_cache=url_cache, title_cache=title_cache)
 
     df.to_csv(output_csv, index=False)
     matched = df["letterboxd_url"].notna().sum()

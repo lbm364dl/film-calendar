@@ -113,7 +113,7 @@ def find_letterboxd_url(
             browser.quit()
 
 
-def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict = None) -> pd.DataFrame:
+def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict = None, title_cache: dict = None) -> pd.DataFrame:
     """Add letterboxd_url column to DataFrame by searching for each film."""
     result = df.copy()
 
@@ -140,7 +140,12 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict =
                 link = row.get("theater_film_link")
                 if link and link in url_cache:
                     cached_url = url_cache[link]
-                    print(f"  → Found in cache: {cached_url} (for {link})")
+                    print(f"  → Found in cache (link): {cached_url}")
+            if not cached_url and title_cache:
+                title = row.get("title")
+                if title and title in title_cache:
+                    cached_url = title_cache[title]
+                    print(f"  → Found in cache (title): {cached_url} (for '{title}')")
 
             if cached_url:
                 result.at[idx, "letterboxd_url"] = cached_url

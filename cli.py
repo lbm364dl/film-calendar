@@ -76,24 +76,13 @@ def parse_args():
         action="store_true",
         help="Skip films that already have a letterboxd_url (for incremental matching)",
     )
-    match_parser.add_argument(
-        "--cache",
-        type=str,
-        help="Path to the master JSON/CSV to use as a cache for Letterboxd URLs",
-    )
 
 
     # Merge subcommand
     merge_parser = subparsers.add_parser(
         "merge",
-        help="Merge a matched CSV into the master JSON, fetching Letterboxd metadata",
+        help="Merge a matched CSV into Supabase, fetching Letterboxd/TMDB metadata",
         formatter_class=argparse.RawTextHelpFormatter,
-    )
-    merge_parser.add_argument(
-        "--source",
-        type=str,
-        default="docs/screenings.json",
-        help="Path to the master JSON (source of truth, default: docs/screenings.json)",
     )
     merge_parser.add_argument(
         "--input",
@@ -102,14 +91,14 @@ def parse_args():
         help="Path to the matched CSV to merge IN",
     )
     merge_parser.add_argument(
-        "--output",
-        type=str,
-        help="Optional output path (defaults to overwriting --source)",
-    )
-    merge_parser.add_argument(
         "--backfill",
         action="store_true",
-        help="Re-fetch Letterboxd metadata for ALL films in the master JSON, not just new ones",
+        help="Re-fetch Letterboxd/TMDB metadata for ALL films, not just new ones",
+    )
+    merge_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print what would be upserted without writing to the DB",
     )
 
     # New cinema subcommand

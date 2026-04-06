@@ -1,10 +1,17 @@
-"""Merge command: merge matched CSV into master JSON with metadata fetching."""
+"""Merge command: merge matched CSV into Supabase with metadata fetching."""
+
+import os
+import sys
+from datetime import datetime
 
 import pandas as pd
+from dotenv import load_dotenv
 
-from json_io import read_master_json, write_master_json, parse_dates_column
+from json_io import parse_dates_column
 from rate import fetch_letterboxd_info_batch
 from tmdb import fetch_tmdb_info_batch
+
+load_dotenv()
 
 
 LETTERBOXD_FIELDS = [
@@ -18,17 +25,75 @@ TMDB_FIELDS = [
     "collection_name", "collection_id", "overview", "tagline",
     "title_original", "title_en", "title_es",
 ]
-METADATA_FIELDS = LETTERBOXD_FIELDS + TMDB_FIELDS
 
 
-def _merge_input_into_master(input_df, master_films, url_to_idx, title_to_idx):
-    """Merge input CSV rows into the master films list. Returns (updated_count, new_count)."""
-    updated_count = 0
-    new_count = 0
+def _init_supabase():
+    """Initialize and return Supabase client."""
+    url = os.environ.get("SUPABASE_URL")
+    key = os.environ.get("SUPABASE_SECRET_KEY") or os.environ.get("SUPABASE_SERVICE_KEY")
+    if not url or not key:
+        print("Error: Set SUPABASE_URL and SUPABASE_SECRET_KEY environment variables.")
+        sys.exit(1)
+    try:
+        from supabase import create_client
+        return create_client(url, key)
+    except ImportError:
+        print("Error: Install supabase-py:  pip install supabase")
+        sys.exit(1)
+
+
+def _parse_timestamp(ts: str) -> str:
+    """Normalize 'YYYY-MM-DD HH:MM' to 'YYYY-MM-DD HH:MM:00' for DB storage."""
+    dt = datetime.strptime(ts.strip(), "%Y-%m-%d %H:%M")
+    return dt.strftime("%Y-%m-%d %H:%M:00")
+
+
+def _build_film_row(film: dict) -> dict:
+    """Build a films table row from a film dict (already has all metadata)."""
+    row = {
+        "title": film.get("title"),
+        "director": film.get("director"),
+        "year": film.get("year"),
+        "letterboxd_url": film.get("letterboxd_url"),
+        "letterboxd_short_url": film.get("letterboxd_short_url"),
+        "letterboxd_rating": film.get("letterboxd_rating"),
+        "letterboxd_viewers": film.get("letterboxd_viewers"),
+        "tmdb_url": film.get("tmdb_url"),
+        "tmdb_id": film.get("tmdb_id"),
+        "genres": film.get("genres", []),
+        "country": film.get("country", []),
+        "primary_language": film.get("primary_language", []),
+        "spoken_languages": film.get("spoken_languages", []),
+        "runtime_minutes": film.get("runtime_minutes"),
+        "directors": film.get("directors", []),
+        "top_cast": film.get("top_cast", []),
+        "keywords": film.get("keywords", []),
+        "tmdb_rating": film.get("tmdb_rating"),
+        "tmdb_votes": film.get("tmdb_votes"),
+        "production_companies": film.get("production_companies", []),
+        "collection_name": film.get("collection_name"),
+        "collection_id": film.get("collection_id"),
+        "overview": film.get("overview"),
+        "tagline": film.get("tagline"),
+        "title_original": film.get("title_original"),
+        "title_en": film.get("title_en"),
+        "title_es": film.get("title_es"),
+    }
+    # Remove None values so we don't overwrite existing DB data with nulls
+    return {k: v for k, v in row.items() if v is not None}
+
+
+def _parse_csv_to_films(input_df):
+    """Parse input CSV into a list of film dicts with dates. Returns list of film dicts."""
+    films = []
+    seen_urls = {}   # letterboxd_url -> index in films
+    seen_titles = {} # title -> index in films
 
     for _, row in input_df.iterrows():
         lb_url = row.get("letterboxd_url")
+        lb_url = lb_url if pd.notna(lb_url) else None
         title = row.get("title")
+        title = title if pd.notna(title) else None
 
         raw_dates = parse_dates_column(row.get("dates"))
         theater = row.get("theater", "Unknown") if pd.notna(row.get("theater")) else "Unknown"
@@ -52,220 +117,238 @@ def _merge_input_into_master(input_df, master_films, url_to_idx, title_to_idx):
             if item.get("timestamp"):
                 new_dates.append(item)
 
-        # Find existing film in master
-        target_idx = None
-        if pd.notna(lb_url) and lb_url in url_to_idx:
-            target_idx = url_to_idx[lb_url]
-        elif pd.notna(title) and title in title_to_idx:
-            target_idx = title_to_idx[title]
+        # Deduplicate within the CSV itself
+        existing_idx = None
+        if lb_url and lb_url in seen_urls:
+            existing_idx = seen_urls[lb_url]
+        elif title and title in seen_titles:
+            existing_idx = seen_titles[title]
 
-        if target_idx is not None:
-            master_film = master_films[target_idx]
-            existing_dates = master_film.get("dates", [])
-            existing_keys = {(d.get("timestamp"), d.get("location")) for d in existing_dates}
-
-            added = False
+        if existing_idx is not None:
+            existing = films[existing_idx]
+            existing_keys = {(d.get("timestamp"), d.get("location")) for d in existing["dates"]}
             for d in new_dates:
-                key = (d.get("timestamp"), d.get("location"))
-                if key not in existing_keys:
-                    existing_dates.append(d)
-                    existing_keys.add(key)
-                    added = True
-
-            if added:
-                existing_dates.sort(key=lambda x: x.get("timestamp", ""))
-                master_film["dates"] = existing_dates
-                updated_count += 1
-
-            if pd.notna(lb_url) and not master_film.get("letterboxd_url"):
-                master_film["letterboxd_url"] = lb_url
-                url_to_idx[lb_url] = target_idx
-
-            for field in METADATA_FIELDS:
-                input_val = row.get(field)
-                if pd.notna(input_val) if isinstance(input_val, float) else input_val:
-                    master_val = master_film.get(field)
-                    if not master_val:
-                        master_film[field] = input_val
+                if (d.get("timestamp"), d.get("location")) not in existing_keys:
+                    existing["dates"].append(d)
+            if lb_url and not existing.get("letterboxd_url"):
+                existing["letterboxd_url"] = lb_url
+                seen_urls[lb_url] = existing_idx
         else:
             film = {
-                "title": title if pd.notna(title) else None,
+                "title": title,
                 "dates": new_dates,
                 "director": row.get("director") if pd.notna(row.get("director")) else None,
                 "year": int(row["year"]) if pd.notna(row.get("year")) else None,
-                "letterboxd_url": lb_url if pd.notna(lb_url) else None,
-                "letterboxd_rating": None,
-                "letterboxd_viewers": None,
-                "letterboxd_short_url": None,
-                "tmdb_url": None,
-                "tmdb_id": None,
-                "genres": [],
-                "country": [],
-                "primary_language": [],
-                "spoken_languages": [],
-                "runtime_minutes": None,
-                "directors": [],
-                "top_cast": [],
-                "keywords": [],
-                "tmdb_rating": None,
-                "tmdb_votes": None,
-                "production_companies": [],
-                "collection_name": None,
-                "collection_id": None,
-                "overview": None,
-                "tagline": None,
-                "title_original": None,
-                "title_en": None,
-                "title_es": None,
+                "letterboxd_url": lb_url,
             }
+            idx = len(films)
+            films.append(film)
+            if lb_url:
+                seen_urls[lb_url] = idx
+            if title:
+                seen_titles[title] = idx
 
-            for field in METADATA_FIELDS:
-                input_val = row.get(field)
-                if pd.notna(input_val) if isinstance(input_val, float) else input_val:
-                    film[field] = input_val
-
-            idx = len(master_films)
-            master_films.append(film)
-            if film["letterboxd_url"]:
-                url_to_idx[film["letterboxd_url"]] = idx
-            if film["title"]:
-                title_to_idx[film["title"]] = idx
-            new_count += 1
-
-    return updated_count, new_count
+    return films
 
 
-def _batch_fetch_letterboxd(master_films, backfill):
+def _prefill_metadata_from_db(supabase, films):
+    """Check Supabase for films that already have metadata and prefill them.
+
+    This prevents re-fetching Letterboxd/TMDB data for films already in the DB.
+    Only queries for films present in the CSV by letterboxd_url.
+    """
+    urls = [f["letterboxd_url"] for f in films if f.get("letterboxd_url")]
+    if not urls:
+        return
+
+    # Query existing films by letterboxd_url (batch in chunks to avoid URL length limits)
+    CHUNK = 50
+    db_films = {}
+    for i in range(0, len(urls), CHUNK):
+        chunk = urls[i:i + CHUNK]
+        result = supabase.table("films").select("*").in_("letterboxd_url", chunk).execute()
+        for row in (result.data or []):
+            if row.get("letterboxd_url"):
+                db_films[row["letterboxd_url"]] = row
+
+    prefilled = 0
+    for film in films:
+        lb_url = film.get("letterboxd_url")
+        if not lb_url or lb_url not in db_films:
+            continue
+        db_row = db_films[lb_url]
+        # Copy metadata fields from DB into the film dict (don't overwrite CSV data)
+        for field in LETTERBOXD_FIELDS + TMDB_FIELDS:
+            db_val = db_row.get(field)
+            if db_val is not None and db_val != [] and db_val != "":
+                if not film.get(field):
+                    film[field] = db_val
+        prefilled += 1
+
+    if prefilled:
+        print(f"  {prefilled} films already have metadata in DB, skipping re-fetch")
+
+
+def _batch_fetch_letterboxd(films, backfill):
     """Fetch Letterboxd metadata for films that need it."""
-    if backfill:
-        urls = []
-        indices = []
-        for i, film in enumerate(master_films):
-            if film.get("letterboxd_url"):
-                urls.append(film["letterboxd_url"])
-                indices.append(i)
-        print(f"\n  Backfilling Letterboxd metadata for {len(urls)} films (Selenium)...")
-    else:
-        lb_meta_fields = [
-            "letterboxd_rating", "letterboxd_viewers", "letterboxd_short_url",
-            "tmdb_url",
-        ]
-        urls = []
-        indices = []
-        for i, film in enumerate(master_films):
-            if not film.get("letterboxd_url"):
-                continue
-            has_lb_meta = any(
-                (film.get(f) not in (None, [], ""))
-                for f in lb_meta_fields
+    urls = []
+    indices = []
+    for i, film in enumerate(films):
+        if not film.get("letterboxd_url"):
+            continue
+        if not backfill:
+            has_meta = any(
+                film.get(f) not in (None, [], "")
+                for f in LETTERBOXD_FIELDS
             )
-            if not has_lb_meta:
-                urls.append(film["letterboxd_url"])
-                indices.append(i)
-        if urls:
-            print(f"\n  Fetching Letterboxd metadata for {len(urls)} new films (Selenium)...")
-
-    if urls:
-        try:
-            infos = fetch_letterboxd_info_batch(urls, use_selenium=True)
-            for idx, info in zip(indices, infos):
-                for key in LETTERBOXD_FIELDS:
-                    val = info.get(key)
-                    if val is not None:
-                        if isinstance(val, list) and len(val) == 0:
-                            continue
-                        master_films[idx][key] = val
-        except Exception as e:
-            print(f"  Error during Letterboxd batch fetch: {e}")
-
-
-def _batch_fetch_tmdb(master_films, backfill):
-    """Fetch TMDB metadata for films that need it."""
-    if backfill:
-        urls = []
-        indices = []
-        for i, film in enumerate(master_films):
-            if film.get("tmdb_url"):
-                urls.append(film["tmdb_url"])
-                indices.append(i)
-        print(f"\n  Backfilling TMDB metadata for {len(urls)} films...")
-    else:
-        urls = []
-        indices = []
-        for i, film in enumerate(master_films):
-            tmdb_url = film.get("tmdb_url")
-            if not tmdb_url:
+            if has_meta:
                 continue
-            has_tmdb_meta = any(
-                (film.get(f) not in (None, [], ""))
+        urls.append(film["letterboxd_url"])
+        indices.append(i)
+
+    if not urls:
+        return
+
+    label = "Backfilling" if backfill else "Fetching"
+    print(f"\n  {label} Letterboxd metadata for {len(urls)} films (Selenium)...")
+
+    try:
+        infos = fetch_letterboxd_info_batch(urls, use_selenium=True)
+        for idx, info in zip(indices, infos):
+            for key in LETTERBOXD_FIELDS:
+                val = info.get(key)
+                if val is not None and not (isinstance(val, list) and len(val) == 0):
+                    films[idx][key] = val
+    except Exception as e:
+        print(f"  Error during Letterboxd batch fetch: {e}")
+
+
+def _batch_fetch_tmdb(films, backfill):
+    """Fetch TMDB metadata for films that need it."""
+    urls = []
+    indices = []
+    for i, film in enumerate(films):
+        tmdb_url = film.get("tmdb_url")
+        if not tmdb_url:
+            continue
+        if not backfill:
+            has_meta = any(
+                film.get(f) not in (None, [], "")
                 for f in TMDB_FIELDS
             )
-            if not has_tmdb_meta:
-                urls.append(tmdb_url)
-                indices.append(i)
-        if urls:
-            print(f"\n  Fetching TMDB metadata for {len(urls)} films...")
+            if has_meta:
+                continue
+        urls.append(tmdb_url)
+        indices.append(i)
 
-    if urls:
+    if not urls:
+        return
+
+    label = "Backfilling" if backfill else "Fetching"
+    print(f"\n  {label} TMDB metadata for {len(urls)} films...")
+
+    try:
+        tmdb_infos = fetch_tmdb_info_batch(urls)
+        for idx, info in zip(indices, tmdb_infos):
+            if info is None:
+                print(f"  Warning: TMDB returned no data for {films[idx].get('tmdb_url')}")
+                continue
+            for key in TMDB_FIELDS:
+                val = info.get(key)
+                if val is not None and not (isinstance(val, list) and len(val) == 0):
+                    films[idx][key] = val
+    except Exception as e:
+        print(f"  Error during TMDB batch fetch: {e}")
+
+
+def _upsert_to_supabase(supabase, films, dry_run=False):
+    """Upsert films and their screenings to Supabase. Returns (films_upserted, screenings_upserted)."""
+    films_upserted = 0
+    screenings_upserted = 0
+
+    for i, film in enumerate(films):
+        title = film.get("title") or "(unknown)"
+        short_url = film.get("letterboxd_short_url")
+
+        if dry_run:
+            print(f"  [{i+1}/{len(films)}] [dry-run] Would upsert: {title}")
+            for d in film.get("dates", []):
+                print(f"    screening: {d.get('timestamp')} @ {d.get('location')}")
+            continue
+
+        film_row = _build_film_row(film)
+
+        # Upsert film
         try:
-            tmdb_infos = fetch_tmdb_info_batch(urls)
-            for idx, info in zip(indices, tmdb_infos):
-                if info is None:
-                    print(f"  Warning: TMDB returned no data for {master_films[idx].get('tmdb_url')}")
-                    continue
-                for key in TMDB_FIELDS:
-                    val = info.get(key)
-                    if val is not None:
-                        if isinstance(val, list) and len(val) == 0:
-                            continue
-                        master_films[idx][key] = val
+            if short_url:
+                result = supabase.table("films").upsert(
+                    film_row, on_conflict="letterboxd_short_url"
+                ).execute()
+            else:
+                result = supabase.table("films").insert(film_row).execute()
+            film_id = result.data[0]["id"]
+            films_upserted += 1
         except Exception as e:
-            print(f"  Error during TMDB batch fetch: {e}")
+            print(f"  Error upserting film '{title}': {e}")
+            continue
+
+        # Upsert screenings
+        for d in film.get("dates", []):
+            ts = d.get("timestamp", "")
+            if not ts:
+                continue
+            screening_row = {
+                "film_id": film_id,
+                "showtime": _parse_timestamp(ts),
+                "location": d.get("location", "Unknown"),
+                "url_tickets": d.get("url_tickets", ""),
+                "url_info": d.get("url_info", ""),
+                "version": d.get("version"),
+                "special": d.get("special"),
+            }
+            try:
+                supabase.table("screenings").upsert(
+                    screening_row, on_conflict="film_id,showtime,location"
+                ).execute()
+                screenings_upserted += 1
+            except Exception as e:
+                print(f"  Warning: screening {ts} @ {d.get('location')}: {e}")
+
+    return films_upserted, screenings_upserted
 
 
 def run_merge(args):
     """Execute the merge command.
 
-    For new films: fetches full Letterboxd metadata (Selenium) automatically.
-    With --backfill: re-fetches metadata for ALL films in the master JSON.
+    Merges a matched CSV into Supabase, fetching metadata for new films.
+    With --backfill: re-fetches metadata for ALL films in the CSV.
     """
-    source_json = args.source
     input_csv = args.input
-    output_json = args.output if args.output else source_json
     backfill = args.backfill
+    dry_run = args.dry_run
 
-    print(f"Merging {input_csv} into {source_json} ...")
+    print(f"Merging {input_csv} into Supabase ...")
 
-    # Load master JSON
-    master_films = read_master_json(source_json)
-    url_to_idx = {}
-    title_to_idx = {}
-    for i, film in enumerate(master_films):
-        url = film.get("letterboxd_url")
-        title = film.get("title")
-        if url:
-            url_to_idx[url] = i
-        if title:
-            title_to_idx[title] = i
+    # Initialize Supabase
+    supabase = None if dry_run else _init_supabase()
 
-    # Load and merge input CSV
+    # Parse CSV into film dicts (deduplicating within the CSV)
     input_df = pd.read_csv(input_csv)
-    updated_count, new_count = _merge_input_into_master(
-        input_df, master_films, url_to_idx, title_to_idx
-    )
+    films = _parse_csv_to_films(input_df)
+    print(f"  Parsed {len(films)} unique films from {len(input_df)} CSV rows")
 
-    # Batch-fetch metadata
-    _batch_fetch_letterboxd(master_films, backfill)
-    _batch_fetch_tmdb(master_films, backfill)
+    # Check DB for films that already have metadata (avoids re-fetching)
+    if supabase and not backfill:
+        _prefill_metadata_from_db(supabase, films)
 
-    # Sort by rating and write
-    master_films.sort(
-        key=lambda f: (f.get("letterboxd_rating") or 0,),
-        reverse=True,
-    )
+    # Fetch metadata for films that still need it
+    _batch_fetch_letterboxd(films, backfill)
+    _batch_fetch_tmdb(films, backfill)
 
-    write_master_json(master_films, output_json)
-    print(f"\n✓ Merged data saved to {output_json}")
-    print(f"  Updates: {updated_count} screening updates/merges")
-    print(f"  New: {new_count} films added")
-    print(f"  Total: {len(master_films)} films")
+    # Upsert to Supabase (DB handles deduplication via conflict keys)
+    print(f"\n  Upserting to Supabase...")
+    films_upserted, screenings_upserted = _upsert_to_supabase(supabase, films, dry_run)
+
+    print(f"\n{'[dry-run] ' if dry_run else ''}Merge complete!")
+    print(f"  Films: {films_upserted}")
+    print(f"  Screenings: {screenings_upserted}")
