@@ -869,7 +869,7 @@ h1 {
     transition: all 0.2s;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
 }
 
 @media (hover: hover) and (pointer: fine) {
