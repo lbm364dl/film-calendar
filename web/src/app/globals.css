@@ -869,7 +869,7 @@ h1 {
     transition: all 0.2s;
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    overflow: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2279,24 +2279,18 @@ footer p {
     border-radius: 4px;
 }
 
-/* Sessions Popup */
+/* Sessions Popup — rendered via portal with position: fixed */
 .sessions-popup {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
     background: var(--bg);
     border: 2px solid var(--accent);
     border-radius: 12px;
     padding: 1rem;
-    z-index: 1000;
     max-height: 350px;
     overflow-y: auto;
-    overflow-x: visible;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 107, 0.15);
-    isolation: isolate;
+    z-index: 1000;
     opacity: 0;
     transform: translateY(-6px) scale(0.98);
     visibility: hidden;
@@ -2330,19 +2324,6 @@ footer p {
     visibility: visible;
     pointer-events: auto;
     transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.sessions-popup.closing {
-    opacity: 0;
-    transform: translateY(-4px) scale(0.98);
-    visibility: visible;
-    pointer-events: none;
-}
-
-/* Ensure film card with open popup is above other cards */
-.film-card:has(.sessions-popup.show) {
-    position: relative;
-    z-index: 500;
 }
 
 /* Day groups in popup */
