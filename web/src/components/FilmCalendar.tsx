@@ -129,7 +129,7 @@ export default function FilmCalendar({
     () => {
       if (showLbModal) { closeLbModal(); return; }
       if (showMoreFilters) { closeMoreFilters(); return; }
-      closeModal();
+      if (modal) { closeModal(); return; }
       setOpenPopupId(null);
     },
   ], [showLbModal, closeLbModal, showMoreFilters, closeMoreFilters, closeModal]);

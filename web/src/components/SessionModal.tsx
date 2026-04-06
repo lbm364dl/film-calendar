@@ -15,7 +15,7 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
   return (
     <div
       className={`session-modal show ${modalClosing ? 'closing' : ''}`}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => { e.stopPropagation(); if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="session-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="session-modal-header">
