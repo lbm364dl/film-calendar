@@ -12,7 +12,7 @@ const BATCH = 1000;
 let cachedPayload: string | null = null;
 let cachedAt = 0;
 let cachedEtag: string | null = null;
-const MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
+const MAX_AGE_MS = 60 * 60 * 1000; // 1 hour
 
 async function createSupabase() {
   const cookieStore = await cookies();
