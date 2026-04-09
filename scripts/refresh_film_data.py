@@ -52,6 +52,13 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
+def get_film_by_url(letterboxd_url):
+    """Get a single film by its Letterboxd URL."""
+    cols = "id, title, year, letterboxd_url, letterboxd_viewers, tmdb_url"
+    result = supabase.table("films").select(cols).eq("letterboxd_url", letterboxd_url).execute()
+    return result.data or []
+
+
 def get_films(viewers_only=False, recent_years=0, future_only=False):
     """Get films to process, optionally filtered."""
     from datetime import datetime
@@ -219,9 +226,14 @@ def main():
                         help="Only process films from the last N years (0 = all)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print what would be updated without writing to DB")
+    parser.add_argument("--film", type=str,
+                        help="Letterboxd URL of a single film to refresh")
     args = parser.parse_args()
 
-    films = get_films(viewers_only=args.viewers_only, recent_years=args.recent, future_only=args.future_only)
+    if args.film:
+        films = get_film_by_url(args.film)
+    else:
+        films = get_films(viewers_only=args.viewers_only, recent_years=args.recent, future_only=args.future_only)
 
     if not films:
         print("No films to process.")
