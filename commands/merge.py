@@ -98,6 +98,7 @@ def _parse_csv_to_films(input_df):
         raw_dates = parse_dates_column(row.get("dates"))
         theater = row.get("theater", "Unknown") if pd.notna(row.get("theater")) else "Unknown"
         link = row.get("theater_film_link", "") if pd.notna(row.get("theater_film_link")) else ""
+        row_special = row.get("special") if pd.notna(row.get("special")) else None
 
         new_dates = []
         for d in raw_dates:
@@ -110,6 +111,9 @@ def _parse_csv_to_films(input_df):
                 }
                 if d.get("version"):
                     item["version"] = d["version"]
+                special = d.get("special") or row_special
+                if special:
+                    item["special"] = special
             elif isinstance(d, str):
                 item = {"timestamp": d, "location": theater, "url_tickets": "", "url_info": link}
             else:
@@ -292,12 +296,13 @@ def _upsert_to_supabase(supabase, films, dry_run=False):
             print(f"  Error upserting film '{title}': {e}")
             continue
 
-        # Upsert screenings
+        # Upsert screenings in batch
+        screening_rows = []
         for d in film.get("dates", []):
             ts = d.get("timestamp", "")
             if not ts:
                 continue
-            screening_row = {
+            screening_rows.append({
                 "film_id": film_id,
                 "showtime": _parse_timestamp(ts),
                 "location": d.get("location", "Unknown"),
@@ -305,14 +310,18 @@ def _upsert_to_supabase(supabase, films, dry_run=False):
                 "url_info": d.get("url_info", ""),
                 "version": d.get("version"),
                 "special": d.get("special"),
-            }
+            })
+
+        if screening_rows:
             try:
                 supabase.table("screenings").upsert(
-                    screening_row, on_conflict="film_id,showtime,location"
+                    screening_rows, on_conflict="film_id,showtime,location"
                 ).execute()
-                screenings_upserted += 1
+                screenings_upserted += len(screening_rows)
             except Exception as e:
-                print(f"  Warning: screening {ts} @ {d.get('location')}: {e}")
+                print(f"  Warning: screenings batch for '{title}': {e}")
+
+        print(f"  [{i+1}/{len(films)}] {title} — {len(screening_rows)} screenings")
 
     return films_upserted, screenings_upserted
 
