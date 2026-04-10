@@ -175,12 +175,6 @@ export async function GET() {
         }
     }
 
-    // Compute recommendations with per-film breakdowns
-    const matchScores = computeRecommendationsWithBreakdown(
-        allWatchedFilms, userRatings, urlMap, screenedFilms,
-        { liked: userLiked, watchedDates: userWatchedDates, rewatchCounts: userRewatchCounts },
-    );
-
     // Build attribute ID → name lookup from film data (for directors, cast, keywords, companies)
     const attrNames: Record<string, string> = {};
     for (const f of [...allWatchedFilms, ...screenedFilms]) {
@@ -193,13 +187,12 @@ export async function GET() {
         for (const co of f.production_companies ?? []) attrNames[`company:${co.id}`] = co.name;
     }
 
-    // Build film ID → title + URL lookup for resolving similarTo IDs
+    // Build film ID → title + URL lookup (needed for both reasons and similarTo)
     const allFilmTitles: Record<number, string> = {};
     const allFilmTitlesEn: Record<number, string> = {};
     const allFilmUrls: Record<number, string> = {};
     for (const f of allWatchedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
     for (const f of screenedFilms) { allFilmTitles[f.id] = ''; allFilmUrls[f.id] = ''; }
-    // Fetch titles (both languages) + letterboxd URLs for all referenced films
     const titleIds = Object.keys(allFilmTitles).map(Number);
     for (let i = 0; i < titleIds.length; i += BATCH) {
         const batch = titleIds.slice(i, i + BATCH);
@@ -210,6 +203,13 @@ export async function GET() {
             allFilmUrls[f.id] = f.letterboxd_url || '';
         }
     }
+
+    // Compute recommendations with per-film breakdowns
+    const matchScores = computeRecommendationsWithBreakdown(
+        allWatchedFilms, userRatings, urlMap, screenedFilms,
+        { liked: userLiked, watchedDates: userWatchedDates, rewatchCounts: userRewatchCounts },
+        allFilmTitles,
+    );
 
     // Convert to { filmId: score } and { filmId: breakdown } maps
     // Resolve similarTo IDs to titles

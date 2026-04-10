@@ -60,6 +60,7 @@ export interface CompactBreakdown {
     coverage: number;                    // 0–1: fraction of feature budget with real data
     byCategory: Record<string, number>;  // category → relative contribution
     similarTo?: { title: string; titleEn?: string; reason: string; value: string; url?: string; valueUrl?: string }[];  // top similar watched films with connection
+    reasons?: { type: string; value: string; referenceFilm: string | null }[];  // structured recommendation reasons with personalized film references
 }
 
 /** Detailed explanation of why a film got a particular score. */

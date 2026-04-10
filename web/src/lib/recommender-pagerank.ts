@@ -1,13 +1,17 @@
 /**
  * Personalized PageRank recommendation engine.
  *
- * Builds a knowledge graph from film metadata (directors, cast, genres,
- * keywords, countries, decades, etc.) and runs Random Walk with Restart
- * seeded from the user's highly-rated films.
+ * Algorithm ported from film-recommendations research repo (220+ experiments,
+ * val_ndcg ~0.91). Builds a knowledge graph from film metadata and runs
+ * Random Walk with Restart seeded from the user's highly-rated films.
  *
- * Films reachable through many short paths from liked films score highest.
- * This naturally captures director-following, genre affinity, and transitive
- * connections that cosine-similarity misses.
+ * Key features vs naive PageRank:
+ *   - Director×genre interaction nodes (captures "Spielberg sci-fi" vs "Spielberg drama")
+ *   - Genre-pair nodes (captures "horror+comedy" as distinct from each alone)
+ *   - Proportional hub pruning (not binary) with keyword-specific threshold
+ *   - Quality prior from Letterboxd ratings
+ *   - Percentile-based score calibration
+ *   - Human-readable recommendation reasons
  */
 
 import type { FilmFeatures, MatchScore, CompactBreakdown } from './recommender';
@@ -16,28 +20,32 @@ export type { FilmFeatures, MatchScore, CompactBreakdown };
 
 // ── Graph construction ──────────────────────────────────────────────────────
 
-/** Edge weights per category — controls how much influence flows through each type. */
+/**
+ * Edge weights per category — tuned over 220+ experiments in the
+ * film-recommendations research repo.
+ */
 const EDGE_WEIGHTS: Record<string, number> = {
   director: 3.0,
   cinematographer: 2.5,
   writer: 2.5,
-  cast: 2.5,
-  keyword: 2.0,
+  keyword: 2.5,
+  cast: 2.0,
   composer: 2.0,
-  genre: 1.5,
+  genre: 2.0,
   collection: 1.5,
   company: 1.0,
-  country: 0.5,
+  country: 1.0,
   decade: 0.5,
   language: 0.3,
 };
 
 /**
  * Maximum fraction of films an attribute node can connect to before being
- * pruned as noise. E.g., if "english" connects to 60% of films, it's not
+ * downweighted. E.g., if "english" connects to 60% of films, it's not
  * discriminating — it just pulls everything toward the mean.
+ * Uses proportional downweighting (not binary removal) for smoother behavior.
  */
-const MAX_HUB_FRACTION = 0.30;
+const MAX_HUB_FRACTION = 0.40;
 
 /** Maximum items per category to avoid noise. */
 const MAX_CAST = 5;
@@ -51,6 +59,7 @@ const BLOCKED_KEYWORDS = new Set([
   'excited', 'amused', 'admiring', 'dramatic', 'inspirational',
   'somber', 'playful', 'suspenseful', 'tense', 'angry', 'defiant',
   'arrogant', 'sequel', 'remake', '3d',
+  'murder', 'love', 'superhero', 'cartoon', 'musical',
 ]);
 
 /** Block keywords matching decade patterns like "1970s", "1880s" */
@@ -99,19 +108,30 @@ function buildGraph(films: FilmFeatures[]) {
   for (const film of films) {
     const filmIdx = getOrCreateNode(`film:${film.id}`, 'film');
 
-    // Directors (strongest signal)
+    // Directors (strongest signal) + director×genre interactions
     const directors = film.directors ?? [];
+    const dirIds: number[] = [];
     if (directors.length > 0) {
       for (const d of directors.slice(0, 2)) {
         if (d?.id) {
           const dIdx = getOrCreateNode(`director:${d.id}`, 'director');
           addEdge(filmIdx, dIdx, EDGE_WEIGHTS.director);
+          dirIds.push(d.id);
         }
       }
     } else if (film.director) {
       for (const name of film.director.split(',').map(s => s.trim()).slice(0, 2)) {
         const dIdx = getOrCreateNode(`director:${name.toLowerCase()}`, 'director');
         addEdge(filmIdx, dIdx, EDGE_WEIGHTS.director);
+      }
+    }
+
+    // Director×genre interaction nodes: captures "Spielberg sci-fi" vs "Spielberg drama"
+    const genres = (film.genres ?? []).map(g => g.toLowerCase());
+    for (const did of dirIds) {
+      for (const g of genres.slice(0, 3)) {
+        const dgIdx = getOrCreateNode(`dirgenre:${did}:${g}`, 'director');
+        addEdge(filmIdx, dgIdx, EDGE_WEIGHTS.director * 0.3);
       }
     }
 
@@ -140,9 +160,20 @@ function buildGraph(films: FilmFeatures[]) {
     }
 
     // Genres
-    for (const g of film.genres ?? []) {
-      const gIdx = getOrCreateNode(`genre:${g.toLowerCase()}`, 'genre');
+    for (const g of genres) {
+      const gIdx = getOrCreateNode(`genre:${g}`, 'genre');
       addEdge(filmIdx, gIdx, EDGE_WEIGHTS.genre);
+    }
+
+    // Genre-pair nodes: captures "horror+comedy" as distinct from each alone
+    if (genres.length >= 2) {
+      for (let gi = 0; gi < genres.length; gi++) {
+        for (let gj = gi + 1; gj < Math.min(genres.length, 4); gj++) {
+          const pair = [genres[gi], genres[gj]].sort().join('+');
+          const pairIdx = getOrCreateNode(`genrepair:${pair}`, 'genre');
+          addEdge(filmIdx, pairIdx, EDGE_WEIGHTS.genre * 0.5);
+        }
+      }
     }
 
     // Cast (top billed get stronger edges)
@@ -209,7 +240,7 @@ function buildGraph(films: FilmFeatures[]) {
       if (idx !== undefined) tmdbIdToNodeIdx.set(film.tmdb_id, idx);
     }
   }
-  const TMDB_REC_WEIGHT = 2.0;
+  const TMDB_REC_WEIGHT = 6.0;
   for (const film of films) {
     if (!film.tmdb_recommendations?.length) continue;
     const filmIdx = nodeIndex.get(`film:${film.id}`);
@@ -225,27 +256,39 @@ function buildGraph(films: FilmFeatures[]) {
     }
   }
 
-  // ── Prune noisy hub nodes ──────────────────────────────────────────────
-  // Attribute nodes connected to too many films act as noise (e.g. "english",
-  // "united states", "2020s", "drama"). Remove their edges so they don't
-  // distort the random walk. Only prune broad categories — directors, cast,
-  // keywords, collections, and companies are specific enough to keep.
-  const PRUNABLE_CATEGORIES = new Set(['genre', 'country', 'language', 'decade']);
+  // ── Proportional hub pruning ────────────────────────────────────────────
+  // Attribute nodes connected to too many films act as noise. Instead of
+  // binary removal, scale edge weights proportionally — this preserves
+  // some signal from common attributes while reducing their dominance.
+  // Keywords use a tighter threshold (15%) since they're more numerous.
+  const PRUNABLE_THRESHOLDS: Record<string, number> = {
+    genre: MAX_HUB_FRACTION,
+    country: MAX_HUB_FRACTION,
+    language: MAX_HUB_FRACTION,
+    decade: MAX_HUB_FRACTION,
+    keyword: 0.15,
+  };
   const filmCount = films.length;
-  const maxConnections = Math.max(3, Math.floor(filmCount * MAX_HUB_FRACTION));
 
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
-    if (!PRUNABLE_CATEGORIES.has(node.category)) continue;
+    const threshold = PRUNABLE_THRESHOLDS[node.category];
+    if (threshold === undefined) continue;
 
+    const maxConnections = Math.max(3, Math.floor(filmCount * threshold));
     const filmNeighbors = adjacency[i].filter(e => nodes[e.target].category === 'film').length;
     if (filmNeighbors <= maxConnections) continue;
 
-    // Disconnect: remove all edges from this node AND back-references to it
-    const targets = adjacency[i].map(e => e.target);
-    adjacency[i] = [];
-    for (const t of targets) {
-      adjacency[t] = adjacency[t].filter(e => e.target !== i);
+    // Proportional downweight: scale edges by (maxConnections / filmNeighbors)
+    const scale = maxConnections / filmNeighbors;
+    adjacency[i] = adjacency[i].map(e => ({ target: e.target, weight: e.weight * scale }));
+    for (const edge of adjacency[i]) {
+      const backEdges = adjacency[edge.target];
+      for (let j = 0; j < backEdges.length; j++) {
+        if (backEdges[j].target === i) {
+          backEdges[j] = { target: i, weight: backEdges[j].weight * scale };
+        }
+      }
     }
   }
 
@@ -526,6 +569,179 @@ function recencyFactor(
 }
 
 
+// ── Taste profile & reasons ─────────────────────────────────────────────────
+
+/** Top contributing films for an attribute (kept for reference_film in reasons). */
+type TopFilm = { title: string; filmId: number; weight: number };
+
+/** Accumulated weight + display name + top contributing films for a taste attribute. */
+type TasteEntry = { weight: number; name: string; topFilms: TopFilm[] };
+
+interface TasteProfile {
+  directors: Map<number, TasteEntry>;
+  genres: Map<string, TasteEntry>;
+  keywords: Map<number, TasteEntry>;
+  cast: Map<number, TasteEntry>;
+  cinematographers: Map<number, TasteEntry>;
+}
+
+/** Update a taste profile entry, tracking the top 2 contributing films. */
+function updateTasteEntry<K>(
+  map: Map<K, TasteEntry>,
+  key: K,
+  name: string,
+  weight: number,
+  filmTitle: string,
+  filmId: number,
+): void {
+  const prev = map.get(key);
+  const topFilms = [...(prev?.topFilms ?? []), { title: filmTitle, filmId, weight }]
+    .sort((a, b) => b.weight - a.weight)
+    .slice(0, 2);
+  map.set(key, { weight: (prev?.weight ?? 0) + weight, name, topFilms });
+}
+
+/**
+ * Build a weighted taste profile from the user's watched films.
+ * Tracks the top 2 contributing films per attribute for personalized references.
+ */
+function buildTasteProfile(
+  watchedFilms: FilmFeatures[],
+  filmTitles: Record<number, string>,
+  urlMap: Record<number, string>,
+  ratings: Record<string, number>,
+  signals: UserSignals,
+  now: number,
+): TasteProfile {
+  const directors = new Map<number, TasteEntry>();
+  const genres = new Map<string, TasteEntry>();
+  const keywords = new Map<number, TasteEntry>();
+  const cast = new Map<number, TasteEntry>();
+  const cinematographers = new Map<number, TasteEntry>();
+
+  for (const film of watchedFilms) {
+    const url = urlMap[film.id];
+    const w = computeSeedWeight(url, ratings, signals, now);
+    if (w <= 0) continue;
+    const title = filmTitles[film.id] ?? '?';
+
+    for (const d of (film.directors ?? []).slice(0, 2)) {
+      if (d?.id) updateTasteEntry(directors, d.id, d.name, w, title, film.id);
+    }
+    for (const g of film.genres ?? []) {
+      updateTasteEntry(genres, g.toLowerCase(), g, w, title, film.id);
+    }
+    for (const kw of (film.keywords ?? []).slice(0, MAX_KEYWORDS)) {
+      if (kw?.id) updateTasteEntry(keywords, kw.id, kw.name, w, title, film.id);
+    }
+    for (const m of (film.top_cast ?? []).slice(0, MAX_CAST)) {
+      if (m?.id) updateTasteEntry(cast, m.id, m.name, w, title, film.id);
+    }
+    for (const dp of (film.cinematographers ?? []).slice(0, 2)) {
+      if (dp?.id) updateTasteEntry(cinematographers, dp.id, dp.name, w, title, film.id);
+    }
+  }
+
+  return { directors, genres, keywords, cast, cinematographers };
+}
+
+/** Pick the best reference film, skipping self-references. */
+function pickRefFilm(topFilms: TopFilm[], excludeFilmId: number): string | null {
+  for (const f of topFilms) {
+    if (f.filmId !== excludeFilmId && f.title) return f.title;
+  }
+  return null;
+}
+
+/** Structured reason for a recommendation. */
+type Reason = { type: string; value: string; referenceFilm: string | null };
+
+/**
+ * Generate structured reasons for recommending a film.
+ * Each reason includes a type, value, and optionally a reference to a user's
+ * watched film that triggered it (e.g., director: "Park Chan-wook" ← "Oldboy").
+ * Returns up to 3 unique reasons, prioritized by taste profile weight.
+ */
+function generateReasons(film: FilmFeatures, filmId: number, profile: TasteProfile): Reason[] {
+  const candidates: { type: string; weight: number; value: string; ref: string | null }[] = [];
+
+  // Director match
+  for (const d of (film.directors ?? []).slice(0, 2)) {
+    if (d?.id) {
+      const entry = profile.directors.get(d.id);
+      if (entry && entry.weight >= 2.0) {
+        candidates.push({ type: 'director', weight: entry.weight, value: entry.name, ref: pickRefFilm(entry.topFilms, filmId) });
+      }
+    }
+  }
+
+  // Cast match
+  for (const m of (film.top_cast ?? []).slice(0, 3)) {
+    if (m?.id) {
+      const entry = profile.cast.get(m.id);
+      if (entry && entry.weight >= 2.0) {
+        candidates.push({ type: 'cast', weight: entry.weight, value: entry.name, ref: pickRefFilm(entry.topFilms, filmId) });
+      }
+    }
+  }
+
+  // Genre match (only strong signals)
+  let topGenre: { entry: TasteEntry } | null = null;
+  for (const g of film.genres ?? []) {
+    const entry = profile.genres.get(g.toLowerCase());
+    if (entry && entry.weight > (topGenre?.entry.weight ?? 0)) {
+      topGenre = { entry };
+    }
+  }
+  if (topGenre && topGenre.entry.weight >= 5.0) {
+    candidates.push({ type: 'genre', weight: topGenre.entry.weight * 0.5, value: topGenre.entry.name, ref: pickRefFilm(topGenre.entry.topFilms, filmId) });
+  }
+
+  // Keyword / thematic match
+  for (const kw of (film.keywords ?? []).slice(0, 5)) {
+    if (kw?.id && !isBlockedKeyword(kw.name ?? '')) {
+      const entry = profile.keywords.get(kw.id);
+      if (entry && entry.weight >= 2.0) {
+        candidates.push({ type: 'keyword', weight: entry.weight, value: entry.name, ref: pickRefFilm(entry.topFilms, filmId) });
+      }
+    }
+  }
+
+  // Cinematographer match
+  for (const dp of (film.cinematographers ?? []).slice(0, 2)) {
+    if (dp?.id) {
+      const entry = profile.cinematographers.get(dp.id);
+      if (entry && entry.weight >= 2.0) {
+        candidates.push({ type: 'cinematographer', weight: entry.weight, value: entry.name, ref: pickRefFilm(entry.topFilms, filmId) });
+      }
+    }
+  }
+
+  // Sort by weight (most relevant first), genre last at equal weight
+  candidates.sort((a, b) => {
+    if (b.weight !== a.weight) return b.weight - a.weight;
+    return (a.type === 'genre' ? 1 : 0) - (b.type === 'genre' ? 1 : 0);
+  });
+
+  // Deduplicate by type, take up to 3
+  const seen = new Set<string>();
+  const unique: Reason[] = [];
+  for (const r of candidates) {
+    if (!seen.has(r.type)) {
+      unique.push({ type: r.type, value: r.value, referenceFilm: r.ref });
+      seen.add(r.type);
+    }
+    if (unique.length >= 3) break;
+  }
+
+  // Fallback: if no strong reasons, use genre
+  if (unique.length === 0 && (film.genres?.length ?? 0) > 0) {
+    unique.push({ type: 'genre', value: film.genres[0], referenceFilm: null });
+  }
+
+  return unique;
+}
+
 // ── Public API (same interface as recommender.ts) ───────────────────────────
 
 /**
@@ -536,6 +752,7 @@ function recencyFactor(
  * @param urlToFilmId - Map of film_id → letterboxd_short_url
  * @param screenedFilms - Currently-screening candidate films
  * @param signals - Optional extra signals (liked, watched dates) for users who don't rate
+ * @param filmTitles - Optional map of film_id → title for personalized reason references
  * @returns Sorted array of match scores with breakdowns
  */
 export function computeRecommendationsWithBreakdown(
@@ -544,6 +761,7 @@ export function computeRecommendationsWithBreakdown(
   urlToFilmId: Record<number, string>,
   screenedFilms: FilmFeatures[],
   signals: UserSignals = {},
+  filmTitles: Record<number, string> = {},
 ): (MatchScore & { breakdown: CompactBreakdown })[] {
   if (watchedFilms.length === 0 || screenedFilms.length === 0) {
     return [];
@@ -600,31 +818,54 @@ export function computeRecommendationsWithBreakdown(
   // Run Personalized PageRank
   const probabilities = personalizedPageRank(adjacency, seedIndices, seedWeights, alpha);
 
-  // Extract scores for all screened films (including already-watched)
+  // Build taste profile for reasons generation
+  const tasteProfile = buildTasteProfile(watchedFilms, filmTitles, urlToFilmId, userRatings, signals, now);
+
+  // Extract raw scores for all screened films with quality prior
+  const QUALITY_EPSILON = 0.25;
   const rawScores: { filmId: number; raw: number; idx: number; watched: boolean }[] = [];
+  const prMax = Math.max(...Array.from(probabilities)) || 1.0;
+
   for (const film of screenedFilms) {
     const filmNodeId = `film:${film.id}`;
     const idx = nodeIndex.get(filmNodeId);
-    if (idx === undefined) {
-      rawScores.push({ filmId: film.id, raw: 0, idx: -1, watched: watchedIds.has(film.id) });
-      continue;
-    }
-    rawScores.push({ filmId: film.id, raw: probabilities[idx], idx, watched: watchedIds.has(film.id) });
+    const prScore = (idx !== undefined ? probabilities[idx] / prMax : 0);
+    // Blend in Letterboxd quality prior (same as train.py non-XGB path)
+    const lb = ((film.letterboxd_rating ?? 3.5) / 5.0);
+    const raw = prScore + QUALITY_EPSILON * lb;
+    rawScores.push({ filmId: film.id, raw, idx: idx ?? -1, watched: watchedIds.has(film.id) });
   }
 
-  // Min-max normalize using only unwatched films (watched films are seeds and
-  // would dominate the scale, compressing everything else to near-zero)
-  const unwatchedRaws = rawScores.filter(s => !s.watched).map(s => s.raw);
-  const minRaw = unwatchedRaws.length > 0 ? Math.min(...unwatchedRaws) : 0;
-  const maxRaw = unwatchedRaws.length > 0 ? Math.max(...unwatchedRaws) : 1;
-  const range = maxRaw - minRaw;
+  // Percentile-based calibration (from train.py): score = percentile rank among candidates
+  // This preserves ranking exactly while making scores interpretable as
+  // "better than X% of candidates"
+  const unwatchedScores = rawScores.filter(s => !s.watched);
+  const sortedValues = unwatchedScores.map(s => s.raw).sort((a, b) => a - b);
+  const nCands = sortedValues.length;
+  const scoreRange = nCands > 0 ? sortedValues[nCands - 1] - sortedValues[0] : 0;
+
+  function percentileRank(value: number): number {
+    if (nCands <= 1) return 0.5;
+    if (scoreRange === 0) return 0.5; // All candidates have equal scores
+    // Binary search for position
+    let lo = 0, hi = sortedValues.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (sortedValues[mid] < value) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo / (nCands - 1);
+  }
 
   const results: (MatchScore & { breakdown: CompactBreakdown })[] = [];
 
-  for (const { filmId, raw, idx } of rawScores) {
-    // Normalize to 5-95 range
-    const normalized = range > 0 ? (raw - minRaw) / range : 0.5;
-    const score = Math.round(5 + normalized * 90);
+  for (const { filmId, raw, idx, watched } of rawScores) {
+    // Skip already-watched films from results
+    if (watched) continue;
+
+    // Calibrated score: sqrt compression so 80%+ feels earned, max 90
+    const calibrated = percentileRank(raw);
+    const score = Math.round(Math.sqrt(calibrated) * 90);
 
     // Compute breakdown + similar watched films
     const breakdown = idx >= 0
@@ -632,7 +873,14 @@ export function computeRecommendationsWithBreakdown(
       : { coverage: 0, byCategory: {} };
     if (idx >= 0) {
       // Store as {filmId, reason} temporarily — API resolves filmId to title
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (breakdown as any)._similarRaw = findSimilarWatched(idx, adjacency, nodes, probabilities, watchedFilmNodeIndices, allFilms.length);
+    }
+
+    // Generate structured reasons from taste profile
+    const film = allFilmsMap.get(filmId);
+    if (film) {
+      breakdown.reasons = generateReasons(film, filmId, tasteProfile);
     }
 
     results.push({ filmId, score, breakdown });

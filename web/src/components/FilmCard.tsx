@@ -2,19 +2,26 @@
 
 import { memo } from 'react';
 import { formatViewerCount } from '@/lib/film-helpers';
-import { t, translateGenre, translateSpecialType, translateExplainerValue } from '@/lib/translations';
+import { t, translateGenre, translateSpecialType } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
 
-function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string; valueUrl?: string } | null {
-  const items = breakdown?.similarTo;
-  if (!items || items.length === 0) return null;
-  const s = items[0];
-  const rawValue = s.value || s.reason;
-  const title = (lang === 'en' && s.titleEn) ? s.titleEn : s.title;
-  return { title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
+/** Format a structured reason for display. Handles both old string format and new object format. */
+function formatReason(reason: { type: string; value: string; referenceFilm: string | null } | string, lang: LangKey): string {
+  // Backward compat: old scores may have plain string reasons
+  if (typeof reason === 'string') return reason;
+  const v = reason.value;
+  if (!v) return '';
+  switch (reason.type) {
+    case 'director': return lang === 'es' ? `Dirigida por ${v}` : `Directed by ${v}`;
+    case 'cast': return lang === 'es' ? `Con ${v}` : `Stars ${v}`;
+    case 'genre': return lang === 'es' ? `Tu gusto por ${translateGenre(v, lang)}` : `Fits your ${v} taste`;
+    case 'keyword': return lang === 'es' ? `Tema: ${v}` : `Theme: ${v}`;
+    case 'cinematographer': return lang === 'es' ? `Fotografía de ${v}` : `Shot by ${v}`;
+    default: return v;
+  }
 }
 
 interface FilmCardProps {
@@ -48,7 +55,6 @@ export default memo(function FilmCard({
     : '';
 
   const showMatch = matchScore !== undefined && !isWatched;
-  const similarData = showMatch ? buildSimilarData(breakdown, lang) : null;
   const hasSpecial = film.dates.some(d => d.special);
 
   const titleText = getFilmTitle(film);
@@ -132,19 +138,19 @@ export default memo(function FilmCard({
           </a>
         )}
       </div>
-      {similarData && (
-        <div className="card-similar">
-          <span className="similar-prefix">{lang === 'es' ? 'Has visto' : 'You watched'}:</span>
-          {similarData.url ? (
-            <a href={similarData.url} className="similar-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
-          ) : (
-            <span className="similar-title">{similarData.title}</span>
-          )}
-          {similarData.valueUrl ? (
-            <a href={similarData.valueUrl} className="similar-tag similar-tag-link" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.value}</a>
-          ) : (
-            <span className="similar-tag">{similarData.value}</span>
-          )}
+      {showMatch && breakdown?.reasons && breakdown.reasons.length > 0 && (
+        <div className="card-reasons">
+          {breakdown.reasons.map((reason, i) => {
+            const text = formatReason(reason, lang);
+            if (!text) return null;
+            const ref = typeof reason === 'object' ? reason.referenceFilm : null;
+            return (
+              <span key={i} className="reason-tag">
+                {text}
+                {ref && <span className="reason-ref"> ({ref})</span>}
+              </span>
+            );
+          })}
         </div>
       )}
     </div>
