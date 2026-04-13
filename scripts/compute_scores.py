@@ -2,7 +2,7 @@
 """
 Compute and store match scores between users' watched films and currently-screened films.
 
-Mirrors the logic in web/src/lib/recommender.ts — keep in sync if the algorithm changes.
+Mirrors the logic in web/src/lib/recommender-pagerank.ts — keep in sync if the algorithm changes.
 
 Setup:
     pip install supabase python-dotenv
@@ -28,8 +28,11 @@ Options:
 import argparse
 import math
 import os
+import re
 import sys
+import time
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 try:
     from dotenv import load_dotenv
@@ -47,301 +50,62 @@ except ImportError:
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 
-# ── Feature weights (must match web/src/lib/recommender.ts) ─────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# PERSONALIZED PAGERANK (mirrors web/src/lib/recommender-pagerank.ts)
+# ══════════════════════════════════════════════════════════════════════════════
 
-WEIGHTS = {
-    "genre":     0.10,
-    "director":  0.14,
-    "cast":      0.14,
-    "keyword":   0.20,
-    "country":   0.08,
-    "language":  0.06,
-    "decade":    0.08,
-    "company":   0.06,
-    "collection":0.04,
-    "runtime":   0.04,
-    "rating":    0.06,
+# ── Edge weights per category ───────────────────────────────────────────────
+
+EDGE_WEIGHTS = {
+    "director": 3.0,
+    "cinematographer": 2.5,
+    "writer": 2.5,
+    "cast": 2.5,
+    "keyword": 2.0,
+    "composer": 2.0,
+    "genre": 1.5,
+    "collection": 1.5,
+    "company": 1.0,
+    "country": 0.5,
+    "decade": 0.5,
+    "language": 0.3,
 }
 
-MAX_CAST      = 5
-MAX_KEYWORDS  = 10
+MAX_HUB_FRACTION = 0.30
+MAX_CAST = 5
+MAX_KEYWORDS = 10
 MAX_COMPANIES = 3
-MIN_GENRE_DIVISOR = 3
+TMDB_REC_WEIGHT = 2.0
+
+# Keywords that are metadata tags, not taste signals — skip in graph.
+BLOCKED_KEYWORDS = {
+    "aftercreditsstinger", "duringcreditsstinger", "post-credits scene",
+    "black and white", "woman director", "anime", "based on manga",
+    "excited", "amused", "admiring", "dramatic", "inspirational",
+    "somber", "playful", "suspenseful", "tense", "angry", "defiant",
+    "arrogant", "sequel", "remake", "3d",
+}
+
+DECADE_PATTERN = re.compile(r"^\d{4}s$")
 
 
-# ── Bucket helpers ───────────────────────────────────────────────────────────
+def is_blocked_keyword(name):
+    if name.lower() in BLOCKED_KEYWORDS:
+        return True
+    if DECADE_PATTERN.match(name):
+        return True
+    return False
+
 
 def get_decade_bucket(year):
     if year is None:
-        return "decade:unknown"
+        return "unknown"
     if year < 1960:
-        return "decade:pre-1960"
-    return f"decade:{(year // 10) * 10}s"
+        return "pre-1960"
+    return f"{(year // 10) * 10}s"
 
 
-def get_runtime_bucket(minutes):
-    if minutes is None:
-        return "runtime:unknown"
-    if minutes < 90:
-        return "runtime:short"
-    if minutes <= 120:
-        return "runtime:medium"
-    if minutes <= 150:
-        return "runtime:long"
-    return "runtime:epic"
-
-
-# ── Feature extraction ───────────────────────────────────────────────────────
-
-def film_to_vector(film: dict) -> dict:
-    """Convert a film row to a weighted sparse feature vector (dict)."""
-    vec = {}
-
-    # Genres (multi-hot, with minimum divisor)
-    genres = film.get("genres") or []
-    if genres:
-        per = WEIGHTS["genre"] / max(len(genres), MIN_GENRE_DIVISOR)
-        for g in genres:
-            vec[f"genre:{g.lower()}"] = per
-
-    # Directors (prefer jsonb directors with IDs, fall back to string)
-    directors = film.get("directors") or []
-    if directors:
-        per = WEIGHTS["director"] / len(directors)
-        for d in directors:
-            vec[f"director:{d['id']}"] = per
-    elif film.get("director"):
-        vec[f"director:{film['director'].lower()}"] = WEIGHTS["director"]
-
-    # Cast (top N, billing-order weighted)
-    cast = (film.get("top_cast") or [])[:MAX_CAST]
-    if cast:
-        total_order = len(cast) * (len(cast) + 1) // 2
-        for i, member in enumerate(cast):
-            order_weight = (len(cast) - i) / total_order
-            vec[f"cast:{member['id']}"] = WEIGHTS["cast"] * order_weight
-
-    # Keywords
-    keywords = (film.get("keywords") or [])[:MAX_KEYWORDS]
-    if keywords:
-        per = WEIGHTS["keyword"] / len(keywords)
-        for k in keywords:
-            vec[f"keyword:{k['id']}"] = per
-
-    # Production companies
-    companies = (film.get("production_companies") or [])[:MAX_COMPANIES]
-    if companies:
-        per = WEIGHTS["company"] / len(companies)
-        for c in companies:
-            vec[f"company:{c['id']}"] = per
-
-    # Country
-    country = film.get("country") or []
-    if country:
-        per = WEIGHTS["country"] / len(country)
-        for c in country:
-            vec[f"country:{c.lower()}"] = per
-
-    # Languages (primary + spoken, deduplicated)
-    all_langs = set(
-        [l.lower() for l in (film.get("primary_language") or [])] +
-        [l.lower() for l in (film.get("spoken_languages") or [])]
-    )
-    if all_langs:
-        per = WEIGHTS["language"] / len(all_langs)
-        for l in all_langs:
-            vec[f"lang:{l}"] = per
-
-    # Decade
-    vec[get_decade_bucket(film.get("year"))] = WEIGHTS["decade"]
-
-    # Runtime bucket
-    vec[get_runtime_bucket(film.get("runtime_minutes"))] = WEIGHTS["runtime"]
-
-    # Rating (combine Letterboxd + TMDB, normalized 0-1)
-    ratings = []
-    if film.get("letterboxd_rating") is not None:
-        ratings.append(float(film["letterboxd_rating"]) / 5)
-    if film.get("tmdb_rating") is not None:
-        ratings.append(float(film["tmdb_rating"]) / 10)
-    if ratings:
-        avg = sum(ratings) / len(ratings)
-        vec["rating"] = avg * WEIGHTS["rating"]
-
-    # Collection / franchise
-    if film.get("collection_id") is not None:
-        vec[f"collection:{film['collection_id']}"] = WEIGHTS["collection"]
-
-    return vec
-
-
-# ── Vector math ──────────────────────────────────────────────────────────────
-
-def dot_product(a: dict, b: dict) -> float:
-    smaller, larger = (a, b) if len(a) <= len(b) else (b, a)
-    return sum(smaller[k] * larger[k] for k in smaller if k in larger)
-
-
-def magnitude(v: dict) -> float:
-    return math.sqrt(sum(x * x for x in v.values()))
-
-
-def cosine_similarity(a: dict, b: dict) -> float:
-    mag_a, mag_b = magnitude(a), magnitude(b)
-    if mag_a == 0 or mag_b == 0:
-        return 0.0
-    return dot_product(a, b) / (mag_a * mag_b)
-
-
-# ── Popularity boost ─────────────────────────────────────────────────────────
-
-def popularity_boost(viewers) -> float:
-    if not viewers or viewers <= 0:
-        return 1.0
-    log_viewers = math.log10(viewers)
-    boost = min(log_viewers / 150, 0.05)
-    return 1.0 + boost
-
-
-# ── User profile ─────────────────────────────────────────────────────────────
-
-def build_user_profile(watched_films: list, user_ratings: dict, url_map: dict) -> dict:
-    """Build a weighted average taste profile from watched films."""
-    profile = {}
-    total_weight = 0.0
-
-    for film in watched_films:
-        vec = film_to_vector(film)
-        short_url = url_map.get(film["id"])
-        user_rating = user_ratings.get(short_url, 3.0) if short_url else 3.0
-        weight = user_rating / 5.0
-
-        for key, val in vec.items():
-            profile[key] = profile.get(key, 0.0) + val * weight
-        total_weight += weight
-
-    if total_weight > 0:
-        for key in profile:
-            profile[key] /= total_weight
-
-    return profile
-
-
-# ── Scoring ──────────────────────────────────────────────────────────────────
-
-def feature_coverage(film_vec: dict) -> float:
-    """Fraction of total feature weight budget with real (non-unknown) data."""
-    real_weight = sum(v for k, v in film_vec.items() if not k.endswith(":unknown"))
-    max_expected = 1.0 - WEIGHTS["collection"]
-    return min(real_weight / max_expected, 1.0)
-
-
-def score_film(user_profile: dict, film: dict) -> int:
-    if not user_profile:
-        return 0
-    film_vec = film_to_vector(film)
-    similarity = cosine_similarity(user_profile, film_vec)
-    coverage = feature_coverage(film_vec)
-    coverage_penalty = math.sqrt(coverage)
-    boosted = similarity * popularity_boost(film.get("letterboxd_viewers")) * coverage_penalty
-    return min(100, round(boosted * 100))
-
-
-def score_film_with_breakdown(user_profile: dict, film: dict, film_names: dict = None) -> dict:
-    """
-    Score a film and return a detailed breakdown of which features contributed.
-
-    Args:
-        user_profile: User's taste profile vector
-        film: Film data
-        film_names: Optional dict mapping entity IDs to names for better readability
-            (e.g., {"director:123": "John Doe", "cast:456": "Jane Doe"})
-
-    Returns:
-        {
-            "score": int (0-100),
-            "similarity": float (before popularity boost),
-            "popularity_boost": float,
-            "features_by_category": {
-                "genre": [{"feature": "drama", "contribution": 0.05}, ...],
-                "director": [...],
-                ...
-            },
-            "top_matching_features": [
-                {"feature": "genre:drama", "contribution": 0.05, "category": "genre"},
-                ...
-            ]
-        }
-    """
-    if not user_profile:
-        return {
-            "score": 0,
-            "similarity": 0.0,
-            "popularity_boost": 1.0,
-            "features_by_category": {},
-            "top_matching_features": [],
-        }
-
-    film_vec = film_to_vector(film)
-
-    # Compute similarity and boost
-    similarity = cosine_similarity(user_profile, film_vec)
-    boost = popularity_boost(film.get("letterboxd_viewers"))
-    boosted = similarity * boost
-    final_score = min(100, round(boosted * 100))
-
-    # Decompose by feature category
-    features_by_category = {}
-    matching_features = []
-
-    for feature_key, film_value in film_vec.items():
-        profile_value = user_profile.get(feature_key, 0.0)
-        if profile_value > 0:
-            contribution = profile_value * film_value
-
-            # Extract category (e.g., "genre:drama" → "genre")
-            category = feature_key.split(":")[0]
-            if category not in features_by_category:
-                features_by_category[category] = []
-
-            feature_display = film_names.get(feature_key, feature_key) if film_names else feature_key
-            features_by_category[category].append({
-                "feature": feature_display,
-                "contribution": round(contribution, 5),
-            })
-
-            matching_features.append({
-                "feature": feature_display,
-                "contribution": round(contribution, 5),
-                "category": category,
-            })
-
-    # Sort features within each category by contribution (descending)
-    for category in features_by_category:
-        features_by_category[category].sort(key=lambda x: x["contribution"], reverse=True)
-
-    # Sort overall matching features by contribution
-    matching_features.sort(key=lambda x: x["contribution"], reverse=True)
-
-    return {
-        "score": final_score,
-        "similarity": round(similarity, 4),
-        "popularity_boost": round(boost, 4),
-        "features_by_category": features_by_category,
-        "top_matching_features": matching_features[:10],  # Top 10 features
-    }
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PERSONALIZED PAGERANK (default algorithm — mirrors recommender-pagerank.ts)
-# ══════════════════════════════════════════════════════════════════════════════
-
-EDGE_WEIGHTS = {
-    "director": 3.0, "genre": 2.0, "cast": 1.5, "keyword": 1.5,
-    "country": 2.0, "language": 1.0, "decade": 1.5, "collection": 1.0,
-    "company": 1.0,
-}
-
+# ── Graph construction ──────────────────────────────────────────────────────
 
 def build_knowledge_graph(films):
     """Build knowledge graph from film metadata.
@@ -371,7 +135,7 @@ def build_knowledge_graph(films):
     for film in films:
         fi = get_or_create(f"film:{film['id']}", "film")
 
-        # Directors
+        # Directors (strongest signal)
         directors = film.get("directors") or []
         if directors:
             for d in directors[:2]:
@@ -383,49 +147,117 @@ def build_knowledge_graph(films):
                 di = get_or_create(f"director:{name.strip().lower()}", "director")
                 add_edge(fi, di, EDGE_WEIGHTS["director"])
 
+        # Cinematographers
+        for dp in (film.get("cinematographers") or [])[:2]:
+            if isinstance(dp, dict) and dp.get("id"):
+                dpi = get_or_create(f"cinematographer:{dp['id']}", "cinematographer")
+                add_edge(fi, dpi, EDGE_WEIGHTS["cinematographer"])
+
+        # Composers
+        for comp in (film.get("composers") or [])[:2]:
+            if isinstance(comp, dict) and comp.get("id"):
+                ci = get_or_create(f"composer:{comp['id']}", "composer")
+                add_edge(fi, ci, EDGE_WEIGHTS["composer"])
+
+        # Writers
+        for w in (film.get("writers") or [])[:3]:
+            if isinstance(w, dict) and w.get("id"):
+                wi = get_or_create(f"writer:{w['id']}", "writer")
+                add_edge(fi, wi, EDGE_WEIGHTS["writer"])
+
+        # Genres
         for g in (film.get("genres") or []):
             gi = get_or_create(f"genre:{g.lower()}", "genre")
             add_edge(fi, gi, EDGE_WEIGHTS["genre"])
 
+        # Cast (top billed get stronger edges)
         cast = (film.get("top_cast") or [])[:MAX_CAST]
         for i, m in enumerate(cast):
             if isinstance(m, dict) and m.get("id"):
-                w = EDGE_WEIGHTS["cast"] * (1.5 if i < 2 else 1.0)
+                w = EDGE_WEIGHTS["cast"] * 1.5 if i < 2 else EDGE_WEIGHTS["cast"]
                 ci = get_or_create(f"cast:{m['id']}", "cast")
                 add_edge(fi, ci, w)
 
+        # Keywords (skip blocked metadata tags)
         for kw in (film.get("keywords") or [])[:MAX_KEYWORDS]:
-            if isinstance(kw, dict) and kw.get("id"):
+            if isinstance(kw, dict) and kw.get("id") and not is_blocked_keyword(kw.get("name", "")):
                 ki = get_or_create(f"keyword:{kw['id']}", "keyword")
                 add_edge(fi, ki, EDGE_WEIGHTS["keyword"])
 
+        # Countries
         for c in (film.get("country") or []):
             ci = get_or_create(f"country:{c.lower()}", "country")
             add_edge(fi, ci, EDGE_WEIGHTS["country"])
 
+        # Languages (deduplicated)
         langs = set()
-        for l in (film.get("primary_language") or []): langs.add(l.lower())
-        for l in (film.get("spoken_languages") or []): langs.add(l.lower())
+        for l in (film.get("primary_language") or []):
+            langs.add(l.lower())
+        for l in (film.get("spoken_languages") or []):
+            langs.add(l.lower())
         for l in langs:
             li = get_or_create(f"lang:{l}", "language")
             add_edge(fi, li, EDGE_WEIGHTS["language"])
 
-        year = film.get("year")
-        dec = "unknown" if year is None else ("pre-1960" if year < 1960 else f"{(year // 10) * 10}s")
+        # Decade
+        dec = get_decade_bucket(film.get("year"))
         di = get_or_create(f"decade:{dec}", "decade")
         add_edge(fi, di, EDGE_WEIGHTS["decade"])
 
+        # Collection
         if film.get("collection_id"):
             ci = get_or_create(f"collection:{film['collection_id']}", "collection")
             add_edge(fi, ci, EDGE_WEIGHTS["collection"])
 
+        # Production companies
         for co in (film.get("production_companies") or [])[:MAX_COMPANIES]:
             if isinstance(co, dict) and co.get("id"):
                 ci = get_or_create(f"company:{co['id']}", "company")
                 add_edge(fi, ci, EDGE_WEIGHTS["company"])
 
+    # ── TMDB recommendation edges (direct film-to-film, collaborative signal) ──
+    tmdb_id_to_node_idx = {}
+    for film in films:
+        if film.get("tmdb_id"):
+            idx = node_index.get(f"film:{film['id']}")
+            if idx is not None:
+                tmdb_id_to_node_idx[film["tmdb_id"]] = idx
+
+    for film in films:
+        recs = film.get("tmdb_recommendations") or []
+        if not recs:
+            continue
+        film_idx = node_index.get(f"film:{film['id']}")
+        if film_idx is None:
+            continue
+        existing_targets = {e[0] for e in adjacency[film_idx]}
+        for rec_tmdb_id in recs:
+            rec_idx = tmdb_id_to_node_idx.get(rec_tmdb_id)
+            if rec_idx is not None and rec_idx != film_idx and rec_idx not in existing_targets:
+                add_edge(film_idx, rec_idx, TMDB_REC_WEIGHT)
+                existing_targets.add(rec_idx)
+
+    # ── Prune noisy hub nodes ──────────────────────────────────────────────
+    prunable = {"genre", "country", "language", "decade"}
+    film_count = len(films)
+    max_connections = max(3, int(film_count * MAX_HUB_FRACTION))
+
+    for i, (node_id, category) in enumerate(nodes):
+        if category not in prunable:
+            continue
+        film_neighbors = sum(1 for nb, _ in adjacency[i] if nodes[nb][1] == "film")
+        if film_neighbors <= max_connections:
+            continue
+        # Disconnect: remove all edges from this node AND back-references to it
+        targets = [nb for nb, _ in adjacency[i]]
+        adjacency[i] = []
+        for t in targets:
+            adjacency[t] = [(nb, w) for nb, w in adjacency[t] if nb != i]
+
     return nodes, adjacency, node_index
 
+
+# ── Personalized PageRank ───────────────────────────────────────────────────
 
 def run_ppr(adjacency, seed_indices, seed_weights, alpha=0.15, iterations=25):
     """Run Personalized PageRank via power iteration."""
@@ -461,11 +293,142 @@ def run_ppr(adjacency, seed_indices, seed_weights, alpha=0.15, iterations=25):
     return p
 
 
-def score_films_pagerank(watched_films, screened_films, user_ratings, url_map):
+# ── Seed weight computation ─────────────────────────────────────────────────
+
+DEFAULT_WATCHED_WEIGHT = 0.5625  # ~3-star equivalent
+
+
+def recency_factor(url, watched_dates, now_ms):
+    """Recency multiplier: 1.0 for today, decays to 0.3 over ~2 years."""
+    if not watched_dates or not url:
+        return 1.0
+    date_str = watched_dates.get(url)
+    if not date_str:
+        return 1.0
+    try:
+        watched_ms = datetime.fromisoformat(date_str).timestamp() * 1000
+    except (ValueError, TypeError):
+        return 1.0
+    days_since = (now_ms - watched_ms) / (1000 * 60 * 60 * 24)
+    return max(0.3, math.exp(-0.00385 * days_since))
+
+
+def compute_seed_weight(url, ratings, signals, now_ms):
+    """Compute seed weight using all available signals (mirrors TS computeSeedWeight)."""
+    if not url:
+        return DEFAULT_WATCHED_WEIGHT
+
+    rating = ratings.get(url)
+    rewatches = (signals.get("rewatch_counts") or {}).get(url, 0)
+    rewatch_mult = 1 + 0.3 * math.log2(1 + rewatches) if rewatches > 0 else 1
+
+    # 1. Has an explicit rating
+    if rating is not None:
+        if rating < 3.0:
+            return 0  # exclude disliked
+        return ((rating - 1.5) / 2.5) ** 2 * rewatch_mult
+
+    # 2. Liked but not rated
+    liked = (signals.get("liked") or {}).get(url)
+    if liked:
+        recency = recency_factor(url, signals.get("watched_dates"), now_ms)
+        return 4.0 * recency * rewatch_mult
+
+    # 3. Watched only (no rating, no like)
+    recency = recency_factor(url, signals.get("watched_dates"), now_ms)
+    return DEFAULT_WATCHED_WEIGHT * recency * rewatch_mult
+
+
+# ── Breakdown computation ───────────────────────────────────────────────────
+
+def compute_breakdown(film_node_idx, adjacency, nodes, probabilities):
+    """Compute a category breakdown for a film's PageRank score."""
+    category_prob = {}
+    total_prob = 0
+    categories_with_data = 0
+
+    for nb, weight in adjacency[film_node_idx]:
+        _, category = nodes[nb]
+        if category == "film":
+            continue
+        prob = probabilities[nb] * weight
+        category_prob[category] = category_prob.get(category, 0) + prob
+        total_prob += prob
+
+    by_category = {}
+    if total_prob > 0:
+        for cat, prob in category_prob.items():
+            by_category[cat] = prob / total_prob
+            if prob > 0:
+                categories_with_data += 1
+
+    possible_categories = len(EDGE_WEIGHTS)
+    coverage = categories_with_data / possible_categories if possible_categories > 0 else 0
+
+    return {"coverage": coverage, "byCategory": by_category}
+
+
+def find_similar_watched(film_node_idx, adjacency, nodes, probabilities,
+                         watched_film_indices, total_films, top_n=3):
+    """Find top N watched films most connected to a screened film through shared attributes."""
+    INTERESTING = {"director", "cinematographer", "composer", "writer", "cast", "collection"}
+    watched_data = {}  # node_idx -> {"total": float, "attrs": {attr_idx: float}}
+
+    for edge_target, edge_weight in adjacency[film_node_idx]:
+        attr_node_id, attr_category = nodes[edge_target]
+        if attr_category == "film":
+            continue
+
+        film_neighbor_count = sum(1 for nb, _ in adjacency[edge_target] if nodes[nb][1] == "film")
+
+        if attr_category in INTERESTING:
+            if film_neighbor_count > total_films * 0.25:
+                continue
+        else:
+            # Only allow very specific keywords (connected to <3% of films)
+            if attr_category == "keyword" and film_neighbor_count <= total_films * 0.03:
+                pass  # keep niche keywords
+            else:
+                continue
+
+        attr_prob = probabilities[edge_target]
+        for attr_edge_target, attr_edge_weight in adjacency[edge_target]:
+            if attr_edge_target not in watched_film_indices:
+                continue
+            contribution = attr_prob * edge_weight * attr_edge_weight
+            if attr_edge_target not in watched_data:
+                watched_data[attr_edge_target] = {"total": 0, "attrs": {}}
+            entry = watched_data[attr_edge_target]
+            entry["total"] += contribution
+            entry["attrs"][edge_target] = entry["attrs"].get(edge_target, 0) + contribution
+
+    results = sorted(watched_data.items(), key=lambda x: x[1]["total"], reverse=True)[:top_n]
+    out = []
+    for idx, data in results:
+        # Find top contributing attribute node
+        top_attr_idx = max(data["attrs"], key=data["attrs"].get) if data["attrs"] else None
+        if top_attr_idx is not None:
+            attr_node = nodes[top_attr_idx]
+            reason = attr_node[1]  # category
+            attr_value = attr_node[0].split(":", 1)[1] if ":" in attr_node[0] else ""
+        else:
+            reason = ""
+            attr_value = ""
+        film_id = int(nodes[idx][0].split(":")[1])
+        out.append({"filmId": film_id, "reason": reason, "attrValue": attr_value})
+    return out
+
+
+# ── Main scoring function ──────────────────────────────────────────────────
+
+def score_films_pagerank(watched_films, screened_films, user_ratings, url_map, signals=None):
     """Score screened films using Personalized PageRank.
 
-    Returns dict of {film_id: score (0-100)}.
+    Returns list of {"film_id": int, "score": int, "breakdown": dict}.
     """
+    if signals is None:
+        signals = {}
+
     # Deduplicate films
     all_films_map = {}
     for f in watched_films:
@@ -476,56 +439,92 @@ def score_films_pagerank(watched_films, screened_films, user_ratings, url_map):
 
     nodes, adjacency, node_index = build_knowledge_graph(all_films)
 
-    # Build seeds from highly-rated watched films
+    # Build seeds from watched films using full signal computation
     watched_ids = {f["id"] for f in watched_films}
     seed_indices = []
     seed_weights = []
+    now_ms = time.time() * 1000
+
     for film in watched_films:
         short_url = url_map.get(film["id"])
-        rating = user_ratings.get(short_url, 3.0) if short_url else 3.0
-        if rating < 3.0:
+        weight = compute_seed_weight(short_url, user_ratings, signals, now_ms)
+        if weight <= 0:
             continue
         film_node = f"film:{film['id']}"
         idx = node_index.get(film_node)
         if idx is None:
             continue
-        weight = ((rating - 1.5) / 2.5) ** 2
         seed_indices.append(idx)
         seed_weights.append(weight)
 
-    if not seed_indices:
-        return {f["id"]: 0 for f in screened_films}
+    # Collect watched film node indices for similarity lookup
+    watched_film_node_indices = set()
+    for film in watched_films:
+        idx = node_index.get(f"film:{film['id']}")
+        if idx is not None:
+            watched_film_node_indices.add(idx)
 
-    probs = run_ppr(adjacency, seed_indices, seed_weights)
+    if not seed_indices:
+        return [{"film_id": f["id"], "score": 0, "breakdown": {"coverage": 0, "byCategory": {}}}
+                for f in screened_films]
+
+    # Adaptive damping: new users stay closer to seeds, cinephiles explore more
+    alpha = 0.10 + 0.15 * math.exp(-len(watched_films) / 200)
+
+    probs = run_ppr(adjacency, seed_indices, seed_weights, alpha=alpha)
 
     # Extract raw scores for screened films
-    raw_scores = {}
+    raw_scores = []
     for film in screened_films:
-        if film["id"] in watched_ids:
-            continue
         film_node = f"film:{film['id']}"
         idx = node_index.get(film_node)
-        raw_scores[film["id"]] = probs[idx] if idx is not None else 0.0
+        watched = film["id"] in watched_ids
+        raw = probs[idx] if idx is not None else 0.0
+        raw_scores.append({
+            "film_id": film["id"], "raw": raw, "idx": idx if idx is not None else -1,
+            "watched": watched,
+        })
 
-    # Min-max normalize to 5-95
-    if not raw_scores:
-        return {}
-    vals = list(raw_scores.values())
-    mn, mx = min(vals), max(vals)
+    # Min-max normalize using only unwatched films
+    unwatched_raws = [s["raw"] for s in raw_scores if not s["watched"]]
+    if unwatched_raws:
+        mn = min(unwatched_raws)
+        mx = max(unwatched_raws)
+    else:
+        mn, mx = 0, 1
     rng = mx - mn
-    result = {}
-    for fid, raw in raw_scores.items():
-        normalized = (raw - mn) / rng if rng > 0 else 0.5
-        result[fid] = round(5 + normalized * 90)
-    return result
+
+    results = []
+    for s in raw_scores:
+        normalized = (s["raw"] - mn) / rng if rng > 0 else 0.5
+        score = round(5 + normalized * 90)
+
+        # Compute breakdown + similar watched films
+        if s["idx"] >= 0:
+            breakdown = compute_breakdown(s["idx"], adjacency, nodes, probs)
+            similar_raw = find_similar_watched(
+                s["idx"], adjacency, nodes, probs,
+                watched_film_node_indices, len(all_films),
+            )
+            breakdown["_similarRaw"] = similar_raw
+        else:
+            breakdown = {"coverage": 0, "byCategory": {}}
+
+        results.append({"film_id": s["film_id"], "score": score, "breakdown": breakdown})
+
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return results
 
 
 # ── Supabase helpers ─────────────────────────────────────────────────────────
 
 FILM_COLUMNS = (
-    "id,genres,director,directors,top_cast,keywords,production_companies,"
+    "id,genres,director,directors,cinematographers,composers,writers,"
+    "top_cast,keywords,production_companies,"
     "country,primary_language,spoken_languages,year,runtime_minutes,"
-    "letterboxd_rating,tmdb_rating,tmdb_votes,letterboxd_viewers,collection_id"
+    "letterboxd_rating,tmdb_rating,tmdb_votes,letterboxd_viewers,"
+    "collection_id,tmdb_id,tmdb_recommendations,"
+    "title,title_en,letterboxd_url"
 )
 
 BATCH = 500
@@ -538,7 +537,7 @@ def fetch_watched_for_user(supabase, user_id):
     while True:
         resp = (
             supabase.table("user_watched_films")
-            .select("letterboxd_short_url,film_id,rating,liked")
+            .select("letterboxd_short_url,film_id,rating,liked,watched_date,rewatch_count")
             .eq("user_id", user_id)
             .not_.is_("film_id", "null")
             .range(offset, offset + BATCH - 1)
@@ -562,6 +561,76 @@ def fetch_in_batches(supabase, table, column, values, *, select="*"):
     return rows
 
 
+def resolve_breakdowns(screened_films, watched_films, results):
+    """Resolve _similarRaw film IDs to titles/URLs and attr IDs to names."""
+    # Build attribute ID -> name lookup from all film data
+    attr_names = {}
+    all_films = list(screened_films) + list(watched_films)
+    for f in all_films:
+        for d in (f.get("directors") or []):
+            if isinstance(d, dict) and d.get("id"):
+                attr_names[f"director:{d['id']}"] = d.get("name", "")
+        for dp in (f.get("cinematographers") or []):
+            if isinstance(dp, dict) and dp.get("id"):
+                attr_names[f"cinematographer:{dp['id']}"] = dp.get("name", "")
+        for comp in (f.get("composers") or []):
+            if isinstance(comp, dict) and comp.get("id"):
+                attr_names[f"composer:{comp['id']}"] = comp.get("name", "")
+        for w in (f.get("writers") or []):
+            if isinstance(w, dict) and w.get("id"):
+                attr_names[f"writer:{w['id']}"] = w.get("name", "")
+        for c in (f.get("top_cast") or []):
+            if isinstance(c, dict) and c.get("id"):
+                attr_names[f"cast:{c['id']}"] = c.get("name", "")
+        for k in (f.get("keywords") or []):
+            if isinstance(k, dict) and k.get("id"):
+                attr_names[f"keyword:{k['id']}"] = k.get("name", "")
+        for co in (f.get("production_companies") or []):
+            if isinstance(co, dict) and co.get("id"):
+                attr_names[f"company:{co['id']}"] = co.get("name", "")
+
+    # Build film ID -> title/url lookup
+    film_titles = {}
+    film_titles_en = {}
+    film_urls = {}
+    for f in all_films:
+        film_titles[f["id"]] = f.get("title", "")
+        film_titles_en[f["id"]] = f.get("title_en", "") or ""
+        film_urls[f["id"]] = f.get("letterboxd_url", "") or ""
+
+    PERSON_CATEGORIES = {"director", "cast", "cinematographer", "composer", "writer"}
+
+    for result in results:
+        bd = result["breakdown"]
+        similar_raw = bd.pop("_similarRaw", None)
+        if similar_raw:
+            similar_to = []
+            for r in similar_raw:
+                fid = r["filmId"]
+                if not film_titles.get(fid):
+                    continue
+                key = f"{r['reason']}:{r['attrValue']}"
+                resolved_value = attr_names.get(key, "")
+                if not resolved_value:
+                    continue
+                entry = {
+                    "title": film_titles[fid],
+                    "reason": r["reason"],
+                    "value": resolved_value,
+                }
+                title_en = film_titles_en.get(fid)
+                if title_en:
+                    entry["titleEn"] = title_en
+                url = film_urls.get(fid)
+                if url:
+                    entry["url"] = url
+                if r["reason"] in PERSON_CATEGORIES and r["attrValue"]:
+                    entry["valueUrl"] = f"https://www.themoviedb.org/person/{r['attrValue']}"
+                similar_to.append(entry)
+            if similar_to:
+                bd["similarTo"] = similar_to
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -574,10 +643,6 @@ def main():
         "--dry-run", action="store_true",
         help="Print what would be written without touching the DB."
     )
-    parser.add_argument(
-        "--algorithm", choices=["pagerank", "cosine"], default="pagerank",
-        help="Algorithm to use. Default: pagerank. Use 'cosine' for the old cosine-similarity approach."
-    )
     args = parser.parse_args()
 
     url = os.environ.get("SUPABASE_URL")
@@ -589,9 +654,26 @@ def main():
     supabase = create_client(url, key)
 
     # ── 1. Load currently-screened films ─────────────────────────────────────
-    now = datetime.now(timezone.utc).isoformat()
-    resp = supabase.table("screenings").select("film_id").gte("showtime", now).execute()
-    screened_film_ids = list({row["film_id"] for row in (resp.data or [])})
+    # DB stores naive Madrid timestamps, so compare with Madrid "now"
+    # (matches web/src/app/api/recommend/route.ts)
+    madrid_now = datetime.now(ZoneInfo("Europe/Madrid"))
+    now = madrid_now.strftime("%Y-%m-%d %H:%M:%S")
+    screened_film_ids = []
+    offset = 0
+    while True:
+        resp = (
+            supabase.table("screenings")
+            .select("film_id")
+            .gte("showtime", now)
+            .range(offset, offset + BATCH - 1)
+            .execute()
+        )
+        batch = resp.data or []
+        screened_film_ids.extend(row["film_id"] for row in batch)
+        if len(batch) < BATCH:
+            break
+        offset += BATCH
+    screened_film_ids = list(set(screened_film_ids))
 
     if not screened_film_ids:
         print("No current or future screenings found. Nothing to do.")
@@ -625,7 +707,7 @@ def main():
 
     # ── 3. Process each user ─────────────────────────────────────────────────
     for i, user_id in enumerate(user_ids, 1):
-        print(f"\n[{i}/{len(user_ids)}] User {user_id[:8]}…")
+        print(f"\n[{i}/{len(user_ids)}] User {user_id[:8]}...")
 
         # Determine which screened films need scoring for this user
         if args.full:
@@ -654,60 +736,68 @@ def main():
             print("  No enriched watched films. Skipping.")
             continue
 
-        # Build ratings map and film_id list
+        # Build ratings map, signals, and film_id list
         user_ratings = {}
+        user_liked = {}
+        user_watched_dates = {}
+        user_rewatch_counts = {}
         film_ids = []
         url_map = {}
         for row in watched_rows:
             short_url = row["letterboxd_short_url"]
             if row["rating"] is not None:
                 user_ratings[short_url] = float(row["rating"])
-            elif row.get("liked"):
-                user_ratings[short_url] = 4.0
+            if row.get("liked"):
+                user_liked[short_url] = True
+            if row.get("watched_date"):
+                user_watched_dates[short_url] = row["watched_date"]
+            if row.get("rewatch_count") and row["rewatch_count"] > 0:
+                user_rewatch_counts[short_url] = row["rewatch_count"]
             if row["film_id"] is not None:
                 film_ids.append(row["film_id"])
                 url_map[row["film_id"]] = short_url
+
+        signals = {
+            "liked": user_liked,
+            "watched_dates": user_watched_dates,
+            "rewatch_counts": user_rewatch_counts,
+        }
 
         # Load watched film features
         watched_films = fetch_in_batches(supabase, "films", "id", film_ids, select=FILM_COLUMNS)
         print(f"  Loaded {len(watched_films)} watched film(s) for profile.")
 
-        # Score the films that need it
-        score_rows = []
+        # In full mode, score all screened films; in incremental, only missing ones
         films_to_score = [screened_by_id[fid] for fid in films_to_score_ids if fid in screened_by_id]
 
-        if args.algorithm == "pagerank":
-            # Personalized PageRank
-            ppr_scores = score_films_pagerank(watched_films, films_to_score, user_ratings, url_map)
-            for film_id, s in ppr_scores.items():
-                score_rows.append({
-                    "user_id": user_id, "film_id": film_id,
-                    "score": s, "computed_at": now_str,
-                })
-        else:
-            # Cosine similarity (old algorithm)
-            profile = build_user_profile(watched_films, user_ratings, url_map)
-            for film in films_to_score:
-                s = score_film(profile, film)
-                score_rows.append({
-                    "user_id": user_id, "film_id": film["id"],
-                    "score": s, "computed_at": now_str,
-                })
+        # Compute scores with breakdowns
+        results = score_films_pagerank(watched_films, films_to_score, user_ratings, url_map, signals)
 
-        if not score_rows:
+        # Resolve breakdown _similarRaw to titles/names
+        resolve_breakdowns(films_to_score, watched_films, results)
+
+        if not results:
             print("  No scores to write.")
             continue
 
         if args.dry_run:
-            for row in score_rows:
-                print(f"  [dry-run] film_id={row['film_id']} score={row['score']}")
+            for r in results:
+                print(f"  [dry-run] film_id={r['film_id']} score={r['score']}")
             continue
 
         # In full mode, delete existing scores for this user first
         if args.full:
             supabase.table("user_film_scores").delete().eq("user_id", user_id).execute()
 
-        # Upsert scores
+        # Upsert scores with breakdowns
+        score_rows = [{
+            "user_id": user_id,
+            "film_id": r["film_id"],
+            "score": r["score"],
+            "breakdown": r["breakdown"],
+            "computed_at": now_str,
+        } for r in results]
+
         for j in range(0, len(score_rows), BATCH):
             supabase.table("user_film_scores").upsert(
                 score_rows[j:j + BATCH],
