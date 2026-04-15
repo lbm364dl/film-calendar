@@ -18,7 +18,9 @@ Each session in the data has an optional `special` field that is either `null` (
 | `opera` | Opera broadcasts or recordings screened at theaters | (none in current data) |
 | `ballet` | Ballet broadcasts or recordings | (none in current data) |
 | `theater` | Theater/play broadcasts or recordings | (none in current data) |
-| `concert` | Music concerts or music-focused events | (none in current data) |
+| `concert` | Music concerts or music-focused events | "BTS World Tour Arirang Live Viewing", "La magia K-POP" |
+| `live_music` | A regular film (often silent) accompanied by live musicians playing during the screening | "El Héroe Del Río Con Música En Directo" (Keaton w/ live music), "El estudiante novato (Cine con piano en directo)" |
+| `double_session` | A single long screening split across two sessions with an intermission, or a double-feature intentionally programmed as one extended event | "Kill Bill: The Whole Bloody Affair - 70mm" |
 
 ## How to identify special sessions in scraped data
 
