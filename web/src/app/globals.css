@@ -831,12 +831,53 @@ h1 .h1-accent {
     display: block;
 }
 
-/* At this width the day-strip would get cramped next to all the other
-   pills — push it to its own full-width row below. */
-@media (max-width: 1080px) {
-    .filter-bar > .day-bar {
-        flex: 0 0 100%;
+/* ─────────────────────────────────────────────────────────────────────
+   Mid-desktop 2-row layout (769–1199px)
+   Row 1: search (cols 1-6) + theater (cols 6-10) + Más filtros (cols 10-13)
+   Row 2: day-strip (cols 1-11) + calendar icon (cols 11-12) + clear (cols 12-13)
+   .day-bar uses display:contents so day-strip + calendar-btn participate
+   directly in the 12-col grid.
+   Tweak grid-column numbers below to adjust proportions. */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .filter-bar {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 8px;
+    }
+    .filter-bar-search {
+        grid-column: 1 / 7;    /* 6/12 */
+        grid-row: 1;
+        flex: none;
         min-width: 0;
+    }
+    .filter-bar > .theater-multiselect {
+        grid-column: 7 / 11;   /* 4/12 */
+        grid-row: 1;
+        width: auto;
+        max-width: none;
+        flex: none;
+    }
+    .filter-bar > .more-filters-btn {
+        grid-column: 11 / 13;  /* 2/12 */
+        grid-row: 1;
+        width: auto;
+    }
+    .filter-bar > .day-bar {
+        display: contents;
+    }
+    .filter-bar > .day-bar .day-strip {
+        grid-column: 1 / 11;   /* 10/12 */
+        grid-row: 2;
+    }
+    .filter-bar > .day-bar .calendar-btn {
+        grid-column: 11 / 12;  /* 1/12 */
+        grid-row: 2;
+        width: auto;
+    }
+    .filter-bar > .clear-grid-btn {
+        grid-column: 12 / 13;  /* 1/12 */
+        grid-row: 2;
+        width: auto;
     }
 }
 
@@ -2984,6 +3025,13 @@ a.film-rec-tag:hover {
     width: 100%;
     font-size: 0.72rem;
     min-height: 28px;
+}
+
+/* Placeholder rendered by SkeletonFilters — same vertical footprint as the
+   real chips row so the heading below doesn't shift when filters arrive. */
+.active-chips-placeholder {
+    min-height: 28px;
+    margin: 0 0 0.75rem;
 }
 
 @media (max-width: 768px) {

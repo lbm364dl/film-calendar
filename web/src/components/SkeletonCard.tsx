@@ -56,19 +56,35 @@ export function SkeletonCard({ delay = 0 }: { delay?: number }) {
 }
 
 /**
- * Matches the real .filter-bar flex layout — single horizontal row with
- * search (flex 1 1 260px), day strip (flex 1 1 0), calendar icon, theater
- * pill, more-filters, clear. Height 44px matches the real controls.
+ * Matches the real .filter-bar layout so there's no layout shift when real
+ * filters take over. Renders 6 blocks mirroring the real children in DOM
+ * order (search, day-strip, calendar, theater, más-filtros, clear); the
+ * filter-bar CSS handles single-row (≥1200) / two-row (769–1199) / mobile
+ * grid layouts identically to the real bar, so block heights + widths match.
+ * The active-chips row below reserves its own 28px via .active-chips-placeholder.
  */
 export function SkeletonFilters() {
-  const row: React.CSSProperties = { ...PULSE, height: 44, borderRadius: 8 };
+  const pill = (w: number | string, h = 56): React.CSSProperties => ({
+    ...PULSE, height: h, borderRadius: 8, width: typeof w === 'number' ? w : undefined,
+    ...(typeof w !== 'number' ? { flex: w } : {}),
+  });
   return (
-    <div className="filter-bar" aria-hidden>
-      <div style={{ ...row, flex: '1 1 260px', minWidth: 180 }} />
-      <div style={{ ...row, flex: '1 1 0', minWidth: 220, animationDelay: '80ms' }} />
-      <div style={{ ...row, width: 130, animationDelay: '160ms' }} />
-      <div style={{ ...row, width: 120, animationDelay: '240ms' }} />
-    </div>
+    <>
+      <div className="filter-bar is-skeleton" aria-hidden>
+        {/* order + widths mirror the real FiltersGrid JSX */}
+        <div className="filter-bar-search" style={pill('0 1 300px')} />
+        <div className="day-bar" style={{ display: 'contents' }}>
+          <div className="day-strip" style={pill('0 1 460px', 56)} />
+          <div className="calendar-btn" style={pill(56, 56)} />
+        </div>
+        <div className="theater-multiselect" style={pill('1 1 180px')} />
+        <div className="more-filters-btn" style={pill(56, 56)} />
+        <div className="clear-grid-btn" style={pill(56, 56)} />
+      </div>
+      {/* Reserves the 28px vertical space of the active-chips row so the
+          "Hoy · N películas" heading below doesn't jump when real chips arrive. */}
+      <div className="active-chips-placeholder" aria-hidden />
+    </>
   );
 }
 

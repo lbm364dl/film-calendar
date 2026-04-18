@@ -302,7 +302,10 @@ export default memo(function FilmGridTile({
           className="grid-tile-overlay"
           onClick={(e) => { e.stopPropagation(); setOpenPopupId(null); }}
         >
-          <div className="grid-tile-overlay-inner" onClick={(e) => e.stopPropagation()}>
+          {/* No stopPropagation on the inner wrapper — clicks anywhere on the
+              overlay except on actual session buttons fall through to close
+              the overlay (the session buttons have their own stopPropagation). */}
+          <div className="grid-tile-overlay-inner">
             <div className="grid-tile-overlay-title">{titleText}</div>
             <GridTileSessionsByTheater
               film={film}
