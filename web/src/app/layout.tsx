@@ -72,11 +72,33 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs inline in <head> before hydration to apply the persisted theme and
+// avoid a palette flash. Reads localStorage mfc.theme ("light"|"dark"|"system"|null),
+// resolves "system" via prefers-color-scheme, defaults to dark.
+const themeBootstrap = `
+(function () {
+  try {
+    var t = localStorage.getItem('mfc.theme');
+    if (t !== 'light' && t !== 'dark' && t !== 'system') t = 'dark';
+    var resolved = t;
+    if (t === 'system') {
+      resolved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.dataset.theme = resolved;
+    document.documentElement.dataset.themePref = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+})();
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
-        <meta name="theme-color" content="#0f0f0f" />
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+        <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

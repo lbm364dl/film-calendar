@@ -13,6 +13,7 @@ import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
 import FilmCard from '@/components/FilmCard';
+import ThemeToggle from '@/components/ThemeToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
@@ -179,9 +180,12 @@ export default function FilmCalendar({
       <header>
         <div className="header-top-row">
           <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
-          <div className="lang-toggle">
-            <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
-            <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+          <div className="header-actions">
+            <ThemeToggle />
+            <div className="lang-toggle">
+              <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
+              <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+            </div>
           </div>
         </div>
         <h1>

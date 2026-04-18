@@ -18,7 +18,8 @@ html, body {
 
 /* Direction C — warm-dark palette (default). Mapped to legacy var names so the
    rest of the stylesheet doesn't need to change. */
-:root {
+:root,
+:root[data-theme="dark"] {
     /* Surfaces */
     --bg:         #17140f;   /* page */
     --bg-card:    #211d17;   /* elevated surfaces (cards, inputs) */
@@ -46,6 +47,36 @@ html, body {
     --match-mid:  #9db87a;   /* affinity — mid */
 
     --rating-gold: #d4b560;
+
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+    --bg:         #f6f3ec;
+    --bg-card:    #ffffff;
+    --bg-hover:   #efebe1;
+
+    --text:       #1a1814;
+    --text-2:     #3a352d;
+    --text-dim:   #6b6354;
+    --text-mute:  #9c937f;
+
+    --border:     #dfdacc;
+    --border-2:   #cdc6b3;
+
+    --accent:      #c2593a;
+    --accent-soft: rgba(194, 89, 58, 0.1);
+    --accent-border: rgba(194, 89, 58, 0.28);
+    --accent-on:   #ffffff;
+
+    --warm:       #a78b3a;
+    --rec:        #7a6a4e;
+    --match:      #4a7f5c;
+    --match-mid:  #6e7f3e;
+
+    --rating-gold: #a78b3a;
+
+    color-scheme: light;
 }
 
 body {
@@ -105,6 +136,31 @@ header {
 .lang-btn:hover:not(.active) {
     background: rgba(255, 255, 255, 0.04);
     color: var(--text-2);
+}
+
+:root[data-theme="light"] .lang-btn:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* Theme toggle — circular icon button in the header top row */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    padding: 0;
+}
+
+.theme-toggle:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
 }
 
 h1 {
@@ -2726,6 +2782,12 @@ footer p {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* ── Auth UI ─────────────────────────────────────────────────────────────────── */
