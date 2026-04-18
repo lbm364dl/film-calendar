@@ -2314,27 +2314,33 @@ a.film-rec-tag:hover {
 
 /* ── Filter Modal ────────────────────────────────────────────────────────────── */
 
-/* ── Direction C — Grid tile (V4) ────────────────────────────────────── */
+/* ── Direction C — Grid tile (V4) ──────────────────────────────────────
+   DC breakpoints: 6 cols ≥1440, 5 cols 1200–1439, 4 cols 900–1199,
+   3 cols 600–899, 2 cols below. Mobile-first ascending order. */
 .films-grid.is-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    column-gap: 1rem;
-    row-gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.6rem;
+    row-gap: 0.6rem;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 600px) {
+    .films-grid.is-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+
+@media (min-width: 900px) {
     .films-grid.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-@media (max-width: 900px) {
-    .films-grid.is-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 1200px) {
+    .films-grid.is-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
-@media (max-width: 600px) {
-    .films-grid.is-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: 0.6rem;
-        row-gap: 0.6rem;
-    }
+@media (min-width: 1440px) {
+    .films-grid.is-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }
 
 .grid-tile {
