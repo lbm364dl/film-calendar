@@ -36,6 +36,9 @@ interface MoreFiltersModalProps {
   setSpecialFilter: (v: boolean) => void;
   lastChanceFilter: boolean;
   setLastChanceFilter: (v: boolean) => void;
+  activeAdvancedFilterCount: number;
+  resultsCount: number;
+  onClearAll: () => void;
   onHelp: (title: string, body: string) => void;
 }
 
@@ -50,6 +53,7 @@ export default function MoreFiltersModal({
   versionFilter, setVersionFilter,
   specialFilter, setSpecialFilter,
   lastChanceFilter, setLastChanceFilter,
+  activeAdvancedFilterCount, resultsCount, onClearAll,
   onHelp,
 }: MoreFiltersModalProps) {
   const toggleVersion = useCallback(() => {
@@ -73,13 +77,24 @@ export default function MoreFiltersModal({
   const dayLabels = DAY_LABELS[lang] || DAY_LABELS.en;
   const runtimeLabels = RUNTIME_CATEGORIES.map(c => c.label);
 
+  const activeSubtitle = activeAdvancedFilterCount > 0
+    ? (lang === 'es'
+        ? `${activeAdvancedFilterCount} filtro${activeAdvancedFilterCount === 1 ? '' : 's'} activo${activeAdvancedFilterCount === 1 ? '' : 's'}`
+        : `${activeAdvancedFilterCount} filter${activeAdvancedFilterCount === 1 ? '' : 's'} active`)
+    : (lang === 'es' ? 'Afinar búsqueda' : 'Refine search');
+
   return (
     <div className={`filter-modal${show ? ' show' : ''}${closing ? ' closing' : ''}`} onClick={onClose}>
       <div className="filter-modal-content" onClick={e => e.stopPropagation()}>
         <div className="filter-modal-header">
-          <h3>{t(lang, 'moreFilters')}</h3>
+          <div className="filter-modal-title">
+            <h3>{t(lang, 'moreFilters')}</h3>
+            <div className="filter-modal-subtitle">{activeSubtitle}</div>
+          </div>
           <button type="button" className="filter-modal-close" onClick={onClose}>&times;</button>
         </div>
+
+        <div className="filter-modal-body">
 
         {decades.length > 0 && (
           <ChipRangeFilter
@@ -187,6 +202,27 @@ export default function MoreFiltersModal({
           </button>
         </div>
 
+        </div>
+
+        <div className="filter-modal-footer-bar">
+          <button
+            type="button"
+            className="filter-clear-link"
+            onClick={(e) => { e.stopPropagation(); onClearAll(); }}
+          >{lang === 'es' ? 'Limpiar todos los filtros' : 'Clear all filters'}</button>
+          <div className="filter-footer-right">
+            <button
+              type="button"
+              className="filter-cancel-btn"
+              onClick={onClose}
+            >{lang === 'es' ? 'Cancelar' : 'Cancel'}</button>
+            <button
+              type="button"
+              className="filter-apply-btn"
+              onClick={onClose}
+            >{lang === 'es' ? `Ver ${resultsCount} resultados` : `Show ${resultsCount} results`}</button>
+          </div>
+        </div>
       </div>
     </div>
   );
