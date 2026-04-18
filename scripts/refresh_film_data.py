@@ -149,7 +149,7 @@ def refresh_full(films, dry_run=False):
                     for key in ["directors", "cinematographers", "composers", "writers",
                                 "top_cast", "keywords", "production_companies",
                                 "tmdb_rating", "tmdb_votes", "collection_id",
-                                "tmdb_recommendations"]:
+                                "tmdb_recommendations", "poster_path"]:
                         val = tmdb_info.get(key)
                         if val is not None:
                             updates[key] = val
