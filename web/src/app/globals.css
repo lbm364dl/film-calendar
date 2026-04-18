@@ -436,14 +436,34 @@ header {
     .day-pill .dom { font-size: 0.92rem; }
     .day-pill .dow { font-size: 0.58rem; }
     .calendar-btn { width: 40px; }
+    /* Calendar popover as bottom sheet on mobile */
     .calendar-popover {
-        right: 0;
+        position: fixed;
+        inset: auto 0 0 0;
+        top: auto;
         left: 0;
-        margin-left: auto;
-        margin-right: auto;
-        width: calc(100vw - 2rem);
-        max-width: 360px;
+        right: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+        padding: 14px 18px 18px;
+        z-index: 3000;
+        animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    .calendar-popover::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        background: var(--border-2);
+        border-radius: 99px;
+        margin: -4px auto 10px;
+    }
+    .calendar-cell {
+        aspect-ratio: 1 / 1;
+    }
+    .calendar-cell-dom { font-size: 0.88rem; }
 }
 
 /* Theme toggle — circular icon button in the header top row */
@@ -2481,6 +2501,50 @@ a.film-rec-tag:hover {
 
 :root[data-theme="light"] .filter-modal-content {
     box-shadow: 0 30px 80px rgba(20, 18, 14, 0.3), 0 6px 20px rgba(20, 18, 14, 0.12);
+}
+
+@media (max-width: 768px) {
+    /* On mobile, the modal slides up as a bottom sheet. */
+    .filter-modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+    .filter-modal-content {
+        width: 100%;
+        max-width: none;
+        max-height: 92vh;
+        border-radius: 16px 16px 0 0;
+        border-bottom: none;
+        animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    /* grabber handle */
+    .filter-modal-content::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        background: var(--border-2);
+        border-radius: 99px;
+        margin: 10px auto -4px;
+        flex-shrink: 0;
+    }
+    .filter-modal-header {
+        padding: 12px 20px 12px;
+    }
+    .filter-modal-header h3 {
+        font-size: 1.35rem;
+    }
+    .filter-modal-body {
+        padding: 14px 20px 20px;
+    }
+    .filter-modal-footer-bar {
+        padding: 12px 20px;
+    }
+}
+
+@keyframes fc-sheet-slide-in {
+    from { transform: translateY(18%); opacity: 0.4; }
+    to   { transform: translateY(0);    opacity: 1;   }
 }
 
 .filter-modal-header {
