@@ -198,6 +198,16 @@ export default function FilmCalendar({
 
   const nextDays = useMemo(() => buildNextDays(filmCountByIso), [filmCountByIso]);
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarClosing, setCalendarClosing] = useState(false);
+  // Trigger the close-out animation, then actually unmount ~180ms later so
+  // the backdrop + popover fade rather than blinking out.
+  const closeCalendar = useCallback(() => {
+    setCalendarClosing(true);
+    setTimeout(() => {
+      setCalendarOpen(false);
+      setCalendarClosing(false);
+    }, 180);
+  }, []);
   const [viewMode, setViewMode] = useViewMode();
 
   // ─ Dynamic header subtitle: "N películas · N cines · sábado 18 abril, 2026" ─
@@ -252,25 +262,35 @@ export default function FilmCalendar({
         <h1>
           Madrid Film <span className="h1-accent">Calendar</span>
         </h1>
-        {/* Stats line only when films loaded — prevents the theater-list falling
-            back here and duplicating with the subtitle-theaters line below. */}
-        {allFilms.length > 0 && (
+        {/* Stats line — renders the real string once films load; until then a
+            pulse placeholder of the same height reserves space so the theater
+            list below never shifts when data arrives. */}
+        {allFilms.length > 0 ? (
           <p className="subtitle">{headerStats}</p>
+        ) : (
+          <p className="subtitle subtitle-placeholder" aria-hidden>
+            <span className="subtitle-pulse" />
+          </p>
         )}
         <p className="subtitle subtitle-theaters">{t(lang, 'subtitle')}</p>
       </header>
 
       {/* Calendar popover — centered modal on desktop, bottom sheet on mobile.
-          CSS handles both via position:fixed; backdrop is a sibling div. */}
+          `.closing` on both backdrop + popover triggers the fade-out;
+          closeCalendar delays unmount until the animation finishes. */}
       {calendarOpen && !filmsNotReady && (
         <>
-          <div className="calendar-backdrop" onClick={() => setCalendarOpen(false)} />
+          <div
+            className={`calendar-backdrop${calendarClosing ? ' closing' : ''}`}
+            onClick={closeCalendar}
+          />
           <CalendarPopover
             lang={lang}
             selectedDate={filters.selectedDate}
             filmCountByIso={filmCountByIso}
             onSelect={filters.setSelectedDate}
-            onClose={() => setCalendarOpen(false)}
+            onClose={closeCalendar}
+            closing={calendarClosing}
           />
         </>
       )}

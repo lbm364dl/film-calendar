@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useMemo, useState } from 'react';
+import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { paletteFor } from './Poster';
 import { theaterTint } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
@@ -60,12 +60,37 @@ function GridTileSessionsByTheater({
       .sort((a, b) => b.sessions.length - a.sessions.length);
   }, [sorted]);
 
-  const MAX = 3;
-  const visible = groups.slice(0, MAX);
+  // Dynamically pick how many theater groups fit based on the overlay height
+  // — avoids the old scrollbar and the ugly static "3" cap. Measured on mount
+  // and on resize; a ResizeObserver keeps it in sync when the grid reflows.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [maxGroups, setMaxGroups] = useState(3);
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      // el is the groups wrapper inside the overlay; its own clientHeight
+      // excludes the overlay title and padding, so we just divide by the
+      // estimated per-group height.
+      const h = el.clientHeight;
+      // Reserve ~22px for the trailing "+N salas más" line.
+      const PER_GROUP_PX = 62;
+      const reserved = 22;
+      const fit = Math.max(1, Math.floor((h - reserved) / PER_GROUP_PX));
+      setMaxGroups(fit);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const visible = groups.slice(0, maxGroups);
   const hiddenGroups = groups.length - visible.length;
 
   return (
-    <div className="grid-tile-overlay-groups">
+    <div ref={containerRef} className="grid-tile-overlay-groups">
       {visible.map(({ location, sessions }) => {
         const tint = theaterTint(location);
         const short = (location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || location;

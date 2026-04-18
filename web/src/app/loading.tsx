@@ -20,9 +20,12 @@ export default function Loading() {
         <h1>
           Madrid Film <span className="h1-accent">Calendar</span>
         </h1>
-        <div aria-hidden className="subtitle" style={{ display: 'flex' }}>
-          <div style={{ ...PULSE, width: 320, height: 14, borderRadius: 4 }} />
-        </div>
+        {/* Identical markup to FilmCalendar's loading state — space-reserving
+            pulse for the stats line, real theater list below. No layout shift
+            when the app hydrates and swaps to the real stats line. */}
+        <p className="subtitle subtitle-placeholder" aria-hidden>
+          <span className="subtitle-pulse" />
+        </p>
         <p className="subtitle subtitle-theaters">
           Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo
         </p>

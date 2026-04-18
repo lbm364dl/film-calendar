@@ -301,9 +301,22 @@ header {
     background: rgba(26, 24, 20, 0.3);
 }
 
+.calendar-backdrop.closing {
+    animation: fc-modal-fade-out 0.18s ease-in forwards;
+}
+
+.calendar-popover.closing {
+    animation: fc-modal-pop-out 0.18s ease-in forwards;
+}
+
 @keyframes fc-modal-pop-in {
     from { opacity: 0; transform: translate(-50%, -50%) scale(0.97); }
     to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fc-modal-pop-out {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to   { opacity: 0; transform: translate(-50%, -50%) scale(0.97); }
 }
 
 @keyframes fc-fade-in {
@@ -492,6 +505,10 @@ header {
         z-index: 3100;
         animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
+    /* Override the centered-modal pop-out with a bottom-sheet slide-down. */
+    .calendar-popover.closing {
+        animation: fc-sheet-slide-out 0.22s cubic-bezier(0.4, 0, 0.8, 0.35) forwards;
+    }
     .calendar-popover::before {
         content: '';
         display: block;
@@ -605,6 +622,25 @@ h1 .h1-accent {
     font-size: 0.72rem;
     color: var(--text-mute);
     margin-top: 3px;
+}
+
+/* Reserves the same vertical space as a real stats line so the theater list
+   below doesn't shift when data loads. */
+.subtitle.subtitle-placeholder {
+    display: flex;
+    align-items: center;
+    /* line-height 1.55 × font-size 0.82rem ≈ 20px; match exactly. */
+    min-height: calc(0.82rem * 1.55);
+}
+
+.subtitle-pulse {
+    display: inline-block;
+    width: 320px;
+    max-width: 60%;
+    height: 0.78rem;
+    border-radius: 4px;
+    background: var(--bg-hover);
+    animation: fc-skeleton-pulse 1.4s ease-in-out infinite;
 }
 
 /* Grid Layout for Filters */
@@ -2471,6 +2507,8 @@ a.film-rec-tag:hover {
 /* ── Direction C — Grid tile (V4) ──────────────────────────────────────
    DC breakpoints: 6 cols ≥1440, 5 cols 1200–1439, 4 cols 900–1199,
    3 cols 600–899, 2 cols below. Mobile-first ascending order. */
+/* Capped at 4 columns on any viewport — wider screens get larger tiles (more
+   room for the in-tile session overlay) rather than more columns. */
 .films-grid.is-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 0.6rem;
@@ -2487,14 +2525,6 @@ a.film-rec-tag:hover {
 
 @media (min-width: 900px) {
     .films-grid.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1200px) {
-    .films-grid.is-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1440px) {
-    .films-grid.is-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }
 
 .grid-tile {
@@ -2697,16 +2727,28 @@ a.film-rec-tag:hover {
     opacity: 0.9;
 }
 
-/* Expanded overlay — tap a tile to see first-N sessions in a dark pop. */
+/* Expanded overlay — tap a tile to see first-N sessions in a dark pop.
+   overflow:hidden so content that doesn't fit is just trimmed, no scrollbar.
+   The inner .grid-tile-overlay-inner below is the flex column that drives the
+   dynamic "+N salas más" layout (title at top, groups filling the rest). */
 .grid-tile-overlay {
     position: absolute;
     inset: 0;
     background: rgba(10, 8, 5, 0.92);
     color: #f0ece1;
     padding: 12px;
-    overflow: auto;
+    overflow: hidden;
     z-index: 3;
     animation: fc-fade-in 0.15s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-tile-overlay-inner {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .grid-tile-overlay-title {
@@ -2784,12 +2826,18 @@ a.film-rec-tag:hover {
     margin-top: 4px;
 }
 
-/* Grouped sessions inside the grid-tile overlay (FExpandedSessionsDark). */
+/* Grouped sessions inside the grid-tile overlay (FExpandedSessionsDark).
+   Flex-grows to fill the overlay so its clientHeight is a stable target for
+   the ResizeObserver that decides how many groups fit; overflow is hidden
+   because anything past the dynamic maxGroups isn't rendered anyway. */
 .grid-tile-overlay-groups {
     font-size: 0.66rem;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .gto-group {
@@ -3115,6 +3163,11 @@ a.film-rec-tag:hover {
 @keyframes fc-sheet-slide-in {
     from { transform: translateY(18%); opacity: 0.4; }
     to   { transform: translateY(0);    opacity: 1;   }
+}
+
+@keyframes fc-sheet-slide-out {
+    from { transform: translateY(0);    opacity: 1;   }
+    to   { transform: translateY(24%);  opacity: 0;   }
 }
 
 .filter-modal-header {

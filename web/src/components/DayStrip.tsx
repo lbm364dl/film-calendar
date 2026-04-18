@@ -119,10 +119,13 @@ interface CalendarPopoverProps {
   filmCountByIso: Map<string, number>;
   onSelect: (iso: string) => void;
   onClose: () => void;
+  /** True while the parent is running the close-out animation. Adds a `.closing`
+   *  class so the popover fades out for ~180ms before it unmounts. */
+  closing?: boolean;
 }
 
 export function CalendarPopover({
-  lang, selectedDate, filmCountByIso, onSelect, onClose,
+  lang, selectedDate, filmCountByIso, onSelect, onClose, closing = false,
 }: CalendarPopoverProps) {
   const today = useMemo(() => getLocalTodayStart(), []);
   const [monthCursor, setMonthCursor] = useState<Date>(() => {
@@ -181,7 +184,7 @@ export function CalendarPopover({
   return (
     <div
       ref={popupRef}
-      className="calendar-popover"
+      className={`calendar-popover${closing ? ' closing' : ''}`}
       role="dialog"
       aria-label={lang === 'es' ? 'Elegir fecha' : 'Pick a date'}
     >
