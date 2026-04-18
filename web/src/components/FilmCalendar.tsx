@@ -175,7 +175,7 @@ export default function FilmCalendar({
   // ─ Render ─
   return (
     <div className="container" onClick={() => { setOpenPopupId(null); }}>
-      {/* Header */}
+      {/* Header — Direction C: serif wordmark w/ italic accent on "Calendar" */}
       <header>
         <div className="header-top-row">
           <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
@@ -184,7 +184,9 @@ export default function FilmCalendar({
             <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
           </div>
         </div>
-        <h1>{t(lang, 'siteTitle')}</h1>
+        <h1>
+          Madrid Film <span className="h1-accent">Calendar</span>
+        </h1>
         <p className="subtitle">{t(lang, 'subtitle')}</p>
       </header>
 
@@ -222,7 +224,7 @@ export default function FilmCalendar({
             {filmsNotReady ? t(lang, 'loading') : t(lang, 'filmCount', filters.filteredFilms.length)}
           </span>
           <button
-            className="sort-toggle"
+            className={`sort-toggle${filters.sortBy === 'affinity' ? '' : ' sort-neutral'}`}
             disabled={filmsNotReady}
             style={filmsNotReady ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
             onClick={() => {

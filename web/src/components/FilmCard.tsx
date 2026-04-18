@@ -7,6 +7,7 @@ import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import SessionsDisplay from './sessions/SessionsDisplay';
+import Poster from './Poster';
 
 function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string; valueUrl?: string } | null {
   const items = breakdown?.similarTo;
@@ -15,6 +16,13 @@ function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey
   const rawValue = s.value || s.reason;
   const title = (lang === 'en' && s.titleEn) ? s.titleEn : s.title;
   return { title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
+}
+
+function matchTier(score: number): 'high' | 'mid' | 'warm' | 'mute' {
+  if (score >= 90) return 'high';
+  if (score >= 75) return 'mid';
+  if (score >= 60) return 'warm';
+  return 'mute';
 }
 
 interface FilmCardProps {
@@ -54,99 +62,109 @@ export default memo(function FilmCard({
   const titleText = getFilmTitle(film);
   const letterboxdLink = film.letterboxdShortUrl || film.letterboxdUrl;
 
-  return (
-    <div className="film-card">
-      <div className="film-header">
-        <div className="film-title">
-          {titleText}{film.year && <span className="title-year"> ({film.year})</span>}
-        </div>
-      </div>
-      {film.director && (
-        <div className="film-subtitle">
-          {film.director}{film.runtimeMinutes ? ` (${film.runtimeMinutes} min)` : ''}
-        </div>
-      )}
+  // Compact meta line under the title: director · country · runtime · genres
+  const metaBits: React.ReactNode[] = [];
+  if (film.director) metaBits.push(<span key="d">{film.director.split(',')[0]}</span>);
+  if (film.country && film.country.length > 0) metaBits.push(<span key="c">{film.country[0]}</span>);
+  if (film.runtimeMinutes) metaBits.push(<span key="r">{film.runtimeMinutes}′</span>);
+  const genreLabel = film.genres.slice(0, 2).map(g => translateGenre(g, lang)).join(' · ');
+  if (genreLabel) metaBits.push(<span key="g" className="film-meta-dim">{genreLabel}</span>);
 
-      {/* Genres */}
-      {(film.genres.length > 0 || hasSpecial) && (
-        <div className="film-genres">
+  return (
+    <article className="film-card">
+      <Poster
+        filmId={film.id}
+        title={titleText}
+        year={film.year}
+        director={film.director || null}
+      />
+      <div className="film-body">
+        <div className="film-title-row">
+          <h3 className="film-title">{titleText}</h3>
+          {film.year && <span className="film-year">{film.year}</span>}
+          {showMatch && (
+            <span className={`match-pill match-${matchTier(matchScore!)}`}>
+              <span className="match-dot" />
+              {matchScore}%
+            </span>
+          )}
           {hasSpecial && (
             <span className="special-badge">
               {translateSpecialType(film.dates.find(d => d.special)!.special!, lang)}
             </span>
           )}
-          {film.genres.map((g, i) => (
-            <span key={i} className="genre-badge">{translateGenre(g, lang)}</span>
-          ))}
         </div>
-      )}
-
-      {/* Sessions */}
-      {film.dates.length > 0 && (
-        <div className="film-dates">
-          <SessionsDisplay
-            film={film}
-            lang={lang}
-            dateLocale={dateLocale}
-            openPopupId={openPopupId}
-            setOpenPopupId={setOpenPopupId}
-            formatDate={formatDate}
-            getFilmTitle={getFilmTitle}
-            getCalendarUrl={getCalendarUrl}
-            getFallbackUrl={getFallbackUrl}
-            onOpenModal={onOpenModal}
-          />
-        </div>
-      )}
-
-      {/* Bottom strip: metrics + affinity */}
-      <div className="card-bottom-strip">
-        <div className="card-metrics">
-          {ratingValue && (
-            <span className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
-              <span className="metric-icon rating-icon" aria-hidden="true" />
-              {ratingValue}
-            </span>
-          )}
-          {viewersFormatted && (
-            <span className="viewers" title={viewersTooltip}>
-              <span className="metric-icon viewers-icon" aria-hidden="true" />
-              {viewersFormatted}
-            </span>
-          )}
-          {isWatched && matchScore !== undefined && (
-            <span className="watched-label">{lang === 'es' ? 'Vista' : 'Watched'}</span>
-          )}
-        </div>
-        {showMatch && (
-          <div className={`card-affinity ${matchScore! >= 70 ? 'high' : matchScore! >= 40 ? 'medium' : 'low'}`}>
-            <div className="card-affinity-fill" style={{ width: `${Math.min(matchScore!, 100)}%` }} />
-            <span className="card-affinity-label">{matchScore}%</span>
+        {metaBits.length > 0 && (
+          <div className="film-meta">
+            {metaBits.reduce<React.ReactNode[]>((acc, bit, i) => {
+              if (i > 0) acc.push(<span key={`sep-${i}`} className="film-meta-sep">·</span>);
+              acc.push(bit);
+              return acc;
+            }, [])}
           </div>
         )}
-        {letterboxdLink && (
-          <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
-          </a>
+        {similarData && (
+          <div className="film-rec">
+            <span className="film-rec-prefix">{lang === 'es' ? 'Has visto' : 'You watched'}:</span>
+            {similarData.url ? (
+              <a href={similarData.url} className="film-rec-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
+            ) : (
+              <span className="film-rec-title">{similarData.title}</span>
+            )}
+            {similarData.valueUrl ? (
+              <a href={similarData.valueUrl} className="film-rec-tag" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.value}</a>
+            ) : (
+              <span className="film-rec-tag">{similarData.value}</span>
+            )}
+          </div>
+        )}
+
+        {/* Ratings strip — small row above sessions */}
+        {(ratingValue || viewersFormatted || (isWatched && matchScore !== undefined)) && (
+          <div className="film-metrics">
+            {ratingValue && (
+              <span className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
+                <span className="metric-icon rating-icon" aria-hidden="true" />
+                {ratingValue}
+              </span>
+            )}
+            {viewersFormatted && (
+              <span className="viewers" title={viewersTooltip}>
+                <span className="metric-icon viewers-icon" aria-hidden="true" />
+                {viewersFormatted}
+              </span>
+            )}
+            {isWatched && matchScore !== undefined && (
+              <span className="watched-label">{lang === 'es' ? 'Vista' : 'Watched'}</span>
+            )}
+            {letterboxdLink && (
+              <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
+              </a>
+            )}
+          </div>
+        )}
+
+        {/* Sessions */}
+        {film.dates.length > 0 && (
+          <div className="film-dates">
+            <SessionsDisplay
+              film={film}
+              lang={lang}
+              dateLocale={dateLocale}
+              openPopupId={openPopupId}
+              setOpenPopupId={setOpenPopupId}
+              formatDate={formatDate}
+              getFilmTitle={getFilmTitle}
+              getCalendarUrl={getCalendarUrl}
+              getFallbackUrl={getFallbackUrl}
+              onOpenModal={onOpenModal}
+            />
+          </div>
         )}
       </div>
-      {similarData && (
-        <div className="card-similar">
-          <span className="similar-prefix">{lang === 'es' ? 'Has visto' : 'You watched'}:</span>
-          {similarData.url ? (
-            <a href={similarData.url} className="similar-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
-          ) : (
-            <span className="similar-title">{similarData.title}</span>
-          )}
-          {similarData.valueUrl ? (
-            <a href={similarData.valueUrl} className="similar-tag similar-tag-link" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.value}</a>
-          ) : (
-            <span className="similar-tag">{similarData.value}</span>
-          )}
-        </div>
-      )}
-    </div>
+    </article>
   );
 })

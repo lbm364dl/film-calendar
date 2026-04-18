@@ -1,6 +1,21 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Fraunces, Inter } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  style: ['normal', 'italic'],
+  axes: ['SOFT', 'WONK', 'opsz'],
+  variable: '--font-fraunces',
+});
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-FKN0ELREQD';
 
@@ -59,7 +74,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <script
