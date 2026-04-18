@@ -660,23 +660,50 @@ h1 .h1-accent {
         gap: 8px;
         margin-bottom: 0.5rem;
     }
+    /* Row 1: search + filter icon (Más filtros, icon-only) */
     .filter-bar-search {
-        flex-basis: 100%;
+        flex: 1 1 auto;
         height: 42px;
     }
+    /* Row 2: day-strip + calendar icon (inside DayStrip's own day-bar) */
     .filter-bar > .day-bar {
-        flex-basis: 100%;
+        flex: 0 0 100%;
         min-width: 0;
+        order: 3;  /* push below search+filter-icon and theater pill */
     }
+    /* Theater pill hides on mobile — accessible via Más filtros modal */
     .filter-bar > .theater-multiselect {
-        flex: 1 1 55%;
-        width: auto;
+        display: none;
     }
+    /* Más filtros becomes icon-only with badge */
     .filter-bar > .more-filters-btn {
         flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        order: 2;
+        overflow: visible;
+    }
+    .filter-bar > .more-filters-btn > span:not(.filter-badge) {
+        display: none;
+    }
+    .filter-bar > .more-filters-btn .filter-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
     }
     .filter-bar > .clear-grid-btn {
         display: none;  /* "limpiar todo" still lives in the active-chips row */
+    }
+}
+
+/* Mobile compact header */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+    header .subtitle {
+        font-size: 0.7rem;
     }
 }
 
