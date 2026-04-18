@@ -697,9 +697,13 @@ h1 .h1-accent {
         min-width: 0;
         order: 3;  /* push below search+filter-icon and theater pill */
     }
-    /* Theater pill hides on mobile — accessible via Más filtros modal */
+    /* Theater pill still visible on mobile — it's the only way to change theater
+       filter without adding a "Cines" section to the Más filtros sheet. It flex-
+       wraps onto its own row below search+más when space runs out. */
     .filter-bar > .theater-multiselect {
-        display: none;
+        flex: 1 1 100%;
+        width: auto;
+        order: 4;
     }
     /* Más filtros becomes icon-only with badge */
     .filter-bar > .more-filters-btn {
