@@ -528,6 +528,158 @@ h1 .h1-accent {
     margin-right: auto;
 }
 
+/* ── Direction C — Filter bar (single horizontal row) ─────────────────── */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter-bar > * { min-width: 0; }
+
+/* Search pill */
+.filter-bar-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    flex: 1 1 260px;
+    min-width: 180px;
+    height: 44px;
+}
+
+.filter-bar-search:focus-within {
+    border-color: var(--accent);
+}
+
+.filter-bar-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.82rem;
+    min-width: 0;
+}
+
+.filter-bar-search input::placeholder {
+    color: var(--text-dim);
+}
+
+.filter-bar-search-clear {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1;
+    font-family: inherit;
+}
+
+.filter-bar-search-clear:hover {
+    color: var(--text);
+}
+
+/* In the new filter bar, DayStrip is rendered inline — flex-grow to fill the gap
+   between search and theater pill. */
+.filter-bar > .day-bar {
+    flex: 1 1 0;
+    min-width: 220px;
+    max-width: none;
+    margin: 0;
+}
+
+.filter-bar > .day-bar .day-strip {
+    height: 44px;
+    padding: 3px;
+}
+
+.filter-bar > .day-bar .calendar-btn {
+    height: 44px;
+}
+
+/* Theater multi-select trigger — slimmer in the horizontal bar */
+.filter-bar > .theater-multiselect {
+    flex: 0 0 auto;
+    width: 160px;
+}
+
+.filter-bar .theater-multiselect-trigger {
+    min-height: 44px;
+    height: 44px;
+    font-size: 0.8rem;
+    padding: 0 0.5rem 0 0.75rem;
+}
+
+/* More-filters pill — inside the filter-bar flex row */
+.filter-bar > .more-filters-btn {
+    flex: 0 0 auto;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Clear-all pill (small, ghost-style) at the tail */
+.filter-bar > .clear-grid-btn {
+    flex: 0 0 auto;
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.filter-bar > .clear-grid-btn:hover {
+    color: var(--text);
+    border-color: var(--border-2);
+}
+
+@media (max-width: 768px) {
+    .filter-bar {
+        gap: 8px;
+        margin-bottom: 0.5rem;
+    }
+    .filter-bar-search {
+        flex-basis: 100%;
+        height: 42px;
+    }
+    .filter-bar > .day-bar {
+        flex-basis: 100%;
+        min-width: 0;
+    }
+    .filter-bar > .theater-multiselect {
+        flex: 1 1 55%;
+        width: auto;
+    }
+    .filter-bar > .more-filters-btn {
+        flex: 0 0 auto;
+    }
+    .filter-bar > .clear-grid-btn {
+        display: none;  /* "limpiar todo" still lives in the active-chips row */
+    }
+}
+
 .theater-multiselect {
     grid-column: 1 / 10;
     grid-row: 1;

@@ -3,21 +3,23 @@
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import TheaterMultiSelect from './TheaterMultiSelect';
+import { DayStrip, type DayEntry } from './DayStrip';
 
 interface FiltersGridProps {
   lang: LangKey;
   searchTerm: string;
   setSearchTerm: (v: string) => void;
+  // Day strip + calendar (embedded inline in the filter bar per Direction C)
+  days: DayEntry[];
+  selectedDate: string;
+  setSelectedDate: (v: string) => void;
+  onOpenCalendar: () => void;
   // Theater multi-select
   selectedTheaters: Set<string>;
   onToggleTheater: (value: string) => void;
   onToggleTheaterGroup: (childValues: string[], checked: boolean) => void;
   onSelectAllTheaters: () => void;
   onSelectNoneTheaters: () => void;
-  // Letterboxd
-  lbHasData: boolean;
-  lbFilterActive: boolean;
-  onOpenLbModal: () => void;
   // Actions
   onOpenMoreFilters: () => void;
   activeAdvancedFilterCount: number;
@@ -28,17 +30,25 @@ interface FiltersGridProps {
   onHelp: (title: string, body: string) => void;
 }
 
+/**
+ * Direction C filter bar — one horizontal row on desktop:
+ *   search (flexible) · day-strip (flex: 1) · calendar icon · theater pill · más filtros
+ * On mobile (<= 768px) it wraps to two rows via CSS.
+ *
+ * The Letterboxd button has moved out of the filter bar; it now lives in the
+ * header-actions area so it's always reachable without taking filter space.
+ */
 export default function FiltersGrid({
   lang,
   searchTerm, setSearchTerm,
+  days, selectedDate, setSelectedDate, onOpenCalendar,
   selectedTheaters, onToggleTheater, onToggleTheaterGroup, onSelectAllTheaters, onSelectNoneTheaters,
-  lbHasData, lbFilterActive, onOpenLbModal,
   onOpenMoreFilters, activeAdvancedFilterCount,
   zipInputRef, onZipUpload, onHelp, onClearAllFilters,
 }: FiltersGridProps) {
   return (
-    <div className="filters-grid">
-      {/* Hidden file input for ZIP */}
+    <div className="filter-bar">
+      {/* Hidden file input for ZIP (Letterboxd import flow) */}
       <input
         ref={zipInputRef}
         type="file"
@@ -51,8 +61,12 @@ export default function FiltersGrid({
         }}
       />
 
-      {/* Row 1: Search + More filters */}
-      <div className="search-box">
+      {/* Search pill */}
+      <div className="filter-bar-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
         <input
           type="text"
           id="search"
@@ -61,40 +75,26 @@ export default function FiltersGrid({
           onChange={(e) => setSearchTerm(e.target.value)}
           autoComplete="off"
         />
+        {searchTerm && (
+          <button
+            type="button"
+            className="filter-bar-search-clear"
+            onClick={() => setSearchTerm('')}
+            aria-label="Clear search"
+          >×</button>
+        )}
       </div>
 
-      <button
-        type="button"
-        className="more-filters-btn"
-        onClick={(e) => { e.stopPropagation(); onOpenMoreFilters(); }}
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="4" y1="6" x2="20" y2="6"/>
-          <line x1="4" y1="12" x2="20" y2="12"/>
-          <line x1="4" y1="18" x2="20" y2="18"/>
-          <circle cx="8" cy="6" r="2" fill="currentColor"/>
-          <circle cx="16" cy="12" r="2" fill="currentColor"/>
-          <circle cx="10" cy="18" r="2" fill="currentColor"/>
-        </svg>
-        <span>{t(lang, 'moreFilters')}</span>
-        {activeAdvancedFilterCount > 0 && (
-          <span className="filter-badge">{activeAdvancedFilterCount}</span>
-        )}
-      </button>
+      {/* Day strip + calendar icon — wrapped together so they share width allocation */}
+      <DayStrip
+        lang={lang}
+        days={days}
+        selectedDate={selectedDate}
+        onSelect={setSelectedDate}
+        onOpenCalendar={onOpenCalendar}
+      />
 
-      {/* Date selection now lives in the <DayStrip> above the filter bar;
-          the native date input has been replaced by it + the calendar popover. */}
-
-      <button
-        type="button"
-        className={`lb-grid-btn${lbHasData ? ' has-data' : ''}${lbFilterActive ? ' filter-active' : ''}`}
-        onClick={(e) => { e.stopPropagation(); onOpenLbModal(); }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/letterboxd.svg" className="lb-grid-btn-icon" alt="" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-        <span>Letterboxd</span>
-      </button>
-
+      {/* Theater multi-select — slim pill in the bar */}
       <TheaterMultiSelect
         lang={lang}
         selectedTheaters={selectedTheaters}
@@ -104,6 +104,26 @@ export default function FiltersGrid({
         onSelectNone={onSelectNoneTheaters}
         onHelp={() => onHelp(t(lang, 'theaterTooltipTitle'), t(lang, 'theaterTooltipBody'))}
       />
+
+      {/* More filters — pill with active-count badge */}
+      <button
+        type="button"
+        className="more-filters-btn"
+        onClick={(e) => { e.stopPropagation(); onOpenMoreFilters(); }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+          <circle cx="8" cy="6" r="2" fill="currentColor" />
+          <circle cx="16" cy="12" r="2" fill="currentColor" />
+          <circle cx="10" cy="18" r="2" fill="currentColor" />
+        </svg>
+        <span>{t(lang, 'moreFilters')}</span>
+        {activeAdvancedFilterCount > 0 && (
+          <span className="filter-badge">{activeAdvancedFilterCount}</span>
+        )}
+      </button>
 
       <button type="button" className="clear-grid-btn" onClick={onClearAllFilters}>
         {t(lang, 'clearFilters')}

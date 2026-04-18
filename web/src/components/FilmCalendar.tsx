@@ -200,6 +200,28 @@ export default function FilmCalendar({
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [viewMode, setViewMode] = useViewMode();
 
+  // ─ Dynamic header subtitle: "N películas · N cines · sábado 18 abril, 2026" ─
+  const headerStats = useMemo(() => {
+    const filmCount = allFilms.length;
+    const theaterSet = new Set<string>();
+    for (const film of allFilms) {
+      for (const d of film.dates) {
+        if (d.location && d.location !== 'Unknown') theaterSet.add(d.location);
+      }
+    }
+    const theaterCount = theaterSet.size;
+    const nowStr = new Date().toLocaleDateString(dateLocale, {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    });
+    const filmsLabel = lang === 'es'
+      ? `${filmCount} película${filmCount === 1 ? '' : 's'}`
+      : `${filmCount} film${filmCount === 1 ? '' : 's'}`;
+    const theatersLabel = lang === 'es'
+      ? `${theaterCount} cine${theaterCount === 1 ? '' : 's'}`
+      : `${theaterCount} theater${theaterCount === 1 ? '' : 's'}`;
+    return `${filmsLabel} · ${theatersLabel} · ${nowStr}`;
+  }, [allFilms, dateLocale, lang]);
+
   // ─ Render ─
   return (
     <div className="container" onClick={() => { setOpenPopupId(null); }}>
@@ -218,21 +240,14 @@ export default function FilmCalendar({
         <h1>
           Madrid Film <span className="h1-accent">Calendar</span>
         </h1>
-        <p className="subtitle">{t(lang, 'subtitle')}</p>
+        <p className="subtitle">
+          {allFilms.length > 0 ? headerStats : t(lang, 'subtitle')}
+        </p>
       </header>
 
-      {/* Day strip (today + next 6 days) + calendar popover button */}
-      {!filmsNotReady && (
-        <DayStrip
-          lang={lang}
-          days={nextDays}
-          selectedDate={filters.selectedDate}
-          onSelect={filters.setSelectedDate}
-          onOpenCalendar={() => setCalendarOpen(v => !v)}
-        />
-      )}
-      {calendarOpen && (
-        <div style={{ position: 'relative', maxWidth: 550, margin: '0 auto' }}>
+      {/* Calendar popover — rendered above the filter bar so it floats over it on desktop. */}
+      {calendarOpen && !filmsNotReady && (
+        <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto' }}>
           <CalendarPopover
             lang={lang}
             selectedDate={filters.selectedDate}
@@ -281,14 +296,15 @@ export default function FilmCalendar({
           lang={lang}
           searchTerm={filters.searchTerm}
           setSearchTerm={filters.setSearchTerm}
+          days={nextDays}
+          selectedDate={filters.selectedDate}
+          setSelectedDate={filters.setSelectedDate}
+          onOpenCalendar={() => setCalendarOpen(v => !v)}
           selectedTheaters={filters.selectedTheaters}
           onToggleTheater={filters.toggleTheater}
           onToggleTheaterGroup={filters.toggleTheaterGroup}
           onSelectAllTheaters={filters.selectAllTheaters}
           onSelectNoneTheaters={filters.selectNoneTheaters}
-          lbHasData={lbHasData}
-          lbFilterActive={lbFilterActive}
-          onOpenLbModal={openLbModal}
           onOpenMoreFilters={openMoreFilters}
           activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
           zipInputRef={lb.zipInputRef}

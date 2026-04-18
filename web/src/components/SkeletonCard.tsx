@@ -56,18 +56,18 @@ export function SkeletonCard({ delay = 0 }: { delay?: number }) {
 }
 
 /**
- * Matches the real .filters-grid exactly: 12-col, 3 rows, heights pinned in
- * globals.css via grid-template-rows so both states share the same box.
+ * Matches the real .filter-bar flex layout — single horizontal row with
+ * search (flex 1 1 260px), day strip (flex 1 1 0), calendar icon, theater
+ * pill, more-filters, clear. Height 44px matches the real controls.
  */
 export function SkeletonFilters() {
+  const row: React.CSSProperties = { ...PULSE, height: 44, borderRadius: 8 };
   return (
-    <div className="filters-grid" aria-hidden>
-      <div style={{ gridColumn: '1 / 10', gridRow: 1, ...PULSE, height: 52 }} />
-      <div style={{ gridColumn: '10 / 13', gridRow: 1, ...PULSE, height: 52 }} />
-      <div style={{ gridColumn: '1 / 9', gridRow: 2, ...PULSE, height: 45, animationDelay: '80ms' }} />
-      <div style={{ gridColumn: '9 / 13', gridRow: 2, ...PULSE, height: 45, animationDelay: '80ms' }} />
-      <div style={{ gridColumn: '1 / 8', gridRow: 3, ...PULSE, height: 45, animationDelay: '160ms' }} />
-      <div style={{ gridColumn: '8 / 13', gridRow: 3, ...PULSE, height: 45, animationDelay: '160ms' }} />
+    <div className="filter-bar" aria-hidden>
+      <div style={{ ...row, flex: '1 1 260px', minWidth: 180 }} />
+      <div style={{ ...row, flex: '1 1 0', minWidth: 220, animationDelay: '80ms' }} />
+      <div style={{ ...row, width: 130, animationDelay: '160ms' }} />
+      <div style={{ ...row, width: 120, animationDelay: '240ms' }} />
     </div>
   );
 }
