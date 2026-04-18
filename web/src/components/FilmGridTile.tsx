@@ -28,6 +28,104 @@ function timeOf(ts: string): string {
   return hm.slice(0, 5);
 }
 
+/**
+ * Compact dark "sessions by theater" list shown inside an expanded grid tile.
+ * Mirrors dirC-final's FExpandedSessionsDark: each theater gets a tint-dot +
+ * short name + per-day rows with times joined by "·".
+ */
+function GridTileSessionsByTheater({
+  film, sorted, todayIso, lang, dateLocale,
+  getCalendarUrl, getFallbackUrl, onOpenModal,
+}: {
+  film: Film;
+  sorted: DateEntry[];
+  todayIso: string;
+  lang: LangKey;
+  dateLocale: string;
+  getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
+  getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
+  onOpenModal: (data: SessionModalData) => void;
+}) {
+  const groups = useMemo(() => {
+    const byLoc = new Map<string, DateEntry[]>();
+    for (const s of sorted) {
+      const k = s.location || 'Unknown';
+      let arr = byLoc.get(k);
+      if (!arr) { arr = []; byLoc.set(k, arr); }
+      arr.push(s);
+    }
+    return Array.from(byLoc.entries())
+      .map(([location, sessions]) => ({ location, sessions }))
+      .sort((a, b) => b.sessions.length - a.sessions.length);
+  }, [sorted]);
+
+  const MAX = 3;
+  const visible = groups.slice(0, MAX);
+  const hiddenGroups = groups.length - visible.length;
+
+  return (
+    <div className="grid-tile-overlay-groups">
+      {visible.map(({ location, sessions }) => {
+        const tint = theaterTint(location);
+        const short = (location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || location;
+        const byDay = new Map<string, DateEntry[]>();
+        for (const s of sessions) {
+          const iso = s.timestamp.slice(0, 10);
+          let arr = byDay.get(iso);
+          if (!arr) { arr = []; byDay.set(iso, arr); }
+          arr.push(s);
+        }
+        const days = Array.from(byDay.entries()).sort(([a], [b]) => a.localeCompare(b)).slice(0, 3);
+        return (
+          <div key={location} className="gto-group">
+            <div className="gto-theater">
+              <span className="gto-tint" style={{ background: tint }} />
+              <span className="gto-theater-name">{short}</span>
+            </div>
+            {days.map(([iso, ss]) => {
+              const isToday = iso === todayIso;
+              return (
+                <div key={iso} className={`gto-day${isToday ? ' is-today' : ''}`}>
+                  <span className="gto-day-label">{shortDate(iso, todayIso, lang)}</span>
+                  <span className="gto-day-times">
+                    {ss.map((s, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        className="gto-time"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const dateTime = new Date(s.timestamp.replace(' ', 'T'));
+                          const timeLabel = `${dateTime.toLocaleDateString(dateLocale, { weekday: 'short', day: 'numeric', month: 'short' })} ${dateTime.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' })}${s.location && s.location !== 'Unknown' ? ' - ' + s.location : ''}`;
+                          const titleLabel = film.year ? `${(() => film.titleEn || film.title)()} (${film.year})` : (film.titleEn || film.title);
+                          const hasDirectUrl = !!(s.url_tickets && s.url_tickets.trim());
+                          onOpenModal({
+                            titleLabel,
+                            timeLabel,
+                            ticketUrl: hasDirectUrl ? s.url_tickets : '',
+                            filmPageUrl: s.url_info || film.theaterLink || getFallbackUrl(film, s),
+                            calendarUrl: getCalendarUrl(film, s),
+                            hasDirectUrl,
+                          });
+                        }}
+                      >{timeOf(s.timestamp)}</button>
+                    ))}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+      {hiddenGroups > 0 && (
+        <div className="gto-more">
+          +{hiddenGroups} {lang === 'es' ? (hiddenGroups === 1 ? 'sala más' : 'salas más') : (hiddenGroups === 1 ? 'more theater' : 'more theaters')}
+        </div>
+      )}
+    </div>
+  );
+}
+
 interface FilmGridTileProps {
   film: Film;
   lang: LangKey;
@@ -142,43 +240,16 @@ export default memo(function FilmGridTile({
         >
           <div className="grid-tile-overlay-inner" onClick={(e) => e.stopPropagation()}>
             <div className="grid-tile-overlay-title">{titleText}</div>
-            <div className="grid-tile-overlay-sessions">
-              {sorted.slice(0, 8).map((d, i) => {
-                const iso = d.timestamp.slice(0, 10);
-                const isToday = iso === todayIso;
-                return (
-                  <button
-                    key={i}
-                    className={`grid-tile-overlay-session${isToday ? ' is-today' : ''}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const dateTime = new Date(d.timestamp.replace(' ', 'T'));
-                      const timeLabel = `${dateTime.toLocaleDateString(dateLocale, { weekday: 'short', day: 'numeric', month: 'short' })} ${dateTime.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' })}${d.location && d.location !== 'Unknown' ? ' - ' + d.location : ''}`;
-                      const titleLabel = film.year ? `${titleText} (${film.year})` : titleText;
-                      const hasDirectUrl = !!(d.url_tickets && d.url_tickets.trim());
-                      onOpenModal({
-                        titleLabel,
-                        timeLabel,
-                        ticketUrl: hasDirectUrl ? d.url_tickets : '',
-                        filmPageUrl: d.url_info || film.theaterLink || getFallbackUrl(film, d),
-                        calendarUrl: getCalendarUrl(film, d),
-                        hasDirectUrl,
-                      });
-                    }}
-                  >
-                    <span className="go-tint" style={{ background: theaterTint(d.location) }} />
-                    <span className="go-date">{shortDate(iso, todayIso, lang)}</span>
-                    <span className="go-time">{timeOf(d.timestamp)}</span>
-                    <span className="go-theater">{d.location || ''}</span>
-                  </button>
-                );
-              })}
-              {sorted.length > 8 && (
-                <span className="grid-tile-overlay-more">
-                  +{sorted.length - 8} {lang === 'es' ? 'más' : 'more'}
-                </span>
-              )}
-            </div>
+            <GridTileSessionsByTheater
+              film={film}
+              sorted={sorted}
+              todayIso={todayIso}
+              lang={lang}
+              dateLocale={dateLocale}
+              getFallbackUrl={getFallbackUrl}
+              getCalendarUrl={getCalendarUrl}
+              onOpenModal={onOpenModal}
+            />
           </div>
         </div>
       )}

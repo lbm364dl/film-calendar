@@ -47,7 +47,7 @@ export default function ViewToggle({ mode, onChange, disabled, lang = 'es' }: Vi
           <rect x="1" y="5.3" width="10" height="1.4" fill="currentColor" />
           <rect x="1" y="8.6" width="10" height="1.4" fill="currentColor" />
         </svg>
-        {listLabel}
+        <span className="view-toggle-label">{listLabel}</span>
       </button>
       <button
         type="button"
@@ -64,7 +64,7 @@ export default function ViewToggle({ mode, onChange, disabled, lang = 'es' }: Vi
           <rect x="1" y="7" width="4" height="4" fill="currentColor" />
           <rect x="7" y="7" width="4" height="4" fill="currentColor" />
         </svg>
-        {gridLabel}
+        <span className="view-toggle-label">{gridLabel}</span>
       </button>
     </div>
   );

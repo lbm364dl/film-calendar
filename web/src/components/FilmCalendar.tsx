@@ -324,7 +324,28 @@ export default function FilmCalendar({
       <div className="stats">
         <div className="stats-row">
           <span>
-            {filmsNotReady ? t(lang, 'loading') : t(lang, 'filmCount', filters.filteredFilms.length)}
+            {filmsNotReady
+              ? t(lang, 'loading')
+              : (() => {
+                  // "Hoy · 47 películas" or "Dom 19 abr · 12 películas" per DC.
+                  const todayIso = new Date().toISOString().slice(0, 10);
+                  let prefix: string;
+                  if (!filters.selectedDate || filters.selectedDate === todayIso) {
+                    prefix = lang === 'es' ? 'Hoy' : 'Today';
+                  } else {
+                    const d = new Date(filters.selectedDate + 'T12:00:00');
+                    prefix = d.toLocaleDateString(dateLocale, {
+                      weekday: 'short', day: 'numeric', month: 'short',
+                    }).replace(/\.$/, '');
+                  }
+                  return (
+                    <>
+                      <span className="stats-prefix">{prefix}</span>
+                      <span className="stats-sep"> · </span>
+                      <span className="stats-count">{t(lang, 'filmCount', filters.filteredFilms.length)}</span>
+                    </>
+                  );
+                })()}
           </span>
           <div className="stats-right">
           <ViewToggle mode={viewMode} onChange={setViewMode} disabled={filmsNotReady} lang={lang} />
