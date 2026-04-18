@@ -730,14 +730,35 @@ h1 .h1-accent {
     padding: 0 0.5rem 0 0.75rem;
 }
 
-/* More-filters pill — inside the filter-bar flex row */
+/* More-filters — icon-only 56×56 button (matches calendar + clear buttons). */
 .filter-bar > .more-filters-btn {
     flex: 0 0 auto;
+    width: 56px;
     height: 56px;
-    padding: 0 14px;
-    font-size: 0.8rem;
+    padding: 0;
+    font-size: 0;
     border-radius: 8px;
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hide the "Más filtros" text label; keep the icon + filter-badge count. */
+.filter-bar > .more-filters-btn > span:not(.filter-badge) {
+    display: none;
+}
+
+.filter-bar > .more-filters-btn .filter-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+.filter-bar > .more-filters-btn svg {
+    display: block;
+    width: 18px;
+    height: 18px;
 }
 
 /* Clear-all — compact broom-icon button so it matches the other 56px controls
@@ -806,6 +827,13 @@ h1 .h1-accent {
         height: 52px;
         padding: 0 10px;
         overflow: visible;
+        font-size: 0.8rem;
+        gap: 6px;
+    }
+    /* On mobile we have room in the 4/12 slot — show the "Más filtros" label
+       alongside the icon. (Desktop stays icon-only.) */
+    .filter-bar > .more-filters-btn > span:not(.filter-badge) {
+        display: inline;
     }
     /* Theater trigger inherits min-height 56; tighten to 52 on mobile to match
        the grid row cadence. */

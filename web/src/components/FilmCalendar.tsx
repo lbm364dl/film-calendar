@@ -252,9 +252,11 @@ export default function FilmCalendar({
         <h1>
           Madrid Film <span className="h1-accent">Calendar</span>
         </h1>
-        <p className="subtitle">
-          {allFilms.length > 0 ? headerStats : t(lang, 'subtitle')}
-        </p>
+        {/* Stats line only when films loaded — prevents the theater-list falling
+            back here and duplicating with the subtitle-theaters line below. */}
+        {allFilms.length > 0 && (
+          <p className="subtitle">{headerStats}</p>
+        )}
         <p className="subtitle subtitle-theaters">{t(lang, 'subtitle')}</p>
       </header>
 
