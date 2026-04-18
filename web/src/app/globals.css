@@ -535,14 +535,13 @@ h1 .h1-accent {
     align-items: stretch;
     flex-wrap: wrap;
     margin-bottom: 0.75rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    /* No max-width — fills the .container (which is already capped at 1200). */
 }
 
 .filter-bar > * { min-width: 0; }
 
-/* Search pill */
+/* Search pill — fixed basis, doesn't greedily grow so the day-strip can breathe. */
 .filter-bar-search {
     display: flex;
     align-items: center;
@@ -552,8 +551,8 @@ h1 .h1-accent {
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-dim);
-    flex: 1 1 260px;
-    min-width: 180px;
+    flex: 0 1 300px;
+    min-width: 220px;
     height: 44px;
 }
 
@@ -594,11 +593,11 @@ h1 .h1-accent {
     color: var(--text);
 }
 
-/* In the new filter bar, DayStrip is rendered inline — flex-grow to fill the gap
-   between search and theater pill. */
+/* In the new filter bar, DayStrip is rendered inline and gets ALL remaining
+   space. Minimum 370px keeps 7 pills readable (~45px each + calendar button). */
 .filter-bar > .day-bar {
-    flex: 1 1 0;
-    min-width: 220px;
+    flex: 1 1 auto;
+    min-width: 370px;
     max-width: none;
     margin: 0;
 }
@@ -653,6 +652,23 @@ h1 .h1-accent {
 .filter-bar > .clear-grid-btn:hover {
     color: var(--text);
     border-color: var(--border-2);
+}
+
+/* The active-chips row below already has "limpiar todo", so this button is
+   redundant on narrower desktops. Drop it to give the day strip more room. */
+@media (max-width: 1200px) {
+    .filter-bar > .clear-grid-btn {
+        display: none;
+    }
+}
+
+/* At this width the day-strip would get cramped next to all the other
+   pills — push it to its own full-width row below. */
+@media (max-width: 1080px) {
+    .filter-bar > .day-bar {
+        flex: 0 0 100%;
+        min-width: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2554,15 +2570,14 @@ a.film-rec-tag:hover {
     gap: 6px;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 auto 1rem;
-    max-width: 550px;
+    margin: 0 0 0.75rem;
+    width: 100%;
     font-size: 0.72rem;
     min-height: 28px;
 }
 
 @media (max-width: 768px) {
     .active-chips {
-        max-width: 100%;
         overflow-x: auto;
         flex-wrap: nowrap;
     }
