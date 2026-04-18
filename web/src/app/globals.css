@@ -170,8 +170,8 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1px;
-    padding: 6px 0 5px;
+    gap: 0;
+    padding: 2px 0;
     background: transparent;
     border: none;
     border-radius: 6px;
@@ -180,29 +180,33 @@ header {
     font-family: inherit;
     transition: background 0.2s, color 0.2s;
     min-width: 0;
+    line-height: 1;
 }
 
 .day-pill .dow {
-    font-size: 0.62rem;
+    font-size: 0.58rem;
+    line-height: 1.1;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-dim);
     font-weight: 600;
+    margin-bottom: 1px;
 }
 
 .day-pill .dom {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     line-height: 1;
 }
 
 .day-pill .day-count {
-    font-size: 0.58rem;
+    font-size: 0.54rem;
+    line-height: 1.1;
     color: var(--text-mute);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
-    margin-top: 1px;
+    margin-top: 2px;
 }
 
 .day-pill:hover:not(.active) {
@@ -553,7 +557,7 @@ h1 .h1-accent {
     color: var(--text-dim);
     flex: 0 1 300px;
     min-width: 220px;
-    height: 44px;
+    height: 48px;
 }
 
 .filter-bar-search:focus-within {
@@ -603,12 +607,18 @@ h1 .h1-accent {
 }
 
 .filter-bar > .day-bar .day-strip {
-    height: 44px;
+    height: 48px;
     padding: 3px;
 }
 
 .filter-bar > .day-bar .calendar-btn {
-    height: 44px;
+    width: 48px;
+    height: 48px;
+}
+
+.filter-bar > .day-bar .calendar-btn svg {
+    width: 18px;
+    height: 18px;
 }
 
 /* Theater multi-select trigger — slimmer in the horizontal bar */
@@ -618,8 +628,8 @@ h1 .h1-accent {
 }
 
 .filter-bar .theater-multiselect-trigger {
-    min-height: 44px;
-    height: 44px;
+    min-height: 48px;
+    height: 48px;
     font-size: 0.8rem;
     padding: 0 0.5rem 0 0.75rem;
 }
@@ -627,7 +637,7 @@ h1 .h1-accent {
 /* More-filters pill — inside the filter-bar flex row */
 .filter-bar > .more-filters-btn {
     flex: 0 0 auto;
-    height: 44px;
+    height: 48px;
     padding: 0 14px;
     font-size: 0.8rem;
     border-radius: 8px;
@@ -637,7 +647,7 @@ h1 .h1-accent {
 /* Clear-all pill (small, ghost-style) at the tail */
 .filter-bar > .clear-grid-btn {
     flex: 0 0 auto;
-    height: 44px;
+    height: 48px;
     padding: 0 12px;
     border-radius: 8px;
     background: transparent;
