@@ -228,7 +228,13 @@ export default function FilmCalendar({
       {/* Header — Direction C: serif wordmark w/ italic accent on "Calendar" */}
       <header>
         <div className="header-top-row">
-          <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
+          <AuthButton
+            lang={lang}
+            userId={initialUserId}
+            userEmail={initialUserEmail}
+            hasLetterboxd={!!(lb.watchlistUrls || lb.watchedUrls || lb.recommendReady)}
+            onOpenLetterboxd={openLbModal}
+          />
           <div className="header-actions">
             <ThemeToggle />
             <div className="lang-toggle">

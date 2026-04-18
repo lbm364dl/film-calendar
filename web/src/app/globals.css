@@ -4059,6 +4059,82 @@ footer p {
     opacity: 0.85;
 }
 
+/* Direction C user pill — avatar + name + optional LBXD badge */
+.user-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px 4px 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s, background 0.2s;
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.user-pill:hover {
+    border-color: var(--text-dim);
+}
+
+.user-pill-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-on);
+    display: grid;
+    place-items: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.user-pill-name {
+    color: var(--text);
+    line-height: 1;
+}
+
+.user-pill-lbxd {
+    padding: 1px 6px;
+    background: rgba(58, 129, 80, 0.12);
+    color: #6aaa7a;
+    border: 1px solid rgba(58, 129, 80, 0.3);
+    border-radius: 4px;
+    font-size: 0.54rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+}
+
+:root[data-theme="light"] .user-pill-lbxd {
+    background: rgba(58, 129, 80, 0.1);
+    color: #3a8150;
+    border-color: rgba(58, 129, 80, 0.28);
+}
+
+.user-pill-chevron {
+    color: var(--text-mute);
+    flex-shrink: 0;
+}
+
+.auth-dropdown-btn-lb {
+    margin-bottom: 6px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.auth-dropdown-btn-lb:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
 .auth-dropdown {
     position: absolute;
     top: calc(100% + 8px);

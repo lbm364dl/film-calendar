@@ -51,9 +51,11 @@ interface AuthButtonProps {
   lang: LangKey;
   userId: string | null;
   userEmail: string | null;
+  hasLetterboxd?: boolean;
+  onOpenLetterboxd?: () => void;
 }
 
-export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps) {
+export default function AuthButton({ lang, userId, userEmail, hasLetterboxd, onOpenLetterboxd }: AuthButtonProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authClosing, setAuthClosing] = useState(false);
@@ -179,21 +181,46 @@ export default function AuthButton({ lang, userId, userEmail }: AuthButtonProps)
     }
   };
 
-  // Logged in: show avatar/email + dropdown
+  // Logged in: show DC-style user pill (avatar + name + LBXD badge)
   if (userId) {
     const initial = (userEmail || '?')[0].toUpperCase();
+    // Short name = email local-part capitalised; falls back to "Me".
+    const emailLocal = userEmail ? userEmail.split('@')[0] : '';
+    const shortName = emailLocal
+      ? emailLocal.charAt(0).toUpperCase() + emailLocal.slice(1, 12)
+      : (lang === 'es' ? 'Cuenta' : 'Account');
     return (
       <div className="auth-area" ref={dropdownRef}>
         <button
-          className="auth-avatar"
+          className="user-pill"
           onClick={() => setShowDropdown(!showDropdown)}
           title={userEmail || ''}
+          aria-expanded={showDropdown}
         >
-          {initial}
+          <span className="user-pill-avatar">{initial}</span>
+          <span className="user-pill-name">{shortName}</span>
+          {hasLetterboxd && (
+            <span className="user-pill-lbxd" title="Letterboxd">LBXD</span>
+          )}
+          <svg width="9" height="9" viewBox="0 0 12 8" className="user-pill-chevron" aria-hidden>
+            <path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z" />
+          </svg>
         </button>
         {showDropdown && (
           <div className="auth-dropdown">
             <div className="auth-dropdown-email">{userEmail}</div>
+            {onOpenLetterboxd && (
+              <button
+                className="auth-dropdown-btn auth-dropdown-btn-lb"
+                onClick={() => { setShowDropdown(false); onOpenLetterboxd(); }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/assets/letterboxd.svg" width={14} height={14} alt="" style={{ verticalAlign: '-2px', marginRight: 6 }} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                {hasLetterboxd
+                  ? (lang === 'es' ? 'Importar Letterboxd' : 'Letterboxd import')
+                  : (lang === 'es' ? 'Conectar Letterboxd' : 'Connect Letterboxd')}
+              </button>
+            )}
             <button className="auth-dropdown-btn" onClick={handleLogout}>
               {t.logout}
             </button>
