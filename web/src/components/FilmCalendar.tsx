@@ -485,6 +485,11 @@ export default function FilmCalendar({
           setSpecialFilter={filters.setSpecialFilter}
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
+          selectedTheaters={filters.selectedTheaters}
+          onToggleTheater={filters.toggleTheater}
+          onToggleTheaterGroup={filters.toggleTheaterGroup}
+          onSelectAllTheaters={filters.selectAllTheaters}
+          onSelectNoneTheaters={filters.selectNoneTheaters}
           activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
           resultsCount={filters.filteredFilms.length}
           onClearAll={filters.clearAllFilters}
