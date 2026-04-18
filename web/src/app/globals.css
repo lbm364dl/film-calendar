@@ -688,10 +688,11 @@ h1 .h1-accent {
     color: var(--text);
 }
 
-/* In the new filter bar, DayStrip is rendered inline and gets ALL remaining
-   space. Minimum 370px keeps 7 pills readable (~45px each + calendar button). */
+/* Day-bar: fixed-ish basis of 460px (enough for 7 readable pills + calendar
+   icon), doesn't grow. Theater multiselect below absorbs the remaining slack
+   so long theater summaries get room to breathe. */
 .filter-bar > .day-bar {
-    flex: 1 1 auto;
+    flex: 0 1 460px;
     min-width: 370px;
     max-width: none;
     margin: 0;
@@ -717,10 +718,14 @@ h1 .h1-accent {
     display: block;  /* kill inline-baseline descender shifting the SVG ≈2px off-center */
 }
 
-/* Theater multi-select trigger — slimmer in the horizontal bar */
+/* Theater multi-select — grows to fill any remaining horizontal slack so long
+   theater summaries ("Todos los cines", "Doré · Cineteca · …") fit without
+   truncation. Minimum 180px keeps the pill usable at tighter widths. */
 .filter-bar > .theater-multiselect {
-    flex: 0 0 auto;
-    width: 160px;
+    flex: 1 1 180px;
+    min-width: 180px;
+    max-width: 340px;
+    width: auto;
 }
 
 .filter-bar .theater-multiselect-trigger {
