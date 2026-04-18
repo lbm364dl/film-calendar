@@ -1,59 +1,33 @@
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
+import { unstable_cache, revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 const BATCH = 1000;
+const CACHE_TAG = 'screenings-payload';
 
-/**
- * In-memory cache for the screenings payload.
- * Survives across requests within the same server process.
- * Invalidated by POST /api/screenings.
- */
-let cachedPayload: string | null = null;
-let cachedAt = 0;
-let cachedEtag: string | null = null;
-const MAX_AGE_MS = 60 * 60 * 1000; // 1 hour
-
-async function createSupabase() {
-  const cookieStore = await cookies();
+function createSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const key =
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  return createServerClient(url, key!, {
-    cookies: {
-      getAll() { return cookieStore.getAll(); },
-      setAll() { /* read-only in route handler GET */ },
-    },
-  });
+  return createClient(url, key!, { auth: { persistSession: false } });
 }
 
 async function buildPayload(): Promise<string> {
-  const supabase = await createSupabase();
+  const supabase = createSupabase();
 
-  // Fetch all films (paginated)
-  const allFilms: any[] = [];
-  let offset = 0;
-  while (true) {
-    const { data, error } = await supabase
-      .from('films')
-      .select('*')
-      .order('title')
-      .range(offset, offset + BATCH - 1);
-    if (error) throw error;
-    if (!data || data.length === 0) break;
-    allFilms.push(...data);
-    if (data.length < BATCH) break;
-    offset += BATCH;
-  }
+  // screenings.showtime is a naive timestamp; compare against today's date-only
+  // boundary so today's later showtimes stay visible.
+  const todayIso = new Date().toISOString().slice(0, 10);
 
-  // Fetch all screenings (paginated)
+  // Fetch upcoming screenings only (paginated)
   const screeningsByFilm = new Map<number, any[]>();
-  offset = 0;
+  let offset = 0;
   while (true) {
     const { data, error } = await supabase
       .from('screenings')
       .select('*')
+      .gte('showtime', todayIso)
       .range(offset, offset + BATCH - 1);
     if (error) throw error;
     if (!data || data.length === 0) break;
@@ -66,7 +40,24 @@ async function buildPayload(): Promise<string> {
     offset += BATCH;
   }
 
-  // Merge screenings into films
+  const filmIds = Array.from(screeningsByFilm.keys());
+  if (filmIds.length === 0) return JSON.stringify([]);
+
+  // Fetch only films that have upcoming screenings (chunked to stay under PostgREST URL limits)
+  const allFilms: any[] = [];
+  const CHUNK = 500;
+  for (let i = 0; i < filmIds.length; i += CHUNK) {
+    const chunk = filmIds.slice(i, i + CHUNK);
+    const { data, error } = await supabase
+      .from('films')
+      .select('*')
+      .in('id', chunk);
+    if (error) throw error;
+    if (data) allFilms.push(...data);
+  }
+
+  allFilms.sort((a, b) => (a.title ?? '').localeCompare(b.title ?? ''));
+
   for (const film of allFilms) {
     film.screenings = screeningsByFilm.get(film.id) || [];
   }
@@ -74,34 +65,38 @@ async function buildPayload(): Promise<string> {
   return JSON.stringify(allFilms);
 }
 
+const getCachedPayload = unstable_cache(
+  async () => {
+    const body = await buildPayload();
+    const etag = `W/"${body.length}-${Date.now().toString(36)}"`;
+    return { body, etag };
+  },
+  ['screenings-payload-v1'],
+  { tags: [CACHE_TAG], revalidate: 3600 }
+);
+
 /**
- * GET /api/screenings — returns all films with nested screenings.
- * Cached in-memory; cache busted via POST.
+ * GET /api/screenings — returns films with their upcoming screenings.
+ * Cached by Next.js data cache (keyed by tag) and by the CDN via Cache-Control.
  */
 export async function GET(request: Request) {
   try {
-    const now = Date.now();
-    if (!cachedPayload || now - cachedAt > MAX_AGE_MS) {
-      cachedPayload = await buildPayload();
-      cachedAt = now;
-      cachedEtag = `"${cachedAt}"`;
-    }
+    const { body, etag } = await getCachedPayload();
 
-    // If browser already has this version, skip sending the body
     const ifNoneMatch = request.headers.get('if-none-match');
-    if (ifNoneMatch === cachedEtag) {
+    if (ifNoneMatch === etag) {
       return new NextResponse(null, {
         status: 304,
-        headers: { 'ETag': cachedEtag! },
+        headers: { ETag: etag },
       });
     }
 
-    return new NextResponse(cachedPayload, {
+    return new NextResponse(body, {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-        'ETag': cachedEtag!,
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        ETag: etag,
       },
     });
   } catch (err) {
@@ -111,8 +106,7 @@ export async function GET(request: Request) {
 }
 
 /**
- * POST /api/screenings — invalidate the cache.
- * Call this after merging new data into Supabase.
+ * POST /api/screenings — invalidate the cache after merging new data.
  * Optionally protect with ?secret=<REVALIDATE_SECRET>.
  */
 export async function POST(request: Request) {
@@ -124,9 +118,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid secret' }, { status: 401 });
   }
 
-  cachedPayload = null;
-  cachedAt = 0;
-  cachedEtag = null;
-
+  revalidateTag(CACHE_TAG);
   return NextResponse.json({ revalidated: true });
 }
