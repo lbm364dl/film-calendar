@@ -18,7 +18,13 @@ function applyTheme(pref: ThemePref) {
   root.dataset.themePref = pref;
 }
 
-export default function ThemeToggle() {
+interface ThemeToggleProps {
+  // `grouped` drops the pill border/radius so a parent wrapper (e.g. .prefs-pill)
+  // can draw one unified border around the theme + language toggles.
+  variant?: 'standalone' | 'grouped';
+}
+
+export default function ThemeToggle({ variant = 'standalone' }: ThemeToggleProps = {}) {
   const [pref, setPref] = useState<ThemePref>('dark');
   const [mounted, setMounted] = useState(false);
 
@@ -50,7 +56,13 @@ export default function ThemeToggle() {
   if (!mounted) {
     // Render a stable placeholder on the server / during first client render so
     // the bootstrap script can do its job without layout shift.
-    return <button className="theme-toggle" aria-label="Theme" style={{ visibility: 'hidden' }} />;
+    return (
+      <button
+        className={variant === 'grouped' ? 'theme-toggle theme-toggle-grouped' : 'theme-toggle'}
+        aria-label="Theme"
+        style={{ visibility: 'hidden' }}
+      />
+    );
   }
 
   const label = pref === 'system' ? 'Auto' : pref === 'light' ? 'Día' : 'Noche';
@@ -59,7 +71,7 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle"
+      className={variant === 'grouped' ? 'theme-toggle theme-toggle-grouped' : 'theme-toggle'}
       onClick={cycle}
       title={title}
       aria-label={title}

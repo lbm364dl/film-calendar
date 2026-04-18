@@ -491,6 +491,52 @@ header {
     color: var(--text);
 }
 
+/* Grouped variant — lives inside .prefs-pill, so drops its own border and
+   uses the container for the single shared shell. Keeps the hover/color
+   treatment so the icon still feels interactive. */
+.theme-toggle.theme-toggle-grouped {
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+}
+
+.theme-toggle.theme-toggle-grouped:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+:root[data-theme="light"] .theme-toggle.theme-toggle-grouped:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* Preferences pill — single bordered container grouping theme + language
+   toggles with a vertical divider between them. Matches DC header. */
+.prefs-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 2px 4px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+}
+
+.prefs-pill-divider {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: var(--border-2);
+    margin: 0 0.15rem;
+}
+
+/* Inside the shared pill, the language segment loses its own border (the
+   outer .prefs-pill draws the one shell). */
+.lang-toggle.lang-toggle-grouped {
+    border: none;
+    padding: 0;
+}
+
 h1 {
     font-family: var(--font-fraunces), Georgia, serif;
     font-size: 2.4rem;

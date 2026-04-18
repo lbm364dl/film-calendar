@@ -236,10 +236,16 @@ export default function FilmCalendar({
             onOpenLetterboxd={openLbModal}
           />
           <div className="header-actions">
-            <ThemeToggle />
-            <div className="lang-toggle">
-              <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
-              <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+            {/* Preferences pill: theme toggle + language toggle share a single
+                border with a divider between them, mirroring DC's grouped
+                header controls next to the user pill. */}
+            <div className="prefs-pill" role="group" aria-label="Preferences">
+              <ThemeToggle variant="grouped" />
+              <span className="prefs-pill-divider" aria-hidden />
+              <div className="lang-toggle lang-toggle-grouped">
+                <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
+                <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+              </div>
             </div>
           </div>
         </div>
