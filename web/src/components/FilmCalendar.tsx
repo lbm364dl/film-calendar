@@ -16,6 +16,7 @@ import FilmCard from '@/components/FilmCard';
 import ThemeToggle from '@/components/ThemeToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
+import ActiveFilterChips from '@/components/ActiveFilterChips';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
@@ -237,6 +238,36 @@ export default function FilmCalendar({
             onClose={() => setCalendarOpen(false)}
           />
         </div>
+      )}
+
+      {/* Active filter chips row */}
+      {!filmsNotReady && (
+        <ActiveFilterChips
+          lang={lang}
+          versionFilter={filters.versionFilter}
+          setVersionFilter={filters.setVersionFilter}
+          decades={filters.decades}
+          selectedDecades={filters.selectedDecades}
+          setSelectedDecades={filters.setSelectedDecades}
+          selectedRuntimeCategories={filters.selectedRuntimeCategories}
+          setSelectedRuntimeCategories={filters.setSelectedRuntimeCategories}
+          selectedDays={filters.selectedDays}
+          setSelectedDays={filters.setSelectedDays}
+          allGenres={filters.allGenres}
+          selectedGenres={filters.selectedGenres}
+          setSelectedGenres={filters.setSelectedGenres}
+          allCountries={filters.allCountries}
+          selectedCountries={filters.selectedCountries}
+          setSelectedCountries={filters.setSelectedCountries}
+          allLanguages={filters.allLanguages}
+          selectedLanguages={filters.selectedLanguages}
+          setSelectedLanguages={filters.setSelectedLanguages}
+          specialFilter={filters.specialFilter}
+          setSpecialFilter={filters.setSpecialFilter}
+          lastChanceFilter={filters.lastChanceFilter}
+          setLastChanceFilter={filters.setLastChanceFilter}
+          onClearAll={filters.clearAllFilters}
+        />
       )}
 
       {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
