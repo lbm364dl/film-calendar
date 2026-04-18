@@ -162,6 +162,7 @@ export default memo(function FilmCard({
               getCalendarUrl={getCalendarUrl}
               getFallbackUrl={getFallbackUrl}
               onOpenModal={onOpenModal}
+              matchScore={showMatch ? matchScore : undefined}
             />
           </div>
         )}

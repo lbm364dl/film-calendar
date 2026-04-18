@@ -184,11 +184,12 @@ export default function AuthButton({ lang, userId, userEmail, hasLetterboxd, onO
   // Logged in: show DC-style user pill (avatar + name + LBXD badge)
   if (userId) {
     const initial = (userEmail || '?')[0].toUpperCase();
-    // Short name = email local-part capitalised; falls back to "Me".
+    // Short name = email local-part, kept lowercase (DC design matches how the
+    // user actually types their email — don't force title case).
     const emailLocal = userEmail ? userEmail.split('@')[0] : '';
     const shortName = emailLocal
-      ? emailLocal.charAt(0).toUpperCase() + emailLocal.slice(1, 12)
-      : (lang === 'es' ? 'Cuenta' : 'Account');
+      ? emailLocal.slice(0, 14)
+      : (lang === 'es' ? 'cuenta' : 'account');
     return (
       <div className="auth-area" ref={dropdownRef}>
         <button

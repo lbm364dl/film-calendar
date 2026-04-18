@@ -653,18 +653,23 @@ h1 .h1-accent {
 }
 
 .filter-bar > .day-bar .day-strip {
-    height: 48px;
-    padding: 3px;
+    height: 56px;
+    padding: 6px 4px;
 }
 
 .filter-bar > .day-bar .calendar-btn {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-bar > .day-bar .calendar-btn svg {
     width: 18px;
     height: 18px;
+    display: block;  /* kill inline-baseline descender shifting the SVG ≈2px off-center */
 }
 
 /* Theater multi-select trigger — slimmer in the horizontal bar */
@@ -728,48 +733,54 @@ h1 .h1-accent {
 }
 
 @media (max-width: 768px) {
+    /* 7-column grid layout per Direction C mobile sketch:
+         Row 1: theater (4/7) + Más filtros (3/7)
+         Row 2: search (5/7) + calendar icon (2/7)
+         Row 3: day-strip spanning all 7
+       .day-bar uses display:contents so its children (day-strip, calendar-btn)
+       participate directly in the outer grid. */
     .filter-bar {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
         gap: 8px;
         margin-bottom: 0.5rem;
     }
-    /* Row 1: search + filter icon (Más filtros, icon-only) */
-    .filter-bar-search {
-        flex: 1 1 auto;
-        height: 42px;
-    }
-    /* Row 2: day-strip + calendar icon (inside DayStrip's own day-bar) */
-    .filter-bar > .day-bar {
-        flex: 0 0 100%;
-        min-width: 0;
-        order: 3;  /* push below search+filter-icon and theater pill */
-    }
-    /* Theater pill still visible on mobile — it's the only way to change theater
-       filter without adding a "Cines" section to the Más filtros sheet. It flex-
-       wraps onto its own row below search+más when space runs out. */
     .filter-bar > .theater-multiselect {
-        flex: 1 1 100%;
+        grid-column: 1 / 5;
+        grid-row: 1;
         width: auto;
-        order: 4;
     }
-    /* Más filtros becomes icon-only with badge */
     .filter-bar > .more-filters-btn {
-        flex: 0 0 auto;
-        width: 42px;
-        height: 42px;
-        padding: 0;
-        order: 2;
+        grid-column: 5 / 8;
+        grid-row: 1;
+        width: auto;
+        height: 44px;
+        padding: 0 10px;
         overflow: visible;
     }
-    .filter-bar > .more-filters-btn > span:not(.filter-badge) {
-        display: none;
+    .filter-bar-search {
+        grid-column: 1 / 6;
+        grid-row: 2;
+        flex: none;
+        height: 44px;
+        min-width: 0;
     }
-    .filter-bar > .more-filters-btn .filter-badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
+    .filter-bar > .day-bar {
+        display: contents;
+    }
+    .filter-bar > .day-bar .calendar-btn {
+        grid-column: 6 / 8;
+        grid-row: 2;
+        width: auto;
+        height: 44px;
+    }
+    .filter-bar > .day-bar .day-strip {
+        grid-column: 1 / 8;
+        grid-row: 3;
+        height: 56px;
     }
     .filter-bar > .clear-grid-btn {
-        display: none;  /* "limpiar todo" still lives in the active-chips row */
+        display: none;  /* "limpiar todo" lives in the active-chips row */
     }
 }
 
@@ -1440,9 +1451,18 @@ h1 .h1-accent {
 }
 
 .stats {
+    /* Extra breathing room above the results heading — visually separates
+       the filter block from the list below. */
+    margin-top: 1.75rem;
     margin-bottom: 0.75rem;
     color: var(--text-dim);
     font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .stats {
+        margin-top: 1.25rem;
+    }
 }
 
 .stats-row {
@@ -2462,10 +2482,25 @@ a.film-rec-tag:hover {
     top: 8px;
     right: 8px;
     z-index: 2;
-    padding: 1px 6px !important;
-    font-size: 0.62rem !important;
-    background: rgba(20, 18, 14, 0.6) !important;
+    padding: 2px 8px !important;
+    font-size: 0.64rem !important;
+    /* Strong opaque dark chip so the % reads clearly on any poster palette. */
+    background: rgba(10, 8, 5, 0.82) !important;
+    color: #f0ece1 !important;
+    border-color: rgba(240, 236, 225, 0.18) !important;
+    /* The tier dot keeps its color as the signal; text goes to light cream. */
 }
+
+.grid-tile-match .match-dot {
+    /* Override: normal match-pill .match-dot uses currentColor, which is now
+       cream. Force it back to the tier color so the dot still carries the
+       signal. */
+}
+
+.grid-tile-match.match-high .match-dot { background: var(--match); }
+.grid-tile-match.match-mid  .match-dot { background: var(--match-mid); }
+.grid-tile-match.match-warm .match-dot { background: var(--warm); }
+.grid-tile-match.match-mute .match-dot { background: var(--text-mute); }
 
 .grid-tile-info {
     position: absolute;
@@ -3720,14 +3755,10 @@ a.film-rec-tag:hover {
     filter: brightness(1.1);
 }
 
-/* Mobile: the top-level theater pill moves into the Más filtros sheet, so hide
-   the filter-bar copy. The Cines section inside the modal is the only entry
-   point. Desktop keeps the pill as-is. */
-@media (max-width: 768px) {
-    .filter-bar > .theater-multiselect {
-        display: none;
-    }
-}
+/* The top-level theater pill stays visible on mobile too — per user feedback
+   it pairs with Más filtros on the first row (4/7 + 3/7 in the grid rule
+   above). The Cines section inside the sheet still exists as an alternative
+   entry point; both surfaces share state. */
 
 /* ── Toggle Filter Buttons ───────────────────────────────────────────────────── */
 
@@ -4144,148 +4175,481 @@ footer p {
 }
 
 /* Session Action Modal */
+/* ── Direction C — Session modal ───────────────────────────────────────── */
 .session-modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(10, 8, 6, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     z-index: 3000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-}
-
-.session-modal.show {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: fc-modal-fade-in 0.2s ease-out;
 }
 
-.session-modal-content {
-    background: var(--bg);
-    border: 2px solid var(--accent);
-    border-radius: 16px;
-    padding: 1.5rem;
-    min-width: 280px;
-    max-width: 90vw;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px color-mix(in srgb, var(--accent) 22%, transparent);
-    animation: modalSlideIn 0.2s ease-out;
+:root[data-theme="light"] .session-modal {
+    background: rgba(26, 24, 20, 0.35);
 }
 
 .session-modal.closing {
-    animation: modalFadeOut 0.2s ease-in forwards;
+    animation: fc-modal-fade-out 0.18s ease-in forwards;
 }
 
 .session-modal.closing .session-modal-content {
-    animation: modalSlideOut 0.2s ease-in forwards;
+    animation: fc-modal-slide-out 0.18s ease-in forwards;
 }
 
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-@keyframes modalSlideOut {
-    from {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(0.95) translateY(8px);
-    }
-}
-
-@keyframes modalFadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-.session-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.session-modal-header-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    margin-right: 1.5rem;
-}
-
-.session-modal-title {
-    font-weight: 600;
+.session-modal-content {
+    position: relative;
+    width: 520px;
+    max-width: 100%;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+    background: var(--bg-card);
     color: var(--text);
-    font-size: 1.05rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+    animation: fc-modal-slide-in 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-.session-modal-time {
-    font-weight: 600;
-    color: var(--accent);
-    font-size: 0.95rem;
+:root[data-theme="light"] .session-modal-content {
+    box-shadow: 0 30px 80px rgba(26, 24, 20, 0.28), 0 4px 16px rgba(26, 24, 20, 0.12);
+}
+
+@keyframes fc-modal-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fc-modal-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes fc-modal-slide-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fc-modal-slide-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(6px) scale(0.98); }
 }
 
 .session-modal-close {
-    background: none;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: transparent;
     border: none;
     color: var(--text-dim);
-    font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
-    line-height: 1;
-    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: background 0.2s, color 0.2s;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .session-modal-close:hover {
-        color: var(--accent);
-    }
+.session-modal-close:hover {
+    background: color-mix(in srgb, var(--text) 8%, transparent);
+    color: var(--text);
 }
 
-.session-modal-actions {
+/* Header: poster + film info */
+.session-modal-head {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 18px;
+    padding: 22px 22px 18px;
+    border-bottom: 1px solid var(--border);
 }
 
-.session-modal-action {
+.session-modal-poster { flex-shrink: 0; }
+
+.session-modal-head-body {
+    flex: 1;
+    min-width: 0;
+    padding-right: 30px;
+}
+
+.session-modal-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.session-modal-title {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0 0 4px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.session-modal-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.45;
+}
+
+.session-modal-genres {
+    font-size: 0.72rem;
+    color: var(--text-mute);
+    margin-top: 2px;
+}
+
+/* Match pill in the modal header */
+.session-modal-match {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 3px 8px;
+    margin-top: 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 1.4;
+    border: 1px solid;
+}
+
+.session-modal-match-pct {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+.session-modal-match-text {
+    color: var(--rec);
+    font-weight: 400;
+}
+
+.session-modal-match.match-high {
+    color: var(--match);
+    background: color-mix(in srgb, var(--match) 18%, transparent);
+    border-color: color-mix(in srgb, var(--match) 40%, transparent);
+}
+
+.session-modal-match.match-mid {
+    color: var(--match-mid);
+    background: color-mix(in srgb, var(--match-mid) 16%, transparent);
+    border-color: color-mix(in srgb, var(--match-mid) 40%, transparent);
+}
+
+.session-modal-match.match-warm {
+    color: var(--warm);
+    background: color-mix(in srgb, var(--warm) 14%, transparent);
+    border-color: color-mix(in srgb, var(--warm) 35%, transparent);
+}
+
+.session-modal-match.match-mute {
+    color: var(--text-dim);
+    background: transparent;
+    border-color: var(--border-2);
+}
+
+/* Cuándo / Dónde grid */
+.session-modal-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    row-gap: 12px;
+    padding: 18px 22px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.session-modal-row {
+    display: contents;
+}
+
+.session-modal-key {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    font-weight: 600;
+    padding-top: 4px;
+}
+
+.session-modal-val {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.session-modal-when-date {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1.32rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.session-modal-when-date.is-today {
+    color: var(--accent);
+}
+
+.session-modal-when-time {
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.02em;
+}
+
+.session-modal-when-end {
+    color: var(--text-mute);
+    font-weight: 400;
+    margin-left: 1px;
+}
+
+.session-modal-where-name {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    gap: 8px;
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--text);
-    text-decoration: none;
-    transition: all 0.2s;
-    font-size: 0.95rem;
+    letter-spacing: -0.01em;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .session-modal-action:hover {
-        background: var(--accent-soft);
-        border-color: var(--accent);
-        transform: translateX(4px);
+.session-modal-tint {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.session-modal-note {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: var(--font-fraunces), Georgia, serif;
+    line-height: 1.4;
+}
+
+.session-modal-dub {
+    display: inline-flex;
+    padding: 2px 8px;
+    background: color-mix(in srgb, var(--warm) 15%, transparent);
+    color: var(--warm);
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+/* Actions */
+.session-modal-actions {
+    padding: 16px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.session-modal-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--accent);
+    color: var(--accent-on);
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: filter 0.2s, transform 0.08s;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme="light"] .session-modal-primary {
+    box-shadow: 0 1px 0 rgba(26, 24, 20, 0.12);
+}
+
+.session-modal-primary:hover {
+    filter: brightness(1.08);
+}
+
+.session-modal-primary:active {
+    transform: translateY(1px);
+}
+
+.session-modal-actions-secondary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.session-modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: inherit;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--border-2);
+}
+
+.session-modal-link:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+}
+
+.session-modal-calendar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+}
+
+.session-modal-calendar-label { margin-right: 2px; }
+
+.session-modal-cal-btn {
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.7rem;
+    font-weight: 500;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.session-modal-cal-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Other sessions footer */
+.session-modal-other {
+    padding: 14px 22px 18px;
+    background: var(--bg-hover);
+    border-top: 1px solid var(--border);
+}
+
+.session-modal-other-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.session-modal-other-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.session-modal-other-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.session-modal-other-chip:hover {
+    border-color: var(--text-dim);
+}
+
+.session-modal-other-chip.is-today {
+    border-color: var(--accent);
+}
+
+.session-modal-other-chip .som-date {
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+
+.session-modal-other-chip.is-today .som-date {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.session-modal-other-chip .som-time {
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.session-modal-other-chip .som-tint {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+}
+
+.session-modal-other-chip .som-theater {
+    color: var(--text-dim);
+    font-size: 0.65rem;
+}
+
+/* Mobile — full-width bottom-sheet-ish */
+@media (max-width: 640px) {
+    .session-modal {
+        padding: 0;
+        align-items: flex-end;
     }
+    .session-modal-content {
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 14px 14px 0 0;
+        border-bottom: none;
+    }
+    .session-modal-head {
+        padding: 18px 16px 14px;
+        gap: 14px;
+    }
+    .session-modal-head-body { padding-right: 22px; }
+    .session-modal-details,
+    .session-modal-actions,
+    .session-modal-other { padding-left: 16px; padding-right: 16px; }
 }
 
 /* Genre badges */

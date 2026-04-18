@@ -3,18 +3,33 @@ import Script from 'next/script';
 import { Fraunces, Inter } from 'next/font/google';
 import './globals.css';
 
+// next/font self-hosts both fonts and emits a size-adjusted fallback @font-face
+// so the initial paint (before Google Fonts actually loads) uses system fonts
+// that match the custom font's metrics closely. This keeps the FOUT (flash of
+// unstyled text) on hard refresh subtle rather than a jarring reflow.
+// next/font self-hosts both fonts and (with adjustFontFallback: true, the
+// default) emits a size-adjusted fallback @font-face so the initial paint
+// before Google Fonts loads uses system fonts whose metrics match the
+// custom font. This keeps the FOUT (flash of unstyled text) on hard refresh
+// subtle rather than a jarring reflow.
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+  preload: true,
   variable: '--font-inter',
+  fallback: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'system-ui', 'sans-serif'],
 });
 
 const fraunces = Fraunces({
   subsets: ['latin'],
   display: 'swap',
+  preload: true,
   style: ['normal', 'italic'],
-  axes: ['SOFT', 'WONK', 'opsz'],
+  // Variable weight — the axes list below only works when no explicit weight
+  // list is passed (otherwise next/font rejects the combo).
+  axes: ['SOFT', 'opsz'],
   variable: '--font-fraunces',
+  fallback: ['Georgia', 'ui-serif', 'serif'],
 });
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-FKN0ELREQD';

@@ -270,7 +270,33 @@ export default function FilmCalendar({
         </div>
       )}
 
-      {/* Active filter chips row */}
+      {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
+      {filmsNotReady ? (
+        <SkeletonFilters />
+      ) : (
+        <FiltersGrid
+          lang={lang}
+          searchTerm={filters.searchTerm}
+          setSearchTerm={filters.setSearchTerm}
+          days={nextDays}
+          selectedDate={filters.selectedDate}
+          setSelectedDate={filters.setSelectedDate}
+          onOpenCalendar={() => setCalendarOpen(v => !v)}
+          selectedTheaters={filters.selectedTheaters}
+          onToggleTheater={filters.toggleTheater}
+          onToggleTheaterGroup={filters.toggleTheaterGroup}
+          onSelectAllTheaters={filters.selectAllTheaters}
+          onSelectNoneTheaters={filters.selectNoneTheaters}
+          onOpenMoreFilters={openMoreFilters}
+          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
+          zipInputRef={lb.zipInputRef}
+          onZipUpload={lb.handleZipUpload}
+          onHelp={helpModal.open}
+          onClearAllFilters={filters.clearAllFilters}
+        />
+      )}
+
+      {/* Active filter chips row — sits below the filter bar per DC */}
       {!filmsNotReady && (
         <ActiveFilterChips
           lang={lang}
@@ -297,32 +323,6 @@ export default function FilmCalendar({
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
           onClearAll={filters.clearAllFilters}
-        />
-      )}
-
-      {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
-      {filmsNotReady ? (
-        <SkeletonFilters />
-      ) : (
-        <FiltersGrid
-          lang={lang}
-          searchTerm={filters.searchTerm}
-          setSearchTerm={filters.setSearchTerm}
-          days={nextDays}
-          selectedDate={filters.selectedDate}
-          setSelectedDate={filters.setSelectedDate}
-          onOpenCalendar={() => setCalendarOpen(v => !v)}
-          selectedTheaters={filters.selectedTheaters}
-          onToggleTheater={filters.toggleTheater}
-          onToggleTheaterGroup={filters.toggleTheaterGroup}
-          onSelectAllTheaters={filters.selectAllTheaters}
-          onSelectNoneTheaters={filters.selectNoneTheaters}
-          onOpenMoreFilters={openMoreFilters}
-          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
-          zipInputRef={lb.zipInputRef}
-          onZipUpload={lb.handleZipUpload}
-          onHelp={helpModal.open}
-          onClearAllFilters={filters.clearAllFilters}
         />
       )}
 

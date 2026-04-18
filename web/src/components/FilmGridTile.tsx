@@ -35,7 +35,7 @@ function timeOf(ts: string): string {
  */
 function GridTileSessionsByTheater({
   film, sorted, todayIso, lang, dateLocale,
-  getCalendarUrl, getFallbackUrl, onOpenModal,
+  getCalendarUrl, getFallbackUrl, onOpenModal, matchScore,
 }: {
   film: Film;
   sorted: DateEntry[];
@@ -45,6 +45,7 @@ function GridTileSessionsByTheater({
   getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
   getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
   onOpenModal: (data: SessionModalData) => void;
+  matchScore?: number;
 }) {
   const groups = useMemo(() => {
     const byLoc = new Map<string, DateEntry[]>();
@@ -95,13 +96,14 @@ function GridTileSessionsByTheater({
                         className="gto-time"
                         onClick={(e) => {
                           e.stopPropagation();
-                          const dateTime = new Date(s.timestamp.replace(' ', 'T'));
-                          const timeLabel = `${dateTime.toLocaleDateString(dateLocale, { weekday: 'short', day: 'numeric', month: 'short' })} ${dateTime.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' })}${s.location && s.location !== 'Unknown' ? ' - ' + s.location : ''}`;
-                          const titleLabel = film.year ? `${(() => film.titleEn || film.title)()} (${film.year})` : (film.titleEn || film.title);
+                          const titleLabel = film.titleEn || film.title;
+                          const filmTitleLabel = film.year ? `${titleLabel} (${film.year})` : titleLabel;
                           const hasDirectUrl = !!(s.url_tickets && s.url_tickets.trim());
                           onOpenModal({
-                            titleLabel,
-                            timeLabel,
+                            film,
+                            session: s,
+                            filmTitleLabel,
+                            matchScore,
                             ticketUrl: hasDirectUrl ? s.url_tickets : '',
                             filmPageUrl: s.url_info || film.theaterLink || getFallbackUrl(film, s),
                             calendarUrl: getCalendarUrl(film, s),
@@ -266,6 +268,7 @@ export default memo(function FilmGridTile({
               todayIso={todayIso}
               lang={lang}
               dateLocale={dateLocale}
+              matchScore={showMatch ? matchScore : undefined}
               getFallbackUrl={getFallbackUrl}
               getCalendarUrl={getCalendarUrl}
               onOpenModal={onOpenModal}

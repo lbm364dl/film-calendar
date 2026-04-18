@@ -18,6 +18,7 @@ interface SessionsDisplayProps {
   getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
   getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
   onOpenModal: (data: SessionModalData) => void;
+  matchScore?: number;
 }
 
 const MAX_INLINE_CHIPS = 4;
@@ -37,17 +38,18 @@ function timeOf(ts: string): string {
   return hm.slice(0, 5);
 }
 
-function toModalData(film: Film, d: DateEntry, dateLocale: string,
+function toModalData(film: Film, d: DateEntry,
                      getFilmTitle: (f: Film) => string,
                      getCalendarUrl: (f: Film, d: DateEntry) => string,
-                     getFallbackUrl: (f: Film, d: DateEntry) => string): SessionModalData {
-  const dateTime = new Date(d.timestamp.replace(' ', 'T'));
-  const timeLabel = `${dateTime.toLocaleDateString(dateLocale, { weekday: 'short', day: 'numeric', month: 'short' })} ${dateTime.toLocaleTimeString(dateLocale, { hour: '2-digit', minute: '2-digit' })}${d.location && d.location !== 'Unknown' ? ' - ' + d.location : ''}`;
-  const titleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
+                     getFallbackUrl: (f: Film, d: DateEntry) => string,
+                     matchScore?: number): SessionModalData {
+  const filmTitleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
   const hasDirectUrl = !!(d.url_tickets && d.url_tickets.trim());
   return {
-    titleLabel,
-    timeLabel,
+    film,
+    session: d,
+    filmTitleLabel,
+    matchScore,
     ticketUrl: hasDirectUrl ? d.url_tickets : '',
     filmPageUrl: d.url_info || film.theaterLink || getFallbackUrl(film, d),
     calendarUrl: getCalendarUrl(film, d),
@@ -57,7 +59,7 @@ function toModalData(film: Film, d: DateEntry, dateLocale: string,
 
 export default function SessionsDisplay({
   film, lang, dateLocale, openPopupId, setOpenPopupId,
-  getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
+  getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal, matchScore,
 }: SessionsDisplayProps) {
   const popupId = `popup-${film.id}`;
   const isOpen = openPopupId === popupId;
@@ -89,7 +91,7 @@ export default function SessionsDisplay({
               className={chipClass}
               onClick={(e) => {
                 e.stopPropagation();
-                onOpenModal(toModalData(film, d, dateLocale, getFilmTitle, getCalendarUrl, getFallbackUrl));
+                onOpenModal(toModalData(film, d, getFilmTitle, getCalendarUrl, getFallbackUrl, matchScore));
               }}
               title={label}
             >
@@ -132,7 +134,7 @@ export default function SessionsDisplay({
           dateLocale={dateLocale}
           sortedSessions={sorted}
           todayIso={todayIso}
-          onOpenModal={(d) => onOpenModal(toModalData(film, d, dateLocale, getFilmTitle, getCalendarUrl, getFallbackUrl))}
+          onOpenModal={(d) => onOpenModal(toModalData(film, d, getFilmTitle, getCalendarUrl, getFallbackUrl, matchScore))}
         />
       )}
     </>

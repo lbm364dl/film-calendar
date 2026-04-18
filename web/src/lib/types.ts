@@ -70,8 +70,12 @@ export interface DateEntry {
 }
 
 export interface SessionModalData {
-  titleLabel: string;
-  timeLabel: string;
+  // Rich context (drives the Direction C modal)
+  film: Film;
+  session: DateEntry;
+  filmTitleLabel: string;   // localized title (ES/EN) with year appended
+  matchScore?: number;      // 0–100 affinity, if signed-in + Letterboxd
+  // Pre-computed URLs / flags
   ticketUrl: string;
   filmPageUrl: string;
   calendarUrl: string;
