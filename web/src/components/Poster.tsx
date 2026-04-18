@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
+
 /**
- * Abstract two-tone poster — mirrors the Direction C design language.
- * No real artwork (avoids copyright): deterministic palette per film id so the
- * same film always gets the same face. Replace with a TMDB <img> later by
- * populating film.posterUrl and swapping the internals.
+ * Poster — renders a real TMDB image when `posterPath` is available, falling
+ * back to a deterministic abstract two-tone palette that mirrors the Direction
+ * C design language. No artwork is required for fallback to look intentional:
+ * the palette hashes off the film id so each film always gets the same face.
  */
 
 const PALETTES: Array<{ a: string; b: string; mark: string }> = [
@@ -36,63 +38,92 @@ export interface PosterProps {
   title: string;
   year?: number | null;
   director?: string | null;
+  /** When present, renders https://image.tmdb.org/t/p/w342{posterPath}. */
+  posterPath?: string;
   width?: number;
   height?: number;
   radius?: number;
 }
 
 export default function Poster({
-  filmId, title, year, director,
+  filmId, title, year, director, posterPath,
   width = 74, height = 111, radius = 3,
 }: PosterProps) {
   const { a, b, mark } = paletteFor(filmId, title);
+  const [imgFailed, setImgFailed] = useState(false);
+  const showImage = !!posterPath && !imgFailed;
+
   return (
     <div
       className="mfc-poster"
       aria-hidden
       style={{
         width, height, position: 'relative', overflow: 'hidden',
+        // Keep the abstract palette behind the image so it shows during load
+        // and stays as the backdrop if the image fails.
         background: a, color: b, flexShrink: 0, borderRadius: radius,
       }}
     >
-      {/* Mark */}
-      <div
-        style={{
-          position: 'absolute', inset: 0, bottom: '38%',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: width * 0.55, lineHeight: 1, color: b, fontWeight: 400,
-        }}
-      >{mark}</div>
-      {/* Bottom band */}
-      <div
-        style={{
-          position: 'absolute', left: 0, right: 0, bottom: 0, height: '38%',
-          background: b, color: a, padding: `${width * 0.05}px ${width * 0.06}px`,
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-          overflow: 'hidden',
-        }}
-      >
-        <div
+      {showImage ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={`https://image.tmdb.org/t/p/w342${posterPath}`}
+          alt={title}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgFailed(true)}
           style={{
-            fontSize: width * 0.085, fontWeight: 700, lineHeight: 1.05,
-            fontFamily: 'Georgia, serif', letterSpacing: -0.2,
-            textTransform: 'uppercase',
-            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover',
+            borderRadius: radius,
+            display: 'block',
           }}
-        >{title}</div>
-        {(year || director) && (
+        />
+      ) : (
+        <>
+          {/* Mark */}
           <div
             style={{
-              fontSize: width * 0.06, opacity: 0.8,
-              fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
-              whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden',
+              position: 'absolute', inset: 0, bottom: '38%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: width * 0.55, lineHeight: 1, color: b, fontWeight: 400,
+            }}
+          >{mark}</div>
+          {/* Bottom band */}
+          <div
+            style={{
+              position: 'absolute', left: 0, right: 0, bottom: 0, height: '38%',
+              background: b, color: a, padding: `${width * 0.05}px ${width * 0.06}px`,
+              display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+              overflow: 'hidden',
             }}
           >
-            {year ? year : ''}{year && director ? ' · ' : ''}{director ? director.split(',')[0] : ''}
+            <div
+              style={{
+                fontSize: width * 0.085, fontWeight: 700, lineHeight: 1.05,
+                fontFamily: 'Georgia, serif', letterSpacing: -0.2,
+                textTransform: 'uppercase',
+                display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}
+            >{title}</div>
+            {(year || director) && (
+              <div
+                style={{
+                  fontSize: width * 0.06, opacity: 0.8,
+                  fontFamily: 'ui-monospace, "SF Mono", Menlo, monospace',
+                  whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden',
+                }}
+              >
+                {year ? year : ''}{year && director ? ' · ' : ''}{director ? director.split(',')[0] : ''}
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

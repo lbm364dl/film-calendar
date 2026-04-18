@@ -77,6 +77,7 @@ export default memo(function FilmCard({
         title={titleText}
         year={film.year}
         director={film.director || null}
+        posterPath={film.posterPath}
       />
       <div className="film-body">
         <div className="film-title-row">

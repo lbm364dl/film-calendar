@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { paletteFor } from './Poster';
 import { theaterTint } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
@@ -177,6 +177,12 @@ export default memo(function FilmGridTile({
   const expanded = openPopupId === tileId;
   const showMatch = matchScore !== undefined && !isWatched;
 
+  // When a real TMDB poster is available, paint it over the palette background
+  // so the palette acts as a load-time / error fallback. Gradient + info
+  // overlays on top keep text legible either way.
+  const [imgFailed, setImgFailed] = useState(false);
+  const showPoster = !!film.posterPath && !imgFailed;
+
   return (
     <div
       className={`grid-tile${expanded ? ' expanded' : ''}`}
@@ -188,11 +194,25 @@ export default memo(function FilmGridTile({
       role="button"
       aria-expanded={expanded}
     >
-      <div
-        className="grid-tile-mark"
-        style={{ color: b }}
-        aria-hidden
-      >{mark}</div>
+      {showPoster && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          className="grid-tile-poster"
+          src={`https://image.tmdb.org/t/p/w342${film.posterPath}`}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgFailed(true)}
+        />
+      )}
+
+      {!showPoster && (
+        <div
+          className="grid-tile-mark"
+          style={{ color: b }}
+          aria-hidden
+        >{mark}</div>
+      )}
 
       {showMatch && (
         <span className={`match-pill match-${matchTier(matchScore!)} grid-tile-match`}>

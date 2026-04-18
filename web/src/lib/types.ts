@@ -25,6 +25,7 @@ export interface FilmRow {
   primary_language: string[];
   spoken_languages: string[];
   tmdb_url: string | null;
+  poster_path: string | null;
   title_original: string | null;
   title_en: string | null;
   title_es: string | null;
@@ -53,6 +54,10 @@ export interface Film {
   primaryLanguage: string[];
   spokenLanguages: string[];
   tmdbUrl: string;
+  /** TMDB poster path (e.g. "/abc123.jpg"). When present, Poster renders the
+   *  real image via `https://image.tmdb.org/t/p/w342{posterPath}`; otherwise
+   *  falls back to the deterministic abstract palette. */
+  posterPath?: string;
 }
 
 export interface DateEntry {
