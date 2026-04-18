@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
 import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
 import { t } from '@/lib/translations';
@@ -21,7 +21,7 @@ interface SessionsDisplayProps {
   matchScore?: number;
 }
 
-const MAX_INLINE_CHIPS = 4;
+const MAX_INLINE_CHIPS = 1;
 
 function shortDateLabel(iso: string, today: string, lang: LangKey): string {
   if (iso === today) return lang === 'es' ? 'hoy' : 'today';
@@ -127,13 +127,17 @@ export default function SessionsDisplay({
         )}
       </div>
 
-      {isOpen && sorted.length > inline.length && (
+      {/* Always mount the expanded panel when there's overflow — keeping it
+          in the DOM (hidden via CSS) means opening it is instant; no React
+          reconciliation or DOM creation delay on click. */}
+      {sorted.length > inline.length && (
         <ExpandedSessionsByTheater
           film={film}
           lang={lang}
           dateLocale={dateLocale}
           sortedSessions={sorted}
           todayIso={todayIso}
+          open={isOpen}
           onOpenModal={(d) => onOpenModal(toModalData(film, d, getFilmTitle, getCalendarUrl, getFallbackUrl, matchScore))}
         />
       )}
@@ -149,13 +153,15 @@ interface ExpandedSessionsProps {
   dateLocale: string;
   sortedSessions: DateEntry[];
   todayIso: string;
+  open: boolean;
   onOpenModal: (d: DateEntry) => void;
 }
 
 function ExpandedSessionsByTheater({
-  film, lang, sortedSessions, todayIso, onOpenModal,
+  film, lang, sortedSessions, todayIso, open, onOpenModal,
 }: ExpandedSessionsProps) {
-  // Group by location, sorted by number of sessions desc.
+  const [sortMode, setSortMode] = useState<'theater' | 'date'>('theater');
+
   const groups = useMemo(() => {
     const byLocation = new Map<string, DateEntry[]>();
     for (const d of sortedSessions) {
@@ -166,22 +172,55 @@ function ExpandedSessionsByTheater({
     }
     return Array.from(byLocation.entries())
       .map(([location, sessions]) => ({ location, sessions }))
-      .sort((a, b) => b.sessions.length - a.sessions.length);
+      .sort((a, b) => a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' }));
+  }, [sortedSessions, lang]);
+
+  const days = useMemo(() => {
+    const byDay = new Map<string, DateEntry[]>();
+    for (const d of sortedSessions) {
+      const iso = d.timestamp.slice(0, 10);
+      let arr = byDay.get(iso);
+      if (!arr) { arr = []; byDay.set(iso, arr); }
+      arr.push(d);
+    }
+    return Array.from(byDay.entries())
+      .map(([iso, sessions]) => ({ iso, sessions: sessions.sort((a, b) => a.timestamp.localeCompare(b.timestamp)) }))
+      .sort((a, b) => a.iso.localeCompare(b.iso));
   }, [sortedSessions]);
 
   const total = sortedSessions.length;
+  const isByDate = sortMode === 'date';
+  const toggleLabel = isByDate
+    ? (lang === 'es' ? 'Ordenadas por fecha' : 'Sorted by date')
+    : (lang === 'es' ? 'Ordenadas por sala' : 'Sorted by theater');
 
   return (
-    <div className="sessions-by-theater" onClick={e => e.stopPropagation()}>
+    <div
+      className={`sessions-by-theater${open ? ' is-open' : ' is-closed'}`}
+      aria-hidden={!open}
+      onClick={e => e.stopPropagation()}
+    >
       <div className="sbt-head">
-        <span>{lang === 'es' ? 'Sesiones por sala' : 'Sessions by theater'}</span>
+        <button
+          type="button"
+          className="sbt-sort-toggle"
+          onClick={(e) => { e.stopPropagation(); setSortMode(isByDate ? 'theater' : 'date'); }}
+          title={lang === 'es' ? 'Cambiar orden' : 'Toggle sort'}
+        >
+          {toggleLabel}
+          <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden>
+            <path d="M3 4.5 L6 7.5 L9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
         <span>
-          {total} · {groups.length} {lang === 'es'
-            ? (groups.length === 1 ? 'sala' : 'salas')
-            : (groups.length === 1 ? 'theater' : 'theaters')}
+          {isByDate
+            ? `${total} · ${days.length} ${lang === 'es' ? (days.length === 1 ? 'día' : 'días') : (days.length === 1 ? 'day' : 'days')}`
+            : `${total} · ${groups.length} ${lang === 'es' ? (groups.length === 1 ? 'sala' : 'salas') : (groups.length === 1 ? 'theater' : 'theaters')}`
+          }
         </span>
       </div>
-      {groups.map(({ location, sessions }) => {
+
+      {!isByDate && groups.map(({ location, sessions }) => {
         const tint = theaterTint(location);
         const shortLoc = shortTheaterName(location);
         const byDay = new Map<string, DateEntry[]>();
@@ -191,7 +230,7 @@ function ExpandedSessionsByTheater({
           if (!arr) { arr = []; byDay.set(iso, arr); }
           arr.push(s);
         }
-        const days = Array.from(byDay.entries()).sort(([a], [b]) => a.localeCompare(b));
+        const theaterDays = Array.from(byDay.entries()).sort(([a], [b]) => a.localeCompare(b));
         return (
           <div key={location} className="sbt-row">
             <div className="sbt-theater">
@@ -199,7 +238,7 @@ function ExpandedSessionsByTheater({
               <span className="sbt-theater-name">{shortLoc || location}</span>
             </div>
             <div className="sbt-days">
-              {days.map(([iso, ss]) => {
+              {theaterDays.map(([iso, ss]) => {
                 const isToday = iso === todayIso;
                 return (
                   <div key={iso} className={`sbt-day${isToday ? ' is-today' : ''}`}>
@@ -209,16 +248,41 @@ function ExpandedSessionsByTheater({
                         <button
                           key={i}
                           className={`sbt-time${isToday ? ' is-today' : ''}`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onOpenModal(s);
-                          }}
+                          onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
                         >
                           {timeOf(s.timestamp)}
                         </button>
                       ))}
                     </div>
                   </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      {isByDate && days.map(({ iso, sessions }) => {
+        const isToday = iso === todayIso;
+        return (
+          <div key={iso} className={`sbt-row${isToday ? ' is-today' : ''}`}>
+            <div className={`sbt-theater sbt-date-cell${isToday ? ' is-today' : ''}`}>
+              <span className="sbt-theater-name">{shortDateLabel(iso, todayIso, lang)}</span>
+            </div>
+            <div className="sbt-days sbt-days-flat">
+              {sessions.map((s, i) => {
+                const tint = theaterTint(s.location);
+                const shortLoc = shortTheaterName(s.location);
+                return (
+                  <button
+                    key={i}
+                    className={`sbt-date-session${isToday ? ' is-today' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
+                  >
+                    <span className="sbt-time">{timeOf(s.timestamp)}</span>
+                    <span className="sbt-tint" style={{ background: tint }} />
+                    <span className="sbt-date-session-theater">{shortLoc || s.location}</span>
+                  </button>
                 );
               })}
             </div>
