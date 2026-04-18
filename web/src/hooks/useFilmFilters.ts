@@ -15,6 +15,7 @@ interface FilterOptions {
   watchedActive: boolean;
   showWatched: boolean;
   matchScores: Record<number, number>;
+  initialSortBy?: 'rating' | 'viewers' | 'affinity';
 }
 
 /** Handle chip range selection: if 1 chip is selected and user clicks a different one, select the range. */
@@ -70,6 +71,7 @@ export function useFilmFilters(options: FilterOptions) {
     allFilms,
     watchlistUrls, watchedUrls, watchlistActive, watchedActive, showWatched,
     matchScores,
+    initialSortBy = 'rating',
   } = options;
 
   // ── Basic filters ──────────────────────────────────────────────────────
@@ -116,7 +118,7 @@ export function useFilmFilters(options: FilterOptions) {
 
   // ── Toggle filters ─────────────────────────────────────────────────────
   const [versionFilter, setVersionFilter] = useState<'original' | 'dubbed'>('original');
-  const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>('rating');
+  const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>(initialSortBy);
   const [specialFilter, setSpecialFilter] = useState(false);
   const [lastChanceFilter, setLastChanceFilter] = useState(false);
 

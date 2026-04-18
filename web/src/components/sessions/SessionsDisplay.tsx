@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { SESSIONS_COLLAPSE_THRESHOLD } from '@/lib/constants';
 import { isRenoirLocation, isEmbajadoresLocation } from '@/lib/film-helpers';
@@ -114,14 +114,35 @@ function SessionsToggleWithPortal({
     const popup = popupRef.current;
     popup.style.position = 'fixed';
     popup.style.top = `${toggleRect.bottom + 4}px`;
-    popup.style.left = `${toggleRect.left}px`;
-    popup.style.width = `${toggleRect.width}px`;
     popup.style.zIndex = '1000';
+
+    // Expand the sessions popup to span the full film-card inner width (card width
+    // minus its own horizontal padding, mirrored on both sides). Falls back to the
+    // toggle width if the card element can't be found.
+    const card = toggleRef.current.closest('.film-card') as HTMLElement | null;
+    if (card) {
+      const cardRect = card.getBoundingClientRect();
+      const cs = window.getComputedStyle(card);
+      const padLeft = parseFloat(cs.paddingLeft) || 0;
+      const padRight = parseFloat(cs.paddingRight) || 0;
+      popup.style.left = `${cardRect.left + padLeft}px`;
+      popup.style.width = `${cardRect.width - padLeft - padRight}px`;
+    } else {
+      popup.style.left = `${toggleRect.left}px`;
+      popup.style.width = `${toggleRect.width}px`;
+    }
   }, [isOpen]);
 
-  useEffect(() => {
+  // Position the popup synchronously before first paint so it never flashes at
+  // the bottom of <body> before jumping into place.
+  useLayoutEffect(() => {
     if (!isOpen) return;
     updatePosition();
+  }, [isOpen, updatePosition]);
+
+  // Reposition on scroll/resize while open.
+  useEffect(() => {
+    if (!isOpen) return;
     let rafId: number;
     const onScroll = () => {
       cancelAnimationFrame(rafId);
@@ -151,12 +172,14 @@ function SessionsToggleWithPortal({
         {locationSummary && <span className="location-summary">{locationSummary}</span>}
         <span className="sessions-count">{sessionsCount}</span>
       </button>
-      {mounted && createPortal(
+      {/* Portal only mounts when the popup is open. Previously every film card
+          (up to 150+) rendered a hidden portal with its full GroupedSessions DOM
+          into document.body — that bloated the tree and made open/close feel laggy. */}
+      {mounted && isOpen && createPortal(
         <div
           ref={popupRef}
           id={popupId}
-          className={`sessions-popup ${isOpen ? 'show' : ''}`}
-          style={!isOpen ? { position: 'fixed', visibility: 'hidden', pointerEvents: 'none' } : undefined}
+          className="sessions-popup show"
           onClick={(e) => e.stopPropagation()}
         >
           <GroupedSessions

@@ -13,6 +13,7 @@ import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
 import FilmCard from '@/components/FilmCard';
+import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
@@ -29,6 +30,7 @@ interface FilmCalendarProps {
   initialUserEmail: string | null;
   initialScores: Record<number, number>;
   initialBreakdowns: Record<number, any>;
+  initialSortBy?: 'rating' | 'viewers' | 'affinity';
 }
 
 export default function FilmCalendar({
@@ -41,6 +43,7 @@ export default function FilmCalendar({
   initialUserEmail,
   initialScores,
   initialBreakdowns,
+  initialSortBy = 'rating',
 }: FilmCalendarProps) {
   // ─ Language ─
   const [lang, setLangState] = useState<LangKey>(initialLang);
@@ -71,6 +74,7 @@ export default function FilmCalendar({
     watchlistActive: lb.watchlistActive, watchedActive: lb.watchedActive,
     showWatched: lb.showWatched,
     matchScores: lb.matchScores,
+    initialSortBy,
   });
 
   // ─ URL sync ─
@@ -108,12 +112,15 @@ export default function FilmCalendar({
   });
 
   // ─ Auto-switch sort based on recommendation availability ─
-  const prevRecommendReady = useRef(false);
+  // Only react to transitions in recommendReady, never on initial mount:
+  // the server already set the correct sort via initialSortBy.
+  const prevRecommendReady = useRef(lb.recommendReady);
   useEffect(() => {
-    if (lb.recommendReady && !prevRecommendReady.current) {
+    const prev = prevRecommendReady.current;
+    if (lb.recommendReady && !prev) {
       const urlSort = new URLSearchParams(window.location.search).get('sort');
       if (!urlSort) filters.setSortBy('affinity');
-    } else if (!lb.recommendReady && filters.sortBy === 'affinity') {
+    } else if (prev && !lb.recommendReady && filters.sortBy === 'affinity') {
       filters.setSortBy('rating');
     }
     prevRecommendReady.current = lb.recommendReady;
@@ -157,6 +164,14 @@ export default function FilmCalendar({
   const lbHasData = !!(lb.watchlistUrls || lb.watchedUrls || lb.recommendReady || lb.enrichmentTotal > 0);
   const lbFilterActive = !!((lb.watchlistUrls && lb.watchlistActive) || (lb.watchedUrls && lb.watchedActive));
 
+  // True while films are fetching OR during the transient window where data
+  // has arrived but useDeferredValue/displayedCount haven't yet produced visible films.
+  // Used to swap filters + grid for skeletons together, so the UI flips once.
+  const filmsNotReady = !error && (
+    loading ||
+    (allFilms.length > 0 && filters.filteredFilms.length > 0 && filters.visibleFilms.length === 0)
+  );
+
   // ─ Render ─
   return (
     <div className="container" onClick={() => { setOpenPopupId(null); }}>
@@ -173,35 +188,43 @@ export default function FilmCalendar({
         <p className="subtitle">{t(lang, 'subtitle')}</p>
       </header>
 
-      {/* Filters */}
-      <FiltersGrid
-        lang={lang}
-        searchTerm={filters.searchTerm}
-        setSearchTerm={filters.setSearchTerm}
-        selectedDate={filters.selectedDate}
-        setSelectedDate={filters.setSelectedDate}
-        selectedTheaters={filters.selectedTheaters}
-        onToggleTheater={filters.toggleTheater}
-        onToggleTheaterGroup={filters.toggleTheaterGroup}
-        onSelectAllTheaters={filters.selectAllTheaters}
-        onSelectNoneTheaters={filters.selectNoneTheaters}
-        lbHasData={lbHasData}
-        lbFilterActive={lbFilterActive}
-        onOpenLbModal={openLbModal}
-        onOpenMoreFilters={openMoreFilters}
-        activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
-        zipInputRef={lb.zipInputRef}
-        onZipUpload={lb.handleZipUpload}
-        onHelp={helpModal.open}
-        onClearAllFilters={filters.clearAllFilters}
-      />
+      {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
+      {filmsNotReady ? (
+        <SkeletonFilters />
+      ) : (
+        <FiltersGrid
+          lang={lang}
+          searchTerm={filters.searchTerm}
+          setSearchTerm={filters.setSearchTerm}
+          selectedDate={filters.selectedDate}
+          setSelectedDate={filters.setSelectedDate}
+          selectedTheaters={filters.selectedTheaters}
+          onToggleTheater={filters.toggleTheater}
+          onToggleTheaterGroup={filters.toggleTheaterGroup}
+          onSelectAllTheaters={filters.selectAllTheaters}
+          onSelectNoneTheaters={filters.selectNoneTheaters}
+          lbHasData={lbHasData}
+          lbFilterActive={lbFilterActive}
+          onOpenLbModal={openLbModal}
+          onOpenMoreFilters={openMoreFilters}
+          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
+          zipInputRef={lb.zipInputRef}
+          onZipUpload={lb.handleZipUpload}
+          onHelp={helpModal.open}
+          onClearAllFilters={filters.clearAllFilters}
+        />
+      )}
 
       {/* Stats + Sort toggle */}
       <div className="stats">
         <div className="stats-row">
-          <span>{t(lang, 'filmCount', filters.filteredFilms.length)}</span>
+          <span>
+            {filmsNotReady ? t(lang, 'loading') : t(lang, 'filmCount', filters.filteredFilms.length)}
+          </span>
           <button
             className="sort-toggle"
+            disabled={filmsNotReady}
+            style={filmsNotReady ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
             onClick={() => {
               const options: Array<'rating' | 'viewers' | 'affinity'> = lb.recommendReady
                 ? ['rating', 'viewers', 'affinity']
@@ -223,50 +246,51 @@ export default function FilmCalendar({
         <span className="calendar-hint">{t(lang, 'calendarHint')}</span>
       </div>
 
-      {/* Loading / Error */}
-      {loading && <div className="loading">{t(lang, 'loading')}</div>}
       {error && <div className="loading">{t(lang, 'errorLoading')}</div>}
 
-      {/* Film grid */}
-      {!loading && !error && (
+      {/* Skeleton grid during loading AND the transient window (useDeferredValue lag
+          + the displayedCount effect) so we never briefly expose the empty layout. */}
+      {filmsNotReady && <SkeletonCardGrid count={9} />}
+
+      {/* Film grid — only render when we actually have visible films to show */}
+      {!loading && !error && filters.visibleFilms.length > 0 && (
         <>
-          {filters.filteredFilms.length === 0 ? (
-            <div className="no-results" style={{ display: 'block' }}>{t(lang, 'noResults')}</div>
-          ) : (
-            <>
-              <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
-              {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
-              <div className="films-grid" style={{ display: 'grid' }}>
-                {filters.visibleFilms.map(film => (
-                  <FilmCard
-                    key={film.id}
-                    film={film}
-                    lang={lang}
-                    dateLocale={dateLocale}
-                    openPopupId={openPopupId}
-                    setOpenPopupId={setOpenPopupId}
-                    matchScore={lb.matchScores[film.id]}
-                    breakdown={lb.breakdowns[film.id]}
-                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
-                    formatDate={formatDate}
-                    getFilmTitle={getFilmTitle}
-                    getCalendarUrl={getCalendarUrl}
-                    getFallbackUrl={getTheaterFallbackUrl}
-                    onOpenModal={openModal}
-                  />
-                ))}
-              </div>
-              </div>
-              {filters.remaining > 0 && (
-                <div className="load-more-container">
-                  <button className="load-more-btn" onClick={filters.loadMore}>
-                    {t(lang, 'loadMore', filters.remaining)}
-                  </button>
-                </div>
-              )}
-            </>
+          <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
+            {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
+            <div className="films-grid" style={{ display: 'grid' }}>
+              {filters.visibleFilms.map(film => (
+                <FilmCard
+                  key={film.id}
+                  film={film}
+                  lang={lang}
+                  dateLocale={dateLocale}
+                  openPopupId={openPopupId}
+                  setOpenPopupId={setOpenPopupId}
+                  matchScore={lb.matchScores[film.id]}
+                  breakdown={lb.breakdowns[film.id]}
+                  isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
+                  formatDate={formatDate}
+                  getFilmTitle={getFilmTitle}
+                  getCalendarUrl={getCalendarUrl}
+                  getFallbackUrl={getTheaterFallbackUrl}
+                  onOpenModal={openModal}
+                />
+              ))}
+            </div>
+          </div>
+          {filters.remaining > 0 && (
+            <div className="load-more-container">
+              <button className="load-more-btn" onClick={filters.loadMore}>
+                {t(lang, 'loadMore', filters.remaining)}
+              </button>
+            </div>
           )}
         </>
+      )}
+
+      {/* Genuine no-results state: data loaded, but filters matched nothing */}
+      {!loading && !error && allFilms.length > 0 && filters.filteredFilms.length === 0 && (
+        <div className="no-results" style={{ display: 'block' }}>{t(lang, 'noResults')}</div>
       )}
 
       {/* Footer */}

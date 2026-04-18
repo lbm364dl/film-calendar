@@ -34,31 +34,30 @@ export async function GET() {
         return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
     }
 
-    // Total watched films for this user
-    const { count: total } = await supabase
-        .from('user_watched_films')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id);
+    // Run the three counts in parallel — they're independent.
+    // Exclude retry_count >= 5 from active queue: those are stuck (batch skips them).
+    const [totalRes, processedRes, activeQueueRes] = await Promise.all([
+        supabase.from('user_watched_films')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id),
+        supabase.from('user_watched_films')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', user.id)
+            .not('film_id', 'is', null),
+        supabase.from('film_enrichment_queue')
+            .select('*', { count: 'exact', head: true })
+            .eq('requested_by', user.id)
+            .in('status', ['pending', 'processing'])
+            .lt('retry_count', 5),
+    ]);
+
+    const total = totalRes.count;
+    const processed = processedRes.count;
+    const activeQueue = activeQueueRes.count;
 
     if (!total || total === 0) {
         return NextResponse.json({ total: 0, processed: 0 });
     }
-
-    // Count how many have film_id resolved (= enriched and in films table)
-    const { count: processed } = await supabase
-        .from('user_watched_films')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-        .not('film_id', 'is', null);
-
-    // Check if any queue entries are still actively processing for this user.
-    // Exclude retry_count >= 5: those are stuck (batch skips them) and will never complete.
-    const { count: activeQueue } = await supabase
-        .from('film_enrichment_queue')
-        .select('*', { count: 'exact', head: true })
-        .eq('requested_by', user.id)
-        .in('status', ['pending', 'processing'])
-        .lt('retry_count', 5);
 
     // Done when nothing is pending/processing (failed entries are skipped by user)
     const done = (activeQueue ?? 0) === 0;

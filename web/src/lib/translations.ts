@@ -279,8 +279,11 @@ import { SPECIAL_TYPE_LABELS } from './constants';
 
 export function translateSpecialType(type: string, lang: LangKey): string {
   if (!type) return type;
+  const key = type.toLowerCase();
   const labels = SPECIAL_TYPE_LABELS[lang] || SPECIAL_TYPE_LABELS.en;
-  return labels[type.toLowerCase()] || type;
+  if (labels[key]) return labels[key];
+  // Fallback: turn unknown keys like "live_music" into "Live music" rather than leaking the raw id
+  return key.replace(/_/g, ' ').replace(/^\w/, c => c.toUpperCase());
 }
 
 export function translateGenre(genre: string, lang: LangKey): string {
