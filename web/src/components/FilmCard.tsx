@@ -70,18 +70,46 @@ export default memo(function FilmCard({
   const genreLabel = film.genres.slice(0, 2).map(g => translateGenre(g, lang)).join(' · ');
   if (genreLabel) metaBits.push(<span key="g" className="film-meta-dim">{genreLabel}</span>);
 
+  const posterEl = (
+    <Poster
+      filmId={film.id}
+      title={titleText}
+      year={film.year}
+      director={film.director || null}
+      posterPath={film.posterPath}
+    />
+  );
+
   return (
     <article className="film-card">
-      <Poster
-        filmId={film.id}
-        title={titleText}
-        year={film.year}
-        director={film.director || null}
-        posterPath={film.posterPath}
-      />
+      {letterboxdLink ? (
+        <a
+          href={letterboxdLink}
+          className="film-poster-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          title="Letterboxd"
+          aria-label={`${titleText} on Letterboxd`}
+        >
+          {posterEl}
+        </a>
+      ) : posterEl}
       <div className="film-body">
         <div className="film-title-row">
-          <h3 className="film-title">{titleText}</h3>
+          {letterboxdLink ? (
+            <h3 className="film-title">
+              <a
+                href={letterboxdLink}
+                className="film-title-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >{titleText}</a>
+            </h3>
+          ) : (
+            <h3 className="film-title">{titleText}</h3>
+          )}
           {film.year && <span className="film-year">{film.year}</span>}
           {showMatch && (
             <span className={`match-pill match-${matchTier(matchScore!)}`}>
@@ -120,34 +148,6 @@ export default memo(function FilmCard({
           </div>
         )}
 
-        {/* Ratings strip — small row above sessions */}
-        {(ratingValue || viewersFormatted || (isWatched && matchScore !== undefined)) && (
-          <div className="film-metrics">
-            {ratingValue && (
-              <span className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
-                <span className="metric-icon rating-icon" aria-hidden="true" />
-                {ratingValue}
-              </span>
-            )}
-            {viewersFormatted && (
-              <span className="viewers" title={viewersTooltip}>
-                <span className="metric-icon viewers-icon" aria-hidden="true" />
-                {viewersFormatted}
-              </span>
-            )}
-            {isWatched && matchScore !== undefined && (
-              <span className="watched-label">{lang === 'es' ? 'Vista' : 'Watched'}</span>
-            )}
-            {letterboxdLink && (
-              <a href={letterboxdLink} className="letterboxd-link" target="_blank" rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()} title="View on Letterboxd">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="LB" onError={(e) => { (e.target as HTMLImageElement).outerHTML = '🎥️'; }} />
-              </a>
-            )}
-          </div>
-        )}
-
         {/* Sessions */}
         {film.dates.length > 0 && (
           <div className="film-dates">
@@ -167,6 +167,26 @@ export default memo(function FilmCard({
           </div>
         )}
       </div>
+
+      {(ratingValue || viewersFormatted || (isWatched && matchScore !== undefined)) && (
+        <aside className="film-metrics-rail">
+          {ratingValue && (
+            <span className="rating" title={t(lang, 'ratingTooltip', ratingValue)}>
+              <span className="metric-icon rating-icon" aria-hidden="true" />
+              {ratingValue}
+            </span>
+          )}
+          {viewersFormatted && (
+            <span className="viewers" title={viewersTooltip}>
+              <span className="metric-icon viewers-icon" aria-hidden="true" />
+              {viewersFormatted}
+            </span>
+          )}
+          {isWatched && matchScore !== undefined && (
+            <span className="watched-label">{lang === 'es' ? 'Vista' : 'Watched'}</span>
+          )}
+        </aside>
+      )}
     </article>
   );
 })
