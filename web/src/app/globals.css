@@ -2821,17 +2821,9 @@ a.film-rec-tag:hover {
     z-index: 2;
     padding: 2px 8px !important;
     font-size: 0.64rem !important;
-    /* Strong opaque dark chip so the % reads clearly on any poster palette. */
     background: rgba(10, 8, 5, 0.82) !important;
     color: #f0ece1 !important;
     border-color: rgba(240, 236, 225, 0.18) !important;
-    /* The tier dot keeps its color as the signal; text goes to light cream. */
-}
-
-.grid-tile-match .match-dot {
-    /* Override: normal match-pill .match-dot uses currentColor, which is now
-       cream. Force it back to the tier color so the dot still carries the
-       signal. */
 }
 
 .grid-tile-match.match-high .match-dot { background: var(--match); }
@@ -2967,6 +2959,263 @@ a.film-rec-tag:hover {
 @keyframes fc-fade-out {
     from { opacity: 1; }
     to   { opacity: 0; }
+}
+
+/* ── Expanded grid tile modal (FLIP animation) ──────────────────────────
+   Clicking a tile pops it open into a larger, near-fullscreen card. The
+   React component applies a transform calculated from the origin tile's
+   bounding rect on mount, then removes it — CSS handles the transition.
+   On close, the transform is re-applied (reverse direction) and the
+   element unmounts once the transition completes. */
+.grid-tile-modal-wrap {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10, 8, 5, 0.55);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 4vw;
+    animation: fc-fade-in 0.18s ease-out;
+}
+
+.grid-tile-modal-wrap.is-closing {
+    animation: fc-fade-out 0.2s ease-in forwards;
+}
+
+.grid-tile-modal {
+    position: relative;
+    width: min(560px, 100%);
+    height: min(760px, 90vh);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 8px 20px rgba(0, 0, 0, 0.25);
+    will-change: transform, opacity;
+    transform-origin: center center;
+}
+
+.grid-tile-modal-face {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.22s ease-out;
+}
+
+.grid-tile-modal-front { opacity: 1; }
+.grid-tile-modal-back { opacity: 0; pointer-events: none; display: flex; flex-direction: column; }
+
+.grid-tile-modal.is-flipped .grid-tile-modal-front { opacity: 0; pointer-events: none; }
+.grid-tile-modal.is-flipped .grid-tile-modal-back  { opacity: 1; pointer-events: auto; }
+
+.grid-tile-modal-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid-tile-modal-mark {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: clamp(80px, 18vw, 180px);
+    opacity: 0.32;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.grid-tile-modal-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(10, 8, 5, 0.85) 100%);
+    pointer-events: none;
+}
+
+.grid-tile-modal-front-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 18px 20px 20px;
+    color: #f0ece1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.grid-tile-modal-hint {
+    margin-top: 10px;
+    font-size: 0.72rem;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.grid-tile-modal-metrics {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: auto;
+    display: flex;
+    gap: 6px;
+    z-index: 3;
+}
+
+.grid-tile-modal-back {
+    background: rgba(10, 8, 5, 0.94);
+    color: #f0ece1;
+    padding: 16px 18px 18px;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.grid-tile-modal-back-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    flex-shrink: 0;
+    padding-right: 40px;  /* clear the absolutely-positioned close button */
+}
+
+.grid-tile-modal-back-titles {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.grid-tile-modal-sort {
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+}
+
+.grid-tile-modal-back .grid-tile-overlay-groups {
+    /* The modal has plenty of height and the back wrapper cap's the
+       outer modal at 90vh, so unlock scrolling here. */
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.grid-tile-modal-back .grid-tile-overlay-groups::-webkit-scrollbar {
+    width: 4px;
+}
+
+.grid-tile-modal-back .grid-tile-overlay-groups::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* Date mode: clean 2-col grid of full-width chips. Keeps a consistent
+   "left chip · right chip" read regardless of theater name length — even
+   on mobile the two chips fit comfortably. */
+.grid-tile-modal-back .gto-date-sessions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 6px;
+    margin-left: 0;
+}
+
+.grid-tile-modal-back .gto-date-session {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 5px 8px;
+    font-size: 0.72rem;
+}
+
+.grid-tile-modal-back .gto-date-session-theater {
+    max-width: none;
+    flex: 0 1 auto;
+    text-align: left;
+}
+
+/* Theater mode: keep the flex-wrap row of time chips — days already pack
+   tight and a rigid grid here would force awkward empty cells. */
+.grid-tile-modal-back .gto-day-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+}
+
+.grid-tile-modal-back .gto-time {
+    padding: 3px 8px;
+    font-size: 0.72rem;
+}
+
+.grid-tile-modal-back .gto-group {
+    gap: 6px;
+}
+
+.grid-tile-modal-back .gto-theater,
+.grid-tile-modal-back .gto-theater-name {
+    font-size: 0.82rem;
+}
+
+.grid-tile-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 3;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(10, 8, 5, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f0ece1;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.grid-tile-modal-close:hover {
+    background: rgba(10, 8, 5, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.grid-tile-modal-match {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+}
+
+.grid-tile-modal-title {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.grid-tile-modal-meta {
+    font-size: 0.78rem;
+    opacity: 0.78;
+    margin-top: 4px;
+}
+
+.grid-tile-modal-sessions {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.grid-tile-modal-sessions > .grid-tile-overlay-groups {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+@media (max-width: 640px) {
+    .grid-tile-modal-wrap { padding: 3vh 4vw; }
+    .grid-tile-modal { width: 100%; max-height: 92vh; }
+    .grid-tile-modal-title { font-size: 1.18rem; }
 }
 
 .grid-tile-overlay-inner {
