@@ -3,7 +3,7 @@
 import { memo, useMemo, useState } from 'react';
 import { paletteFor } from './Poster';
 import { theaterTint } from '@/lib/theater-colors';
-import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
+import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 
@@ -216,6 +216,25 @@ export default memo(function FilmGridTile({
         >{mark}</div>
       )}
 
+      {/* Rating + viewer count pill — upper-left. Same dark chip treatment as
+          the match pill so both read consistently regardless of palette. */}
+      {(film.rating != null || film.viewers != null) && (
+        <div className="grid-tile-metrics" aria-hidden>
+          {film.rating != null && (
+            <span className="grid-tile-metric grid-tile-metric-rating">
+              <span className="metric-icon rating-icon" />
+              {film.rating.toFixed(1)}
+            </span>
+          )}
+          {film.viewers != null && (
+            <span className="grid-tile-metric grid-tile-metric-viewers">
+              <span className="metric-icon viewers-icon" />
+              {formatViewerCount(film.viewers)}
+            </span>
+          )}
+        </div>
+      )}
+
       {showMatch && (
         <span className={`match-pill match-${matchTier(matchScore!)} grid-tile-match`}>
           <span className="match-dot" />
@@ -223,13 +242,11 @@ export default memo(function FilmGridTile({
         </span>
       )}
 
-      <div
-        className="grid-tile-gradient"
-        style={{ background: `linear-gradient(to bottom, transparent 0%, ${b} 55%)` }}
-        aria-hidden
-      />
+      {/* Gradient readability overlay — fades into a near-black shade so the info
+          block below reads cleanly regardless of the poster palette. */}
+      <div className="grid-tile-gradient" aria-hidden />
 
-      <div className="grid-tile-info" style={{ color: a }}>
+      <div className="grid-tile-info">
         <div className="grid-tile-title">{titleText}</div>
         <div className="grid-tile-meta">
           {[
@@ -241,7 +258,7 @@ export default memo(function FilmGridTile({
         <div className="grid-tile-footer">
           <span className="grid-tile-tints">
             {tintDots.map((tint, i) => (
-              <span key={i} className="grid-tile-tint" style={{ background: tint, outlineColor: a }} />
+              <span key={i} className="grid-tile-tint" style={{ background: tint }} />
             ))}
           </span>
           <span className="grid-tile-count">

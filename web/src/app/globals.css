@@ -251,24 +251,59 @@ header {
     border-color: var(--text-dim);
 }
 
+/* Custom date (outside the 7-day strip) is active → paint the icon button in
+   accent so the user can see their selection isn't on the visible strip. */
+.calendar-btn.active {
+    background: var(--accent);
+    color: var(--accent-on);
+    border-color: var(--accent);
+}
+
+.calendar-btn.active:hover {
+    filter: brightness(1.05);
+}
+
 /* Calendar popover */
+/* Centered modal on desktop (with a dim backdrop created by its wrapper), bottom
+   sheet on mobile — see the @media rule lower down. */
 .calendar-popover {
-    position: absolute;
-    top: calc(100% + 6px);
-    right: 0;
-    width: 320px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
     max-width: calc(100vw - 2rem);
     background: var(--bg-card);
     border: 1px solid var(--border-2);
-    border-radius: 12px;
-    padding: 14px 16px 12px;
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 60;
-    animation: fc-fade-in 0.15s ease-out;
+    border-radius: 14px;
+    padding: 16px 18px 14px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.3);
+    z-index: 3100;
+    animation: fc-modal-pop-in 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
 :root[data-theme="light"] .calendar-popover {
-    box-shadow: 0 18px 48px rgba(20, 18, 14, 0.14), 0 4px 12px rgba(20, 18, 14, 0.08);
+    box-shadow: 0 30px 80px rgba(20, 18, 14, 0.24), 0 4px 16px rgba(20, 18, 14, 0.1);
+}
+
+/* Dim backdrop rendered by a sibling .calendar-backdrop element in FilmCalendar. */
+.calendar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 6, 0.5);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 3099;
+    animation: fc-modal-fade-in 0.15s ease-out;
+}
+
+:root[data-theme="light"] .calendar-backdrop {
+    background: rgba(26, 24, 20, 0.3);
+}
+
+@keyframes fc-modal-pop-in {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.97); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes fc-fade-in {
@@ -440,19 +475,21 @@ header {
     .day-pill .dom { font-size: 0.92rem; }
     .day-pill .dow { font-size: 0.58rem; }
     .calendar-btn { width: 40px; }
-    /* Calendar popover as bottom sheet on mobile */
+    /* Calendar popover as bottom sheet on mobile — override the centered modal
+       positioning from the base rule. */
     .calendar-popover {
         position: fixed;
         inset: auto 0 0 0;
         top: auto;
         left: 0;
         right: 0;
+        transform: none;
         width: 100%;
         max-width: none;
         margin: 0;
         border-radius: 16px 16px 0 0;
         padding: 14px 18px 18px;
-        z-index: 3000;
+        z-index: 3100;
         animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .calendar-popover::before {
@@ -563,6 +600,13 @@ h1 .h1-accent {
     letter-spacing: 0.02em;
 }
 
+/* Secondary subtitle (theater list) — smaller, dimmer, sits below the stats line. */
+.subtitle.subtitle-theaters {
+    font-size: 0.72rem;
+    color: var(--text-mute);
+    margin-top: 3px;
+}
+
 /* Grid Layout for Filters */
 .filters-grid {
     display: grid;
@@ -591,19 +635,20 @@ h1 .h1-accent {
 
 .filter-bar > * { min-width: 0; }
 
-/* Search pill — fixed basis, doesn't greedily grow so the day-strip can breathe. */
+/* Search pill — fixed basis, doesn't greedily grow so the day-strip can breathe.
+   Unified 56px height across the filter bar (matches the day-strip). */
 .filter-bar-search {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0 12px;
+    padding: 0 14px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text-dim);
     flex: 0 1 300px;
     min-width: 220px;
-    height: 48px;
+    height: 56px;
 }
 
 .filter-bar-search:focus-within {
@@ -679,8 +724,8 @@ h1 .h1-accent {
 }
 
 .filter-bar .theater-multiselect-trigger {
-    min-height: 48px;
-    height: 48px;
+    min-height: 56px;
+    height: 56px;
     font-size: 0.8rem;
     padding: 0 0.5rem 0 0.75rem;
 }
@@ -688,39 +733,40 @@ h1 .h1-accent {
 /* More-filters pill — inside the filter-bar flex row */
 .filter-bar > .more-filters-btn {
     flex: 0 0 auto;
-    height: 48px;
+    height: 56px;
     padding: 0 14px;
     font-size: 0.8rem;
     border-radius: 8px;
     position: relative;
 }
 
-/* Clear-all pill (small, ghost-style) at the tail */
+/* Clear-all — compact broom-icon button so it matches the other 56px controls
+   and takes almost no horizontal space. */
 .filter-bar > .clear-grid-btn {
     flex: 0 0 auto;
-    height: 48px;
-    padding: 0 12px;
+    width: 56px;
+    height: 56px;
+    padding: 0;
     border-radius: 8px;
-    background: transparent;
-    border: 1px solid transparent;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     color: var(--text-dim);
-    font-size: 0.75rem;
+    font-size: 0;
     font-family: inherit;
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-bar > .clear-grid-btn:hover {
-    color: var(--text);
-    border-color: var(--border-2);
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
-/* The active-chips row below already has "limpiar todo", so this button is
-   redundant on narrower desktops. Drop it to give the day strip more room. */
-@media (max-width: 1200px) {
-    .filter-bar > .clear-grid-btn {
-        display: none;
-    }
+.filter-bar > .clear-grid-btn svg {
+    display: block;
 }
 
 /* At this width the day-strip would get cramped next to all the other
@@ -733,49 +779,58 @@ h1 .h1-accent {
 }
 
 @media (max-width: 768px) {
-    /* 7-column grid layout per Direction C mobile sketch:
-         Row 1: theater (4/7) + Más filtros (3/7)
-         Row 2: search (5/7) + calendar icon (2/7)
-         Row 3: day-strip spanning all 7
+    /* ─────────────────────────────────────────────────────────────────────
+       Mobile filter bar layout (EDIT PROPORTIONS HERE)
+       12-column grid for fine-grained control.
+         Row 1: theater (cols 1-9 → 8/12) + Más filtros (cols 9-13 → 4/12)
+         Row 2: search  (cols 1-10 → 9/12) + calendar   (cols 10-13 → 3/12)
+         Row 3: day-strip (full width)
+       Change the grid-column numbers below to tweak the proportions.
        .day-bar uses display:contents so its children (day-strip, calendar-btn)
        participate directly in the outer grid. */
     .filter-bar {
         display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
+        grid-template-columns: repeat(12, minmax(0, 1fr));
         gap: 8px;
         margin-bottom: 0.5rem;
     }
     .filter-bar > .theater-multiselect {
-        grid-column: 1 / 5;
+        grid-column: 1 / 9;   /* 8/12 */
         grid-row: 1;
         width: auto;
     }
     .filter-bar > .more-filters-btn {
-        grid-column: 5 / 8;
+        grid-column: 9 / 13;  /* 4/12 */
         grid-row: 1;
         width: auto;
-        height: 44px;
+        height: 52px;
         padding: 0 10px;
         overflow: visible;
     }
+    /* Theater trigger inherits min-height 56; tighten to 52 on mobile to match
+       the grid row cadence. */
+    .filter-bar .theater-multiselect-trigger {
+        min-height: 52px;
+        height: 52px;
+    }
     .filter-bar-search {
-        grid-column: 1 / 6;
+        grid-column: 1 / 10;  /* 9/12 */
         grid-row: 2;
         flex: none;
-        height: 44px;
+        height: 52px;
         min-width: 0;
     }
     .filter-bar > .day-bar {
         display: contents;
     }
     .filter-bar > .day-bar .calendar-btn {
-        grid-column: 6 / 8;
+        grid-column: 10 / 13; /* 3/12 */
         grid-row: 2;
         width: auto;
-        height: 44px;
+        height: 52px;
     }
     .filter-bar > .day-bar .day-strip {
-        grid-column: 1 / 8;
+        grid-column: 1 / 13;  /* full width */
         grid-row: 3;
         height: 56px;
     }
@@ -2475,6 +2530,9 @@ a.film-rec-tag:hover {
     top: 40%;
     bottom: 0;
     pointer-events: none;
+    /* Static dark gradient (instead of the per-poster `b` color) so the info
+       text below reads in a predictable cream tone regardless of palette. */
+    background: linear-gradient(to bottom, transparent 0%, rgba(10, 8, 5, 0.55) 45%, rgba(10, 8, 5, 0.88) 100%);
 }
 
 .grid-tile-match {
@@ -2509,7 +2567,44 @@ a.film-rec-tag:hover {
     bottom: 0;
     padding: 10px 10px 10px;
     z-index: 1;
+    /* Single consistent text color across all tiles — cream always, since the
+       gradient above forces a dark backdrop regardless of theme. */
+    color: #f0ece1;
 }
+
+/* Upper-left rating + viewers chip pair — mirror the match pill shape */
+.grid-tile-metrics {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.grid-tile-metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: rgba(10, 8, 5, 0.82);
+    color: #f0ece1;
+    border: 1px solid rgba(240, 236, 225, 0.18);
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+}
+
+.grid-tile-metric .metric-icon {
+    width: 10px;
+    height: 10px;
+    background-color: currentColor;
+}
+
+.grid-tile-metric-rating { color: var(--warm); }
+.grid-tile-metric-viewers { color: #f0ece1; }
 
 .grid-tile-title {
     font-family: var(--font-fraunces), Georgia, serif;
@@ -2944,6 +3039,7 @@ a.film-rec-tag:hover {
         border-radius: 16px 16px 0 0;
         border-bottom: none;
         animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+        overflow-x: hidden;  /* belt-and-braces: kill any accidental horizontal scroll */
     }
     /* grabber handle */
     .filter-modal-content::before {
@@ -2957,16 +3053,29 @@ a.film-rec-tag:hover {
         flex-shrink: 0;
     }
     .filter-modal-header {
-        padding: 12px 20px 12px;
+        padding: 10px 14px 10px;
     }
     .filter-modal-header h3 {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
     }
     .filter-modal-body {
-        padding: 14px 20px 20px;
+        padding: 12px 14px 16px;
+        overflow-x: hidden;
     }
     .filter-modal-footer-bar {
-        padding: 12px 20px;
+        padding: 10px 14px;
+    }
+    /* Stack the 3 multi-select dropdowns instead of trying to fit them side
+       by side — they were causing horizontal overflow below 420px. */
+    .filter-modal .filter-multiselect-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .filter-modal .filter-multiselect-row > * {
+        width: 100%;
+    }
+    .filter-modal .filter-toggles-grid {
+        grid-template-columns: 1fr;
     }
 }
 

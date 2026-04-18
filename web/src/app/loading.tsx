@@ -13,9 +13,17 @@ export default function Loading() {
           <div aria-hidden style={{ ...PULSE, width: 96, height: 32, borderRadius: 20 }} />
           <div aria-hidden style={{ ...PULSE, width: 72, height: 30, borderRadius: 8 }} />
         </div>
-        {/* Real title/subtitle — identical to post-load, stays in place at swap */}
-        <h1>🎬 Madrid Film Calendar</h1>
-        <p className="subtitle">
+        {/* Real title/subtitle — identical to the DC header FilmCalendar renders
+            after hydration, so the swap is invisible. Subtitle stays as a skeleton
+            line since the real content ("N películas · N cines · weekday D month")
+            is data-driven and not available yet. */}
+        <h1>
+          Madrid Film <span className="h1-accent">Calendar</span>
+        </h1>
+        <div aria-hidden className="subtitle" style={{ display: 'flex' }}>
+          <div style={{ ...PULSE, width: 320, height: 14, borderRadius: 4 }} />
+        </div>
+        <p className="subtitle subtitle-theaters">
           Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo
         </p>
       </header>

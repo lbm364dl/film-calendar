@@ -125,8 +125,20 @@ export default function FiltersGrid({
         )}
       </button>
 
-      <button type="button" className="clear-grid-btn" onClick={onClearAllFilters}>
-        {t(lang, 'clearFilters')}
+      <button
+        type="button"
+        className="clear-grid-btn"
+        onClick={onClearAllFilters}
+        title={t(lang, 'clearFilters')}
+        aria-label={t(lang, 'clearFilters')}
+      >
+        {/* Lucide `filter-x` — filter shape with an × in the top-right. Reads
+            immediately as "clear filters" regardless of size. */}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M13.013 3H2l8 9.46V19l4 2v-8.54l.9-1.055" />
+          <path d="m22 3-5 5" />
+          <path d="m17 3 5 5" />
+        </svg>
       </button>
     </div>
   );

@@ -88,18 +88,17 @@ export const metadata: Metadata = {
 };
 
 // Runs inline in <head> before hydration to apply the persisted theme and
-// avoid a palette flash. Reads localStorage mfc.theme ("light"|"dark"|"system"|null),
-// resolves "system" via prefers-color-scheme, defaults to dark.
+// avoid a palette flash. 2-state only (light/dark); legacy "system" values
+// from earlier builds are migrated to "dark" on read so the UI stays stable.
 const themeBootstrap = `
 (function () {
   try {
     var t = localStorage.getItem('mfc.theme');
-    if (t !== 'light' && t !== 'dark' && t !== 'system') t = 'dark';
-    var resolved = t;
-    if (t === 'system') {
-      resolved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    if (t !== 'light' && t !== 'dark') {
+      t = 'dark';
+      try { localStorage.setItem('mfc.theme', 'dark'); } catch (_) {}
     }
-    document.documentElement.dataset.theme = resolved;
+    document.documentElement.dataset.theme = t;
     document.documentElement.dataset.themePref = t;
   } catch (e) {
     document.documentElement.dataset.theme = 'dark';

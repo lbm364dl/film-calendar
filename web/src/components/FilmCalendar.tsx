@@ -255,11 +255,14 @@ export default function FilmCalendar({
         <p className="subtitle">
           {allFilms.length > 0 ? headerStats : t(lang, 'subtitle')}
         </p>
+        <p className="subtitle subtitle-theaters">{t(lang, 'subtitle')}</p>
       </header>
 
-      {/* Calendar popover — rendered above the filter bar so it floats over it on desktop. */}
+      {/* Calendar popover — centered modal on desktop, bottom sheet on mobile.
+          CSS handles both via position:fixed; backdrop is a sibling div. */}
       {calendarOpen && !filmsNotReady && (
-        <div style={{ position: 'relative', width: '100%', maxWidth: 1200, margin: '0 auto' }}>
+        <>
+          <div className="calendar-backdrop" onClick={() => setCalendarOpen(false)} />
           <CalendarPopover
             lang={lang}
             selectedDate={filters.selectedDate}
@@ -267,7 +270,7 @@ export default function FilmCalendar({
             onSelect={filters.setSelectedDate}
             onClose={() => setCalendarOpen(false)}
           />
-        </div>
+        </>
       )}
 
       {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
@@ -491,11 +494,6 @@ export default function FilmCalendar({
           setSpecialFilter={filters.setSpecialFilter}
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
-          selectedTheaters={filters.selectedTheaters}
-          onToggleTheater={filters.toggleTheater}
-          onToggleTheaterGroup={filters.toggleTheaterGroup}
-          onSelectAllTheaters={filters.selectAllTheaters}
-          onSelectNoneTheaters={filters.selectNoneTheaters}
           activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
           resultsCount={filters.filteredFilms.length}
           onClearAll={filters.clearAllFilters}

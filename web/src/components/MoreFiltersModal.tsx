@@ -1,12 +1,9 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { t, translateGenre, shortenCountry } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
-import {
-  RUNTIME_CATEGORIES, DAY_LABELS,
-  THEATER_GROUPS, ALL_THEATER_VALUES,
-} from '@/lib/constants';
+import { RUNTIME_CATEGORIES, DAY_LABELS } from '@/lib/constants';
 import { handleChipRangeToggle } from '@/hooks/useFilmFilters';
 import type { DecadeEntry } from '@/hooks/useFilmFilters';
 import ChipRangeFilter from './ChipRangeFilter';
@@ -39,22 +36,11 @@ interface MoreFiltersModalProps {
   setSpecialFilter: (v: boolean) => void;
   lastChanceFilter: boolean;
   setLastChanceFilter: (v: boolean) => void;
-  // Theater multi-select (mobile surfaces this inside the sheet; desktop keeps
-  // the top-level pill, but we render it here too so both breakpoints agree
-  // on state).
-  selectedTheaters: Set<string>;
-  onToggleTheater: (value: string) => void;
-  onToggleTheaterGroup: (childValues: string[], checked: boolean) => void;
-  onSelectAllTheaters: () => void;
-  onSelectNoneTheaters: () => void;
   activeAdvancedFilterCount: number;
   resultsCount: number;
   onClearAll: () => void;
   onHelp: (title: string, body: string) => void;
 }
-
-// Initial number of theater rows shown before "mostrar N cines más" toggle.
-const CINES_COLLAPSED_ROWS = 5;
 
 export default function MoreFiltersModal({
   show, closing, onClose, lang,
@@ -67,12 +53,9 @@ export default function MoreFiltersModal({
   versionFilter, setVersionFilter,
   specialFilter, setSpecialFilter,
   lastChanceFilter, setLastChanceFilter,
-  selectedTheaters, onToggleTheater, onToggleTheaterGroup,
-  onSelectAllTheaters, onSelectNoneTheaters,
   activeAdvancedFilterCount, resultsCount, onClearAll,
   onHelp,
 }: MoreFiltersModalProps) {
-  const [cinesExpanded, setCinesExpanded] = useState(false);
   const toggleVersion = useCallback(() => {
     setVersionFilter(versionFilter === 'original' ? 'dubbed' : 'original');
   }, [versionFilter, setVersionFilter]);
@@ -113,21 +96,8 @@ export default function MoreFiltersModal({
 
         <div className="filter-modal-body">
 
-        {/* Cines — flat checklist with collapse-after-N. On desktop the top-level
-            theater pill still exists and edits the same state, so either surface
-            stays in sync. On mobile the pill is hidden (see globals.css) and this
-            section is the only entry point. */}
-        <MoreFiltersCines
-          lang={lang}
-          selectedTheaters={selectedTheaters}
-          onToggleTheater={onToggleTheater}
-          onToggleGroup={onToggleTheaterGroup}
-          onSelectAll={onSelectAllTheaters}
-          onSelectNone={onSelectNoneTheaters}
-          expanded={cinesExpanded}
-          onToggleExpanded={() => setCinesExpanded(v => !v)}
-          onHelp={() => onHelp(t(lang, 'theaterTooltipTitle'), t(lang, 'theaterTooltipBody'))}
-        />
+        {/* Theater filtering lives in the top-level pill on both desktop and
+            mobile, so there's no Cines section here to avoid duplication. */}
 
         {decades.length > 0 && (
           <ChipRangeFilter
@@ -261,125 +231,3 @@ export default function MoreFiltersModal({
   );
 }
 
-// ── Cines section ────────────────────────────────────────────────────────────
-// Flat checklist, grouped by parent (Renoir, Cinesa, Yelmo, Embajadores get a
-// group checkbox + child rows). We show the first N rows collapsed by default
-// and expose a "mostrar N cines más" toggle, matching DC mobile.
-
-interface MoreFiltersCinesProps {
-  lang: LangKey;
-  selectedTheaters: Set<string>;
-  onToggleTheater: (value: string) => void;
-  onToggleGroup: (childValues: string[], checked: boolean) => void;
-  onSelectAll: () => void;
-  onSelectNone: () => void;
-  expanded: boolean;
-  onToggleExpanded: () => void;
-  onHelp: () => void;
-}
-
-function MoreFiltersCines({
-  lang, selectedTheaters,
-  onToggleTheater, onToggleGroup, onSelectAll, onSelectNone,
-  expanded, onToggleExpanded, onHelp,
-}: MoreFiltersCinesProps) {
-  // Flatten THEATER_GROUPS into render rows: a group with children becomes a
-  // group-header row + its child rows; single entries become a leaf row.
-  type Row =
-    | { kind: 'group'; label: string; childValues: string[] }
-    | { kind: 'child'; label: string; value: string; groupLabel: string }
-    | { kind: 'leaf'; label: string; value: string };
-
-  const rows: Row[] = [];
-  for (const g of THEATER_GROUPS) {
-    if (g.children) {
-      rows.push({ kind: 'group', label: g.label, childValues: g.children.map(c => c.value) });
-      for (const c of g.children) {
-        rows.push({ kind: 'child', label: c.label, value: c.value, groupLabel: g.label });
-      }
-    } else if (g.value) {
-      rows.push({ kind: 'leaf', label: g.label, value: g.value });
-    }
-  }
-
-  const visibleRows = expanded ? rows : rows.slice(0, CINES_COLLAPSED_ROWS);
-  const hiddenCount = rows.length - visibleRows.length;
-  const count = t(lang, 'nTheatersSelected', selectedTheaters.size, ALL_THEATER_VALUES.length);
-
-  return (
-    <div className="filter-section filter-section-cines">
-      <div className="filter-section-header">
-        <div className="filter-section-header-left">
-          <span className="filter-section-label">
-            {lang === 'es' ? 'Cines' : 'Theaters'}
-          </span>
-          <span
-            className="info-icon"
-            onClick={(e) => { e.stopPropagation(); onHelp(); }}
-          >?</span>
-        </div>
-        <div className="chip-actions">
-          <button type="button" className="chip-action-btn" onClick={onSelectAll}>{t(lang, 'selectAll')}</button>
-          <button type="button" className="chip-action-btn" onClick={onSelectNone}>{t(lang, 'selectNone')}</button>
-        </div>
-      </div>
-
-      <div className="filter-section-cines-count">{count}</div>
-
-      <div className="filter-section-cines-list">
-        {visibleRows.map((row, i) => {
-          if (row.kind === 'group') {
-            const selectedCount = row.childValues.filter(v => selectedTheaters.has(v)).length;
-            const allSelected = selectedCount === row.childValues.length;
-            const someSelected = selectedCount > 0 && !allSelected;
-            return (
-              <label key={`g-${row.label}-${i}`} className="cines-row cines-row-group">
-                <input
-                  type="checkbox"
-                  checked={allSelected}
-                  ref={el => { if (el) el.indeterminate = someSelected; }}
-                  onChange={() => onToggleGroup(row.childValues, !allSelected)}
-                />
-                <span className="cines-row-label">{row.label}</span>
-              </label>
-            );
-          }
-          if (row.kind === 'child') {
-            return (
-              <label key={`c-${row.value}-${i}`} className="cines-row cines-row-child">
-                <input
-                  type="checkbox"
-                  checked={selectedTheaters.has(row.value)}
-                  onChange={() => onToggleTheater(row.value)}
-                />
-                <span className="cines-row-label">{row.label}</span>
-              </label>
-            );
-          }
-          return (
-            <label key={`l-${row.value}-${i}`} className="cines-row">
-              <input
-                type="checkbox"
-                checked={selectedTheaters.has(row.value)}
-                onChange={() => onToggleTheater(row.value)}
-              />
-              <span className="cines-row-label">{row.label}</span>
-            </label>
-          );
-        })}
-        {hiddenCount > 0 && !expanded && (
-          <button type="button" className="cines-expand-btn" onClick={onToggleExpanded}>
-            {lang === 'es'
-              ? `mostrar ${hiddenCount} cines más`
-              : `show ${hiddenCount} more theaters`}
-          </button>
-        )}
-        {expanded && rows.length > CINES_COLLAPSED_ROWS && (
-          <button type="button" className="cines-expand-btn" onClick={onToggleExpanded}>
-            {lang === 'es' ? 'mostrar menos' : 'show less'}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}

@@ -69,6 +69,9 @@ export function DayStrip({ lang, days, selectedDate, onSelect, onOpenCalendar }:
   // The design shows today highlighted as the default focus. We reflect the
   // actual selectedDate: '' means all-upcoming (no highlight), otherwise the
   // matching pill is highlighted.
+  // If a date is selected but not in the 7-day strip, the calendar button gets
+  // the accent treatment so the user can tell a custom date is active.
+  const customDateActive = !!selectedDate && !days.some(d => d.iso === selectedDate);
   return (
     <div className="day-bar">
       <div className="day-strip" role="tablist" aria-label="Día">
@@ -94,7 +97,7 @@ export function DayStrip({ lang, days, selectedDate, onSelect, onOpenCalendar }:
       </div>
       <button
         type="button"
-        className="calendar-btn"
+        className={`calendar-btn${customDateActive ? ' active' : ''}`}
         onClick={onOpenCalendar}
         title={lang === 'es' ? 'Elegir otra fecha' : 'Pick a date'}
         aria-label={lang === 'es' ? 'Elegir otra fecha' : 'Pick a date'}
