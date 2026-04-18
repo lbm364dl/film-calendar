@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { paletteFor } from './Poster';
 import { theaterTint } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
@@ -36,6 +36,7 @@ function timeOf(ts: string): string {
 function GridTileSessionsByTheater({
   film, sorted, todayIso, lang, dateLocale,
   getCalendarUrl, getFallbackUrl, onOpenModal, matchScore,
+  sortMode, onToggleSortMode,
 }: {
   film: Film;
   sorted: DateEntry[];
@@ -46,8 +47,10 @@ function GridTileSessionsByTheater({
   getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
   onOpenModal: (data: SessionModalData) => void;
   matchScore?: number;
+  sortMode: 'theater' | 'date';
+  onToggleSortMode: () => void;
 }) {
-  const groups = useMemo(() => {
+  const groupsByTheater = useMemo(() => {
     const byLoc = new Map<string, DateEntry[]>();
     for (const s of sorted) {
       const k = s.location || 'Unknown';
@@ -57,43 +60,109 @@ function GridTileSessionsByTheater({
     }
     return Array.from(byLoc.entries())
       .map(([location, sessions]) => ({ location, sessions }))
-      .sort((a, b) => b.sessions.length - a.sessions.length);
+      .sort((a, b) => a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' }));
+  }, [sorted, lang]);
+
+  const groupsByDate = useMemo(() => {
+    const byDay = new Map<string, DateEntry[]>();
+    for (const s of sorted) {
+      const iso = s.timestamp.slice(0, 10);
+      let arr = byDay.get(iso);
+      if (!arr) { arr = []; byDay.set(iso, arr); }
+      arr.push(s);
+    }
+    return Array.from(byDay.entries())
+      .map(([iso, sessions]) => ({ iso, sessions: sessions.sort((a, b) => a.timestamp.localeCompare(b.timestamp)) }))
+      .sort((a, b) => a.iso.localeCompare(b.iso));
   }, [sorted]);
+
+  const groups = sortMode === 'date' ? groupsByDate : groupsByTheater;
 
   // Dynamically pick how many theater groups fit based on the overlay height
   // — avoids the old scrollbar and the ugly static "3" cap. Measured on mount
   // and on resize; a ResizeObserver keeps it in sync when the grid reflows.
   const containerRef = useRef<HTMLDivElement>(null);
-  const [maxGroups, setMaxGroups] = useState(3);
+  const [maxGroups, setMaxGroups] = useState(groups.length);
+  // When the user clicks "+N salas más", show every group and let the
+  // container scroll — the default view still trims via measurement, but once
+  // the user explicitly asks for more, scrolling is the acceptable tradeoff.
+  const [showAll, setShowAll] = useState(false);
 
   useLayoutEffect(() => {
+    if (showAll) return;
     const el = containerRef.current;
     if (!el) return;
     const update = () => {
-      // el is the groups wrapper (flex-grown to fill the overlay). Real groups
-      // average ~80px (theater line + 3 day rows + per-group flex gap); reserve
-      // ~32px for the trailing "+N salas más" line so it never gets clipped.
-      const h = el.clientHeight;
-      // Conservative per-group estimate: theater line (~20) + 3 day rows (~14
-       // each) + 8px flex gap between groups ≈ 70; round up to 88 so we never
-       // overstuff. Reserve 30px for the "+N más" footer + padding-top.
-      const PER_GROUP_PX = 88;
-      const reserved = 30;
-      const fit = Math.max(1, Math.floor((h - reserved) / PER_GROUP_PX));
-      setMaxGroups(fit);
+      // Measure real rendered groups and the "+N más" footer so we trim
+      // based on actual heights, not a fixed per-group estimate. We first
+      // reveal every hidden group, measure each one's bottom edge, then
+      // commit the count that fits. The toggle happens inside a
+      // useLayoutEffect so React flushes it before paint — no flicker.
+      const allGroups = Array.from(el.querySelectorAll<HTMLElement>('.gto-group'));
+      if (!allGroups.length) return;
+      const prev = allGroups.map(g => g.style.display);
+      allGroups.forEach(g => { g.style.display = ''; });
+
+      const moreEl = el.querySelector<HTMLElement>('.gto-more');
+      const moreSpace = moreEl ? moreEl.offsetHeight + 8 : 0;
+      const available = el.clientHeight - moreSpace;
+
+      let fit = 0;
+      for (const g of allGroups) {
+        if (g.offsetTop + g.offsetHeight <= available) fit++;
+        else break;
+      }
+
+      allGroups.forEach((g, i) => { g.style.display = prev[i]; });
+      setMaxGroups(Math.max(1, fit));
     };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [groups.length, showAll]);
 
-  const visible = groups.slice(0, maxGroups);
-  const hiddenGroups = groups.length - visible.length;
+  const effectiveMax = showAll ? groups.length : maxGroups;
+  const hiddenGroups = Math.max(0, groups.length - effectiveMax);
+
+  const openSessionModal = (s: DateEntry) => {
+    const titleLabel = film.titleEn || film.title;
+    const filmTitleLabel = film.year ? `${titleLabel} (${film.year})` : titleLabel;
+    const hasDirectUrl = !!(s.url_tickets && s.url_tickets.trim());
+    onOpenModal({
+      film, session: s, filmTitleLabel, matchScore,
+      ticketUrl: hasDirectUrl ? s.url_tickets : '',
+      filmPageUrl: s.url_info || film.theaterLink || getFallbackUrl(film, s),
+      calendarUrl: getCalendarUrl(film, s),
+      hasDirectUrl,
+    });
+  };
+
+  const toggleLabel = sortMode === 'date'
+    ? (lang === 'es' ? 'Por fecha' : 'By date')
+    : (lang === 'es' ? 'Por sala' : 'By theater');
 
   return (
-    <div ref={containerRef} className="grid-tile-overlay-groups">
-      {visible.map(({ location, sessions }) => {
+    <>
+      <div className="gto-sort-row">
+        <button
+          type="button"
+          className="gto-sort-toggle"
+          onClick={(e) => { e.stopPropagation(); onToggleSortMode(); }}
+          title={lang === 'es' ? 'Cambiar orden' : 'Toggle sort'}
+        >
+          {toggleLabel}
+          <svg width="9" height="9" viewBox="0 0 12 12" aria-hidden>
+            <path d="M3 4.5 L6 7.5 L9 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div
+        ref={containerRef}
+        className={`grid-tile-overlay-groups${showAll ? ' is-expanded' : ''}`}
+      >
+      {sortMode === 'theater' && (groups as typeof groupsByTheater).map(({ location, sessions }, idx) => {
+        const hidden = idx >= effectiveMax;
         const tint = theaterTint(location);
         const short = (location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || location;
         const byDay = new Map<string, DateEntry[]>();
@@ -105,7 +174,7 @@ function GridTileSessionsByTheater({
         }
         const days = Array.from(byDay.entries()).sort(([a], [b]) => a.localeCompare(b)).slice(0, 3);
         return (
-          <div key={location} className="gto-group">
+          <div key={location} className="gto-group" style={hidden ? { display: 'none' } : undefined}>
             <div className="gto-theater">
               <span className="gto-tint" style={{ background: tint }} />
               <span className="gto-theater-name">{short}</span>
@@ -118,25 +187,8 @@ function GridTileSessionsByTheater({
                   <span className="gto-day-times">
                     {ss.map((s, i) => (
                       <button
-                        key={i}
-                        type="button"
-                        className="gto-time"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const titleLabel = film.titleEn || film.title;
-                          const filmTitleLabel = film.year ? `${titleLabel} (${film.year})` : titleLabel;
-                          const hasDirectUrl = !!(s.url_tickets && s.url_tickets.trim());
-                          onOpenModal({
-                            film,
-                            session: s,
-                            filmTitleLabel,
-                            matchScore,
-                            ticketUrl: hasDirectUrl ? s.url_tickets : '',
-                            filmPageUrl: s.url_info || film.theaterLink || getFallbackUrl(film, s),
-                            calendarUrl: getCalendarUrl(film, s),
-                            hasDirectUrl,
-                          });
-                        }}
+                        key={i} type="button" className="gto-time"
+                        onClick={(e) => { e.stopPropagation(); openSessionModal(s); }}
                       >{timeOf(s.timestamp)}</button>
                     ))}
                   </span>
@@ -146,12 +198,50 @@ function GridTileSessionsByTheater({
           </div>
         );
       })}
-      {hiddenGroups > 0 && (
-        <div className="gto-more">
-          +{hiddenGroups} {lang === 'es' ? (hiddenGroups === 1 ? 'sala más' : 'salas más') : (hiddenGroups === 1 ? 'more theater' : 'more theaters')}
-        </div>
+
+      {sortMode === 'date' && (groups as typeof groupsByDate).map(({ iso, sessions }, idx) => {
+        const hidden = idx >= effectiveMax;
+        const isToday = iso === todayIso;
+        return (
+          <div key={iso} className="gto-group" style={hidden ? { display: 'none' } : undefined}>
+            <div className={`gto-theater${isToday ? ' is-today' : ''}`}>
+              <span className="gto-theater-name">{shortDate(iso, todayIso, lang)}</span>
+            </div>
+            <div className="gto-date-sessions">
+              {sessions.map((s, i) => {
+                const tint = theaterTint(s.location);
+                const short = (s.location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || s.location;
+                return (
+                  <button
+                    key={i} type="button"
+                    className={`gto-date-session${isToday ? ' is-today' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); openSessionModal(s); }}
+                  >
+                    <span className="gto-date-session-time">{timeOf(s.timestamp)}</span>
+                    <span className="gto-tint" style={{ background: tint }} />
+                    <span className="gto-date-session-theater">{short}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      {hiddenGroups > 0 && !showAll && (
+        <button
+          type="button"
+          className="gto-more"
+          onClick={(e) => { e.stopPropagation(); setShowAll(true); }}
+        >
+          +{hiddenGroups} {sortMode === 'date'
+            ? (lang === 'es' ? (hiddenGroups === 1 ? 'día más' : 'días más') : (hiddenGroups === 1 ? 'more day' : 'more days'))
+            : (lang === 'es' ? (hiddenGroups === 1 ? 'sala más' : 'salas más') : (hiddenGroups === 1 ? 'more theater' : 'more theaters'))
+          }
+        </button>
       )}
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -188,6 +278,8 @@ export default memo(function FilmGridTile({
   const todayIso = useMemo(() => formatDateInputValue(getLocalTodayStart()), []);
   const next = sorted[0];
 
+  const [sortMode, setSortMode] = useState<'theater' | 'date'>('theater');
+
   // Unique theater tints, capped to 5 dots.
   const tintDots = useMemo(() => {
     const seen = new Set<string>();
@@ -205,6 +297,22 @@ export default memo(function FilmGridTile({
   const tileId = `tile-${film.id}`;
   const expanded = openPopupId === tileId;
   const showMatch = matchScore !== undefined && !isWatched;
+
+  // Keep the overlay mounted for one extra tick with `closing=true` so the CSS
+  // fade-out can play before unmount. Mirrors FilmCalendar's closing pattern.
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [overlayClosing, setOverlayClosing] = useState(false);
+  useEffect(() => {
+    if (expanded) {
+      setOverlayVisible(true);
+      setOverlayClosing(false);
+      return;
+    }
+    if (!overlayVisible) return;
+    setOverlayClosing(true);
+    const t = setTimeout(() => { setOverlayVisible(false); setOverlayClosing(false); }, 160);
+    return () => clearTimeout(t);
+  }, [expanded]);
 
   // When a real TMDB poster is available, paint it over the palette background
   // so the palette acts as a load-time / error fallback. Gradient + info
@@ -299,9 +407,9 @@ export default memo(function FilmGridTile({
         </div>
       </div>
 
-      {expanded && (
+      {overlayVisible && (
         <div
-          className="grid-tile-overlay"
+          className={`grid-tile-overlay${overlayClosing ? ' closing' : ''}`}
           onClick={(e) => { e.stopPropagation(); setOpenPopupId(null); }}
         >
           {/* No stopPropagation on the inner wrapper — clicks anywhere on the
@@ -319,6 +427,8 @@ export default memo(function FilmGridTile({
               getFallbackUrl={getFallbackUrl}
               getCalendarUrl={getCalendarUrl}
               onOpenModal={onOpenModal}
+              sortMode={sortMode}
+              onToggleSortMode={() => setSortMode(m => m === 'date' ? 'theater' : 'date')}
             />
           </div>
         </div>
