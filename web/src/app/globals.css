@@ -142,6 +142,310 @@ header {
     background: rgba(0, 0, 0, 0.04);
 }
 
+/* ── Day strip + calendar popover ───────────────────────────────────────── */
+.day-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.day-strip {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    padding: 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.day-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 6px 0 5px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+    min-width: 0;
+}
+
+.day-pill .dow {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.day-pill .dom {
+    font-size: 1rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.day-pill .day-count {
+    font-size: 0.58rem;
+    color: var(--text-mute);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    margin-top: 1px;
+}
+
+.day-pill:hover:not(.active) {
+    background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+
+.day-pill.active {
+    background: var(--accent);
+    color: var(--accent-on);
+}
+
+.day-pill.active .dow,
+.day-pill.active .day-count {
+    color: color-mix(in srgb, var(--accent-on) 80%, transparent);
+}
+
+.day-pill.is-today:not(.active) .dow {
+    color: var(--accent);
+}
+
+.day-pill.empty {
+    opacity: 0.45;
+}
+
+.calendar-btn {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.calendar-btn:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+}
+
+/* Calendar popover */
+.calendar-popover {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 320px;
+    max-width: calc(100vw - 2rem);
+    background: var(--bg-card);
+    border: 1px solid var(--border-2);
+    border-radius: 12px;
+    padding: 14px 16px 12px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 60;
+    animation: fc-fade-in 0.15s ease-out;
+}
+
+:root[data-theme="light"] .calendar-popover {
+    box-shadow: 0 18px 48px rgba(20, 18, 14, 0.14), 0 4px 12px rgba(20, 18, 14, 0.08);
+}
+
+@keyframes fc-fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.calendar-nav-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--border-2);
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.calendar-nav-btn:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
+}
+
+.calendar-month {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1rem;
+    color: var(--text);
+    text-transform: capitalize;
+    letter-spacing: -0.01em;
+}
+
+.calendar-today-btn {
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.calendar-today-btn:hover {
+    background: var(--accent-soft);
+}
+
+.calendar-dow {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    font-size: 0.62rem;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.calendar-cell {
+    aspect-ratio: 1 / 1.05;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    padding: 2px;
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    transition: background 0.15s;
+}
+
+.calendar-cell-dom {
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.calendar-cell-count {
+    font-size: 0.55rem;
+    color: var(--text-mute);
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+}
+
+.calendar-cell:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.calendar-cell:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.calendar-cell.out-of-month {
+    color: var(--text-mute);
+}
+
+.calendar-cell.is-today:not(.selected) .calendar-cell-dom {
+    color: var(--accent);
+}
+
+.calendar-cell.selected {
+    background: var(--accent);
+    color: var(--accent-on);
+}
+
+.calendar-cell.selected .calendar-cell-count {
+    color: color-mix(in srgb, var(--accent-on) 75%, transparent);
+}
+
+.calendar-footer {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.62rem;
+    color: var(--text-mute);
+    letter-spacing: 0.02em;
+}
+
+.calendar-clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--border-2);
+}
+
+.calendar-clear-btn:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+    .day-bar {
+        max-width: 100%;
+    }
+    .day-pill .dom { font-size: 0.92rem; }
+    .day-pill .dow { font-size: 0.58rem; }
+    .calendar-btn { width: 40px; }
+    .calendar-popover {
+        right: 0;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: calc(100vw - 2rem);
+        max-width: 360px;
+    }
+}
+
 /* Theme toggle — circular icon button in the header top row */
 .theme-toggle {
     display: inline-flex;
@@ -235,14 +539,10 @@ h1 .h1-accent {
 }
 
 .search-box {
-    grid-column: 1 / 9;
+    /* Full width now that the date input moved to the DayStrip above. */
+    grid-column: 1 / 13;
     grid-row: 2;
     min-width: 0;
-}
-
-#date-filter {
-    grid-column: 9 / 13;
-    grid-row: 2;
 }
 
 .more-filters-btn {
@@ -271,12 +571,7 @@ h1 .h1-accent {
     }
 
     .search-box {
-        grid-column: 1 / 8;
-        grid-row: 2;
-    }
-
-    #date-filter {
-        grid-column: 8 / 13;
+        grid-column: 1 / 13;
         grid-row: 2;
     }
 

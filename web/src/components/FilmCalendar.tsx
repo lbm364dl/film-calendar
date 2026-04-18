@@ -15,6 +15,7 @@ import AuthButton from '@/components/AuthButton';
 import FilmCard from '@/components/FilmCard';
 import ThemeToggle from '@/components/ThemeToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
+import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
@@ -173,6 +174,28 @@ export default function FilmCalendar({
     (allFilms.length > 0 && filters.filteredFilms.length > 0 && filters.visibleFilms.length === 0)
   );
 
+  // ─ Day strip + calendar ─
+  // Count upcoming sessions per ISO date across all films (unfiltered: we show
+  // a stable "how much is happening" signal regardless of current filters).
+  const filmCountByIso = useMemo(() => {
+    const byIso = new Map<string, Set<number>>();
+    for (const film of allFilms) {
+      for (const d of film.dates) {
+        const iso = d.timestamp.slice(0, 10);
+        if (!iso) continue;
+        let set = byIso.get(iso);
+        if (!set) { set = new Set(); byIso.set(iso, set); }
+        set.add(film.id);
+      }
+    }
+    const out = new Map<string, number>();
+    byIso.forEach((set, iso) => out.set(iso, set.size));
+    return out;
+  }, [allFilms]);
+
+  const nextDays = useMemo(() => buildNextDays(filmCountByIso), [filmCountByIso]);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+
   // ─ Render ─
   return (
     <div className="container" onClick={() => { setOpenPopupId(null); }}>
@@ -194,6 +217,28 @@ export default function FilmCalendar({
         <p className="subtitle">{t(lang, 'subtitle')}</p>
       </header>
 
+      {/* Day strip (today + next 6 days) + calendar popover button */}
+      {!filmsNotReady && (
+        <DayStrip
+          lang={lang}
+          days={nextDays}
+          selectedDate={filters.selectedDate}
+          onSelect={filters.setSelectedDate}
+          onOpenCalendar={() => setCalendarOpen(v => !v)}
+        />
+      )}
+      {calendarOpen && (
+        <div style={{ position: 'relative', maxWidth: 550, margin: '0 auto' }}>
+          <CalendarPopover
+            lang={lang}
+            selectedDate={filters.selectedDate}
+            filmCountByIso={filmCountByIso}
+            onSelect={filters.setSelectedDate}
+            onClose={() => setCalendarOpen(false)}
+          />
+        </div>
+      )}
+
       {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
       {filmsNotReady ? (
         <SkeletonFilters />
@@ -202,8 +247,6 @@ export default function FilmCalendar({
           lang={lang}
           searchTerm={filters.searchTerm}
           setSearchTerm={filters.setSearchTerm}
-          selectedDate={filters.selectedDate}
-          setSelectedDate={filters.setSelectedDate}
           selectedTheaters={filters.selectedTheaters}
           onToggleTheater={filters.toggleTheater}
           onToggleTheaterGroup={filters.toggleTheaterGroup}

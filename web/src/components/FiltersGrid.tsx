@@ -1,7 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
-import { formatDateInputValue, getLocalTodayStart } from '@/lib/film-helpers';
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import TheaterMultiSelect from './TheaterMultiSelect';
@@ -10,8 +8,6 @@ interface FiltersGridProps {
   lang: LangKey;
   searchTerm: string;
   setSearchTerm: (v: string) => void;
-  selectedDate: string;
-  setSelectedDate: (v: string) => void;
   // Theater multi-select
   selectedTheaters: Set<string>;
   onToggleTheater: (value: string) => void;
@@ -35,19 +31,11 @@ interface FiltersGridProps {
 export default function FiltersGrid({
   lang,
   searchTerm, setSearchTerm,
-  selectedDate, setSelectedDate,
   selectedTheaters, onToggleTheater, onToggleTheaterGroup, onSelectAllTheaters, onSelectNoneTheaters,
   lbHasData, lbFilterActive, onOpenLbModal,
   onOpenMoreFilters, activeAdvancedFilterCount,
   zipInputRef, onZipUpload, onHelp, onClearAllFilters,
 }: FiltersGridProps) {
-  const dateInputRef = useRef<HTMLInputElement>(null);
-  const dateMin = formatDateInputValue(getLocalTodayStart());
-  const dateLocale = lang === 'es' ? 'es-ES' : 'en-GB';
-  const dateDisplayValue = selectedDate
-    ? new Date(selectedDate + 'T12:00:00').toLocaleDateString(dateLocale, { weekday: 'short', month: 'short', day: 'numeric' })
-    : '';
-
   return (
     <div className="filters-grid">
       {/* Hidden file input for ZIP */}
@@ -94,20 +82,8 @@ export default function FiltersGrid({
         )}
       </button>
 
-      {/* Row 2: Date + Letterboxd + Theater */}
-      <input
-        ref={dateInputRef}
-        type="date"
-        id="date-filter"
-        placeholder={t(lang, 'selectDate')}
-        min={dateMin}
-        value={selectedDate}
-        onChange={(e) => setSelectedDate(e.target.value)}
-        onClick={(e) => { try { (e.target as any).showPicker(); } catch { } }}
-        className={selectedDate ? 'has-value' : ''}
-        data-display-value={dateDisplayValue}
-        lang={dateLocale}
-      />
+      {/* Date selection now lives in the <DayStrip> above the filter bar;
+          the native date input has been replaced by it + the calendar popover. */}
 
       <button
         type="button"
