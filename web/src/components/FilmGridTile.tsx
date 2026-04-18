@@ -70,13 +70,15 @@ function GridTileSessionsByTheater({
     const el = containerRef.current;
     if (!el) return;
     const update = () => {
-      // el is the groups wrapper inside the overlay; its own clientHeight
-      // excludes the overlay title and padding, so we just divide by the
-      // estimated per-group height.
+      // el is the groups wrapper (flex-grown to fill the overlay). Real groups
+      // average ~80px (theater line + 3 day rows + per-group flex gap); reserve
+      // ~32px for the trailing "+N salas más" line so it never gets clipped.
       const h = el.clientHeight;
-      // Reserve ~22px for the trailing "+N salas más" line.
-      const PER_GROUP_PX = 62;
-      const reserved = 22;
+      // Conservative per-group estimate: theater line (~20) + 3 day rows (~14
+       // each) + 8px flex gap between groups ≈ 70; round up to 88 so we never
+       // overstuff. Reserve 30px for the "+N más" footer + padding-top.
+      const PER_GROUP_PX = 88;
+      const reserved = 30;
       const fit = Math.max(1, Math.floor((h - reserved) / PER_GROUP_PX));
       setMaxGroups(fit);
     };

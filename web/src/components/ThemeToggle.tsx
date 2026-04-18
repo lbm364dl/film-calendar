@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -12,6 +12,40 @@ function applyTheme(theme: Theme) {
   root.dataset.themePref = theme;
 }
 
+// ── useSyncExternalStore plumbing ────────────────────────────────────────
+const listeners = new Set<() => void>();
+
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  const onStorage = (e: StorageEvent) => { if (e.key === STORAGE_KEY) cb(); };
+  window.addEventListener('storage', onStorage);
+  return () => {
+    listeners.delete(cb);
+    window.removeEventListener('storage', onStorage);
+  };
+}
+
+function notifyAll() { listeners.forEach(fn => fn()); }
+
+function getClientSnapshot(): Theme {
+  // Prefer the value the bootstrap script wrote to the <html> attribute —
+  // it's already resolved from localStorage at this point, so reading it
+  // avoids duplicating the migration logic.
+  try {
+    const attr = document.documentElement.dataset.themePref;
+    if (attr === 'light' || attr === 'dark') return attr;
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'light' || stored === 'dark') return stored;
+  } catch { /* ignore */ }
+  return 'dark';
+}
+
+function getServerSnapshot(): Theme {
+  // SSR always renders as dark (the DC default). Client takes over at
+  // hydration via useSyncExternalStore and React handles the swap quietly.
+  return 'dark';
+}
+
 interface ThemeToggleProps {
   // `grouped` drops the pill border/radius so a parent wrapper (e.g. .prefs-pill)
   // can draw one unified border around the theme + language toggles.
@@ -19,45 +53,14 @@ interface ThemeToggleProps {
 }
 
 export default function ThemeToggle({ variant = 'standalone' }: ThemeToggleProps = {}) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Read whatever the bootstrap script resolved (dark, light, or — legacy —
-    // "system", in which case we use whatever's actually on the <html> element).
-    const stored = localStorage.getItem(STORAGE_KEY);
-    let initial: Theme;
-    if (stored === 'light' || stored === 'dark') {
-      initial = stored;
-    } else {
-      const current = document.documentElement.dataset.theme;
-      initial = current === 'light' ? 'light' : 'dark';
-      localStorage.setItem(STORAGE_KEY, initial);
-    }
-    setTheme(initial);
-    setMounted(true);
-  }, []);
+  const theme = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   const toggle = useCallback(() => {
-    setTheme(prev => {
-      const next: Theme = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem(STORAGE_KEY, next);
-      applyTheme(next);
-      return next;
-    });
-  }, []);
-
-  if (!mounted) {
-    // Render a stable placeholder on the server / during first client render so
-    // the bootstrap script can do its job without layout shift.
-    return (
-      <button
-        className={variant === 'grouped' ? 'theme-toggle theme-toggle-grouped' : 'theme-toggle'}
-        aria-label="Theme"
-        style={{ visibility: 'hidden' }}
-      />
-    );
-  }
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* ignore */ }
+    applyTheme(next);
+    notifyAll();
+  }, [theme]);
 
   const isLight = theme === 'light';
   const title = isLight ? 'Tema claro — cambiar a oscuro' : 'Tema oscuro — cambiar a claro';
@@ -69,6 +72,7 @@ export default function ThemeToggle({ variant = 'standalone' }: ThemeToggleProps
       onClick={toggle}
       title={title}
       aria-label={title}
+      suppressHydrationWarning
     >
       {isLight ? (
         // Sun

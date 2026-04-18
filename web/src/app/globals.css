@@ -833,7 +833,7 @@ h1 .h1-accent {
 
 /* ─────────────────────────────────────────────────────────────────────
    Mid-desktop 2-row layout (769–1199px)
-   Row 1: search (cols 1-6) + theater (cols 6-10) + Más filtros (cols 10-13)
+   Row 1: search (cols 1-7) + theater (cols 7-11) + Más filtros (cols 11-13)
    Row 2: day-strip (cols 1-11) + calendar icon (cols 11-12) + clear (cols 12-13)
    .day-bar uses display:contents so day-strip + calendar-btn participate
    directly in the 12-col grid.
@@ -843,6 +843,10 @@ h1 .h1-accent {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         gap: 8px;
+        /* Narrower + centered — filling the whole container looked stretched. */
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .filter-bar-search {
         grid-column: 1 / 7;    /* 6/12 */
@@ -2962,8 +2966,12 @@ a.film-rec-tag:hover {
 .gto-more {
     color: var(--accent);
     font-weight: 600;
-    margin-top: 4px;
     font-size: 0.66rem;
+    /* Pin to the bottom of the flex container so it's never clipped even if
+       the groups above overflow their allotted space. */
+    margin-top: auto;
+    padding-top: 8px;
+    flex-shrink: 0;
 }
 
 /* ── View toggle (Lista / Grid) ────────────────────────────────────────── */

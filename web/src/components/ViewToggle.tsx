@@ -1,22 +1,51 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 export type ViewMode = 'list' | 'grid';
 const STORAGE_KEY = 'mfc.view';
 
-export function useViewMode(): [ViewMode, (v: ViewMode) => void] {
-  const [mode, setMode] = useState<ViewMode>('list');
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'list' || stored === 'grid') setMode(stored);
-  }, []);
-
-  const set = (next: ViewMode) => {
-    setMode(next);
-    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* ignore */ }
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  // Cross-tab updates via the native storage event.
+  const onStorage = (e: StorageEvent) => { if (e.key === STORAGE_KEY) cb(); };
+  window.addEventListener('storage', onStorage);
+  return () => {
+    listeners.delete(cb);
+    window.removeEventListener('storage', onStorage);
   };
+}
+
+function notifyAll() { listeners.forEach(fn => fn()); }
+
+function getClientSnapshot(): ViewMode {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === 'grid' ? 'grid' : 'list';
+  } catch {
+    return 'list';
+  }
+}
+
+function getServerSnapshot(): ViewMode {
+  return 'list';
+}
+
+/**
+ * useSyncExternalStore yields a hydration-safe way to read a client-only
+ * preference without the list-then-grid flash on first paint. React uses the
+ * server snapshot during SSR and the client snapshot as soon as hydration is
+ * done, without warning about the intentional mismatch.
+ */
+export function useViewMode(): [ViewMode, (v: ViewMode) => void] {
+  const mode = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+
+  const set = useCallback((next: ViewMode) => {
+    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* ignore */ }
+    notifyAll();
+  }, []);
 
   return [mode, set];
 }
@@ -41,6 +70,7 @@ export default function ViewToggle({ mode, onChange, disabled, lang = 'es' }: Vi
         className={`view-toggle-btn${mode === 'list' ? ' active' : ''}`}
         onClick={() => onChange('list')}
         title={listLabel}
+        suppressHydrationWarning
       >
         <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
           <rect x="1" y="2" width="10" height="1.4" fill="currentColor" />
@@ -57,6 +87,7 @@ export default function ViewToggle({ mode, onChange, disabled, lang = 'es' }: Vi
         className={`view-toggle-btn${mode === 'grid' ? ' active' : ''}`}
         onClick={() => onChange('grid')}
         title={gridLabel}
+        suppressHydrationWarning
       >
         <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
           <rect x="1" y="1" width="4" height="4" fill="currentColor" />
