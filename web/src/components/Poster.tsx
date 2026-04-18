@@ -26,7 +26,7 @@ const PALETTES: Array<{ a: string; b: string; mark: string }> = [
   { a: '#4a7f5c', b: '#f0eadd', mark: '⦿' },
 ];
 
-function paletteFor(id: number | string, title: string) {
+export function paletteFor(id: number | string, title: string) {
   const hash = (String(id) + title).split('').reduce((h, c) => (h * 31 + c.charCodeAt(0)) | 0, 0);
   return PALETTES[Math.abs(hash) % PALETTES.length];
 }

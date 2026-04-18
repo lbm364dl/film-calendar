@@ -13,7 +13,9 @@ import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
 import FilmCard from '@/components/FilmCard';
+import FilmGridTile from '@/components/FilmGridTile';
 import ThemeToggle from '@/components/ThemeToggle';
+import ViewToggle, { useViewMode } from '@/components/ViewToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
 import ActiveFilterChips from '@/components/ActiveFilterChips';
@@ -196,6 +198,7 @@ export default function FilmCalendar({
 
   const nextDays = useMemo(() => buildNextDays(filmCountByIso), [filmCountByIso]);
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const [viewMode, setViewMode] = useViewMode();
 
   // ─ Render ─
   return (
@@ -295,12 +298,14 @@ export default function FilmCalendar({
         />
       )}
 
-      {/* Stats + Sort toggle */}
+      {/* Stats + View toggle + Sort toggle */}
       <div className="stats">
         <div className="stats-row">
           <span>
             {filmsNotReady ? t(lang, 'loading') : t(lang, 'filmCount', filters.filteredFilms.length)}
           </span>
+          <div className="stats-right">
+          <ViewToggle mode={viewMode} onChange={setViewMode} disabled={filmsNotReady} lang={lang} />
           <button
             className={`sort-toggle${filters.sortBy === 'affinity' ? '' : ' sort-neutral'}`}
             disabled={filmsNotReady}
@@ -322,6 +327,7 @@ export default function FilmCalendar({
                 : t(lang, 'sortByMatch')}
             </span>
           </button>
+          </div>
         </div>
         <span className="calendar-hint">{t(lang, 'calendarHint')}</span>
       </div>
@@ -337,24 +343,41 @@ export default function FilmCalendar({
         <>
           <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
             {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
-            <div className="films-grid" style={{ display: 'grid' }}>
+            <div className={`films-grid${viewMode === 'grid' ? ' is-grid' : ''}`} style={{ display: 'grid' }}>
               {filters.visibleFilms.map(film => (
-                <FilmCard
-                  key={film.id}
-                  film={film}
-                  lang={lang}
-                  dateLocale={dateLocale}
-                  openPopupId={openPopupId}
-                  setOpenPopupId={setOpenPopupId}
-                  matchScore={lb.matchScores[film.id]}
-                  breakdown={lb.breakdowns[film.id]}
-                  isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
-                  formatDate={formatDate}
-                  getFilmTitle={getFilmTitle}
-                  getCalendarUrl={getCalendarUrl}
-                  getFallbackUrl={getTheaterFallbackUrl}
-                  onOpenModal={openModal}
-                />
+                viewMode === 'grid' ? (
+                  <FilmGridTile
+                    key={film.id}
+                    film={film}
+                    lang={lang}
+                    dateLocale={dateLocale}
+                    openPopupId={openPopupId}
+                    setOpenPopupId={setOpenPopupId}
+                    matchScore={lb.matchScores[film.id]}
+                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
+                    getFilmTitle={getFilmTitle}
+                    getCalendarUrl={getCalendarUrl}
+                    getFallbackUrl={getTheaterFallbackUrl}
+                    onOpenModal={openModal}
+                  />
+                ) : (
+                  <FilmCard
+                    key={film.id}
+                    film={film}
+                    lang={lang}
+                    dateLocale={dateLocale}
+                    openPopupId={openPopupId}
+                    setOpenPopupId={setOpenPopupId}
+                    matchScore={lb.matchScores[film.id]}
+                    breakdown={lb.breakdowns[film.id]}
+                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
+                    formatDate={formatDate}
+                    getFilmTitle={getFilmTitle}
+                    getCalendarUrl={getCalendarUrl}
+                    getFallbackUrl={getTheaterFallbackUrl}
+                    onOpenModal={openModal}
+                  />
+                )
               ))}
             </div>
           </div>

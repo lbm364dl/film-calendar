@@ -1175,6 +1175,14 @@ h1 .h1-accent {
     justify-content: space-between;
     align-items: baseline;
     gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.stats-right {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Left-hand title in the stats row ("N películas" / "Cargando películas…") */
@@ -2063,6 +2071,283 @@ a.film-rec-tag:hover {
 }
 
 /* ── Filter Modal ────────────────────────────────────────────────────────────── */
+
+/* ── Direction C — Grid tile (V4) ────────────────────────────────────── */
+.films-grid.is-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .films-grid.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+    .films-grid.is-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .films-grid.is-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 0.6rem;
+        row-gap: 0.6rem;
+    }
+}
+
+.grid-tile {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border-top: none;
+    padding: 0;
+    background-clip: padding-box;
+}
+
+:root[data-theme="light"] .grid-tile {
+    box-shadow: 0 2px 6px rgba(20, 18, 14, 0.12);
+}
+
+.grid-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Kill the list-card separator rule that would otherwise add a top border. */
+.films-grid.is-grid > .grid-tile {
+    border-top: 0 !important;
+}
+
+.grid-tile-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(48px, 18cqw, 110px);
+    line-height: 1;
+    font-weight: 400;
+    pointer-events: none;
+    container-type: inline-size;
+}
+
+.grid-tile-gradient {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.grid-tile-match {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    padding: 1px 6px !important;
+    font-size: 0.62rem !important;
+    background: rgba(20, 18, 14, 0.6) !important;
+}
+
+.grid-tile-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 10px 10px;
+    z-index: 1;
+}
+
+.grid-tile-title {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.grid-tile-meta {
+    font-size: 0.65rem;
+    opacity: 0.75;
+    margin-bottom: 7px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grid-tile-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 4px 7px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.grid-tile-tints {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.grid-tile-tint {
+    width: 5px;
+    height: 5px;
+    border-radius: 99px;
+    outline: 1px solid rgba(255, 255, 255, 0.4);
+    outline-offset: -0.5px;
+}
+
+.grid-tile-count {
+    font-weight: 700;
+}
+
+.grid-tile-next {
+    opacity: 0.9;
+}
+
+/* Expanded overlay — tap a tile to see first-N sessions in a dark pop. */
+.grid-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 8, 5, 0.92);
+    color: #f0ece1;
+    padding: 12px;
+    overflow: auto;
+    z-index: 3;
+    animation: fc-fade-in 0.15s ease-out;
+}
+
+.grid-tile-overlay-title {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.grid-tile-overlay-sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.68rem;
+}
+
+.grid-tile-overlay-session {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #f0ece1;
+    font-family: inherit;
+    font-size: 0.66rem;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.grid-tile-overlay-session:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.grid-tile-overlay-session.is-today {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    color: #ffd4b8;
+}
+
+.grid-tile-overlay-session .go-tint {
+    width: 5px;
+    height: 5px;
+    border-radius: 99px;
+    flex-shrink: 0;
+}
+
+.grid-tile-overlay-session .go-date {
+    min-width: 40px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.grid-tile-overlay-session .go-time {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    margin-right: 2px;
+}
+
+.grid-tile-overlay-session .go-theater {
+    opacity: 0.78;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.grid-tile-overlay-more {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.66rem;
+    margin-top: 4px;
+}
+
+/* ── View toggle (Lista / Grid) ────────────────────────────────────────── */
+.view-toggle {
+    display: inline-flex;
+    padding: 3px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    gap: 1px;
+}
+
+.view-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+}
+
+.view-toggle-btn:hover {
+    color: var(--text);
+}
+
+.view-toggle-btn.active {
+    background: var(--text);
+    color: var(--bg);
+}
 
 /* ── Active filter chips row ─────────────────────────────────────────────── */
 .active-chips {
