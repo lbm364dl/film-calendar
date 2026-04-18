@@ -887,27 +887,31 @@ h1 .h1-accent {
 
 @media (max-width: 768px) {
     /* ─────────────────────────────────────────────────────────────────────
-       Mobile filter bar layout (EDIT PROPORTIONS HERE)
-       12-column grid for fine-grained control.
+       Mobile filter bar layout (3 rows, 12-col grid).
          Row 1: theater (cols 1-9 → 8/12) + Más filtros (cols 9-13 → 4/12)
          Row 2: search  (cols 1-10 → 9/12) + calendar   (cols 10-13 → 3/12)
          Row 3: day-strip (full width)
-       Change the grid-column numbers below to tweak the proportions.
-       .day-bar uses display:contents so its children (day-strip, calendar-btn)
-       participate directly in the outer grid. */
+       .day-bar uses display:contents so its children participate directly. */
     .filter-bar {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         gap: 8px;
         margin-bottom: 0.5rem;
+        /* Cap + center at tablet widths so the bar doesn't feel stretched;
+           below ~560px wide the container hits its own width and fills. */
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .filter-bar > .theater-multiselect {
-        grid-column: 1 / 9;   /* 8/12 */
+        grid-column: 1 / 9;
         grid-row: 1;
         width: auto;
+        max-width: none;
+        flex: none;
     }
     .filter-bar > .more-filters-btn {
-        grid-column: 9 / 13;  /* 4/12 */
+        grid-column: 9 / 13;
         grid-row: 1;
         width: auto;
         height: 52px;
@@ -916,19 +920,15 @@ h1 .h1-accent {
         font-size: 0.8rem;
         gap: 6px;
     }
-    /* On mobile we have room in the 4/12 slot — show the "Más filtros" label
-       alongside the icon. (Desktop stays icon-only.) */
     .filter-bar > .more-filters-btn > span:not(.filter-badge) {
         display: inline;
     }
-    /* Theater trigger inherits min-height 56; tighten to 52 on mobile to match
-       the grid row cadence. */
     .filter-bar .theater-multiselect-trigger {
         min-height: 52px;
         height: 52px;
     }
     .filter-bar-search {
-        grid-column: 1 / 10;  /* 9/12 */
+        grid-column: 1 / 10;
         grid-row: 2;
         flex: none;
         height: 52px;
@@ -938,18 +938,18 @@ h1 .h1-accent {
         display: contents;
     }
     .filter-bar > .day-bar .calendar-btn {
-        grid-column: 10 / 13; /* 3/12 */
+        grid-column: 10 / 13;
         grid-row: 2;
         width: auto;
         height: 52px;
     }
     .filter-bar > .day-bar .day-strip {
-        grid-column: 1 / 13;  /* full width */
+        grid-column: 1 / 13;
         grid-row: 3;
         height: 56px;
     }
     .filter-bar > .clear-grid-btn {
-        display: none;  /* "limpiar todo" lives in the active-chips row */
+        display: none;  /* "limpiar todo" lives in the active-chips row on mobile */
     }
 }
 
@@ -1814,17 +1814,64 @@ h1 .h1-accent {
     background: transparent;
     border-radius: 0;
     display: grid;
-    grid-template-columns: 74px 1fr;
+    /* 3 columns: poster · body · metrics rail. Metrics rail is auto-sized
+       so it shrinks to its content; body takes the slack. */
+    grid-template-columns: 74px 1fr auto;
     gap: 1rem;
     cursor: default;
     transition: background 0.15s ease;
 }
 
+.film-poster-link {
+    display: block;
+    line-height: 0;
+    border-radius: 3px;
+    transition: opacity 0.15s;
+}
+.film-poster-link:hover { opacity: 0.88; }
+
+.film-title-link {
+    color: inherit;
+    text-decoration: none;
+}
+.film-title-link:hover { text-decoration: underline; }
+
+.film-metrics-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    padding-top: 2px;
+    min-width: 0;
+}
+
+.film-metrics-rail .rating,
+.film-metrics-rail .viewers {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.film-metrics-rail .watched-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+}
+
 @media (max-width: 768px) {
     .film-card {
         padding: 0.95rem 0 1rem;
-        grid-template-columns: 74px 1fr;
+        grid-template-columns: 74px 1fr auto;
         gap: 0.8rem;
+    }
+    .film-metrics-rail {
+        font-size: 0.72rem;
+        gap: 2px;
     }
     .film-title {
         font-size: 1.08rem;
@@ -2217,13 +2264,37 @@ a.film-rec-tag:hover {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
+    /* Cap height so a film with many theaters doesn't hog the viewport. Rows
+       scroll vertically; the header stays pinned via position:sticky below. */
+    max-height: 360px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    /* Animate opacity + max-height so the panel can stay mounted in the DOM
+       (instant open) while still reading as a fade+expand transition. */
+    transition: opacity 0.16s ease-out, max-height 0.2s ease-out, margin-top 0.2s ease-out;
+}
+
+.sessions-by-theater.is-closed {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
     overflow: hidden;
+    pointer-events: none;
+    border-width: 0;
+}
+.sessions-by-theater::-webkit-scrollbar {
+    width: 6px;
+}
+.sessions-by-theater::-webkit-scrollbar-thumb {
+    background: var(--border-2);
+    border-radius: 4px;
 }
 
 .sbt-head {
     display: flex;
     justify-content: space-between;
-    padding: 7px 12px;
+    align-items: center;
+    padding: 5px 12px;
     background: var(--bg-hover);
     border-bottom: 1px solid var(--border);
     font-size: 0.62rem;
@@ -2231,6 +2302,96 @@ a.film-rec-tag:hover {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.sbt-sort-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    border-radius: 999px;
+    color: var(--accent);
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.sbt-sort-toggle:hover {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    border-color: var(--accent);
+}
+
+.sbt-sort-toggle svg {
+    transition: transform 0.2s ease-out;
+}
+
+.sbt-sort-toggle:hover svg {
+    transform: translateY(1px);
+}
+
+.sbt-date-cell {
+    color: var(--text);
+}
+
+.sbt-date-cell.is-today .sbt-theater-name {
+    color: var(--accent);
+}
+
+.sbt-date-session {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-hover);
+    border: none;
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.73rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin: 0 6px 4px 0;
+    min-width: 0;
+}
+
+.sbt-date-session:hover {
+    background: color-mix(in srgb, var(--bg-hover) 50%, var(--text) 10%);
+}
+
+.sbt-date-session.is-today {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.sbt-date-session .sbt-time {
+    padding: 0;
+    background: transparent;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.73rem;
+}
+
+.sbt-date-session-theater {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.sbt-date-session.is-today .sbt-date-session-theater {
+    color: color-mix(in srgb, var(--accent) 75%, var(--text) 25%);
 }
 
 .sbt-row {
@@ -2263,9 +2424,12 @@ a.film-rec-tag:hover {
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--text);
+    line-height: 1.2;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-word;
 }
 
 .sbt-days {
@@ -2275,6 +2439,12 @@ a.film-rec-tag:hover {
     min-width: 0;
 }
 
+.sbt-days-flat {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+}
+
 .sbt-day {
     display: flex;
     gap: 6px;
@@ -2282,14 +2452,15 @@ a.film-rec-tag:hover {
 }
 
 .sbt-day-label {
-    width: 48px;
+    width: 68px;
     flex-shrink: 0;
     font-size: 0.62rem;
     font-weight: 600;
     color: var(--text-dim);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
 .sbt-day.is-today .sbt-day-label {
@@ -2789,6 +2960,15 @@ a.film-rec-tag:hover {
     flex-direction: column;
 }
 
+.grid-tile-overlay.closing {
+    animation: fc-fade-out 0.16s ease-in forwards;
+}
+
+@keyframes fc-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
 .grid-tile-overlay-inner {
     flex: 1 1 auto;
     min-height: 0;
@@ -2871,6 +3051,85 @@ a.film-rec-tag:hover {
     margin-top: 4px;
 }
 
+.gto-sort-row {
+    display: flex;
+    justify-content: flex-end;
+    margin: -2px 0 6px;
+    flex-shrink: 0;
+}
+
+.gto-sort-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    border-radius: 999px;
+    color: var(--accent);
+    padding: 2px 7px;
+    font-family: inherit;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.gto-sort-toggle:hover {
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    border-color: var(--accent);
+}
+
+.gto-theater.is-today .gto-theater-name {
+    color: var(--accent);
+}
+
+.gto-date-sessions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 5px;
+    margin-left: 11px;
+}
+
+.gto-date-session {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 3px;
+    padding: 1px 6px;
+    color: #f0ece1;
+    font-family: inherit;
+    font-size: 0.6rem;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.gto-date-session:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.gto-date-session.is-today {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    color: #ffd4b8;
+}
+
+.gto-date-session-time {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.gto-date-session-theater {
+    opacity: 0.82;
+    font-size: 0.58rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    max-width: 96px;
+}
+
 /* Grouped sessions inside the grid-tile overlay (FExpandedSessionsDark).
    Flex-grows to fill the overlay so its clientHeight is a stable target for
    the ResizeObserver that decides how many groups fit; overflow is hidden
@@ -2883,6 +3142,20 @@ a.film-rec-tag:hover {
     flex: 1 1 auto;
     min-height: 0;
     overflow: hidden;
+}
+
+/* When the user clicked "+N salas más", unlock vertical scrolling so every
+   theater becomes reachable. Scrollbar stays thin to match the rest. */
+.grid-tile-overlay-groups.is-expanded {
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+.grid-tile-overlay-groups.is-expanded::-webkit-scrollbar {
+    width: 4px;
+}
+.grid-tile-overlay-groups.is-expanded::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
 }
 
 .gto-group {
@@ -2970,8 +3243,17 @@ a.film-rec-tag:hover {
     /* Pin to the bottom of the flex container so it's never clipped even if
        the groups above overflow their allotted space. */
     margin-top: auto;
-    padding-top: 8px;
+    padding: 8px 0 0;
     flex-shrink: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+}
+
+.gto-more:hover {
+    text-decoration: underline;
 }
 
 /* ── View toggle (Lista / Grid) ────────────────────────────────────────── */
@@ -3178,6 +3460,10 @@ a.film-rec-tag:hover {
         animation: fc-sheet-slide-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
         overflow-x: hidden;  /* belt-and-braces: kill any accidental horizontal scroll */
     }
+    /* Override the desktop slide-out with the bottom-sheet slide-down. */
+    .filter-modal.closing .filter-modal-content {
+        animation: fc-sheet-slide-out 0.2s ease-in forwards;
+    }
     /* grabber handle */
     .filter-modal-content::before {
         content: '';
@@ -3189,18 +3475,24 @@ a.film-rec-tag:hover {
         margin: 10px auto -4px;
         flex-shrink: 0;
     }
-    .filter-modal-header {
-        padding: 10px 14px 10px;
+    /* Bump specificity (.filter-modal .x) so these beat the base
+       .filter-modal-body / -header / -footer-bar rules which happen to appear
+       later in the stylesheet and would otherwise win. */
+    .filter-modal .filter-modal-header {
+        padding: 10px 12px 10px;
     }
-    .filter-modal-header h3 {
+    .filter-modal .filter-modal-header h3 {
         font-size: 1.25rem;
     }
-    .filter-modal-body {
-        padding: 12px 14px 16px;
+    .filter-modal .filter-modal-body {
+        /* Right padding 0 so the scrollbar hugs the modal edge; content gets
+           its breathing room from left + right padding inside the scrollable
+           area (scrollbar stays flush, content doesn't touch it). */
+        padding: 12px 8px 16px 12px;
         overflow-x: hidden;
     }
-    .filter-modal-footer-bar {
-        padding: 10px 14px;
+    .filter-modal .filter-modal-footer-bar {
+        padding: 10px 12px;
     }
     /* Stack the 3 multi-select dropdowns instead of trying to fit them side
        by side — they were causing horizontal overflow below 420px. */
@@ -3219,6 +3511,21 @@ a.film-rec-tag:hover {
 @keyframes fc-sheet-slide-in {
     from { transform: translateY(18%); opacity: 0.4; }
     to   { transform: translateY(0);    opacity: 1;   }
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(8px) scale(0.98); opacity: 0; }
+    to   { transform: translateY(0) scale(1);     opacity: 1; }
+}
+
+@keyframes modalSlideOut {
+    from { transform: translateY(0) scale(1);     opacity: 1; }
+    to   { transform: translateY(8px) scale(0.98); opacity: 0; }
+}
+
+@keyframes modalFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
 
 @keyframes fc-sheet-slide-out {
@@ -3382,15 +3689,15 @@ a.film-rec-tag:hover {
 }
 
 .chip-group-decades {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .chip-group-runtime {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .chip-group-days {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .chip {
@@ -4189,12 +4496,6 @@ a.film-rec-tag:hover {
     .filter-modal .filter-dd-options {
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-
-    .filter-modal-content {
-        width: 95vw;
-        max-height: 90vh;
-        padding: 1rem;
     }
 
     .chip-group-runtime {
