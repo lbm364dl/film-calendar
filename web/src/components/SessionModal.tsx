@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { translateGenre, translateSpecialType, shortenCountry } from '@/lib/translations';
-import type { SessionModalData, DateEntry, Film } from '@/lib/types';
+import type { SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
@@ -58,17 +58,6 @@ function endTimeOf(start: string, runtimeMinutes: number | null): string | null 
   return `${String(eh).padStart(2, '0')}:${String(em).padStart(2, '0')}`;
 }
 
-/** Short date for the "other sessions" chips: "hoy" / "mañ" / "dom 19". */
-function shortDateChip(iso: string, lang: LangKey): string {
-  const todayIso = formatDateInputValue(getLocalTodayStart());
-  if (iso === todayIso) return lang === 'es' ? 'hoy' : 'today';
-  const [y, m, d] = iso.split('-').map(Number);
-  const dt = new Date(y, m - 1, d);
-  const dow = dt.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { weekday: 'short' })
-    .replace(/\.$/, '');
-  return `${dow} ${d}`;
-}
-
 export default function SessionModal({ modal, modalClosing, lang, onClose }: SessionModalProps) {
   const { film, session } = modal;
   const titleText = lang === 'en' && film.titleEn ? film.titleEn : film.title;
@@ -90,22 +79,6 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
     film.genres.slice(0, 3).map(g => translateGenre(g, lang)).join(' · '),
   [film.genres, lang]);
 
-  // Other sessions of this film — excluding the current one, sorted, capped to 6.
-  const otherSessions = useMemo(() => {
-    return film.dates
-      .filter(d => !(
-        d.timestamp === session.timestamp
-        && d.location === session.location
-      ))
-      .sort((a, b) =>
-        new Date(a.timestamp.replace(' ', 'T')).getTime()
-        - new Date(b.timestamp.replace(' ', 'T')).getTime()
-      )
-      .slice(0, 6);
-  }, [film.dates, session.timestamp, session.location]);
-
-  const todayIso = formatDateInputValue(getLocalTodayStart());
-  const isToday = iso === todayIso;
   const matchScore = modal.matchScore;
 
   return (
@@ -162,7 +135,7 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
           <div className="session-modal-row">
             <div className="session-modal-key">{lang === 'es' ? 'Cuándo' : 'When'}</div>
             <div className="session-modal-val">
-              <span className={`session-modal-when-date${isToday ? ' is-today' : ''}`}>
+              <span className="session-modal-when-date">
                 {longDateLabel(iso, lang)}
               </span>
               <span className="session-modal-when-time">
@@ -244,56 +217,11 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Google Calendar"
-              >Google</a>
+              >Google Calendar</a>
             </div>
           </div>
         </div>
 
-        {/* Other sessions footer */}
-        {otherSessions.length > 0 && (
-          <OtherSessionsStrip
-            film={film}
-            sessions={otherSessions}
-            lang={lang}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-function OtherSessionsStrip({
-  film, sessions, lang,
-}: {
-  film: Film;
-  sessions: DateEntry[];
-  lang: LangKey;
-}) {
-  const todayIso = formatDateInputValue(getLocalTodayStart());
-  void film;
-  return (
-    <div className="session-modal-other">
-      <div className="session-modal-other-label">
-        {lang === 'es' ? 'Otros pases de esta película' : 'Other sessions of this film'}
-      </div>
-      <div className="session-modal-other-list">
-        {sessions.map((s, i) => {
-          const iso = s.timestamp.slice(0, 10);
-          const isToday = iso === todayIso;
-          const tint = theaterTint(s.location);
-          const theater = shortTheaterName(s.location) || s.location;
-          return (
-            <span
-              key={i}
-              className={`session-modal-other-chip${isToday ? ' is-today' : ''}`}
-            >
-              <span className="som-date">{shortDateChip(iso, lang)}</span>
-              <span className="som-time">{timeOf(s.timestamp)}</span>
-              <span className="som-tint" style={{ background: tint }} />
-              <span className="som-theater">{theater}</span>
-            </span>
-          );
-        })}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ interface FilterOptions {
   showWatched: boolean;
   matchScores: Record<number, number>;
   initialSortBy?: 'rating' | 'viewers' | 'affinity';
+  columnsPerRow?: number;
 }
 
 /** Handle chip range selection: if 1 chip is selected and user clicks a different one, select the range. */
@@ -72,6 +73,7 @@ export function useFilmFilters(options: FilterOptions) {
     watchlistUrls, watchedUrls, watchlistActive, watchedActive, showWatched,
     matchScores,
     initialSortBy = 'rating',
+    columnsPerRow = 3,
   } = options;
 
   // ── Basic filters ──────────────────────────────────────────────────────
@@ -335,12 +337,22 @@ export function useFilmFilters(options: FilterOptions) {
 
   // ── Pagination ─────────────────────────────────────────────────────────
 
-  const columnsPerRow = 3;
-  const pageSize = columnsPerRow * ROWS_PER_PAGE;
+  const pageSize = Math.max(1, columnsPerRow) * ROWS_PER_PAGE;
 
+  // Reset to first page when the result set changes.
   useEffect(() => {
     setDisplayedCount(pageSize);
-  }, [sortedFilms, pageSize]);
+
+  }, [sortedFilms]);
+
+  // When the column count changes (viewport resize), snap the current count
+  // up to the next full row so the grid never ends on a partial row.
+  useEffect(() => {
+    setDisplayedCount(prev => {
+      if (prev <= 0) return pageSize;
+      return Math.max(pageSize, Math.ceil(prev / pageSize) * pageSize);
+    });
+  }, [pageSize]);
 
   const deferredSorted = useDeferredValue(sortedFilms);
   const isFiltering = sortedFilms !== deferredSorted;

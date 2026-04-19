@@ -216,11 +216,6 @@ export default function MoreFiltersModal({
           <div className="filter-footer-right">
             <button
               type="button"
-              className="filter-cancel-btn"
-              onClick={onClose}
-            >{lang === 'es' ? 'Cancelar' : 'Cancel'}</button>
-            <button
-              type="button"
               className="filter-apply-btn"
               onClick={onClose}
             >{lang === 'es' ? `Ver ${resultsCount} resultados` : `Show ${resultsCount} results`}</button>

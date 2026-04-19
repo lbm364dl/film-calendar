@@ -2,8 +2,8 @@ import { SkeletonCardGrid, SkeletonFilters, SKELETON_PULSE_STYLE as PULSE } from
 
 /**
  * Instant skeleton shown while page.tsx's server work completes.
- * Mirrors the real site layout (same container, header, filters-grid, films-grid,
- * film-card) so the swap to real content is visually seamless — no layout shift.
+ * Mirrors the real site layout (same container, header, filters-grid, films-grid)
+ * so the swap to real content is visually seamless — no layout shift.
  */
 export default function Loading() {
   return (

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { useGridColumns } from '@/hooks/useGridColumns';
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import type { Film, DateEntry } from '@/lib/types';
@@ -12,10 +13,8 @@ import { useLetterboxd } from '@/hooks/useLetterboxd';
 import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '@/hooks/useModal';
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
-import FilmCard from '@/components/FilmCard';
 import FilmGridTile from '@/components/FilmGridTile';
 import ThemeToggle from '@/components/ThemeToggle';
-import ViewToggle, { useViewMode } from '@/components/ViewToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
 import ActiveFilterChips from '@/components/ActiveFilterChips';
@@ -73,6 +72,10 @@ export default function FilmCalendar({
   // ─ Filters ─
   const [openPopupId, setOpenPopupId] = useState<string | null>(null);
 
+  // Column count is read from the rendered grid so pagination always stops on
+  // a full row regardless of viewport width.
+  const [columnsPerRow, gridRef] = useGridColumns(3);
+
   const filters = useFilmFilters({
     allFilms,
     watchlistUrls: lb.watchlistUrls, watchedUrls: lb.watchedUrls,
@@ -80,6 +83,7 @@ export default function FilmCalendar({
     showWatched: lb.showWatched,
     matchScores: lb.matchScores,
     initialSortBy,
+    columnsPerRow,
   });
 
   // ─ URL sync ─
@@ -153,14 +157,6 @@ export default function FilmCalendar({
     return film.title;
   }, [lang]);
 
-  const formatDate = useCallback((dateStr: string) => {
-    const date = new Date(dateStr.replace(' ', 'T'));
-    if (isNaN(date.getTime())) return dateStr;
-    return date.toLocaleDateString(dateLocale, {
-      weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
-  }, [dateLocale]);
-
   const getCalendarUrl = useCallback((film: Film, dateObj: DateEntry) => {
     return generateCalendarUrl(getFilmTitle(film), film, dateObj);
   }, [getFilmTitle]);
@@ -208,8 +204,6 @@ export default function FilmCalendar({
       setCalendarClosing(false);
     }, 180);
   }, []);
-  const [viewMode, setViewMode] = useViewMode();
-
   // ─ Dynamic header subtitle: "N películas · N cines · sábado 18 abril, 2026" ─
   const headerStats = useMemo(() => {
     const filmCount = allFilms.length;
@@ -379,7 +373,6 @@ export default function FilmCalendar({
                 })()}
           </span>
           <div className="stats-right">
-          <ViewToggle mode={viewMode} onChange={setViewMode} disabled={filmsNotReady} lang={lang} />
           <button
             className={`sort-toggle${filters.sortBy === 'affinity' ? '' : ' sort-neutral'}`}
             disabled={filmsNotReady}
@@ -417,41 +410,23 @@ export default function FilmCalendar({
         <>
           <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
             {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
-            <div className={`films-grid${viewMode === 'grid' ? ' is-grid' : ''}`} style={{ display: 'grid' }}>
+            <div ref={gridRef} className="films-grid is-grid" style={{ display: 'grid' }}>
               {filters.visibleFilms.map(film => (
-                viewMode === 'grid' ? (
-                  <FilmGridTile
-                    key={film.id}
-                    film={film}
-                    lang={lang}
-                    dateLocale={dateLocale}
-                    openPopupId={openPopupId}
-                    setOpenPopupId={setOpenPopupId}
-                    matchScore={lb.matchScores[film.id]}
-                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
-                    getFilmTitle={getFilmTitle}
-                    getCalendarUrl={getCalendarUrl}
-                    getFallbackUrl={getTheaterFallbackUrl}
-                    onOpenModal={openModal}
-                  />
-                ) : (
-                  <FilmCard
-                    key={film.id}
-                    film={film}
-                    lang={lang}
-                    dateLocale={dateLocale}
-                    openPopupId={openPopupId}
-                    setOpenPopupId={setOpenPopupId}
-                    matchScore={lb.matchScores[film.id]}
-                    breakdown={lb.breakdowns[film.id]}
-                    isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
-                    formatDate={formatDate}
-                    getFilmTitle={getFilmTitle}
-                    getCalendarUrl={getCalendarUrl}
-                    getFallbackUrl={getTheaterFallbackUrl}
-                    onOpenModal={openModal}
-                  />
-                )
+                <FilmGridTile
+                  key={film.id}
+                  film={film}
+                  lang={lang}
+                  dateLocale={dateLocale}
+                  openPopupId={openPopupId}
+                  setOpenPopupId={setOpenPopupId}
+                  matchScore={lb.matchScores[film.id]}
+                  breakdown={lb.breakdowns[film.id]}
+                  isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
+                  getFilmTitle={getFilmTitle}
+                  getCalendarUrl={getCalendarUrl}
+                  getFallbackUrl={getTheaterFallbackUrl}
+                  onOpenModal={openModal}
+                />
               ))}
             </div>
           </div>

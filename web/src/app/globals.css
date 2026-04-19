@@ -223,10 +223,6 @@ header {
     color: color-mix(in srgb, var(--accent-on) 80%, transparent);
 }
 
-.day-pill.is-today:not(.active) .dow {
-    color: var(--accent);
-}
-
 .day-pill.empty {
     opacity: 0.45;
 }
@@ -440,10 +436,6 @@ header {
 
 .calendar-cell.out-of-month {
     color: var(--text-mute);
-}
-
-.calendar-cell.is-today:not(.selected) .calendar-cell-dom {
-    color: var(--accent);
 }
 
 .calendar-cell.selected {
@@ -1782,220 +1774,13 @@ h1 .h1-accent {
     transform: translateY(0);
 }
 
-.films-grid {
-    display: grid;
-    /* Direction C — editorial two-column layout, stacked on mobile. Column gap
-       is wide (40px) to create breathing room; row gap 0 since each card carries
-       its own top-border separator. */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2.5rem;
-    row-gap: 0;
-}
-
-/* Top border on the first row cards should not double up with the container. */
-.films-grid > .film-card:first-child,
-.films-grid > .film-card:nth-child(2) {
-    border-top: 1px solid var(--border-2);
-}
-
 @media (max-width: 768px) {
-    .films-grid {
-        grid-template-columns: 1fr;
-    }
-    .films-grid > .film-card:nth-child(2) {
-        border-top: 1px solid var(--border-2);
-    }
-}
-
-/* ── Direction C — List card ────────────────────────────────────────────── */
-.film-card {
-    padding: 1.15rem 0 1.25rem;
-    border-top: 1px solid var(--border-2);
-    background: transparent;
-    border-radius: 0;
-    display: grid;
-    /* 3 columns: poster · body · metrics rail. Metrics rail is auto-sized
-       so it shrinks to its content; body takes the slack. */
-    grid-template-columns: 74px 1fr auto;
-    gap: 1rem;
-    cursor: default;
-    transition: background 0.15s ease;
-}
-
-.film-poster-link {
-    display: block;
-    line-height: 0;
-    border-radius: 3px;
-    transition: opacity 0.15s;
-}
-.film-poster-link:hover { opacity: 0.88; }
-
-.film-title-link {
-    color: inherit;
-    text-decoration: none;
-}
-.film-title-link:hover { text-decoration: underline; }
-
-.film-metrics-rail {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    padding-top: 2px;
-    min-width: 0;
-}
-
-.film-metrics-rail .rating,
-.film-metrics-rail .viewers {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-}
-
-.film-metrics-rail .watched-label {
-    font-size: 0.66rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-mute);
-}
-
-@media (max-width: 768px) {
-    .film-card {
-        padding: 0.95rem 0 1rem;
-        grid-template-columns: 74px 1fr auto;
-        gap: 0.8rem;
-    }
-    .film-metrics-rail {
-        font-size: 0.72rem;
-        gap: 2px;
-    }
-    .film-title {
-        font-size: 1.08rem;
-    }
-    .film-year,
-    .film-meta {
-        font-size: 0.72rem;
-    }
-    .film-rec {
-        font-size: 0.76rem;
-    }
     .stats-row > span:first-child {
         font-size: 1.25rem;
     }
     h1 {
         font-size: 1.9rem;
     }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .film-card:hover {
-        background: rgba(255, 255, 255, 0.015);
-        transform: none;
-        border-color: var(--border-2);
-    }
-}
-
-.film-body {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.film-title-row {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.1rem;
-}
-
-.film-title {
-    font-family: var(--font-fraunces), Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin: 0;
-    flex: 0 1 auto;
-    min-width: 0;
-}
-
-.film-year {
-    color: var(--text-mute);
-    font-size: 0.78rem;
-    font-variant-numeric: tabular-nums;
-}
-
-.film-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    align-items: baseline;
-    color: var(--text-2);
-    font-size: 0.78rem;
-    line-height: 1.45;
-}
-
-.film-meta-sep {
-    color: var(--text-mute);
-}
-
-.film-meta-dim {
-    color: var(--text-dim);
-}
-
-.film-rec {
-    font-family: var(--font-fraunces), Georgia, serif;
-    font-style: italic;
-    font-size: 0.82rem;
-    color: var(--rec);
-    line-height: 1.4;
-    margin-top: 0.25rem;
-    display: flex;
-    gap: 0.35rem;
-    align-items: baseline;
-    flex-wrap: wrap;
-}
-
-.film-rec-prefix {
-    font-style: normal;
-    color: var(--text-mute);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-family: var(--font-inter), sans-serif;
-    flex-shrink: 0;
-}
-
-.film-rec-title {
-    color: var(--text-2);
-    text-decoration: none;
-}
-
-a.film-rec-title:hover {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.film-rec-tag {
-    color: var(--text-mute);
-    font-style: normal;
-    font-size: 0.7rem;
-    font-family: var(--font-inter), sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-}
-
-a.film-rec-tag:hover {
-    color: var(--text-dim);
 }
 
 /* Metrics strip (rating, viewers, LB) — small row above sessions */
@@ -2186,18 +1971,6 @@ a.film-rec-tag:hover {
     border-color: var(--text-mute);
 }
 
-.session-chip.is-today {
-    background: var(--accent-soft);
-    border-color: var(--accent-border);
-    color: var(--accent);
-    font-weight: 600;
-}
-
-.session-chip.is-today:hover {
-    background: color-mix(in srgb, var(--accent-soft) 50%, var(--accent) 20%);
-    border-color: var(--accent);
-}
-
 .session-chip-time {
     font-variant-numeric: tabular-nums;
     color: inherit;
@@ -2218,10 +1991,6 @@ a.film-rec-tag:hover {
 .session-chip-theater {
     color: var(--text-dim);
     font-weight: 500;
-}
-
-.session-chip.is-today .session-chip-theater {
-    color: color-mix(in srgb, var(--accent) 72%, var(--text-dim) 28%);
 }
 
 .session-chip-dub {
@@ -2342,10 +2111,6 @@ a.film-rec-tag:hover {
     color: var(--text);
 }
 
-.sbt-date-cell.is-today .sbt-theater-name {
-    color: var(--accent);
-}
-
 .sbt-date-session {
     display: inline-flex;
     align-items: center;
@@ -2367,11 +2132,6 @@ a.film-rec-tag:hover {
     background: color-mix(in srgb, var(--bg-hover) 50%, var(--text) 10%);
 }
 
-.sbt-date-session.is-today {
-    background: var(--accent-soft);
-    color: var(--accent);
-}
-
 .sbt-date-session .sbt-time {
     padding: 0;
     background: transparent;
@@ -2388,10 +2148,6 @@ a.film-rec-tag:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-}
-
-.sbt-date-session.is-today .sbt-date-session-theater {
-    color: color-mix(in srgb, var(--accent) 75%, var(--text) 25%);
 }
 
 .sbt-row {
@@ -2463,11 +2219,6 @@ a.film-rec-tag:hover {
     white-space: nowrap;
 }
 
-.sbt-day.is-today .sbt-day-label {
-    color: var(--accent);
-    font-weight: 700;
-}
-
 .sbt-times {
     display: flex;
     flex-wrap: wrap;
@@ -2491,16 +2242,6 @@ a.film-rec-tag:hover {
 
 .sbt-time:hover {
     background: color-mix(in srgb, var(--bg-hover) 50%, var(--text) 10%);
-}
-
-.sbt-time.is-today {
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-weight: 600;
-}
-
-.sbt-time.is-today:hover {
-    background: color-mix(in srgb, var(--accent-soft) 50%, var(--accent) 15%);
 }
 
 @media (max-width: 600px) {
@@ -2723,24 +2464,27 @@ a.film-rec-tag:hover {
 /* ── Direction C — Grid tile (V4) ──────────────────────────────────────
    DC breakpoints: 6 cols ≥1440, 5 cols 1200–1439, 4 cols 900–1199,
    3 cols 600–899, 2 cols below. Mobile-first ascending order. */
-/* Capped at 4 columns on any viewport — wider screens get larger tiles (more
-   room for the in-tile session overlay) rather than more columns. */
+/* Columns scale with viewport width via auto-fill + minmax so wider screens
+   naturally get more tiles per row. JS reads the rendered column count and
+   aligns pagination to full rows. */
 .films-grid.is-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     column-gap: 0.6rem;
     row-gap: 0.6rem;
 }
 
 @media (min-width: 600px) {
     .films-grid.is-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         column-gap: 1rem;
         row-gap: 1rem;
     }
 }
 
 @media (min-width: 900px) {
-    .films-grid.is-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .films-grid.is-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }
 
 .grid-tile {
@@ -2986,8 +2730,13 @@ a.film-rec-tag:hover {
 
 .grid-tile-modal {
     position: relative;
-    width: min(560px, 100%);
-    height: min(760px, 90vh);
+    /* Poster-shaped: 2:3 aspect, sized to the largest box that fits both the
+       available width and height without cropping. The min() picks the
+       narrowest of: 95vw, the width that matches 92vh at 2:3, and a 720px cap
+       so the poster stays reasonable on huge displays. Height follows from
+       aspect-ratio. Works on mobile and desktop without a separate override. */
+    width: min(95vw, calc(92vh * 2 / 3), 720px);
+    aspect-ratio: 2 / 3;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -3003,7 +2752,34 @@ a.film-rec-tag:hover {
     transition: opacity 0.22s ease-out;
 }
 
-.grid-tile-modal-front { opacity: 1; }
+.grid-tile-modal-front { opacity: 1; cursor: pointer; }
+/* Back face: same rule — empty space flips to front, text elements stay
+   selectable. The sessions block has its own pointer semantics (chip buttons). */
+.grid-tile-modal-back,
+.grid-tile-modal-sessions { cursor: pointer; }
+.gto-theater-name,
+.gto-day-label { cursor: text; }
+/* Text inside info blocks should show a caret so selection feels natural —
+   only truly empty space triggers the flip. */
+.grid-tile-modal-title,
+.grid-tile-modal-meta,
+.grid-tile-modal-genres,
+.grid-tile-modal-rec { cursor: text; }
+.grid-tile-modal-hint {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Shrink the block boxes to their text so that only the actual text area
+   carries the text cursor + flip-exclusion. Otherwise the container stretches
+   full-width and clicks on visually-empty horizontal space to the right of the
+   text still register as "on text" and block the flip. */
+.grid-tile-modal-title,
+.grid-tile-modal-meta,
+.grid-tile-modal-genres,
+.grid-tile-modal-rec,
+.grid-tile-modal-hint { width: fit-content; max-width: 100%; }
 .grid-tile-modal-back { opacity: 0; pointer-events: none; display: flex; flex-direction: column; }
 
 .grid-tile-modal.is-flipped .grid-tile-modal-front { opacity: 0; pointer-events: none; }
@@ -3032,7 +2808,14 @@ a.film-rec-tag:hover {
 .grid-tile-modal-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 55%, rgba(10, 8, 5, 0.85) 100%);
+    /* Deeper, earlier-starting shade so the bottom info block stays readable
+       over high-contrast posters. Two stops + a near-opaque floor. */
+    background: linear-gradient(
+        to bottom,
+        transparent 35%,
+        rgba(10, 8, 5, 0.55) 62%,
+        rgba(10, 8, 5, 0.95) 100%
+    );
     pointer-events: none;
 }
 
@@ -3043,15 +2826,71 @@ a.film-rec-tag:hover {
     bottom: 0;
     padding: 18px 20px 20px;
     color: #f0ece1;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    /* Layered shadow: a sharp near shadow (crisp glyph edge) + a wider soft
+       glow that subtly darkens the pixels directly behind the letters. Works
+       when the gradient alone isn't enough (bright/busy poster corners). */
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.55),
+        0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .grid-tile-modal-hint {
-    margin-top: 10px;
     font-size: 0.72rem;
     opacity: 0.7;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+}
+
+.grid-tile-modal-front-actions {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.grid-tile-modal-lb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px 5px 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.grid-tile-modal-lb-link .letterboxd-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.grid-tile-modal-lb-link:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Breakpoint-sensitive verb: "Tap" on touch devices, "Click" on mouse-hover
+   devices. Default to tap so coarse pointers see the right copy even without
+   the media-query match. */
+.hint-verb { display: none; }
+.hint-tap { display: inline; }
+@media (hover: hover) and (pointer: fine) {
+    .hint-tap { display: none; }
+    .hint-click { display: inline; }
+}
+
+.grid-tile-modal-back-hint {
+    display: block;
+    margin-top: 4px;
+    opacity: 0.55;
 }
 
 .grid-tile-modal-metrics {
@@ -3064,11 +2903,25 @@ a.film-rec-tag:hover {
     z-index: 3;
 }
 
+/* Match pill inside the modal metrics row reads as a peer of rating + viewers:
+   same dark chip, same type scale, with the tier color carried only by the dot. */
+.grid-tile-modal-metrics .match-pill {
+    background: rgba(10, 8, 5, 0.82);
+    color: #f0ece1;
+    border: 1px solid rgba(240, 236, 225, 0.18);
+    padding: 2px 7px;
+    font-size: 0.62rem;
+}
+.grid-tile-modal-metrics .match-pill.match-high .match-dot { background: var(--match); }
+.grid-tile-modal-metrics .match-pill.match-mid  .match-dot { background: var(--match-mid); }
+.grid-tile-modal-metrics .match-pill.match-warm .match-dot { background: var(--warm); }
+.grid-tile-modal-metrics .match-pill.match-mute .match-dot { background: var(--text-mute); }
+
 .grid-tile-modal-back {
     background: rgba(10, 8, 5, 0.94);
     color: #f0ece1;
-    padding: 16px 18px 18px;
-    gap: 8px;
+    padding: 22px 24px 24px;
+    gap: 10px;
     overflow: hidden;
 }
 
@@ -3090,6 +2943,44 @@ a.film-rec-tag:hover {
     flex-shrink: 0;
     align-self: flex-start;
     margin-top: 2px;
+}
+
+/* Two-way tab toggle (Sala | Fecha), styled after the header lang-toggle. */
+.grid-tile-modal-sort-group {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+}
+
+.grid-tile-modal-sort-btn {
+    background: transparent;
+    border: none;
+    color: rgba(240, 236, 225, 0.55);
+    padding: 4px 11px;
+    font-family: inherit;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+}
+
+.grid-tile-modal-sort-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(240, 236, 225, 0.85);
+}
+
+.grid-tile-modal-sort-btn.active {
+    background: rgba(240, 236, 225, 0.94);
+    color: #141210;
 }
 
 .grid-tile-modal-back .grid-tile-overlay-groups {
@@ -3121,14 +3012,15 @@ a.film-rec-tag:hover {
 .grid-tile-modal-back .gto-date-session {
     width: 100%;
     justify-content: flex-start;
-    padding: 5px 8px;
-    font-size: 0.72rem;
+    padding: 7px 11px;
+    font-size: 0.82rem;
 }
 
 .grid-tile-modal-back .gto-date-session-theater {
     max-width: none;
     flex: 0 1 auto;
     text-align: left;
+    font-size: 0.84rem;
 }
 
 /* Theater mode: keep the flex-wrap row of time chips — days already pack
@@ -3140,8 +3032,8 @@ a.film-rec-tag:hover {
 }
 
 .grid-tile-modal-back .gto-time {
-    padding: 3px 8px;
-    font-size: 0.72rem;
+    padding: 5px 10px;
+    font-size: 0.82rem;
 }
 
 .grid-tile-modal-back .gto-group {
@@ -3150,7 +3042,7 @@ a.film-rec-tag:hover {
 
 .grid-tile-modal-back .gto-theater,
 .grid-tile-modal-back .gto-theater-name {
-    font-size: 0.82rem;
+    font-size: 0.92rem;
 }
 
 .grid-tile-modal-close {
@@ -3178,13 +3070,6 @@ a.film-rec-tag:hover {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.grid-tile-modal-match {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 3;
-}
-
 .grid-tile-modal-title {
     font-family: var(--font-fraunces), Georgia, serif;
     font-size: 1.35rem;
@@ -3197,6 +3082,61 @@ a.film-rec-tag:hover {
     font-size: 0.78rem;
     opacity: 0.78;
     margin-top: 4px;
+}
+
+.grid-tile-modal-genres {
+    font-size: 0.72rem;
+    opacity: 0.62;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.grid-tile-modal-rec {
+    margin-top: 8px;
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: baseline;
+    opacity: 0.92;
+}
+
+.grid-tile-modal-rec-prefix {
+    font-style: normal;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.grid-tile-modal-rec-title {
+    color: inherit;
+    text-decoration: none;
+}
+
+a.grid-tile-modal-rec-title:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.grid-tile-modal-rec-tag {
+    font-style: normal;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: inherit;
+    text-decoration: none;
+}
+
+a.grid-tile-modal-rec-tag:hover {
+    opacity: 1;
 }
 
 .grid-tile-modal-sessions {
@@ -3214,8 +3154,22 @@ a.film-rec-tag:hover {
 
 @media (max-width: 640px) {
     .grid-tile-modal-wrap { padding: 3vh 4vw; }
-    .grid-tile-modal { width: 100%; max-height: 92vh; }
     .grid-tile-modal-title { font-size: 1.18rem; }
+
+    /* Shrink the 2-col session chips on narrow screens — at full desktop size
+       two date-chips per row don't fit a ~360px modal comfortably. */
+    .grid-tile-modal-back { padding: 18px 16px 18px; }
+    .grid-tile-modal-back .gto-date-session {
+        padding: 5px 8px;
+        font-size: 0.72rem;
+    }
+    .grid-tile-modal-back .gto-date-session-theater { font-size: 0.74rem; }
+    .grid-tile-modal-back .gto-time {
+        padding: 3px 8px;
+        font-size: 0.72rem;
+    }
+    .grid-tile-modal-back .gto-theater,
+    .grid-tile-modal-back .gto-theater-name { font-size: 0.8rem; }
 }
 
 .grid-tile-overlay-inner {
@@ -3258,11 +3212,6 @@ a.film-rec-tag:hover {
 
 .grid-tile-overlay-session:hover {
     background: rgba(255, 255, 255, 0.12);
-}
-
-.grid-tile-overlay-session.is-today {
-    background: color-mix(in srgb, var(--accent) 25%, transparent);
-    color: #ffd4b8;
 }
 
 .grid-tile-overlay-session .go-tint {
@@ -3310,14 +3259,14 @@ a.film-rec-tag:hover {
 .gto-sort-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 999px;
-    color: var(--accent);
-    padding: 2px 7px;
+    color: #f0ece1;
+    padding: 5px 10px;
     font-family: inherit;
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 700;
@@ -3325,12 +3274,8 @@ a.film-rec-tag:hover {
 }
 
 .gto-sort-toggle:hover {
-    background: color-mix(in srgb, var(--accent) 30%, transparent);
-    border-color: var(--accent);
-}
-
-.gto-theater.is-today .gto-theater-name {
-    color: var(--accent);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
 }
 
 .gto-date-sessions {
@@ -3357,11 +3302,6 @@ a.film-rec-tag:hover {
 
 .gto-date-session:hover {
     background: rgba(255, 255, 255, 0.16);
-}
-
-.gto-date-session.is-today {
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-    color: #ffd4b8;
 }
 
 .gto-date-session-time {
@@ -3453,11 +3393,6 @@ a.film-rec-tag:hover {
     padding-top: 1px;
 }
 
-.gto-day.is-today .gto-day-label {
-    color: var(--accent);
-    font-weight: 700;
-}
-
 .gto-day-times {
     display: inline-flex;
     flex-wrap: wrap;
@@ -3478,11 +3413,6 @@ a.film-rec-tag:hover {
 
 .gto-time:hover {
     background: rgba(255, 255, 255, 0.16);
-}
-
-.gto-day.is-today .gto-time {
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-    color: #ffd4b8;
 }
 
 .gto-more {
@@ -3875,23 +3805,6 @@ a.film-rec-tag:hover {
 .filter-footer-right {
     display: flex;
     gap: 8px;
-}
-
-.filter-cancel-btn {
-    padding: 9px 18px;
-    background: transparent;
-    border: 1px solid var(--border-2);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: inherit;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.filter-cancel-btn:hover {
-    border-color: var(--text-dim);
 }
 
 .filter-apply-btn {
@@ -5203,10 +5116,6 @@ footer p {
     color: var(--text);
 }
 
-.session-modal-when-date.is-today {
-    color: var(--accent);
-}
-
 .session-modal-when-time {
     font-size: 0.92rem;
     font-variant-numeric: tabular-nums;
@@ -5272,15 +5181,16 @@ footer p {
     gap: 8px;
     width: 100%;
     padding: 12px 16px;
-    background: var(--accent);
-    color: var(--accent-on);
-    border: none;
-    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 0.84rem;
+    font-size: 0.86rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease, color 0.2s ease;
     font-family: inherit;
     transition: filter 0.2s, transform 0.08s;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
@@ -5291,11 +5201,15 @@ footer p {
 }
 
 .session-modal-primary:hover {
-    filter: brightness(1.08);
+    background: var(--accent);
+    color: var(--accent-on);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 .session-modal-primary:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .session-modal-actions-secondary {
@@ -5358,79 +5272,6 @@ footer p {
     color: var(--accent);
 }
 
-/* Other sessions footer */
-.session-modal-other {
-    padding: 14px 22px 18px;
-    background: var(--bg-hover);
-    border-top: 1px solid var(--border);
-}
-
-.session-modal-other-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-mute);
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.session-modal-other-list {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-}
-
-.session-modal-other-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 9px;
-    border-radius: 4px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: border-color 0.15s;
-}
-
-.session-modal-other-chip:hover {
-    border-color: var(--text-dim);
-}
-
-.session-modal-other-chip.is-today {
-    border-color: var(--accent);
-}
-
-.session-modal-other-chip .som-date {
-    color: var(--text-dim);
-    font-variant-numeric: tabular-nums;
-    font-weight: 500;
-}
-
-.session-modal-other-chip.is-today .som-date {
-    color: var(--accent);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-
-.session-modal-other-chip .som-time {
-    font-weight: 700;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-}
-
-.session-modal-other-chip .som-tint {
-    width: 5px;
-    height: 5px;
-    border-radius: 999px;
-}
-
-.session-modal-other-chip .som-theater {
-    color: var(--text-dim);
-    font-size: 0.65rem;
-}
-
 /* Mobile — full-width bottom-sheet-ish */
 @media (max-width: 640px) {
     .session-modal {
@@ -5449,8 +5290,7 @@ footer p {
     }
     .session-modal-head-body { padding-right: 22px; }
     .session-modal-details,
-    .session-modal-actions,
-    .session-modal-other { padding-left: 16px; padding-right: 16px; }
+    .session-modal-actions { padding-left: 16px; padding-right: 16px; }
 }
 
 /* Genre badges */

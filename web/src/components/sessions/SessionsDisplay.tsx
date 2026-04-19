@@ -80,10 +80,9 @@ export default function SessionsDisplay({
       <div className="session-chips">
         {inline.map((d, i) => {
           const iso = d.timestamp.slice(0, 10);
-          const isToday = iso === todayIso;
           const tint = theaterTint(d.location);
           const shortLoc = shortTheaterName(d.location);
-          const chipClass = `session-chip${isToday ? ' is-today' : ''}${d.special ? ' has-special' : ''}`;
+          const chipClass = `session-chip${d.special ? ' has-special' : ''}`;
           const label = `${shortDateLabel(iso, todayIso, lang)} ${timeOf(d.timestamp)}${shortLoc ? ' · ' + shortLoc : ''}`;
           return (
             <button
@@ -239,15 +238,14 @@ function ExpandedSessionsByTheater({
             </div>
             <div className="sbt-days">
               {theaterDays.map(([iso, ss]) => {
-                const isToday = iso === todayIso;
                 return (
-                  <div key={iso} className={`sbt-day${isToday ? ' is-today' : ''}`}>
+                  <div key={iso} className="sbt-day">
                     <span className="sbt-day-label">{shortDateLabel(iso, todayIso, lang)}</span>
                     <div className="sbt-times">
                       {ss.map((s, i) => (
                         <button
                           key={i}
-                          className={`sbt-time${isToday ? ' is-today' : ''}`}
+                          className="sbt-time"
                           onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
                         >
                           {timeOf(s.timestamp)}
@@ -263,10 +261,9 @@ function ExpandedSessionsByTheater({
       })}
 
       {isByDate && days.map(({ iso, sessions }) => {
-        const isToday = iso === todayIso;
         return (
-          <div key={iso} className={`sbt-row${isToday ? ' is-today' : ''}`}>
-            <div className={`sbt-theater sbt-date-cell${isToday ? ' is-today' : ''}`}>
+          <div key={iso} className="sbt-row">
+            <div className="sbt-theater sbt-date-cell">
               <span className="sbt-theater-name">{shortDateLabel(iso, todayIso, lang)}</span>
             </div>
             <div className="sbt-days sbt-days-flat">
@@ -276,7 +273,7 @@ function ExpandedSessionsByTheater({
                 return (
                   <button
                     key={i}
-                    className={`sbt-date-session${isToday ? ' is-today' : ''}`}
+                    className="sbt-date-session"
                     onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
                   >
                     <span className="sbt-time">{timeOf(s.timestamp)}</span>

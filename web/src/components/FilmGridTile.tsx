@@ -7,6 +7,8 @@ import { theaterTint } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
+import type { CompactBreakdown } from '@/lib/recommender';
+import { translateGenre, translateExplainerValue } from '@/lib/translations';
 
 function matchTier(score: number): 'high' | 'mid' | 'warm' | 'mute' {
   if (score >= 90) return 'high';
@@ -187,9 +189,8 @@ function GridTileSessionsByTheater({
               <span className="gto-theater-name">{short}</span>
             </div>
             {days.map(([iso, ss]) => {
-              const isToday = iso === todayIso;
               return (
-                <div key={iso} className={`gto-day${isToday ? ' is-today' : ''}`}>
+                <div key={iso} className="gto-day">
                   <span className="gto-day-label">{shortDate(iso, todayIso, lang)}</span>
                   <span className="gto-day-times">
                     {ss.map((s, i) => (
@@ -208,10 +209,9 @@ function GridTileSessionsByTheater({
 
       {sortMode === 'date' && (groups as typeof groupsByDate).map(({ iso, sessions }, idx) => {
         const hidden = idx >= effectiveMax;
-        const isToday = iso === todayIso;
         return (
           <div key={iso} className="gto-group" style={hidden ? { display: 'none' } : undefined}>
-            <div className={`gto-theater${isToday ? ' is-today' : ''}`}>
+            <div className="gto-theater">
               <span className="gto-theater-name">{shortDate(iso, todayIso, lang)}</span>
             </div>
             <div className="gto-date-sessions">
@@ -221,7 +221,7 @@ function GridTileSessionsByTheater({
                 return (
                   <button
                     key={i} type="button"
-                    className={`gto-date-session${isToday ? ' is-today' : ''}`}
+                    className="gto-date-session"
                     onClick={(e) => { e.stopPropagation(); openSessionModal(s); }}
                   >
                     <span className="gto-date-session-time">{timeOf(s.timestamp)}</span>
@@ -257,6 +257,7 @@ interface FilmGridTileProps {
   lang: LangKey;
   dateLocale: string;
   matchScore?: number;
+  breakdown?: CompactBreakdown;
   isWatched: boolean;
   openPopupId: string | null;
   setOpenPopupId: (id: string | null) => void;
@@ -266,9 +267,18 @@ interface FilmGridTileProps {
   onOpenModal: (data: SessionModalData) => void;
 }
 
+function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey): { title: string; value: string; url?: string; valueUrl?: string } | null {
+  const items = breakdown?.similarTo;
+  if (!items || items.length === 0) return null;
+  const s = items[0];
+  const rawValue = s.value || s.reason;
+  const title = (lang === 'en' && s.titleEn) ? s.titleEn : s.title;
+  return { title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
+}
+
 export default memo(function FilmGridTile({
   film, lang, dateLocale,
-  matchScore, isWatched,
+  matchScore, breakdown, isWatched,
   openPopupId, setOpenPopupId,
   getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
 }: FilmGridTileProps) {
@@ -317,6 +327,36 @@ export default memo(function FilmGridTile({
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [overlayClosing, setOverlayClosing] = useState(false);
   const originRectRef = useRef<DOMRect | null>(null);
+
+  // Lock background scroll while the modal is up. We freeze the page at the
+  // current scrollY by fixing the body in place — setting overflow:hidden
+  // alone doesn't stop iOS scroll chaining, and the scrollbar width is
+  // compensated via padding-right so the header doesn't jump.
+  useEffect(() => {
+    if (!overlayVisible) return;
+    const scrollY = window.scrollY;
+    const scrollbarW = window.innerWidth - document.documentElement.clientWidth;
+    const prev = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+      paddingRight: document.body.style.paddingRight,
+    };
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    if (scrollbarW > 0) document.body.style.paddingRight = `${scrollbarW}px`;
+    return () => {
+      document.body.style.overflow = prev.overflow;
+      document.body.style.position = prev.position;
+      document.body.style.top = prev.top;
+      document.body.style.width = prev.width;
+      document.body.style.paddingRight = prev.paddingRight;
+      window.scrollTo(0, scrollY);
+    };
+  }, [overlayVisible]);
 
   const captureOrigin = useCallback(() => {
     if (tileRef.current) originRectRef.current = tileRef.current.getBoundingClientRect();
@@ -483,7 +523,18 @@ export default memo(function FilmGridTile({
             ref={modalRef}
             className={`grid-tile-modal${flipped ? ' is-flipped' : ''}`}
             style={{ background: a, color: b }}
-            onClick={(e) => { e.stopPropagation(); if (!flipped) setFlipped(true); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (flipped) return;
+              // Only clicks on empty poster space should flip — clicks inside
+              // text blocks (title/meta/genres/rec) or the action row stay
+              // inert so users can read, select, and copy freely.
+              const target = e.target as HTMLElement;
+              if (target.closest(
+                '.grid-tile-modal-title, .grid-tile-modal-meta, .grid-tile-modal-genres, .grid-tile-modal-rec'
+              )) return;
+              setFlipped(true);
+            }}
           >
             {/* Front face — enlarged version of the grid thumbnail. */}
             <div className="grid-tile-modal-face grid-tile-modal-front">
@@ -491,7 +542,7 @@ export default memo(function FilmGridTile({
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   className="grid-tile-modal-poster"
-                  src={`https://image.tmdb.org/t/p/w780${film.posterPath}`}
+                  src={`https://image.tmdb.org/t/p/original${film.posterPath}`}
                   alt=""
                   decoding="async"
                 />
@@ -500,28 +551,27 @@ export default memo(function FilmGridTile({
                 <div className="grid-tile-modal-mark" style={{ color: b }} aria-hidden>{mark}</div>
               )}
 
-              {(film.rating != null || film.viewers != null) && (
-                <div className="grid-tile-metrics grid-tile-modal-metrics" aria-hidden>
+              {(film.rating != null || film.viewers != null || showMatch) && (
+                <div className="grid-tile-metrics grid-tile-modal-metrics">
                   {film.rating != null && (
-                    <span className="grid-tile-metric grid-tile-metric-rating">
+                    <span className="grid-tile-metric grid-tile-metric-rating" aria-hidden>
                       <span className="metric-icon rating-icon" />
                       {film.rating.toFixed(1)}
                     </span>
                   )}
                   {film.viewers != null && (
-                    <span className="grid-tile-metric grid-tile-metric-viewers">
+                    <span className="grid-tile-metric grid-tile-metric-viewers" aria-hidden>
                       <span className="metric-icon viewers-icon" />
                       {formatViewerCount(film.viewers)}
                     </span>
                   )}
+                  {showMatch && (
+                    <span className={`match-pill match-${matchTier(matchScore!)}`}>
+                      <span className="match-dot" />
+                      {matchScore}%
+                    </span>
+                  )}
                 </div>
-              )}
-
-              {showMatch && (
-                <span className={`match-pill match-${matchTier(matchScore!)} grid-tile-modal-match`}>
-                  <span className="match-dot" />
-                  {matchScore}%
-                </span>
               )}
 
               <div className="grid-tile-modal-gradient" aria-hidden />
@@ -533,10 +583,53 @@ export default memo(function FilmGridTile({
                     film.year ? String(film.year) : null,
                     film.director ? film.director.split(',')[0] : null,
                     film.runtimeMinutes ? `${film.runtimeMinutes}′` : null,
+                    film.country && film.country.length > 0 ? film.country[0] : null,
                   ].filter(Boolean).join(' · ')}
                 </div>
-                <div className="grid-tile-modal-hint">
-                  {lang === 'es' ? 'Toca para ver sesiones' : 'Tap to see sessions'}
+                {film.genres && film.genres.length > 0 && (
+                  <div className="grid-tile-modal-genres">
+                    {film.genres.slice(0, 3).map(g => translateGenre(g, lang)).join(' · ')}
+                  </div>
+                )}
+                {(() => {
+                  const similarData = showMatch ? buildSimilarData(breakdown, lang) : null;
+                  if (!similarData) return null;
+                  return (
+                    <div className="grid-tile-modal-rec">
+                      <span className="grid-tile-modal-rec-prefix">{lang === 'es' ? 'Has visto' : 'You watched'}:</span>
+                      {similarData.url ? (
+                        <a href={similarData.url} className="grid-tile-modal-rec-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.title}</a>
+                      ) : (
+                        <span className="grid-tile-modal-rec-title">{similarData.title}</span>
+                      )}
+                      {similarData.valueUrl ? (
+                        <a href={similarData.valueUrl} className="grid-tile-modal-rec-tag" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{similarData.value}</a>
+                      ) : (
+                        <span className="grid-tile-modal-rec-tag">{similarData.value}</span>
+                      )}
+                    </div>
+                  );
+                })()}
+                <div className="grid-tile-modal-front-actions">
+                  {(film.letterboxdShortUrl || film.letterboxdUrl) && (
+                    <a
+                      className="grid-tile-modal-lb-link"
+                      href={film.letterboxdShortUrl || film.letterboxdUrl || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label="Letterboxd"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/assets/letterboxd.svg" className="letterboxd-icon" alt="" aria-hidden />
+                      <span>Letterboxd</span>
+                    </a>
+                  )}
+                  <span className="grid-tile-modal-hint">
+                    <span className="hint-verb hint-tap">{lang === 'es' ? 'Toca' : 'Tap'}</span>
+                    <span className="hint-verb hint-click">{lang === 'es' ? 'Haz clic' : 'Click'}</span>
+                    {' '}{lang === 'es' ? 'para ver sesiones' : 'to see sessions'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -545,7 +638,18 @@ export default memo(function FilmGridTile({
                 part of this face flips back to the poster. */}
             <div
               className="grid-tile-modal-face grid-tile-modal-back"
-              onClick={(e) => { e.stopPropagation(); setFlipped(false); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                const target = e.target as HTMLElement;
+                // Exclude text + interactive elements so selection/copy never
+                // flips the card. Empty container space (back padding,
+                // sessions wrapper gaps, group gaps) still flips back to the
+                // poster as intended.
+                if (target.closest(
+                  'button, a, .grid-tile-modal-title, .grid-tile-modal-meta, .gto-theater-name, .gto-day-label'
+                )) return;
+                setFlipped(false);
+              }}
             >
               <div className="grid-tile-modal-back-head">
                 <div className="grid-tile-modal-back-titles">
@@ -557,20 +661,32 @@ export default memo(function FilmGridTile({
                       film.runtimeMinutes ? `${film.runtimeMinutes}′` : null,
                     ].filter(Boolean).join(' · ')}
                   </div>
+                  <span className="grid-tile-modal-hint grid-tile-modal-back-hint">
+                    <span className="hint-verb hint-tap">{lang === 'es' ? 'Toca' : 'Tap'}</span>
+                    <span className="hint-verb hint-click">{lang === 'es' ? 'Haz clic' : 'Click'}</span>
+                    {' '}{lang === 'es' ? 'para ver el póster' : 'to see poster'}
+                  </span>
                 </div>
-                <button
-                  type="button"
-                  className="gto-sort-toggle grid-tile-modal-sort"
-                  onClick={(e) => { e.stopPropagation(); setSortMode(m => m === 'date' ? 'theater' : 'date'); }}
-                  title={lang === 'es' ? 'Cambiar orden' : 'Toggle sort'}
+                <div
+                  className="grid-tile-modal-sort-group"
+                  role="tablist"
+                  aria-label={lang === 'es' ? 'Ordenar sesiones' : 'Sort sessions'}
                 >
-                  {sortMode === 'date'
-                    ? (lang === 'es' ? 'Por fecha' : 'By date')
-                    : (lang === 'es' ? 'Por sala' : 'By theater')}
-                  <svg width="9" height="9" viewBox="0 0 12 12" aria-hidden>
-                    <path d="M3 4.5 L6 7.5 L9 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={sortMode === 'theater'}
+                    className={`grid-tile-modal-sort-btn${sortMode === 'theater' ? ' active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setSortMode('theater'); }}
+                  >{lang === 'es' ? 'Sala' : 'Theater'}</button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={sortMode === 'date'}
+                    className={`grid-tile-modal-sort-btn${sortMode === 'date' ? ' active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setSortMode('date'); }}
+                  >{lang === 'es' ? 'Fecha' : 'Date'}</button>
+                </div>
               </div>
               <div className="grid-tile-modal-sessions">
                 <GridTileSessionsByTheater
