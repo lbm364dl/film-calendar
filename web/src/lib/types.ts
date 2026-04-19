@@ -75,9 +75,13 @@ export interface SessionModalData {
   session: DateEntry;
   filmTitleLabel: string;   // localized title (ES/EN) with year appended
   matchScore?: number;      // 0–100 affinity, if signed-in + Letterboxd
-  // Pre-computed URLs / flags
-  ticketUrl: string;
-  filmPageUrl: string;
+  // Primary CTA — "Buy tickets" when session has a specific URL (either
+  // `url_tickets` or, failing that, `url_info`); degrades to the theater's
+  // home page labeled "Go to theater site".
+  primaryUrl: string;
+  primaryIsSpecific: boolean;
+  // Secondary info-page link, only surfaced when we already have a distinct
+  // tickets URL as the primary action.
+  secondaryInfoUrl?: string;
   calendarUrl: string;
-  hasDirectUrl: boolean;
 }

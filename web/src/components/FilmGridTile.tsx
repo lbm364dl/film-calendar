@@ -135,13 +135,16 @@ function GridTileSessionsByTheater({
   const openSessionModal = (s: DateEntry) => {
     const titleLabel = film.titleEn || film.title;
     const filmTitleLabel = film.year ? `${titleLabel} (${film.year})` : titleLabel;
-    const hasDirectUrl = !!(s.url_tickets && s.url_tickets.trim());
+    const tickets = s.url_tickets && s.url_tickets.trim() ? s.url_tickets : '';
+    const info = s.url_info && s.url_info.trim() ? s.url_info : '';
+    const primaryUrl = tickets || info || film.theaterLink || getFallbackUrl(film, s);
+    const primaryIsSpecific = !!(tickets || info);
     onOpenModal({
       film, session: s, filmTitleLabel, matchScore,
-      ticketUrl: hasDirectUrl ? s.url_tickets : '',
-      filmPageUrl: s.url_info || film.theaterLink || getFallbackUrl(film, s),
+      primaryUrl,
+      primaryIsSpecific,
+      secondaryInfoUrl: tickets && info && info !== tickets ? info : undefined,
       calendarUrl: getCalendarUrl(film, s),
-      hasDirectUrl,
     });
   };
 
@@ -300,20 +303,6 @@ export default memo(function FilmGridTile({
   // second flips it to the sessions view. Closing always fully collapses.
   const [flipped, setFlipped] = useState(false);
 
-  // Unique theater tints, capped to 5 dots.
-  const tintDots = useMemo(() => {
-    const seen = new Set<string>();
-    const out: string[] = [];
-    for (const s of sorted) {
-      const t = theaterTint(s.location);
-      if (seen.has(t)) continue;
-      seen.add(t);
-      out.push(t);
-      if (out.length >= 5) break;
-    }
-    return out;
-  }, [sorted]);
-
   const tileId = `tile-${film.id}`;
   const expanded = openPopupId === tileId;
   const showMatch = matchScore !== undefined && !isWatched;
@@ -456,32 +445,6 @@ export default memo(function FilmGridTile({
         >{mark}</div>
       )}
 
-      {/* Rating + viewer count pill — upper-left. Same dark chip treatment as
-          the match pill so both read consistently regardless of palette. */}
-      {(film.rating != null || film.viewers != null) && (
-        <div className="grid-tile-metrics" aria-hidden>
-          {film.rating != null && (
-            <span className="grid-tile-metric grid-tile-metric-rating">
-              <span className="metric-icon rating-icon" />
-              {film.rating.toFixed(1)}
-            </span>
-          )}
-          {film.viewers != null && (
-            <span className="grid-tile-metric grid-tile-metric-viewers">
-              <span className="metric-icon viewers-icon" />
-              {formatViewerCount(film.viewers)}
-            </span>
-          )}
-        </div>
-      )}
-
-      {showMatch && (
-        <span className={`match-pill match-${matchTier(matchScore!)} grid-tile-match`}>
-          <span className="match-dot" />
-          {matchScore}%
-        </span>
-      )}
-
       {/* Gradient readability overlay — fades into a near-black shade so the info
           block below reads cleanly regardless of the poster palette. */}
       <div className="grid-tile-gradient" aria-hidden />
@@ -496,21 +459,43 @@ export default memo(function FilmGridTile({
           ].filter(Boolean).join(' · ')}
         </div>
         <div className="grid-tile-footer">
-          <span className="grid-tile-tints">
-            {tintDots.map((tint, i) => (
-              <span key={i} className="grid-tile-tint" style={{ background: tint }} />
-            ))}
-          </span>
-          <span className="grid-tile-count">
-            {film.dates.length} {lang === 'es' ? 'ses.' : 'ses.'}
-          </span>
+          {film.rating != null && (
+            <span className="grid-tile-metric grid-tile-metric-rating">
+              <span className="metric-icon rating-icon" />
+              {film.rating.toFixed(1)}
+            </span>
+          )}
+          {film.viewers != null && (
+            <span className="grid-tile-metric grid-tile-metric-viewers">
+              <span className="metric-icon viewers-icon" />
+              {formatViewerCount(film.viewers)}
+            </span>
+          )}
           {next && (
-            <span className="grid-tile-next">
+            <span
+              className={`grid-tile-next${sorted.length > 1 ? ' has-more' : ''}`}
+              title={sorted.length > 1
+                ? (lang === 'es'
+                    ? `${sorted.length} sesiones en total`
+                    : `${sorted.length} sessions total`)
+                : undefined}
+            >
               {shortDate(next.timestamp.slice(0, 10), todayIso, lang)} {timeOf(next.timestamp)}
             </span>
           )}
         </div>
       </div>
+
+      {showMatch && (
+        <div
+          className={`grid-tile-match-bar match-${matchTier(matchScore!)}`}
+          style={{ width: `${matchScore}%` }}
+          title={lang === 'es'
+            ? `${matchScore}% de afinidad con tu Letterboxd`
+            : `${matchScore}% match with your Letterboxd`}
+          aria-hidden
+        />
+      )}
 
       {overlayVisible && typeof document !== 'undefined' && createPortal(
         <div
@@ -551,7 +536,18 @@ export default memo(function FilmGridTile({
                 <div className="grid-tile-modal-mark" style={{ color: b }} aria-hidden>{mark}</div>
               )}
 
-              {(film.rating != null || film.viewers != null || showMatch) && (
+              {showMatch && (
+                <div
+                  className={`grid-tile-modal-match-bar match-${matchTier(matchScore!)}`}
+                  style={{ width: `${matchScore}%` }}
+                  title={lang === 'es'
+                    ? `${matchScore}% de afinidad con tu Letterboxd`
+                    : `${matchScore}% match with your Letterboxd`}
+                  aria-hidden
+                />
+              )}
+
+              {(film.rating != null || film.viewers != null) && (
                 <div className="grid-tile-metrics grid-tile-modal-metrics">
                   {film.rating != null && (
                     <span className="grid-tile-metric grid-tile-metric-rating" aria-hidden>
@@ -563,12 +559,6 @@ export default memo(function FilmGridTile({
                     <span className="grid-tile-metric grid-tile-metric-viewers" aria-hidden>
                       <span className="metric-icon viewers-icon" />
                       {formatViewerCount(film.viewers)}
-                    </span>
-                  )}
-                  {showMatch && (
-                    <span className={`match-pill match-${matchTier(matchScore!)}`}>
-                      <span className="match-dot" />
-                      {matchScore}%
                     </span>
                   )}
                 </div>
@@ -678,7 +668,7 @@ export default memo(function FilmGridTile({
                     aria-selected={sortMode === 'theater'}
                     className={`grid-tile-modal-sort-btn${sortMode === 'theater' ? ' active' : ''}`}
                     onClick={(e) => { e.stopPropagation(); setSortMode('theater'); }}
-                  >{lang === 'es' ? 'Sala' : 'Theater'}</button>
+                  >{lang === 'es' ? 'Cine' : 'Theater'}</button>
                   <button
                     type="button"
                     role="tab"

@@ -166,15 +166,6 @@ header {
     line-height: 1;
 }
 
-.day-pill .day-count {
-    font-size: 0.54rem;
-    line-height: 1.1;
-    color: var(--text-mute);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    margin-top: 2px;
-}
-
 .day-pill:hover:not(.active) {
     background: color-mix(in srgb, var(--text) 5%, transparent);
 }
@@ -184,8 +175,7 @@ header {
     color: var(--accent-on);
 }
 
-.day-pill.active .dow,
-.day-pill.active .day-count {
+.day-pill.active .dow {
     color: color-mix(in srgb, var(--accent-on) 80%, transparent);
 }
 
@@ -2463,22 +2453,24 @@ h1 .h1-accent {
     background: linear-gradient(to bottom, transparent 0%, rgba(10, 8, 5, 0.55) 45%, rgba(10, 8, 5, 0.88) 100%);
 }
 
-.grid-tile-match {
+/* Match indicator — a thin color-coded strip along the bottom edge of the
+   tile whose width equals the match percentage, so tier + strength both read
+   at a glance without occupying any content space. */
+.grid-tile-match-bar {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    z-index: 2;
-    padding: 2px 8px !important;
-    font-size: 0.64rem !important;
-    background: rgba(10, 8, 5, 0.82) !important;
-    color: #f0ece1 !important;
-    border-color: rgba(240, 236, 225, 0.18) !important;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    z-index: 3;
+    background: currentColor;
+    pointer-events: none;
+    box-shadow: 0 0 6px currentColor;
+    opacity: 0.9;
 }
-
-.grid-tile-match.match-high .match-dot { background: var(--match); }
-.grid-tile-match.match-mid  .match-dot { background: var(--match-mid); }
-.grid-tile-match.match-warm .match-dot { background: var(--warm); }
-.grid-tile-match.match-mute .match-dot { background: var(--text-mute); }
+.grid-tile-match-bar.match-high { color: var(--match); }
+.grid-tile-match-bar.match-mid  { color: var(--match-mid); }
+.grid-tile-match-bar.match-warm { color: var(--warm); }
+.grid-tile-match-bar.match-mute { color: var(--text-mute); }
 
 .grid-tile-info {
     position: absolute;
@@ -2493,11 +2485,10 @@ h1 .h1-accent {
 }
 
 /* Upper-left rating + viewers chip pair — mirror the match pill shape */
+/* Tile metrics (rating + viewers) live inside the footer — only the modal
+   metrics retain the dark chip treatment. On the tile we show plain icon +
+   number without a background so they read as quiet stats over the footer. */
 .grid-tile-metrics {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 2;
     display: inline-flex;
     gap: 5px;
 }
@@ -2506,11 +2497,7 @@ h1 .h1-accent {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 2px 7px;
-    border-radius: 999px;
-    background: rgba(10, 8, 5, 0.82);
     color: #f0ece1;
-    border: 1px solid rgba(240, 236, 225, 0.18);
     font-size: 0.62rem;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
@@ -2523,7 +2510,9 @@ h1 .h1-accent {
     background-color: currentColor;
 }
 
-.grid-tile-metric-rating { color: var(--warm); }
+/* Rating icon stays white (same as viewers) everywhere — tile footer AND
+   modal — for a consistent stats row. */
+.grid-tile-metric-rating,
 .grid-tile-metric-viewers { color: #f0ece1; }
 
 .grid-tile-title {
@@ -2552,36 +2541,38 @@ h1 .h1-accent {
 .grid-tile-footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 4px;
-    padding: 4px 7px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
-    border-radius: 4px;
+    gap: 10px;
+    margin-top: 4px;
     font-size: 0.6rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }
 
-.grid-tile-tints {
-    display: inline-flex;
-    gap: 2px;
-}
-
-.grid-tile-tint {
-    width: 5px;
-    height: 5px;
-    border-radius: 99px;
-    outline: 1px solid rgba(255, 255, 255, 0.4);
-    outline-offset: -0.5px;
-}
-
-.grid-tile-count {
-    font-weight: 700;
-}
-
 .grid-tile-next {
+    margin-left: auto;
     opacity: 0.9;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Multi-session hint: dotted underline under the shown date — occupies zero
+   horizontal space, still reads as "there's more to see here." Tooltip
+   carries the total session count. */
+.grid-tile-next.has-more {
+    text-decoration: underline dotted;
+    text-decoration-color: rgba(240, 236, 225, 0.55);
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    cursor: help;
+}
+
+/* On mobile the tile is narrow — shrink the metric text and footer gap so the
+   next-screening stays on a single line alongside rating + viewers. */
+@media (max-width: 640px) {
+    .grid-tile-footer { gap: 7px; }
+    .grid-tile-metric { font-size: 0.56rem; }
+    .grid-tile-metric .metric-icon { width: 9px; height: 9px; }
+    .grid-tile-next { font-size: 0.56rem; }
 }
 
 /* Expanded overlay — tap a tile to see first-N sessions in a dark pop.
@@ -2713,14 +2704,22 @@ h1 .h1-accent {
 .grid-tile-modal-gradient {
     position: absolute;
     inset: 0;
-    /* Deeper, earlier-starting shade so the bottom info block stays readable
-       over high-contrast posters. Two stops + a near-opaque floor. */
-    background: linear-gradient(
-        to bottom,
-        transparent 35%,
-        rgba(10, 8, 5, 0.55) 62%,
-        rgba(10, 8, 5, 0.95) 100%
-    );
+    /* Two stacked gradients: a top shade so the rating/viewers/close cluster
+       stays legible over bright posters, and the existing deeper bottom shade
+       for the title/meta block. */
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10, 8, 5, 0.8) 0%,
+            rgba(10, 8, 5, 0.45) 8%,
+            transparent 18%
+        ),
+        linear-gradient(
+            to bottom,
+            transparent 35%,
+            rgba(10, 8, 5, 0.55) 62%,
+            rgba(10, 8, 5, 0.95) 100%
+        );
     pointer-events: none;
 }
 
@@ -2796,47 +2795,71 @@ h1 .h1-accent {
     display: block;
     margin-top: 4px;
     opacity: 0.55;
+    white-space: nowrap;
 }
 
 .grid-tile-modal-metrics {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    /* Same top + height as the close button so rating + viewers align on the
+       same row. Plain white text + dark shadow mirrors the small-tile footer
+       treatment — no chips needed since the shadow + bottom match bar carry
+       the readability over any poster palette. */
+    top: 10px;
+    left: 14px;
     right: auto;
-    display: flex;
-    gap: 6px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     z-index: 3;
+    color: #f0ece1;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.55),
+        0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Match pill inside the modal metrics row reads as a peer of rating + viewers:
-   same dark chip, same type scale, with the tier color carried only by the dot. */
-.grid-tile-modal-metrics .match-pill {
-    background: rgba(10, 8, 5, 0.82);
-    color: #f0ece1;
-    border: 1px solid rgba(240, 236, 225, 0.18);
-    padding: 2px 7px;
-    font-size: 0.62rem;
+.grid-tile-modal-metrics .grid-tile-metric {
+    font-size: inherit;
+    gap: 5px;
 }
-.grid-tile-modal-metrics .match-pill.match-high .match-dot { background: var(--match); }
-.grid-tile-modal-metrics .match-pill.match-mid  .match-dot { background: var(--match-mid); }
-.grid-tile-modal-metrics .match-pill.match-warm .match-dot { background: var(--warm); }
-.grid-tile-modal-metrics .match-pill.match-mute .match-dot { background: var(--text-mute); }
+.grid-tile-modal-metrics .grid-tile-metric .metric-icon {
+    width: 12px;
+    height: 12px;
+}
+
+/* Match percent bar across the top edge of the modal, mirroring the small
+   tile's bottom bar — width = matchScore%, tier color. */
+.grid-tile-modal-match-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 5px;
+    z-index: 4;
+    background: currentColor;
+    pointer-events: none;
+    box-shadow: 0 0 10px currentColor;
+    opacity: 0.95;
+}
+.grid-tile-modal-match-bar.match-high { color: var(--match); }
+.grid-tile-modal-match-bar.match-mid  { color: var(--match-mid); }
+.grid-tile-modal-match-bar.match-warm { color: var(--warm); }
+.grid-tile-modal-match-bar.match-mute { color: var(--text-mute); }
 
 .grid-tile-modal-back {
     background: rgba(10, 8, 5, 0.94);
     color: #f0ece1;
-    padding: 22px 24px 24px;
+    /* Top padding clears the sort toggle + close cluster (both pinned at
+       top:10 with height 32 → occupy 10–42), leaving breathing room below. */
+    padding: 56px 24px 24px;
     gap: 10px;
     overflow: hidden;
 }
 
 .grid-tile-modal-back-head {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
     flex-shrink: 0;
-    padding-right: 40px;  /* clear the absolutely-positioned close button */
 }
 
 .grid-tile-modal-back-titles {
@@ -2852,22 +2875,32 @@ h1 .h1-accent {
 
 /* Two-way tab toggle (Sala | Fecha), styled after the header lang-toggle. */
 .grid-tile-modal-sort-group {
+    /* Same height/top as the close button so both cluster at the top-right
+       with identical vertical centers. */
+    position: absolute;
+    top: 10px;
+    right: 54px;
+    z-index: 3;
+    height: 32px;
     display: inline-flex;
+    align-items: center;
     gap: 2px;
-    padding: 2px;
+    padding: 0 3px;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.04);
     flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: 2px;
+    box-sizing: border-box;
 }
 
 .grid-tile-modal-sort-btn {
     background: transparent;
     border: none;
     color: rgba(240, 236, 225, 0.55);
-    padding: 4px 11px;
+    padding: 0 11px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
     font-family: inherit;
     font-size: 0.66rem;
     font-weight: 700;
@@ -3063,7 +3096,7 @@ a.grid-tile-modal-rec-tag:hover {
 
     /* Shrink the 2-col session chips on narrow screens — at full desktop size
        two date-chips per row don't fit a ~360px modal comfortably. */
-    .grid-tile-modal-back { padding: 18px 16px 18px; }
+    .grid-tile-modal-back { padding: 52px 20px 22px; }
     .grid-tile-modal-back .gto-date-session {
         padding: 5px 8px;
         font-size: 0.72rem;
@@ -5134,6 +5167,8 @@ footer p {
     gap: 6px;
     font-size: 0.72rem;
     color: var(--text-dim);
+    /* Pinned to the right even when the "Ver ficha" sibling isn't rendered. */
+    margin-left: auto;
 }
 
 .session-modal-calendar-label { margin-right: 2px; }

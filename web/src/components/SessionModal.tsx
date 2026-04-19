@@ -176,14 +176,15 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
 
         {/* Actions */}
         <div className="session-modal-actions">
-          {/* Primary: buy tickets — lives at the theater's own site when we have a direct URL */}
+          {/* Primary CTA — "Buy tickets" when we have any session-specific URL
+              (ticketing or info), otherwise falls back to the theater site. */}
           <a
             className="session-modal-primary"
-            href={modal.hasDirectUrl ? modal.ticketUrl : modal.filmPageUrl}
+            href={modal.primaryUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {modal.hasDirectUrl
+            {modal.primaryIsSpecific
               ? (lang === 'es' ? 'Comprar entradas' : 'Buy tickets')
               : (lang === 'es' ? 'Ir al cine' : 'Go to theater site')}
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
@@ -192,10 +193,10 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
           </a>
 
           <div className="session-modal-actions-secondary">
-            {modal.hasDirectUrl && modal.filmPageUrl && modal.filmPageUrl !== modal.ticketUrl && (
+            {modal.secondaryInfoUrl && (
               <a
                 className="session-modal-link"
-                href={modal.filmPageUrl}
+                href={modal.secondaryInfoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -88,9 +88,6 @@ export function DayStrip({ lang, days, selectedDate, onSelect, onOpenCalendar }:
             >
               <span className="dow">{d.isToday ? (lang === 'es' ? 'Hoy' : 'Today') : dow[d.dow]}</span>
               <span className="dom">{d.dom}</span>
-              {d.filmCount > 0 && (
-                <span className="day-count">{d.filmCount}</span>
-              )}
             </button>
           );
         })}

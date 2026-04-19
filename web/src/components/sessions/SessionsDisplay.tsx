@@ -44,16 +44,19 @@ function toModalData(film: Film, d: DateEntry,
                      getFallbackUrl: (f: Film, d: DateEntry) => string,
                      matchScore?: number): SessionModalData {
   const filmTitleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
-  const hasDirectUrl = !!(d.url_tickets && d.url_tickets.trim());
+  const tickets = d.url_tickets && d.url_tickets.trim() ? d.url_tickets : '';
+  const info = d.url_info && d.url_info.trim() ? d.url_info : '';
+  const primaryUrl = tickets || info || film.theaterLink || getFallbackUrl(film, d);
+  const primaryIsSpecific = !!(tickets || info);
   return {
     film,
     session: d,
     filmTitleLabel,
     matchScore,
-    ticketUrl: hasDirectUrl ? d.url_tickets : '',
-    filmPageUrl: d.url_info || film.theaterLink || getFallbackUrl(film, d),
+    primaryUrl,
+    primaryIsSpecific,
+    secondaryInfoUrl: tickets && info && info !== tickets ? info : undefined,
     calendarUrl: getCalendarUrl(film, d),
-    hasDirectUrl,
   };
 }
 

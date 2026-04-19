@@ -346,10 +346,14 @@ export default function FilmCalendar({
             {filmsNotReady
               ? t(lang, 'loading')
               : (() => {
-                  // "Hoy · 47 películas" or "Dom 19 abr · 12 películas" per DC.
+                  // Prefix reflects the active date filter. When no date is
+                  // picked we show all upcoming sessions — calling that "Hoy"
+                  // would mislead, so fall back to a neutral label.
                   const todayIso = new Date().toISOString().slice(0, 10);
                   let prefix: string;
-                  if (!filters.selectedDate || filters.selectedDate === todayIso) {
+                  if (!filters.selectedDate) {
+                    prefix = lang === 'es' ? 'Próximas' : 'Upcoming';
+                  } else if (filters.selectedDate === todayIso) {
                     prefix = lang === 'es' ? 'Hoy' : 'Today';
                   } else {
                     const d = new Date(filters.selectedDate + 'T12:00:00');
