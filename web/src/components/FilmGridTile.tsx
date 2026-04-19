@@ -556,7 +556,7 @@ export default memo(function FilmGridTile({
                 />
               )}
 
-              {(film.rating != null || film.viewers != null) && (
+              {(film.rating != null || film.viewers != null || isWatched) && (
                 <div className="grid-tile-metrics grid-tile-modal-metrics">
                   {film.rating != null && (
                     <span className="grid-tile-metric grid-tile-metric-rating" aria-hidden>
@@ -568,6 +568,14 @@ export default memo(function FilmGridTile({
                     <span className="grid-tile-metric grid-tile-metric-viewers" aria-hidden>
                       <span className="metric-icon viewers-icon" />
                       {formatViewerCount(film.viewers)}
+                    </span>
+                  )}
+                  {isWatched && (
+                    <span className="grid-tile-metric grid-tile-metric-watched">
+                      <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden>
+                        <path d="M2 6.5 L5 9.5 L10 3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {lang === 'es' ? 'Vista' : 'Watched'}
                     </span>
                   )}
                 </div>

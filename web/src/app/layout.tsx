@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Fraunces, Inter } from 'next/font/google';
+import { Newsreader, Inter } from 'next/font/google';
 import './globals.css';
 
 // next/font self-hosts both fonts and emits a size-adjusted fallback @font-face
@@ -20,14 +20,15 @@ const inter = Inter({
   fallback: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'system-ui', 'sans-serif'],
 });
 
-const fraunces = Fraunces({
+// Trying Newsreader — editorial serif with an opsz axis, so big sizes get
+// the display personality and small sizes get a more open, readable cut.
+// Kept the CSS variable name so the rest of the stylesheet doesn't change.
+const fraunces = Newsreader({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
   style: ['normal', 'italic'],
-  // Variable weight — the axes list below only works when no explicit weight
-  // list is passed (otherwise next/font rejects the combo).
-  axes: ['SOFT', 'opsz'],
+  axes: ['opsz'],
   variable: '--font-fraunces',
   fallback: ['Georgia', 'ui-serif', 'serif'],
 });

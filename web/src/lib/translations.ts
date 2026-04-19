@@ -6,7 +6,7 @@ export const TRANSLATIONS: Record<LangKey, Record<string, TranslationValue>> = {
   es: {
     viewersLabel: (n: string) => `Vista por ${n} personas`,
     siteTitle: '🎬 Madrid Film Calendar',
-    subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo',
+    subtitle: 'Cine Estudio • Cine Paz • Cinesa • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Yelmo',
     searchPlaceholder: 'Buscar título o director',
     selectDate: 'Elegir día',
     allTheaters: 'Todos los cines',
@@ -125,7 +125,7 @@ export const TRANSLATIONS: Record<LangKey, Record<string, TranslationValue>> = {
   en: {
     viewersLabel: (n: string) => `${n} viewers`,
     siteTitle: '🎬 Madrid Film Calendar',
-    subtitle: 'Cine Estudio • Cine Paz • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Cinesa • Yelmo',
+    subtitle: 'Cine Estudio • Cine Paz • Cinesa • Cineteca • Doré • Embajadores • Golem • Renoir • Sala Berlanga • Sala Equis • Verdi • Yelmo',
     searchPlaceholder: 'Search title or director',
     selectDate: 'Select date',
     allTheaters: 'All Theaters',

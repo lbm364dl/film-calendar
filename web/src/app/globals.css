@@ -485,6 +485,29 @@ h1 .h1-accent {
     font-weight: 400;
 }
 
+/* Stacked wordmark — small uppercase "MADRID" eyebrow over a big italic
+   serif "Film Calendar" main line, rendered in accent color. */
+.wordmark-stack {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 0.2rem;
+    margin: 0 auto;
+}
+.wordmark-stack .wordmark-eyebrow {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+.wordmark-stack .wordmark-main {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
 .subtitle {
     color: var(--text-dim);
     font-size: 0.82rem;
@@ -2857,8 +2880,10 @@ h1 .h1-accent {
     background: rgba(10, 8, 5, 0.94);
     color: #f0ece1;
     /* Top padding clears the sort toggle + close cluster (both pinned at
-       top:10 with height 32 → occupy 10–42), leaving breathing room below. */
-    padding: 56px 24px 24px;
+       top:10 with height 32 → occupy 10–42), leaving breathing room below.
+       Generous horizontal padding so the sessions list doesn't sit flush
+       against the card edge. */
+    padding: 56px 34px 28px;
     gap: 10px;
     overflow: hidden;
 }
@@ -3101,7 +3126,7 @@ a.grid-tile-modal-rec-tag:hover {
 
     /* Shrink the 2-col session chips on narrow screens — at full desktop size
        two date-chips per row don't fit a ~360px modal comfortably. */
-    .grid-tile-modal-back { padding: 52px 20px 22px; }
+    .grid-tile-modal-back { padding: 52px 26px 24px; }
     .grid-tile-modal-back .gto-date-session {
         padding: 5px 8px;
         font-size: 0.72rem;
