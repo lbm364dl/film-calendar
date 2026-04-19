@@ -16,10 +16,8 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Direction C — warm-dark palette (default). Mapped to legacy var names so the
-   rest of the stylesheet doesn't need to change. */
-:root,
-:root[data-theme="dark"] {
+/* Direction C — warm-dark palette. Site is dark-only; no theme switching. */
+:root {
     /* Surfaces */
     --bg:         #17140f;   /* page */
     --bg-card:    #211d17;   /* elevated surfaces (cards, inputs) */
@@ -49,34 +47,6 @@ html, body {
     --rating-gold: #d4b560;
 
     color-scheme: dark;
-}
-
-:root[data-theme="light"] {
-    --bg:         #f6f3ec;
-    --bg-card:    #ffffff;
-    --bg-hover:   #efebe1;
-
-    --text:       #1a1814;
-    --text-2:     #3a352d;
-    --text-dim:   #6b6354;
-    --text-mute:  #9c937f;
-
-    --border:     #dfdacc;
-    --border-2:   #cdc6b3;
-
-    --accent:      #c2593a;
-    --accent-soft: rgba(194, 89, 58, 0.1);
-    --accent-border: rgba(194, 89, 58, 0.28);
-    --accent-on:   #ffffff;
-
-    --warm:       #a78b3a;
-    --rec:        #7a6a4e;
-    --match:      #4a7f5c;
-    --match-mid:  #6e7f3e;
-
-    --rating-gold: #a78b3a;
-
-    color-scheme: light;
 }
 
 body {
@@ -136,10 +106,6 @@ header {
 .lang-btn:hover:not(.active) {
     background: rgba(255, 255, 255, 0.04);
     color: var(--text-2);
-}
-
-:root[data-theme="light"] .lang-btn:hover:not(.active) {
-    background: rgba(0, 0, 0, 0.04);
 }
 
 /* ── Day strip + calendar popover ───────────────────────────────────────── */
@@ -278,10 +244,6 @@ header {
     animation: fc-modal-pop-in 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-:root[data-theme="light"] .calendar-popover {
-    box-shadow: 0 30px 80px rgba(20, 18, 14, 0.24), 0 4px 16px rgba(20, 18, 14, 0.1);
-}
-
 /* Dim backdrop rendered by a sibling .calendar-backdrop element in FilmCalendar. */
 .calendar-backdrop {
     position: fixed;
@@ -291,10 +253,6 @@ header {
     -webkit-backdrop-filter: blur(2px);
     z-index: 3099;
     animation: fc-modal-fade-in 0.15s ease-out;
-}
-
-:root[data-theme="light"] .calendar-backdrop {
-    background: rgba(26, 24, 20, 0.3);
 }
 
 .calendar-backdrop.closing {
@@ -516,48 +474,7 @@ header {
     .calendar-cell-dom { font-size: 0.88rem; }
 }
 
-/* Theme toggle — circular icon button in the header top row */
-.theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    padding: 0;
-}
-
-.theme-toggle:hover {
-    border-color: var(--text-dim);
-    color: var(--text);
-}
-
-/* Grouped variant — lives inside .prefs-pill, so drops its own border and
-   uses the container for the single shared shell. Keeps the hover/color
-   treatment so the icon still feels interactive. */
-.theme-toggle.theme-toggle-grouped {
-    border: none;
-    width: 26px;
-    height: 26px;
-    border-radius: 999px;
-}
-
-.theme-toggle.theme-toggle-grouped:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text);
-}
-
-:root[data-theme="light"] .theme-toggle.theme-toggle-grouped:hover {
-    background: rgba(0, 0, 0, 0.04);
-}
-
-/* Preferences pill — single bordered container grouping theme + language
-   toggles with a vertical divider between them. Matches DC header. */
+/* Preferences pill — single bordered container around the language toggle. */
 .prefs-pill {
     display: inline-flex;
     align-items: center;
@@ -566,14 +483,6 @@ header {
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 999px;
-}
-
-.prefs-pill-divider {
-    display: inline-block;
-    width: 1px;
-    height: 14px;
-    background: var(--border-2);
-    margin: 0 0.15rem;
 }
 
 /* Inside the shared pill, the language segment loses its own border (the
@@ -2502,10 +2411,6 @@ h1 .h1-accent {
     background-clip: padding-box;
 }
 
-:root[data-theme="light"] .grid-tile {
-    box-shadow: 0 2px 6px rgba(20, 18, 14, 0.12);
-}
-
 .grid-tile:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
@@ -3589,10 +3494,6 @@ a.grid-tile-modal-rec-tag:hover {
     padding: 2rem 1rem;
 }
 
-:root[data-theme="light"] .filter-modal {
-    background: rgba(20, 18, 14, 0.32);
-}
-
 .filter-modal.show {
     display: flex;
 }
@@ -3618,10 +3519,6 @@ a.grid-tile-modal-rec-tag:hover {
     overflow: hidden;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 6px 20px rgba(0, 0, 0, 0.18);
     animation: modalSlideIn 0.2s ease-out;
-}
-
-:root[data-theme="light"] .filter-modal-content {
-    box-shadow: 0 30px 80px rgba(20, 18, 14, 0.3), 0 6px 20px rgba(20, 18, 14, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -4907,10 +4804,6 @@ footer p {
     animation: fc-modal-fade-in 0.2s ease-out;
 }
 
-:root[data-theme="light"] .session-modal {
-    background: rgba(26, 24, 20, 0.35);
-}
-
 .session-modal.closing {
     animation: fc-modal-fade-out 0.18s ease-in forwards;
 }
@@ -4931,10 +4824,6 @@ footer p {
     border-radius: 10px;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
     animation: fc-modal-slide-in 0.18s cubic-bezier(0.2, 0.7, 0.3, 1);
-}
-
-:root[data-theme="light"] .session-modal-content {
-    box-shadow: 0 30px 80px rgba(26, 24, 20, 0.28), 0 4px 16px rgba(26, 24, 20, 0.12);
 }
 
 @keyframes fc-modal-fade-in {
@@ -5196,10 +5085,6 @@ footer p {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
 }
 
-:root[data-theme="light"] .session-modal-primary {
-    box-shadow: 0 1px 0 rgba(26, 24, 20, 0.12);
-}
-
 .session-modal-primary:hover {
     background: var(--accent);
     color: var(--accent-on);
@@ -5432,12 +5317,6 @@ footer p {
     font-weight: 700;
     letter-spacing: 0.06em;
     line-height: 1.4;
-}
-
-:root[data-theme="light"] .user-pill-lbxd {
-    background: rgba(58, 129, 80, 0.1);
-    color: #3a8150;
-    border-color: rgba(58, 129, 80, 0.28);
 }
 
 .user-pill-chevron {

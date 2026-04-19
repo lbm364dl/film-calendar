@@ -14,7 +14,6 @@ import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
 import FilmGridTile from '@/components/FilmGridTile';
-import ThemeToggle from '@/components/ThemeToggle';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
 import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
 import ActiveFilterChips from '@/components/ActiveFilterChips';
@@ -240,12 +239,7 @@ export default function FilmCalendar({
             onOpenLetterboxd={openLbModal}
           />
           <div className="header-actions">
-            {/* Preferences pill: theme toggle + language toggle share a single
-                border with a divider between them, mirroring DC's grouped
-                header controls next to the user pill. */}
             <div className="prefs-pill" role="group" aria-label="Preferences">
-              <ThemeToggle variant="grouped" />
-              <span className="prefs-pill-divider" aria-hidden />
               <div className="lang-toggle lang-toggle-grouped">
                 <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
                 <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
