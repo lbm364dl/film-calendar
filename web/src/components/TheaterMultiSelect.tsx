@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { normalizeText } from '@/lib/film-helpers';
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
@@ -36,6 +36,19 @@ export default function TheaterMultiSelect({
 
   const normalizedSearch = normalizeText(search);
   const triggerLabel = t(lang, 'nTheatersSelected', selectedTheaters.size, ALL_THEATER_VALUES.length);
+
+  // Alphabetical view of the theater groups (and children within each group).
+  // Source order in constants.ts is authorial — sort at render time so the
+  // dropdown reads naturally regardless of how the data is structured.
+  const sortedGroups = useMemo(() => {
+    const collator = new Intl.Collator(lang === 'es' ? 'es' : 'en', { sensitivity: 'base' });
+    return [...THEATER_GROUPS]
+      .map(g => g.children
+        ? { ...g, children: [...g.children].sort((a, b) => collator.compare(a.label, b.label)) }
+        : g
+      )
+      .sort((a, b) => collator.compare(a.label, b.label));
+  }, [lang]);
 
   const toggleExpand = (label: string) => {
     setExpandedGroups(prev => {
@@ -74,7 +87,7 @@ export default function TheaterMultiSelect({
             <button type="button" onClick={onSelectNone}>{t(lang, 'selectNone')}</button>
           </div>
           <div className="filter-dd-options">
-            {THEATER_GROUPS.map((group) => {
+            {sortedGroups.map((group) => {
               if (group.children) {
                 const childValues = group.children.map(c => c.value);
                 const selectedCount = childValues.filter(v => selectedTheaters.has(v)).length;

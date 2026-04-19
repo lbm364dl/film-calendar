@@ -1,6 +1,37 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Newsreader, Inter } from 'next/font/google';
 import './globals.css';
+
+// next/font self-hosts both fonts and emits a size-adjusted fallback @font-face
+// so the initial paint (before Google Fonts actually loads) uses system fonts
+// that match the custom font's metrics closely. This keeps the FOUT (flash of
+// unstyled text) on hard refresh subtle rather than a jarring reflow.
+// next/font self-hosts both fonts and (with adjustFontFallback: true, the
+// default) emits a size-adjusted fallback @font-face so the initial paint
+// before Google Fonts loads uses system fonts whose metrics match the
+// custom font. This keeps the FOUT (flash of unstyled text) on hard refresh
+// subtle rather than a jarring reflow.
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-inter',
+  fallback: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'system-ui', 'sans-serif'],
+});
+
+// Trying Newsreader — editorial serif with an opsz axis, so big sizes get
+// the display personality and small sizes get a more open, readable cut.
+// Kept the CSS variable name so the rest of the stylesheet doesn't change.
+const fraunces = Newsreader({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  variable: '--font-fraunces',
+  fallback: ['Georgia', 'ui-serif', 'serif'],
+});
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-FKN0ELREQD';
 
@@ -59,9 +90,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
-        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="theme-color" content="#17140f" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

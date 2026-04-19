@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { useGridColumns } from '@/hooks/useGridColumns';
 import { t } from '@/lib/translations';
 import type { LangKey } from '@/lib/translations';
 import type { Film, DateEntry } from '@/lib/types';
@@ -12,8 +13,10 @@ import { useLetterboxd } from '@/hooks/useLetterboxd';
 import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '@/hooks/useModal';
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
-import FilmCard from '@/components/FilmCard';
+import FilmGridTile from '@/components/FilmGridTile';
 import { SkeletonCardGrid, SkeletonFilters } from '@/components/SkeletonCard';
+import { DayStrip, CalendarPopover, buildNextDays } from '@/components/DayStrip';
+import ActiveFilterChips from '@/components/ActiveFilterChips';
 import FiltersGrid from '@/components/FiltersGrid';
 import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
@@ -68,6 +71,10 @@ export default function FilmCalendar({
   // ─ Filters ─
   const [openPopupId, setOpenPopupId] = useState<string | null>(null);
 
+  // Column count is read from the rendered grid so pagination always stops on
+  // a full row regardless of viewport width.
+  const [columnsPerRow, gridRef] = useGridColumns(3);
+
   const filters = useFilmFilters({
     allFilms,
     watchlistUrls: lb.watchlistUrls, watchedUrls: lb.watchedUrls,
@@ -75,6 +82,7 @@ export default function FilmCalendar({
     showWatched: lb.showWatched,
     matchScores: lb.matchScores,
     initialSortBy,
+    columnsPerRow,
   });
 
   // ─ URL sync ─
@@ -148,14 +156,6 @@ export default function FilmCalendar({
     return film.title;
   }, [lang]);
 
-  const formatDate = useCallback((dateStr: string) => {
-    const date = new Date(dateStr.replace(' ', 'T'));
-    if (isNaN(date.getTime())) return dateStr;
-    return date.toLocaleDateString(dateLocale, {
-      weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
-  }, [dateLocale]);
-
   const getCalendarUrl = useCallback((film: Film, dateObj: DateEntry) => {
     return generateCalendarUrl(getFilmTitle(film), film, dateObj);
   }, [getFilmTitle]);
@@ -172,21 +172,117 @@ export default function FilmCalendar({
     (allFilms.length > 0 && filters.filteredFilms.length > 0 && filters.visibleFilms.length === 0)
   );
 
+  // ─ Day strip + calendar ─
+  // Count upcoming sessions per ISO date across all films (unfiltered: we show
+  // a stable "how much is happening" signal regardless of current filters).
+  const filmCountByIso = useMemo(() => {
+    const byIso = new Map<string, Set<number>>();
+    for (const film of allFilms) {
+      for (const d of film.dates) {
+        const iso = d.timestamp.slice(0, 10);
+        if (!iso) continue;
+        let set = byIso.get(iso);
+        if (!set) { set = new Set(); byIso.set(iso, set); }
+        set.add(film.id);
+      }
+    }
+    const out = new Map<string, number>();
+    byIso.forEach((set, iso) => out.set(iso, set.size));
+    return out;
+  }, [allFilms]);
+
+  const nextDays = useMemo(() => buildNextDays(filmCountByIso), [filmCountByIso]);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarClosing, setCalendarClosing] = useState(false);
+  // Trigger the close-out animation, then actually unmount ~180ms later so
+  // the backdrop + popover fade rather than blinking out.
+  const closeCalendar = useCallback(() => {
+    setCalendarClosing(true);
+    setTimeout(() => {
+      setCalendarOpen(false);
+      setCalendarClosing(false);
+    }, 180);
+  }, []);
+  // ─ Dynamic header subtitle: "N películas · N cines · sábado 18 abril, 2026" ─
+  const headerStats = useMemo(() => {
+    const filmCount = allFilms.length;
+    const theaterSet = new Set<string>();
+    for (const film of allFilms) {
+      for (const d of film.dates) {
+        if (d.location && d.location !== 'Unknown') theaterSet.add(d.location);
+      }
+    }
+    const theaterCount = theaterSet.size;
+    const nowStr = new Date().toLocaleDateString(dateLocale, {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    });
+    const filmsLabel = lang === 'es'
+      ? `${filmCount} película${filmCount === 1 ? '' : 's'}`
+      : `${filmCount} film${filmCount === 1 ? '' : 's'}`;
+    const theatersLabel = lang === 'es'
+      ? `${theaterCount} cine${theaterCount === 1 ? '' : 's'}`
+      : `${theaterCount} theater${theaterCount === 1 ? '' : 's'}`;
+    return `${filmsLabel} · ${theatersLabel} · ${nowStr}`;
+  }, [allFilms, dateLocale, lang]);
+
   // ─ Render ─
   return (
     <div className="container" onClick={() => { setOpenPopupId(null); }}>
-      {/* Header */}
+      {/* Header — Direction C: serif wordmark w/ italic accent on "Calendar" */}
       <header>
         <div className="header-top-row">
-          <AuthButton lang={lang} userId={initialUserId} userEmail={initialUserEmail} />
-          <div className="lang-toggle">
-            <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
-            <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+          <AuthButton
+            lang={lang}
+            userId={initialUserId}
+            userEmail={initialUserEmail}
+            hasLetterboxd={!!(lb.watchlistUrls || lb.watchedUrls || lb.recommendReady)}
+            onOpenLetterboxd={openLbModal}
+          />
+          <div className="header-actions">
+            <div className="prefs-pill" role="group" aria-label="Preferences">
+              <div className="lang-toggle lang-toggle-grouped">
+                <button className={`lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
+                <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
+              </div>
+            </div>
           </div>
         </div>
-        <h1>{t(lang, 'siteTitle')}</h1>
-        <p className="subtitle">{t(lang, 'subtitle')}</p>
+        <h1 className="wordmark-stack">
+          <span className="wordmark-eyebrow">Madrid</span>
+          <span className="wordmark-main h1-accent">Film Calendar</span>
+        </h1>
+        {/* Stats line — renders the real string once films load; until then a
+            pulse placeholder of the same height reserves space so the theater
+            list below never shifts when data arrives. */}
+        {allFilms.length > 0 ? (
+          <p className="subtitle">{headerStats}</p>
+        ) : (
+          <p className="subtitle subtitle-placeholder" aria-hidden>
+            <span className="subtitle-pulse" />
+          </p>
+        )}
+        <p className="subtitle subtitle-theaters">{t(lang, 'subtitle')}</p>
       </header>
+
+      {/* Calendar popover — centered modal on desktop, bottom sheet on mobile.
+          `.closing` on both backdrop + popover triggers the fade-out;
+          closeCalendar delays unmount until the animation finishes. */}
+      {calendarOpen && !filmsNotReady && (
+        <>
+          <div
+            className={`calendar-backdrop${calendarClosing ? ' closing' : ''}`}
+            onClick={closeCalendar}
+          />
+          <CalendarPopover
+            lang={lang}
+            selectedDate={filters.selectedDate}
+            filmCountByIso={filmCountByIso}
+            onSelect={filters.setSelectedDate}
+            onClose={closeCalendar}
+            closing={calendarClosing}
+          />
+        </>
+      )}
 
       {/* Filters — skeleton until films arrive, so users see they're not interactive yet */}
       {filmsNotReady ? (
@@ -196,16 +292,15 @@ export default function FilmCalendar({
           lang={lang}
           searchTerm={filters.searchTerm}
           setSearchTerm={filters.setSearchTerm}
+          days={nextDays}
           selectedDate={filters.selectedDate}
           setSelectedDate={filters.setSelectedDate}
+          onOpenCalendar={() => setCalendarOpen(v => !v)}
           selectedTheaters={filters.selectedTheaters}
           onToggleTheater={filters.toggleTheater}
           onToggleTheaterGroup={filters.toggleTheaterGroup}
           onSelectAllTheaters={filters.selectAllTheaters}
           onSelectNoneTheaters={filters.selectNoneTheaters}
-          lbHasData={lbHasData}
-          lbFilterActive={lbFilterActive}
-          onOpenLbModal={openLbModal}
           onOpenMoreFilters={openMoreFilters}
           activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
           zipInputRef={lb.zipInputRef}
@@ -215,14 +310,70 @@ export default function FilmCalendar({
         />
       )}
 
-      {/* Stats + Sort toggle */}
+      {/* Active filter chips row — sits below the filter bar per DC */}
+      {!filmsNotReady && (
+        <ActiveFilterChips
+          lang={lang}
+          versionFilter={filters.versionFilter}
+          setVersionFilter={filters.setVersionFilter}
+          decades={filters.decades}
+          selectedDecades={filters.selectedDecades}
+          setSelectedDecades={filters.setSelectedDecades}
+          selectedRuntimeCategories={filters.selectedRuntimeCategories}
+          setSelectedRuntimeCategories={filters.setSelectedRuntimeCategories}
+          selectedDays={filters.selectedDays}
+          setSelectedDays={filters.setSelectedDays}
+          allGenres={filters.allGenres}
+          selectedGenres={filters.selectedGenres}
+          setSelectedGenres={filters.setSelectedGenres}
+          allCountries={filters.allCountries}
+          selectedCountries={filters.selectedCountries}
+          setSelectedCountries={filters.setSelectedCountries}
+          allLanguages={filters.allLanguages}
+          selectedLanguages={filters.selectedLanguages}
+          setSelectedLanguages={filters.setSelectedLanguages}
+          specialFilter={filters.specialFilter}
+          setSpecialFilter={filters.setSpecialFilter}
+          lastChanceFilter={filters.lastChanceFilter}
+          setLastChanceFilter={filters.setLastChanceFilter}
+          onClearAll={filters.clearAllFilters}
+        />
+      )}
+
+      {/* Stats + View toggle + Sort toggle */}
       <div className="stats">
         <div className="stats-row">
           <span>
-            {filmsNotReady ? t(lang, 'loading') : t(lang, 'filmCount', filters.filteredFilms.length)}
+            {filmsNotReady
+              ? t(lang, 'loading')
+              : (() => {
+                  // Prefix reflects the active date filter. When no date is
+                  // picked we show all upcoming sessions — calling that "Hoy"
+                  // would mislead, so fall back to a neutral label.
+                  const todayIso = new Date().toISOString().slice(0, 10);
+                  let prefix: string;
+                  if (!filters.selectedDate) {
+                    prefix = lang === 'es' ? 'Cartelera' : 'Listings';
+                  } else if (filters.selectedDate === todayIso) {
+                    prefix = lang === 'es' ? 'Hoy' : 'Today';
+                  } else {
+                    const d = new Date(filters.selectedDate + 'T12:00:00');
+                    prefix = d.toLocaleDateString(dateLocale, {
+                      weekday: 'short', day: 'numeric', month: 'short',
+                    }).replace(/\.$/, '');
+                  }
+                  return (
+                    <>
+                      <span className="stats-prefix">{prefix}</span>
+                      <span className="stats-sep"> · </span>
+                      <span className="stats-count">{t(lang, 'filmCount', filters.filteredFilms.length)}</span>
+                    </>
+                  );
+                })()}
           </span>
+          <div className="stats-right">
           <button
-            className="sort-toggle"
+            className={`sort-toggle${filters.sortBy === 'affinity' ? '' : ' sort-neutral'}`}
             disabled={filmsNotReady}
             style={filmsNotReady ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
             onClick={() => {
@@ -236,12 +387,13 @@ export default function FilmCalendar({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 6h18M3 12h12M3 18h6" />
             </svg>
-            <span>
+            <span className="sort-toggle-label">
               {filters.sortBy === 'rating' ? t(lang, 'sortByRating')
                 : filters.sortBy === 'viewers' ? t(lang, 'sortByViewers')
                 : t(lang, 'sortByMatch')}
             </span>
           </button>
+          </div>
         </div>
         <span className="calendar-hint">{t(lang, 'calendarHint')}</span>
       </div>
@@ -257,9 +409,9 @@ export default function FilmCalendar({
         <>
           <div className={`films-grid-wrap${filters.isFiltering ? ' filtering' : ''}`}>
             {filters.isFiltering && filters.visibleFilms.length > 0 && <div className="filtering-spinner" />}
-            <div className="films-grid" style={{ display: 'grid' }}>
+            <div ref={gridRef} className="films-grid is-grid" style={{ display: 'grid' }}>
               {filters.visibleFilms.map(film => (
-                <FilmCard
+                <FilmGridTile
                   key={film.id}
                   film={film}
                   lang={lang}
@@ -269,7 +421,6 @@ export default function FilmCalendar({
                   matchScore={lb.matchScores[film.id]}
                   breakdown={lb.breakdowns[film.id]}
                   isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
-                  formatDate={formatDate}
                   getFilmTitle={getFilmTitle}
                   getCalendarUrl={getCalendarUrl}
                   getFallbackUrl={getTheaterFallbackUrl}
@@ -339,6 +490,9 @@ export default function FilmCalendar({
           setSpecialFilter={filters.setSpecialFilter}
           lastChanceFilter={filters.lastChanceFilter}
           setLastChanceFilter={filters.setLastChanceFilter}
+          activeAdvancedFilterCount={filters.activeAdvancedFilterCount}
+          resultsCount={filters.filteredFilms.length}
+          onClearAll={filters.clearAllFilters}
           onHelp={helpModal.open}
         />
       )}

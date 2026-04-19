@@ -1,14 +1,11 @@
 'use client';
 
-import { useRef, useEffect, useLayoutEffect, useState, useCallback } from 'react';
-import { createPortal } from 'react-dom';
-import { SESSIONS_COLLAPSE_THRESHOLD } from '@/lib/constants';
-import { isRenoirLocation, isEmbajadoresLocation } from '@/lib/film-helpers';
+import { useMemo, useState } from 'react';
+import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
+import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
 import { t } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
-import SessionRow from './SessionRow';
-import GroupedSessions from './GroupedSessions';
 
 interface SessionsDisplayProps {
   film: Film;
@@ -21,179 +18,277 @@ interface SessionsDisplayProps {
   getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
   getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
   onOpenModal: (data: SessionModalData) => void;
+  matchScore?: number;
+}
+
+const MAX_INLINE_CHIPS = 1;
+
+function shortDateLabel(iso: string, today: string, lang: LangKey): string {
+  if (iso === today) return lang === 'es' ? 'hoy' : 'today';
+  const parts = iso.split('-');
+  const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+  const dow = d.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { weekday: 'short' }).replace('.', '');
+  const dom = d.getDate();
+  const monShort = d.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-GB', { month: 'short' }).replace('.', '');
+  return `${dow} ${dom} ${monShort}`;
+}
+
+function timeOf(ts: string): string {
+  const [, hm = '00:00'] = ts.split(' ');
+  return hm.slice(0, 5);
+}
+
+function toModalData(film: Film, d: DateEntry,
+                     getFilmTitle: (f: Film) => string,
+                     getCalendarUrl: (f: Film, d: DateEntry) => string,
+                     getFallbackUrl: (f: Film, d: DateEntry) => string,
+                     matchScore?: number): SessionModalData {
+  const filmTitleLabel = film.year ? `${getFilmTitle(film)} (${film.year})` : getFilmTitle(film);
+  const tickets = d.url_tickets && d.url_tickets.trim() ? d.url_tickets : '';
+  const info = d.url_info && d.url_info.trim() ? d.url_info : '';
+  const primaryUrl = tickets || info || film.theaterLink || getFallbackUrl(film, d);
+  const primaryIsSpecific = !!(tickets || info);
+  return {
+    film,
+    session: d,
+    filmTitleLabel,
+    matchScore,
+    primaryUrl,
+    primaryIsSpecific,
+    secondaryInfoUrl: tickets && info && info !== tickets ? info : undefined,
+    calendarUrl: getCalendarUrl(film, d),
+  };
 }
 
 export default function SessionsDisplay({
   film, lang, dateLocale, openPopupId, setOpenPopupId,
-  formatDate, getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
+  getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal, matchScore,
 }: SessionsDisplayProps) {
-  if (film.dates.length === 1) {
-    return (
-      <SessionRow
-        film={film}
-        dateObj={film.dates[0]}
-        lang={lang}
-        formatDate={formatDate}
-        getFilmTitle={getFilmTitle}
-        getCalendarUrl={getCalendarUrl}
-        getFallbackUrl={getFallbackUrl}
-        onOpenModal={onOpenModal}
-      />
-    );
-  }
-
   const popupId = `popup-${film.id}`;
   const isOpen = openPopupId === popupId;
+  const todayIso = useMemo(() => formatDateInputValue(getLocalTodayStart()), []);
 
-  // Date range
-  const sorted = [...film.dates].sort((a, b) =>
-    new Date(a.timestamp.replace(' ', 'T')).getTime() - new Date(b.timestamp.replace(' ', 'T')).getTime()
-  );
-  const first = new Date(sorted[0].timestamp.replace(' ', 'T'));
-  const last = new Date(sorted[sorted.length - 1].timestamp.replace(' ', 'T'));
-  const fmtShort = (d: Date) => d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
-  const dateRange = first.toDateString() === last.toDateString()
-    ? fmtShort(first)
-    : `${fmtShort(first)} – ${fmtShort(last)}`;
+  const sorted = useMemo(() => {
+    return [...film.dates].sort((a, b) =>
+      new Date(a.timestamp.replace(' ', 'T')).getTime() -
+      new Date(b.timestamp.replace(' ', 'T')).getTime()
+    );
+  }, [film.dates]);
 
-  // Location summary
-  const locations = [...new Set(film.dates.map(d => d.location).filter(l => l && l !== 'Unknown'))];
-  let locationSummary = '';
-  if (locations.every(l => isRenoirLocation(l))) locationSummary = 'Renoir';
-  else if (locations.every(l => isEmbajadoresLocation(l))) locationSummary = 'Embajadores';
-  else if (locations.length === 1) locationSummary = locations[0];
-  else if (locations.length > 1) locationSummary = t(lang, 'nTheaters', locations.length);
-
-  return (
-    <SessionsToggleWithPortal
-      popupId={popupId}
-      isOpen={isOpen}
-      dateRange={dateRange}
-      locationSummary={locationSummary}
-      sessionsCount={film.dates.length}
-      film={film}
-      lang={lang}
-      dateLocale={dateLocale}
-      setOpenPopupId={setOpenPopupId}
-      getFilmTitle={getFilmTitle}
-      getCalendarUrl={getCalendarUrl}
-      getFallbackUrl={getFallbackUrl}
-      onOpenModal={onOpenModal}
-    />
-  );
-}
-
-function SessionsToggleWithPortal({
-  popupId, isOpen, dateRange, locationSummary, sessionsCount,
-  film, lang, dateLocale, setOpenPopupId,
-  getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
-}: {
-  popupId: string;
-  isOpen: boolean;
-  dateRange: string;
-  locationSummary: string;
-  sessionsCount: number;
-  film: Film;
-  lang: LangKey;
-  dateLocale: string;
-  setOpenPopupId: (id: string | null) => void;
-  getFilmTitle: (film: Film) => string;
-  getCalendarUrl: (film: Film, dateObj: DateEntry) => string;
-  getFallbackUrl: (film: Film, dateObj: DateEntry) => string;
-  onOpenModal: (data: SessionModalData) => void;
-}) {
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  const popupRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
-  const updatePosition = useCallback(() => {
-    if (!isOpen || !toggleRef.current || !popupRef.current) return;
-    const toggleRect = toggleRef.current.getBoundingClientRect();
-    const popup = popupRef.current;
-    popup.style.position = 'fixed';
-    popup.style.top = `${toggleRect.bottom + 4}px`;
-    popup.style.zIndex = '1000';
-
-    // Expand the sessions popup to span the full film-card inner width (card width
-    // minus its own horizontal padding, mirrored on both sides). Falls back to the
-    // toggle width if the card element can't be found.
-    const card = toggleRef.current.closest('.film-card') as HTMLElement | null;
-    if (card) {
-      const cardRect = card.getBoundingClientRect();
-      const cs = window.getComputedStyle(card);
-      const padLeft = parseFloat(cs.paddingLeft) || 0;
-      const padRight = parseFloat(cs.paddingRight) || 0;
-      popup.style.left = `${cardRect.left + padLeft}px`;
-      popup.style.width = `${cardRect.width - padLeft - padRight}px`;
-    } else {
-      popup.style.left = `${toggleRect.left}px`;
-      popup.style.width = `${toggleRect.width}px`;
-    }
-  }, [isOpen]);
-
-  // Position the popup synchronously before first paint so it never flashes at
-  // the bottom of <body> before jumping into place.
-  useLayoutEffect(() => {
-    if (!isOpen) return;
-    updatePosition();
-  }, [isOpen, updatePosition]);
-
-  // Reposition on scroll/resize while open.
-  useEffect(() => {
-    if (!isOpen) return;
-    let rafId: number;
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updatePosition);
-    };
-    window.addEventListener('scroll', onScroll, true);
-    window.addEventListener('resize', onScroll);
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll, true);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [isOpen, updatePosition]);
+  const inline = sorted.slice(0, MAX_INLINE_CHIPS);
+  const rest = sorted.length - inline.length;
 
   return (
     <>
-      <button
-        ref={toggleRef}
-        className={`sessions-toggle ${isOpen ? 'active' : ''}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          setOpenPopupId(isOpen ? null : popupId);
-        }}
-      >
-        <span className="toggle-icon">▼</span>
-        <span>{dateRange}</span>
-        {locationSummary && <span className="location-summary">{locationSummary}</span>}
-        <span className="sessions-count">{sessionsCount}</span>
-      </button>
-      {/* Portal only mounts when the popup is open. Previously every film card
-          (up to 150+) rendered a hidden portal with its full GroupedSessions DOM
-          into document.body — that bloated the tree and made open/close feel laggy. */}
-      {mounted && isOpen && createPortal(
-        <div
-          ref={popupRef}
-          id={popupId}
-          className="sessions-popup show"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <GroupedSessions
-            film={film}
-            lang={lang}
-            dateLocale={dateLocale}
-            getFilmTitle={getFilmTitle}
-            getCalendarUrl={getCalendarUrl}
-            getFallbackUrl={getFallbackUrl}
-            onOpenModal={onOpenModal}
-          />
-        </div>,
-        document.body
+      <div className="session-chips">
+        {inline.map((d, i) => {
+          const iso = d.timestamp.slice(0, 10);
+          const tint = theaterTint(d.location);
+          const shortLoc = shortTheaterName(d.location);
+          const chipClass = `session-chip${d.special ? ' has-special' : ''}`;
+          const label = `${shortDateLabel(iso, todayIso, lang)} ${timeOf(d.timestamp)}${shortLoc ? ' · ' + shortLoc : ''}`;
+          return (
+            <button
+              key={i}
+              className={chipClass}
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenModal(toModalData(film, d, getFilmTitle, getCalendarUrl, getFallbackUrl, matchScore));
+              }}
+              title={label}
+            >
+              <span className="session-chip-time">
+                {shortDateLabel(iso, todayIso, lang)} {timeOf(d.timestamp)}
+              </span>
+              {shortLoc && (
+                <>
+                  <span className="session-chip-sep">·</span>
+                  <span className="session-chip-tint" style={{ background: tint }} />
+                  <span className="session-chip-theater">{shortLoc}</span>
+                </>
+              )}
+              {d.version === 'dubbed' && (
+                <span className="session-chip-dub" title={t(lang, 'dubbedTooltip')}>ES</span>
+              )}
+            </button>
+          );
+        })}
+        {rest > 0 && (
+          <button
+            type="button"
+            className={`session-chip-more${isOpen ? ' active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpenPopupId(isOpen ? null : popupId);
+            }}
+          >
+            {isOpen
+              ? (lang === 'es' ? 'Ver menos' : 'Show less')
+              : `+${rest} ${lang === 'es' ? 'más' : 'more'}`}
+          </button>
+        )}
+      </div>
+
+      {/* Always mount the expanded panel when there's overflow — keeping it
+          in the DOM (hidden via CSS) means opening it is instant; no React
+          reconciliation or DOM creation delay on click. */}
+      {sorted.length > inline.length && (
+        <ExpandedSessionsByTheater
+          film={film}
+          lang={lang}
+          dateLocale={dateLocale}
+          sortedSessions={sorted}
+          todayIso={todayIso}
+          open={isOpen}
+          onOpenModal={(d) => onOpenModal(toModalData(film, d, getFilmTitle, getCalendarUrl, getFallbackUrl, matchScore))}
+        />
       )}
     </>
+  );
+}
+
+// ── Expanded panel: grouped by theater ─────────────────────────────────
+
+interface ExpandedSessionsProps {
+  film: Film;
+  lang: LangKey;
+  dateLocale: string;
+  sortedSessions: DateEntry[];
+  todayIso: string;
+  open: boolean;
+  onOpenModal: (d: DateEntry) => void;
+}
+
+function ExpandedSessionsByTheater({
+  film, lang, sortedSessions, todayIso, open, onOpenModal,
+}: ExpandedSessionsProps) {
+  const [sortMode, setSortMode] = useState<'theater' | 'date'>('theater');
+
+  const groups = useMemo(() => {
+    const byLocation = new Map<string, DateEntry[]>();
+    for (const d of sortedSessions) {
+      const k = d.location || 'Unknown';
+      let arr = byLocation.get(k);
+      if (!arr) { arr = []; byLocation.set(k, arr); }
+      arr.push(d);
+    }
+    return Array.from(byLocation.entries())
+      .map(([location, sessions]) => ({ location, sessions }))
+      .sort((a, b) => a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' }));
+  }, [sortedSessions, lang]);
+
+  const days = useMemo(() => {
+    const byDay = new Map<string, DateEntry[]>();
+    for (const d of sortedSessions) {
+      const iso = d.timestamp.slice(0, 10);
+      let arr = byDay.get(iso);
+      if (!arr) { arr = []; byDay.set(iso, arr); }
+      arr.push(d);
+    }
+    return Array.from(byDay.entries())
+      .map(([iso, sessions]) => ({ iso, sessions: sessions.sort((a, b) => a.timestamp.localeCompare(b.timestamp)) }))
+      .sort((a, b) => a.iso.localeCompare(b.iso));
+  }, [sortedSessions]);
+
+  const total = sortedSessions.length;
+  const isByDate = sortMode === 'date';
+  const toggleLabel = isByDate
+    ? (lang === 'es' ? 'Ordenadas por fecha' : 'Sorted by date')
+    : (lang === 'es' ? 'Ordenadas por sala' : 'Sorted by theater');
+
+  return (
+    <div
+      className={`sessions-by-theater${open ? ' is-open' : ' is-closed'}`}
+      aria-hidden={!open}
+      onClick={e => e.stopPropagation()}
+    >
+      <div className="sbt-head">
+        <button
+          type="button"
+          className="sbt-sort-toggle"
+          onClick={(e) => { e.stopPropagation(); setSortMode(isByDate ? 'theater' : 'date'); }}
+          title={lang === 'es' ? 'Cambiar orden' : 'Toggle sort'}
+        >
+          {toggleLabel}
+          <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden>
+            <path d="M3 4.5 L6 7.5 L9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <span>
+          {isByDate
+            ? `${total} · ${days.length} ${lang === 'es' ? (days.length === 1 ? 'día' : 'días') : (days.length === 1 ? 'day' : 'days')}`
+            : `${total} · ${groups.length} ${lang === 'es' ? (groups.length === 1 ? 'sala' : 'salas') : (groups.length === 1 ? 'theater' : 'theaters')}`
+          }
+        </span>
+      </div>
+
+      {!isByDate && groups.map(({ location, sessions }) => {
+        const tint = theaterTint(location);
+        const shortLoc = shortTheaterName(location);
+        const byDay = new Map<string, DateEntry[]>();
+        for (const s of sessions) {
+          const iso = s.timestamp.slice(0, 10);
+          let arr = byDay.get(iso);
+          if (!arr) { arr = []; byDay.set(iso, arr); }
+          arr.push(s);
+        }
+        const theaterDays = Array.from(byDay.entries()).sort(([a], [b]) => a.localeCompare(b));
+        return (
+          <div key={location} className="sbt-row">
+            <div className="sbt-theater">
+              <span className="sbt-tint" style={{ background: tint }} />
+              <span className="sbt-theater-name">{shortLoc || location}</span>
+            </div>
+            <div className="sbt-days">
+              {theaterDays.map(([iso, ss]) => {
+                return (
+                  <div key={iso} className="sbt-day">
+                    <span className="sbt-day-label">{shortDateLabel(iso, todayIso, lang)}</span>
+                    <div className="sbt-times">
+                      {ss.map((s, i) => (
+                        <button
+                          key={i}
+                          className="sbt-time"
+                          onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
+                        >
+                          {timeOf(s.timestamp)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      {isByDate && days.map(({ iso, sessions }) => {
+        return (
+          <div key={iso} className="sbt-row">
+            <div className="sbt-theater sbt-date-cell">
+              <span className="sbt-theater-name">{shortDateLabel(iso, todayIso, lang)}</span>
+            </div>
+            <div className="sbt-days sbt-days-flat">
+              {sessions.map((s, i) => {
+                const tint = theaterTint(s.location);
+                const shortLoc = shortTheaterName(s.location);
+                return (
+                  <button
+                    key={i}
+                    className="sbt-date-session"
+                    onClick={(e) => { e.stopPropagation(); onOpenModal(s); }}
+                  >
+                    <span className="sbt-time">{timeOf(s.timestamp)}</span>
+                    <span className="sbt-tint" style={{ background: tint }} />
+                    <span className="sbt-date-session-theater">{shortLoc || s.location}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }

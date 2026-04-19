@@ -1,8 +1,11 @@
 /**
- * Film-card-shaped skeleton. Used by:
+ * Skeleton placeholders for the poster grid layout. Geometry mirrors the real
+ * .grid-tile (2:3 aspect poster) so the swap to real content produces no
+ * layout shift.
+ *
+ * Used by:
  *   - loading.tsx (server-rendered, shown while page.tsx runs)
  *   - FilmCalendar (rendered while /api/screenings is still loading)
- * Same shape in both so the swap to real cards is seamless.
  */
 
 const PULSE: React.CSSProperties = {
@@ -23,67 +26,49 @@ function Block({ style, delay }: { style?: React.CSSProperties; delay?: number }
 export function SkeletonCard({ delay = 0 }: { delay?: number }) {
   return (
     <div
-      className="film-card"
       aria-hidden
-      style={{ animation: 'fc-skeleton-pulse 1.4s ease-in-out infinite', animationDelay: `${delay}ms` }}
-    >
-      <Block style={{ height: 22, width: '75%', borderRadius: 4 }} />
-      <Block style={{ height: 14, width: '55%', borderRadius: 4, marginTop: 10 }} />
-      <div style={{ display: 'flex', gap: 6, marginTop: 14, flexWrap: 'wrap' }}>
-        <Block style={{ height: 20, width: 60, borderRadius: 10 }} />
-        <Block style={{ height: 20, width: 75, borderRadius: 10 }} />
-        <Block style={{ height: 20, width: 50, borderRadius: 10 }} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 }}>
-        <Block style={{ height: 16, width: '85%', borderRadius: 4 }} />
-        <Block style={{ height: 16, width: '70%', borderRadius: 4 }} />
-        <Block style={{ height: 16, width: '78%', borderRadius: 4 }} />
-      </div>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginTop: 18 }}>
-        <Block style={{ height: 14, width: 42, borderRadius: 4 }} />
-        <Block style={{ height: 14, width: 42, borderRadius: 4 }} />
-        <Block style={{ height: 14, flex: 1, borderRadius: 7 }} />
-        <Block style={{ height: 20, width: 20, borderRadius: 4 }} />
-      </div>
-    </div>
+      style={{ aspectRatio: '2 / 3', animationDelay: `${delay}ms`, ...PULSE }}
+    />
   );
 }
 
 /**
- * Matches the real .filters-grid exactly: 12-col, 3 rows, same heights as the real
- * controls (row 1: theater trigger min-height 52px; rows 2 & 3: inputs/buttons with
- * 0.75rem vertical padding + ~1rem font ≈ 42px). Cells positioned identically so
- * the swap to real filters produces no height change and no layout shift.
+ * Matches the real .filter-bar layout so there's no layout shift when real
+ * filters take over. Renders 6 blocks mirroring the real children in DOM
+ * order (search, day-strip, calendar, theater, más-filtros, clear); the
+ * filter-bar CSS handles single-row (≥1200) / two-row (769–1199) / mobile
+ * grid layouts identically to the real bar, so block heights + widths match.
+ * The active-chips row below reserves its own 28px via .active-chips-placeholder.
  */
 export function SkeletonFilters() {
-  // Real heights: row 1 is set by .theater-multiselect-trigger min-height: 52px.
-  // Rows 2 & 3 are ~45px: 0.75rem vertical padding (24px) + 1rem font × line-height
-  // normal (~19.2px) + 1px border top & bottom.
-  const ROW1 = 52;
-  const ROW2 = 45;
-  const ROW3 = 45;
+  // `flex` is consumed by the desktop flex bar; on mobile/mid-desktop the bar
+  // switches to CSS grid and the flex values are ignored, so pills stretch to
+  // fill their grid cells. Omitting inline width is what makes that work.
+  const pill = (flex: string, h = 56): React.CSSProperties => ({
+    ...PULSE, height: h, borderRadius: 8, flex, minWidth: 0,
+  });
   return (
-    <div className="filters-grid" aria-hidden>
-      <div style={{ gridColumn: '1 / 10', gridRow: 1, ...PULSE, height: ROW1 }} />
-      <div style={{ gridColumn: '10 / 13', gridRow: 1, ...PULSE, height: ROW1 }} />
-      <div style={{ gridColumn: '1 / 9', gridRow: 2, ...PULSE, height: ROW2, animationDelay: '80ms' }} />
-      <div style={{ gridColumn: '9 / 13', gridRow: 2, ...PULSE, height: ROW2, animationDelay: '80ms' }} />
-      <div style={{ gridColumn: '1 / 8', gridRow: 3, ...PULSE, height: ROW3, animationDelay: '160ms' }} />
-      <div style={{ gridColumn: '8 / 13', gridRow: 3, ...PULSE, height: ROW3, animationDelay: '160ms' }} />
-    </div>
+    <>
+      <div className="filter-bar is-skeleton" aria-hidden>
+        {/* order + widths mirror the real FiltersGrid JSX */}
+        <div className="filter-bar-search" style={pill('0 1 300px')} />
+        <div className="day-bar" style={{ display: 'contents' }}>
+          <div className="day-strip" style={pill('0 1 520px', 56)} />
+        </div>
+        <div className="theater-multiselect" style={pill('1 1 180px')} />
+        <div className="more-filters-btn" style={pill('0 0 56px', 56)} />
+        <div className="clear-grid-btn" style={pill('0 0 56px', 56)} />
+      </div>
+      {/* Reserves the 28px vertical space of the active-chips row so the
+          "Hoy · N películas" heading below doesn't jump when real chips arrive. */}
+      <div className="active-chips-placeholder" aria-hidden />
+    </>
   );
 }
 
-export function SkeletonCardGrid({ count = 9 }: { count?: number }) {
+export function SkeletonCardGrid({ count = 12 }: { count?: number }) {
   return (
-    <div
-      aria-hidden
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))',
-        gap: '1.5rem',
-      }}
-    >
+    <div aria-hidden className="films-grid is-grid" style={{ display: 'grid' }}>
       {Array.from({ length: count }).map((_, i) => (
         <SkeletonCard key={i} delay={i * 70} />
       ))}

@@ -64,6 +64,7 @@ interface TmdbInfo {
   title_original: string | null;
   title_en: string | null;
   title_es: string | null;
+  poster_path: string | null;
 }
 
 function getTmdbAuth(): { headers: Record<string, string>; params: Record<string, string> } {
@@ -252,6 +253,9 @@ function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
     }
   }
 
+  // Poster path — relative like "/abc123.jpg"; consumers prepend the CDN base.
+  const posterPath: string | null = data.poster_path ?? null;
+
   return {
     tmdb_id: tmdbId,
     genres, country: countries, primary_language: primaryLanguage,
@@ -262,6 +266,7 @@ function parseTmdbResponse(data: any, mediaType: string): TmdbInfo {
     collection_name: collectionName, collection_id: collectionId,
     overview, tagline,
     title_original: titleOriginal, title_en: titleEn, title_es: titleEs,
+    poster_path: posterPath,
   };
 }
 
@@ -459,6 +464,7 @@ Deno.serve(async (req) => {
         filmData.title_original = tmdbInfo.title_original;
         filmData.title_en = tmdbInfo.title_en;
         filmData.title_es = tmdbInfo.title_es;
+        filmData.poster_path = tmdbInfo.poster_path;
       }
 
       // 5. Upsert into films table

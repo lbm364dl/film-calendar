@@ -42,7 +42,7 @@ export function useLetterboxd(options: UseLetterboxdOptions) {
   const [enrichmentPolling, setEnrichmentPolling] = useState(false);
   const [recommendReady, setRecommendReady] = useState(hasInitialScores);
   const [scoresLoading, setScoresLoading] = useState(false);
-  const [showWatched, setShowWatched] = useState(false);
+  const [showWatched, setShowWatched] = useState(true);
 
   const watchlistInputRef = useRef<HTMLInputElement>(null);
   const watchedInputRef = useRef<HTMLInputElement>(null);

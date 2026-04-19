@@ -25,6 +25,7 @@ export interface FilmRow {
   primary_language: string[];
   spoken_languages: string[];
   tmdb_url: string | null;
+  poster_path: string | null;
   title_original: string | null;
   title_en: string | null;
   title_es: string | null;
@@ -53,6 +54,16 @@ export interface Film {
   primaryLanguage: string[];
   spokenLanguages: string[];
   tmdbUrl: string;
+  /** TMDB poster path (e.g. "/abc123.jpg"). When present, Poster renders the
+   *  real image via `https://image.tmdb.org/t/p/w342{posterPath}`; otherwise
+   *  falls back to the deterministic abstract palette. */
+  posterPath?: string;
+  /** True when the film has at least one non-dubbed future session.
+   *  Computed in the filter pipeline from the unfiltered future dates, so
+   *  the session modal can tell "Spanish-original film (every session is
+   *  `dubbed`)" apart from "VOSE film with extra dubbed sessions" without
+   *  being misled by the active version filter. */
+  hasOriginalVersion?: boolean;
 }
 
 export interface DateEntry {
@@ -65,10 +76,18 @@ export interface DateEntry {
 }
 
 export interface SessionModalData {
-  titleLabel: string;
-  timeLabel: string;
-  ticketUrl: string;
-  filmPageUrl: string;
+  // Rich context (drives the Direction C modal)
+  film: Film;
+  session: DateEntry;
+  filmTitleLabel: string;   // localized title (ES/EN) with year appended
+  matchScore?: number;      // 0–100 affinity, if signed-in + Letterboxd
+  // Primary CTA — "Buy tickets" when session has a specific URL (either
+  // `url_tickets` or, failing that, `url_info`); degrades to the theater's
+  // home page labeled "Go to theater site".
+  primaryUrl: string;
+  primaryIsSpecific: boolean;
+  // Secondary info-page link, only surfaced when we already have a distinct
+  // tickets URL as the primary action.
+  secondaryInfoUrl?: string;
   calendarUrl: string;
-  hasDirectUrl: boolean;
 }

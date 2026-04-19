@@ -369,6 +369,11 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
             if main_title and main_title != title_original:
                 title_en = main_title
 
+    # Poster path — relative path like "/abc123.jpg"; consumers build the full
+    # URL with https://image.tmdb.org/t/p/{size}{poster_path}. May be null for
+    # obscure films even when tmdb_id exists.
+    poster_path = data.get("poster_path") or None
+
     return {
         "tmdb_id": tmdb_id,
         "genres": genres,
@@ -393,6 +398,7 @@ def _parse_tmdb_response(data: dict, media_type: str) -> dict:
         "title_original": title_original,
         "title_en": title_en,
         "title_es": title_es,
+        "poster_path": poster_path,
     }
 
 

@@ -103,6 +103,7 @@ export function mapFilmRows(rows: FilmRow[]): Film[] {
       primaryLanguage: row.primary_language || [],
       spokenLanguages: row.spoken_languages || [],
       tmdbUrl: row.tmdb_url || '',
+      posterPath: row.poster_path || undefined,
     };
   }).filter(f => f.title);
 }
@@ -128,7 +129,10 @@ export function generateCalendarUrl(
 ): string {
   try {
     const start = new Date(dateObj.timestamp.replace(' ', 'T'));
-    const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
+    const durationMinutes = film.runtimeMinutes && film.runtimeMinutes > 0
+      ? film.runtimeMinutes
+      : 120;
+    const end = new Date(start.getTime() + durationMinutes * 60 * 1000);
     const fmt = (d: Date) => {
       const pad = (n: number) => n.toString().padStart(2, '0');
       return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
