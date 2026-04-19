@@ -352,7 +352,7 @@ export default function FilmCalendar({
                   const todayIso = new Date().toISOString().slice(0, 10);
                   let prefix: string;
                   if (!filters.selectedDate) {
-                    prefix = lang === 'es' ? 'Próximas' : 'Upcoming';
+                    prefix = lang === 'es' ? 'Cartelera' : 'Listings';
                   } else if (filters.selectedDate === todayIso) {
                     prefix = lang === 'es' ? 'Hoy' : 'Today';
                   } else {
@@ -386,7 +386,7 @@ export default function FilmCalendar({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 6h18M3 12h12M3 18h6" />
             </svg>
-            <span>
+            <span className="sort-toggle-label">
               {filters.sortBy === 'rating' ? t(lang, 'sortByRating')
                 : filters.sortBy === 'viewers' ? t(lang, 'sortByViewers')
                 : t(lang, 'sortByMatch')}

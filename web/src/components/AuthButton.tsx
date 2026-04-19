@@ -201,7 +201,7 @@ export default function AuthButton({ lang, userId, userEmail, hasLetterboxd, onO
           <span className="user-pill-avatar">{initial}</span>
           <span className="user-pill-name">{shortName}</span>
           {hasLetterboxd && (
-            <span className="user-pill-lbxd" title="Letterboxd">LBXD</span>
+            <span className="user-pill-lbxd" title="Letterboxd">Letterboxd</span>
           )}
           <svg width="9" height="9" viewBox="0 0 12 8" className="user-pill-chevron" aria-hidden>
             <path fill="currentColor" d="M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z" />

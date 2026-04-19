@@ -58,6 +58,12 @@ export interface Film {
    *  real image via `https://image.tmdb.org/t/p/w342{posterPath}`; otherwise
    *  falls back to the deterministic abstract palette. */
   posterPath?: string;
+  /** True when the film has at least one non-dubbed future session.
+   *  Computed in the filter pipeline from the unfiltered future dates, so
+   *  the session modal can tell "Spanish-original film (every session is
+   *  `dubbed`)" apart from "VOSE film with extra dubbed sessions" without
+   *  being misled by the active version filter. */
+  hasOriginalVersion?: boolean;
 }
 
 export interface DateEntry {

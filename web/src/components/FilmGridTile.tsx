@@ -3,7 +3,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { paletteFor } from './Poster';
-import { theaterTint } from '@/lib/theater-colors';
+import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
@@ -176,7 +176,7 @@ function GridTileSessionsByTheater({
       {sortMode === 'theater' && (groups as typeof groupsByTheater).map(({ location, sessions }, idx) => {
         const hidden = idx >= effectiveMax;
         const tint = theaterTint(location);
-        const short = (location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || location;
+        const short = shortTheaterName(location) || location;
         const byDay = new Map<string, DateEntry[]>();
         for (const s of sessions) {
           const iso = s.timestamp.slice(0, 10);
@@ -220,7 +220,7 @@ function GridTileSessionsByTheater({
             <div className="gto-date-sessions">
               {sessions.map((s, i) => {
                 const tint = theaterTint(s.location);
-                const short = (s.location || '').replace(/^Cines?\s+/i, '').replace(/^Sala\s+/i, '') || s.location;
+                const short = shortTheaterName(s.location) || s.location;
                 return (
                   <button
                     key={i} type="button"
@@ -443,6 +443,15 @@ export default memo(function FilmGridTile({
           style={{ color: b }}
           aria-hidden
         >{mark}</div>
+      )}
+
+      {isWatched && (
+        <span className="grid-tile-watched" aria-label={lang === 'es' ? 'Vista' : 'Watched'}>
+          <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden>
+            <path d="M2 6.5 L5 9.5 L10 3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {lang === 'es' ? 'Vista' : 'Watched'}
+        </span>
       )}
 
       {/* Gradient readability overlay — fades into a near-black shade so the info

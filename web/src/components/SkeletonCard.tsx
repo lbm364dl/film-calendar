@@ -41,9 +41,11 @@ export function SkeletonCard({ delay = 0 }: { delay?: number }) {
  * The active-chips row below reserves its own 28px via .active-chips-placeholder.
  */
 export function SkeletonFilters() {
-  const pill = (w: number | string, h = 56): React.CSSProperties => ({
-    ...PULSE, height: h, borderRadius: 8, width: typeof w === 'number' ? w : undefined,
-    ...(typeof w !== 'number' ? { flex: w } : {}),
+  // `flex` is consumed by the desktop flex bar; on mobile/mid-desktop the bar
+  // switches to CSS grid and the flex values are ignored, so pills stretch to
+  // fill their grid cells. Omitting inline width is what makes that work.
+  const pill = (flex: string, h = 56): React.CSSProperties => ({
+    ...PULSE, height: h, borderRadius: 8, flex, minWidth: 0,
   });
   return (
     <>
@@ -51,12 +53,11 @@ export function SkeletonFilters() {
         {/* order + widths mirror the real FiltersGrid JSX */}
         <div className="filter-bar-search" style={pill('0 1 300px')} />
         <div className="day-bar" style={{ display: 'contents' }}>
-          <div className="day-strip" style={pill('0 1 460px', 56)} />
-          <div className="calendar-btn" style={pill(56, 56)} />
+          <div className="day-strip" style={pill('0 1 520px', 56)} />
         </div>
         <div className="theater-multiselect" style={pill('1 1 180px')} />
-        <div className="more-filters-btn" style={pill(56, 56)} />
-        <div className="clear-grid-btn" style={pill(56, 56)} />
+        <div className="more-filters-btn" style={pill('0 0 56px', 56)} />
+        <div className="clear-grid-btn" style={pill('0 0 56px', 56)} />
       </div>
       {/* Reserves the 28px vertical space of the active-chips row so the
           "Hoy · N películas" heading below doesn't jump when real chips arrive. */}

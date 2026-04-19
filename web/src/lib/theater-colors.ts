@@ -40,11 +40,15 @@ export function theaterTint(location: string): string {
   return TINTS.fallback;
 }
 
-/** Short display name for the location shown in chips (trims "Cines " / "Cinesa ..." prefixes). */
+/** Display name for a theater location shown in session chips.
+ *  Keeps brand prefixes (Cine, Sala, Cinesa, Yelmo, …) so the name reads
+ *  correctly ("Cine Paz", "Sala Equis", "Cinesa Manoteras"), and prepends
+ *  the Renoir brand to the bare single-name Renoir locations in Madrid. */
+const RENOIR_LOCATIONS = new Set(['Princesa', 'Plaza de España', 'Retiro']);
+
 export function shortTheaterName(location: string): string {
   if (!location) return '';
-  return location
-    .replace(/^Cines?\s+/i, '')
-    .replace(/^Sala\s+/i, '')
-    .trim();
+  const trimmed = location.trim();
+  if (RENOIR_LOCATIONS.has(trimmed)) return `Renoir ${trimmed}`;
+  return trimmed;
 }

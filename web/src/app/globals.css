@@ -66,7 +66,7 @@ body {
 }
 
 header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 1.75rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border-2);
@@ -122,7 +122,8 @@ header {
 .day-strip {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    /* 7 day pills + "more dates" calendar button = 8 equal-width cells. */
+    grid-template-columns: repeat(8, 1fr);
     gap: 3px;
     padding: 4px;
     background: var(--bg-card);
@@ -183,36 +184,18 @@ header {
     opacity: 0.45;
 }
 
-.calendar-btn {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: auto;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+/* "More dates" calendar icon — lives inline as the 8th cell of the day strip
+   so it shares the day-pill width + hover treatment. */
+.day-pill.day-pill-more {
     color: var(--text-dim);
-    cursor: pointer;
-    padding: 0;
-    flex-shrink: 0;
-    transition: color 0.2s, border-color 0.2s;
 }
-
-.calendar-btn:hover {
+.day-pill.day-pill-more:hover {
     color: var(--text);
-    border-color: var(--text-dim);
 }
-
-/* Custom date (outside the 7-day strip) is active → paint the icon button in
-   accent so the user can see their selection isn't on the visible strip. */
-.calendar-btn.active {
+/* Active when the user has picked a date outside the visible 7-day window. */
+.day-pill.day-pill-more.active {
     background: var(--accent);
     color: var(--accent-on);
-    border-color: var(--accent);
-}
-
-.calendar-btn.active:hover {
-    filter: brightness(1.05);
 }
 
 /* Calendar popover */
@@ -427,7 +410,6 @@ header {
     }
     .day-pill .dom { font-size: 0.92rem; }
     .day-pill .dow { font-size: 0.58rem; }
-    .calendar-btn { width: 40px; }
     /* Calendar popover as bottom sheet on mobile — override the centered modal
        positioning from the base rule. */
     .calendar-popover {
@@ -489,7 +471,8 @@ h1 {
     letter-spacing: -0.03em;
     line-height: 1;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
     background: none;
     -webkit-background-clip: unset;
     -webkit-text-fill-color: currentColor;
@@ -506,6 +489,7 @@ h1 .h1-accent {
     color: var(--text-dim);
     font-size: 0.82rem;
     letter-spacing: 0.02em;
+    text-align: center;
 }
 
 /* Secondary subtitle (theater list) — smaller, dimmer, sits below the stats line. */
@@ -630,21 +614,6 @@ h1 .h1-accent {
     padding: 6px 4px;
 }
 
-.filter-bar > .day-bar .calendar-btn {
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.filter-bar > .day-bar .calendar-btn svg {
-    width: 18px;
-    height: 18px;
-    display: block;  /* kill inline-baseline descender shifting the SVG ≈2px off-center */
-}
-
 /* Theater multi-select — grows to fill any remaining horizontal slack so long
    theater summaries ("Todos los cines", "Doré · Cineteca · …") fit without
    truncation. Minimum 180px keeps the pill usable at tighter widths. */
@@ -761,13 +730,8 @@ h1 .h1-accent {
         display: contents;
     }
     .filter-bar > .day-bar .day-strip {
-        grid-column: 1 / 11;   /* 10/12 */
+        grid-column: 1 / 12;   /* 11/12 — calendar button now lives inside */
         grid-row: 2;
-    }
-    .filter-bar > .day-bar .calendar-btn {
-        grid-column: 11 / 12;  /* 1/12 */
-        grid-row: 2;
-        width: auto;
     }
     .filter-bar > .clear-grid-btn {
         grid-column: 12 / 13;  /* 1/12 */
@@ -794,16 +758,24 @@ h1 .h1-accent {
         margin-left: auto;
         margin-right: auto;
     }
+    .filter-bar-search {
+        /* Search moved to row 1 on mobile — most-used control gets top billing. */
+        grid-column: 1 / 13;
+        grid-row: 1;
+        flex: none;
+        height: 52px;
+        min-width: 0;
+    }
     .filter-bar > .theater-multiselect {
         grid-column: 1 / 9;
-        grid-row: 1;
+        grid-row: 2;
         width: auto;
         max-width: none;
         flex: none;
     }
     .filter-bar > .more-filters-btn {
         grid-column: 9 / 13;
-        grid-row: 1;
+        grid-row: 2;
         width: auto;
         height: 52px;
         padding: 0 10px;
@@ -818,21 +790,8 @@ h1 .h1-accent {
         min-height: 52px;
         height: 52px;
     }
-    .filter-bar-search {
-        grid-column: 1 / 10;
-        grid-row: 2;
-        flex: none;
-        height: 52px;
-        min-width: 0;
-    }
     .filter-bar > .day-bar {
         display: contents;
-    }
-    .filter-bar > .day-bar .calendar-btn {
-        grid-column: 10 / 13;
-        grid-row: 2;
-        width: auto;
-        height: 52px;
     }
     .filter-bar > .day-bar .day-strip {
         grid-column: 1 / 13;
@@ -1595,6 +1554,22 @@ h1 .h1-accent {
     width: 12px;
     height: 12px;
     opacity: 0.9;
+}
+
+/* Reserve enough width for the longest sort label so the pill width doesn't
+   jump when cycling between "rating / viewers / match" ("Ordenado por
+   afinidad" is the longest in ES). Sized on the button directly with a
+   generous px min-width that covers either language. */
+.sort-toggle { min-width: 180px; }
+@media (max-width: 640px) {
+    .sort-toggle { min-width: 140px; padding: 4px 10px 4px 8px; gap: 0.3rem; }
+}
+/* Label fills the remaining space and centers its text, so the icon stays
+   anchored at the left while the label text reads centered regardless of
+   which sort option is active. */
+.sort-toggle-label {
+    flex: 1;
+    text-align: center;
 }
 
 .sort-toggle:hover:not(:disabled) {
@@ -2451,6 +2426,36 @@ h1 .h1-accent {
     /* Static dark gradient (instead of the per-poster `b` color) so the info
        text below reads in a predictable cream tone regardless of palette. */
     background: linear-gradient(to bottom, transparent 0%, rgba(10, 8, 5, 0.55) 45%, rgba(10, 8, 5, 0.88) 100%);
+}
+
+/* "Watched" badge — top-left marker for films the user has already seen
+   (their Letterboxd watched list). Plain white text + checkmark with a
+   layered shadow, no chip background, so it reads as a soft annotation over
+   the poster rather than a button. */
+.grid-tile-watched {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 10px 18px;
+    color: #f0ece1;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    /* Full-width top shade that fades downward — mirrors the bottom
+       gradient so the white text reads cleanly regardless of poster. */
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 8, 5, 0.75) 0%,
+        rgba(10, 8, 5, 0.4) 45%,
+        transparent 100%
+    );
+    pointer-events: none;
 }
 
 /* Match indicator — a thin color-coded strip along the bottom edge of the
@@ -5361,9 +5366,9 @@ footer p {
 
 .auth-dropdown-btn-lb {
     margin-bottom: 6px;
-    text-align: left;
     display: flex;
     align-items: center;
+    justify-content: center;
     border-color: var(--border);
     color: var(--text);
 }
@@ -5394,6 +5399,7 @@ footer p {
     margin-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
     word-break: break-all;
+    text-align: center;
 }
 
 .auth-dropdown-btn {

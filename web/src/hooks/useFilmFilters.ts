@@ -237,7 +237,8 @@ export function useFilmFilters(options: FilterOptions) {
           }
           return true;
         });
-        return { ...film, dates: sessionFiltered };
+        const hasOriginalVersion = futureDates.some(d => d.version !== 'dubbed');
+        return { ...film, dates: sessionFiltered, hasOriginalVersion };
       })
       .filter(film => {
         if (film.dates.length === 0) return false;

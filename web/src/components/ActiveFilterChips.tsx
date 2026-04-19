@@ -78,7 +78,7 @@ export default function ActiveFilterChips(props: ActiveFilterChipsProps) {
     // chip row essentially means "toggle version".
     out.push({
       key: 'version',
-      label: versionFilter === 'original' ? 'VOSE' : (lang === 'es' ? 'Doblada' : 'Dubbed'),
+      label: versionFilter === 'original' ? 'VOSE' : (lang === 'es' ? 'En español' : 'In Spanish'),
       onRemove: () => setVersionFilter(versionFilter === 'original' ? 'dubbed' : 'original'),
     });
 

@@ -5,7 +5,7 @@ import { translateGenre, translateSpecialType, shortenCountry } from '@/lib/tran
 import type { SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
 import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
-import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
+import { getLocalTodayStart, formatDateInputValue, isSpanishFilm } from '@/lib/film-helpers';
 import Poster from './Poster';
 
 interface SessionModalProps {
@@ -164,14 +164,26 @@ export default function SessionModal({ modal, modalClosing, lang, onClose }: Ses
             </div>
           )}
 
-          {session.version === 'dubbed' && (
-            <div className="session-modal-row">
-              <div className="session-modal-key">{lang === 'es' ? 'Versión' : 'Version'}</div>
-              <div className="session-modal-val">
-                <span className="session-modal-dub">{lang === 'es' ? 'Doblada al español' : 'Spanish-dubbed'}</span>
+          {(() => {
+            // Only surface the dubbed-version label when the film is
+            // foreign-language AND actually offers both versions. For
+            // Spanish-original films the `dubbed` marker just reflects the
+            // standard language track at commercial theaters — calling it
+            // "dubbed" would be misleading. `hasOriginalVersion` is
+            // precomputed upstream so it's correct even when the active
+            // VOSE / "in Spanish" filter has trimmed the visible sessions.
+            if (session.version !== 'dubbed') return null;
+            if (isSpanishFilm(film)) return null;
+            if (!film.hasOriginalVersion) return null;
+            return (
+              <div className="session-modal-row">
+                <div className="session-modal-key">{lang === 'es' ? 'Versión' : 'Version'}</div>
+                <div className="session-modal-val">
+                  <span className="session-modal-dub">{lang === 'es' ? 'Doblada al español' : 'Dubbed to Spanish'}</span>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
 
         {/* Actions */}
