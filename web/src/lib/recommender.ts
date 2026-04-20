@@ -58,8 +58,31 @@ export interface MatchScore {
  */
 export interface CompactBreakdown {
     coverage: number;                    // 0–1: fraction of feature budget with real data
-    byCategory: Record<string, number>;  // category → relative contribution
-    similarTo?: { title: string; titleEn?: string; reason: string; value: string; url?: string; valueUrl?: string }[];  // top similar watched films with connection
+    byCategory: Record<string, number>;  // category → relative contribution (PageRank path)
+                                          // or shared-mood_tag fraction (embedding path).
+    similarTo?: SimilarWatched[];        // top similar watched films with connection
+
+    // ── Embedding-path extras (KG vibe data for this screening film) ─────────
+    moodTags?: string[];                 // Specific mood tags like "slow psychological unraveling"
+    themes?: string[];                   // Thematic concerns, phrase-level
+    atmosphere?: string;                 // Sensory description of the viewing experience
+    tone?: string;                       // "melancholic, wryly comic, quietly devastating"
+    pacing?: string;                     // slow-burn | measured | propulsive | frenetic | varies
+    confidence?: string;                 // KG analysis confidence: high | medium | low
+    popularityAdj?: number;              // 0.60–1.00 multiplier applied to raw vibe score
+    confidenceAdj?: number;              // 0.85–1.00 multiplier applied to raw vibe score
+}
+
+export interface SimilarWatched {
+    title: string;
+    titleEn?: string;
+    reason: string;           // "mood" | "theme" | "vibe" | "director" | "cast" | ...
+    value: string;            // the shared token or empty
+    url?: string;
+    valueUrl?: string;
+    sharedMoodTags?: string[];   // all mood tags shared with the screening film
+    sharedThemes?: string[];     // all themes shared with the screening film
+    similarity?: number;         // 0–1 cosine (embedding path only)
 }
 
 /** Detailed explanation of why a film got a particular score. */

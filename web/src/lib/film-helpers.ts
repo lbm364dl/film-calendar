@@ -103,6 +103,7 @@ export function mapFilmRows(rows: FilmRow[]): Film[] {
       primaryLanguage: row.primary_language || [],
       spokenLanguages: row.spoken_languages || [],
       tmdbUrl: row.tmdb_url || '',
+      tmdbId: row.tmdb_id ?? null,
       posterPath: row.poster_path || undefined,
     };
   }).filter(f => f.title);

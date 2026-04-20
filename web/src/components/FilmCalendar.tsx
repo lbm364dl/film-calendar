@@ -10,6 +10,9 @@ import { useFilmData } from '@/hooks/useFilmData';
 import { useFilmFilters } from '@/hooks/useFilmFilters';
 import { useUrlParams } from '@/hooks/useUrlParams';
 import { useLetterboxd } from '@/hooks/useLetterboxd';
+import { useSimilarFilms } from '@/hooks/useSimilarFilms';
+import { useMoodShelves } from '@/hooks/useMoodShelves';
+import MoodShelves from '@/components/MoodShelves';
 import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '@/hooks/useModal';
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
@@ -60,6 +63,14 @@ export default function FilmCalendar({
 
   // ─ Data ─
   const { allFilms, loading, error } = useFilmData();
+
+  // KG-sourced "similar films" neighbors — per-screening, no user data.
+  // Acts as fallback when the personalized breakdown is empty, and as the
+  // only "why" signal for logged-out users.
+  const similarByFilmId = useSimilarFilms(allFilms, !loading && allFilms.length > 0);
+
+  // Curated "mood shelves" surface — 8 vibe-based discovery rows, logged-out-friendly.
+  const { shelves: moodShelves } = useMoodShelves(allFilms, !loading && allFilms.length > 0);
 
   // ─ Letterboxd ─
   const lb = useLetterboxd({
@@ -400,6 +411,24 @@ export default function FilmCalendar({
 
       {error && <div className="loading">{t(lang, 'errorLoading')}</div>}
 
+      {!loading && !error && moodShelves.length > 0 && (
+        <MoodShelves
+          shelves={moodShelves}
+          lang={lang}
+          dateLocale={dateLocale}
+          matchScores={lb.matchScores}
+          breakdowns={lb.breakdowns}
+          similarByFilmId={similarByFilmId}
+          watchedUrls={lb.watchedUrls}
+          openPopupId={openPopupId}
+          setOpenPopupId={setOpenPopupId}
+          getFilmTitle={getFilmTitle}
+          getCalendarUrl={getCalendarUrl}
+          getFallbackUrl={getTheaterFallbackUrl}
+          onOpenModal={openModal}
+        />
+      )}
+
       {/* Skeleton grid during loading AND the transient window (useDeferredValue lag
           + the displayedCount effect) so we never briefly expose the empty layout. */}
       {filmsNotReady && <SkeletonCardGrid count={9} />}
@@ -420,6 +449,7 @@ export default function FilmCalendar({
                   setOpenPopupId={setOpenPopupId}
                   matchScore={lb.matchScores[film.id]}
                   breakdown={lb.breakdowns[film.id]}
+                  generalSimilar={similarByFilmId[film.id]}
                   isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
                   getFilmTitle={getFilmTitle}
                   getCalendarUrl={getCalendarUrl}

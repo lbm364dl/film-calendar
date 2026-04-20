@@ -261,6 +261,7 @@ interface FilmGridTileProps {
   dateLocale: string;
   matchScore?: number;
   breakdown?: CompactBreakdown;
+  generalSimilar?: SimilarNeighborLite[];
   isWatched: boolean;
   openPopupId: string | null;
   setOpenPopupId: (id: string | null) => void;
@@ -279,9 +280,73 @@ function buildSimilarData(breakdown: CompactBreakdown | undefined, lang: LangKey
   return { title, value: translateExplainerValue(rawValue, s.reason, lang), url: s.url, valueUrl: s.valueUrl };
 }
 
+export interface SimilarNeighborLite {
+  tmdb_id: number;
+  title: string;
+  year: number | null;
+  letterboxd_url: string | null;
+  similarity: number;
+  mood_tags: string[];
+  themes: string[];
+}
+
+interface VibeBlock {
+  moodTags: string[];
+  tone: string | null;
+  neighbors: Array<{ title: string; url?: string; shared: string }>;
+  kind: 'personal' | 'general';
+}
+
+/**
+ * Build the "why" block for the flipped-poster view.
+ * Prefers the personalized breakdown (for logged-in users with watched overlap).
+ * Falls back to general KG neighbors when the personalized path is empty.
+ */
+function buildVibeData(
+  breakdown: CompactBreakdown | undefined,
+  generalSimilar: SimilarNeighborLite[] | undefined,
+  lang: LangKey,
+): VibeBlock | null {
+  const hasPersonal = breakdown && (
+    (breakdown.moodTags && breakdown.moodTags.length > 0)
+    || (breakdown.tone && breakdown.tone.trim().length > 0)
+    || (breakdown.similarTo && breakdown.similarTo.length > 0)
+  );
+
+  if (hasPersonal && breakdown) {
+    const neighbors = (breakdown.similarTo ?? []).slice(0, 3).map(s => ({
+      title: (lang === 'en' && s.titleEn) ? s.titleEn : s.title,
+      url: s.url,
+      shared: (s.sharedMoodTags && s.sharedMoodTags[0])
+        ?? (s.sharedThemes && s.sharedThemes[0])
+        ?? translateExplainerValue(s.value || s.reason, s.reason, lang),
+    }));
+    return {
+      moodTags: (breakdown.moodTags ?? []).slice(0, 4),
+      tone: breakdown.tone?.trim() || null,
+      neighbors,
+      kind: 'personal',
+    };
+  }
+
+  // Fallback: general KG neighbors (no login, or personalized overlap was empty).
+  if (generalSimilar && generalSimilar.length > 0) {
+    const neighbors = generalSimilar.slice(0, 3).map(n => ({
+      title: n.title,
+      url: n.letterboxd_url ?? undefined,
+      // No shared-with-user tag here — show the neighbor's most specific mood_tag
+      // as the descriptor of the vibe they share with the screening.
+      shared: n.mood_tags[0] ?? n.themes[0] ?? '',
+    }));
+    return { moodTags: [], tone: null, neighbors, kind: 'general' };
+  }
+
+  return null;
+}
+
 export default memo(function FilmGridTile({
   film, lang, dateLocale,
-  matchScore, breakdown, isWatched,
+  matchScore, breakdown, generalSimilar, isWatched,
   openPopupId, setOpenPopupId,
   getFilmTitle, getCalendarUrl, getFallbackUrl, onOpenModal,
 }: FilmGridTileProps) {
@@ -305,7 +370,7 @@ export default memo(function FilmGridTile({
 
   const tileId = `tile-${film.id}`;
   const expanded = openPopupId === tileId;
-  const showMatch = matchScore !== undefined && !isWatched;
+  const showMatch = matchScore !== undefined;
 
   // FLIP animation: on click we capture the tile's rect so the fixed-position
   // modal can animate *from* that rect (origin) *to* its final centered size,
@@ -599,6 +664,51 @@ export default memo(function FilmGridTile({
                   </div>
                 )}
                 {(() => {
+                  // Vibe block: personalized if available, else KG general neighbors.
+                  // We show this even without a matchScore, since "similar films"
+                  // is meaningful without a personalized affinity signal.
+                  const vibe = buildVibeData(breakdown, generalSimilar, lang);
+                  if (vibe) {
+                    return (
+                      <div className="grid-tile-modal-vibe">
+                        {vibe.moodTags.length > 0 && (
+                          <div className="grid-tile-modal-moodtags">
+                            {vibe.moodTags.map((t, i) => (
+                              <span key={i} className="grid-tile-modal-moodtag">{t}</span>
+                            ))}
+                          </div>
+                        )}
+                        {vibe.tone && (
+                          <div className="grid-tile-modal-tone">
+                            <span className="grid-tile-modal-rec-prefix">{lang === 'es' ? 'Tono' : 'Tone'}:</span>
+                            <span className="grid-tile-modal-tone-text">{vibe.tone}</span>
+                          </div>
+                        )}
+                        {vibe.neighbors.length > 0 && (
+                          <div className="grid-tile-modal-rec-list">
+                            <span className="grid-tile-modal-rec-prefix">
+                              {vibe.kind === 'personal'
+                                ? (lang === 'es' ? 'Si te gustó' : 'Like')
+                                : (lang === 'es' ? 'Parecida a' : 'Similar to')}:
+                            </span>
+                            <ul className="grid-tile-modal-rec-items">
+                              {vibe.neighbors.map((n, i) => (
+                                <li key={i} className="grid-tile-modal-rec-item">
+                                  {n.url ? (
+                                    <a href={n.url} className="grid-tile-modal-rec-title" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{n.title}</a>
+                                  ) : (
+                                    <span className="grid-tile-modal-rec-title">{n.title}</span>
+                                  )}
+                                  {n.shared && <span className="grid-tile-modal-rec-tag">{n.shared}</span>}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  // Fallback: old compact single-line variant (used by PageRank breakdowns).
                   const similarData = showMatch ? buildSimilarData(breakdown, lang) : null;
                   if (!similarData) return null;
                   return (

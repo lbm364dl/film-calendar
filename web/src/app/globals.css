@@ -3107,6 +3107,137 @@ a.grid-tile-modal-rec-tag:hover {
     opacity: 1;
 }
 
+/* ── Mood shelves (vibe-based horizontal rows above the grid) ──────── */
+.mood-shelves {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin: 24px 0 32px;
+}
+
+.mood-shelf {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mood-shelf-title {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin: 0;
+    padding: 0 4px;
+    opacity: 0.95;
+}
+
+.mood-shelf-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 4px 4px 12px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+}
+
+.mood-shelf-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.mood-shelf-row::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 4px;
+}
+
+.mood-shelf-tile-wrap {
+    flex: 0 0 auto;
+    width: 180px;
+    scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+    .mood-shelf-tile-wrap {
+        width: 140px;
+    }
+    .mood-shelf-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* Override FilmGridTile's grid-centric sizing for shelf context */
+.mood-shelf-tile-wrap .grid-tile {
+    width: 100%;
+}
+
+/* ── Embedding-path vibe block (KG-sourced "why") ─────────────────── */
+.grid-tile-modal-vibe {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 100%;
+}
+
+.grid-tile-modal-moodtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.grid-tile-modal-moodtag {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    padding: 2px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0.92;
+    white-space: nowrap;
+}
+
+.grid-tile-modal-tone {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.grid-tile-modal-tone-text {
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    opacity: 0.9;
+}
+
+.grid-tile-modal-rec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.grid-tile-modal-rec-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.grid-tile-modal-rec-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-family: var(--font-fraunces), Georgia, serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    opacity: 0.92;
+}
+
 .grid-tile-modal-sessions {
     flex: 1 1 auto;
     min-height: 0;
