@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { getLocalTodayStart, formatDateInputValue } from '@/lib/film-helpers';
-import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
+import { theaterTint, shortTheaterName, theaterOrderIndex } from '@/lib/theater-colors';
 import { t } from '@/lib/translations';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
@@ -174,7 +174,12 @@ function ExpandedSessionsByTheater({
     }
     return Array.from(byLocation.entries())
       .map(([location, sessions]) => ({ location, sessions }))
-      .sort((a, b) => a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' }));
+      .sort((a, b) => {
+        const oa = theaterOrderIndex(a.location);
+        const ob = theaterOrderIndex(b.location);
+        if (oa !== ob) return oa - ob;
+        return a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' });
+      });
   }, [sortedSessions, lang]);
 
   const days = useMemo(() => {

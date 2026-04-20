@@ -2958,6 +2958,21 @@ h1 .h1-accent {
     scrollbar-width: thin;
 }
 
+/* Theater mode on the back of the poster: each theater usually has only
+   1-2 sessions, so full-width rows waste a lot of horizontal space. Split
+   the theater groups into 2 columns. */
+.grid-tile-modal-back .grid-tile-overlay-groups.is-theater-mode {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 8px;
+    align-content: start;
+}
+
+.grid-tile-modal-back .grid-tile-overlay-groups.is-theater-mode > .gto-more {
+    grid-column: 1 / -1;
+}
+
 .grid-tile-modal-back .grid-tile-overlay-groups::-webkit-scrollbar {
     width: 4px;
 }
