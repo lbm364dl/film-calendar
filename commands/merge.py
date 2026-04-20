@@ -1,10 +1,13 @@
 """Merge command: merge matched CSV into Supabase with metadata fetching."""
 
 import os
+import subprocess
 import sys
 from datetime import datetime
+from urllib.parse import urljoin
 
 import pandas as pd
+import requests
 from dotenv import load_dotenv
 
 from json_io import parse_dates_column
@@ -23,7 +26,7 @@ TMDB_FIELDS = [
     "runtime_minutes", "directors", "top_cast", "keywords",
     "tmdb_rating", "tmdb_votes", "production_companies",
     "collection_name", "collection_id", "overview", "tagline",
-    "title_original", "title_en", "title_es",
+    "title_original", "title_en", "title_es", "poster_path",
 ]
 
 
@@ -78,6 +81,7 @@ def _build_film_row(film: dict) -> dict:
         "title_original": film.get("title_original"),
         "title_en": film.get("title_en"),
         "title_es": film.get("title_es"),
+        "poster_path": film.get("poster_path"),
     }
     # Remove None values so we don't overwrite existing DB data with nulls
     return {k: v for k, v in row.items() if v is not None}
@@ -361,3 +365,42 @@ def run_merge(args):
     print(f"\n{'[dry-run] ' if dry_run else ''}Merge complete!")
     print(f"  Films: {films_upserted}")
     print(f"  Screenings: {screenings_upserted}")
+
+    if dry_run:
+        return
+
+    _run_compute_scores()
+    _revalidate_screenings_cache()
+
+
+def _run_compute_scores():
+    """Run scripts/compute_scores.py (incremental) so new films get scored for all users."""
+    script = os.path.join(os.path.dirname(__file__), "..", "scripts", "compute_scores.py")
+    print("\n  Running compute_scores.py (incremental) ...")
+    try:
+        subprocess.run([sys.executable, script], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"  Warning: compute_scores failed ({e}). Run manually: python scripts/compute_scores.py")
+
+
+def _revalidate_screenings_cache():
+    """POST /api/screenings to flush Next.js data cache so new films appear on the site."""
+    site_url = os.environ.get("SITE_URL")
+    if not site_url:
+        print("\n  SITE_URL not set — skipping cache revalidation.")
+        print("  Run manually: curl -X POST https://www.madridfilmcalendar.com/api/screenings?secret=$REVALIDATE_SECRET")
+        return
+
+    endpoint = urljoin(site_url.rstrip("/") + "/", "api/screenings")
+    secret = os.environ.get("REVALIDATE_SECRET")
+    params = {"secret": secret} if secret else None
+
+    print(f"\n  Revalidating cache at {endpoint} ...")
+    try:
+        resp = requests.post(endpoint, params=params, timeout=30, allow_redirects=True)
+        if resp.ok:
+            print(f"  ✓ Cache revalidated ({resp.json()})")
+        else:
+            print(f"  Warning: revalidation returned {resp.status_code}: {resp.text[:200]}")
+    except requests.RequestException as e:
+        print(f"  Warning: revalidation request failed ({e})")
