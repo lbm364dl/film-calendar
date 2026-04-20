@@ -45,10 +45,27 @@ Output: concise list grouped by category. Don't classify special types yet — t
 ### 1b. Coverage / completeness check
 
 Cross-reference against the theaters in `README.md`:
-- For each **weekly-update** theater in the scraped range, check whether its session count looks plausible for the number of weeks covered. One or two sessions across a full week is suspicious for a commercial weekly-premiere venue (Renoir, Golem, Embajadores, Cine Paz, Verdi, Círculo de Bellas Artes).
-- Flag theaters **entirely absent** from the CSV that should be present for the date range and `--period`/`--fetch-from` the user used.
-- Flag **date gaps**: e.g. a theater has sessions for Mon–Wed but nothing Thu–Sun.
-- Note any quirks that recur across runs (e.g. "Sala Equis tends to upload the full week late", "Verdi often only lists the opening weekend until mid-week") — if you spot a new quirk, mention it so the user can decide whether to re-scrape later.
+
+- Flag theaters **entirely absent** from the CSV that *could* be expected for the date range and `--period`/`--fetch-from` the user used. **Don't assume absence = scraper failure** — common reasons a theater is missing:
+  - The user excluded it via `--fetch-from` (only some theaters were targeted).
+  - It's already up-to-date in Supabase from a prior scrape and the user only re-scraped the theaters that needed new data.
+  - The scraper actually failed silently.
+  Just list which weekly theaters are missing and ask the user to confirm which case applies, rather than declaring a failure.
+- For each present theater, **always compute sessions-per-day, not just first/last date**. A theater that "covers Mon–Sun" can still be 70% missing if Wed–Sun only has 1–3 sessions per day. The expected pattern of a fully-published commercial week is roughly flat (within a factor of ~2x) across all open days. Use the count breakdown as the actual completeness signal:
+  - For each theater, list sessions/day and look for a **cliff** — e.g. `Mon 16, Tue 14, Wed 4, Thu 5, Fri 1, Sat 3` is a Tuesday cliff; the theater is only fully published through Tuesday and the rest are pre-announced specials/events. Flag the cliff day as the last fully-published day.
+  - The absolute "low" threshold is theater-dependent: Cinesa/Yelmo run hundreds of sessions/day so a drop from 500 → 80 is a cliff; Cine Paz/Verdi run ~15–25/day so a drop from 20 → 3 is a cliff. Use the prior days as the baseline.
+  - A late date with 1–2 sessions is **not** evidence of publication — it's almost certainly a pre-announced special/event/preview. Don't treat it as "covered".
+- Flag **date gaps inside the published window**: e.g. a theater has Mon, Tue, Thu but nothing Wed.
+- Note any quirks that recur across runs (e.g. "Sala Equis tends to upload the full week late") — if you spot a new quirk, mention it so the user can decide whether to re-scrape later or update `THEATER_QUIRKS.md`.
+
+Output a per-theater table like:
+
+```
+| Theater       | Last fully published | Notes                                  |
+|---------------|----------------------|----------------------------------------|
+| Cine Paz      | Tue 04-21            | Wed onward 1–5/day (cliff). Re-scrape. |
+| Embajadores   | Thu 04-23            | Fri onward 1–5/day (cliff).            |
+```
 
 The user uses this section to decide which theaters/dates need a re-scrape before moving on.
 
@@ -92,10 +109,14 @@ When the user confirms, edit `<theater>-matched.csv` to set the `special` column
 
 ## Stage 4 (optional) — Post-merge audit
 
-After the user runs `merge`, if asked, spot-check Supabase (or `docs/screenings.json` if that's the target):
-- Special tags propagated to session dicts.
-- New films have Letterboxd metadata populated.
-- No duplicate sessions for `(film, timestamp, location)`.
+After the user runs `merge`, if asked, spot-check **Supabase** (the only merge target — `docs/screenings.json` is legacy and not written by `merge`). Use either:
+- `python main.py status` for per-theater session counts + last-session date, or
+- the `mcp__plugin_supabase_supabase__*` MCP tools (`execute_sql`, `list_tables`) for ad-hoc queries.
+
+Things to check:
+- `screenings.special` populated on the rows you tagged in Stage 3.
+- New films have Letterboxd + TMDB metadata populated on the `films` row.
+- No duplicate sessions for `(film_id, showtime, location)` (the unique index should prevent this — flag any apparent duplicates as a bug).
 - Counts roughly match what the matched CSV implied.
 
 ---

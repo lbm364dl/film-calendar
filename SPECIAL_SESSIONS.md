@@ -83,29 +83,18 @@ Empty/blank `special` column = regular movie screening. A keyword value = specia
 
 ### Match step (skips special sessions)
 
-`match_films()` in `rate.py` automatically skips rows where the `special` column is set. This avoids wasting time searching Letterboxd for conferences, short film programs, etc.
+The `match` command (`commands/match.py`) automatically skips rows where the `special` column is set. This avoids wasting time searching Letterboxd for conferences, short film programs, etc.
 
-### Merge step (propagates to session dicts)
+### Merge step (propagates to the `screenings` table)
 
-`run_merge()` in `main.py` reads the top-level `special` column and injects it into every session dict for that row. So `screenings.json` ends up with:
+`run_merge()` in `commands/merge.py` reads the top-level `special` column from the matched CSV and writes it to the `special` column of each row it inserts into the Supabase `screenings` table. The screenings table has one row per `(film_id, showtime, location)`; each such row gets the keyword.
 
-```json
-{
-    "title": "Ciclo de conferencias: Breve historia del blockbuster",
-    "dates": [
-        {
-            "timestamp": "2026-04-07 18:30",
-            "location": "Cineteca Madrid",
-            "url_tickets": "...",
-            "url_info": "...",
-            "special": "conference"
-        }
-    ]
-}
-```
+So a single film like `"Ciclo de conferencias: Breve historia del blockbuster"` becomes one row in `films` (without a Letterboxd URL — it was skipped by `match`) plus N rows in `screenings`, each with `special = 'conference'`.
 
-### In the UI
+The `films` table itself has no `special` column — the field belongs to the screening, not the film, because the same film can in principle appear in both regular and special sessions across different theaters.
 
-- Sessions with a `special` field display a gold badge with the translated type label
+### In the UI (`web/`)
+
+- Sessions with a `special` value display a gold badge with the translated type label
 - A "Special sessions" filter button in the toolbar toggles visibility to show only films with special sessions
 - The filter state is persisted in the URL as `?special=1`
