@@ -687,13 +687,26 @@ def main():
     print(f"Loaded features for {len(screened_films)} screened film(s).")
 
     # ── 2. Find all users with enriched watched data ──────────────────────────
-    resp = (
-        supabase.table("user_watched_films")
-        .select("user_id")
-        .not_.is_("film_id", "null")
-        .execute()
-    )
-    user_ids = list({row["user_id"] for row in (resp.data or [])})
+    # Paginate: PostgREST caps responses (default 1000 rows). Without paging,
+    # users whose rows fall past the cap are silently dropped from the dedup set.
+    user_id_set = set()
+    offset = 0
+    while True:
+        page = (
+            supabase.table("user_watched_films")
+            .select("user_id")
+            .not_.is_("film_id", "null")
+            .range(offset, offset + BATCH - 1)
+            .execute()
+        )
+        rows = page.data or []
+        if not rows:
+            break
+        user_id_set.update(row["user_id"] for row in rows)
+        if len(rows) < BATCH:
+            break
+        offset += BATCH
+    user_ids = list(user_id_set)
 
     if not user_ids:
         print("No users with enriched watched data found. Nothing to do.")
@@ -713,14 +726,26 @@ def main():
         if args.full:
             films_to_score_ids = screened_id_set
         else:
-            resp = (
-                supabase.table("user_film_scores")
-                .select("film_id")
-                .eq("user_id", user_id)
-                .in_("film_id", screened_film_ids)
-                .execute()
-            )
-            already_scored = {row["film_id"] for row in (resp.data or [])}
+            # Chunk the IN list (PostgREST URL limit) and paginate each chunk
+            # (response row cap) so we never silently drop matches.
+            already_scored = set()
+            for start in range(0, len(screened_film_ids), BATCH):
+                chunk = screened_film_ids[start:start + BATCH]
+                offset = 0
+                while True:
+                    page = (
+                        supabase.table("user_film_scores")
+                        .select("film_id")
+                        .eq("user_id", user_id)
+                        .in_("film_id", chunk)
+                        .range(offset, offset + BATCH - 1)
+                        .execute()
+                    )
+                    rows = page.data or []
+                    already_scored.update(row["film_id"] for row in rows)
+                    if len(rows) < BATCH:
+                        break
+                    offset += BATCH
             films_to_score_ids = screened_id_set - already_scored
 
         if not films_to_score_ids:
