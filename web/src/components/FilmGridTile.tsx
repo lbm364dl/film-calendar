@@ -10,6 +10,61 @@ import type { LangKey } from '@/lib/translations';
 import type { CompactBreakdown } from '@/lib/recommender';
 import { translateGenre, translateExplainerValue } from '@/lib/translations';
 
+// ── Body scroll lock (refcounted) ───────────────────────────────────────────
+//
+// The same tile (by film.id) can mount in multiple places at once — e.g. in
+// a mood shelf and in the main listings. Both instances become "expanded"
+// when openPopupId matches, and without refcounting each would snapshot/
+// restore body styles independently. The second snapshot captures the
+// already-locked state and its cleanup leaves the body locked forever.
+//
+// Module-level refcount ensures only the first acquirer snapshots and only
+// the last releaser restores.
+let scrollLockCount = 0;
+let scrollLockSaved: {
+  overflow: string;
+  position: string;
+  top: string;
+  width: string;
+  paddingRight: string;
+  scrollY: number;
+} | null = null;
+
+function acquireScrollLock() {
+  if (scrollLockCount === 0) {
+    const scrollY = window.scrollY;
+    const scrollbarW = window.innerWidth - document.documentElement.clientWidth;
+    scrollLockSaved = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+      paddingRight: document.body.style.paddingRight,
+      scrollY,
+    };
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    if (scrollbarW > 0) document.body.style.paddingRight = `${scrollbarW}px`;
+  }
+  scrollLockCount++;
+}
+
+function releaseScrollLock() {
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount === 0 && scrollLockSaved) {
+    const saved = scrollLockSaved;
+    document.body.style.overflow = saved.overflow;
+    document.body.style.position = saved.position;
+    document.body.style.top = saved.top;
+    document.body.style.width = saved.width;
+    document.body.style.paddingRight = saved.paddingRight;
+    window.scrollTo(0, saved.scrollY);
+    scrollLockSaved = null;
+  }
+}
+
 function matchTier(score: number): 'high' | 'mid' | 'warm' | 'mute' {
   if (score >= 90) return 'high';
   if (score >= 75) return 'mid';
@@ -382,34 +437,13 @@ export default memo(function FilmGridTile({
   const [overlayClosing, setOverlayClosing] = useState(false);
   const originRectRef = useRef<DOMRect | null>(null);
 
-  // Lock background scroll while the modal is up. We freeze the page at the
-  // current scrollY by fixing the body in place — setting overflow:hidden
-  // alone doesn't stop iOS scroll chaining, and the scrollbar width is
-  // compensated via padding-right so the header doesn't jump.
+  // Lock background scroll while the modal is up. Refcounted at module scope
+  // so multiple mounts of the same tile (shelf + listings) don't leak the
+  // locked body state on close.
   useEffect(() => {
     if (!overlayVisible) return;
-    const scrollY = window.scrollY;
-    const scrollbarW = window.innerWidth - document.documentElement.clientWidth;
-    const prev = {
-      overflow: document.body.style.overflow,
-      position: document.body.style.position,
-      top: document.body.style.top,
-      width: document.body.style.width,
-      paddingRight: document.body.style.paddingRight,
-    };
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    if (scrollbarW > 0) document.body.style.paddingRight = `${scrollbarW}px`;
-    return () => {
-      document.body.style.overflow = prev.overflow;
-      document.body.style.position = prev.position;
-      document.body.style.top = prev.top;
-      document.body.style.width = prev.width;
-      document.body.style.paddingRight = prev.paddingRight;
-      window.scrollTo(0, scrollY);
-    };
+    acquireScrollLock();
+    return releaseScrollLock;
   }, [overlayVisible]);
 
   const captureOrigin = useCallback(() => {

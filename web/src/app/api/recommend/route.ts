@@ -286,8 +286,13 @@ export async function GET() {
     const tmdb = info?.tmdb_id ?? null;
     const neighbors = tmdb != null ? nearestByScreenTmdb.get(tmdb) ?? [] : [];
 
+    // Only cite a watched film as "similar to" when the raw cosine is strong
+    // enough to be meaningful. Voyage top-neighbors typically sit around
+    // 0.78-0.82; below ~0.65 the claim is misleading on a low-match card.
+    const SIMILAR_TO_MIN = 0.65;
     const similarTo: SimilarWatched[] = [];
     for (const n of neighbors) {
+      if (n.similarity < SIMILAR_TO_MIN) continue;
       const nInfo = filmInfoById.get(n.watchedFilmId);
       if (!nInfo) continue;
       const primary = n.sharedMoodTags[0] ?? n.sharedThemes[0] ?? '';

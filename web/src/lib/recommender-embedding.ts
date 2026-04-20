@@ -4,7 +4,7 @@ import type { CompactBreakdown } from './recommender';
 // The route layer does the DB I/O; this file is pure vector math so it's
 // unit-testable and has no Supabase dependency.
 
-export const EMBEDDING_DIM = 384;
+export const EMBEDDING_DIM = 1024;
 
 // Minimum number of user-watched films with KG embeddings required before
 // we bother computing affinity. Below this, taste signal is too noisy.
@@ -22,7 +22,7 @@ export interface WatchedFilmInfo {
 
 export interface EmbeddingRecord {
   tmdb_id: number;
-  embedding: number[];          // 384 floats
+  embedding: number[];          // 1024 floats (voyage-3-large)
   mood_tags: string[] | null;
   themes: string[] | null;
 }
@@ -207,9 +207,11 @@ export function findNearestWatchedPerScreening(
     const screenMoods = new Set(screenTags?.mood_tags ?? []);
     const screenThemes = new Set(screenTags?.themes ?? []);
 
-    // Score each seed
+    // Score each seed. Skip the screening's own film if the user has watched
+    // it — otherwise the top "similar" reason is just the film itself.
     const scored: NeighborMatch[] = [];
     for (const s of seeds) {
+      if (s.tmdb_id === screenTmdb) continue;
       const sim = cosine(screenVec, s.vec);
       scored.push({
         watchedFilmId: s.film_id,
@@ -230,11 +232,17 @@ export function findNearestWatchedPerScreening(
 // ── Score normalization ──────────────────────────────────────────────────────
 
 /**
- * Min-max normalize raw cosine similarities to the 5–95 range (same output
- * range as PageRank path, so UI thresholds don't need to change).
+ * Percentile-rank normalize raw cosine similarities to the 5–95 range.
  *
- * Excludes watched films from the normalization window — they're seeds, would
- * dominate the scale — but still returns their scores.
+ * Voyage embeddings tend to cluster (most films land in a narrow similarity
+ * band around the user's taste vector), so plain min-max linearly stretches
+ * the dense middle into 5–95 and the "high match" band fills with dozens of
+ * films. Percentile ranking fixes the top-10% / top-25% / top-40% buckets to
+ * the cardinality of the pool, regardless of cluster tightness.
+ *
+ * Watched films are excluded from the ranking pool (they'd dominate the
+ * top), but we still place them on the curve by interpolating against the
+ * same unwatched rank distribution.
  */
 export function normalizeScores(
   rawByFilmId: Map<number, number>,
@@ -246,28 +254,44 @@ export function normalizeScores(
   }
 
   if (unwatchedValues.length === 0) {
-    // Everything is watched — give them all 50 as a neutral score.
     const out = new Map<number, number>();
     for (const [fid] of rawByFilmId) out.set(fid, 50);
     return out;
   }
 
-  let min = Infinity;
-  let max = -Infinity;
-  for (const v of unwatchedValues) {
-    if (v < min) min = v;
-    if (v > max) max = v;
+  // Sort ascending for percentile lookup.
+  const sorted = [...unwatchedValues].sort((a, b) => a - b);
+  const n = sorted.length;
+
+  // Binary-search the insertion index, averaged across equal values so ties
+  // all get the same percentile (midrank).
+  function percentile(v: number): number {
+    let lo = 0, hi = n;
+    while (lo < hi) {
+      const mid = (lo + hi) >>> 1;
+      if (sorted[mid] < v) lo = mid + 1;
+      else hi = mid;
+    }
+    const lower = lo;
+    let hi2 = n;
+    let lo2 = lo;
+    while (lo2 < hi2) {
+      const mid = (lo2 + hi2) >>> 1;
+      if (sorted[mid] <= v) lo2 = mid + 1;
+      else hi2 = mid;
+    }
+    const upper = lo2;
+    // Midrank in (0, n); divide by n for (0, 1].
+    const rank = (lower + upper) / 2;
+    return n > 1 ? rank / n : 0.5;
   }
-  const range = max - min;
 
   const out = new Map<number, number>();
   for (const [fid, v] of rawByFilmId) {
-    if (range === 0) {
-      out.set(fid, 50);
-    } else {
-      const t = Math.max(0, Math.min(1, (v - min) / range));
-      out.set(fid, Math.round(5 + t * 90));
-    }
+    const p = percentile(v);
+    // Clamp to [0,1] and map to [5, 95].
+    const t = Math.max(0, Math.min(1, p));
+    out.set(fid, Math.round(5 + t * 90));
   }
   return out;
 }

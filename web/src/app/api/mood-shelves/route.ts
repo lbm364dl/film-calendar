@@ -34,7 +34,7 @@ async function getMoodVectors(): Promise<Map<string, Float32Array>> {
 
   // Fetch embeddings for every unique anchor across all moods in one round-trip.
   const allAnchorIds = [...new Set(MOODS.flatMap(m => m.anchorTmdbIds))];
-  const records = await embeddingsByTmdb(allAnchorIds);
+  const records = allAnchorIds.length > 0 ? await embeddingsByTmdb(allAnchorIds) : [];
 
   const embByTmdb = new Map<number, Float32Array>();
   for (const r of records) {
@@ -45,6 +45,7 @@ async function getMoodVectors(): Promise<Map<string, Float32Array>> {
 
   const out = new Map<string, Float32Array>();
   for (const mood of MOODS) {
+    if (mood.anchorTmdbIds.length === 0) continue;  // anchorless → no vibe vector
     const vec = averageEmbeddings(mood.anchorTmdbIds, embByTmdb);
     if (vec) out.set(mood.id, vec);
   }
@@ -108,17 +109,27 @@ export async function GET(req: Request) {
   });
 
   const BATCH = 500;
-  const filmInfo = new Map<number, { tmdb_id: number; viewers: number | null }>();
+  const filmInfo = new Map<number, {
+    tmdb_id: number;
+    viewers: number | null;
+    year: number | null;
+    rating: number | null;
+  }>();
   for (let i = 0; i < filmIds.length; i += BATCH) {
     const slice = filmIds.slice(i, i + BATCH);
     const { data } = await supabase
       .from('films')
-      .select('id, tmdb_id, letterboxd_viewers')
+      .select('id, tmdb_id, letterboxd_viewers, year, letterboxd_rating')
       .in('id', slice);
     if (data) {
       for (const f of data) {
         if (f.tmdb_id != null) {
-          filmInfo.set(f.id, { tmdb_id: f.tmdb_id, viewers: f.letterboxd_viewers ?? null });
+          filmInfo.set(f.id, {
+            tmdb_id: f.tmdb_id,
+            viewers: f.letterboxd_viewers ?? null,
+            year: f.year ?? null,
+            rating: f.letterboxd_rating != null ? parseFloat(String(f.letterboxd_rating)) : null,
+          });
         }
       }
     }
@@ -140,12 +151,49 @@ export async function GET(req: Request) {
   // Mood vectors (cached per process)
   const moodVectors = await getMoodVectors();
 
+  // Per-tmdb lookup maps (for shelf-level filtering).
+  const infoByTmdb = new Map<number, { viewers: number | null; year: number | null; rating: number | null }>();
+  for (const info of filmInfo.values()) {
+    infoByTmdb.set(info.tmdb_id, { viewers: info.viewers, year: info.year, rating: info.rating });
+  }
+
+  function applyShelfFilters(pool: number[], mood: MoodDef): number[] {
+    return pool.filter(tid => {
+      const info = infoByTmdb.get(tid);
+      if (!info) return false;
+      if (mood.yearRange) {
+        if (info.year == null || info.year < mood.yearRange.start || info.year > mood.yearRange.end) return false;
+      }
+      if (mood.maxViewers != null) {
+        // Null viewers → film never matched Letterboxd → can't call it underdog.
+        if (info.viewers == null || info.viewers > mood.maxViewers) return false;
+      }
+      if (mood.minRating != null) {
+        if (info.rating == null || info.rating < mood.minRating) return false;
+      }
+      return true;
+    });
+  }
+
   // Score candidates against every mood in parallel.
+  // Vibe shelves: cosine against the mood vector, times popularity+confidence.
+  // Anchorless shelves (e.g. "underdogs"): rank by Letterboxd rating desc.
   const moodResults = await Promise.all(
     MOODS.map(async (mood): Promise<MoodShelfResult | null> => {
+      const pool = applyShelfFilters(candidateTmdbIds, mood);
+      if (pool.length === 0) return { mood, scored: [] };
+
+      if (mood.anchorTmdbIds.length === 0) {
+        // Rating-ranked shelf — no embedding call.
+        const scored = pool
+          .map(tid => ({ tmdb_id: tid, similarity: infoByTmdb.get(tid)?.rating ?? 0 }))
+          .sort((a, b) => b.similarity - a.similarity);
+        return { mood, scored };
+      }
+
       const vec = moodVectors.get(mood.id);
       if (!vec) return null;
-      const scored = await scoreFilmsByVector(Array.from(vec), candidateTmdbIds);
+      const scored = await scoreFilmsByVector(Array.from(vec), pool);
       return { mood, scored };
     })
   );
@@ -164,7 +212,10 @@ export async function GET(req: Request) {
     if (!result) continue;
     const { mood, scored } = result;
 
-    // Apply popularity + confidence adjustments, then take top N.
+    // Apply popularity + confidence adjustments, then take top N. For
+    // rating-ranked (anchorless) shelves skip popularityAdj — it would
+    // deliberately penalize the exact films we want to surface.
+    const isRatingRanked = mood.anchorTmdbIds.length === 0;
     const scoredWithAdj = scored
       .map(s => {
         const fids = filmIdsByTmdb.get(s.tmdb_id) ?? [];
@@ -173,7 +224,9 @@ export async function GET(req: Request) {
         const info = filmInfo.get(fid);
         const viewers = info?.viewers ?? null;
         const conf = confidenceByTmdb.get(s.tmdb_id) ?? null;
-        const adj = s.similarity * popularityAdj(viewers) * confidenceAdj(conf);
+        const adj = isRatingRanked
+          ? s.similarity
+          : s.similarity * popularityAdj(viewers) * confidenceAdj(conf);
         return { filmId: fid, adjustedScore: adj, rawSimilarity: s.similarity };
       })
       .filter((x): x is { filmId: number; adjustedScore: number; rawSimilarity: number } => x !== null);
