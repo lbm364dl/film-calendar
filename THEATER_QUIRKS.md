@@ -34,6 +34,19 @@ For a scrape run on **Monday**, this is what was observed as fully-published. Us
 | **Golem** | Thu | Thu/Fri |
 | **Círculo de Bellas Artes** | Sun (full Mon–Sun on its own cycle) | None |
 
+### Tuesday-scrape observations
+
+For a scrape run on **Tuesday** (concrete sample: Tue 2026-04-21, range 04-21 → 04-30).
+
+| Theater | Last fully-published day on Tue scrape | Re-scrape |
+|---|---|---|
+| **Cine Paz** | Wed of next week (through end of 9-day window) | None within window |
+| **Cines Renoir** | Wed of next week (through end of 9-day window) | None within window |
+| **Cines Yelmo** | Wed of next week (next-Thu drops to ~½ baseline) | Thu to pick up next-Thu |
+| **Cinesa** | Tue (Wed/Thu already ~½ baseline, Fri+ absent) | Wed+ |
+| **Cines Embajadores** | Thu (Fri+ drops to 1–5/day) | Fri/Sat |
+| **Cines Verdi** | Thu (Fri+ drops to 0–2/day) | Fri/Sat |
+
 ## Known systemic quirks (all scrapers)
 
 - **`year` column is empty across all rows** from golem, renoir, embajadores, cine-paz, verdi, cinesa, yelmo. Match must rely on title + director only.
