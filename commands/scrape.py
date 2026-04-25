@@ -153,6 +153,8 @@ def run_scrape(args):
     )
     df = df[~df["title"].isna()]
     df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
+    if "special" not in df.columns:
+        df["special"] = None
 
     df.to_csv(output_csv, index=False)
     print(f"\n✓ Scraped {len(df)} films → {output_csv}")
