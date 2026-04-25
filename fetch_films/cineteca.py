@@ -20,6 +20,15 @@ SPANISH_MONTHS = {
 class CinetecaScraper(BaseCinemaScraper):
     """Scraper for Cineteca Madrid."""
 
+    def __init__(self):
+        self._scrape_start: datetime | None = None
+        self._scrape_end: datetime | None = None
+
+    def fetch_films_from_date_range(self, start_date: datetime, end_date: datetime) -> list[dict]:
+        self._scrape_start = start_date
+        self._scrape_end = end_date
+        return super().fetch_films_from_date_range(start_date, end_date)
+
     @property
     def cinema_info(self) -> CinemaInfo:
         return CinemaInfo(
@@ -79,8 +88,8 @@ class CinetecaScraper(BaseCinemaScraper):
                 return link["href"]
         return ""
 
-    @staticmethod
     def _get_film_dates(
+        self,
         soup: BeautifulSoup,
         date: datetime,
         film_url: str,
@@ -139,6 +148,14 @@ class CinetecaScraper(BaseCinemaScraper):
                         "url_tickets": url_tickets,
                         "url_info": film_url,
                     })
+
+        if self._scrape_start and self._scrape_end:
+            start_d = self._scrape_start.date()
+            end_d = self._scrape_end.date()
+            results = [
+                r for r in results
+                if start_d <= datetime.strptime(r["timestamp"], "%Y-%m-%d %H:%M").date() <= end_d
+            ]
 
         return results
 

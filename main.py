@@ -1,7 +1,7 @@
 """Main entry point for film-calendar."""
 
 from cli import parse_args
-from commands import run_scrape, run_match, run_merge, run_archive, run_new_cinema, run_status, run_seo
+from commands import run_scrape, run_match, run_merge, run_archive, run_new_cinema, run_status, run_seo, run_lint, run_regroup
 
 
 if __name__ == "__main__":
@@ -21,3 +21,7 @@ if __name__ == "__main__":
         run_status(args)
     elif args.command == "seo":
         run_seo(args)
+    elif args.command == "lint":
+        run_lint(args)
+    elif args.command == "regroup":
+        run_regroup(args)
