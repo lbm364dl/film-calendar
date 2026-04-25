@@ -75,22 +75,33 @@ def _check_url(url):
     that fail Python's OpenSSL (Verdi, Sala Berlanga).  If that yields a 403,
     falls back to cloudscraper to bypass anti-bot protection (Cinesa, Yelmo).
     """
-    try:
-        r = _httpx_client.get(url, follow_redirects=True)
-        status = r.status_code
-    except Exception as e:
-        status = str(e)
-
-    # Fall back to cloudscraper if we got a 403 OR if httpx raised an exception 
-    # (such as 'Server disconnected' due to HTTP/2 concurrency issues).
-    if status == 403 or isinstance(status, str):
+    import time
+    max_retries = 3
+    
+    # Try httpx first
+    for attempt in range(max_retries):
         try:
-            # Don't pass HEADERS here — cloudscraper generates its own browser UA
-            # based on the browser config; overriding it with a curl UA causes 403.
-            r2 = _cs_client.get(url, timeout=TIMEOUT, allow_redirects=True)
-            return url, r2.status_code
+            r = _httpx_client.get(url, follow_redirects=True)
+            status = r.status_code
+            break
         except Exception as e:
-            return url, str(e)
+            status = str(e)
+            if attempt < max_retries - 1:
+                time.sleep(1 * (2 ** attempt))  # backoff: 1s, 2s
+            
+    # Fall back to cloudscraper if we got a 403 OR if httpx still raised an exception
+    if status == 403 or isinstance(status, str):
+        for attempt in range(max_retries):
+            try:
+                # Don't pass HEADERS here — cloudscraper generates its own browser UA
+                # based on the browser config; overriding it with a curl UA causes 403.
+                r2 = _cs_client.get(url, timeout=TIMEOUT, allow_redirects=True)
+                return url, r2.status_code
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    time.sleep(1 * (2 ** attempt))
+                else:
+                    return url, str(e)
 
     return url, status
 
