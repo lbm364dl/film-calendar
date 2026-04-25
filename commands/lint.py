@@ -83,19 +83,26 @@ def _check_url(url):
         try:
             r = _httpx_client.get(url, follow_redirects=True)
             status = r.status_code
+            # httpx will always 403 on Cloudflare, but retry 429s (rate limits)
+            if status == 429 and attempt < max_retries - 1:
+                time.sleep(1 * (2 ** attempt))
+                continue
             break
         except Exception as e:
             status = str(e)
             if attempt < max_retries - 1:
                 time.sleep(1 * (2 ** attempt))  # backoff: 1s, 2s
             
-    # Fall back to cloudscraper if we got a 403 OR if httpx still raised an exception
-    if status == 403 or isinstance(status, str):
+    # Fall back to cloudscraper if we got a 403, 429, OR if httpx still raised an exception
+    if status in (403, 429) or isinstance(status, str):
         for attempt in range(max_retries):
             try:
                 # Don't pass HEADERS here — cloudscraper generates its own browser UA
                 # based on the browser config; overriding it with a curl UA causes 403.
                 r2 = _cs_client.get(url, timeout=TIMEOUT, allow_redirects=True)
+                if r2.status_code in (403, 429) and attempt < max_retries - 1:
+                    time.sleep(1 * (2 ** attempt))
+                    continue
                 return url, r2.status_code
             except Exception as e:
                 if attempt < max_retries - 1:
