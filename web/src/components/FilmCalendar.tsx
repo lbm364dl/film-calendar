@@ -247,9 +247,14 @@ export default function FilmCalendar({
             </div>
           </div>
         </div>
-        <h1 className="wordmark-stack">
-          <span className="wordmark-eyebrow">Madrid</span>
-          <span className="wordmark-main h1-accent">Film Calendar</span>
+        <h1 className="wordmark-stack wordmark-horizontal">
+          <div className="wordmark-icon-col">
+            <img src="/logo-grid-2x2.png" alt="" className="wordmark-icon" aria-hidden="true" />
+          </div>
+          <div className="wordmark-text-col">
+            <span className="wordmark-eyebrow">Madrid</span>
+            <span className="wordmark-main h1-accent">Film Calendar</span>
+          </div>
         </h1>
         {/* Stats line — renders the real string once films load; until then a
             pulse placeholder of the same height reserves space so the theater

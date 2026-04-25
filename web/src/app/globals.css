@@ -494,6 +494,42 @@ h1 .h1-accent {
     gap: 0.2rem;
     margin: 0 auto;
 }
+.wordmark-stack.wordmark-horizontal {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+.wordmark-stack.wordmark-horizontal .wordmark-icon-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wordmark-stack.wordmark-horizontal .wordmark-text-col {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    justify-content: space-between;
+    min-width: 180px;
+    height: 64px;
+}
+.wordmark-stack.wordmark-horizontal .wordmark-eyebrow {
+    display: block;
+    white-space: nowrap;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.26em;
+}
+.wordmark-stack.wordmark-horizontal .wordmark-main {
+    display: block;
+    white-space: nowrap;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+}
 .wordmark-stack .wordmark-eyebrow {
     font-family: var(--font-inter), sans-serif;
     font-size: 0.72rem;
@@ -506,6 +542,16 @@ h1 .h1-accent {
     font-family: var(--font-fraunces), Georgia, serif;
     font-style: italic;
     font-weight: 400;
+}
+.wordmark-stack .wordmark-icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    display: block;
+}
+.wordmark-stack.wordmark-horizontal .wordmark-icon {
+    width: 64px;
+    height: 64px;
 }
 
 .subtitle {
