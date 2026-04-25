@@ -218,8 +218,13 @@ def run_regroup(args):
     result = []
     for std_title, group in df.groupby("title", sort=False):
         merged_dates: list[dict] = []
+        seen_keys: set[tuple] = set()
         for dates in group["_dates"]:
-            merged_dates.extend(dates)
+            for d in dates:
+                key = (d.get("timestamp"), d.get("location"))
+                if key not in seen_keys:
+                    seen_keys.add(key)
+                    merged_dates.append(d)
 
         director = next(
             (str(v) for v in group["director"].values if pd.notna(v) and str(v).strip()),
