@@ -124,3 +124,28 @@ class TestCinetecaScraper:
 
         film_info = scraper.parse_film_page(html, film_url, date)
         assert film_info.director == "Paco Millán"
+
+    def test_sessions_outside_range_filtered(self, scraper, load_fixture):
+        """Sessions whose date falls outside the scrape range must be dropped."""
+        html = load_fixture("cineteca", "film_page.html")
+        film_url = "https://www.cinetecamadrid.com/pelicula/test-film"
+        # Fixture has a session on 2026-01-29; scrape only 2026-01-15
+        scraper._scrape_start = datetime(2026, 1, 15)
+        scraper._scrape_end = datetime(2026, 1, 15)
+
+        film_info = scraper.parse_film_page(html, film_url, datetime(2026, 1, 15))
+
+        assert film_info.dates == []
+
+    def test_sessions_inside_range_kept(self, scraper, load_fixture):
+        """Sessions within the scrape range are returned normally."""
+        html = load_fixture("cineteca", "film_page.html")
+        film_url = "https://www.cinetecamadrid.com/pelicula/test-film"
+        # Fixture has a session on 2026-01-29; scrape January in full
+        scraper._scrape_start = datetime(2026, 1, 1)
+        scraper._scrape_end = datetime(2026, 1, 31)
+
+        film_info = scraper.parse_film_page(html, film_url, datetime(2026, 1, 15))
+
+        timestamps = [d["timestamp"] for d in film_info.dates]
+        assert "2026-01-29 20:00" in timestamps

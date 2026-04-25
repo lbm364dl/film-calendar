@@ -52,6 +52,12 @@ def parse_args():
         choices=["weekly", "monthly"],
         help="Fetch all theaters with this update period (e.g., 'weekly', 'monthly').",
     )
+    scrape_parser.add_argument(
+        "--skip-dedup",
+        action="store_true",
+        default=False,
+        help="Skip Supabase deduplication check (include sessions already in DB).",
+    )
 
     # Match subcommand
     match_parser = subparsers.add_parser(
@@ -167,6 +173,25 @@ def parse_args():
         "status",
         help="Show session coverage per theater (last session date, session count)",
         formatter_class=argparse.RawTextHelpFormatter,
+    )
+
+    # Lint subcommand
+    lint_parser = subparsers.add_parser(
+        "lint",
+        help="Check for broken URLs (non-200) in non-past screenings",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    lint_parser.add_argument(
+        "--start-date",
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        default=None,
+        help="Only check screenings from this date onwards (default: now).",
+    )
+    lint_parser.add_argument(
+        "--end-date",
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        default=None,
+        help="Only check screenings up to and including this date.",
     )
 
     # SEO subcommand
