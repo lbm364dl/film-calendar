@@ -225,31 +225,30 @@ class SalaEquisScraper(BaseCinemaScraper):
         """
         browser = self._get_browser()
 
-        # -- First pass: collect dates and decide which are in range ----------
+        # Single page load — collect all (row_element, date_str) pairs up front
         browser.get(kinetike_url)
         time.sleep(2)
 
         sesiones_btns = browser.find_elements(
             By.CSS_SELECTOR, 'input[value="SESIONES"]'
         )
-        n_dates = len(sesiones_btns)
-        if n_dates == 0:
+        if not sesiones_btns:
             return []
 
-        # Gather date strings from each row
-        date_texts: list[str] = []
+        date_rows: list[tuple] = []
         for btn in sesiones_btns:
             row = btn.find_element(
                 By.XPATH, './ancestor::div[contains(@class, "row")]'
             )
             spans = row.find_elements(By.TAG_NAME, "span")
-            date_texts.append(spans[1].text.strip() if len(spans) > 1 else "")
+            date_str = spans[1].text.strip() if len(spans) > 1 else ""
+            date_rows.append((row, date_str))
 
-        # -- Second pass: for each in-range date, click SESIONES and read times -
+        # For each in-range date: click SESIONES within that row, read times
+        # scoped to the same row — no page reload needed between dates.
         all_sessions: list[dict] = []
         seen_timestamps: set[str] = set()
-        for i in range(n_dates):
-            date_str = date_texts[i]  # e.g. "03/03/2026"
+        for row, date_str in date_rows:
             try:
                 session_date = datetime.strptime(date_str, "%d/%m/%Y")
             except ValueError:
@@ -260,21 +259,15 @@ class SalaEquisScraper(BaseCinemaScraper):
             if session_date.date() > end_date.date():
                 continue
 
-            # Reload and click SESIONES for this date to reveal times
-            browser.get(kinetike_url)
-            time.sleep(2)
-            sesiones_btns = browser.find_elements(
-                By.CSS_SELECTOR, 'input[value="SESIONES"]'
-            )
-            if i >= len(sesiones_btns):
+            try:
+                btn = row.find_element(By.CSS_SELECTOR, 'input[value="SESIONES"]')
+                btn.click()
+            except Exception:
                 continue
-            sesiones_btns[i].click()
-            time.sleep(2)
+            time.sleep(1)  # wait for AJAX — no full reload needed
 
-            # Collect time values
-            time_btns = browser.find_elements(
-                By.CSS_SELECTOR, "input.btn.btn-info"
-            )
+            # Scope lookup to this row so other dates' times don't bleed in
+            time_btns = row.find_elements(By.CSS_SELECTOR, "input.btn.btn-info")
             for tb in time_btns:
                 time_val = (tb.get_attribute("value") or "").strip()
                 if not time_val:

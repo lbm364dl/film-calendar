@@ -121,6 +121,34 @@ def _filter_known_sessions(fetched_films, known_ticket_keys, known_info_urls):
     return filtered
 
 
+def _merge_duplicate_films(fetched_films: list[dict]) -> list[dict]:
+    """Merge films with the same theater_film_link, combining their dates.
+
+    The day-by-day scraper visits a film's detail page once per day it appears
+    in a listing, producing duplicate entries. This collapses them into one
+    entry per URL so downstream dedup counts are accurate.
+    """
+    seen: dict[str, int] = {}
+    merged: list[dict] = []
+    for film in fetched_films:
+        link = film.get("theater_film_link") or ""
+        if link and link in seen:
+            existing = merged[seen[link]]
+            existing_keys = {
+                (d.get("timestamp"), d.get("location"))
+                for d in existing["dates"]
+            }
+            for d in film.get("dates", []):
+                if (d.get("timestamp"), d.get("location")) not in existing_keys:
+                    existing["dates"].append(d)
+        else:
+            idx = len(merged)
+            merged.append(film)
+            if link:
+                seen[link] = idx
+    return merged
+
+
 def run_scrape(args):
     """Execute the scrape command."""
     start_date = args.start_date
@@ -138,6 +166,8 @@ def run_scrape(args):
     for theater in theaters_list:
         fetched_films += theaters.fetch_films(theater, start_date, end_date)
 
+    fetched_films = _merge_duplicate_films(fetched_films)
+
     if not args.skip_dedup:
         known_ticket_urls, known_info_urls = _fetch_known_urls(start_date, end_date)
         fetched_films = _filter_known_sessions(fetched_films, known_ticket_urls, known_info_urls)
@@ -148,7 +178,6 @@ def run_scrape(args):
 
     df = (
         pd.DataFrame(fetched_films)
-        .drop_duplicates("theater_film_link")
         .sort_values(by="title")
     )
     df = df[~df["title"].isna()]
