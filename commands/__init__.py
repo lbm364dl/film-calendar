@@ -43,3 +43,8 @@ def run_seo(args):
 def run_lint(args):
     from .lint import run_lint as _run
     _run(args)
+
+
+def run_regroup(args):
+    from .regroup import run_regroup as _run
+    _run(args)

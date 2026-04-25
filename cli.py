@@ -59,6 +59,25 @@ def parse_args():
         help="Skip Supabase deduplication check (include sessions already in DB).",
     )
 
+    # Regroup subcommand
+    regroup_parser = subparsers.add_parser(
+        "regroup",
+        help="Standardize film titles via AI and merge duplicate rows across theaters",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    regroup_parser.add_argument(
+        "--input",
+        type=str,
+        required=True,
+        help="Input CSV file (scraped CSV, possibly combined from multiple theaters)",
+    )
+    regroup_parser.add_argument(
+        "--output",
+        type=str,
+        default="films_regroup.csv",
+        help="Output CSV file path (default: films_regroup.csv)",
+    )
+
     # Match subcommand
     match_parser = subparsers.add_parser(
         "match",
