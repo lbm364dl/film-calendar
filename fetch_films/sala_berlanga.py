@@ -364,10 +364,16 @@ class SalaBerlangaScraper(BaseCinemaScraper):
             parameters stripped).
         """
         soup = BeautifulSoup(html, "html.parser")
-        date_pattern = re.compile(r"[a-záéíóú]+,\s*(\d{2}/\d{2})")
+        date_pattern = re.compile(r"[a-záéíóú]+,\s*(\d{2}/\d{2})", re.IGNORECASE)
         session_map: dict[str, str] = {}
 
         base_url = "https://cine.entradas.com"
+        
+        from datetime import datetime, timedelta
+        today = datetime.now()
+        tomorrow = today + timedelta(days=1)
+        today_str = f"{today.day:02d}/{today.month:02d}"
+        tomorrow_str = f"{tomorrow.day:02d}/{tomorrow.month:02d}"
 
         for link in soup.find_all("a", href=lambda h: h and "evento" in h):
             time_div = link.find("div", attrs={"data-show-link-time": True})
@@ -381,9 +387,16 @@ class SalaBerlangaScraper(BaseCinemaScraper):
             while node:
                 prev = node.find_previous_sibling()
                 if prev and prev.name == "div":
-                    m = date_pattern.match(prev.get_text(strip=True))
+                    text = prev.get_text(strip=True).lower()
+                    m = date_pattern.match(text)
                     if m:
                         current_date = m.group(1)  # e.g. "10/02"
+                        break
+                    elif text == "hoy":
+                        current_date = today_str
+                        break
+                    elif text == "mañana":
+                        current_date = tomorrow_str
                         break
                 node = node.parent
                 if node is None or node.name == "body":

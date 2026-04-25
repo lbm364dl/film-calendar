@@ -19,6 +19,7 @@ Each session in the data has an optional `special` field that is either `null` (
 | `ballet` | Ballet broadcasts or recordings | (none in current data) |
 | `theater` | Theater/play broadcasts or recordings | (none in current data) |
 | `concert` | Music concerts or music-focused events | "BTS World Tour Arirang Live Viewing", "La magia K-POP" |
+| `tv_show` | TV-series screenings (episodes/capítulos shown in cinema) | "Ramblas. Capítulo 1 y 2", "Ramblas. Capítulo 3" |
 | `live_music` | A regular film (often silent) accompanied by live musicians playing during the screening | "El Héroe Del Río Con Música En Directo" (Keaton w/ live music), "El estudiante novato (Cine con piano en directo)" |
 | `double_session` | A single long screening split across two sessions with an intermission, or a double-feature intentionally programmed as one extended event | "Kill Bill: The Whole Bloody Affair - 70mm" |
 
@@ -60,6 +61,7 @@ Use this prompt (or a version of it) when asking an AI to classify sessions from
 > - `festival` — festival award screenings or festival program sessions
 > - `event` — special events, presentations, showcases, DJ sets, numbered recurring series
 > - `compilation` — compilations of archival footage, newsreels, or miscellaneous clips
+> - `tv_show` — TV-series screenings (episodes/capítulos)
 > - `opera`, `ballet`, `theater`, `concert` — live arts broadcasts/recordings
 >
 > Output a list of rows that are special, with the row number, title, and suggested keyword.

@@ -300,16 +300,23 @@ def _upsert_to_supabase(supabase, films, dry_run=False):
             print(f"  Error upserting film '{title}': {e}")
             continue
 
-        # Upsert screenings in batch
+        # Upsert screenings in batch, deduplicating by (showtime, location)
         screening_rows = []
+        seen_screening_keys: set[tuple] = set()
         for d in film.get("dates", []):
             ts = d.get("timestamp", "")
             if not ts:
                 continue
+            showtime = _parse_timestamp(ts)
+            location = d.get("location", "Unknown")
+            key = (showtime, location)
+            if key in seen_screening_keys:
+                continue
+            seen_screening_keys.add(key)
             screening_rows.append({
                 "film_id": film_id,
-                "showtime": _parse_timestamp(ts),
-                "location": d.get("location", "Unknown"),
+                "showtime": showtime,
+                "location": location,
                 "url_tickets": d.get("url_tickets", ""),
                 "url_info": d.get("url_info", ""),
                 "version": d.get("version"),

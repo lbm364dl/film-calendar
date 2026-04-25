@@ -3,7 +3,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { paletteFor } from './Poster';
-import { theaterTint, shortTheaterName } from '@/lib/theater-colors';
+import { theaterTint, shortTheaterName, theaterOrderIndex } from '@/lib/theater-colors';
 import { getLocalTodayStart, formatDateInputValue, formatViewerCount } from '@/lib/film-helpers';
 import type { Film, DateEntry, SessionModalData } from '@/lib/types';
 import type { LangKey } from '@/lib/translations';
@@ -122,7 +122,12 @@ function GridTileSessionsByTheater({
     }
     return Array.from(byLoc.entries())
       .map(([location, sessions]) => ({ location, sessions }))
-      .sort((a, b) => a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' }));
+      .sort((a, b) => {
+        const oa = theaterOrderIndex(a.location);
+        const ob = theaterOrderIndex(b.location);
+        if (oa !== ob) return oa - ob;
+        return a.location.localeCompare(b.location, lang === 'es' ? 'es' : 'en', { sensitivity: 'base' });
+      });
   }, [sorted, lang]);
 
   const groupsByDate = useMemo(() => {
@@ -226,7 +231,7 @@ function GridTileSessionsByTheater({
       )}
       <div
         ref={containerRef}
-        className={`grid-tile-overlay-groups${(showAll || showAllSessions) ? ' is-expanded' : ''}`}
+        className={`grid-tile-overlay-groups${(showAll || showAllSessions) ? ' is-expanded' : ''}${sortMode === 'theater' ? ' is-theater-mode' : ''}`}
       >
       {sortMode === 'theater' && (groups as typeof groupsByTheater).map(({ location, sessions }, idx) => {
         const hidden = idx >= effectiveMax;

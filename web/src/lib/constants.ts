@@ -122,12 +122,14 @@ export const SPECIAL_TYPE_LABELS: Record<string, Record<string, string>> = {
     conference: 'Conferencia', shorts: 'Cortometrajes', festival: 'Festival',
     event: 'Evento', compilation: 'Compilación', opera: 'Ópera',
     ballet: 'Ballet', theater: 'Teatro', concert: 'Concierto', tv: 'TV',
+    tv_show: 'Serie de TV',
     live_music: 'Música en directo', double_session: 'Doble sesión',
   },
   en: {
     conference: 'Conference', shorts: 'Shorts', festival: 'Festival',
     event: 'Event', compilation: 'Compilation', opera: 'Opera',
     ballet: 'Ballet', theater: 'Theater', concert: 'Concert', tv: 'TV',
+    tv_show: 'TV series',
     live_music: 'Live music', double_session: 'Double feature',
   },
 };

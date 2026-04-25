@@ -93,7 +93,7 @@ For rows with no match, or where the correct outcome is "no match", decide wheth
 
 A row can have a **legitimate Letterboxd URL and still be special** (e.g. a film + Q&A → `conference` or `event` depending on framing). Flag those too.
 
-**New keywords are allowed.** If none of the existing keywords (`conference`, `shorts`, `festival`, `event`, `compilation`, `opera`, `ballet`, `theater`, `concert`) fit, propose a new short lowercase keyword and explain why. The user will decide whether to adopt it; if adopted, update `SPECIAL_SESSIONS.md` when told.
+**New keywords are allowed.** If none of the existing keywords (`conference`, `shorts`, `festival`, `event`, `compilation`, `opera`, `ballet`, `theater`, `concert`, `tv_show`) fit, propose a new short lowercase keyword and explain why. The user will decide whether to adopt it; if adopted, update `SPECIAL_SESSIONS.md` when told.
 
 Output: `row | title | suggested keyword | one-line reason`. Mark new keywords clearly (e.g. `workshop (NEW)`).
 

@@ -7,3 +7,5 @@ selenium
 undetected-chromedriver
 pytest
 python-dotenv
+httpx[http2]
+cloudscraper

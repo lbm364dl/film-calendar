@@ -34,6 +34,30 @@ For a scrape run on **Monday**, this is what was observed as fully-published. Us
 | **Golem** | Thu | Thu/Fri |
 | **Círculo de Bellas Artes** | Sun (full Mon–Sun on its own cycle) | None |
 
+### Tuesday-scrape observations
+
+For a scrape run on **Tuesday** (concrete sample: Tue 2026-04-21, range 04-21 → 04-30).
+
+| Theater | Last fully-published day on Tue scrape | Re-scrape |
+|---|---|---|
+| **Cine Paz** | Wed of next week (through end of 9-day window) | None within window |
+| **Cines Renoir** | Wed of next week (through end of 9-day window) | None within window |
+| **Cines Yelmo** | Wed of next week (next-Thu drops to ~½ baseline) | Thu to pick up next-Thu |
+| **Cinesa** | Tue (Wed/Thu already ~½ baseline, Fri+ absent) | Wed+ |
+| **Cines Embajadores** | Thu (Fri+ drops to 1–5/day) | Fri/Sat |
+| **Cines Verdi** | Thu (Fri+ drops to 0–2/day) | Fri/Sat |
+
+### Wednesday-scrape observations
+
+For a scrape run on **Wednesday** (concrete sample: Wed 2026-04-22, range 04-22 → 04-29).
+
+| Theater | Last fully-published day on Wed scrape | Re-scrape |
+|---|---|---|
+| **Golem** | Wed of next week (through end of 8-day window) | None within window |
+| **Cines Embajadores** | Wed of next week (through end of window) | None within window |
+| **Cines Verdi** | Wed of next week, with a Tue dip (2 sessions) mid-window | Thu to confirm Tue isn't a dark day |
+| **Cinesa** | Tue of next week (next-Wed absent) | Thu to pick up next-Wed |
+
 ## Known systemic quirks (all scrapers)
 
 - **`year` column is empty across all rows** from golem, renoir, embajadores, cine-paz, verdi, cinesa, yelmo. Match must rely on title + director only.
