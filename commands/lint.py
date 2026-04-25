@@ -79,9 +79,11 @@ def _check_url(url):
         r = _httpx_client.get(url, follow_redirects=True)
         status = r.status_code
     except Exception as e:
-        return url, str(e)
+        status = str(e)
 
-    if status == 403:
+    # Fall back to cloudscraper if we got a 403 OR if httpx raised an exception 
+    # (such as 'Server disconnected' due to HTTP/2 concurrency issues).
+    if status == 403 or isinstance(status, str):
         try:
             # Don't pass HEADERS here — cloudscraper generates its own browser UA
             # based on the browser config; overriding it with a curl UA causes 403.
