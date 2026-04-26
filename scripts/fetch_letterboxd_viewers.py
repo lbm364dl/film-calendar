@@ -77,7 +77,7 @@ def main():
                 supabase.table("screenings")
                 .select("film_id")
                 .in_("film_id", film_ids)
-                .gte("timestamp", today.isoformat())
+                .gte("showtime", today.isoformat())
                 .execute()
             )
             active_film_ids = {s["film_id"] for s in (screenings.data or []) if s and "film_id" in s}
