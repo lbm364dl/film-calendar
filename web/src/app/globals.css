@@ -527,6 +527,7 @@ h1 .h1-accent {
 .subtitle.subtitle-placeholder {
     display: flex;
     align-items: center;
+    justify-content: center;
     /* line-height 1.55 × font-size 0.82rem ≈ 20px; match exactly. */
     min-height: calc(0.82rem * 1.55);
 }

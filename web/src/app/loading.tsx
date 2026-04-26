@@ -41,7 +41,7 @@ export default function Loading() {
         </div>
       </div>
 
-      <SkeletonCardGrid count={9} />
+      <SkeletonCardGrid count={10} />
     </div>
   );
 }

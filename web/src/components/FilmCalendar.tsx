@@ -402,7 +402,7 @@ export default function FilmCalendar({
 
       {/* Skeleton grid during loading AND the transient window (useDeferredValue lag
           + the displayedCount effect) so we never briefly expose the empty layout. */}
-      {filmsNotReady && <SkeletonCardGrid count={9} />}
+      {filmsNotReady && <SkeletonCardGrid count={10} />}
 
       {/* Film grid — only render when we actually have visible films to show */}
       {!loading && !error && filters.visibleFilms.length > 0 && (
