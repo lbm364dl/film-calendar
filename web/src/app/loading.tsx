@@ -11,7 +11,7 @@ export default function Loading() {
       <header>
         <div className="header-top-row">
           <div aria-hidden style={{ ...PULSE, width: 96, height: 32, borderRadius: 20 }} />
-          <div aria-hidden style={{ ...PULSE, width: 72, height: 30, borderRadius: 8 }} />
+          <div aria-hidden style={{ ...PULSE, width: 72, height: 30, borderRadius: 999 }} />
         </div>
         {/* Real title/subtitle — identical to the DC header FilmCalendar renders
             after hydration, so the swap is invisible. Subtitle stays as a skeleton

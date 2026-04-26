@@ -24,11 +24,36 @@ function Block({ style, delay }: { style?: React.CSSProperties; delay?: number }
 }
 
 export function SkeletonCard({ delay = 0 }: { delay?: number }) {
+  const anim = delay ? `${delay}ms` : undefined;
+  // Muted cream tones for skeleton lines over the dark gradient — matches the
+  // real tile's #f0ece1 info text, at low opacity so they read as placeholders.
+  const line = (style?: React.CSSProperties): React.CSSProperties => ({
+    borderRadius: 3,
+    background: 'rgba(240,236,225,0.22)',
+    ...style,
+  });
   return (
     <div
       aria-hidden
-      style={{ aspectRatio: '2 / 3', animationDelay: `${delay}ms`, ...PULSE }}
-    />
+      style={{ aspectRatio: '2 / 3', position: 'relative', borderRadius: 6, overflow: 'hidden', animationDelay: anim, ...PULSE }}
+    >
+      {/* Dark gradient + text-line placeholders — mirrors .grid-tile-gradient + .grid-tile-info */}
+      <div style={{
+        position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 40,
+        background: 'linear-gradient(to bottom, transparent 0%, rgba(10,8,5,0.55) 40%, rgba(10,8,5,0.88) 100%)',
+      }}>
+        <div style={{ padding: '0 10px 10px' }}>
+          {/* Title */}
+          <div style={line({ height: '0.9rem', marginBottom: 5 })} />
+          {/* Meta — year · director · runtime */}
+          <div style={line({ height: '0.6rem', width: '55%', marginBottom: 10, opacity: 0.7 })} />
+          {/* Footer — date/time chip on the right */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={line({ height: '0.6rem', width: 52, opacity: 0.7 })} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
