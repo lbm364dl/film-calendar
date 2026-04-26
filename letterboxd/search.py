@@ -140,7 +140,11 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict |
 
         for idx in to_match.index:
             row = result.loc[idx]
+            # title_en: English standardized title — primary search candidate
+            title_en = str(row.get("title_en")) if pd.notna(row.get("title_en")) else str(row["title"])
+            # title: original-language title — fallback when title_en search fails
             title = str(row["title"])
+            display_title = title  # for logging
             director = str(row["director"]) if pd.notna(row.get("director")) else ""
             year = str(int(row["year"])) if pd.notna(row.get("year")) else ""
 
@@ -159,25 +163,40 @@ def match_films(df: pd.DataFrame, skip_existing: bool = False, url_cache: dict |
                         print(f"  → Found in cache (link): {cached_url}")
                         break
             if not cached_url and title_cache:
-                if title and title in title_cache:
-                    cached_url = title_cache[title]
-                    print(f"  → Found in cache (title): {cached_url} (for '{title}')")
+                for t in ([title_en, title] if title_en != title else [title_en]):
+                    if t and t in title_cache:
+                        cached_url = title_cache[t]
+                        print(f"  → Found in cache (title): {cached_url} (for '{display_title}')")
+                        break
 
             if cached_url:
                 result.at[idx, "letterboxd_url"] = cached_url
             else:
                 url, found_year, strategy = find_letterboxd_url(
-                    title,
+                    title_en,
                     row.get("year"),
                     row.get("director"),
                     browser=browser,
                 )
+
+                # Fall back to original-language title if title_en search failed
+                if not url and title_en != title:
+                    print(f"  → title_en failed, retrying with original title '{title}' ...")
+                    url, found_year, strategy = find_letterboxd_url(
+                        title,
+                        row.get("year"),
+                        row.get("director"),
+                        browser=browser,
+                    )
+                    if url and strategy:
+                        strategy = f"{strategy} (orig title)"
+
                 result.at[idx, "letterboxd_url"] = url
 
                 if url:
-                    newly_matched.append((title, director, year, strategy or "unknown", url))
+                    newly_matched.append((title_en, director, year, strategy or "unknown", url))
                 else:
-                    unmatched.append((title, director, year))
+                    unmatched.append((title_en, director, year))
 
                 if pd.isna(row.get("year")) and found_year:
                     result.at[idx, "year"] = found_year

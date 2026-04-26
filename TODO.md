@@ -1,0 +1,11 @@
+- Add coloquios
+
+- More theaters:
+  - Academia de cine
+  - Pequeño Cine Estudio
+  - Casa america
+  - Odeon
+  - Ocine
+  - mk2 (palacio hielo, instituto frances)
+  - Cines Callao
+  - Artistic metropol
