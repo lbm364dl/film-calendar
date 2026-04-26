@@ -57,34 +57,48 @@ def main():
         print("Install supabase-py:  pip install supabase")
         sys.exit(1)
 
+    PAGE = 1000
+
     # Always exclude films without a Letterboxd URL (can't scrape them)
-    query = (
-        supabase.table("films")
-        .select("id, title, letterboxd_url, letterboxd_viewers")
-        .not_.is_("letterboxd_url", "null")
-    )
-    if args.only_missing or args.only_active:
-        query = query.or_("letterboxd_viewers.is.null,letterboxd_viewers.eq.0")
-    result = query.order("id").execute()
-    films = result.data
+    films: list = []
+    offset = 0
+    while True:
+        query = (
+            supabase.table("films")
+            .select("id, title, letterboxd_url, letterboxd_viewers")
+            .not_.is_("letterboxd_url", "null")
+        )
+        if args.only_missing or args.only_active:
+            query = query.or_("letterboxd_viewers.is.null,letterboxd_viewers.eq.0")
+        rows = query.order("id").range(offset, offset + PAGE - 1).execute().data or []
+        films.extend(rows)
+        if len(rows) < PAGE:
+            break
+        offset += PAGE
 
     # If --only-active, filter to films with current/future screenings
     if args.only_active and films:
         today = datetime.now(timezone.utc).date()
         film_ids = [f["id"] for f in films if f and "id" in f]
+        active_film_ids: set = set()
         if film_ids:
-            screenings = (
-                supabase.table("screenings")
-                .select("film_id")
-                .in_("film_id", film_ids)
-                .gte("showtime", today.isoformat())
-                .execute()
-            )
-            active_film_ids = {s["film_id"] for s in (screenings.data or []) if s and "film_id" in s}
-            films = [f for f in films if f["id"] in active_film_ids]
-        else:
-            films = []
+            offset = 0
+            while True:
+                rows = (
+                    supabase.table("screenings")
+                    .select("film_id")
+                    .in_("film_id", film_ids)
+                    .gte("showtime", today.isoformat())
+                    .range(offset, offset + PAGE - 1)
+                    .execute()
+                    .data or []
+                )
+                active_film_ids.update(s["film_id"] for s in rows if s and "film_id" in s)
+                if len(rows) < PAGE:
+                    break
+                offset += PAGE
 
+        films = [f for f in films if f["id"] in active_film_ids]
         if not films:
             print(f"No films with missing viewers and screenings >= {today}.")
             return
