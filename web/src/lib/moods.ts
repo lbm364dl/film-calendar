@@ -82,30 +82,6 @@ export const MOODS: MoodDef[] = [
     ],
   },
   {
-    id: 'golden-age-classics',
-    label: { es: 'Clásicos de oro', en: 'Golden age classics' },
-    anchorTmdbIds: [
-      289,    // Casablanca (1942)
-      15,     // Citizen Kane (1941)
-      5156,   // Bicycle Thieves (1948)
-      346,    // Seven Samurai (1954)
-      18148,  // Tokyo Story (1953)
-      426,    // Vertigo (1958)
-    ],
-    yearRange: { start: 1920, end: 1965 },
-  },
-  {
-    id: 'new-hollywood-70s',
-    label: { es: 'Nuevo Hollywood (70s)', en: 'New Hollywood (70s)' },
-    anchorTmdbIds: [
-      103,    // Taxi Driver (1976)
-      829,    // Chinatown (1974)
-      28,     // Apocalypse Now (1979)
-      238,    // The Godfather (1972)
-    ],
-    yearRange: { start: 1967, end: 1979 },
-  },
-  {
     id: 'fantasy',
     label: { es: 'Fantasía y lo maravilloso', en: 'Fantasy & the magical' },
     anchorTmdbIds: [
@@ -125,15 +101,25 @@ export const MOODS: MoodDef[] = [
     minRating: 3.0,
   },
   {
-    id: 'nineties-indie',
-    label: { es: 'Indie de los 90', en: '90s indie' },
+    id: 'sci-fi',
+    label: { es: 'Ciencia ficción', en: 'Science fiction' },
     anchorTmdbIds: [
-      680,    // Pulp Fiction (1994)
-      627,    // Trainspotting (1996)
-      275,    // Fargo (1996)
-      4995,   // Boogie Nights (1997)
-      807,    // Seven (1995)
+      335984, // Blade Runner 2049
+      329865, // Arrival
+      152601, // Her
+      264660, // Ex Machina
+      309006, // Annihilation
     ],
-    yearRange: { start: 1990, end: 1999 },
+  },
+  {
+    id: '3am-movie',
+    label: { es: 'Película de las 3 de la mañana', en: '3 AM movie vibe' },
+    anchorTmdbIds: [
+      550,    // Fight Club
+      4129,   // Requiem for a Dream
+      185,    // A Clockwork Orange
+      990,    // Blue Velvet
+      10858,  // Natural Born Killers
+    ],
   },
 ];
