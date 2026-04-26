@@ -10,6 +10,11 @@ import { useFilmData } from '@/hooks/useFilmData';
 import { useFilmFilters } from '@/hooks/useFilmFilters';
 import { useUrlParams } from '@/hooks/useUrlParams';
 import { useLetterboxd } from '@/hooks/useLetterboxd';
+import { useSimilarFilms } from '@/hooks/useSimilarFilms';
+import { useMoodShelves } from '@/hooks/useMoodShelves';
+import { useBecauseYouLiked } from '@/hooks/useBecauseYouLiked';
+import { useFilterShelves } from '@/hooks/useFilterShelves';
+import MoodShelves from '@/components/MoodShelves';
 import { useSessionModal, useLbModal, useMoreFiltersModal, useEscapeKey } from '@/hooks/useModal';
 import { useHelpModal } from '@/hooks/useHelpTooltip';
 import AuthButton from '@/components/AuthButton';
@@ -22,6 +27,7 @@ import SessionModal from '@/components/SessionModal';
 import LetterboxdModal from '@/components/LetterboxdModal';
 import MoreFiltersModal from '@/components/MoreFiltersModal';
 import HelpModal from '@/components/HelpModal';
+import ExploreView from '@/components/ExploreView';
 
 interface FilmCalendarProps {
   initialLang: LangKey;
@@ -50,6 +56,7 @@ export default function FilmCalendar({
 }: FilmCalendarProps) {
   // ─ Language ─
   const [lang, setLangState] = useState<LangKey>(initialLang);
+  const [view, setView] = useState<'shelves' | 'search' | 'explore'>('shelves');
   const setLang = useCallback((l: LangKey) => {
     setLangState(l);
     setLangCookie(l);
@@ -60,6 +67,16 @@ export default function FilmCalendar({
 
   // ─ Data ─
   const { allFilms, loading, error } = useFilmData();
+
+  // KG-sourced "similar films" neighbors — per-screening, no user data.
+  // Acts as fallback when the personalized breakdown is empty, and as the
+  // only "why" signal for logged-out users.
+  const similarByFilmId = useSimilarFilms(allFilms, !loading && allFilms.length > 0);
+
+  // Curated "mood shelves" surface — 8 vibe-based discovery rows, logged-out-friendly.
+  const { shelves: moodShelves } = useMoodShelves(allFilms, !loading && allFilms.length > 0);
+  const { shelves: becauseShelves } = useBecauseYouLiked(allFilms, !loading && allFilms.length > 0 && !!initialUserId);
+  const filterShelves = useFilterShelves(allFilms, !loading && allFilms.length > 0);
 
   // ─ Letterboxd ─
   const lb = useLetterboxd({
@@ -264,6 +281,34 @@ export default function FilmCalendar({
         <p className="subtitle subtitle-theaters">{t(lang, 'subtitle')}</p>
       </header>
 
+      <nav className="main-tabs" aria-label="Navigation">
+        <button
+          className={`main-tab${view === 'shelves' ? ' active' : ''}`}
+          onClick={() => setView('shelves')}
+        >
+          {t(lang, 'tabShelves')}
+        </button>
+        <button
+          className={`main-tab${view === 'search' ? ' active' : ''}`}
+          onClick={() => setView('search')}
+        >
+          {t(lang, 'tabSearch')}
+        </button>
+        <button
+          className={`main-tab${view === 'explore' ? ' active' : ''}`}
+          onClick={() => setView('explore')}
+        >
+          {t(lang, 'tabExplore')}
+        </button>
+      </nav>
+
+      {view === 'explore' && (
+        <ExploreView lang={lang} />
+      )}
+
+      {view === 'search' && (
+      <>
+
       {/* Calendar popover — centered modal on desktop, bottom sheet on mobile.
           `.closing` on both backdrop + popover triggers the fade-out;
           closeCalendar delays unmount until the animation finishes. */}
@@ -420,6 +465,7 @@ export default function FilmCalendar({
                   setOpenPopupId={setOpenPopupId}
                   matchScore={lb.matchScores[film.id]}
                   breakdown={lb.breakdowns[film.id]}
+                  generalSimilar={similarByFilmId[film.id]}
                   isWatched={!!(lb.watchedUrls && film.letterboxdShortUrl && lb.watchedUrls.has(film.letterboxdShortUrl))}
                   getFilmTitle={getFilmTitle}
                   getCalendarUrl={getCalendarUrl}
@@ -460,6 +506,67 @@ export default function FilmCalendar({
           </p>
         </div>
       </footer>
+
+      </>
+      )}
+
+      {view === 'shelves' && (
+        <>
+          {!loading && !error && becauseShelves.length > 0 && (
+            <MoodShelves
+              shelves={becauseShelves}
+              lang={lang}
+              dateLocale={dateLocale}
+              matchScores={lb.matchScores}
+              breakdowns={lb.breakdowns}
+              similarByFilmId={similarByFilmId}
+              watchedUrls={lb.watchedUrls}
+              openPopupId={openPopupId}
+              setOpenPopupId={setOpenPopupId}
+              getFilmTitle={getFilmTitle}
+              getCalendarUrl={getCalendarUrl}
+              getFallbackUrl={getTheaterFallbackUrl}
+              onOpenModal={openModal}
+            />
+          )}
+
+          {!loading && !error && filterShelves.length > 0 && (
+            <MoodShelves
+              shelves={filterShelves}
+              lang={lang}
+              dateLocale={dateLocale}
+              matchScores={lb.matchScores}
+              breakdowns={lb.breakdowns}
+              similarByFilmId={similarByFilmId}
+              watchedUrls={lb.watchedUrls}
+              openPopupId={openPopupId}
+              setOpenPopupId={setOpenPopupId}
+              getFilmTitle={getFilmTitle}
+              getCalendarUrl={getCalendarUrl}
+              getFallbackUrl={getTheaterFallbackUrl}
+              onOpenModal={openModal}
+            />
+          )}
+
+          {!loading && !error && moodShelves.length > 0 && (
+            <MoodShelves
+              shelves={moodShelves}
+              lang={lang}
+              dateLocale={dateLocale}
+              matchScores={lb.matchScores}
+              breakdowns={lb.breakdowns}
+              similarByFilmId={similarByFilmId}
+              watchedUrls={lb.watchedUrls}
+              openPopupId={openPopupId}
+              setOpenPopupId={setOpenPopupId}
+              getFilmTitle={getFilmTitle}
+              getCalendarUrl={getCalendarUrl}
+              getFallbackUrl={getTheaterFallbackUrl}
+              onOpenModal={openModal}
+            />
+          )}
+        </>
+      )}
 
       {/* More Filters Modal */}
       {(showMoreFilters || moreFiltersClosing) && (

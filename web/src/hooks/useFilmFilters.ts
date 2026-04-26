@@ -122,18 +122,25 @@ export function useFilmFilters(options: FilterOptions) {
   const [versionFilter, setVersionFilter] = useState<'original' | 'dubbed'>('original');
   const [sortBy, setSortBy] = useState<'rating' | 'viewers' | 'affinity'>(initialSortBy);
   const [specialFilter, setSpecialFilter] = useState(false);
+
+  // Ticks every 60s so the past-showtime filter re-evaluates without a reload.
+  const [nowMs, setNowMs] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 60_000);
+    return () => clearInterval(id);
+  }, []);
   const [lastChanceFilter, setLastChanceFilter] = useState(false);
 
   // ── Computed: unique values from film data ─────────────────────────────
 
   // Films with at least one future screening — used to derive filter options
   const activeFilms = useMemo(() => {
-    const now = new Date();
+    const now = new Date(nowMs);
     return allFilms.filter(f => f.dates.some(d => {
       const dt = getDateOnly(d.timestamp);
       return dt && dt >= now;
     }));
-  }, [allFilms]);
+  }, [allFilms, nowMs]);
 
   const allGenres = useMemo(() => {
     const set = new Set<string>();
@@ -176,7 +183,7 @@ export function useFilmFilters(options: FilterOptions) {
 
   const lastChanceFilmIds = useMemo(() => {
     const ids = new Set<number>();
-    const now = new Date();
+    const now = new Date(nowMs);
     const threeDaysLater = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
     for (const film of allFilms) {
       const futureDates = film.dates
@@ -187,7 +194,7 @@ export function useFilmFilters(options: FilterOptions) {
       if (lastDate <= threeDaysLater) ids.add(film.id);
     }
     return ids;
-  }, [allFilms]);
+  }, [allFilms, nowMs]);
 
   // ── Initialize genre/country/language to "all" when data loads ─────────
 
@@ -206,7 +213,7 @@ export function useFilmFilters(options: FilterOptions) {
   // ── Main filter pipeline ───────────────────────────────────────────────
 
   const filteredFilms = useMemo(() => {
-    const todayStart = new Date();
+    const todayStart = new Date(nowMs);
     const search = normalizeText(searchTerm);
     const allTheatersSelected = selectedTheaters.size === ALL_THEATER_VALUES.length;
 
@@ -309,7 +316,7 @@ export function useFilmFilters(options: FilterOptions) {
 
         return true;
       });
-  }, [allFilms, searchTerm, selectedTheaters, selectedDate, versionFilter, selectedDays,
+  }, [allFilms, nowMs, searchTerm, selectedTheaters, selectedDate, versionFilter, selectedDays,
       selectedDecades, decades, selectedGenres, allGenres, selectedCountries, allCountries,
       selectedLanguages, allLanguages, selectedRuntimeCategories, specialFilter, lastChanceFilter,
       lastChanceFilmIds, watchlistUrls, watchedUrls, watchlistActive, watchedActive, showWatched]);
